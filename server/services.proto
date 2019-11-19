@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package yngdieng;
+option csharp_namespace = "Yngdieng.Protos";
+
+import "server/phonology.proto";
+import "server/documents.proto";
+
+service YngdiengService {
+    rpc GetSearch (SearchRequest) returns (SearchResponse);
+}
+
+message SearchRequest {
+    Query query = 1;
+}
+
+message SearchResponse {
+    repeated Document documents = 1;
+}
+
+message Query {
+    oneof query {
+        // 按模糊音查询
+        string fuzzy_pron_query = 1;
+        // 音韵地位查询
+        PhonologyQuery phonology_query = 2;
+        // 汉字查询
+        string hanzi_query=3;
+    }
+    
+
+    // Must not be all empty
+    message PhonologyQuery {
+        // Optional
+        Initial initial = 1;
+        // Optional 
+        Final final = 2;
+        // Optional
+        Tone tone = 3;
+    }
+}

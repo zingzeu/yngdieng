@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package yngdieng;
+option csharp_namespace = "Yngdieng.Protos";
+import "server/phonology.proto";
+
+message Document {
+    int64 id = 1;
+
+    Hanzi hanzi_canonical = 2;
+
+    // Optional. 等价汉字.
+    repeated Hanzi hanzi_alternatives = 3;
+
+    Initial initial = 4;
+
+    Final final = 5;
+
+    Tone tone = 6;
+
+    string buc = 7;
+
+    string yngping_canonical = 8;
+
+    // All searchable permuations
+    repeated string yngping_permutations = 9;
+
+    // 出处信息.
+    oneof SourceInfo {
+        CikLinSourceInfo ciklin = 10;
+        DFDSourceInfo dfd = 11;
+    }
+
+    message CikLinSourceInfo {}
+
+    message DFDSourceInfo {
+        int32 page_number = 1;
+        int32 column_number = 2;
+        int32 line_number = 3;
+        int32 radical_id = 4;
+    }
+}
+
+message Hanzi {
+    oneof hanzi {
+        string regular = 1;
+        string ids = 2;
+    }
+}
