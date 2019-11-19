@@ -1,0 +1,123 @@
+syntax = "proto3";
+
+package yngdieng;
+option csharp_namespace = "Yngdieng.Protos";
+
+enum Final {
+    // 春
+    UNG = 0;
+    // 花
+    UA = 1;
+    // 香
+    YONG = 2;
+    // 秋
+    IU = 3;
+    // 山
+    ANG = 4;
+    // 開
+    AI = 5;
+    // 嘉
+    A = 6;
+    // 賓
+    ING = 7;
+    // 歡
+    UANG = 8;
+    // 歌
+    O = 9;
+    // 須
+    Y = 10;
+    // 杯
+    UOI = 11;
+    // 孤
+    U = 12;
+    // 燈
+    EING = 13;
+    // 光
+    UONG = 14;
+    // 輝
+    UI = 15;
+    // 燒
+    IEU = 16;
+    // 銀
+    YNG = 17;
+    // 釭
+    ONG = 18;
+    // 之
+    I = 19;
+    // 東
+    OENG = 20;
+    // 郊
+    AU = 21;
+    // 過
+    UO = 22;
+    // 西
+    E = 23;
+    // 橋
+    IO = 24;
+    // 雞
+    IE = 25;
+    // 聲
+    IANG = 26;
+    // 催
+    OEY = 27;
+    // 初
+    OE = 28;
+    // 天
+    IENG = 29;
+    // 奇
+    IA = 30;
+    // 歪
+    UAI = 31;
+    // 溝
+    EU = 32;
+}
+
+enum Initial {
+    // 柳
+    L = 0;
+    // 邊
+    B = 1;
+    // 求
+    G = 2;
+    // 氣
+    K = 3;
+    // 低
+    D = 4;
+    // 波
+    P = 5;
+    // 他
+    T = 6;
+    // 曾
+    Z = 7;
+    // 日
+    N = 8;
+    // 時
+    S = 9;
+    // 鶯
+    NONE = 10;
+    // 蒙
+    M = 11;
+    // 語
+    NG = 12;
+    // 出
+    C = 13;
+    // 非
+    H = 14;
+}
+
+enum Tone {
+    // 上平
+    UP_LEVEL = 0;
+    // 上上
+    UP_UP =1;
+    // 上去
+    UP_FALLING = 2;
+    // 上入
+    UP_ABRUPT = 3;
+    // 下平
+    DOWN_LEVEL=4;
+    // 下去
+    DOWN_FALLING = 5;
+    // 下入
+    DOWN_ABRUPT = 6;
+}
