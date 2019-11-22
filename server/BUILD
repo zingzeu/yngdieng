@@ -1,6 +1,6 @@
 load("@rules_proto//proto:defs.bzl", "proto_library")
 load("@rules_proto_grpc//csharp:defs.bzl", "csharp_grpc_library", "csharp_proto_library")
-
+package(default_visibility = ["//visibility:public"])
 proto_library(
     name = "documents_proto",
     srcs = [

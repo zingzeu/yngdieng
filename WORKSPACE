@@ -33,7 +33,7 @@ core_register_sdk("v3.0.100", name = "core_sdk")
 git_repository(
     name = "rules_proto_grpc",
     remote = "https://github.com/ztl8702/rules_proto_grpc.git",
-    commit = "6394eccb4316d495a35be97ded13fe7c54d8482e",
+    commit = "fda2986196d6e1236ef0c3f3447ca478c02e280f",
 )
 
 load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_toolchains")
