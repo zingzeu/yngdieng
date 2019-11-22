@@ -1,6 +1,8 @@
 syntax = "proto3";
 
 package yngdieng;
+
+import "google/protobuf/timestamp.proto";
 option csharp_namespace = "Yngdieng.Protos";
 
 enum Final {
@@ -121,3 +123,5 @@ enum Tone {
     // 下入
     DOWN_ABRUPT = 6;
 }
+
+service FakeService {}
