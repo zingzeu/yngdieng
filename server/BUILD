@@ -1,10 +1,14 @@
 load("@rules_proto//proto:defs.bzl", "proto_library")
+load("@rules_proto_grpc//csharp:defs.bzl", "csharp_grpc_library", "csharp_proto_library")
 
 proto_library(
     name = "documents_proto",
     srcs = [
         "documents.proto",
         "phonology.proto"
+    ],
+    deps=[
+        "@com_google_protobuf//:timestamp_proto"
     ]
 )
 
@@ -16,4 +20,19 @@ proto_library(
     deps = [
         ":documents_proto"
     ]
+)
+
+csharp_grpc_library(
+    name = "services_proto_csharp",
+    deps = [":services_proto"],
+)
+
+csharp_proto_library(
+    name = "documents_proto_csharp",
+    deps = [":documents_proto"],
+)
+
+java_proto_library(
+    name = "foo",
+    deps = [":services_proto"],
 )

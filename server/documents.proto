@@ -47,3 +47,5 @@ message Hanzi {
         string ids = 2;
     }
 }
+
+service FakeService2 {}

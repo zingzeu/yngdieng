@@ -16,7 +16,7 @@
 
 
   <ItemGroup>
-    <Protobuf Include="../documents.proto" GrpcServices="Client" />
+    <Protobuf Include="../phonology.proto" Link="server\phonology.proto"  />
   </ItemGroup>
 
 </Project>
