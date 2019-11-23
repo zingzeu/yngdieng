@@ -69,3 +69,7 @@ load("@rules_proto_grpc//csharp/nuget:nuget.bzl", "nuget_protobuf_packages","nug
 nuget_protobuf_packages()
 
 nuget_grpc_packages()
+
+load("//nuget:nuget.bzl", "yngdieng_nuget_packages")
+
+yngdieng_nuget_packages()
