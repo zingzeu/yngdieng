@@ -5,6 +5,7 @@ using Yngdieng.Protos;
 using System.IO;
 using System.Collections.Generic;
 using static Yngdieng.Common.HanziUtils;
+using static Yngdieng.Common.FoochowRomanziedUtils;
 
 namespace Yngdieng.Indexer
 {
@@ -98,6 +99,7 @@ namespace Yngdieng.Indexer
                             Tone = IntToTone(r.Tone),
                             Ciklin = new Document.Types.CikLinSourceInfo()
                         };
+                        document.Buc = ToBucString(document.Initial, document.Final, document.Tone);
                         if (r.HanziEquiv.Length > 0)
                         {
                             document.HanziAlternatives.Add(StringToHanziProto(r.HanziEquiv));
