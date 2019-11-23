@@ -1,9 +1,10 @@
 load("@io_bazel_rules_dotnet//dotnet:defs.bzl", "core_binary")
 
 core_binary(
-    name = "test_dotnet.exe",
+    name = "indexer.exe",
     srcs = [
         "Program.cs",
+        "CreateCikLinDocumentsAction.cs"
     ],
     deps = [
         "//server:services_proto_csharp.dll",
