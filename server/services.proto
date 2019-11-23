@@ -8,6 +8,7 @@ import "server/documents.proto";
 
 service YngdiengService {
     rpc GetSearch (SearchRequest) returns (SearchResponse);
+    rpc GetDocument (GetDocumentRequest) returns (GetDocumentResponse);
 }
 
 message SearchRequest {
@@ -16,6 +17,15 @@ message SearchRequest {
 
 message SearchResponse {
     repeated Document documents = 1;
+}
+
+message GetDocumentRequest {
+
+}
+
+message GetDocumentResponse {
+    Document document = 1;
+    
 }
 
 message Query {
@@ -27,7 +37,6 @@ message Query {
         // 汉字查询
         string hanzi_query=3;
     }
-    
 
     // Must not be all empty
     message PhonologyQuery {

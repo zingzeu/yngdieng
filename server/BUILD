@@ -1,25 +1,27 @@
 load("@rules_proto//proto:defs.bzl", "proto_library")
 load("@rules_proto_grpc//csharp:defs.bzl", "csharp_grpc_library", "csharp_proto_library")
+
 package(default_visibility = ["//visibility:public"])
+
 proto_library(
     name = "documents_proto",
     srcs = [
         "documents.proto",
-        "phonology.proto"
+        "phonology.proto",
     ],
-    deps=[
-        "@com_google_protobuf//:timestamp_proto"
-    ]
+    deps = [
+        "@com_google_protobuf//:timestamp_proto",
+    ],
 )
 
 proto_library(
-    name="services_proto",
+    name = "services_proto",
     srcs = [
-        "services.proto"
+        "services.proto",
     ],
     deps = [
-        ":documents_proto"
-    ]
+        ":documents_proto",
+    ],
 )
 
 csharp_grpc_library(
