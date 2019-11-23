@@ -45,6 +45,10 @@ message Document {
     }
 }
 
+message YngdiengIndex {
+    repeated Document documents = 1;
+}
+
 message Hanzi {
     oneof hanzi {
         string regular = 1;

@@ -96,6 +96,8 @@ namespace Yngdieng.Common
                 }
             }
 
+
+
             var output = new Dictionary<string, (Final, Tone)>();
             foreach (var rime in FrFinals.Keys)
             {
@@ -146,6 +148,33 @@ namespace Yngdieng.Common
             {
                 throw new Exception($"{buc} is not a valid Foochow Romanized Syllable; {remaining} not found in finals.");
             }
+        }
+
+        public static string ToBucString(Initial i, Final f, Tone t)
+        {
+            int ToneToIndex(Tone t)
+            {
+                switch (t)
+                {
+                    case Tone.UpLevel:
+                        return 0;
+                    case Tone.UpUp:
+                        return 1;
+                    case Tone.UpFalling:
+                        return 2;
+                    case Tone.UpAbrupt:
+                        return 3;
+                    case Tone.DownLevel:
+                        return 4;
+                    case Tone.DownFalling:
+                        return 5;
+                    case Tone.DownAbrupt:
+                        return 6;
+                    default:
+                        throw new Exception("Unknown tone");
+                }
+            }
+            return FrInitials[Array.IndexOf(FrInitialsProto, i)] + FrFinals[f][ToneToIndex(t)];
         }
 
     }
