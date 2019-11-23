@@ -4,8 +4,12 @@ package yngdieng;
 option csharp_namespace = "Yngdieng.Protos";
 import "server/phonology.proto";
 
+// Next ID: 13
 message Document {
-    int64 id = 1;
+    oneof id {
+        int32 ciklin_id = 1;
+        int32 dfd_id = 12;
+    }
 
     Hanzi hanzi_canonical = 2;
 

@@ -4,6 +4,7 @@ using CsvHelper.Configuration.Attributes;
 using Yngdieng.Protos;
 using System.IO;
 using System.Collections.Generic;
+using static Yngdieng.Common.HanziUtils;
 
 namespace Yngdieng.Indexer
 {
@@ -72,8 +73,10 @@ namespace Yngdieng.Indexer
             _outputFolder = outputFolder;
         }
 
-        public void Run()
+        public IEnumerable<Document> Run()
         {
+            var jsonOutput = new List<string>();
+            var documents = new List<Document>();
             using (var reader = new StreamReader(_cikLinCsvFile))
             {
                 using (var csv = new CsvReader(reader))
@@ -81,75 +84,48 @@ namespace Yngdieng.Indexer
                     var records = csv.GetRecords<CikLinRow>();
                     foreach (var r in records)
                     {
-                        if (!CharToFinal.ContainsKey(r.Final[0])) {
+                        if (!CharToFinal.ContainsKey(r.Final[0]))
+                        {
                             Console.WriteLine($"Skipping {r.Id}, unknown Final {r.Final}");
                             continue;
                         }
                         var document = new Document
                         {
-                            Id = r.Id,
+                            CiklinId = r.Id,
                             HanziCanonical = StringToHanziProto(r.Hanzi),
                             Initial = CharToInitial[r.Initial[0]],
                             Final = CharToFinal[r.Final[0]],
                             Tone = IntToTone(r.Tone),
                             Ciklin = new Document.Types.CikLinSourceInfo()
                         };
-                        if (r.HanziEquiv.Length>0) {
+                        if (r.HanziEquiv.Length > 0)
+                        {
                             document.HanziAlternatives.Add(StringToHanziProto(r.HanziEquiv));
                         }
-                         if (r.HanziAlt.Length>0) {
+                        if (r.HanziAlt.Length > 0)
+                        {
                             document.HanziAlternatives.Add(StringToHanziProto(r.HanziAlt));
                         }
-                        Console.WriteLine(document);
+                        documents.Add(document);
+                        jsonOutput.Add(document.ToString());
                     }
                 }
             }
+            File.WriteAllLines(Path.Combine(_outputFolder, "ciklin_index_debug.txt"), jsonOutput);
+            return documents;
         }
 
-        private Hanzi StringToHanziProto(string hanzi)
+        private static Tone IntToTone(int toneNumber)
         {
-            if (HasIDS(hanzi))
+            switch (toneNumber)
             {
-                return new Hanzi { Ids = hanzi };
-            }
-            else
-            {
-                return new Hanzi { Regular = hanzi };
-            }
-        }
-
-        private static bool HasIDS(string hanzi)
-        {
-            foreach (var c in GetUnicodeCodePoints(hanzi))
-            {
-                if (0x2ff0 <= c && c <= 0x2fff)
-                {
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        private static int[] GetUnicodeCodePoints(string input)
-        {
-            var output = new List<int>();
-            for (var i = 0; i < input.Length; i += char.IsSurrogatePair(input, i) ? 2 : 1)
-            {
-                var codepoint = char.ConvertToUtf32(input, i);
-                output.Add(codepoint);
-            }
-            return output.ToArray();
-        }
-
-        private static Tone IntToTone(int toneNumber) {
-            switch (toneNumber) {
                 case 1:
                     return Tone.UpLevel;
                 case 2:
                     return Tone.UpUp;
                 case 3:
                     return Tone.UpFalling;
-                case 4: 
+                case 4:
                     return Tone.UpAbrupt;
                 case 5:
                     return Tone.DownLevel;
