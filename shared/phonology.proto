@@ -2,7 +2,6 @@ syntax = "proto3";
 
 package yngdieng;
 
-import "google/protobuf/timestamp.proto";
 option csharp_namespace = "Yngdieng.Protos";
 
 enum Final {
