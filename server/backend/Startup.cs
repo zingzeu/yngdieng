@@ -7,8 +7,8 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Yngdieng.Protos;
 using Grpc.Core;
+using Yngdieng.Backend.Services;
 
 namespace Yngdieng.Backend
 {
@@ -33,7 +33,7 @@ namespace Yngdieng.Backend
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGrpcService<YngdiengServiceImpl>();
+                endpoints.MapGrpcService<YngdiengService>();
 
                 endpoints.MapGet("/", async context =>
                 {
@@ -43,10 +43,5 @@ namespace Yngdieng.Backend
         }
     }
 
-     public class YngdiengServiceImpl:YngdiengService.YngdiengServiceBase {
-        public override Task<SearchResponse> GetSearch(SearchRequest request, ServerCallContext context) {
-            Console.WriteLine("A search request"); 
-            return Task.FromResult(new SearchResponse());
-        }
-    }
+    
 }
