@@ -19,13 +19,16 @@ message SearchResponse {
     repeated Document documents = 1;
 }
 
+// Next ID: 3
 message GetDocumentRequest {
-
+    oneof document_id {
+        int32 ciklin_id = 1;
+        int32 dfd_id = 2;
+    }
 }
 
 message GetDocumentResponse {
     Document document = 1;
-    
 }
 
 message Query {
