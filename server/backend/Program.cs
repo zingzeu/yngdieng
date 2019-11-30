@@ -15,7 +15,8 @@ namespace Yngdieng.Backend
     {
         static int Main(string[] args)
         {
-            if (args.Length != 1) {
+            if (args.Length != 1)
+            {
                 Console.WriteLine("Usage: backend <index file>");
                 return -1;
             }
@@ -23,7 +24,8 @@ namespace Yngdieng.Backend
             Console.WriteLine($"Loading index from {Path.GetFullPath(indexFilePath)}");
 
             YngdiengIndex index;
-            using (var input = File.OpenRead(indexFilePath)) {
+            using (var input = File.OpenRead(indexFilePath))
+            {
                 index = YngdiengIndex.Parser.ParseFrom(input);
             }
 

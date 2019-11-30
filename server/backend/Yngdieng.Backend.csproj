@@ -5,14 +5,12 @@
     <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
 
-  <!--<ItemGroup>
-    <Reference Include="Yngdieng.Protos">
-      <HintPath>../../bazel-bin/server/services_proto_csharp.dll</HintPath>
-    </Reference>
-  </ItemGroup>-->
-
-    <ItemGroup>
+  <ItemGroup>
     <PackageReference Include="Grpc.AspNetCore" Version="2.23.1" />
   </ItemGroup>
+
+    <ItemGroup>
+      <ProjectReference Include="..\..\shared\Yngdieng.Protos.csproj" />
+    </ItemGroup>
 
 </Project>
