@@ -15,24 +15,6 @@ namespace Yngdieng.Backend
     {
         static int Main(string[] args)
         {
-            if (args.Length != 1)
-            {
-                Console.WriteLine("Usage: backend <index file>");
-                return -1;
-            }
-            var indexFilePath = args[0];
-            Console.WriteLine($"Loading index from {Path.GetFullPath(indexFilePath)}");
-
-            YngdiengIndex index;
-            using (var input = File.OpenRead(indexFilePath))
-            {
-                index = YngdiengIndex.Parser.ParseFrom(input);
-            }
-
-            Console.WriteLine($"{index.Documents.Count} documents loaded.");
-
-
-
             CreateHostBuilder(args).Build().Run();
             return 0;
         }

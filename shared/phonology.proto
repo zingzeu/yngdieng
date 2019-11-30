@@ -5,122 +5,123 @@ package yngdieng;
 option csharp_namespace = "Yngdieng.Protos";
 
 enum Final {
+    FINAL_UNSPECIFIED = 0;
     // 春
-    UNG = 0;
+    UNG = 1;
     // 花
-    UA = 1;
+    UA = 2;
     // 香
-    YONG = 2;
+    YONG = 3;
     // 秋
-    IU = 3;
+    IU = 4;
     // 山
-    ANG = 4;
+    ANG = 5;
     // 開
-    AI = 5;
+    AI = 6;
     // 嘉
-    A = 6;
+    A = 7;
     // 賓
-    ING = 7;
+    ING = 8;
     // 歡
-    UANG = 8;
+    UANG = 9;
     // 歌
-    O = 9;
+    O = 10;
     // 須
-    Y = 10;
+    Y = 11;
     // 杯
-    UOI = 11;
+    UOI = 12;
     // 孤
-    U = 12;
+    U = 13;
     // 燈
-    EING = 13;
+    EING = 14;
     // 光
-    UONG = 14;
+    UONG = 15;
     // 輝
-    UI = 15;
+    UI = 16;
     // 燒
-    IEU = 16;
+    IEU = 17;
     // 銀
-    YNG = 17;
+    YNG = 18;
     // 釭
-    ONG = 18;
+    ONG = 19;
     // 之
-    I = 19;
+    I = 20;
     // 東
-    OENG = 20;
+    OENG = 21;
     // 郊
-    AU = 21;
+    AU = 22;
     // 過
-    UO = 22;
+    UO = 23;
     // 西
-    E = 23;
+    E = 24;
     // 橋
-    IO = 24;
+    IO = 25;
     // 雞
-    IE = 25;
+    IE = 26;
     // 聲
-    IANG = 26;
+    IANG = 27;
     // 催
-    OEY = 27;
+    OEY = 28;
     // 初
-    OE = 28;
+    OE = 29;
     // 天
-    IENG = 29;
+    IENG = 30;
     // 奇
-    IA = 30;
+    IA = 31;
     // 歪
-    UAI = 31;
+    UAI = 32;
     // 溝
-    EU = 32;
+    EU = 33;
 }
 
 enum Initial {
+    INITIAL_UNSPECIFIED = 0;
     // 柳
-    L = 0;
+    L = 1;
     // 邊
-    B = 1;
+    B = 2;
     // 求
-    G = 2;
+    G = 3;
     // 氣
-    K = 3;
+    K = 4;
     // 低
-    D = 4;
+    D = 5;
     // 波
-    P = 5;
+    P = 6;
     // 他
-    T = 6;
+    T = 7;
     // 曾
-    Z = 7;
+    Z = 8;
     // 日
-    N = 8;
+    N = 9;
     // 時
-    S = 9;
+    S = 10;
     // 鶯
-    NONE = 10;
+    NONE = 11;
     // 蒙
-    M = 11;
+    M = 12;
     // 語
-    NG = 12;
+    NG = 13;
     // 出
-    C = 13;
+    C = 14;
     // 非
-    H = 14;
+    H = 15;
 }
 
 enum Tone {
+    TONE_UNSPECIFIED = 0;
     // 上平
-    UP_LEVEL = 0;
+    UP_LEVEL = 1;
     // 上上
-    UP_UP =1;
+    UP_UP = 2;
     // 上去
-    UP_FALLING = 2;
+    UP_FALLING = 3;
     // 上入
-    UP_ABRUPT = 3;
+    UP_ABRUPT = 4;
     // 下平
-    DOWN_LEVEL=4;
+    DOWN_LEVEL = 5;
     // 下去
-    DOWN_FALLING = 5;
+    DOWN_FALLING = 6;
     // 下入
-    DOWN_ABRUPT = 6;
+    DOWN_ABRUPT = 7;
 }
-
-service FakeService {}
