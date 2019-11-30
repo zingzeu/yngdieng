@@ -1,0 +1,2 @@
+# rules_dotnet does not support sandboxed execution
+build --spawn_strategy=local
