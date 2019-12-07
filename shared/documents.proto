@@ -4,7 +4,7 @@ package yngdieng;
 option csharp_namespace = "Yngdieng.Protos";
 import "phonology.proto";
 
-// Next ID: 13
+// Next ID: 14
 message Document {
     oneof id {
         int32 ciklin_id = 1;
@@ -15,6 +15,9 @@ message Document {
 
     // Optional. 等价汉字.
     repeated Hanzi hanzi_alternatives = 3;
+
+    // 所有可搜寻到该文档的汉字.
+    repeated string hanzi_matchable = 13;
 
     Initial initial = 4;
 

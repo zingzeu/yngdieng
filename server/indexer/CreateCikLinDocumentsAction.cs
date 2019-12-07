@@ -3,6 +3,7 @@ using CsvHelper;
 using CsvHelper.Configuration.Attributes;
 using Yngdieng.Protos;
 using System.IO;
+using System.Linq;
 using System.Collections.Generic;
 using static Yngdieng.Common.HanziUtils;
 using static Yngdieng.Common.FoochowRomanziedUtils;
@@ -67,11 +68,13 @@ namespace Yngdieng.Indexer
 
         private readonly string _outputFolder;
         private readonly string _cikLinCsvFile;
+        private readonly HanziVariantsUtil _hanziVariantsUtil;
 
-        public CreateCikLinDocumentsAction(string cikLinCsvFile, string outputFolder)
+        public CreateCikLinDocumentsAction(string cikLinCsvFile, string outputFolder, HanziVariantsUtil hanziVariantsUtil)
         {
             _cikLinCsvFile = cikLinCsvFile;
             _outputFolder = outputFolder;
+            _hanziVariantsUtil = hanziVariantsUtil;
         }
 
         public IEnumerable<Document> Run()
@@ -108,6 +111,8 @@ namespace Yngdieng.Indexer
                         {
                             document.HanziAlternatives.Add(StringToHanziProto(r.HanziAlt));
                         }
+                        AddFanoutHanzi(document);
+
                         documents.Add(document);
                         jsonOutput.Add(document.ToString());
                     }
@@ -115,6 +120,15 @@ namespace Yngdieng.Indexer
             }
             File.WriteAllLines(Path.Combine(_outputFolder, "ciklin_index_debug.txt"), jsonOutput);
             return documents;
+        }
+
+        private void AddFanoutHanzi(Document d)
+        {
+            var allHanziList = new List<string>();
+            allHanziList.Add(HanziToString(d.HanziCanonical));
+            allHanziList.AddRange(d.HanziAlternatives.Select(h => HanziToString(h)).ToList());
+            var fanOutHanziList = _hanziVariantsUtil.GetFanoutVariants(allHanziList.ToArray());
+            d.HanziMatchable.Add(fanOutHanziList);
         }
 
         private static Tone IntToTone(int toneNumber)

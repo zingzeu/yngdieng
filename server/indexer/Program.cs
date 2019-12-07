@@ -22,11 +22,13 @@ namespace Yngdieng.Indexer
             Console.WriteLine($"Input: {Path.GetFullPath(inputFolder)}");
             Console.WriteLine($"Output: {Path.GetFullPath(outputFolder)}");
             var index = new YngdiengIndex();
+            var hanziVariantsUtil = new HanziVariantsUtil(inputFolder);
 
-            index.Documents.Add(new CreateCikLinDocumentsAction(Path.Combine(inputFolder, "ciklin.csv"), outputFolder).Run());
-            index.Documents.Add(new CreateDFDDocumentsAction(Path.Combine(inputFolder, "DFDCharacters.csv"), outputFolder).Run());
+            index.Documents.Add(new CreateCikLinDocumentsAction(Path.Combine(inputFolder, "ciklin.csv"), outputFolder, hanziVariantsUtil).Run());
+            index.Documents.Add(new CreateDFDDocumentsAction(Path.Combine(inputFolder, "DFDCharacters.csv"), outputFolder, hanziVariantsUtil).Run());
 
-            using (var outputFile = File.Create(Path.Combine(outputFolder, "yngdieng_index.bin"))) {
+            using (var outputFile = File.Create(Path.Combine(outputFolder, "yngdieng_index.bin")))
+            {
                 index.WriteTo(outputFile);
             }
             return 0;
