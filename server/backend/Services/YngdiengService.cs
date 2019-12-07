@@ -68,6 +68,7 @@ namespace Yngdieng.Backend.Services
                                 GetHanzi(d.HanziCanonical) == query
                                 || d.HanziAlternatives.Where(
                                     r => GetHanzi(r) == query).Count() > 0
+                                || d.HanziMatchable.IndexOf(query) >= 0
                             )
                             .OrderBy(d => GetHanzi(d.HanziCanonical))
                                 .ThenBy(d => d.Final)

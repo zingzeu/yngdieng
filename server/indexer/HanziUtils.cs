@@ -6,6 +6,14 @@ namespace Yngdieng.Common
 {
     public static class HanziUtils
     {
+
+        public static string HanziToString(Hanzi h)
+        {
+            return h.HanziCase == Hanzi.HanziOneofCase.Regular
+                        ? h.Regular
+                        : h.Ids;
+        }
+
         public static Hanzi StringToHanziProto(string hanzi)
         {
             if (HasIDS(hanzi))

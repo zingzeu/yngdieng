@@ -1,0 +1,1 @@
+Copy opencc/data/dictionary to here
