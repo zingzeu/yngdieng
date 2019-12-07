@@ -94,10 +94,10 @@ export function getToneFromString(s: string): Tone {
     return HANZI_TO_TONE_MAPPING[s];
 }
 
-function reverseMap(input: {[x:number]: string}): Map<string, any> {
-    let output = new Map<string, any>();
+function reverseMap(input: {[x:number]: string}):{[x: string]: number} {
+    let output = {}
     for (let k in input) {
-        output[input[k]] = k;
+        output[input[k]] = Number(k);
     }
     return output;
 }

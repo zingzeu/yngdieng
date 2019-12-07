@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import {SearchRequest, SearchResponse, GetDocumentRequest, GetDocumentResponse, Query} from '../yngdieng/services_pb';
 import { YngdiengServiceClient } from '../yngdieng/services_grpc_web_pb';
 import { getInitialString, getFinalString, getToneString, getInitialFromString, getToneFromString } from "../yngdieng/utils";
@@ -15,8 +15,8 @@ export class SearchResultComponent implements OnInit {
   queryText: any;
   results: any;
 
-  constructor(private route: ActivatedRoute,
-    private router: Router) { }
+  constructor(
+    private route: ActivatedRoute) { }
 
   ngOnInit() {
     // this.hero$ = this.route.paramMap.pipe(
@@ -25,6 +25,7 @@ export class SearchResultComponent implements OnInit {
     //   })
     // );
 
+    console.log(this.route);
     this.queryText = this.route.snapshot.paramMap.get("query");
 
     var client = new YngdiengServiceClient('http://localhost:8080');
@@ -49,7 +50,7 @@ export class SearchResultComponent implements OnInit {
     });
 
     console.log(getToneFromString("下去"));
-    console.log(new QueryParser().parse("qu na er ").toObject())
+    console.log(new QueryParser().parse("t:下去 i:柳"))
   }
 }
 

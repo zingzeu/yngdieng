@@ -1,6 +1,8 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { SearchResultComponent } from './search-result.component';
+import { ActivatedRoute, convertToParamMap } from '@angular/router';
+import { of } from 'rxjs';
 
 describe('SearchResultComponent', () => {
   let component: SearchResultComponent;
@@ -8,7 +10,19 @@ describe('SearchResultComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SearchResultComponent ]
+      declarations: [ SearchResultComponent ],
+      providers:[
+        {
+          provide: ActivatedRoute,
+          useValue: {
+              snapshot: {
+                paramMap: convertToParamMap({
+                  query: "nguai"
+                })
+              }
+          }
+        }
+      ]
     })
     .compileComponents();
   }));
