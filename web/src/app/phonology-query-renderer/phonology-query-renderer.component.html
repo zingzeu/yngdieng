@@ -1,0 +1,5 @@
+<mat-chip-list>
+    <mat-chip *ngIf="initial != null">{{ initial }}<mat-icon matChipRemove (click)="onClearInitial()">cancel</mat-icon></mat-chip>
+    <mat-chip *ngIf="final != null">{{ final }}<mat-icon matChipRemove (click)="onClearFinal()">cancel</mat-icon></mat-chip>
+    <mat-chip *ngIf="tone != null">{{ tone }}<mat-icon matChipRemove (click)="onClearTone()">cancel</mat-icon></mat-chip>
+</mat-chip-list>

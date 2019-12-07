@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import {SearchRequest, SearchResponse, GetDocumentRequest, GetDocumentResponse, Query} from '../yngdieng/services_pb';
 import { YngdiengServiceClient } from '../yngdieng/services_grpc_web_pb';
 import { getInitialString, getFinalString, getToneString, getInitialFromString, getToneFromString } from "../yngdieng/utils";
@@ -13,13 +13,16 @@ import { QueryParser } from '../yngdieng/query-parser';
 export class SearchResultComponent implements OnInit {
   
   queryText: any;
+  prettyQueryText: string;
+  isBusy: boolean = false;
   results: Array<SearchResultItemViewModel> = [];
   isInvalidQuery: boolean = false;
 
   private queryParser = new QueryParser();
 
   constructor(
-    private route: ActivatedRoute) { }
+    private route: ActivatedRoute,
+    private router: Router) { }
 
   ngOnInit() {
     // this.hero$ = this.route.paramMap.pipe(
@@ -30,6 +33,7 @@ export class SearchResultComponent implements OnInit {
 
     console.log(this.route);
     this.queryText = this.route.snapshot.paramMap.get("query");
+    this.prettyQueryText = this.getPrettyText(this.queryText);
 
     // Parse query
     let query = this.queryParser.parse(this.queryText);
@@ -42,7 +46,9 @@ export class SearchResultComponent implements OnInit {
     var request = new SearchRequest();
     request.setQuery(query);
     let client = new YngdiengServiceClient('http://localhost:8080');
+    this.isBusy = true;
     client.getSearch(request, {}, (err, response) => {
+      this.isBusy = false;
       if (response == null) {
         this.results = [];
         return;
@@ -59,6 +65,14 @@ export class SearchResultComponent implements OnInit {
               : "戚林"
         } as SearchResultItemViewModel));
     });
+  }
+
+  onBackClicked() {
+    this.router.navigate(["/search"])
+  }
+  
+  private getPrettyText(s: string): string{
+    return s.replace("i:","声母:").replace("f:","韵母:").replace("t:","声调:")
   }
 }
 

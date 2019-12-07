@@ -1,0 +1,27 @@
+<mat-toolbar>
+  <mat-icon (click)="onBackClicked()">keyboard_arrow_left</mat-icon>
+  <app-phonology-query-renderer
+  class="phonology-query-input"
+    *ngIf="initial|| final || tone"
+    [initial]="initial"
+    [final]="final"
+    [tone]="tone"
+    (clearInitial)="onClearInitial()"
+    (clearFinal)="onClearFinal()"
+    (clearTone)="onClearTone()"
+  ></app-phonology-query-renderer>
+  <form
+    *ngIf="initial == null && final == null && tone == null"
+    class="text-query-input"
+    [formGroup]="searchForm"
+    (ngSubmit)="onSubmit()">
+    <input placeholder="查字" formControlName="textQuery"/>
+  </form>
+  <mat-icon (click)="onSearch()">search</mat-icon>
+</mat-toolbar>
+
+<app-phonology-composer
+  (initialSelected)="onInitialSelected($event)"
+  (finalSelected)="onFinalSelected($event)"
+  (toneSelected)="onToneSelected($event)"
+></app-phonology-composer>
