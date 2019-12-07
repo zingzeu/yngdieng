@@ -1,8 +1,21 @@
 import { Query } from "./services_pb";
 import { getInitialFromString, getFinalFromString, getToneFromString } from './utils';
 
-const ACCEPTED_KEYS = new Set(["i","f","t"]);
+const ACCEPTED_KEYS = new Set(["i", "f", "t"]);
 
+/*
+ * Query format
+ *
+ * "我" => HanziQuery
+ * 
+ *"i:l f:uang t:up_falling" => Phonology Query
+ * 
+ * "nguai" => Fuzzy query
+ */
+
+/**
+ * Parser for a query string.
+ */
 export class QueryParser {
 
     /**
@@ -12,22 +25,33 @@ export class QueryParser {
      *    => PhonologyQuery
      * 2) If it is alphanumberic => Fuzzy Pinyin Query
      * 3) Otherwise => Hanzi Query
+     * 
+     * @returns null if the query string is invalid;
      */
     public parse(text: string): Query | null {
         let tryResult = this.tryParseAsKeyValuePairs(text);
         if (tryResult != null) {
-           let phonologyQuery = new Query.PhonologyQuery();
-           if (tryResult.has("i")) {
-            phonologyQuery.setInitial(
-                   getInitialFromString(tryResult.get("i")));
-           }
-           if (tryResult.has("f")) {
-                phonologyQuery.setFinal(
-                    getFinalFromString(tryResult.get("f")));
-           }
-           if (tryResult.has("t")) {
-            phonologyQuery.setTone(
-                getToneFromString(tryResult.get("t")));
+            let phonologyQuery = new Query.PhonologyQuery();
+            if (tryResult.has("i")) {
+                let initial = getInitialFromString(tryResult.get("i"));
+                if (initial === undefined) {
+                    return null;
+                }
+                phonologyQuery.setInitial(initial);
+            }
+            if (tryResult.has("f")) {
+                let final = getFinalFromString(tryResult.get("f"))
+                if (final === undefined) {
+                    return null;
+                }
+                phonologyQuery.setFinal(final);
+            }
+            if (tryResult.has("t")) {
+                let tone = getToneFromString(tryResult.get("t"));
+                if (tone === undefined) {
+                    return null;
+                }
+                phonologyQuery.setTone(tone);
             }
             return new Query().setPhonologyQuery(phonologyQuery);
         }
@@ -52,7 +76,7 @@ export class QueryParser {
                 return null;
             }
             let key = token.substring(0, columnPos);
-            let value = token.substring(columnPos+1, token.length);
+            let value = token.substring(columnPos + 1, token.length);
             if (!ACCEPTED_KEYS.has(key)) {
                 return null;
             }
