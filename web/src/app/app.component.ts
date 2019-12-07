@@ -1,5 +1,4 @@
 import { Component } from '@angular/core';
-import "./yngdieng/yngdieng-client";
 
 @Component({
   selector: 'app-root',
@@ -7,5 +6,5 @@ import "./yngdieng/yngdieng-client";
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent {
-  title = 'web2';
+  title = '榕典';
 }
