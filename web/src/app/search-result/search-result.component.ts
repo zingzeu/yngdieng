@@ -13,7 +13,10 @@ import { QueryParser } from '../yngdieng/query-parser';
 export class SearchResultComponent implements OnInit {
   
   queryText: any;
-  results: any;
+  results: Array<SearchResultItemViewModel> = [];
+  isInvalidQuery: boolean = false;
+
+  private queryParser = new QueryParser();
 
   constructor(
     private route: ActivatedRoute) { }
@@ -28,14 +31,22 @@ export class SearchResultComponent implements OnInit {
     console.log(this.route);
     this.queryText = this.route.snapshot.paramMap.get("query");
 
-    var client = new YngdiengServiceClient('http://localhost:8080');
+    // Parse query
+    let query = this.queryParser.parse(this.queryText);
+    if (query == null) {
+      this.isInvalidQuery = true;
+      return;
+    }
 
-    var query = new Query();
-    query.setHanziQuery(this.queryText);
+    // Fetch results
     var request = new SearchRequest();
     request.setQuery(query);
-
+    let client = new YngdiengServiceClient('http://localhost:8080');
     client.getSearch(request, {}, (err, response) => {
+      if (response == null) {
+        this.results = [];
+        return;
+      }
       this.results = response.getDocumentsList()
         .map(d => ({
             hanziCanonical: d.getHanziCanonical(),
@@ -48,9 +59,6 @@ export class SearchResultComponent implements OnInit {
               : "戚林"
         } as SearchResultItemViewModel));
     });
-
-    console.log(getToneFromString("下去"));
-    console.log(new QueryParser().parse("t:下去 i:柳"))
   }
 }
 

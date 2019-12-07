@@ -1,15 +1,22 @@
+<div *ngIf="isInvalidQuery">搜索格式不正确: {{ queryText }}</div>
 
-<h1>Search result for {{queryText}} </h1>
-<ul >
+<div *ngIf="!isInvalidQuery && results.length > 0">
+  <h1>Search result for {{ queryText }}</h1>
+  <ul>
     <li *ngFor="let document of results">
-        <div>
-                {{document.hanziCanonical}} {{document.buc}}
-                {{ document.initial }}{{ document.final}} {{ document.tone}}
-                <li *ngFor="let h of document.hanziAlternatives">
-                    {{h}}
-                </li>
-                <p>{{document.source}}</p>
-        </div>
-        <br>
+      <div>
+        {{ document.hanziCanonical }} {{ document.buc }} {{ document.initial
+        }}{{ document.final }} {{ document.tone }}
+        <li *ngFor="let h of document.hanziAlternatives">
+          {{ h }}
+        </li>
+        <p>{{ document.source }}</p>
+      </div>
+      <br />
     </li>
   </ul>
+</div>
+
+<div *ngIf="!isInvalidQuery && results.length == 0">
+  <h1>没有搜索结果 {{ queryText }}</h1>
+</div>
