@@ -76,6 +76,7 @@ namespace Yngdieng.Backend.Services
                             .ToList();
                         var response = new SearchResponse();
                         response.Documents.Add(matchedDocuments);
+                        Console.WriteLine(response);
                         return Task.FromResult(response);
                     }
                 default:

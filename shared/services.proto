@@ -38,7 +38,7 @@ message Query {
         // 音韵地位查询
         PhonologyQuery phonology_query = 2;
         // 汉字查询
-        string hanzi_query=3;
+        string hanzi_query = 3;
     }
 
     // Must not be all empty
