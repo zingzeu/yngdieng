@@ -1,7 +1,10 @@
+<mat-toolbar>
+  <mat-icon (click)="onBackClicked()">keyboard_arrow_left</mat-icon>
+</mat-toolbar>
 <div *ngIf="isInvalidQuery">搜索格式不正确: {{ queryText }}</div>
 
 <div *ngIf="!isInvalidQuery && results.length > 0">
-  <h1>Search result for {{ queryText }}</h1>
+  <h3>{{ prettyQueryText }} 的搜索结果</h3>
   <ul>
     <li *ngFor="let document of results">
       <div>
@@ -17,6 +20,6 @@
   </ul>
 </div>
 
-<div *ngIf="!isInvalidQuery && results.length == 0">
-  <h1>没有搜索结果 {{ queryText }}</h1>
+<div *ngIf="!isInvalidQuery && !isBusy && results.length == 0">
+  <h3>没有 {{ queryText }} 的搜索结果</h3>
 </div>
