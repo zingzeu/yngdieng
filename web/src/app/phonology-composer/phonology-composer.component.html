@@ -1,20 +1,28 @@
-<div *ngIf="showInitials">
-  <h2>声</h2>
-  <mat-chip-list>
-    <mat-chip *ngFor="let i of initials" (click)="onSelectInitial(i)">{{ i }}</mat-chip>
-  </mat-chip-list>
-</div>
+<div style="padding-left: 10px; padding-right:10px;">
+  <div *ngIf="showInitials">
+    <h2>声</h2>
+    <mat-chip-list>
+      <mat-chip *ngFor="let i of initials" (click)="onSelectInitial(i)">{{
+        i
+      }}</mat-chip>
+    </mat-chip-list>
+  </div>
 
-<div *ngIf="showFinals">
-  <h2>韵</h2>
-  <mat-chip-list>
-    <mat-chip *ngFor="let f of finals" (click)="onSelectFinal(f)">{{ f }}</mat-chip>
-  </mat-chip-list>
-</div>
+  <div *ngIf="showFinals">
+    <h2>韵</h2>
+    <mat-chip-list>
+      <mat-chip *ngFor="let f of finals" (click)="onSelectFinal(f)">{{
+        f
+      }}</mat-chip>
+    </mat-chip-list>
+  </div>
 
-<div *ngIf="showTones">
-  <h2>调</h2>
-  <mat-chip-list>
-    <mat-chip *ngFor="let t of tones" (click)="onSelectTone(t)">{{ t }}</mat-chip>
-  </mat-chip-list>
+  <div *ngIf="showTones">
+    <h2>调</h2>
+    <mat-chip-list>
+      <mat-chip *ngFor="let t of tones" (click)="onSelectTone(t)">{{
+        t
+      }}</mat-chip>
+    </mat-chip-list>
+  </div>
 </div>
