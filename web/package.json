@@ -3,6 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
+    "postinstall": "ngc -p ./angular-metadata.tsconfig.json",
     "start": "ng serve",
     "build": "ng build",
     "test": "ng test",
@@ -27,9 +28,15 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.803.4",
+    "@angular/bazel": "~8.2.5",
     "@angular/cli": "~8.3.4",
     "@angular/compiler-cli": "~8.2.5",
     "@angular/language-service": "~8.2.5",
+    "@bazel/bazel": "^0.28.1",
+    "@bazel/ibazel": "^0.10.2",
+    "@bazel/karma": "0.34.0",
+    "@bazel/protractor": "0.34.0",
+    "@bazel/typescript": "0.34.0",
     "@types/node": "~8.9.4",
     "@types/jasmine": "~3.3.8",
     "@types/jasminewd2": "~2.0.3",
