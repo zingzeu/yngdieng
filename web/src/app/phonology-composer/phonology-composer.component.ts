@@ -5,7 +5,7 @@ import { getInitialString, getFinalString, getToneString } from '../yngdieng/uti
 @Component({
   selector: 'app-phonology-composer',
   templateUrl: './phonology-composer.component.html',
-  styleUrls: ['./phonology-composer.component.sass']
+  styleUrls: ['./phonology-composer.component.scss']
 })
 export class PhonologyComposerComponent implements OnInit {
 
