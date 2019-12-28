@@ -3,7 +3,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 @Component({
   selector: 'app-phonology-query-renderer',
   templateUrl: './phonology-query-renderer.component.html',
-  styleUrls: ['./phonology-query-renderer.component.sass']
+  styleUrls: ['./phonology-query-renderer.component.scss']
 })
 export class PhonologyQueryRendererComponent implements OnInit {
 
