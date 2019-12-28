@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package yngdieng;
 option csharp_namespace = "Yngdieng.Protos";
-import "phonology.proto";
+import "shared/phonology.proto";
 
 // Next ID: 14
 message Document {

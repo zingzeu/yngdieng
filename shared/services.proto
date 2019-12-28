@@ -3,8 +3,8 @@ syntax = "proto3";
 package yngdieng;
 option csharp_namespace = "Yngdieng.Protos";
 
-import "phonology.proto";
-import "documents.proto";
+import "shared/phonology.proto";
+import "shared/documents.proto";
 
 service YngdiengService {
     rpc GetSearch (SearchRequest) returns (SearchResponse);
