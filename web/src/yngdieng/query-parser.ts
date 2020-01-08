@@ -1,4 +1,5 @@
-import { Query } from "./services_pb";
+
+import { Query }  from "yngdieng/shared/services_pb";
 import { getInitialFromString, getFinalFromString, getToneFromString } from './utils';
 
 const ACCEPTED_KEYS = new Set(["i", "f", "t"]);
@@ -37,7 +38,7 @@ export class QueryParser {
                 if (initial === undefined) {
                     return null;
                 }
-                phonologyQuery.setInitial(initial);
+                phonologyQuery.setInitial(initial); 
             }
             if (tryResult.has("f")) {
                 let final = getFinalFromString(tryResult.get("f"))
@@ -53,12 +54,18 @@ export class QueryParser {
                 }
                 phonologyQuery.setTone(tone);
             }
-            return new Query().setPhonologyQuery(phonologyQuery);
+            let query = new Query();
+            query.setPhonologyQuery(phonologyQuery);
+            return query;
         }
         if (this.isAlphanumeric(text)) {
-            return new Query().setFuzzyPronQuery(text.trim());
+            let query = new Query();
+            query.setFuzzyPronQuery(text.trim());
+            return query;
         }
-        return new Query().setHanziQuery(text.trim());
+        let query = new Query();
+        query.setHanziQuery(text.trim());
+        return query;
     }
 
     private tryParseAsKeyValuePairs(text: string): Map<string, string> | null {

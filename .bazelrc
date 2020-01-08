@@ -27,8 +27,8 @@ build --incompatible_bzl_disallow_load_after_statement=false
 
 test --test_output=errors
 
-# Use the Angular 6 compiler
-build --define=compile=legacy
+# Use the Angular Ivy compiler
+build --define=angular_ivy_enabled=True
 
 # Turn on managed directories feature in Bazel
 # This allows us to avoid installing a second copy of node_modules
@@ -38,3 +38,4 @@ common --experimental_allow_incremental_repository_updates
 build --spawn_strategy=local
 run --spawn_strategy=local
 test --spawn_strategy=local
+

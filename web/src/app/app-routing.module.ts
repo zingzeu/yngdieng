@@ -5,10 +5,10 @@ import { SearchLandingComponent } from './search-landing/search-landing.componen
 import { HomeComponent } from './home/home.component';
 
 const routes: Routes = [
-  {path: "", component:HomeComponent},
-  { path:"search/:query", component: SearchResultComponent},
-  { path: "search", component: SearchLandingComponent},
-  {path:'**',component:HomeComponent}
+  { path: "", component: HomeComponent },
+  { path: "search/:query", component: SearchResultComponent },
+  { path: "search", component: SearchLandingComponent },
+  { path: '**', component: HomeComponent }
 ];
 
 @NgModule({

@@ -1,0 +1,66 @@
+load("@npm_bazel_typescript//:index.bzl", "ts_library")
+load("@npm_bazel_labs//:index.bzl", "ts_proto_library")
+load("@npm_bazel_jasmine//:index.bzl", "jasmine_node_test")
+
+# Examples:
+# https://github.com/bazelbuild/rules_nodejs/blob/master/examples/protocol_buffers/BUILD.bazel
+# https://github.com/Dig-Doug/rules_typescript_proto/blob/bb9ff5a2f7f629276a8da796bf8a77987e95ca67/test/BUILD.bazel#L128
+
+ts_library(
+    name = "lib",
+    srcs = [
+        "query-parser.ts",
+        "utils.ts",
+    ],
+    module_name = "@yngdieng",
+    visibility = ["//visibility:public"],
+    deps = [":services_grpc_ts",":documents_proto_ts"],
+)
+
+ts_library(
+    name = "tests_ts",
+    srcs = glob(["**/*.spec.ts"]),
+    deps = [
+        ":lib",
+        ":proto_ts",
+        "@npm//:node_modules",
+    ],
+)
+
+# # TODO: move to protos folder
+# ts_proto_library(
+#     name = "proto_ts",
+#     visibility = ["//visibility:public"],
+#     deps = [
+#         "//shared:services_proto",
+#     ],
+# )
+
+# load("@build_stack_rules_proto//github.com/grpc/grpc-web:ts_grpc_compile.bzl", "ts_grpc_compile")
+
+# ts_grpc_compile(
+#     name = "services_grpc_ts",
+#     deps = ["//shared:services_proto"],
+#       visibility = ["//visibility:public"],
+# )
+load("@rules_typescript_proto//:index.bzl", "typescript_proto_library")
+
+typescript_proto_library(
+    name = "services_grpc_ts",
+    proto = "//shared:services_proto",
+    visibility = ["//visibility:public"],
+)
+
+typescript_proto_library(
+    name = "documents_proto_ts",
+    proto = "//shared:documents_proto",
+    visibility = ["//visibility:public"],
+)
+
+jasmine_node_test(
+    name = "tests",
+    srcs = glob(["**/*.spec.js"]),
+    deps = [
+        ":tests_ts",
+    ],
+)
