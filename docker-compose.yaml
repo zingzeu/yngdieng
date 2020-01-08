@@ -1,0 +1,15 @@
+version: '3'
+
+services: 
+
+  backend:
+    image: ztl8702/yngdieng-backend
+    volumes:
+      - ./output:/data
+
+  envoy:
+    image: ztl8702/yngdieng-api-frontend
+    ports:
+      - 8087:8080
+    depends_on:
+      - backend
