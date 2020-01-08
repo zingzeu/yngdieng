@@ -59,9 +59,7 @@ ng_module(
         "@npm//@angular/material",
         "@npm//@angular/platform-browser",
         "@npm//@angular/router",
-        # "@npm//@improbable-eng/grpc-web",
         "@npm//@types",
-        #"@npm//google-protobuf",
         "@npm//rxjs",
     ],
 )
@@ -166,11 +164,7 @@ filegroup(
     srcs = [
         # do not sort
         "@npm//:node_modules/rxjs/bundles/rxjs.umd.js",
-        #"@npm//:node_modules/@improbable-eng/grpc-web/dist/grpc-web-client.umd.js",
         ":rxjs_shims.js",
-        ":google_protobuf_requirejs",
-        ":improbable_eng_grpc_web_requirejs",
-      #  ":yngping_proto_ts_requirejs"
     ],
 )
 
@@ -220,6 +214,8 @@ ts_devserver(
     scripts = [
         "@npm//:node_modules/tslib/tslib.js",
         ":rxjs_umd_modules",
+        ":google_protobuf_requirejs",
+        ":improbable_eng_grpc_web_requirejs",
     ],
     static_files = _ASSETS + [
         ":inject_scripts_for_dev",
