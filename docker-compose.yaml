@@ -1,15 +1,13 @@
 version: '3'
 
 services: 
-
-  backend:
-    image: ztl8702/yngdieng-backend
-    volumes:
-      - ./output:/data
-
+  # GrpcWeb proxy
+  # Assumes running on macos
+  # Assumes the backend is running at localhost:8080
   envoy:
-    image: ztl8702/yngdieng-api-frontend
+    build:
+      context: ./server/envoy
+      dockerfile: Dockerfile
+    image: ztl8702/yngdieng-api-frontend:dev
     ports:
-      - 8087:8080
-    depends_on:
-      - backend
+      - 8080:8080
