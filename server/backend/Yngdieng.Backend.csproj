@@ -10,7 +10,7 @@
   </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\..\shared\Yngdieng.Protos.csproj" />
+      <ProjectReference Include="..\protos\Yngdieng.Protos.csproj" />
     </ItemGroup>
 
 </Project>
