@@ -1,29 +1,38 @@
 package(default_visibility = ["//visibility:public"])
 
+load("@build_bazel_rules_nodejs//:index.bzl", "pkg_web")
 load("@npm_angular_bazel//:index.bzl", "ng_module")
-load("@npm_bazel_karma//:index.bzl", "ts_web_test_suite")
-load("@build_bazel_rules_nodejs//:defs.bzl", "rollup_bundle", "history_server")
-load("@build_bazel_rules_nodejs//internal/web_package:web_package.bzl", "web_package")
+
+#load("@npm_bazel_karma//:index.bzl", "ts_web_test_suite")
+load("@npm_bazel_rollup//:index.bzl", "rollup_bundle")
+load("@npm//history-server:index.bzl", "history_server")
 load("@npm_bazel_typescript//:index.bzl", "ts_devserver", "ts_library")
 load("@io_bazel_rules_sass//:defs.bzl", "multi_sass_binary", "sass_binary", "sass_library")
+load("@npm//html-insert-assets:index.bzl", "html_insert_assets")
 
 sass_binary(
-  name = "global_stylesheet",
-  src =  "styles.scss",
-  output_name = "global_stylesheet.css",
-  #deps = [":custom_theme"]
+    name = "global_stylesheet",
+    src = "styles.scss",
+    output_name = "global_stylesheet.css",
+    #deps = [":custom_theme"]
 )
 
 sass_library(
-    name="custom_theme",
-    srcs =  ["custom-theme.scss","@npm//:node_modules/@angular/material/_theming.scss"]
+    name = "custom_theme",
+    srcs = [
+        "custom-theme.scss",
+        "@npm//:node_modules/@angular/material/_theming.scss",
+    ],
 )
 
 multi_sass_binary(
     name = "styles",
     srcs = glob(
-      ["**/*.scss"],
-      exclude = ["styles.scss", "custom-theme.scss"],
+        ["**/*.scss"],
+        exclude = [
+            "styles.scss",
+            "custom-theme.scss",
+        ],
     ),
 )
 
@@ -40,53 +49,116 @@ ng_module(
         ],
     ),
     assets = glob([
-      "**/*.css",
-      "**/*.html",
-    ]) + [":styles"] ,
+        "**/*.css",
+        "**/*.html",
+    ]) + [":styles"],
     deps = [
+        "//web/src/yngdieng:lib",
+        "//web/src/yngdieng:services_grpc_ts",
         "@npm//@angular/core",
+        "@npm//@angular/material",
         "@npm//@angular/platform-browser",
         "@npm//@angular/router",
-        "@npm//@angular/material",
+        # "@npm//@improbable-eng/grpc-web",
         "@npm//@types",
+        #"@npm//google-protobuf",
         "@npm//rxjs",
     ],
-)
-
-filegroup(
-    name="yngdieng",
-    srcs = glob(["app/yngdieng/*.js"])
 )
 
 rollup_bundle(
     name = "bundle",
     entry_point = ":main.prod.ts",
     deps = [
+        ":yngdieng",
         "//web/src",
         "@npm//@angular/router",
         "@npm//rxjs",
-        ":yngdieng"
     ],
 )
 
-web_package(
+# Needed because the prodserver only loads static files that appear under this
+# package.
+genrule(
+    name = "protobufjs",
+    srcs = [
+        "@build_bazel_rules_typescript_protobufs_compiletime_deps//:node_modules/protobufjs/dist/minimal/protobuf.min.js",
+        "@build_bazel_rules_typescript_protobufs_compiletime_deps//:node_modules/long/dist/long.js",
+    ],
+    outs = [
+        "protobuf.min.js",
+        "long.js",
+    ],
+    cmd = "outs=($(OUTS)); d=$$(dirname $${outs[0]}); for s in $(SRCS); do cp $$s $$d; done",
+)
+
+# Copy the google-protobuf library and convert it to a AMD module so it can be loaded in the
+# RequireJS test environment.
+genrule(
+    name = "google_protobuf_requirejs",
+    srcs = [
+        "@npm//:node_modules/google-protobuf/google-protobuf.js",
+    ],
+    outs = [
+        "google-protobuf.js",
+    ],
+    # cmd = "cp $< $@",
+    cmd = """echo "define('google-protobuf', function(require, exports, module) {" > $@ \
+            && cat $< >> $@ \
+            && echo '});' >> $@""",
+)
+
+genrule(
+    name = "improbable_eng_grpc_web_requirejs",
+    srcs = [
+        "@npm//:node_modules/@improbable-eng/grpc-web/dist/grpc-web-client.js",
+    ],
+    outs = [
+        "grpc-web.js",
+    ],
+    # cmd = "cp $< $@",
+    cmd = """echo "define('@improbable-eng/grpc-web', function(require, exports, module) {" > $@ \
+            && cat $< >> $@ \
+            && echo '});' >> $@""",
+)
+
+genrule(
+    name = "yngping_proto_ts_requirejs",
+    srcs = [
+        "//web/src/yngdieng:proto_ts",
+    ],
+    outs = [
+        "proto_ts.js",
+    ],
+    # cmd = "cp $< $@",
+    cmd = """echo "define('@yngping/proto_ts', function(require, exports, module) {" > $@ \
+            && cat $< >> $@ \
+            && echo '});' >> $@""",
+)
+
+pkg_web(
     name = "prodapp",
-    assets = [
-        # do not sort
-        "@npm//:node_modules/zone.js/dist/zone.min.js",
+    srcs = [
+        "favicon.ico",
+        "index.html",
         ":bundle.min.js",
         ":global_stylesheet",
+        ":protobufjs",
+        "@npm//:node_modules/zone.js/dist/zone.min.js",
     ],
-    data = [
-        "favicon.ico",
-    ],
-    index_html = "index.html",
 )
 
 history_server(
     name = "prodserver",
     data = [":prodapp"],
-    templated_args = ["src/prodapp"],
+    # '-a src/prodapp' will ask history-server to scan for all apps under the
+    # given folder this will result in the following auto-configuration:
+    #   /example => src/prodapp/example
+    #   /        => src/prodapp
+    templated_args = [
+        "-a",
+        "src/prodapp",
+    ],
 )
 
 filegroup(
@@ -94,41 +166,79 @@ filegroup(
     srcs = [
         # do not sort
         "@npm//:node_modules/rxjs/bundles/rxjs.umd.js",
+        #"@npm//:node_modules/@improbable-eng/grpc-web/dist/grpc-web-client.umd.js",
         ":rxjs_shims.js",
+        ":google_protobuf_requirejs",
+        ":improbable_eng_grpc_web_requirejs",
+      #  ":yngping_proto_ts_requirejs"
     ],
+)
+
+# Files that we serve in both development and production
+_ASSETS = [
+    # This label references an output of the "styles" sass_binary above.
+    ":global_stylesheet.css",
+
+    # Directly reference a file that came from @angular/material npm package
+    "@npm//:node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
+
+    # We load zone.js outside the bundle. That's because it's a "pollyfill"
+    # which speculates that such features might be available in a browser.
+    # Also it's tricky to configure dead code elimination to understand that
+    # zone.js is used, given that we don't have any import statement that
+    # imports from it.
+    "@npm//:node_modules/zone.js/dist/zone.min.js",
+
+    #":protobuf.min.js",
+    #":google_protobuf_requirejs",
+]
+
+html_insert_assets(
+    name = "inject_scripts_for_dev",
+    outs = ["index.html"],
+    args = [
+        "--html=$(execpath //web/src:static/index.html)",
+        "--out=$@",
+        "--roots=. $(RULEDIR)",
+        "--assets",
+    ] + ["$(execpath %s)" % s for s in _ASSETS] + [
+        # This file doesn't exist during the build, but will be served by ts_devserver
+        "_/ts_scripts.js",
+    ],
+    data = ["//web/src:static/index.html"] + _ASSETS,
 )
 
 ts_devserver(
     name = "devserver",
+    # serve web/src/index.html at /index.html
+    additional_root_paths = ["web/src"],
+    bootstrap = ["@npm_bazel_labs//protobufjs:bootstrap_scripts"],
+    entry_module = "yngdieng/web/src/main.dev",
     port = 4200,
-    entry_module = "project/src/main.dev",
-    serving_path = "/bundle.min.js",
+    # These scripts will be included in the JS bundle after require.js
+    # They should have only named UMD modules, or require.js will throw.
     scripts = [
         "@npm//:node_modules/tslib/tslib.js",
         ":rxjs_umd_modules",
     ],
-    static_files = [
-        "@npm//:node_modules/zone.js/dist/zone.min.js",
-        ":global_stylesheet",
+    static_files = _ASSETS + [
+        ":inject_scripts_for_dev",
+        "//web/src/assets",
     ],
-    data = [
-        "favicon.ico",
-    ],
-    index_html = "index.html",
     deps = [":src"],
 )
 
-ts_library(
-    name = "test_lib",
-    testonly = 1,
-    srcs = glob(["**/*.spec.ts"]),
-    deps = [
-        ":src",
-        "@npm//@angular/core",
-        "@npm//@angular/router",
-        "@npm//@types",
-    ],
-)
+# ts_library(
+#     name = "test_lib",
+#     testonly = 1,
+#     srcs = glob(["**/*.spec.ts"]),
+#     deps = [
+#         ":src",
+#         "@npm//@angular/core",
+#         "@npm//@angular/router",
+#         "@npm//@types",
+#     ],
+# )
 
 ts_library(
     name = "initialize_testbed",
@@ -143,25 +253,25 @@ ts_library(
     ],
 )
 
-ts_web_test_suite(
-    name = "test",
-    srcs = [
-        "@npm//:node_modules/tslib/tslib.js",
-    ],
-    runtime_deps = [
-        ":initialize_testbed",
-    ],
-    # do not sort
-    bootstrap = [
-        "@npm//:node_modules/zone.js/dist/zone-testing-bundle.js",
-        "@npm//:node_modules/reflect-metadata/Reflect.js",
-    ],
-    browsers = [
-        "@io_bazel_rules_webtesting//browsers:chromium-local",
-    ],
-    deps = [
-        ":rxjs_umd_modules",
-        ":test_lib",
-        "@npm//karma-jasmine",
-    ],
-)
+# ts_web_test_suite(
+#     name = "test",
+#     srcs = [
+#         "@npm//:node_modules/tslib/tslib.js",
+#     ],
+#     runtime_deps = [
+#         ":initialize_testbed",
+#     ],
+#     # do not sort
+#     bootstrap = [
+#         "@npm//:node_modules/zone.js/dist/zone-testing-bundle.js",
+#         "@npm//:node_modules/reflect-metadata/Reflect.js",
+#     ],
+#     browsers = [
+#         "@io_bazel_rules_webtesting//browsers:chromium-local",
+#     ],
+#     deps = [
+#         ":rxjs_umd_modules",
+#         ":test_lib",
+#         "@npm//karma-jasmine",
+#     ],
+# )

@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { Initial, Final, Tone } from "../yngdieng/phonology_pb";
-import { getInitialString, getFinalString, getToneString } from '../yngdieng/utils';
+import { Initial ,Final,Tone} from "yngdieng/shared/phonology_pb";
+import { getInitialString, getFinalString, getToneString } from '@yngdieng/utils';
 
 @Component({
   selector: 'app-phonology-composer',

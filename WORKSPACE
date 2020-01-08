@@ -3,21 +3,29 @@
 # The name of the workspace should match the npm package where we publish, so that these
 # imports also make sense when referencing the published package.
 workspace(
-    name = "project",
+    name = "yngdieng",
     managed_directories = {"@npm": ["node_modules"]},
 )
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 
+# http_archive(
+#     name = "rules_proto",
+#     sha256 = "602e7161d9195e50246177e7c55b2f39950a9cf7366f74ed5f22fd45750cd208",
+#     strip_prefix = "rules_proto-97d8af4dc474595af3900dd85cb3a29ad28cc313",
+#     urls = [
+#         "https://mirror.bazel.build/github.com/bazelbuild/rules_proto/archive/97d8af4dc474595af3900dd85cb3a29ad28cc313.tar.gz",
+#         "https://github.com/bazelbuild/rules_proto/archive/97d8af4dc474595af3900dd85cb3a29ad28cc313.tar.gz",
+#     ],
+# )
 
 http_archive(
     name = "rules_proto",
-    sha256 = "602e7161d9195e50246177e7c55b2f39950a9cf7366f74ed5f22fd45750cd208",
-    strip_prefix = "rules_proto-97d8af4dc474595af3900dd85cb3a29ad28cc313",
+    sha256 = "73ebe9d15ba42401c785f9d0aeebccd73bd80bf6b8ac78f74996d31f2c0ad7a6",
+    strip_prefix = "rules_proto-2c0468366367d7ed97a1f702f9cd7155ab3f73c5",
     urls = [
-        "https://mirror.bazel.build/github.com/bazelbuild/rules_proto/archive/97d8af4dc474595af3900dd85cb3a29ad28cc313.tar.gz",
-        "https://github.com/bazelbuild/rules_proto/archive/97d8af4dc474595af3900dd85cb3a29ad28cc313.tar.gz",
+        "https://github.com/bazelbuild/rules_proto/archive/2c0468366367d7ed97a1f702f9cd7155ab3f73c5.tar.gz",
     ],
 )
 
@@ -73,7 +81,7 @@ load("@rules_proto_grpc//csharp/nuget:packages.bzl", nuget_packages = "packages"
 
 nuget_packages()
 
-load("@rules_proto_grpc//csharp/nuget:nuget.bzl", "nuget_protobuf_packages","nuget_grpc_packages")
+load("@rules_proto_grpc//csharp/nuget:nuget.bzl", "nuget_grpc_packages", "nuget_protobuf_packages")
 
 nuget_protobuf_packages()
 
@@ -83,9 +91,10 @@ load("//nuget:nuget.bzl", "yngdieng_nuget_packages")
 
 yngdieng_nuget_packages()
 
+RULES_NODEJS_VERSION = "1.0.1"
 
-RULES_NODEJS_VERSION = "0.34.0"
-RULES_NODEJS_SHA256 = "7c4a690268be97c96f04d505224ec4cb1ae53c2c2b68be495c9bd2634296a5cd"
+RULES_NODEJS_SHA256 = "e1a0d6eb40ec89f61a13a028e7113aa3630247253bcb1406281b627e44395145"
+
 http_archive(
     name = "build_bazel_rules_nodejs",
     sha256 = RULES_NODEJS_SHA256,
@@ -93,20 +102,26 @@ http_archive(
 )
 
 # Rules for compiling sass
-RULES_SASS_VERSION = "86ca977cf2a8ed481859f83a286e164d07335116"
-RULES_SASS_SHA256 = "4f05239080175a3f4efa8982d2b7775892d656bb47e8cf56914d5f9441fb5ea6"
+RULES_SASS_VERSION = "1.24.0"
+
+RULES_SASS_SHA256 = "77e241148f26d5dbb98f96fe0029d8f221c6cb75edbb83e781e08ac7f5322c5f"
+
 http_archive(
     name = "io_bazel_rules_sass",
     sha256 = RULES_SASS_SHA256,
-    url = "https://github.com/bazelbuild/rules_sass/archive/%s.zip" % RULES_SASS_VERSION,
     strip_prefix = "rules_sass-%s" % RULES_SASS_VERSION,
+    url = "https://github.com/bazelbuild/rules_sass/archive/%s.zip" % RULES_SASS_VERSION,
 )
 
 ####################################
 # Load and install our dependencies downloaded above.
 
-load("@build_bazel_rules_nodejs//:defs.bzl", "check_bazel_version", "node_repositories",
-    "npm_install")
+load(
+    "@build_bazel_rules_nodejs//:index.bzl",
+    "check_bazel_version",
+    "yarn_install",
+)
+
 check_bazel_version(
     message = """
 You no longer need to install Bazel on your machine.
@@ -118,41 +133,89 @@ Try running `yarn bazel` instead.
     minimum_bazel_version = "0.27.0",
 )
 
-# Setup the Node repositories. We need a NodeJS version that is more recent than v10.15.0
-# because "selenium-webdriver" which is required for "ng e2e" cannot be installed.
-# TODO: remove the custom repositories once "rules_nodejs" supports v10.16.0 by default.
-node_repositories(
-    node_repositories = {
-        "10.16.0-darwin_amd64": ("node-v10.16.0-darwin-x64.tar.gz", "node-v10.16.0-darwin-x64", "6c009df1b724026d84ae9a838c5b382662e30f6c5563a0995532f2bece39fa9c"),
-        "10.16.0-linux_amd64": ("node-v10.16.0-linux-x64.tar.xz", "node-v10.16.0-linux-x64", "1827f5b99084740234de0c506f4dd2202a696ed60f76059696747c34339b9d48"),
-        "10.16.0-windows_amd64": ("node-v10.16.0-win-x64.zip", "node-v10.16.0-win-x64", "aa22cb357f0fb54ccbc06b19b60e37eefea5d7dd9940912675d3ed988bf9a059"),
-    },
-    node_version = "10.16.0",
-)
+# # Setup the Node repositories. We need a NodeJS version that is more recent than v10.15.0
+# # because "selenium-webdriver" which is required for "ng e2e" cannot be installed.
+# # TODO: remove the custom repositories once "rules_nodejs" supports v10.16.0 by default.
+# node_repositories(
+#     node_repositories = {
+#         "10.16.0-darwin_amd64": ("node-v10.16.0-darwin-x64.tar.gz", "node-v10.16.0-darwin-x64", "6c009df1b724026d84ae9a838c5b382662e30f6c5563a0995532f2bece39fa9c"),
+#         "10.16.0-linux_amd64": ("node-v10.16.0-linux-x64.tar.xz", "node-v10.16.0-linux-x64", "1827f5b99084740234de0c506f4dd2202a696ed60f76059696747c34339b9d48"),
+#         "10.16.0-windows_amd64": ("node-v10.16.0-win-x64.zip", "node-v10.16.0-win-x64", "aa22cb357f0fb54ccbc06b19b60e37eefea5d7dd9940912675d3ed988bf9a059"),
+#     },
+#     node_version = "10.16.0",
+# )
 
-npm_install(
+yarn_install(
     name = "npm",
     package_json = "//:package.json",
-    package_lock_json = "//:package-lock.json",
+    yarn_lock = "//:yarn.lock",
 )
 
 load("@npm//:install_bazel_dependencies.bzl", "install_bazel_dependencies")
+
 install_bazel_dependencies()
 
 load("@npm_bazel_protractor//:package.bzl", "npm_bazel_protractor_dependencies")
+
 npm_bazel_protractor_dependencies()
 
-load("@npm_bazel_karma//:package.bzl", "rules_karma_dependencies")
-rules_karma_dependencies()
+load("@npm_bazel_karma//:package.bzl", "npm_bazel_karma_dependencies")
+
+npm_bazel_karma_dependencies()
+
+load("@npm_bazel_labs//:package.bzl", "npm_bazel_labs_dependencies")
+
+npm_bazel_labs_dependencies()
 
 load("@io_bazel_rules_webtesting//web:repositories.bzl", "web_test_repositories")
+
 web_test_repositories()
 
-load("@npm_bazel_karma//:browser_repositories.bzl", "browser_repositories")
-browser_repositories()
+load("@io_bazel_rules_webtesting//web/versioned:browsers-0.3.2.bzl", "browser_repositories")
+
+browser_repositories(
+    chromium = True,
+    firefox = True,
+)
 
 load("@npm_bazel_typescript//:index.bzl", "ts_setup_workspace")
+
 ts_setup_workspace()
 
 load("@io_bazel_rules_sass//sass:sass_repositories.bzl", "sass_repositories")
+
 sass_repositories()
+
+## Test grpc-typescript
+
+# STACKB_RULES_PROTO_COMMIT = "0a888dbeacebfe06acb7ba740e0723b1adb0dd52"
+
+# STACKB_RULES_PROTO_SHA256 = "966316838b6454ca2f51718d6a801f8ebf7d1d41c82a51ac24af4d92115fa323"
+
+# http_archive(
+#     name = "build_stack_rules_proto",
+#     sha256 = STACKB_RULES_PROTO_SHA256,
+#     strip_prefix = "rules_proto-%s" % STACKB_RULES_PROTO_COMMIT,
+#     urls = ["https://github.com/stackb/rules_proto/archive/%s.tar.gz" % STACKB_RULES_PROTO_COMMIT],
+# )
+
+# load("@build_stack_rules_proto//github.com/grpc/grpc-web:deps.bzl", "ts_grpc_compile")
+
+# ts_grpc_compile()
+
+# load("@io_bazel_rules_closure//closure:defs.bzl", "closure_repositories")
+
+# closure_repositories(
+#     omit_com_google_protobuf = True,
+# )
+
+git_repository(
+    name = "rules_typescript_proto",
+    commit = "bb9ff5a2f7f629276a8da796bf8a77987e95ca67",  
+    remote = "https://github.com/Dig-Doug/rules_typescript_proto",
+    shallow_since = "1578320280 -0800"
+)
+
+load("@rules_typescript_proto//:index.bzl", "rules_typescript_proto_dependencies")
+
+rules_typescript_proto_dependencies()

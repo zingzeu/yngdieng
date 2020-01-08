@@ -1,4 +1,5 @@
-import {Initial, Final, Tone} from "./phonology_pb";
+import { Initial, Final, Tone } from "yngdieng/shared/phonology_pb";
+import * as shared_phonology_pb from "yngdieng/shared/phonology_pb";
 
 const INITIAL_TO_HANZI_MAPPING = {
     [Initial.L]: "柳",
@@ -70,34 +71,34 @@ const TONE_TO_HANZI_MAPPING = {
 
 const HANZI_TO_TONE_MAPPING = reverseMap(TONE_TO_HANZI_MAPPING);
 
-export function getInitialString(initial: Initial): string {
+export function getInitialString(initial: shared_phonology_pb.InitialMap[keyof shared_phonology_pb.InitialMap]): string {
     return INITIAL_TO_HANZI_MAPPING[initial];
 }
 
-export function getInitialFromString(s: string): Initial {
+export function getInitialFromString(s: string): shared_phonology_pb.InitialMap[keyof shared_phonology_pb.InitialMap] {
     return HANZI_TO_INITIAL_MAPPING[s];
 }
 
-export function getFinalString(final: Final): string {
+export function getFinalString(final: shared_phonology_pb.FinalMap[keyof shared_phonology_pb.FinalMap]): string {
     return FINAL_TO_HANZI_MAPPING[final];
 }
 
-export function getFinalFromString(s: string): Final {
+export function getFinalFromString(s: string): shared_phonology_pb.FinalMap[keyof shared_phonology_pb.FinalMap] {
     return HANZI_TO_FINAL_MAPPING[s];
 }
 
-export function getToneString(tone: Tone): string {
+export function getToneString(tone: shared_phonology_pb.ToneMap[keyof shared_phonology_pb.ToneMap]): string {
     return TONE_TO_HANZI_MAPPING[tone];
 }
 
-export function getToneFromString(s: string): Tone {
+export function getToneFromString(s: string): shared_phonology_pb.ToneMap[keyof shared_phonology_pb.ToneMap] {
     return HANZI_TO_TONE_MAPPING[s];
 }
 
-function reverseMap(input: {[x:number]: string}):{[x: string]: number} {
+function reverseMap(input: any): { [x: string]: any } {
     let output = {}
     for (let k in input) {
-        output[input[k]] = Number(k);
+        output[input[k]] = k;
     }
     return output;
 }
