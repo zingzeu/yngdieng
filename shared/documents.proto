@@ -37,19 +37,52 @@ message Document {
         CikLinSourceInfo ciklin = 10;
         DFDSourceInfo dfd = 11;
     }
+}
 
-    message CikLinSourceInfo {}
+// Next ID: 10
+message AggregatedDocument {
+    Hanzi hanzi_canonical = 1;
 
-    message DFDSourceInfo {
-        int32 page_number = 1;
-        int32 column_number = 2;
-        int32 line_number = 3;
-        int32 radical_id = 4;
-    }
+    // Optional. 等价汉字.
+    repeated Hanzi hanzi_alternatives = 2;
+
+    // 所有可搜寻到该文档的汉字.
+    repeated string hanzi_matchable = 3;
+
+    Initial initial = 4;
+
+    Final final = 5;
+
+    Tone tone = 6;
+
+    string buc = 7;
+
+    // 出处信息.
+    CikLinSourceInfo ciklin_source = 8;
+
+    DFDSourceInfo dfd_source = 9;
+
+}
+
+message CikLinSourceInfo {}
+
+message DFDSourceInfo {
+    int32 page_number = 1;
+    int32 column_number = 2;
+    int32 line_number = 3;
+    int32 radical_id = 4;
+}
+
+message DocumentAggregateKey {
+    Hanzi hanzi_canonical = 1;
+    Initial initial = 2;
+    Final final = 3;
+    Tone tone = 4;
 }
 
 message YngdiengIndex {
     repeated Document documents = 1;
+    repeated AggregatedDocument aggregated_document = 2;
 }
 
 message Hanzi {

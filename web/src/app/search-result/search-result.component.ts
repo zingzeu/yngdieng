@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Hanzi } from 'yngdieng/shared/documents_pb';
-import { SearchRequest } from 'yngdieng/shared/services_pb';
+import { SearchRequest, SearchResultRow } from 'yngdieng/shared/services_pb';
 import { YngdiengServiceClient } from 'yngdieng/shared/services_pb_service';
-import { getInitialString, getFinalString, getToneString, getInitialFromString, getToneFromString } from "@yngdieng/utils";
+import { getInitialString, getFinalString, getToneString } from "@yngdieng/utils";
+import {MatSlideToggleChange} from '@angular/material/slide-toggle'; 
 
 @Component({
   selector: 'app-search-result',
@@ -13,6 +14,7 @@ import { getInitialString, getFinalString, getToneString, getInitialFromString, 
 export class SearchResultComponent implements OnInit {
 
   queryText: any;
+  shouldMerge: boolean;
   prettyQueryText: string;
   isBusy: boolean = false;
   results: Array<SearchResultItemViewModel> = [];
@@ -26,6 +28,7 @@ export class SearchResultComponent implements OnInit {
 
     console.log(this.route);
     this.queryText = this.route.snapshot.paramMap.get("query");
+    this.shouldMerge = this.queryText.indexOf("group:hanzi_phonology") > 0;
     this.prettyQueryText = this.getPrettyText(this.queryText);
 
     // Fetch results
@@ -39,22 +42,21 @@ export class SearchResultComponent implements OnInit {
         this.results = [];
         return;
       }
-      this.results = response.getDocumentsList()
-        .map(d => ({
-          hanziCanonical: getHanziString(d.getHanziCanonical()),
-          hanziAlternatives: d.getHanziAlternativesList().map(getHanziString),
-          buc: d.getBuc(),
-          initial: getInitialString(d.getInitial()),
-          final: getFinalString(d.getFinal()),
-          tone: getToneString(d.getTone()),
-          source: d.getDfdId() > 0 ? "DFD " + d.getDfd().getPageNumber() + " 页"
-            : "戚林"
-        } as SearchResultItemViewModel));
+      this.results = response.getResultsList()
+        .map(resultRowToViewModel);
     });
   }
 
   onBackClicked() {
     this.router.navigate(["/search"])
+  }
+
+  onShouldMergeChanged(event: MatSlideToggleChange) {
+    if (event.checked) {
+      this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>this.router.navigate(["/search",this.queryText + " group:hanzi_phonology"]));
+    } else if(!event.checked) {
+      this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>this.router.navigate(["/search",this.queryText.replace("group:hanzi_phonology","").trim()]));
+    }
   }
 
   private getPrettyText(s: string): string {
@@ -69,7 +71,39 @@ interface SearchResultItemViewModel {
   initial: string;
   final: string;
   tone: string;
-  source: string;
+  ciklinSource: string | null;
+  dfdSource: string | null;
+}
+
+function resultRowToViewModel(r: SearchResultRow): SearchResultItemViewModel {
+  switch (r.getResultCase()) {
+    case SearchResultRow.ResultCase.DOCUMENT:
+      let d = r.getDocument();
+      return {
+        hanziCanonical: getHanziString(d.getHanziCanonical()),
+        hanziAlternatives: d.getHanziAlternativesList().map(getHanziString),
+        buc: d.getBuc(),
+        initial: getInitialString(d.getInitial()),
+        final: getFinalString(d.getFinal()),
+        tone: getToneString(d.getTone()),
+        ciklinSource: d.getDfdId() > 0 ? null : "戚林",
+        dfdSource: d.getDfdId() > 0 ? "DFD " + d.getDfd().getPageNumber() + " 页" : null
+      } as SearchResultItemViewModel;
+    case SearchResultRow.ResultCase.AGGREGATED_DOCUMENT:
+      let a = r.getAggregatedDocument();
+      return {
+          hanziCanonical: getHanziString(a.getHanziCanonical()),
+          hanziAlternatives: a.getHanziAlternativesList().map(getHanziString),
+          buc: a.getBuc(),
+          initial: getInitialString(a.getInitial()),
+          final: getFinalString(a.getFinal()),
+          tone: getToneString(a.getTone()),
+          ciklinSource: a.hasCiklinSource()? "戚林":null,
+          dfdSource: a.hasDfdSource() ? "DFD " + a.getDfdSource().getPageNumber() + " 页": null,
+      }
+    default:
+      return null
+  }
 }
 
 function getHanziString(h: Hanzi): string {

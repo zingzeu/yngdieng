@@ -47,7 +47,7 @@ namespace Yngdieng.Indexer
                                 Final = sFinal,
                                 Tone = sTone,
                                 Buc = r.Buc,
-                                Dfd = new Document.Types.DFDSourceInfo()
+                                Dfd = new DFDSourceInfo()
                                 {
                                     PageNumber = r.PageNumber,
                                     ColumnNumber = r.ColumnNumber,

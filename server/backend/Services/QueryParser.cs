@@ -18,11 +18,10 @@ namespace Yngdieng.Backend.Services
     *
     * "我 sort:phonology" => HanziQuery
     * 
-    *"i:l f:uang t:up_falling" => Phonology Query
+    *  "i:l f:uang t:up_falling" => Phonology Query
     * 
     * "nguai" => Fuzzy query
     */
-
 
     /**
      * Converts a query from string to Query.

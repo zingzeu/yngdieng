@@ -100,7 +100,7 @@ namespace Yngdieng.Indexer
                             Initial = CharToInitial[r.Initial[0]],
                             Final = CharToFinal[r.Final[0]],
                             Tone = IntToTone(r.Tone),
-                            Ciklin = new Document.Types.CikLinSourceInfo()
+                            Ciklin = new CikLinSourceInfo()
                         };
                         document.Buc = ToBucString(document.Initial, document.Final, document.Tone);
                         if (r.HanziEquiv.Length > 0)
