@@ -12,7 +12,8 @@ service YngdiengService {
 }
 
 message SearchRequest {
-    Query query = 1;
+    reserved 1;
+    string query = 2;
 }
 
 message SearchResponse {
@@ -31,6 +32,8 @@ message GetDocumentResponse {
     Document document = 1;
 }
 
+// Internal Query
+// Next ID: 6
 message Query {
     oneof query {
         // 按模糊音查询
@@ -41,6 +44,10 @@ message Query {
         string hanzi_query = 3;
     }
 
+    SortByMethod sort_by = 4;
+
+    GroupByMethod group_by = 5;
+
     // Must not be all empty
     message PhonologyQuery {
         // Optional
@@ -49,5 +56,16 @@ message Query {
         Final final = 2;
         // Optional
         Tone tone = 3;
+    }
+
+    enum SortByMethod {
+        SORT_BY_UNSPECIFIED = 0;
+        INITIAL_FINAL_TONE = 1;
+    }
+
+    enum GroupByMethod {
+        GROUP_BY_UNSPECIFIED = 0;
+        NONE = 1;
+        HANZI_PHONOLOGY = 2;
     }
 }
