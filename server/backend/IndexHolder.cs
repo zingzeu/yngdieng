@@ -6,35 +6,35 @@ using Yngdieng.Protos;
 
 namespace Yngdieng.Backend
 {
-    public interface IIndexHolder
+  public interface IIndexHolder
+  {
+    YngdiengIndex GetIndex();
+  }
+
+  public sealed class IndexHolder : IIndexHolder
+  {
+    private readonly ILogger<IndexHolder> _logger;
+
+    private YngdiengIndex index;
+
+    public IndexHolder(IConfiguration config, ILogger<IndexHolder> logger)
     {
-        YngdiengIndex GetIndex();
+      var indexFilePath = config["IndexFile"];
+      _logger = logger;
+
+      _logger.LogInformation($"Loading index from {Path.GetFullPath(indexFilePath)}");
+
+      using (var input = File.OpenRead(indexFilePath))
+      {
+        index = YngdiengIndex.Parser.ParseFrom(input);
+      }
+
+      _logger.LogInformation($"{index.Documents.Count} documents loaded.");
     }
 
-    public sealed class IndexHolder : IIndexHolder
+    public YngdiengIndex GetIndex()
     {
-        private readonly ILogger<IndexHolder> _logger;
-
-        private YngdiengIndex index;
-
-        public IndexHolder(IConfiguration config, ILogger<IndexHolder> logger)
-        {
-            var indexFilePath = config["IndexFile"];
-            _logger = logger;
-
-            _logger.LogInformation($"Loading index from {Path.GetFullPath(indexFilePath)}");
-
-            using (var input = File.OpenRead(indexFilePath))
-            {
-                index = YngdiengIndex.Parser.ParseFrom(input);
-            }
-
-            _logger.LogInformation($"{index.Documents.Count} documents loaded.");
-        }
-
-        public YngdiengIndex GetIndex()
-        {
-            return index;
-        }
+      return index;
     }
+  }
 }
