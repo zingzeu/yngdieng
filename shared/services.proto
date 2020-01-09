@@ -17,7 +17,15 @@ message SearchRequest {
 }
 
 message SearchResponse {
-    repeated Document documents = 1;
+    repeated SearchResultRow results = 1;
+}
+
+message SearchResultRow {
+    oneof result {
+        Document document = 1;
+        AggregatedDocument aggregated_document = 2;
+        // TODO: separator
+    }
 }
 
 // Next ID: 3
@@ -46,6 +54,7 @@ message Query {
 
     SortByMethod sort_by = 4;
 
+    // Should be renamed "aggregate_by"
     GroupByMethod group_by = 5;
 
     // Must not be all empty

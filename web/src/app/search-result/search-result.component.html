@@ -1,5 +1,7 @@
 <mat-toolbar>
   <mat-icon (click)="onBackClicked()">keyboard_arrow_left</mat-icon>
+  <span class="fill-remaining-space"></span>
+  <mat-slide-toggle [checked]="shouldMerge" (change)="onShouldMergeChanged($event)"><small>合并来源</small></mat-slide-toggle>
 </mat-toolbar>
 <div *ngIf="isInvalidQuery">搜索格式不正确: {{ queryText }}</div>
 
@@ -11,7 +13,8 @@
         <li *ngFor="let h of document.hanziAlternatives">
           {{ h }}
         </li>
-        <p class="source">{{ document.source }}</p>
+        <p class="source" *ngIf="document.ciklinSource">{{ document.ciklinSource }}</p>
+        <p class="source" *ngIf="document.dfdSource">{{ document.dfdSource }}</p>
     </mat-card>
 </div>
 

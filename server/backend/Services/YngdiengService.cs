@@ -1,9 +1,12 @@
 using System;
 using System.Threading.Tasks;
 using Yngdieng.Protos;
+using static Yngdieng.Protos.Query.Types;
 using Grpc.Core;
 using Microsoft.Extensions.Logging;
 using System.Linq;
+using System.Collections.Generic;
+
 namespace Yngdieng.Backend.Services
 {
   public class YngdiengService : Yngdieng.Protos.YngdiengService.YngdiengServiceBase
@@ -16,6 +19,7 @@ namespace Yngdieng.Backend.Services
       _logger = logger;
       _indexHolder = indexHolder;
     }
+
     public override Task<SearchResponse> GetSearch(SearchRequest request, ServerCallContext context)
     {
       _logger.LogInformation("A search request" + request.ToString());
@@ -26,37 +30,25 @@ namespace Yngdieng.Backend.Services
       {
         case Query.QueryOneofCase.PhonologyQuery:
           {
-            Initial initial = query.PhonologyQuery.Initial;
-            Final final = query.PhonologyQuery.Final;
-            Tone tone = query.PhonologyQuery.Tone;
-            if (initial == Initial.Unspecified &&
-                final == Final.Unspecified &&
-                tone == Tone.Unspecified)
-            {
-              throw new Exception("Cannot all be unspecified");
-            }
-            var documents = _indexHolder.GetIndex().Documents.Where(_ => true);
-            if (initial != Initial.Unspecified)
-            {
-              documents = documents.Where(d => d.Initial == initial);
-            }
-            if (final != Final.Unspecified)
-            {
-              documents = documents.Where(d => d.Final == final);
-            }
-            if (tone != Tone.Unspecified)
-            {
-              documents = documents.Where(d => d.Tone == tone);
-            }
-            var matchedDocuments = documents.OrderBy(d =>
-            {
-              return GetHanzi(d.HanziCanonical);
-            }).ThenBy(d => d.Final)
-                    .ThenBy(d => d.Initial)
-                    .ThenBy(d => d.Tone)
-                    .ToList();
             var response = new SearchResponse();
-            response.Documents.Add(matchedDocuments);
+            if (query.GroupBy == GroupByMethod.HanziPhonology)
+            {
+              response.Results.AddRange(GetPhonologyQueryAggregated(query.PhonologyQuery, query.SortBy).Select(a =>
+               new SearchResultRow
+               {
+                 AggregatedDocument = a
+               }
+              ));
+            }
+            else
+            {
+              response.Results.AddRange(GetPhonologyQuery(query.PhonologyQuery, query.SortBy).Select(d =>
+               new SearchResultRow
+               {
+                 Document = d
+               }
+              ));
+            }
             return Task.FromResult(response);
           }
         case Query.QueryOneofCase.HanziQuery:
@@ -66,26 +58,165 @@ namespace Yngdieng.Backend.Services
             {
               throw new Exception("Cannot all be null");
             }
-            var matchedDocuments = _indexHolder.GetIndex().Documents
-                .Where(d =>
-                    GetHanzi(d.HanziCanonical) == hanziQuery
-                    || d.HanziAlternatives.Where(
-                        r => GetHanzi(r) == hanziQuery).Count() > 0
-                    || d.HanziMatchable.IndexOf(hanziQuery) >= 0
-                )
-                .OrderBy(d => GetHanzi(d.HanziCanonical))
-                    .ThenBy(d => d.Final)
-                    .ThenBy(d => d.Initial)
-                    .ThenBy(d => d.Tone)
-                .ToList();
             var response = new SearchResponse();
-            response.Documents.Add(matchedDocuments);
-            Console.WriteLine(response);
+            if (query.GroupBy == GroupByMethod.HanziPhonology)
+            {
+              response.Results.AddRange(GetHanziQueryAggregated(query.HanziQuery, query.SortBy).Select(a =>
+              new SearchResultRow
+              {
+                AggregatedDocument = a
+              }));
+            }
+            else
+            {
+              response.Results.AddRange(GetHanziQuery(query.HanziQuery, query.SortBy).Select(d =>
+              new SearchResultRow
+              {
+                Document = d
+              }));
+            }
+
             return Task.FromResult(response);
           }
         default:
           throw new Exception("Not implemented");
       }
+    }
+
+    private IEnumerable<Document> GetPhonologyQuery(PhonologyQuery query, SortByMethod sortBy)
+    {
+      Initial initial = query.Initial;
+      Final final = query.Final;
+      Tone tone = query.Tone;
+      if (initial == Initial.Unspecified &&
+          final == Final.Unspecified &&
+          tone == Tone.Unspecified)
+      {
+        throw new Exception("Cannot all be unspecified");
+      }
+      // Filter
+      var documents = _indexHolder.GetIndex().Documents.Where(_ => true);
+      if (initial != Initial.Unspecified)
+      {
+        documents = documents.Where(d => d.Initial == initial);
+      }
+      if (final != Final.Unspecified)
+      {
+        documents = documents.Where(d => d.Final == final);
+      }
+      if (tone != Tone.Unspecified)
+      {
+        documents = documents.Where(d => d.Tone == tone);
+      }
+      var matchedDocuments = documents;
+      // Sort
+      IEnumerable<Document> sorted;
+      switch (sortBy)
+      {
+        case SortByMethod.InitialFinalTone:
+          sorted = matchedDocuments.OrderBy(d => d.Final)
+              .ThenBy(d => d.Initial)
+              .ThenBy(d => d.Tone);
+          break;
+        case SortByMethod.SortByUnspecified:
+        default:
+          sorted = matchedDocuments;
+          break;
+      }
+      return sorted;
+    }
+
+    private IEnumerable<AggregatedDocument> GetPhonologyQueryAggregated(PhonologyQuery query, SortByMethod sortBy)
+    {
+      Initial initial = query.Initial;
+      Final final = query.Final;
+      Tone tone = query.Tone;
+      if (initial == Initial.Unspecified &&
+          final == Final.Unspecified &&
+          tone == Tone.Unspecified)
+      {
+        throw new Exception("Cannot all be unspecified");
+      }
+      // Filter
+      var documents = _indexHolder.GetIndex().AggregatedDocument.Where(_ => true);
+      if (initial != Initial.Unspecified)
+      {
+        documents = documents.Where(d => d.Initial == initial);
+      }
+      if (final != Final.Unspecified)
+      {
+        documents = documents.Where(d => d.Final == final);
+      }
+      if (tone != Tone.Unspecified)
+      {
+        documents = documents.Where(d => d.Tone == tone);
+      }
+      var matchedDocuments = documents;
+      // Sort
+      IEnumerable<AggregatedDocument> sorted;
+      switch (sortBy)
+      {
+        case SortByMethod.InitialFinalTone:
+          sorted = matchedDocuments.OrderBy(d => d.Final)
+              .ThenBy(d => d.Initial)
+              .ThenBy(d => d.Tone);
+          break;
+        case SortByMethod.SortByUnspecified:
+        default:
+          sorted = matchedDocuments;
+          break;
+      }
+      return sorted;
+    }
+
+    private IEnumerable<Document> GetHanziQuery(string query, SortByMethod sortBy)
+    {
+      var matchedDocuments = _indexHolder.GetIndex().Documents
+                .Where(d =>
+                    GetHanzi(d.HanziCanonical) == query
+                    || d.HanziAlternatives.Where(
+                        r => GetHanzi(r) == query).Count() > 0
+                    || d.HanziMatchable.IndexOf(query) >= 0
+                );
+      IEnumerable<Document> sorted;
+      switch (sortBy)
+      {
+        case SortByMethod.InitialFinalTone:
+          sorted = matchedDocuments.OrderBy(d => d.Final)
+                      .ThenBy(d => d.Initial)
+                      .ThenBy(d => d.Tone);
+          break;
+        case SortByMethod.SortByUnspecified:
+        default:
+          sorted = matchedDocuments;
+          break;
+      }
+      return sorted;
+    }
+
+    private IEnumerable<AggregatedDocument> GetHanziQueryAggregated(string query, SortByMethod sortBy)
+    {
+      var matchedDocuments = _indexHolder.GetIndex().AggregatedDocument
+                .Where(d =>
+                    GetHanzi(d.HanziCanonical) == query
+                    || d.HanziAlternatives.Where(
+                        r => GetHanzi(r) == query).Count() > 0
+                    || d.HanziMatchable.IndexOf(query) >= 0
+                );
+      IEnumerable<AggregatedDocument> sorted;
+      switch (sortBy)
+      {
+        case SortByMethod.InitialFinalTone:
+          sorted = matchedDocuments.OrderBy(d => d.Final)
+                      .ThenBy(d => d.Initial)
+                      .ThenBy(d => d.Tone);
+          break;
+        case SortByMethod.SortByUnspecified:
+        default:
+          sorted = matchedDocuments;
+          break;
+      }
+      return sorted;
     }
 
     public static string GetHanzi(Hanzi h)
