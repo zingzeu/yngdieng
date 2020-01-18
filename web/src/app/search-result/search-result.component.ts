@@ -4,7 +4,7 @@ import { Hanzi } from 'yngdieng/shared/documents_pb';
 import { SearchRequest, SearchResultRow } from 'yngdieng/shared/services_pb';
 import { YngdiengServiceClient } from 'yngdieng/shared/services_pb_service';
 import { getInitialString, getFinalString, getToneString } from "@yngdieng/utils";
-import {MatSlideToggleChange} from '@angular/material/slide-toggle'; 
+import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 
 @Component({
   selector: 'app-search-result',
@@ -53,10 +53,14 @@ export class SearchResultComponent implements OnInit {
 
   onShouldMergeChanged(event: MatSlideToggleChange) {
     if (event.checked) {
-      this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>this.router.navigate(["/search",this.queryText + " group:hanzi_phonology"]));
-    } else if(!event.checked) {
-      this.router.navigateByUrl('/', {skipLocationChange: true}).then(()=>this.router.navigate(["/search",this.queryText.replace("group:hanzi_phonology","").trim()]));
+      this.redirectTo(["/search", this.queryText + " group:hanzi_phonology"]);
+    } else if (!event.checked) {
+      this.redirectTo(["/search", this.queryText.replace("group:hanzi_phonology", "").trim()]);
     }
+  }
+
+  private redirectTo(commands: any[]) {
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => this.router.navigate(commands));
   }
 
   private getPrettyText(s: string): string {
@@ -92,14 +96,14 @@ function resultRowToViewModel(r: SearchResultRow): SearchResultItemViewModel {
     case SearchResultRow.ResultCase.AGGREGATED_DOCUMENT:
       let a = r.getAggregatedDocument();
       return {
-          hanziCanonical: getHanziString(a.getHanziCanonical()),
-          hanziAlternatives: a.getHanziAlternativesList().map(getHanziString),
-          buc: a.getBuc(),
-          initial: getInitialString(a.getInitial()),
-          final: getFinalString(a.getFinal()),
-          tone: getToneString(a.getTone()),
-          ciklinSource: a.hasCiklinSource()? "戚林":null,
-          dfdSource: a.hasDfdSource() ? "DFD " + a.getDfdSource().getPageNumber() + " 页": null,
+        hanziCanonical: getHanziString(a.getHanziCanonical()),
+        hanziAlternatives: a.getHanziAlternativesList().map(getHanziString),
+        buc: a.getBuc(),
+        initial: getInitialString(a.getInitial()),
+        final: getFinalString(a.getFinal()),
+        tone: getToneString(a.getTone()),
+        ciklinSource: a.hasCiklinSource() ? "戚林" : null,
+        dfdSource: a.hasDfdSource() ? "DFD " + a.getDfdSource().getPageNumber() + " 页" : null,
       }
     default:
       return null
