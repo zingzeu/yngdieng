@@ -9,6 +9,7 @@ import "shared/documents.proto";
 service YngdiengService {
     rpc GetSearch (SearchRequest) returns (SearchResponse);
     rpc GetDocument (GetDocumentRequest) returns (GetDocumentResponse);
+    rpc GetFengDocument(GetFengDocumentRequest) returns (FengDocument);
 }
 
 message SearchRequest {
@@ -24,6 +25,7 @@ message SearchResultRow {
     oneof result {
         Document document = 1;
         AggregatedDocument aggregated_document = 2;
+        FengDocument feng_document = 3;
         // TODO: separator
     }
 }
@@ -40,8 +42,12 @@ message GetDocumentResponse {
     Document document = 1;
 }
 
+message GetFengDocumentRequest {
+    string id = 1;
+}
+
 // Internal Query
-// Next ID: 6
+// Next ID: 7
 message Query {
     oneof query {
         // 按模糊音查询
@@ -50,6 +56,8 @@ message Query {
         PhonologyQuery phonology_query = 2;
         // 汉字查询
         string hanzi_query = 3;
+        // 词汇查询
+        string vocab_query = 6;
     }
 
     SortByMethod sort_by = 4;

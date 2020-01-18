@@ -61,7 +61,32 @@ message AggregatedDocument {
     CikLinSourceInfo ciklin_source = 8;
 
     DFDSourceInfo dfd_source = 9;
+}
 
+message FengDocument {
+    string id = 1;
+
+    // 正字写法.
+    string hanzi_canonical = 2;
+
+    // Optional. 等价汉字写法. 如俗写。
+    repeated string hanzi_alternatives = 3;
+
+    string yngping_canonical = 4;
+
+    // All searchable permuations
+    repeated string yngping_permutations = 5;
+
+    // 释义. TODO: structured
+    string explanation = 6;
+
+    SourceInfo source = 7;
+
+    message SourceInfo {
+        int32 page_number = 1;
+        // Line in page
+        int32 line_number = 2;
+    }
 }
 
 message CikLinSourceInfo {}
@@ -83,6 +108,7 @@ message DocumentAggregateKey {
 message YngdiengIndex {
     repeated Document documents = 1;
     repeated AggregatedDocument aggregated_document = 2;
+    repeated FengDocument feng_documents = 3;
 }
 
 message Hanzi {

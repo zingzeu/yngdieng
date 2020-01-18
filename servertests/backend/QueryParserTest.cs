@@ -27,6 +27,17 @@ namespace Yngdieng.Backend.Tests
     }
 
     [Fact]
+    public void TestParse_VocabQuery()
+    {
+      Assert.Equal(new Query
+      {
+        VocabQuery = "我",
+        SortBy = Query.Types.SortByMethod.InitialFinalTone,
+        GroupBy = Query.Types.GroupByMethod.None
+      }, QueryParser.Parse("我 mode:vocab"));
+    }
+
+    [Fact]
     public void TestParse_FuzzyPronQuery()
     {
       Assert.Equal(new Query

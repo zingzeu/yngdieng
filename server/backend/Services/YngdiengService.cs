@@ -22,7 +22,7 @@ namespace Yngdieng.Backend.Services
 
     public override Task<SearchResponse> GetSearch(SearchRequest request, ServerCallContext context)
     {
-      _logger.LogInformation("A search request" + request.ToString());
+      _logger.LogInformation("Received SearchRequest" + request.ToString());
 
       var query = QueryParser.Parse(request.Query) ?? throw new Exception("Invalid query");
 
@@ -78,6 +78,11 @@ namespace Yngdieng.Backend.Services
 
             return Task.FromResult(response);
           }
+        case Query.QueryOneofCase.VocabQuery:
+        {
+          var response = new SearchResponse();
+          return Task.FromResult(response);
+        }
         default:
           throw new Exception("Not implemented");
       }
@@ -256,7 +261,6 @@ namespace Yngdieng.Backend.Services
         default:
           throw new Exception("Bad request");
       }
-      return Task.FromResult(new GetDocumentResponse());
     }
   }
 }

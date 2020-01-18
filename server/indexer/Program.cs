@@ -27,9 +27,11 @@ namespace Yngdieng.Indexer
 
       var ciklin = new CreateCikLinDocumentsAction(Path.Combine(inputFolder, "ciklin.csv"), outputFolder, hanziVariantsUtil).Run();
       var dfd = new CreateDFDDocumentsAction(Path.Combine(inputFolder, "DFDCharacters.csv"), outputFolder, hanziVariantsUtil).Run();
+      var feng = new CreateFengDocumentsAction(Path.Combine(inputFolder, "merged.txt"), outputFolder).Run();
 
       index.Documents.Add(ciklin);
       index.Documents.Add(dfd);
+      index.FengDocuments.Add(feng);
       foreach (var d in ciklin)
       {
         aggregator.Add(d);
