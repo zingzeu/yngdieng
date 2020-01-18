@@ -27,12 +27,15 @@ namespace Yngdieng.Indexer
         Id = $"p{f.PageNumber}_{f.LineNumber}",
         HanziCanonical = f.KanjiClean,
         YngpingCanonical = f.Pron,
-        // TODO yngping_permuations
         Explanation = f.Explanation,
         Source = new FengDocument.Types.SourceInfo
         {
           PageNumber = f.PageNumber,
           LineNumber = f.LineNumber
+        },
+        YngpingPermutations = {
+            f.Pron
+            // TODO: permuations
         }
       });
       documents.AddRange(docs);

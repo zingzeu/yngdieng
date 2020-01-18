@@ -1,0 +1,9 @@
+<mat-card class="result-card">
+    {{ document.hanziCanonical }} {{ document.buc }} {{ document.initial
+    }}{{ document.final }} {{ document.tone }}
+    <li *ngFor="let h of document.hanziAlternatives">
+      {{ h }}
+    </li>
+    <p class="source" *ngIf="document.ciklinSource">{{ document.ciklinSource }}</p>
+    <p class="source" *ngIf="document.dfdSource">{{ document.dfdSource }}</p>
+</mat-card>

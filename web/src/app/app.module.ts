@@ -16,6 +16,8 @@ import { PhonologyQueryRendererComponent } from './phonology-query-renderer/phon
 import { SearchLandingComponent } from './search-landing/search-landing.component';
 import { HomeComponent } from './home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { SingleCharResultComponent } from './single-char-result/single-char-result.component';
+import { FengResultComponent } from './feng-result/feng-result.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     PhonologyComposerComponent,
     PhonologyQueryRendererComponent,
     SearchLandingComponent,
-    HomeComponent
+    HomeComponent,
+    SingleCharResultComponent,
+    FengResultComponent
   ],
   imports: [
     BrowserModule,
