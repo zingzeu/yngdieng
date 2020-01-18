@@ -10,16 +10,6 @@ workspace(
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 
-# http_archive(
-#     name = "rules_proto",
-#     sha256 = "602e7161d9195e50246177e7c55b2f39950a9cf7366f74ed5f22fd45750cd208",
-#     strip_prefix = "rules_proto-97d8af4dc474595af3900dd85cb3a29ad28cc313",
-#     urls = [
-#         "https://mirror.bazel.build/github.com/bazelbuild/rules_proto/archive/97d8af4dc474595af3900dd85cb3a29ad28cc313.tar.gz",
-#         "https://github.com/bazelbuild/rules_proto/archive/97d8af4dc474595af3900dd85cb3a29ad28cc313.tar.gz",
-#     ],
-# )
-
 http_archive(
     name = "rules_proto",
     sha256 = "73ebe9d15ba42401c785f9d0aeebccd73bd80bf6b8ac78f74996d31f2c0ad7a6",
@@ -133,18 +123,6 @@ Try running `yarn bazel` instead.
     minimum_bazel_version = "0.27.0",
 )
 
-# # Setup the Node repositories. We need a NodeJS version that is more recent than v10.15.0
-# # because "selenium-webdriver" which is required for "ng e2e" cannot be installed.
-# # TODO: remove the custom repositories once "rules_nodejs" supports v10.16.0 by default.
-# node_repositories(
-#     node_repositories = {
-#         "10.16.0-darwin_amd64": ("node-v10.16.0-darwin-x64.tar.gz", "node-v10.16.0-darwin-x64", "6c009df1b724026d84ae9a838c5b382662e30f6c5563a0995532f2bece39fa9c"),
-#         "10.16.0-linux_amd64": ("node-v10.16.0-linux-x64.tar.xz", "node-v10.16.0-linux-x64", "1827f5b99084740234de0c506f4dd2202a696ed60f76059696747c34339b9d48"),
-#         "10.16.0-windows_amd64": ("node-v10.16.0-win-x64.zip", "node-v10.16.0-win-x64", "aa22cb357f0fb54ccbc06b19b60e37eefea5d7dd9940912675d3ed988bf9a059"),
-#     },
-#     node_version = "10.16.0",
-# )
-
 yarn_install(
     name = "npm",
     package_json = "//:package.json",
@@ -185,29 +163,6 @@ ts_setup_workspace()
 load("@io_bazel_rules_sass//sass:sass_repositories.bzl", "sass_repositories")
 
 sass_repositories()
-
-## Test grpc-typescript
-
-# STACKB_RULES_PROTO_COMMIT = "0a888dbeacebfe06acb7ba740e0723b1adb0dd52"
-
-# STACKB_RULES_PROTO_SHA256 = "966316838b6454ca2f51718d6a801f8ebf7d1d41c82a51ac24af4d92115fa323"
-
-# http_archive(
-#     name = "build_stack_rules_proto",
-#     sha256 = STACKB_RULES_PROTO_SHA256,
-#     strip_prefix = "rules_proto-%s" % STACKB_RULES_PROTO_COMMIT,
-#     urls = ["https://github.com/stackb/rules_proto/archive/%s.tar.gz" % STACKB_RULES_PROTO_COMMIT],
-# )
-
-# load("@build_stack_rules_proto//github.com/grpc/grpc-web:deps.bzl", "ts_grpc_compile")
-
-# ts_grpc_compile()
-
-# load("@io_bazel_rules_closure//closure:defs.bzl", "closure_repositories")
-
-# closure_repositories(
-#     omit_com_google_protobuf = True,
-# )
 
 git_repository(
     name = "rules_typescript_proto",
