@@ -6,7 +6,6 @@ using Grpc.Core;
 using Microsoft.Extensions.Logging;
 using System.Linq;
 using System.Collections.Generic;
-
 namespace Yngdieng.Backend.Services
 {
   public class YngdiengService : Yngdieng.Protos.YngdiengService.YngdiengServiceBase
@@ -217,10 +216,22 @@ namespace Yngdieng.Backend.Services
       var matchedDocuments = _indexHolder.GetIndex().FengDocuments
         .Where(d =>
           d.HanziCanonical.Contains(query)
-          || d.Explanation.Contains(query));
-
+          || d.Explanation.Contains(query))
+          .OrderByDescending(d => GetVocabQueryRank(query,d));
       //TODO: rank and order
       return matchedDocuments;
+    }
+
+    private static int GetVocabQueryRank(string query, FengDocument matchedDocument) {
+      int score = 0;
+      if (matchedDocument.HanziCanonical.Contains(query)) {
+        var distance = matchedDocument.HanziCanonical.Length - query.Length +1 ;
+        score += 1000 / distance;
+      }
+      if (matchedDocument.Explanation.Contains(query)) {
+        score += 10 * matchedDocument.Explanation.CountOccurences(query);
+      }
+      return score;
     }
 
     private IEnumerable<FengDocument> GetFuzzyQuery(string yngping)
@@ -231,7 +242,6 @@ namespace Yngdieng.Backend.Services
       //TODO: rank and order
       return matchedDocuments;
     }
-
 
     private IEnumerable<AggregatedDocument> GetHanziQueryAggregated(string query, SortByMethod sortBy)
     {
@@ -300,6 +310,18 @@ namespace Yngdieng.Backend.Services
     public override Task<FengDocument> GetFengDocument(GetFengDocumentRequest request, ServerCallContext context)
     {
       return Task.FromResult(_indexHolder.GetIndex().FengDocuments.Where(f => f.Id == request.Id).FirstOrDefault());
+    }
+  }
+
+  public static class StringExt {
+ public static int CountOccurences(this string x, string query) {
+      var count = 0;
+      for (var i = 0; i < x.Length; ++i) {
+        if (x[i..^0].StartsWith(query)){
+          ++count;
+        }
+      }
+      return count;
     }
   }
 }
