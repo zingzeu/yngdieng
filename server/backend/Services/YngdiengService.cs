@@ -79,10 +79,23 @@ namespace Yngdieng.Backend.Services
             return Task.FromResult(response);
           }
         case Query.QueryOneofCase.VocabQuery:
-        {
-          var response = new SearchResponse();
-          return Task.FromResult(response);
-        }
+          {
+            var response = new SearchResponse();
+            response.Results.AddRange(GetVocabQuery(query.VocabQuery).Select(d => new SearchResultRow
+            {
+              FengDocument = d
+            }));
+            return Task.FromResult(response);
+          }
+        case Query.QueryOneofCase.FuzzyPronQuery:
+          {
+            var response = new SearchResponse();
+            response.Results.AddRange(GetFuzzyQuery(query.FuzzyPronQuery).Select(d => new SearchResultRow
+            {
+              FengDocument = d
+            }));
+            return Task.FromResult(response);
+          }
         default:
           throw new Exception("Not implemented");
       }
@@ -199,6 +212,27 @@ namespace Yngdieng.Backend.Services
       return sorted;
     }
 
+    private IEnumerable<FengDocument> GetVocabQuery(string query)
+    {
+      var matchedDocuments = _indexHolder.GetIndex().FengDocuments
+        .Where(d =>
+          d.HanziCanonical.Contains(query)
+          || d.Explanation.Contains(query));
+
+      //TODO: rank and order
+      return matchedDocuments;
+    }
+
+    private IEnumerable<FengDocument> GetFuzzyQuery(string yngping)
+    {
+      var matchedDocuments = _indexHolder.GetIndex().FengDocuments
+        .Where(d =>
+          d.YngpingPermutations.Contains(yngping));
+      //TODO: rank and order
+      return matchedDocuments;
+    }
+
+
     private IEnumerable<AggregatedDocument> GetHanziQueryAggregated(string query, SortByMethod sortBy)
     {
       var matchedDocuments = _indexHolder.GetIndex().AggregatedDocument
@@ -261,6 +295,11 @@ namespace Yngdieng.Backend.Services
         default:
           throw new Exception("Bad request");
       }
+    }
+
+    public override Task<FengDocument> GetFengDocument(GetFengDocumentRequest request, ServerCallContext context)
+    {
+      return Task.FromResult(_indexHolder.GetIndex().FengDocuments.Where(f => f.Id == request.Id).FirstOrDefault());
     }
   }
 }
