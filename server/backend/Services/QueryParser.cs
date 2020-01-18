@@ -114,7 +114,14 @@ namespace Yngdieng.Backend.Services
 
       if (remainingTokens.Length == 1 && !rAlphaNumeric.IsMatch(remainingTokens[0]))
       {
-        query.HanziQuery = remainingTokens[0];
+        if (keyValuePairs.ContainsKey("mode") && keyValuePairs["mode"] == "vocab")
+        {
+          query.VocabQuery = remainingTokens[0];
+        }
+        else
+        {
+          query.HanziQuery = remainingTokens[0];
+        }
         return query;
       }
 

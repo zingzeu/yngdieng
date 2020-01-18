@@ -5,15 +5,15 @@ using System.Linq;
 
 namespace Yngdieng.Common
 {
-    public static class FoochowRomanziedUtils
-    {
-        private static readonly string[] FrInitials = new string[] {
+  public static class FoochowRomanziedUtils
+  {
+    private static readonly string[] FrInitials = new string[] {
             "l", "b", "g", "k", "d",
                "p", "t", "c", "n", "s",
                "" , "m","ng","ch", "h"
         };
 
-        private static readonly Initial[] FrInitialsProto = new Initial[] {
+    private static readonly Initial[] FrInitialsProto = new Initial[] {
             Initial.L,
             Initial.B,
             Initial.G,
@@ -31,9 +31,9 @@ namespace Yngdieng.Common
             Initial.H
         };
 
-        private static readonly string[] FrInitialSorted = FrInitials.OrderByDescending(s => s.Length).ToArray();
+    private static readonly string[] FrInitialSorted = FrInitials.OrderByDescending(s => s.Length).ToArray();
 
-        private static readonly IDictionary<Final, string[]> FrFinals = new Dictionary<Final, string[]>() {
+    private static readonly IDictionary<Final, string[]> FrFinals = new Dictionary<Final, string[]>() {
             { Final.Ung, new string[] {"ŭng",  "ūng", "óng",  "ók",  "ùng",  "ông",  "ŭk"}},
             { Final.Ua,  new string[] {"uă",   "uā",  "uá",   "uáh", "uà",   "uâ",   "uăh"}},
             { Final.Yong,  new string[] {"iŏng", "iōng","ióng", "iók", "iòng", "iông", "iŏk"}},
@@ -69,113 +69,113 @@ namespace Yngdieng.Common
             { Final.Eu,  new string[] {"ĕu",   "ēu",  "áiu",  "áiuh","èu",   "âiu",  "ĕuh"}},
         };
 
-        private static readonly IDictionary<string, (Final, Tone)> FrFinalsMapping = GetFrFinalsMapping();
+    private static readonly IDictionary<string, (Final, Tone)> FrFinalsMapping = GetFrFinalsMapping();
 
-        private static IDictionary<string, (Final, Tone)> GetFrFinalsMapping()
+    private static IDictionary<string, (Final, Tone)> GetFrFinalsMapping()
+    {
+      Tone IndexToTone(int toneNumber)
+      {
+        switch (toneNumber)
         {
-            Tone IndexToTone(int toneNumber)
-            {
-                switch (toneNumber)
-                {
-                    case 0:
-                        return Tone.UpLevel;
-                    case 1:
-                        return Tone.UpUp;
-                    case 2:
-                        return Tone.UpFalling;
-                    case 3:
-                        return Tone.UpAbrupt;
-                    case 4:
-                        return Tone.DownLevel;
-                    case 5:
-                        return Tone.DownFalling;
-                    case 6:
-                        return Tone.DownAbrupt;
-                    default:
-                        throw new Exception("Unknown tone");
-                }
-            }
-
-
-
-            var output = new Dictionary<string, (Final, Tone)>();
-            foreach (var rime in FrFinals.Keys)
-            {
-                var subRimes = FrFinals[rime];
-                for (int i = 0; i < subRimes.Length; ++i)
-                {
-                    if (subRimes[i] != null)
-                    {
-                        if (output.ContainsKey(subRimes[i]))
-                        {
-                            throw new Exception($"{subRimes[i]} already exists");
-                        }
-                        output[subRimes[i]] = (rime, IndexToTone(i));
-                    }
-                }
-            }
-            return output;
+          case 0:
+            return Tone.UpLevel;
+          case 1:
+            return Tone.UpUp;
+          case 2:
+            return Tone.UpFalling;
+          case 3:
+            return Tone.UpAbrupt;
+          case 4:
+            return Tone.DownLevel;
+          case 5:
+            return Tone.DownFalling;
+          case 6:
+            return Tone.DownAbrupt;
+          default:
+            throw new Exception("Unknown tone");
         }
+      }
 
-        public static (Initial, Final, Tone) Parse(string buc)
+
+
+      var output = new Dictionary<string, (Final, Tone)>();
+      foreach (var rime in FrFinals.Keys)
+      {
+        var subRimes = FrFinals[rime];
+        for (int i = 0; i < subRimes.Length; ++i)
         {
-            string remaining = buc.Normalize().Trim().ToLower();
-
-            Initial? initial = null;
-            // Try parse initial
-            foreach (var i in FrInitialSorted)
+          if (subRimes[i] != null)
+          {
+            if (output.ContainsKey(subRimes[i]))
             {
-                if (remaining.StartsWith(i))
-                {
-                    initial = FrInitialsProto[Array.IndexOf(FrInitials, i)];
-                    remaining = remaining.Substring(i.Length);
-                    break;
-                }
+              throw new Exception($"{subRimes[i]} already exists");
             }
-
-            if (initial == null)
-            {
-                throw new Exception($"{buc} is not a valid Foochow Romanized syllable");
-            }
-
-            // Try parse final
-            if (FrFinalsMapping.ContainsKey(remaining))
-            {
-                (var f, var tone) = FrFinalsMapping[remaining];
-                return (initial.Value, f, tone);
-            }
-            else
-            {
-                throw new Exception($"{buc} is not a valid Foochow Romanized Syllable; {remaining} not found in finals.");
-            }
+            output[subRimes[i]] = (rime, IndexToTone(i));
+          }
         }
-
-        public static string ToBucString(Initial i, Final f, Tone t)
-        {
-            int ToneToIndex(Tone t)
-            {
-                switch (t)
-                {
-                    case Tone.UpLevel:
-                        return 0;
-                    case Tone.UpUp:
-                        return 1;
-                    case Tone.UpFalling:
-                        return 2;
-                    case Tone.UpAbrupt:
-                        return 3;
-                    case Tone.DownLevel:
-                        return 4;
-                    case Tone.DownFalling:
-                        return 5;
-                    case Tone.DownAbrupt:
-                        return 6;
-                    default:
-                        throw new Exception("Unknown tone");
-                }
-            }
-            return FrInitials[Array.IndexOf(FrInitialsProto, i)] + FrFinals[f][ToneToIndex(t)];
-        }
-
+      }
+      return output;
     }
+
+    public static (Initial, Final, Tone) Parse(string buc)
+    {
+      string remaining = buc.Normalize().Trim().ToLower();
+
+      Initial? initial = null;
+      // Try parse initial
+      foreach (var i in FrInitialSorted)
+      {
+        if (remaining.StartsWith(i))
+        {
+          initial = FrInitialsProto[Array.IndexOf(FrInitials, i)];
+          remaining = remaining.Substring(i.Length);
+          break;
+        }
+      }
+
+      if (initial == null)
+      {
+        throw new Exception($"{buc} is not a valid Foochow Romanized syllable");
+      }
+
+      // Try parse final
+      if (FrFinalsMapping.ContainsKey(remaining))
+      {
+        (var f, var tone) = FrFinalsMapping[remaining];
+        return (initial.Value, f, tone);
+      }
+      else
+      {
+        throw new Exception($"{buc} is not a valid Foochow Romanized Syllable; {remaining} not found in finals.");
+      }
+    }
+
+    public static string ToBucString(Initial i, Final f, Tone t)
+    {
+      int ToneToIndex(Tone t)
+      {
+        switch (t)
+        {
+          case Tone.UpLevel:
+            return 0;
+          case Tone.UpUp:
+            return 1;
+          case Tone.UpFalling:
+            return 2;
+          case Tone.UpAbrupt:
+            return 3;
+          case Tone.DownLevel:
+            return 4;
+          case Tone.DownFalling:
+            return 5;
+          case Tone.DownAbrupt:
+            return 6;
+          default:
+            throw new Exception("Unknown tone");
+        }
+      }
+      return FrInitials[Array.IndexOf(FrInitialsProto, i)] + FrFinals[f][ToneToIndex(t)];
+    }
+
+  }
 }
