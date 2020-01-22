@@ -1,0 +1,26 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- script: |
+    sudo apt install curl
+    curl https://bazel.build/bazel-release.pub.gpg | sudo apt-key add -
+    echo "deb [arch=amd64] https://storage.googleapis.com/bazel-apt stable jdk1.8" | sudo tee /etc/apt/sources.list.d/bazel.list
+    sudo apt update && sudo apt install bazel
+  displayName: 'Install bazel'
+
+- script: |
+    bazel build //...
+  displayName: 'Build'
+
+- script: |
+    bazel test //...
+  displayName: 'Test'
