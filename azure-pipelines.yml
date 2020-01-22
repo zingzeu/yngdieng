@@ -6,10 +6,28 @@
 trigger:
 - master
 
+schedules:
+- cron: "0 12 * * 0"
+  displayName: Weekly Sunday build
+  branches:
+    include:
+    - master
+  always: true
+
+variables:
+  BAZEL_CACHE: $(Pipeline.Workspace)/.bazelcache
+
 pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+- task: Cache@2
+  inputs:
+    key: bazel
+    path: $(BAZEL_CACHE)
+    cacheHitVar: CACHE_RESTORED
+- script: |
+    echo "build --disk_cache=$(BAZEL_CACHE)" >> .bazelrc
 - script: |
     sudo apt install curl
     curl https://bazel.build/bazel-release.pub.gpg | sudo apt-key add -
@@ -21,6 +39,4 @@ steps:
     bazel build //...
   displayName: 'Build'
 
-- script: |
-    bazel test //...
-  displayName: 'Test'
+# TODO run tests
