@@ -27,25 +27,31 @@ export class SearchResultComponent implements OnInit {
 
   ngOnInit() {
 
-    console.log(this.route);
     this.queryText = this.route.snapshot.paramMap.get("query");
     this.shouldMerge = this.queryText.indexOf("group:hanzi_phonology") > 0;
     this.prettyQueryText = this.getPrettyText(this.queryText);
-
-    // Fetch results
-    var request = new SearchRequest();
-    request.setQuery(this.queryText);
-    let client = new YngdiengServiceClient('http://localhost:8080');
     this.isBusy = true;
-    client.getSearch(request, (err, response) => {
+
+    try {
+      // Fetch results
+      var request = new SearchRequest();
+      request.setQuery(this.queryText);
+      let client = new YngdiengServiceClient('http://localhost:8080');
+      console.log(client);
+      client.getSearch(request, (err, response) => {
+        this.isBusy = false;
+        if (response == null) {
+          this.results = [];
+          return;
+        }
+        this.results = response.getResultsList()
+          .map(resultRowToViewModel);
+      });
+    } catch (e) {
+      console.error(e);
       this.isBusy = false;
-      if (response == null) {
-        this.results = [];
-        return;
-      }
-      this.results = response.getResultsList()
-        .map(resultRowToViewModel);
-    });
+      this.isInvalidQuery = true;
+    }
   }
 
   onBackClicked() {

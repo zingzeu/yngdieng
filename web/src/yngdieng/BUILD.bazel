@@ -1,6 +1,6 @@
 load("@npm_bazel_typescript//:index.bzl", "ts_library")
-load("@npm_bazel_labs//:index.bzl", "ts_proto_library")
 load("@npm_bazel_jasmine//:index.bzl", "jasmine_node_test")
+load("@rules_typescript_proto//:index.bzl", "typescript_proto_library")
 
 # Examples:
 # https://github.com/bazelbuild/rules_nodejs/blob/master/examples/protocol_buffers/BUILD.bazel
@@ -13,7 +13,10 @@ ts_library(
     ],
     module_name = "@yngdieng",
     visibility = ["//visibility:public"],
-    deps = [":services_grpc_ts",":documents_proto_ts"],
+    deps = [
+        ":documents_proto_ts",
+        ":services_grpc_ts",
+    ],
 )
 
 ts_library(
@@ -25,24 +28,6 @@ ts_library(
         "@npm//:node_modules",
     ],
 )
-
-# # TODO: move to protos folder
-# ts_proto_library(
-#     name = "proto_ts",
-#     visibility = ["//visibility:public"],
-#     deps = [
-#         "//shared:services_proto",
-#     ],
-# )
-
-# load("@build_stack_rules_proto//github.com/grpc/grpc-web:ts_grpc_compile.bzl", "ts_grpc_compile")
-
-# ts_grpc_compile(
-#     name = "services_grpc_ts",
-#     deps = ["//shared:services_proto"],
-#       visibility = ["//visibility:public"],
-# )
-load("@rules_typescript_proto//:index.bzl", "typescript_proto_library")
 
 typescript_proto_library(
     name = "services_grpc_ts",

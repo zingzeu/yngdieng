@@ -8,7 +8,7 @@ const routes: Routes = [
   { path: "", component: HomeComponent },
   { path: "search/:query", component: SearchResultComponent },
   { path: "search", component: SearchLandingComponent },
-  { path: '**', component: HomeComponent }
+  { path: '**', component: HomeComponent }//ok
 ];
 
 @NgModule({
