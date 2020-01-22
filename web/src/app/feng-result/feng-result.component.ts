@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Router } from '@angular/router';
 import { FengResultViewModel } from '../common/view-models';
 
 @Component({
@@ -8,10 +9,15 @@ import { FengResultViewModel } from '../common/view-models';
 })
 export class FengResultComponent implements OnInit {
 
-  constructor() { }
+  constructor(private router: Router) { }
   @Input("document") document: FengResultViewModel;
 
   ngOnInit() {
+  }
+
+
+  onClick(fengDocId: string) {
+    this.router.navigate(["/feng", fengDocId])
   }
 
 }

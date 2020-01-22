@@ -28,3 +28,7 @@
 <div *ngIf="!isInvalidQuery && !isBusy && results.length == 0">
   <h3>没有 {{ queryText }} 的搜索结果</h3>
 </div>
+
+<div *ngIf="isBusy">
+  <h3>加载中...</h3>
+</div>
