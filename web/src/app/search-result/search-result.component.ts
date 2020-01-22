@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Hanzi } from 'yngdieng/shared/documents_pb';
 import { SearchRequest, SearchResultRow } from 'yngdieng/shared/services_pb';
@@ -6,6 +6,7 @@ import { YngdiengServiceClient } from 'yngdieng/shared/services_pb_service';
 import { getInitialString, getFinalString, getToneString } from "@yngdieng/utils";
 import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { SearchResultItemViewModel, FengResultViewModel } from '../common/view-models';
+import { IYngdiengEnvironment, YNGDIENG_ENVIRONMENT } from '../../environments/environment';
 
 @Component({
   selector: 'app-search-result',
@@ -23,10 +24,10 @@ export class SearchResultComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router) { }
+    private router: Router,
+    @Inject(YNGDIENG_ENVIRONMENT) private environment: IYngdiengEnvironment) { }
 
   ngOnInit() {
-
     this.queryText = this.route.snapshot.paramMap.get("query");
     this.shouldMerge = this.queryText.indexOf("group:hanzi_phonology") > 0;
     this.prettyQueryText = this.getPrettyText(this.queryText);
@@ -36,7 +37,7 @@ export class SearchResultComponent implements OnInit {
       // Fetch results
       var request = new SearchRequest();
       request.setQuery(this.queryText);
-      let client = new YngdiengServiceClient('http://localhost:8080'); //http://yngdieng-api-staging.mindong.asia:80
+      let client = new YngdiengServiceClient(this.environment.serverUrl);
       client.getSearch(request, (err, response) => {
         this.isBusy = false;
         if (response == null) {

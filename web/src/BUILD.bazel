@@ -48,13 +48,13 @@ ng_module(
             "main.ts",
             "test.ts",
             "initialize_testbed.ts",
-            "environments/**/*.ts"
         ],
     ),
     assets = glob([
         "**/*.css",
         "**/*.html",
     ]) + [":styles"],
+    tsconfig = ":tsconfig.json",
     deps = [
         "//web/src/yngdieng:lib",
         "//web/src/yngdieng:services_grpc_ts",
@@ -65,7 +65,6 @@ ng_module(
         "@npm//@types",
         "@npm//rxjs",
     ],
-    tsconfig = ":tsconfig.json",
 )
 
 # Copy the google-protobuf library and convert it to a AMD module so it can be loaded in the
@@ -166,6 +165,7 @@ html_insert_assets(
     data = ["//web/src:static/index.prod.html"] + _ASSETS,
 )
 
+# TODO: separate staging and prod
 rollup_bundle(
     name = "bundle-es2015",
     config_file = "rollup.config.js",
@@ -175,9 +175,9 @@ rollup_bundle(
     output_dir = True,
     deps = [
         ":src",
+        "@npm//:node_modules",
         "@npm//rollup-plugin-commonjs",
         "@npm//rollup-plugin-node-resolve",
-         "@npm//:node_modules",
     ],
 )
 
@@ -194,7 +194,6 @@ babel(
     data = [
         ":bundle-es2015",
         "@npm//@babel/preset-env",
-       
     ],
     output_dir = True,
 )

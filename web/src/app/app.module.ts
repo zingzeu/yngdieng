@@ -5,7 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle'; 
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,6 +18,10 @@ import { HomeComponent } from './home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SingleCharResultComponent } from './single-char-result/single-char-result.component';
 import { FengResultComponent } from './feng-result/feng-result.component';
+import { YNGDIENG_ENVIRONMENT } from '../environments/environment';
+import { YngdiengDevEnvironment } from '../environments/environment.dev';
+import { YngdiengStagingEnvironment } from '../environments/environment.staging';
+import { YngdiengProdEnvironment } from '../environments/environment.prod';
 
 @NgModule({
   declarations: [
@@ -43,7 +47,20 @@ import { FengResultComponent } from './feng-result/feng-result.component';
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [],
+  providers: [{ provide: YNGDIENG_ENVIRONMENT, useValue: getYngdiengEnvironment() }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+declare const _yngdieng_environment: string;
+
+function getYngdiengEnvironment() {
+  switch (_yngdieng_environment) {
+    case 'dev':
+      return YngdiengDevEnvironment;
+    case 'staging':
+      return YngdiengStagingEnvironment;
+    case 'prod':
+      return YngdiengProdEnvironment;
+  }
+}
