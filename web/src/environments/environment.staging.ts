@@ -1,6 +1,6 @@
 import { IYngdiengEnvironment } from "./environment";
 
-export const YngdiengProdEnvironment: IYngdiengEnvironment = {
-    isProduction: true,
+export const YngdiengStagingEnvironment: IYngdiengEnvironment = {
+    isProduction: false,
     serverUrl: 'http://yngdieng-api-staging.mindong.asia:80'
 }
