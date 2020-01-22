@@ -24,12 +24,12 @@ proto_library(
     ],
 )
 
-csharp_grpc_library(
-    name = "services_proto_csharp.dll",
-    deps = [
-        ":services_proto",
-    ],
-)
+# csharp_grpc_library(
+#     name = "services_proto_csharp.dll",
+#     deps = [
+#         ":services_proto",
+#     ],
+# )
 
 csharp_proto_library(
     name = "documents_proto_csharp.dll",
