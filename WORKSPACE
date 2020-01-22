@@ -166,9 +166,9 @@ sass_repositories()
 
 git_repository(
     name = "rules_typescript_proto",
-    commit = "bb9ff5a2f7f629276a8da796bf8a77987e95ca67",  
-    remote = "https://github.com/Dig-Doug/rules_typescript_proto",
-    shallow_since = "1578320280 -0800"
+    commit = "fa21e6a057a96ea18c2f61d02d90d4bf82db354a",  
+    remote = "https://github.com/ztl8702/rules_typescript_proto",
+    shallow_since = "1579365079 -0800"
 )
 
 load("@rules_typescript_proto//:index.bzl", "rules_typescript_proto_dependencies")

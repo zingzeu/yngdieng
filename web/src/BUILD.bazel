@@ -2,6 +2,7 @@ package(default_visibility = ["//visibility:public"])
 
 load("@build_bazel_rules_nodejs//:index.bzl", "pkg_web")
 load("@npm_angular_bazel//:index.bzl", "ng_module")
+load("@npm//@babel/cli:index.bzl", "babel")
 
 #load("@npm_bazel_karma//:index.bzl", "ts_web_test_suite")
 load("@npm_bazel_rollup//:index.bzl", "rollup_bundle")
@@ -9,6 +10,7 @@ load("@npm//history-server:index.bzl", "history_server")
 load("@npm_bazel_typescript//:index.bzl", "ts_devserver", "ts_library")
 load("@io_bazel_rules_sass//:defs.bzl", "multi_sass_binary", "sass_binary", "sass_library")
 load("@npm//html-insert-assets:index.bzl", "html_insert_assets")
+load("@npm_bazel_terser//:index.bzl", "terser_minified")
 
 sass_binary(
     name = "global_stylesheet",
@@ -61,18 +63,10 @@ ng_module(
         "@npm//@angular/router",
         "@npm//@types",
         "@npm//rxjs",
+        "@npm//google-protobuf",
+        #"@npm//@improbable-eng/grpc-web",
     ],
-)
-
-rollup_bundle(
-    name = "bundle",
-    entry_point = ":main.prod.ts",
-    deps = [
-        ":yngdieng",
-        "//web/src",
-        "@npm//@angular/router",
-        "@npm//rxjs",
-    ],
+    tsconfig = ":tsconfig.json",
 )
 
 # Needed because the prodserver only loads static files that appear under this
@@ -134,31 +128,6 @@ genrule(
             && echo '});' >> $@""",
 )
 
-pkg_web(
-    name = "prodapp",
-    srcs = [
-        "favicon.ico",
-        "index.html",
-        ":bundle.min.js",
-        ":global_stylesheet",
-        ":protobufjs",
-        "@npm//:node_modules/zone.js/dist/zone.min.js",
-    ],
-)
-
-history_server(
-    name = "prodserver",
-    data = [":prodapp"],
-    # '-a src/prodapp' will ask history-server to scan for all apps under the
-    # given folder this will result in the following auto-configuration:
-    #   /example => src/prodapp/example
-    #   /        => src/prodapp
-    templated_args = [
-        "-a",
-        "src/prodapp",
-    ],
-)
-
 filegroup(
     name = "rxjs_umd_modules",
     srcs = [
@@ -182,9 +151,6 @@ _ASSETS = [
     # zone.js is used, given that we don't have any import statement that
     # imports from it.
     "@npm//:node_modules/zone.js/dist/zone.min.js",
-
-    #":protobuf.min.js",
-    #":google_protobuf_requirejs",
 ]
 
 html_insert_assets(
@@ -200,6 +166,104 @@ html_insert_assets(
         "_/ts_scripts.js",
     ],
     data = ["//web/src:static/index.html"] + _ASSETS,
+)
+
+html_insert_assets(
+    name = "inject_scripts_for_prod",
+    # We cannot output "index.html" since that collides with devmode file.
+    # pkg_web rule will re-root paths with _{name} by default.
+    outs = ["_prodapp/web/src/index.html"],
+    args = [
+        "--html=$(execpath //web/src:static/index.prod.html)",
+        "--out=$@",
+        "--roots=. $(RULEDIR)",
+        "--assets",
+    ] + ["$(execpath %s)" % s for s in _ASSETS],
+    data = ["//web/src:static/index.prod.html"] + _ASSETS,
+)
+
+rollup_bundle(
+    name = "bundle-es2015",
+    config_file = "rollup.config.js",
+    entry_points = {
+        ":main.prod.ts": "index",
+    },
+    output_dir = True,
+    deps = [
+        ":src",
+        "@npm//rollup-plugin-commonjs",
+        "@npm//rollup-plugin-node-resolve",
+         "@npm//:node_modules",
+    ],
+)
+
+babel(
+    name = "bundle-es5",
+    args = [
+        "$(execpath :bundle-es2015)",
+        "--no-babelrc",
+        "--source-maps",
+        "--presets=@babel/preset-env",
+        "--out-dir",
+        "$(@D)",
+    ],
+    data = [
+        ":bundle-es2015",
+        "@npm//@babel/preset-env",
+       
+    ],
+    output_dir = True,
+)
+
+terser_minified(
+    name = "bundle-es2015.min",
+    src = ":bundle-es2015",
+)
+
+terser_minified(
+    name = "bundle-es5.min",
+    src = ":bundle-es5",
+)
+
+pkg_web(
+    name = "prodapp",
+    srcs = _ASSETS + [
+        "favicon.ico",
+        ":bundle-es2015.min",
+        ":bundle-es5.min",
+        ":inject_scripts_for_prod",
+        "//web/src/assets",
+        # ":global_stylesheet",
+        # Include polyfills that will be requested by old browsers
+        "@npm//:node_modules/systemjs/dist/system.js",
+        "@npm//:node_modules/core-js/client/core.min.js",
+        # Other runtime deps
+        "@npm//:node_modules/@improbable-eng/grpc-web/dist/grpc-web-client.js",
+        "@npm//:node_modules/google-protobuf/google-protobuf.js"
+    ],
+    # In production mode we serve some polyfills with script tags that have hard-coded paths in the index.html
+    # so we must serve them at that path, by stripping a prefix
+    additional_root_paths = [
+        "npm/node_modules/core-js/client",
+        "npm/node_modules/systemjs/dist",
+        "npm/node_modules/google-protobuf",
+        "npm/node_modules/@improbable-eng/grpc-web/dist",
+    ],
+)
+
+history_server(
+    name = "prodserver",
+    data = [":prodapp"],
+    # '-a src/prodapp' will ask history-server to scan for all apps under the
+    # given folder this will result in the following auto-configuration:
+    #   /example => src/prodapp/example
+    #   /        => src/prodapp
+    templated_args = [
+        "-a",
+        "web/src/prodapp",
+        "-p",
+        "4200",
+    ],
 )
 
 ts_devserver(
