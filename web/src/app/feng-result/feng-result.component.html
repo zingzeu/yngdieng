@@ -1,4 +1,4 @@
-<mat-card class="result-card">
+<mat-card class="result-card" (click)="onClick(document.id)">
     <p>{{ document.yngping }}</p>
     <h2>{{ document.hanzi }}</h2>
     <p class="source">{{ document.explanation }}</p>
