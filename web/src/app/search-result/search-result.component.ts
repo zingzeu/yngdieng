@@ -36,8 +36,7 @@ export class SearchResultComponent implements OnInit {
       // Fetch results
       var request = new SearchRequest();
       request.setQuery(this.queryText);
-      let client = new YngdiengServiceClient('http://localhost:8080');
-      console.log(client);
+      let client = new YngdiengServiceClient('http://localhost:8080'); //http://yngdieng-api-staging.mindong.asia:80
       client.getSearch(request, (err, response) => {
         this.isBusy = false;
         if (response == null) {

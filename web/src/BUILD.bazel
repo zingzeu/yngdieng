@@ -48,6 +48,7 @@ ng_module(
             "main.ts",
             "test.ts",
             "initialize_testbed.ts",
+            "environments/**/*.ts"
         ],
     ),
     assets = glob([
@@ -63,25 +64,8 @@ ng_module(
         "@npm//@angular/router",
         "@npm//@types",
         "@npm//rxjs",
-        "@npm//google-protobuf",
-        #"@npm//@improbable-eng/grpc-web",
     ],
     tsconfig = ":tsconfig.json",
-)
-
-# Needed because the prodserver only loads static files that appear under this
-# package.
-genrule(
-    name = "protobufjs",
-    srcs = [
-        "@build_bazel_rules_typescript_protobufs_compiletime_deps//:node_modules/protobufjs/dist/minimal/protobuf.min.js",
-        "@build_bazel_rules_typescript_protobufs_compiletime_deps//:node_modules/long/dist/long.js",
-    ],
-    outs = [
-        "protobuf.min.js",
-        "long.js",
-    ],
-    cmd = "outs=($(OUTS)); d=$$(dirname $${outs[0]}); for s in $(SRCS); do cp $$s $$d; done",
 )
 
 # Copy the google-protobuf library and convert it to a AMD module so it can be loaded in the
@@ -237,17 +221,12 @@ pkg_web(
         # Include polyfills that will be requested by old browsers
         "@npm//:node_modules/systemjs/dist/system.js",
         "@npm//:node_modules/core-js/client/core.min.js",
-        # Other runtime deps
-        "@npm//:node_modules/@improbable-eng/grpc-web/dist/grpc-web-client.js",
-        "@npm//:node_modules/google-protobuf/google-protobuf.js"
     ],
     # In production mode we serve some polyfills with script tags that have hard-coded paths in the index.html
     # so we must serve them at that path, by stripping a prefix
     additional_root_paths = [
         "npm/node_modules/core-js/client",
         "npm/node_modules/systemjs/dist",
-        "npm/node_modules/google-protobuf",
-        "npm/node_modules/@improbable-eng/grpc-web/dist",
     ],
 )
 
