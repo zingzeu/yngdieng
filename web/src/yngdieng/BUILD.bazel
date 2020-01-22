@@ -24,7 +24,7 @@ ts_library(
     srcs = glob(["**/*.spec.ts"]),
     deps = [
         ":lib",
-        ":proto_ts",
+        ":documents_proto_ts",
         "@npm//:node_modules",
     ],
 )

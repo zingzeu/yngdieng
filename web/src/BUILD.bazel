@@ -97,20 +97,6 @@ genrule(
             && echo '});' >> $@""",
 )
 
-genrule(
-    name = "yngping_proto_ts_requirejs",
-    srcs = [
-        "//web/src/yngdieng:proto_ts",
-    ],
-    outs = [
-        "proto_ts.js",
-    ],
-    # cmd = "cp $< $@",
-    cmd = """echo "define('@yngping/proto_ts', function(require, exports, module) {" > $@ \
-            && cat $< >> $@ \
-            && echo '});' >> $@""",
-)
-
 filegroup(
     name = "rxjs_umd_modules",
     srcs = [
