@@ -19,7 +19,7 @@ namespace Yngdieng.Backend.Services
       _indexHolder = indexHolder;
     }
 
-    public override Task<SearchResponse> GetSearch(SearchRequest request, ServerCallContext context)
+    public override Task<SearchResponse> Search(SearchRequest request, ServerCallContext context)
     {
       _logger.LogInformation("Received SearchRequest" + request.ToString());
 
