@@ -38,7 +38,7 @@ export class SearchResultComponent implements OnInit {
       var request = new SearchRequest();
       request.setQuery(this.queryText);
       let client = new YngdiengServiceClient(this.environment.serverUrl);
-      client.getSearch(request, (err, response) => {
+      client.search(request, (err, response) => {
         this.isBusy = false;
         if (response == null) {
           this.results = [];
