@@ -49,23 +49,18 @@ message GetFengDocumentRequest {
 }
 
 // Internal Query
-// Next ID: 7
+// Next ID: 5
 message Query {
     oneof query {
         // 按模糊音查询
         string fuzzy_pron_query = 1;
         // 音韵地位查询
         PhonologyQuery phonology_query = 2;
-        // 汉字查询
+        // 汉字查询（单字或词汇）
         string hanzi_query = 3;
-        // 词汇查询
-        string vocab_query = 6;
     }
 
     SortByMethod sort_by = 4;
-
-    // Should be renamed "aggregate_by"
-    GroupByMethod group_by = 5;
 
     // Must not be all empty
     message PhonologyQuery {
@@ -81,10 +76,5 @@ message Query {
         SORT_BY_UNSPECIFIED = 0;
         INITIAL_FINAL_TONE = 1;
     }
-
-    enum GroupByMethod {
-        GROUP_BY_UNSPECIFIED = 0;
-        NONE = 1;
-        HANZI_PHONOLOGY = 2;
-    }
+ 
 }
