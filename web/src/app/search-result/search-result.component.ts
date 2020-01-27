@@ -16,7 +16,6 @@ import { IYngdiengEnvironment, YNGDIENG_ENVIRONMENT } from '../../environments/e
 export class SearchResultComponent implements OnInit {
 
   queryText: any;
-  shouldMerge: boolean;
   prettyQueryText: string;
   isBusy: boolean = false;
   results: Array<SearchResultItemViewModel | FengResultViewModel> = [];
@@ -30,7 +29,6 @@ export class SearchResultComponent implements OnInit {
 
   ngOnInit() {
     this.queryText = this.route.snapshot.paramMap.get("query");
-    this.shouldMerge = this.queryText.indexOf("group:hanzi_phonology") > 0;
     this.prettyQueryText = this.getPrettyText(this.queryText);
     this.isBusy = true;
 
@@ -58,18 +56,6 @@ export class SearchResultComponent implements OnInit {
 
   onBackClicked() {
     this.router.navigate(["/search"])
-  }
-
-  onShouldMergeChanged(event: MatSlideToggleChange) {
-    if (event.checked) {
-      this.redirectTo(["/search", this.queryText + " group:hanzi_phonology"]);
-    } else if (!event.checked) {
-      this.redirectTo(["/search", this.queryText.replace("group:hanzi_phonology", "").trim()]);
-    }
-  }
-
-  private redirectTo(commands: any[]) {
-    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => this.router.navigate(commands));
   }
 
   private getPrettyText(s: string): string {

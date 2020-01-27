@@ -40,7 +40,6 @@ namespace Yngdieng.Backend.Services
       var query = new Query();
       // Defaults
       query.SortBy = Query.Types.SortByMethod.InitialFinalTone;
-      query.GroupBy = Query.Types.GroupByMethod.None;
       if (keyValuePairs.ContainsKey("sort"))
       {
         var sortMethod = keyValuePairs["sort"];
@@ -54,20 +53,6 @@ namespace Yngdieng.Backend.Services
           return null;
         }
       }
-      if (keyValuePairs.ContainsKey("group"))
-      {
-        var groupByMethod = keyValuePairs["group"];
-        var parsed = ParseGroupByMethod(groupByMethod);
-        if (parsed != null)
-        {
-          query.GroupBy = parsed ?? Query.Types.GroupByMethod.GroupByUnspecified;
-        }
-        else
-        {
-          return null;
-        }
-      }
-
       if (keyValuePairs.ContainsKey("i") || keyValuePairs.ContainsKey("f") || keyValuePairs.ContainsKey("t"))
       {
         var phonologyQuery = new Query.Types.PhonologyQuery();
@@ -114,14 +99,7 @@ namespace Yngdieng.Backend.Services
 
       if (remainingTokens.Length == 1 && !rAlphaNumeric.IsMatch(remainingTokens[0]))
       {
-        if (keyValuePairs.ContainsKey("mode") && keyValuePairs["mode"] == "vocab")
-        {
-          query.VocabQuery = remainingTokens[0];
-        }
-        else
-        {
-          query.HanziQuery = remainingTokens[0];
-        }
+        query.HanziQuery = remainingTokens[0];
         return query;
       }
 
@@ -172,18 +150,5 @@ namespace Yngdieng.Backend.Services
       }
     }
 
-    private static Query.Types.GroupByMethod? ParseGroupByMethod(string text)
-    {
-      switch (text.Trim().ToLower())
-      {
-        case "none":
-        case "na":
-          return Query.Types.GroupByMethod.None;
-        case "hanzi_phonology":
-          return Query.Types.GroupByMethod.HanziPhonology;
-        default:
-          return null;
-      }
-    }
   }
 }
