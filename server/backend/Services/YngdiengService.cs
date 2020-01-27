@@ -22,9 +22,18 @@ namespace Yngdieng.Backend.Services
     public override Task<SearchResponse> Search(SearchRequest request, ServerCallContext context)
     {
       _logger.LogInformation("Received SearchRequest" + request.ToString());
+      var watch = System.Diagnostics.Stopwatch.StartNew();
 
       var query = QueryParser.Parse(request.Query) ?? throw new Exception("Invalid query");
+      var response = SearchInternal(query);
 
+      watch.Stop();
+      response.ComputationTimeMs = watch.ElapsedMilliseconds;
+      return Task.FromResult(response);
+    }
+
+    private SearchResponse SearchInternal(Query query)
+    {
       switch (query.QueryCase)
       {
         case Query.QueryOneofCase.PhonologyQuery:
@@ -48,7 +57,7 @@ namespace Yngdieng.Backend.Services
                }
               ));
             }
-            return Task.FromResult(response);
+            return response;
           }
         case Query.QueryOneofCase.HanziQuery:
           {
@@ -75,7 +84,7 @@ namespace Yngdieng.Backend.Services
               }));
             }
 
-            return Task.FromResult(response);
+            return response;
           }
         case Query.QueryOneofCase.VocabQuery:
           {
@@ -84,7 +93,7 @@ namespace Yngdieng.Backend.Services
             {
               FengDocument = d
             }));
-            return Task.FromResult(response);
+            return response;
           }
         case Query.QueryOneofCase.FuzzyPronQuery:
           {
@@ -93,7 +102,7 @@ namespace Yngdieng.Backend.Services
             {
               FengDocument = d
             }));
-            return Task.FromResult(response);
+            return response;
           }
         default:
           throw new Exception("Not implemented");
@@ -217,18 +226,21 @@ namespace Yngdieng.Backend.Services
         .Where(d =>
           d.HanziCanonical.Contains(query)
           || d.Explanation.Contains(query))
-          .OrderByDescending(d => GetVocabQueryRank(query,d));
+          .OrderByDescending(d => GetVocabQueryRank(query, d));
       //TODO: rank and order
       return matchedDocuments;
     }
 
-    private static int GetVocabQueryRank(string query, FengDocument matchedDocument) {
+    private static int GetVocabQueryRank(string query, FengDocument matchedDocument)
+    {
       int score = 0;
-      if (matchedDocument.HanziCanonical.Contains(query)) {
-        var distance = matchedDocument.HanziCanonical.Length - query.Length +1 ;
+      if (matchedDocument.HanziCanonical.Contains(query))
+      {
+        var distance = matchedDocument.HanziCanonical.Length - query.Length + 1;
         score += 1000 / distance;
       }
-      if (matchedDocument.Explanation.Contains(query)) {
+      if (matchedDocument.Explanation.Contains(query))
+      {
         score += 10 * matchedDocument.Explanation.CountOccurences(query);
       }
       return score;
@@ -313,11 +325,15 @@ namespace Yngdieng.Backend.Services
     }
   }
 
-  public static class StringExt {
- public static int CountOccurences(this string x, string query) {
+  public static class StringExt
+  {
+    public static int CountOccurences(this string x, string query)
+    {
       var count = 0;
-      for (var i = 0; i < x.Length; ++i) {
-        if (x[i..^0].StartsWith(query)){
+      for (var i = 0; i < x.Length; ++i)
+      {
+        if (x[i..^0].StartsWith(query))
+        {
           ++count;
         }
       }

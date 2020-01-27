@@ -11,9 +11,9 @@ export interface SearchResultItemViewModel {
 }
 
 export interface FengResultViewModel {
-    _type: string,
-    yngping: string,
-    hanzi: string,
-    explanation: string,
-    id: string
+    _type: string;
+    yngping: string;
+    hanzi: string;
+    explanation: string;
+    id: string;
 }
