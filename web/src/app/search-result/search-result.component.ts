@@ -20,6 +20,7 @@ export class SearchResultComponent implements OnInit {
   prettyQueryText: string;
   isBusy: boolean = false;
   results: Array<SearchResultItemViewModel | FengResultViewModel> = [];
+  computationTimeMs: number;
   isInvalidQuery: boolean = false;
 
   constructor(
@@ -44,6 +45,7 @@ export class SearchResultComponent implements OnInit {
           this.results = [];
           return;
         }
+        this.computationTimeMs = response.getComputationTimeMs();
         this.results = response.getResultsList()
           .map(resultRowToViewModel);
       });
@@ -88,7 +90,7 @@ function resultRowToViewModel(r: SearchResultRow): SearchResultItemViewModel | F
         final: getFinalString(d.getFinal()),
         tone: getToneString(d.getTone()),
         ciklinSource: d.getDfdId() > 0 ? null : "戚林",
-        dfdSource: d.getDfdId() > 0 ? "DFD " + d.getDfd().getPageNumber() + " 页" : null
+        dfdSource: d.getDfdId() > 0 ? "DFD " + d.getDfd().getPageNumber() + " 页" : null,
       } as SearchResultItemViewModel;
     case SearchResultRow.ResultCase.AGGREGATED_DOCUMENT:
       let a = r.getAggregatedDocument();
@@ -110,7 +112,7 @@ function resultRowToViewModel(r: SearchResultRow): SearchResultItemViewModel | F
         yngping: f.getYngpingCanonical(),
         hanzi: f.getHanziCanonical(),
         explanation: f.getExplanation().length > 100 ? f.getExplanation().substr(0, 97) + '...' : f.getExplanation(),
-        id: f.getId()
+        id: f.getId(),
       }
     default:
       return null

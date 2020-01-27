@@ -19,6 +19,8 @@ message SearchRequest {
 
 message SearchResponse {
     repeated SearchResultRow results = 1;
+    // Milliseconds taken to compute the results.
+    int64 computation_time_ms = 2;
 }
 
 message SearchResultRow {
