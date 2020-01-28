@@ -13,7 +13,6 @@ import { SearchResultComponent } from './search-result/search-result.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { PhonologyComposerComponent } from './phonology-composer/phonology-composer.component';
 import { PhonologyQueryRendererComponent } from './phonology-query-renderer/phonology-query-renderer.component';
-import { SearchLandingComponent } from './search-landing/search-landing.component';
 import { HomeComponent } from './home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SingleCharResultComponent } from './single-char-result/single-char-result.component';
@@ -23,6 +22,8 @@ import { YngdiengDevEnvironment } from '../environments/environment.dev';
 import { YngdiengStagingEnvironment } from '../environments/environment.staging';
 import { YngdiengProdEnvironment } from '../environments/environment.prod';
 import { DetailsFengComponent } from './details-feng/details-feng.component';
+import { SearchToolbarComponent } from './search-toolbar/search-toolbar.component';
+import { AdvancedSearchLandingComponent } from './advanced-search-landing/advanced-search-landing.component';
 
 @NgModule({
   declarations: [
@@ -30,11 +31,12 @@ import { DetailsFengComponent } from './details-feng/details-feng.component';
     SearchResultComponent,
     PhonologyComposerComponent,
     PhonologyQueryRendererComponent,
-    SearchLandingComponent,
     HomeComponent,
     SingleCharResultComponent,
     FengResultComponent,
-    DetailsFengComponent
+    DetailsFengComponent,
+    SearchToolbarComponent,
+    AdvancedSearchLandingComponent
   ],
   imports: [
     BrowserModule,
