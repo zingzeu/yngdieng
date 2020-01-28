@@ -2,6 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter, OnDestroy } from '@angu
 import { AdvancedSearchQueryBuilderService } from '../advanced-search-query-builder.service';
 import { Subscription } from 'rxjs';
 import { Router } from '@angular/router';
+import { FormBuilder } from '@angular/forms';
 
 @Component({
   selector: 'app-search-toolbar',
@@ -26,7 +27,12 @@ export class SearchToolbarComponent implements OnInit, OnDestroy {
   private toneSubscription: Subscription;
 
   constructor(
+    private formBuilder: FormBuilder,
     private asqbService: AdvancedSearchQueryBuilderService) {
+    this.searchForm = this.formBuilder.group({
+      textQuery: '',
+    });
+    
     this.initialSubscription = asqbService.selectedInitial$.subscribe(i => this.initial = i)
     this.finalSubscription = asqbService.selectedFinal$.subscribe(f => this.final = f)
     this.toneSubscription = asqbService.selectedTone$.subscribe(t => this.tone = t)
@@ -35,7 +41,7 @@ export class SearchToolbarComponent implements OnInit, OnDestroy {
   ngOnInit() {
 
   }
-  
+
   ngOnDestroy() {
     this.initialSubscription.unsubscribe();
     this.finalSubscription.unsubscribe();
@@ -62,7 +68,7 @@ export class SearchToolbarComponent implements OnInit, OnDestroy {
   onClearTone() {
     this.asqbService.clearTone();
   }
-  
+
   onSubmit() {
     this.textSearch();
   }
@@ -85,10 +91,10 @@ export class SearchToolbarComponent implements OnInit, OnDestroy {
   }
 
   private phonologySearch() {
-    let queryString = 
-      (this.initial ? "i:"+this.initial:"")+ 
-      (this.final ? " f:"+this.final:"")+ 
-      (this.tone ? " t:"+this.tone:"");
+    let queryString =
+      (this.initial ? "i:" + this.initial : "") +
+      (this.final ? " f:" + this.final : "") +
+      (this.tone ? " t:" + this.tone : "");
     this.performSearch.emit(queryString);
   }
 

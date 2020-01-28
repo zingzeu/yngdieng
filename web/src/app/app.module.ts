@@ -13,7 +13,6 @@ import { SearchResultComponent } from './search-result/search-result.component';
 import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 import { PhonologyComposerComponent } from './phonology-composer/phonology-composer.component';
 import { PhonologyQueryRendererComponent } from './phonology-query-renderer/phonology-query-renderer.component';
-import { SearchLandingComponent } from './search-landing/search-landing.component';
 import { HomeComponent } from './home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SingleCharResultComponent } from './single-char-result/single-char-result.component';
@@ -31,7 +30,6 @@ import { SearchToolbarComponent } from './search-toolbar/search-toolbar.componen
     SearchResultComponent,
     PhonologyComposerComponent,
     PhonologyQueryRendererComponent,
-    SearchLandingComponent,
     HomeComponent,
     SingleCharResultComponent,
     FengResultComponent,

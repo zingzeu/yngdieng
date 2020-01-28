@@ -56,12 +56,20 @@ export class SearchResultComponent implements OnInit {
     }
   }
 
-  onBackClicked() {
-    this.router.navigate(["/search"])
+  onNavigateBack() {
+    this.router.navigate(["/"])
+  }
+
+  onPerformSearch(searchText: string) {
+    this.redirectTo(["/search", searchText])
   }
 
   toggleAdvancedOptions() {
     this.showingAdvancedOptions = ! this.showingAdvancedOptions;
+  }
+
+  private redirectTo(commands: any[]) {
+    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => this.router.navigate(commands));
   }
 
   private getPrettyText(s: string): string {

@@ -1,10 +1,12 @@
 <div class="logo">榕典</div>
 
-<div class="fake-search-box">
-  <mat-form-field (click)="onFakeSearchboxClicked()">
-    <input matInput placeholder="查" (click)="onFakeSearchboxClicked()" />
-    <mat-icon matSuffix>search</mat-icon>
-  </mat-form-field>
-</div>
+<form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+  <div class="fake-search-box">
+    <mat-form-field>
+      <input matInput formControlName="textQuery" placeholder="查字、词、读音..."/>
+      <mat-icon matSuffix (click)="onSubmit()">search</mat-icon>
+    </mat-form-field>
+  </div>
+</form>
 
-<p class="version-code">内测版: v0.000001</p>
+<p class="version-code">v0.2-preview</p>
