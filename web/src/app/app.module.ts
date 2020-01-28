@@ -23,6 +23,7 @@ import { YngdiengStagingEnvironment } from '../environments/environment.staging'
 import { YngdiengProdEnvironment } from '../environments/environment.prod';
 import { DetailsFengComponent } from './details-feng/details-feng.component';
 import { SearchToolbarComponent } from './search-toolbar/search-toolbar.component';
+import { AdvancedSearchLandingComponent } from './advanced-search-landing/advanced-search-landing.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { SearchToolbarComponent } from './search-toolbar/search-toolbar.componen
     SingleCharResultComponent,
     FengResultComponent,
     DetailsFengComponent,
-    SearchToolbarComponent
+    SearchToolbarComponent,
+    AdvancedSearchLandingComponent
   ],
   imports: [
     BrowserModule,
