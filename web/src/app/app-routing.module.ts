@@ -8,7 +8,6 @@ import { DetailsFengComponent } from './details-feng/details-feng.component';
 const routes: Routes = [
   { path: "", component: HomeComponent },
   { path: "search/:query", component: SearchResultComponent },
-  { path: "search", component: SearchLandingComponent },
   { path: "feng/:id", component: DetailsFengComponent },
   { path: '**', component: HomeComponent }
 ];

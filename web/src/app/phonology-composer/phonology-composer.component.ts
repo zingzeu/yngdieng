@@ -1,25 +1,44 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
 import { Initial ,Final,Tone} from "yngdieng/shared/phonology_pb";
 import { getInitialString, getFinalString, getToneString } from '@yngdieng/utils';
+import { AdvancedSearchQueryBuilderService } from '../advanced-search-query-builder.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-phonology-composer',
   templateUrl: './phonology-composer.component.html',
   styleUrls: ['./phonology-composer.component.scss']
 })
-export class PhonologyComposerComponent implements OnInit {
+export class PhonologyComposerComponent implements OnInit, OnDestroy {
 
-  @Output() initialSelected = new EventEmitter<string>();
-  @Output() finalSelected = new EventEmitter<string>();
-  @Output() toneSelected = new EventEmitter<string>();
   showInitials: boolean = true;
   showFinals: boolean = true;
   showTones: boolean = true;
   initials: string[] = [];
   finals: string[] = [];
   tones: string[] = [];
+  
+  private finalSubscription: Subscription;
+  private initialSubscription: Subscription;
+  private toneSubscription: Subscription;
 
-  constructor() { }
+  constructor(private asqbService: AdvancedSearchQueryBuilderService) { 
+    this.initialSubscription = asqbService.selectedInitial$.subscribe(i => {
+      this.showInitials = i === null
+    })
+    this.finalSubscription = asqbService.selectedFinal$.subscribe(f => {
+      this.showFinals = f === null
+    })
+    this.toneSubscription = asqbService.selectedTone$.subscribe(t => {
+      this.showTones = t === null
+    })
+  }
+
+  ngOnDestroy() {
+    this.initialSubscription.unsubscribe();
+    this.finalSubscription.unsubscribe();
+    this.toneSubscription.unsubscribe();
+  }
 
   ngOnInit() {
     this.initials = Object.keys(Initial).map(i => getInitialString(Initial[i])).filter(s => s);
@@ -28,29 +47,15 @@ export class PhonologyComposerComponent implements OnInit {
   }
 
   onSelectInitial(i: string) {
-    this.showInitials = false;
-    this.initialSelected.emit(i);
+    this.asqbService.selectInitial(i);
   }
 
   onSelectFinal(f: string) {
-    this.showFinals = false;
-    this.finalSelected.emit(f);
+    this.asqbService.selectFinal(f);
   }
 
   onSelectTone(t: string) {
-    this.showTones = false;
-    this.toneSelected.emit(t);
+    this.asqbService.selectTone(t);
   }
 
-  clearInitial(){
-    this.showInitials = true;
-  }
-
-  clearFinal(){
-    this.showFinals = true;
-  }
-
-  clearTone(){
-    this.showTones = true;
-  }
 }

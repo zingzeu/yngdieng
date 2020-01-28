@@ -1,11 +1,10 @@
-<mat-toolbar>
-  <mat-icon (click)="onBackClicked()">keyboard_arrow_left</mat-icon>
-  <span class="fill-remaining-space"></span>
-</mat-toolbar>
+<app-search-toolbar [queryFromUrl]="queryText"></app-search-toolbar>
 <div *ngIf="isInvalidQuery">搜索格式不正确: {{ queryText }}</div>
 
 <div *ngIf="!isInvalidQuery && results.length > 0">
   <h4>{{ prettyQueryText }} 的搜索结果 ({{ results.length }} 个) in {{ computationTimeMs }}ms</h4>
+  <p (click)="toggleAdvancedOptions()">高级</p>
+  <app-phonology-composer *ngIf="showingAdvancedOptions"></app-phonology-composer>
   <ng-container *ngFor="let document of results">
     <app-single-char-result
       [document]="document"

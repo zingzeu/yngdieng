@@ -44,17 +44,14 @@ export class SearchLandingComponent implements OnInit {
 
   onClearInitial() {
     this.initial = null;
-    this.phonologyComposer.clearInitial();
   }
 
   onClearFinal() {
     this.final = null;
-    this.phonologyComposer.clearFinal();
   }
 
   onClearTone() {
     this.initial = null;
-    this.phonologyComposer.clearTone();
   }
 
   onSubmit() {

@@ -4,20 +4,22 @@ import { Hanzi } from 'yngdieng/shared/documents_pb';
 import { SearchRequest, SearchResultRow } from 'yngdieng/shared/services_pb';
 import { YngdiengServiceClient } from 'yngdieng/shared/services_pb_service';
 import { getInitialString, getFinalString, getToneString } from "@yngdieng/utils";
-import { MatSlideToggleChange } from '@angular/material/slide-toggle';
 import { SearchResultItemViewModel, FengResultViewModel } from '../common/view-models';
 import { IYngdiengEnvironment, YNGDIENG_ENVIRONMENT } from '../../environments/environment';
+import { AdvancedSearchQueryBuilderService } from '../advanced-search-query-builder.service';
 
 @Component({
   selector: 'app-search-result',
   templateUrl: './search-result.component.html',
-  styleUrls: ['./search-result.component.scss']
+  styleUrls: ['./search-result.component.scss'],
+  providers: [AdvancedSearchQueryBuilderService]
 })
 export class SearchResultComponent implements OnInit {
 
   queryText: any;
   prettyQueryText: string;
   isBusy: boolean = false;
+  showingAdvancedOptions: boolean = false;
   results: Array<SearchResultItemViewModel | FengResultViewModel> = [];
   computationTimeMs: number;
   isInvalidQuery: boolean = false;
@@ -56,6 +58,10 @@ export class SearchResultComponent implements OnInit {
 
   onBackClicked() {
     this.router.navigate(["/search"])
+  }
+
+  toggleAdvancedOptions() {
+    this.showingAdvancedOptions = ! this.showingAdvancedOptions;
   }
 
   private getPrettyText(s: string): string {

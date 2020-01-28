@@ -18,7 +18,7 @@ export class HomeComponent implements OnInit {
   }
 
   onFakeSearchboxClicked() {
-    this.router.navigate(["/search"])
+   // this.router.navigate(["/search"])
   }
 
 }
