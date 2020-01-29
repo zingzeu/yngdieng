@@ -45,6 +45,6 @@ steps:
     popd && \
     pushd servertests/backend && \
     dotnet test && \
-    popd &&
+    popd
   displayName: 'dotnet build&test'
 # TODO run tests
