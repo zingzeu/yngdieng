@@ -37,6 +37,14 @@ steps:
 
 - script: |
     bazel build //...
-  displayName: 'Build'
+  displayName: 'Bazel Build'
 
+- script: |
+    pushd server && \
+    dotnet build && \
+    popd && \
+    pushd servertests/backend && \
+    dotnet test && \
+    popd &&
+  displayName: 'dotnet build&test'
 # TODO run tests
