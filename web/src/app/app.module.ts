@@ -5,6 +5,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
+import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -48,6 +49,7 @@ import { AdvancedSearchLandingComponent } from './advanced-search-landing/advanc
     MatToolbarModule,
     MatCardModule,
     MatSlideToggleModule,
+    MatPaginatorModule,
     FormsModule,
     ReactiveFormsModule
   ],

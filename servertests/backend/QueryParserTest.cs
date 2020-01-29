@@ -14,27 +14,19 @@ namespace Yngdieng.Backend.Tests
       {
         HanziQuery = "我",
         SortBy = Query.Types.SortByMethod.InitialFinalTone,
-        GroupBy = Query.Types.GroupByMethod.None
       }, QueryParser.Parse("我"));
 
+      Assert.Equal(new Query
+      {
+        HanziQuery = "食飯",
+        SortBy = Query.Types.SortByMethod.InitialFinalTone,
+      }, QueryParser.Parse("食飯"));
 
       Assert.Equal(new Query
       {
         HanziQuery = "我",
         SortBy = Query.Types.SortByMethod.InitialFinalTone,
-        GroupBy = Query.Types.GroupByMethod.HanziPhonology
-      }, QueryParser.Parse("我 sort:ift group:hanzi_phonology"));
-    }
-
-    [Fact]
-    public void TestParse_VocabQuery()
-    {
-      Assert.Equal(new Query
-      {
-        VocabQuery = "我",
-        SortBy = Query.Types.SortByMethod.InitialFinalTone,
-        GroupBy = Query.Types.GroupByMethod.None
-      }, QueryParser.Parse("我 mode:vocab"));
+      }, QueryParser.Parse("我 sort:ift"));
     }
 
     [Fact]
@@ -44,15 +36,7 @@ namespace Yngdieng.Backend.Tests
       {
         FuzzyPronQuery = "sieng noh",
         SortBy = Query.Types.SortByMethod.InitialFinalTone,
-        GroupBy = Query.Types.GroupByMethod.HanziPhonology
-      }, QueryParser.Parse("sieng noh group:hanzi_phonology"));
-
-      Assert.Equal(new Query
-      {
-        FuzzyPronQuery = "sieng noh",
-        SortBy = Query.Types.SortByMethod.InitialFinalTone,
-        GroupBy = Query.Types.GroupByMethod.HanziPhonology
-      }, QueryParser.Parse("group:hanzi_phonology sieng noh"));
+      }, QueryParser.Parse("sieng noh"));
     }
 
     [Fact]
@@ -65,7 +49,6 @@ namespace Yngdieng.Backend.Tests
           Initial = Initial.L
         },
         SortBy = Query.Types.SortByMethod.InitialFinalTone,
-        GroupBy = Query.Types.GroupByMethod.None
       }, QueryParser.Parse("i:柳"));
     }
 
@@ -79,7 +62,6 @@ namespace Yngdieng.Backend.Tests
           Final = Final.A
         },
         SortBy = Query.Types.SortByMethod.InitialFinalTone,
-        GroupBy = Query.Types.GroupByMethod.None
       }, QueryParser.Parse("f:嘉"));
     }
 
@@ -93,7 +75,6 @@ namespace Yngdieng.Backend.Tests
           Tone = Tone.DownFalling
         },
         SortBy = Query.Types.SortByMethod.InitialFinalTone,
-        GroupBy = Query.Types.GroupByMethod.None
       }, QueryParser.Parse("t:下去"));
     }
 
@@ -109,7 +90,6 @@ namespace Yngdieng.Backend.Tests
           Tone = Tone.DownFalling
         },
         SortBy = Query.Types.SortByMethod.InitialFinalTone,
-        GroupBy = Query.Types.GroupByMethod.None
       }, QueryParser.Parse("t:下去 f:嘉 i:求"));
     }
 
