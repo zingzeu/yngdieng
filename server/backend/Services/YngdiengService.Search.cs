@@ -10,6 +10,7 @@ namespace Yngdieng.Backend.Services
 {
   public partial class YngdiengService : Yngdieng.Protos.YngdiengService.YngdiengServiceBase
   {
+    private static readonly int PageSize = 10;
 
     public override Task<SearchResponse> Search(SearchRequest request, ServerCallContext context)
     {
@@ -17,59 +18,55 @@ namespace Yngdieng.Backend.Services
       var watch = System.Diagnostics.Stopwatch.StartNew();
 
       var query = QueryParser.Parse(request.Query) ?? throw new Exception("Invalid query");
-      var response = SearchInternal(query);
+      var response = new SearchResponse();
+      var results = SearchInternal(query);
+
+      // Poor man's pagination
+      response.Length = results.Count();
+      response.Results.AddRange(results.Skip((int)request.Offset).Take(PageSize));
 
       watch.Stop();
       response.ComputationTimeMs = watch.ElapsedMilliseconds;
       return Task.FromResult(response);
     }
 
-    private SearchResponse SearchInternal(Query query)
+    private IEnumerable<SearchResultRow> SearchInternal(Query query)
     {
       switch (query.QueryCase)
       {
         case Query.QueryOneofCase.PhonologyQuery:
           {
-            var response = new SearchResponse();
-
-            response.Results.AddRange(QueryByPhonologyAggregated(query.PhonologyQuery, query.SortBy).Select(a =>
+            return QueryByPhonologyAggregated(query.PhonologyQuery, query.SortBy).Select(a =>
              new SearchResultRow
              {
                AggregatedDocument = a
              }
-            ));
-
-            return response;
+            );
           }
         case Query.QueryOneofCase.HanziQuery:
           {
             string hanziQuery = query.HanziQuery;
-            var response = new SearchResponse();
             // 单字条目优先
 
-
-            response.Results.AddRange(QueryMonoHanziAggregated(query.HanziQuery, query.SortBy).Select(a =>
+            var monoHanziResults = QueryMonoHanziAggregated(query.HanziQuery, query.SortBy).Select(a =>
             new SearchResultRow
             {
               AggregatedDocument = a
-            }));
+            });
 
             // 之后是词汇（冯版），如有
-
-            response.Results.AddRange(QueryVocab(hanziQuery).Select(d => new SearchResultRow
+            var vocabResults = QueryVocab(hanziQuery).Select(d => new SearchResultRow
             {
               FengDocument = d
-            }));
-            return response;
+            });
+            return monoHanziResults.Concat(vocabResults);
           }
         case Query.QueryOneofCase.FuzzyPronQuery:
           {
-            var response = new SearchResponse();
-            response.Results.AddRange(QueryByFuzzyPron(query.FuzzyPronQuery).Select(d => new SearchResultRow
+            return QueryByFuzzyPron(query.FuzzyPronQuery).Select(d => new SearchResultRow
             {
               FengDocument = d
-            }));
-            return response;
+            });
           }
         default:
           throw new Exception("Not implemented");
