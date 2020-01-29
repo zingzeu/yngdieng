@@ -4,7 +4,9 @@
   (performSearch)="onPerformSearch($event)"></app-search-toolbar>
 
 <div class="prelude">
-  <div class="results-info">{{ results.length }} 个搜索结果, 耗时 {{ computationTimeMs }}ms</div>
+  <div class="results-info">
+    <p *ngIf="!isBusy && !isInvalidQuery">{{ totalLength }} 个搜索结果, 耗时 {{ computationTimeMs }}ms</p>
+  </div>
   <div class="options"><button (click)="toggleAdvancedOptions()">高级搜索</button></div>
 </div>
 <app-phonology-composer *ngIf="showingAdvancedOptions"></app-phonology-composer>
@@ -23,6 +25,12 @@
       class="result-card"
     ></app-feng-result>
   </ng-container>
+  <mat-paginator [length]="totalLength"
+              [pageSize]="pageSize"
+              [hidePageSize]="true"
+              [pageIndex]="currentPageIndex"
+              (page)="onPageChanged($event)">
+  </mat-paginator>
 </div>
 
 <div *ngIf="!isInvalidQuery && !isBusy && results.length == 0">
@@ -32,3 +40,4 @@
 <div *ngIf="isBusy">
   <h3>加载中...</h3>
 </div>
+

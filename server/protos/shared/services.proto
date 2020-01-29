@@ -12,15 +12,21 @@ service YngdiengService {
     rpc GetFengDocument(GetFengDocumentRequest) returns (FengDocument);
 }
 
+// Next ID: 3
 message SearchRequest {
-    reserved 1;
-    string query = 2;
+    string query = 1;
+    int64 offset = 2;
 }
 
+// Next ID: 4
 message SearchResponse {
     repeated SearchResultRow results = 1;
+
     // Milliseconds taken to compute the results.
     int64 computation_time_ms = 2;
+
+    // Total number of results.
+    int64 length = 3;
 }
 
 message SearchResultRow {
@@ -49,7 +55,7 @@ message GetFengDocumentRequest {
 }
 
 // Internal Query
-// Next ID: 5
+// Next ID: 6
 message Query {
     oneof query {
         // 按模糊音查询
@@ -61,6 +67,10 @@ message Query {
     }
 
     SortByMethod sort_by = 4;
+
+    // For pagination. 
+    // Requests results starting with the offset.
+    int32 offset = 5;
 
     // Must not be all empty
     message PhonologyQuery {
@@ -76,5 +86,4 @@ message Query {
         SORT_BY_UNSPECIFIED = 0;
         INITIAL_FINAL_TONE = 1;
     }
- 
 }

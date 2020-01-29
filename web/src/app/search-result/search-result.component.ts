@@ -8,6 +8,8 @@ import { SearchResultItemViewModel, FengResultViewModel } from '../common/view-m
 import { IYngdiengEnvironment, YNGDIENG_ENVIRONMENT } from '../../environments/environment';
 import { AdvancedSearchQueryBuilderService } from '../advanced-search-query-builder.service';
 
+// Keep in sync with server/backend/Services/YngdiengService.Search.cs
+const PAGE_SIZE = 10;
 @Component({
   selector: 'app-search-result',
   templateUrl: './search-result.component.html',
@@ -24,6 +26,14 @@ export class SearchResultComponent implements OnInit {
   computationTimeMs: number;
   isInvalidQuery: boolean = false;
 
+  // Pagination related properties
+  readonly pageSize = PAGE_SIZE;
+  offset: number = 0;
+  totalLength: number = 0;
+  get currentPageIndex() {
+    return Math.floor(this.offset / this.pageSize);
+  }
+
   constructor(
     private route: ActivatedRoute,
     private router: Router,
@@ -31,6 +41,7 @@ export class SearchResultComponent implements OnInit {
 
   ngOnInit() {
     this.queryText = this.route.snapshot.paramMap.get("query");
+    this.offset = this.getCurrentOffset();
     this.prettyQueryText = this.getPrettyText(this.queryText);
     this.isBusy = true;
 
@@ -38,6 +49,7 @@ export class SearchResultComponent implements OnInit {
       // Fetch results
       var request = new SearchRequest();
       request.setQuery(this.queryText);
+      request.setOffset(this.offset);
       let client = new YngdiengServiceClient(this.environment.serverUrl);
       client.search(request, (err, response) => {
         this.isBusy = false;
@@ -48,12 +60,22 @@ export class SearchResultComponent implements OnInit {
         this.computationTimeMs = response.getComputationTimeMs();
         this.results = response.getResultsList()
           .map(resultRowToViewModel);
+        this.totalLength = response.getLength();
       });
     } catch (e) {
       console.error(e);
       this.isBusy = false;
       this.isInvalidQuery = true;
     }
+  }
+
+  private getCurrentOffset() {
+    let offsetStr = this.route.snapshot.paramMap.get("offset");
+    if (offsetStr == undefined) {
+      return 0;
+    }
+    let tryParseResult = parseInt(offsetStr, /* radix= */10);
+    return isNaN(tryParseResult) ? 0 : tryParseResult;
   }
 
   onNavigateBack() {
@@ -65,7 +87,12 @@ export class SearchResultComponent implements OnInit {
   }
 
   toggleAdvancedOptions() {
-    this.showingAdvancedOptions = ! this.showingAdvancedOptions;
+    this.showingAdvancedOptions = !this.showingAdvancedOptions;
+  }
+
+  onPageChanged(pageEvent) {
+    let newPageIndex = pageEvent["pageIndex"];
+    this.redirectTo(["/search", this.queryText, { 'offset': this.pageSize * newPageIndex }])
   }
 
   private redirectTo(commands: any[]) {
