@@ -20,6 +20,7 @@ namespace Yngdieng.Backend
     {
       services.AddGrpc();
       services.AddSingleton<IIndexHolder, IndexHolder>();
+      services.AddSingleton<ISearchCache, InMemorySearchCache>();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
