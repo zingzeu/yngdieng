@@ -3,7 +3,7 @@ import { YNGDIENG_ENVIRONMENT, IYngdiengEnvironment } from '../environments/envi
 import { YngdiengServiceClient } from 'yngdieng/shared/services_pb_service';
 import { Observable, Subject } from 'rxjs';
 import { FengDocument, AggregatedDocument } from 'yngdieng/shared/documents_pb';
-import { GetFengDocumentRequest, SearchResponse, SearchRequest } from 'yngdieng/shared/services_pb';
+import { GetFengDocumentRequest, GetAggregatedDocumentRequest, SearchResponse, SearchRequest } from 'yngdieng/shared/services_pb';
 
 @Injectable({
   providedIn: 'root'
@@ -52,6 +52,18 @@ export class YngdiengBackendService {
   }
 
   getAggregatedDocument(docId: string): Observable<AggregatedDocument> {
-    return null;
+    let subject = new Subject<AggregatedDocument>();
+    let request = new GetAggregatedDocumentRequest();
+    request.setId(docId);
+    this.grpcClient.getAggregatedDocument(request, (err, response) => {
+      if (err != null) {
+        subject.error(err);
+        return;
+      }
+
+      subject.next(response);
+    })
+
+    return subject.asObservable();
   }
 }

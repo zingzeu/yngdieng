@@ -39,8 +39,11 @@ message Document {
     }
 }
 
-// Next ID: 10
+// Next ID: 11
 message AggregatedDocument {
+    // Base64 (URL safe) encoded DocumentAggregateKey
+    string id = 10;
+
     Hanzi hanzi_canonical = 1;
 
     // Optional. 等价汉字.

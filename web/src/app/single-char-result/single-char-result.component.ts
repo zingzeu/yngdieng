@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { SearchResultItemViewModel } from '../common/view-models';
+import { MonoHanziResultViewModel } from '../common/view-models';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-single-char-result',
@@ -8,11 +9,16 @@ import { SearchResultItemViewModel } from '../common/view-models';
 })
 export class SingleCharResultComponent implements OnInit {
 
-  @Input("document") document: SearchResultItemViewModel;
+  @Input("document") document: MonoHanziResultViewModel;
 
-  constructor() { }
+
+  constructor(private router:Router) { }
 
   ngOnInit() {
+  }
+
+  onDetailsClicked() {
+    this.router.navigate(["/char",this.document.id])
   }
 
 }
