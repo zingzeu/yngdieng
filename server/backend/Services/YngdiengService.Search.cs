@@ -25,8 +25,8 @@ namespace Yngdieng.Backend.Services
       if (maybeCacheResult == null) {
         _logger.LogInformation("Cache miss");
         var query = QueryParser.Parse(request.Query) ?? throw new Exception("Invalid query");
-        results = SearchInternal(query);
-        _cache.Put(request.Query, results.ToList());
+        results = SearchInternal(query).ToList(); // Materialise now
+        _cache.Put(request.Query, results);
       } else {
         _logger.LogInformation("Cache hit");
         results = maybeCacheResult;
