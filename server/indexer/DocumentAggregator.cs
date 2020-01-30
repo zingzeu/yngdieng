@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Yngdieng.Protos;
 using Google.Protobuf;
 using System.Linq;
+using Microsoft.AspNetCore.WebUtilities;
 
 namespace Yngdieng.Indexer
 {
@@ -16,17 +17,21 @@ namespace Yngdieng.Indexer
 
     public void Add(Document d)
     {
-      var key = new DocumentAggregateKey
+      var key =
+      Base64UrlTextEncoder.Encode(new DocumentAggregateKey
       {
         HanziCanonical = d.HanziCanonical,
         Initial = d.Initial,
         Final = d.Final,
         Tone = d.Tone
-      }.ToByteString().ToBase64();
+      }.ToByteArray());
 
       if (!documents.ContainsKey(key))
       {
-        documents[key] = new AggregatedDocument();
+        documents[key] = new AggregatedDocument()
+        {
+          Id = key
+        };
       }
       documents[key].Initial = d.Initial;
       documents[key].Final = d.Final;

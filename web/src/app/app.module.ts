@@ -25,6 +25,8 @@ import { YngdiengProdEnvironment } from '../environments/environment.prod';
 import { DetailsFengComponent } from './details-feng/details-feng.component';
 import { SearchToolbarComponent } from './search-toolbar/search-toolbar.component';
 import { AdvancedSearchLandingComponent } from './advanced-search-landing/advanced-search-landing.component';
+import { DetailsMonoHanziComponent } from './details-mono-hanzi/details-mono-hanzi.component';
+import { YngdiengBackendService } from './yngdieng-backend.service';
 
 @NgModule({
   declarations: [
@@ -37,7 +39,8 @@ import { AdvancedSearchLandingComponent } from './advanced-search-landing/advanc
     FengResultComponent,
     DetailsFengComponent,
     SearchToolbarComponent,
-    AdvancedSearchLandingComponent
+    AdvancedSearchLandingComponent,
+    DetailsMonoHanziComponent
   ],
   imports: [
     BrowserModule,
@@ -53,7 +56,10 @@ import { AdvancedSearchLandingComponent } from './advanced-search-landing/advanc
     FormsModule,
     ReactiveFormsModule
   ],
-  providers: [{ provide: YNGDIENG_ENVIRONMENT, useValue: getYngdiengEnvironment() }],
+  providers: [
+    { provide: YNGDIENG_ENVIRONMENT, useValue: getYngdiengEnvironment() },
+    YngdiengBackendService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
