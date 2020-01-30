@@ -3,7 +3,7 @@ export interface MonoHanziResultViewModel {
     id: string;
     hanziCanonical: string;
     hanziAlternatives: string[];
-    buc: string;
+    yngping: string;
     initial: string;
     final: string;
     tone: string;

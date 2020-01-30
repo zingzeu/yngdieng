@@ -121,7 +121,7 @@ function resultRowToViewModel(r: SearchResultRow): MonoHanziResultViewModel | Fe
         id: a.getId(),
         hanziCanonical: getHanziString(a.getHanziCanonical()),
         hanziAlternatives: a.getHanziAlternativesList().map(getHanziString),
-        buc: a.getBuc(),
+        yngping: a.getYngping(),
         initial: getInitialString(a.getInitial()),
         final: getFinalString(a.getFinal()),
         tone: getToneString(a.getTone()),

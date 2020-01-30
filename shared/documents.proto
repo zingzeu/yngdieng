@@ -39,7 +39,7 @@ message Document {
     }
 }
 
-// Next ID: 11
+// Next ID: 12
 message AggregatedDocument {
     // Base64 (URL safe) encoded DocumentAggregateKey
     string id = 10;
@@ -59,6 +59,9 @@ message AggregatedDocument {
     Tone tone = 6;
 
     string buc = 7;
+
+    // 榕拼（八音音系）
+    string yngping = 11;
 
     // 出处信息.
     CikLinSourceInfo ciklin_source = 8;

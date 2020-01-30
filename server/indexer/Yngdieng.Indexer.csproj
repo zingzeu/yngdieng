@@ -2,6 +2,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\protos\Yngdieng.Protos.csproj" />
+    <ProjectReference Include="..\common\Yngdieng.Common.csproj" />
   </ItemGroup>
 
   <ItemGroup>
