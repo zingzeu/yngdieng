@@ -57,6 +57,7 @@ git_repository(
     name = "rules_proto_grpc",
     commit = "1add33fdb7b1f2c85e660bc115c8bfe83d768162",
     remote = "https://github.com/ztl8702/rules_proto_grpc.git",
+    shallow_since = "1575092578 +1100",
 )
 
 load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_toolchains")
@@ -166,9 +167,9 @@ sass_repositories()
 
 git_repository(
     name = "rules_typescript_proto",
-    commit = "fa21e6a057a96ea18c2f61d02d90d4bf82db354a",  
+    commit = "fa21e6a057a96ea18c2f61d02d90d4bf82db354a",
     remote = "https://github.com/ztl8702/rules_typescript_proto",
-    shallow_since = "1579365079 -0800"
+    shallow_since = "1579365079 -0800",
 )
 
 load("@rules_typescript_proto//:index.bzl", "rules_typescript_proto_dependencies")
