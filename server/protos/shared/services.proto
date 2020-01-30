@@ -9,6 +9,7 @@ import "shared/documents.proto";
 service YngdiengService {
     rpc Search (SearchRequest) returns (SearchResponse);
     rpc GetDocument (GetDocumentRequest) returns (GetDocumentResponse);
+    rpc GetAggregatedDocument (GetAggregatedDocumentRequest) returns (AggregatedDocument);
     rpc GetFengDocument(GetFengDocumentRequest) returns (FengDocument);
 }
 
@@ -31,9 +32,8 @@ message SearchResponse {
 
 message SearchResultRow {
     oneof result {
-        Document document = 1;
-        AggregatedDocument aggregated_document = 2;
-        FengDocument feng_document = 3;
+        AggregatedDocument aggregated_document = 1;
+        FengDocument feng_document = 2;
         // TODO: separator
     }
 }
@@ -51,6 +51,10 @@ message GetDocumentResponse {
 }
 
 message GetFengDocumentRequest {
+    string id = 1;
+}
+
+message GetAggregatedDocumentRequest{
     string id = 1;
 }
 

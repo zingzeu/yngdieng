@@ -1,5 +1,6 @@
 
-export interface SearchResultItemViewModel {
+export interface MonoHanziResultViewModel {
+    id: string;
     hanziCanonical: string;
     hanziAlternatives: string[];
     buc: string;

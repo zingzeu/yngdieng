@@ -1,0 +1,28 @@
+<mat-toolbar>
+    <mat-icon (click)="onBackClicked()">keyboard_arrow_left</mat-icon>
+    <span class="fill-remaining-space"></span>
+</mat-toolbar>
+
+<div class="hero">
+    <ng-container *ngIf="!isBusy && !hasError">
+        <h2>{{ vm.hanziCanonical }}</h2>
+        {{ vm.buc }} 
+        {{ vm.fanqie }}
+    </ng-container>
+</div>
+
+<div class="content">
+    <div *ngIf="!isBusy && !hasError">
+        <h2>同音字<small (click)="onMoreHomophonesClicked()">更多</small></h2>
+        <span class="charbox" *ngFor="let h of homophones" (click)="onHomophoneClicked(h.id)">{{ h.hanzi }}</span>
+        <h2>含“{{vm.hanziCanonical}}”的词汇</h2>
+        <ul>
+            <li *ngFor="let v of vocabs">{{v.hanzi}} {{v.explanation}}</li>
+        </ul>
+        <h2>来源</h2>
+        <ul>
+            <li *ngFor="let x of vm.sources">{{x}}</li>
+        </ul>
+    </div>
+</div>
+<div *ngIf="hasError">Error</div>
