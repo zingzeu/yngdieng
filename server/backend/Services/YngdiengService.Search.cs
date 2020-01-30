@@ -16,10 +16,21 @@ namespace Yngdieng.Backend.Services
     {
       _logger.LogInformation("Received SearchRequest" + request.ToString());
       var watch = System.Diagnostics.Stopwatch.StartNew();
-
-      var query = QueryParser.Parse(request.Query) ?? throw new Exception("Invalid query");
       var response = new SearchResponse();
-      var results = SearchInternal(query);
+
+      // Check cache
+      var maybeCacheResult = _cache.Get(request.Query);
+      IEnumerable<SearchResultRow> results;
+      
+      if (maybeCacheResult == null) {
+        _logger.LogInformation("Cache miss");
+        var query = QueryParser.Parse(request.Query) ?? throw new Exception("Invalid query");
+        results = SearchInternal(query);
+        _cache.Put(request.Query, results.ToList());
+      } else {
+        _logger.LogInformation("Cache hit");
+        results = maybeCacheResult;
+      }
 
       // Poor man's pagination
       response.Length = results.Count();

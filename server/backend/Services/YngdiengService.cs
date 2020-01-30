@@ -1,22 +1,17 @@
-using System;
-using System.Threading.Tasks;
 using Yngdieng.Protos;
-using static Yngdieng.Protos.Query.Types;
-using Grpc.Core;
 using Microsoft.Extensions.Logging;
-using System.Linq;
-using System.Collections.Generic;
 namespace Yngdieng.Backend.Services
 {
   public partial class YngdiengService : Yngdieng.Protos.YngdiengService.YngdiengServiceBase
   {
     private readonly ILogger<YngdiengService> _logger;
     private readonly IIndexHolder _indexHolder;
-
-    public YngdiengService(ILogger<YngdiengService> logger, IIndexHolder indexHolder)
+    private readonly ISearchCache _cache;
+    public YngdiengService(ILogger<YngdiengService> logger, IIndexHolder indexHolder, ISearchCache cache)
     {
       _logger = logger;
       _indexHolder = indexHolder;
+      _cache = cache;
     }
 
     public static string GetHanzi(Hanzi h)
