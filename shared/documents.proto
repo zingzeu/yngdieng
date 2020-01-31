@@ -69,11 +69,14 @@ message AggregatedDocument {
     DFDSourceInfo dfd_source = 9;
 }
 
+// Next ID: 10
 message FengDocument {
     string id = 1;
 
     // 正字写法.
     string hanzi_canonical = 2;
+
+    repeated string hanzi_matchable = 9;
 
     // Optional. 等价汉字写法. 如俗写。
     repeated string hanzi_alternatives = 3;
@@ -85,6 +88,8 @@ message FengDocument {
 
     // 释义. TODO: structured
     string explanation = 6;
+
+    string explanation_hans = 8;
 
     SourceInfo source = 7;
 
