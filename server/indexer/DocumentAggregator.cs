@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Yngdieng.Protos;
+using Yngdieng.Common;
 using Google.Protobuf;
 using System.Linq;
 using Microsoft.AspNetCore.WebUtilities;
@@ -38,6 +39,7 @@ namespace Yngdieng.Indexer
       documents[key].Tone = d.Tone;
       documents[key].HanziCanonical = d.HanziCanonical;
       documents[key].Buc = d.Buc;
+      documents[key].Yngping = YngpingUtil.FanqieToYngping(d.Initial, d.Final, d.Tone);
 
       var altA = documents[key].HanziAlternatives;
       var altB = d.HanziAlternatives;
