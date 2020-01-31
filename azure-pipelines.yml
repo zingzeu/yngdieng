@@ -47,4 +47,35 @@ steps:
     dotnet test && \
     popd
   displayName: 'dotnet build&test'
+
+- script: |
+    mkdir -p ./.build/yngdieng-web
+    bazel build //web/src:prodapp
+    cp -r ./dist/bin/web/src/prodapp ./.build/yngdieng-web/
+    cp -r ./docker/yngdieng-web/nginx.conf ./.build/yngdieng-web/
+  displayName: 'Hacky build'
+
+- task: Docker@2
+  displayName: Build and push ztl8702/yngdieng-web
+  inputs:
+    command: buildAndPush
+    repository: ztl8702/yngdieng-web
+    dockerfile: docker/yngdieng-web/Dockerfile
+    buildContext: ./.build/yngdieng-web
+    containerRegistry: dockerHub
+    tags: |
+       latest
+       ci-$(Build.BuildNumber)
+
+- task: Docker@2
+  displayName: Build and push ztl8702/yngdieng-backend
+  inputs:
+    command: buildAndPush
+    repository: ztl8702/yngdieng-backend
+    dockerfile: docker/yngdieng-backend/Dockerfile
+    buildContext: ./server
+    containerRegistry: dockerHub
+    tags: |
+       latest
+       ci-$(Build.BuildNumber)
 # TODO run tests
