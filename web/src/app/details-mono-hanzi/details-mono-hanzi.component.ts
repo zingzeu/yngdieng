@@ -97,19 +97,24 @@ export class DetailsMonoHanziComponent implements OnInit, OnDestroy {
 
     this.vocabSubscription = currentDocument$
       .pipe(
-        switchMap(a => this.backendService.search(getHanziString(a.getHanziCanonical()))),
-        map(response => 
-          response.getResultsList()
-          .filter(x => x.hasFengDocument())
-          .map(d => d.getFengDocument())
-          .map(f => {
-            return {
-              id: f.getId(),
-              hanzi: f.getHanziCanonical(),
-              yngping: f.getYngpingCanonical(),
-              explanation: f.getExplanation()//todo: trim
-            } as Vocab;
-          })
+        switchMap(a => 
+          this.backendService.search(getHanziString(a.getHanziCanonical()))
+          .pipe(
+            map(response => 
+              response.getResultsList()
+              .filter(x => x.hasFengDocument())
+              .map(d => d.getFengDocument())
+              .map(f => {
+                return {
+                  id: f.getId(),
+                  hanzi: f.getHanziCanonical(),
+                  yngping: f.getYngpingCanonical(),
+                  explanation: f.getExplanation()//todo: trim
+                } as Vocab;
+              })
+              .filter(v => v.hanzi.indexOf(getHanziString(a.getHanziCanonical())) >= 0)
+            )
+          ),
         )
       )
       .subscribe(x => {
@@ -134,6 +139,10 @@ export class DetailsMonoHanziComponent implements OnInit, OnDestroy {
 
   onMoreHomophonesClicked() {
     this.router.navigate(["/search", this.moreHomophonesQuery])
+  }
+
+  onMoreVocabClicked() {
+    this.router.navigate(["/search", this.vm.hanziCanonical])
   }
 
 }
