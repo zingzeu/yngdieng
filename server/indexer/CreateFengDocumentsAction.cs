@@ -69,7 +69,7 @@ namespace Yngdieng.Indexer
             GlobalLineNumber = x.Index,
             Pron = x.Tokens[1].Trim(),
             KanjiClean = CleanKanji(GetKanji(x.Tokens[0])),
-            Explanation = String.Join(" ", x.Tokens[2..^0])
+            Explanation = ReplaceAllBraces(String.Join(" ", x.Tokens[2..^0]))
           })
           .ToArray();
 
@@ -135,6 +135,20 @@ namespace Yngdieng.Indexer
       }
       var corrected = input.Substring(bComma + 1, bEnd - bComma - 1);
       return input.Substring(0, bStart) + corrected + input.Substring(bEnd + 1);
+    }
+
+    private static string ReplaceAllBraces(string input)
+    {
+      var tmp = input;
+      while (true)
+      {
+        var replaced = ReplaceBracesOnce(tmp);
+        if (tmp == replaced)
+        {
+          return tmp;
+        }
+        tmp = replaced;
+      }
     }
   }
 
