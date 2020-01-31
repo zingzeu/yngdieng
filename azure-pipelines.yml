@@ -62,7 +62,7 @@ steps:
     repository: ztl8702/yngping-web
     dockerfile: docker/yngdieng-web/Dockerfile
     buildContext: ./.build/yngdieng-web
-    containerRegistry: $(dockerHub)
+    containerRegistry: dockerHub
     tags: |
        latest
        ci-$(Build.BuildNumber)
