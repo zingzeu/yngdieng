@@ -4,11 +4,16 @@ using System.IO;
 using System.Linq;
 using Yngdieng.Protos;
 using Yngdieng.Common;
+using System.Net.Http;
+using System.Text;
 
 namespace Yngdieng.Indexer
 {
   public sealed class CreateFengDocumentsAction
   {
+
+    private static readonly string OpenCCDaemon = "http://localhost:8081";
+    private static readonly HttpClient client = new HttpClient();
     private readonly string mergedPath;
     private readonly string outputFolder;
 
@@ -31,12 +36,15 @@ namespace Yngdieng.Indexer
           HanziCanonical = f.KanjiClean,
           YngpingCanonical = f.Pron,
           Explanation = f.Explanation,
+          ExplanationHans = Simplify(f.Explanation),
           Source = new FengDocument.Types.SourceInfo
           {
             PageNumber = f.PageNumber,
             LineNumber = f.LineNumber
           },
         };
+        tmp.HanziMatchable.Add(f.KanjiClean);
+        tmp.HanziMatchable.Add(Simplify(f.KanjiClean));
         tmp.YngpingPermutations.Add(f.Pron);
         tmp.YngpingPermutations.AddRange(YngpingVariantsUtil.GenerateYngpingVariants(f.Pron));
         return tmp;
@@ -149,6 +157,11 @@ namespace Yngdieng.Indexer
         }
         tmp = replaced;
       }
+    }
+
+    private static string Simplify(string traditional)
+    {
+      return client.PostAsync(OpenCCDaemon, new ByteArrayContent(Encoding.UTF8.GetBytes(traditional))).Result.Content.ReadAsStringAsync().Result;
     }
   }
 

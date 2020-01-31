@@ -65,6 +65,7 @@
     "karma-jasmine": "2.0.1",
     "karma-requirejs": "1.1.0",
     "karma-sourcemap-loader": "0.3.7",
+    "opencc": "^1.0.5",
     "patch-package": "^6.2.0",
     "protobufjs": "^6.8.8",
     "protractor": "^5.4.2",
