@@ -37,6 +37,7 @@ namespace Yngdieng.Indexer
             LineNumber = f.LineNumber
           },
         };
+        tmp.YngpingPermutations.Add(f.Pron);
         tmp.YngpingPermutations.AddRange(YngpingVariantsUtil.GenerateYngpingVariants(f.Pron));
         return tmp;
       });
