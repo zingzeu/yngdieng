@@ -1,0 +1,23 @@
+---
+uti: com.xamarin.workbook
+id: 73ef83c4-9a8a-4a8e-a1f7-8f7f2a8b2b27
+title: yngping_variants
+platforms:
+- DotNetCore
+---
+
+```csharp
+using System.Text.RegularExpressions;
+```
+
+```csharp
+var a = "nguai";
+```
+
+```csharp
+Regex.Replace(a, @"ng(.*)", (match) => $"{match.Groups[1]}")
+```
+
+```csharp
+Regex.Replace(a, @"ng(.*)", (match) => $"{match.Groups[1]}")
+```

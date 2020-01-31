@@ -9,9 +9,10 @@ namespace Yngdieng.Backend.Services
 
     public override Task<AggregatedDocument> GetAggregatedDocument(GetAggregatedDocumentRequest request, ServerCallContext context)
     {
-      var maybeResult =  _indexHolder.GetIndex().AggregatedDocument.Where(f => f.Id == request.Id).FirstOrDefault();
-      if (maybeResult == null) {
-        throw new RpcException(new Status(StatusCode.NotFound, "Not found"));  
+      var maybeResult = _indexHolder.GetIndex().AggregatedDocument.Where(f => f.Id == request.Id).FirstOrDefault();
+      if (maybeResult == null)
+      {
+        throw new RpcException(new Status(StatusCode.NotFound, "Not found"));
       }
       return Task.FromResult(maybeResult);
     }
