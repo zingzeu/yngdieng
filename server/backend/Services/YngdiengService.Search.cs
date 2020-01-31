@@ -242,7 +242,7 @@ namespace Yngdieng.Backend.Services
         {
           foreach (var p in d.YngpingPermutations)
           {
-            if (p.Replace(" ", string.Empty).StartsWith(yngping.Replace(" ", string.Empty)))
+            if (p.Replace(" ", string.Empty).StartsWith(yngping.ToLowerInvariant().Replace(" ", string.Empty)))
             {
               return true;
             }
