@@ -208,8 +208,9 @@ namespace Yngdieng.Backend.Services
     {
       var matchedDocuments = _indexHolder.GetIndex().FengDocuments
         .Where(d =>
-          d.HanziCanonical.Contains(query)
-          || d.Explanation.Contains(query))
+          d.HanziMatchable.Where(m => m.Contains(query)).Count() > 0
+          || d.Explanation.Contains(query)
+           || d.ExplanationHans.Contains(query))
           .OrderByDescending(d => ScoreVocabQueryResult(query, d));
       //TODO: rank and order
       return matchedDocuments;
@@ -218,12 +219,12 @@ namespace Yngdieng.Backend.Services
     private static int ScoreVocabQueryResult(string query, FengDocument matchedDocument)
     {
       int score = 0;
-      if (matchedDocument.HanziCanonical.Contains(query))
+      if (matchedDocument.HanziMatchable.Where(m => m.Contains(query)).Count() > 0)
       {
         var distance = matchedDocument.HanziCanonical.Length - query.Length + 1;
         score += 1000 / distance;
       }
-      if (matchedDocument.Explanation.Contains(query))
+      if (matchedDocument.Explanation.Contains(query) || matchedDocument.ExplanationHans.Contains(query))
       {
         score += 10 * matchedDocument.Explanation.CountOccurences(query);
       }
