@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Yngdieng.Protos;
+using Yngdieng.Common;
 
 namespace Yngdieng.Indexer
 {
@@ -22,22 +23,24 @@ namespace Yngdieng.Indexer
       var jsonOutput = new List<string>();
       var documents = new List<FengDocument>();
 
-      var docs = LoadFengRows(mergedPath).Select(f => new FengDocument
+      var docs = LoadFengRows(mergedPath).Select(f =>
       {
-        Id = $"p{f.PageNumber}_{f.LineNumber}",
-        HanziCanonical = f.KanjiClean,
-        YngpingCanonical = f.Pron,
-        Explanation = f.Explanation,
-        Source = new FengDocument.Types.SourceInfo
+        var tmp = new FengDocument
         {
-          PageNumber = f.PageNumber,
-          LineNumber = f.LineNumber
-        },
-        YngpingPermutations = {
-            f.Pron
-            // TODO: permuations
-        }
+          Id = $"p{f.PageNumber}_{f.LineNumber}",
+          HanziCanonical = f.KanjiClean,
+          YngpingCanonical = f.Pron,
+          Explanation = f.Explanation,
+          Source = new FengDocument.Types.SourceInfo
+          {
+            PageNumber = f.PageNumber,
+            LineNumber = f.LineNumber
+          },
+        };
+        tmp.YngpingPermutations.AddRange(YngpingVariantsUtil.GenerateYngpingVariants(f.Pron));
+        return tmp;
       });
+
       documents.AddRange(docs);
       jsonOutput.AddRange(docs.Select(proto => proto.ToString()));
       File.WriteAllLines(Path.Combine(outputFolder, "feng_index_debug.txt"), jsonOutput);
