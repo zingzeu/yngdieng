@@ -49,7 +49,7 @@ export class DetailsMonoHanziComponent implements OnInit, OnDestroy {
             fanqie: getInitialString(response.getInitial())
               + getFinalString(response.getFinal()) + " "
               + getToneString(response.getTone()),
-            buc: response.getBuc(),
+            yngping: response.getYngping(),
             sources: []
           };
           if (response.hasCiklinSource()) {
@@ -154,7 +154,6 @@ interface DetailsMonoHanziViewModel {
   hanziCanonical: string,
   hanziAlternatives: string[],
   fanqie: string,
-  // TODO: yngping
-  buc: string,
+  yngping: string,
   sources: string[]
 }
