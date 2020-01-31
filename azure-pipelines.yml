@@ -56,10 +56,10 @@ steps:
   displayName: 'Hacky build'
 
 - task: Docker@2
-  displayName: Build and push ztl8702/yngping-web
+  displayName: Build and push ztl8702/yngdieng-web
   inputs:
     command: buildAndPush
-    repository: ztl8702/yngping-web
+    repository: ztl8702/yngdieng-web
     dockerfile: docker/yngdieng-web/Dockerfile
     buildContext: ./.build/yngdieng-web
     containerRegistry: dockerHub
@@ -68,7 +68,7 @@ steps:
        ci-$(Build.BuildNumber)
 
 - task: Docker@2
-  displayName: Build and push ztl8702/yngping-backend
+  displayName: Build and push ztl8702/yngdieng-backend
   inputs:
     command: buildAndPush
     repository: ztl8702/yngdieng-backend
