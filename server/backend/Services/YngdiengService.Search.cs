@@ -21,13 +21,16 @@ namespace Yngdieng.Backend.Services
       // Check cache
       var maybeCacheResult = _cache.Get(request.Query);
       IEnumerable<SearchResultRow> results;
-      
-      if (maybeCacheResult == null) {
+
+      if (maybeCacheResult == null)
+      {
         _logger.LogInformation("Cache miss");
         var query = QueryParser.Parse(request.Query) ?? throw new Exception("Invalid query");
         results = SearchInternal(query).ToList(); // Materialise now
         _cache.Put(request.Query, results);
-      } else {
+      }
+      else
+      {
         _logger.LogInformation("Cache hit");
         results = maybeCacheResult;
       }
@@ -236,7 +239,17 @@ namespace Yngdieng.Backend.Services
     {
       var matchedDocuments = _indexHolder.GetIndex().FengDocuments
         .Where(d =>
-          d.YngpingPermutations.Contains(yngping));
+        {
+          foreach (var p in d.YngpingPermutations)
+          {
+            if (p.Replace(" ", string.Empty).StartsWith(yngping.Replace(" ", string.Empty)))
+            {
+              return true;
+            }
+          }
+          return false;
+        }
+          );
       //TODO: rank and order
       return matchedDocuments;
     }

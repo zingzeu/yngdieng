@@ -3,7 +3,7 @@ using Yngdieng.Protos;
 
 namespace Yngdieng.Common
 {
-  public static class YngpingUtil
+  public static class YngpingBekinUtil
   {
     /// <summary>
     /// 八音转榕拼（戚林八音音系）。
