@@ -66,5 +66,16 @@ steps:
     tags: |
        latest
        ci-$(Build.BuildNumber)
-  
+
+- task: Docker@2
+  displayName: Build and push ztl8702/yngping-backend
+  inputs:
+    command: buildAndPush
+    repository: ztl8702/yngdieng-backend
+    dockerfile: docker/yngdieng-backend/Dockerfile
+    buildContext: ./server
+    containerRegistry: dockerHub
+    tags: |
+       latest
+       ci-$(Build.BuildNumber)
 # TODO run tests
