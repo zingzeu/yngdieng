@@ -136,10 +136,10 @@ namespace Yngdieng.Indexer
       {
         return input;
       }
-      var bComma = input.IndexOf(",");
+      var bComma = input.Substring(bStart).IndexOf(",") + bStart;
       if (!(bStart < bComma && bComma < bEnd))
       {
-        throw new Exception("Error input " + input);
+        throw new Exception($"Error input: {input}. BraceStart={bStart} Comma={bComma} BraceEnd={bEnd}");
       }
       var corrected = input.Substring(bComma + 1, bEnd - bComma - 1);
       return input.Substring(0, bStart) + corrected + input.Substring(bEnd + 1);
