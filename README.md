@@ -4,6 +4,8 @@
 
 福州话在线词典 Online Hokchew Dictionary
 
+[![Build Status](https://mindonglab.visualstudio.com/yngdieng/_apis/build/status/MindongLab.yngdieng?branchName=master)](https://mindonglab.visualstudio.com/yngdieng/_build/latest?definitionId=1&branchName=master)
+
 ## 本地 Web 开发 Local web development
 
 Web app 技术栈是 Angular + Typescript，建构系统是 Bazel。
