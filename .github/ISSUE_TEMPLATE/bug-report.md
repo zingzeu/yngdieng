@@ -3,7 +3,7 @@ name: 软件问题 / Bug
 about: 软件使用中遇到的错误、不合预期的表现等
 title: ''
 labels: bug
-assignees: ''
+assignees: ztl8702
 
 ---
 
