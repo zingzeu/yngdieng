@@ -7,13 +7,13 @@ assignees: ''
 
 ---
 
-** 词条网址 **
+**词条网址**
 
 http://yngdieng-staging.mindong.asia/......
 
 
-** 错误之处 **
+**错误之处**
 
 
-** 应更正为 **
+**应更正为**
 
