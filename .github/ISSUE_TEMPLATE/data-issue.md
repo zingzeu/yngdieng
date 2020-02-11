@@ -2,7 +2,7 @@
 name: 词条纠错
 about: 释义、读音有错误。
 title: ''
-labels: ''
+labels: 'data issue'
 assignees: ''
 
 ---
