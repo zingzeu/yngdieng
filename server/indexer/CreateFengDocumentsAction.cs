@@ -75,7 +75,7 @@ namespace Yngdieng.Indexer
           .Select(x => new FengRow
           {
             GlobalLineNumber = x.Index,
-            Pron = x.Tokens[1].Trim(),
+            Pron = x.Tokens[2].Trim(),
             KanjiClean = CleanKanji(GetKanji(x.Tokens[0])),
             Explanation = ReplaceAllBraces(String.Join(" ", x.Tokens[2..^0]))
           })
