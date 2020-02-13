@@ -77,7 +77,7 @@ namespace Yngdieng.Indexer
             GlobalLineNumber = x.Index,
             Pron = x.Tokens[2].Trim(),
             KanjiClean = CleanKanji(GetKanji(x.Tokens[0])),
-            Explanation = ReplaceAllBraces(String.Join(" ", x.Tokens[2..^0]))
+            Explanation = ReplaceAllBraces(String.Join(" ", x.Tokens[3..^0]))
           })
           .ToArray();
 
