@@ -167,12 +167,12 @@ namespace Yngdieng.Indexer
 
 
   /// <summary>
-  /// Model for each row in merged.txt.
+  /// Model for each row in feng.txt.
   /// </summary>
   public class FengRow
   {
     /// <summary>
-    /// Line number in merged.txt.
+    /// Line number in feng.txt.
     /// </summary>
     public int GlobalLineNumber { get; set; }
     /// <summary>
