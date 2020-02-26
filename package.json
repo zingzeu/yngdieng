@@ -7,7 +7,9 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "format": "git-clang-format",
+    "precommit": "check-clang-format \"yarn format\""
   },
   "engines": {
     "node": ">=10.9.0 <13.0.0",
