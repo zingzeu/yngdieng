@@ -167,7 +167,7 @@ sass_repositories()
 
 git_repository(
     name = "rules_typescript_proto",
-    commit = "fa21e6a057a96ea18c2f61d02d90d4bf82db354a",
+    commit = "e3a6de3406d52d37bfc7053ca813033ec4a71eac",
     remote = "https://github.com/ztl8702/rules_typescript_proto",
     shallow_since = "1579365079 -0800",
 )
