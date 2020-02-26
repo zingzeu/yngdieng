@@ -2,7 +2,9 @@
   [queryFromUrl]="queryText"
   (navigateBack)="onNavigateBack()"
   (performSearch)="onPerformSearch($event)"></app-search-toolbar>
-
+  <button mat-button color="primary">Primary</button>
+  <button mat-raised-button color="primary">Primary</button>
+  <button mat-raised-button color="accent">Accent</button>
 <div class="prelude">
   <div class="results-info">
     <p *ngIf="!isBusy && !isInvalidQuery">{{ totalLength }} 个搜索结果, 耗时 {{ computationTimeMs }}ms</p>
