@@ -1,16 +1,14 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { PhonologyComposerComponent } from './phonology-composer.component';
+import {PhonologyComposerComponent} from './phonology-composer.component';
 
 describe('PhonologyComposerComponent', () => {
   let component: PhonologyComposerComponent;
   let fixture: ComponentFixture<PhonologyComposerComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ PhonologyComposerComponent ]
-    })
-    .compileComponents();
+    TestBed.configureTestingModule({declarations: [PhonologyComposerComponent]})
+        .compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,16 +1,13 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { SingleCharResultComponent } from './single-char-result.component';
+import {SingleCharResultComponent} from './single-char-result.component';
 
 describe('SingleCharResultComponent', () => {
   let component: SingleCharResultComponent;
   let fixture: ComponentFixture<SingleCharResultComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ SingleCharResultComponent ]
-    })
-    .compileComponents();
+    TestBed.configureTestingModule({declarations: [SingleCharResultComponent]}).compileComponents();
   }));
 
   beforeEach(() => {

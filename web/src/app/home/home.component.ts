@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { FormBuilder } from '@angular/forms';
+import {Component, OnInit} from '@angular/core';
+import {FormBuilder} from '@angular/forms';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -8,23 +8,20 @@ import { FormBuilder } from '@angular/forms';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
+  searchForm;
+  private router: Router;
 
-  searchForm
-  private router : Router;
-
-  constructor(router: Router, formBuilder: FormBuilder) { 
+  constructor(router: Router, formBuilder: FormBuilder) {
     this.router = router;
     this.searchForm = formBuilder.group({
       textQuery: '',
     });
   }
 
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onSubmit() {
     let textQuery = this.searchForm.controls.textQuery.value;
-    this.router.navigate(["/search", textQuery])
+    this.router.navigate(['/search', textQuery])
   }
-
 }
