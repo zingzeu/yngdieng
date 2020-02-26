@@ -102,7 +102,8 @@ export function getToneFromString(s: string):
 }
 
 function reverseMap(input: any): {[x: string]: any} {
-  let output = {} for (let k in input) {
+  let output = {};
+  for (let k in input) {
     output[input[k]] = k;
   }
   return output;
