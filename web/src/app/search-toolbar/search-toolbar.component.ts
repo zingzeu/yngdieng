@@ -30,10 +30,9 @@ export class SearchToolbarComponent implements OnInit, OnDestroy {
       textQuery: '',
     });
 
-    this.initialSubscription =
-        asqbService.selectedInitial$.subscribe(i => this.initial = i) this.finalSubscription =
-            asqbService.selectedFinal$.subscribe(f => this.final = f) this.toneSubscription =
-                asqbService.selectedTone$.subscribe(t => this.tone = t)
+    this.initialSubscription = asqbService.selectedInitial$.subscribe(i => this.initial = i);
+    this.finalSubscription = asqbService.selectedFinal$.subscribe(f => this.final = f);
+    this.toneSubscription = asqbService.selectedTone$.subscribe(t => this.tone = t)
   }
 
   ngOnInit() {}

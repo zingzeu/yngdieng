@@ -8,7 +8,8 @@ import {Router} from '@angular/router';
   styleUrls: ['./home.component.scss']
 })
 export class HomeComponent implements OnInit {
-  searchForm private router: Router;
+  searchForm;
+  private router: Router;
 
   constructor(router: Router, formBuilder: FormBuilder) {
     this.router = router;

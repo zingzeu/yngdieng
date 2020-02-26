@@ -24,12 +24,10 @@ export class PhonologyComposerComponent implements OnInit, OnDestroy {
 
   constructor(private asqbService: AdvancedSearchQueryBuilderService) {
     this.initialSubscription =
-        asqbService.selectedInitial$.subscribe(i => {this.showInitials = i === null}) this
-            .finalSubscription =
-            asqbService.selectedFinal$.subscribe(
-                                          f => {
-                                              this.showFinals = f === null}) this.toneSubscription =
-                asqbService.selectedTone$.subscribe(t => {this.showTones = t === null})
+        asqbService.selectedInitial$.subscribe(i => {this.showInitials = i === null});
+    this.finalSubscription =
+        asqbService.selectedFinal$.subscribe(f => {this.showFinals = f === null});
+    this.toneSubscription = asqbService.selectedTone$.subscribe(t => {this.showTones = t === null})
   }
 
   ngOnDestroy() {
