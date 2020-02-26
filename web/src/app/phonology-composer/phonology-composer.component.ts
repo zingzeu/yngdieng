@@ -1,8 +1,9 @@
-import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
-import { Initial ,Final,Tone} from "yngdieng/shared/phonology_pb";
-import { getInitialString, getFinalString, getToneString } from '@yngdieng/utils';
-import { AdvancedSearchQueryBuilderService } from '../advanced-search-query-builder.service';
-import { Subscription } from 'rxjs';
+import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
+import {getFinalString, getInitialString, getToneString} from '@yngdieng/utils';
+import {Subscription} from 'rxjs';
+import {Final, Initial, Tone} from 'yngdieng/shared/phonology_pb';
+
+import {AdvancedSearchQueryBuilderService} from '../advanced-search-query-builder.service';
 
 @Component({
   selector: 'app-phonology-composer',
@@ -10,28 +11,25 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./phonology-composer.component.scss']
 })
 export class PhonologyComposerComponent implements OnInit, OnDestroy {
-
   showInitials: boolean = true;
   showFinals: boolean = true;
   showTones: boolean = true;
   initials: string[] = [];
   finals: string[] = [];
   tones: string[] = [];
-  
+
   private finalSubscription: Subscription;
   private initialSubscription: Subscription;
   private toneSubscription: Subscription;
 
-  constructor(private asqbService: AdvancedSearchQueryBuilderService) { 
-    this.initialSubscription = asqbService.selectedInitial$.subscribe(i => {
-      this.showInitials = i === null
-    })
-    this.finalSubscription = asqbService.selectedFinal$.subscribe(f => {
-      this.showFinals = f === null
-    })
-    this.toneSubscription = asqbService.selectedTone$.subscribe(t => {
-      this.showTones = t === null
-    })
+  constructor(private asqbService: AdvancedSearchQueryBuilderService) {
+    this.initialSubscription =
+        asqbService.selectedInitial$.subscribe(i => {this.showInitials = i === null}) this
+            .finalSubscription =
+            asqbService.selectedFinal$.subscribe(
+                                          f => {
+                                              this.showFinals = f === null}) this.toneSubscription =
+                asqbService.selectedTone$.subscribe(t => {this.showTones = t === null})
   }
 
   ngOnDestroy() {
@@ -57,5 +55,4 @@ export class PhonologyComposerComponent implements OnInit, OnDestroy {
   onSelectTone(t: string) {
     this.asqbService.selectTone(t);
   }
-
 }

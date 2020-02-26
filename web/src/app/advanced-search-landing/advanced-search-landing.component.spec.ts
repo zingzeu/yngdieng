@@ -1,16 +1,14 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { AdvancedSearchLandingComponent } from './advanced-search-landing.component';
+import {AdvancedSearchLandingComponent} from './advanced-search-landing.component';
 
 describe('AdvancedSearchLandingComponent', () => {
   let component: AdvancedSearchLandingComponent;
   let fixture: ComponentFixture<AdvancedSearchLandingComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ AdvancedSearchLandingComponent ]
-    })
-    .compileComponents();
+    TestBed.configureTestingModule({declarations: [AdvancedSearchLandingComponent]})
+        .compileComponents();
   }));
 
   beforeEach(() => {

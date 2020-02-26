@@ -1,16 +1,13 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { DetailsMonoHanziComponent } from './details-mono-hanzi.component';
+import {DetailsMonoHanziComponent} from './details-mono-hanzi.component';
 
 describe('DetailsMonoHanziComponent', () => {
   let component: DetailsMonoHanziComponent;
   let fixture: ComponentFixture<DetailsMonoHanziComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ DetailsMonoHanziComponent ]
-    })
-    .compileComponents();
+    TestBed.configureTestingModule({declarations: [DetailsMonoHanziComponent]}).compileComponents();
   }));
 
   beforeEach(() => {

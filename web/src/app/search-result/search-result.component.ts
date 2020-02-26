@@ -1,13 +1,14 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { ActivatedRoute, Router, ParamMap } from '@angular/router';
-import {  SearchResultRow } from 'yngdieng/shared/services_pb';
-import { getInitialString, getFinalString, getToneString } from "@yngdieng/utils";
-import { MonoHanziResultViewModel, FengResultViewModel } from '../common/view-models';
-import { AdvancedSearchQueryBuilderService } from '../advanced-search-query-builder.service';
-import { YngdiengBackendService } from '../yngdieng-backend.service';
-import { switchMap } from 'rxjs/operators';
-import { Subscription } from 'rxjs';
-import { getHanziString } from '../common/hanzi-util';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
+import {getFinalString, getInitialString, getToneString} from '@yngdieng/utils';
+import {Subscription} from 'rxjs';
+import {switchMap} from 'rxjs/operators';
+import {SearchResultRow} from 'yngdieng/shared/services_pb';
+
+import {AdvancedSearchQueryBuilderService} from '../advanced-search-query-builder.service';
+import {getHanziString} from '../common/hanzi-util';
+import {FengResultViewModel, MonoHanziResultViewModel} from '../common/view-models';
+import {YngdiengBackendService} from '../yngdieng-backend.service';
 
 // Keep in sync with server/backend/Services/YngdiengService.Search.cs
 const PAGE_SIZE = 10;
@@ -18,11 +19,10 @@ const PAGE_SIZE = 10;
   providers: [AdvancedSearchQueryBuilderService]
 })
 export class SearchResultComponent implements OnInit, OnDestroy {
-
   queryText: any;
   isBusy: boolean = false;
   showingAdvancedOptions: boolean = false;
-  results: Array<MonoHanziResultViewModel | FengResultViewModel> = [];
+  results: Array<MonoHanziResultViewModel|FengResultViewModel> = [];
   computationTimeMs: number;
   isInvalidQuery: boolean = false;
 
@@ -38,41 +38,34 @@ export class SearchResultComponent implements OnInit, OnDestroy {
   private resultSubscription: Subscription;
 
   constructor(
-    private route: ActivatedRoute,
-    private router: Router,
-    private backendService: YngdiengBackendService) { }
+      private route: ActivatedRoute, private router: Router,
+      private backendService: YngdiengBackendService) {}
 
   ngOnInit() {
-
     this.isBusy = true;
 
-    this.propertiesSubscription = this.route.paramMap
-      .subscribe(
-        paramMap => {
-          this.queryText = paramMap.get("query");
-          this.offset = this.getOffsetFromParamMap(paramMap);
-        }
-      );
-    this.resultSubscription = this.route.paramMap.pipe(
-      switchMap(paramMap => {
-        return this.backendService.search(paramMap.get("query"),
-          this.getOffsetFromParamMap(paramMap))
-      })
-    ).subscribe(
-      response => {
-        this.isBusy = false;
-        this.computationTimeMs = response.getComputationTimeMs();
-        this.results = response.getResultsList()
-          .map(resultRowToViewModel);
-        this.totalLength = response.getLength();
-      },
-      err => {
-        this.results = [];
-        console.error(err);
-        this.isBusy = false;
-        this.isInvalidQuery = true;
-      }
-    )
+    this.propertiesSubscription = this.route.paramMap.subscribe(paramMap => {
+      this.queryText = paramMap.get('query');
+      this.offset = this.getOffsetFromParamMap(paramMap);
+    });
+    this.resultSubscription =
+        this.route.paramMap
+            .pipe(switchMap(
+                paramMap => {return this.backendService.search(
+                    paramMap.get('query'), this.getOffsetFromParamMap(paramMap))}))
+            .subscribe(
+                response => {
+                  this.isBusy = false;
+                  this.computationTimeMs = response.getComputationTimeMs();
+                  this.results = response.getResultsList().map(resultRowToViewModel);
+                  this.totalLength = response.getLength();
+                },
+                err => {
+                  this.results = [];
+                  console.error(err);
+                  this.isBusy = false;
+                  this.isInvalidQuery = true;
+                })
   }
 
   ngOnDestroy() {
@@ -81,20 +74,20 @@ export class SearchResultComponent implements OnInit, OnDestroy {
   }
 
   private getOffsetFromParamMap(paramMap: ParamMap): number {
-    let offsetStr = paramMap.get("offset");
+    let offsetStr = paramMap.get('offset');
     if (offsetStr == undefined) {
       return 0;
     }
-    let tryParseResult = parseInt(offsetStr, /* radix= */10);
+    let tryParseResult = parseInt(offsetStr, /* radix= */ 10);
     return isNaN(tryParseResult) ? 0 : tryParseResult;
   }
 
   onNavigateBack() {
-    this.router.navigate(["/"])
+    this.router.navigate(['/'])
   }
 
   onPerformSearch(searchText: string) {
-    this.redirectTo(["/search", searchText])
+    this.redirectTo(['/search', searchText])
   }
 
   toggleAdvancedOptions() {
@@ -102,43 +95,38 @@ export class SearchResultComponent implements OnInit, OnDestroy {
   }
 
   onPageChanged(pageEvent) {
-    let newPageIndex = pageEvent["pageIndex"];
-    this.redirectTo(["/search", this.queryText, { 'offset': this.pageSize * newPageIndex }])
+    let newPageIndex = pageEvent['pageIndex'];
+    this.redirectTo(['/search', this.queryText, {'offset': this.pageSize * newPageIndex}])
   }
 
   private redirectTo(commands: any[]) {
-    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => this.router.navigate(commands));
+    this.router.navigateByUrl('/', {skipLocationChange: true})
+        .then(() => this.router.navigate(commands));
   }
-
 }
 
-function resultRowToViewModel(r: SearchResultRow): MonoHanziResultViewModel | FengResultViewModel {
+function resultRowToViewModel(r: SearchResultRow): MonoHanziResultViewModel|FengResultViewModel {
   switch (r.getResultCase()) {
     case SearchResultRow.ResultCase.AGGREGATED_DOCUMENT:
       let a = r.getAggregatedDocument();
       return {
-        _type: 'single',
-        id: a.getId(),
-        hanziCanonical: getHanziString(a.getHanziCanonical()),
-        hanziAlternatives: a.getHanziAlternativesList().map(getHanziString),
-        yngping: a.getYngping(),
-        initial: getInitialString(a.getInitial()),
-        final: getFinalString(a.getFinal()),
-        tone: getToneString(a.getTone()),
-        ciklinSource: a.hasCiklinSource() ? "戚林" : null,
-        dfdSource: a.hasDfdSource() ? "DFD " + a.getDfdSource().getPageNumber() + " 页" : null,
+        _type: 'single', id: a.getId(), hanziCanonical: getHanziString(a.getHanziCanonical()),
+            hanziAlternatives: a.getHanziAlternativesList().map(getHanziString),
+            yngping: a.getYngping(), initial: getInitialString(a.getInitial()),
+            final: getFinalString(a.getFinal()), tone: getToneString(a.getTone()),
+            ciklinSource: a.hasCiklinSource() ? '戚林' : null,
+            dfdSource: a.hasDfdSource() ? 'DFD ' + a.getDfdSource().getPageNumber() + ' 页' : null,
       }
     case SearchResultRow.ResultCase.FENG_DOCUMENT:
       let f = r.getFengDocument();
       return {
-        _type: "feng",
-        yngping: f.getYngpingCanonical(),
-        hanzi: f.getHanziCanonical(),
-        explanation: f.getExplanation().length > 100 ? f.getExplanation().substr(0, 97) + '...' : f.getExplanation(),
-        id: f.getId(),
+        _type: 'feng', yngping: f.getYngpingCanonical(), hanzi: f.getHanziCanonical(),
+            explanation: f.getExplanation().length > 100 ?
+            f.getExplanation().substr(0, 97) + '...' :
+            f.getExplanation(),
+            id: f.getId(),
       }
     default:
       return null
   }
 }
-

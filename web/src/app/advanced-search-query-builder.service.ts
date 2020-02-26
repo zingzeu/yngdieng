@@ -1,20 +1,17 @@
-import { Injectable } from '@angular/core';
-import { Subject, Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {Observable, Subject} from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable({providedIn: 'root'})
 export class AdvancedSearchQueryBuilderService {
-
   private selectedInitialSource = new Subject<string|null>();
   private selectedFinalSource = new Subject<string|null>();
   private selectedToneSource = new Subject<string|null>();
-  
-  selectedInitial$= this.selectedInitialSource.asObservable();
+
+  selectedInitial$ = this.selectedInitialSource.asObservable();
   selectedFinal$ = this.selectedFinalSource.asObservable();
   selectedTone$ = this.selectedToneSource.asObservable();
 
-  constructor() { }
+  constructor() {}
 
   selectInitial(i: string) {
     this.selectedInitialSource.next(i)
@@ -31,7 +28,7 @@ export class AdvancedSearchQueryBuilderService {
   clearFinal() {
     this.selectedFinalSource.next(null);
   }
-  
+
   selectTone(t: string) {
     this.selectedToneSource.next(t);
   }
@@ -40,4 +37,3 @@ export class AdvancedSearchQueryBuilderService {
     this.selectedToneSource.next(null);
   }
 }
-
