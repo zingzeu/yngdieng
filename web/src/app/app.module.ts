@@ -7,6 +7,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatCardModule } from '@angular/material/card';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import {MatButtonModule} from '@angular/material/button'; 
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -50,6 +51,7 @@ import { YngdiengBackendService } from './yngdieng-backend.service';
     MatIconModule,
     MatInputModule,
     MatToolbarModule,
+    MatButtonModule,
     MatCardModule,
     MatSlideToggleModule,
     MatPaginatorModule,
