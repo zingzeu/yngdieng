@@ -1,2 +1,74 @@
-@import 'external/npm/node_modules/@angular/material/prebuilt-themes/indigo-pink';
-//$theme-primary: #3e236e;
+@import 'external/npm/node_modules/@angular/material/theming';
+// Plus imports for other components in your app.
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+// Be sure that you only ever include this mixin once!
+@include mat-core();
+
+$palette-brownish: (
+  50: #e9e9e9,
+  100: #cac7c7,
+  200: #aca1a1,
+  300: #8f7b7b,
+  400: #7a5f5f,
+  500: #664445,
+  600: #5a3c3e,
+  700: #4a3233,
+  800: #3b2729,
+  900: #2b1b1d,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+  )
+);
+
+$palette-blueish: (
+  50: #ebeeff,
+  100: #cdd8f0,
+  200: #b3bdd9,
+  300: #97a3c3,
+  400: #828eb1,
+  500: #6d7ba1,
+  600: #5e6d8f,
+  700: #5e6d8f,
+  800: #3d4761,
+  900: #293249,
+  contrast: (
+    50: $dark-primary-text,
+    100: $dark-primary-text,
+    200: $dark-primary-text,
+    300: $dark-primary-text,
+    400: $dark-primary-text,
+    500: $light-primary-text,
+    600: $light-primary-text,
+    700: $light-primary-text,
+    800: $light-primary-text,
+    900: $light-primary-text,
+  )
+);
+
+// Define the palettes for your theme using the Material Design palettes available in palette.scss
+// (imported above). For each palette, you can optionally specify a default, lighter, and darker
+// hue. Available color palettes: https://material.io/design/color/
+$app-primary: mat-palette($palette-brownish);
+$app-accent:  mat-palette($palette-blueish, 200, 100, 400);
+
+// The warn palette is optional (defaults to red).
+$app-warn:    mat-palette($mat-red);
+
+// Create the theme object (a Sass map containing all of the palettes).
+$app-theme: mat-light-theme($app-primary, $app-accent, $app-warn);
+
+// Include theme styles for core and each component used in your app.
+// Alternatively, you can import and @include the theme mixins for each component
+// that you are using.
+@include angular-material-theme($app-theme);
