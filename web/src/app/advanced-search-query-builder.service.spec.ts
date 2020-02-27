@@ -1,6 +1,6 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { AdvancedSearchQueryBuilderService } from './advanced-search-query-builder.service';
+import {AdvancedSearchQueryBuilderService} from './advanced-search-query-builder.service';
 
 describe('AdvancedSearchQueryBuilderService', () => {
   let service: AdvancedSearchQueryBuilderService;

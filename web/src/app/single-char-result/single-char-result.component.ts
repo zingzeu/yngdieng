@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
-import { MonoHanziResultViewModel } from '../common/view-models';
-import { Router } from '@angular/router';
+import {Component, Input, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+
+import {MonoHanziResultViewModel} from '../common/view-models';
 
 @Component({
   selector: 'app-single-char-result',
@@ -8,17 +9,13 @@ import { Router } from '@angular/router';
   styleUrls: ['./single-char-result.component.scss']
 })
 export class SingleCharResultComponent implements OnInit {
+  @Input('document') document: MonoHanziResultViewModel;
 
-  @Input("document") document: MonoHanziResultViewModel;
+  constructor(private router: Router) {}
 
-
-  constructor(private router:Router) { }
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onDetailsClicked() {
-    this.router.navigate(["/char",this.document.id])
+    this.router.navigate(['/char', this.document.id])
   }
-
 }

@@ -1,12 +1,13 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Location } from '@angular/common';
-import { ActivatedRoute, Router } from '@angular/router';
-import { GetFengDocumentRequest } from 'yngdieng/shared/services_pb';
-import { YngdiengServiceClient } from 'yngdieng/shared/services_pb_service';
-import { FengDocument } from 'yngdieng/shared/documents_pb';
-import { YngdiengBackendService } from '../yngdieng-backend.service';
-import { map, switchMap } from 'rxjs/operators';
-import { Subscription } from 'rxjs';
+import {Location} from '@angular/common';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {Subscription} from 'rxjs';
+import {map, switchMap} from 'rxjs/operators';
+import {FengDocument} from 'yngdieng/shared/documents_pb';
+import {GetFengDocumentRequest} from 'yngdieng/shared/services_pb';
+import {YngdiengServiceClient} from 'yngdieng/shared/services_pb_service';
+
+import {YngdiengBackendService} from '../yngdieng-backend.service';
 
 @Component({
   selector: 'app-details-feng',
@@ -14,8 +15,6 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./details-feng.component.scss']
 })
 export class DetailsFengComponent implements OnInit, OnDestroy {
- 
-
   isBusy: boolean = false;
   hasError: boolean = false;
   fengDoc: FengDocument;
@@ -23,25 +22,26 @@ export class DetailsFengComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
 
   constructor(
-    private route: ActivatedRoute,
-    private location:Location,
-    private backendService: YngdiengBackendService
-  ) { }
+      private route: ActivatedRoute, private location: Location,
+      private backendService: YngdiengBackendService) {}
 
   ngOnInit() {
     this.isBusy = true;
 
-    this.subscription = this.route.paramMap.pipe(
-      map(paramMap => paramMap.get("id")),
-      switchMap(docId => this.backendService.getFengDocument(docId))
-    ).subscribe((response) => {
-      this.isBusy = false;
-      this.hasError = false;
-      this.fengDoc = response;
-    }, (err) => {
-      this.isBusy = false;
-      this.hasError = true;
-    })
+    this.subscription = this.route.paramMap
+                            .pipe(
+                                map(paramMap => paramMap.get('id')),
+                                switchMap(docId => this.backendService.getFengDocument(docId)))
+                            .subscribe(
+                                (response) => {
+                                  this.isBusy = false;
+                                  this.hasError = false;
+                                  this.fengDoc = response;
+                                },
+                                (err) => {
+                                  this.isBusy = false;
+                                  this.hasError = true;
+                                })
   }
 
   ngOnDestroy(): void {
@@ -51,5 +51,4 @@ export class DetailsFengComponent implements OnInit, OnDestroy {
   onBackClicked() {
     this.location.back();
   }
-
 }

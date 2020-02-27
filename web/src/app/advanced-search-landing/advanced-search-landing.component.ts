@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-advanced-search-landing',
@@ -7,22 +7,20 @@ import { Router } from '@angular/router';
   styleUrls: ['./advanced-search-landing.component.scss']
 })
 export class AdvancedSearchLandingComponent implements OnInit {
+  constructor(private router: Router) {}
 
-  constructor(private router: Router) { }
-
-  ngOnInit() {
-  }
+  ngOnInit() {}
 
   onNavigateBack() {
-    this.router.navigate(["/"])
+    this.router.navigate(['/'])
   }
 
   onPerformSearch(searchText: string) {
-    this.redirectTo(["/search", searchText])
+    this.redirectTo(['/search', searchText])
   }
 
   private redirectTo(commands: any[]) {
-    this.router.navigateByUrl('/', { skipLocationChange: true }).then(() => this.router.navigate(commands));
+    this.router.navigateByUrl('/', {skipLocationChange: true})
+        .then(() => this.router.navigate(commands));
   }
-
 }

@@ -12,10 +12,10 @@ load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 
 http_archive(
     name = "rules_proto",
-    sha256 = "73ebe9d15ba42401c785f9d0aeebccd73bd80bf6b8ac78f74996d31f2c0ad7a6",
-    strip_prefix = "rules_proto-2c0468366367d7ed97a1f702f9cd7155ab3f73c5",
+    sha256 = "4d421d51f9ecfe9bf96ab23b55c6f2b809cbaf0eea24952683e397decfbd0dd0",
+    strip_prefix = "rules_proto-f6b8d89b90a7956f6782a4a3609b2f0eee3ce965",
     urls = [
-        "https://github.com/bazelbuild/rules_proto/archive/2c0468366367d7ed97a1f702f9cd7155ab3f73c5.tar.gz",
+        "https://github.com/bazelbuild/rules_proto/archive/f6b8d89b90a7956f6782a4a3609b2f0eee3ce965.tar.gz",
     ],
 )
 
@@ -30,7 +30,7 @@ rules_proto_toolchains()
 ###################################
 git_repository(
     name = "io_bazel_rules_dotnet",
-    commit = "da9b6c931f49e596dce1e80f7b23d54686ec9248",  # 0.0.4
+    commit = "a8f5820a326180e7c9ec9f333bb9081efc843033",  # 0.0.4
     remote = "https://github.com/bazelbuild/rules_dotnet",
     shallow_since = "1572114700 +0200",
 )

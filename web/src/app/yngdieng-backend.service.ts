@@ -1,21 +1,18 @@
-import { Injectable, Inject } from '@angular/core';
-import { YNGDIENG_ENVIRONMENT, IYngdiengEnvironment } from '../environments/environment';
-import { YngdiengServiceClient } from 'yngdieng/shared/services_pb_service';
-import { Observable, Subject } from 'rxjs';
-import { FengDocument, AggregatedDocument } from 'yngdieng/shared/documents_pb';
-import { GetFengDocumentRequest, GetAggregatedDocumentRequest, SearchResponse, SearchRequest } from 'yngdieng/shared/services_pb';
+import {Inject, Injectable} from '@angular/core';
+import {Observable, Subject} from 'rxjs';
+import {AggregatedDocument, FengDocument} from 'yngdieng/shared/documents_pb';
+import {GetAggregatedDocumentRequest, GetFengDocumentRequest, SearchRequest, SearchResponse} from 'yngdieng/shared/services_pb';
+import {YngdiengServiceClient} from 'yngdieng/shared/services_pb_service';
 
-@Injectable({
-  providedIn: 'root'
-})
+import {IYngdiengEnvironment, YNGDIENG_ENVIRONMENT} from '../environments/environment';
+
+@Injectable({providedIn: 'root'})
 export class YngdiengBackendService {
+  private grpcClient: YngdiengServiceClient;
 
-  private grpcClient : YngdiengServiceClient;
-  
   constructor(@Inject(YNGDIENG_ENVIRONMENT) private environment: IYngdiengEnvironment) {
     this.grpcClient = new YngdiengServiceClient(this.environment.serverUrl);
   }
-
 
   search(queryText: string, offset: number = 0): Observable<SearchResponse> {
     let subject = new Subject<SearchResponse>();

@@ -1,16 +1,13 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { FengResultComponent } from './feng-result.component';
+import {FengResultComponent} from './feng-result.component';
 
 describe('FengResultComponent', () => {
   let component: FengResultComponent;
   let fixture: ComponentFixture<FengResultComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ FengResultComponent ]
-    })
-    .compileComponents();
+    TestBed.configureTestingModule({declarations: [FengResultComponent]}).compileComponents();
   }));
 
   beforeEach(() => {
