@@ -55,7 +55,7 @@ core_register_sdk(
 
 git_repository(
     name = "rules_proto_grpc",
-    commit = "1add33fdb7b1f2c85e660bc115c8bfe83d768162",
+    commit = "d7a4ab748cd072e26f5345a6ea03e18ca6e0d9f7",
     remote = "https://github.com/ztl8702/rules_proto_grpc.git",
     shallow_since = "1575092578 +1100",
 )
