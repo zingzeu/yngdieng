@@ -36,6 +36,7 @@ common --experimental_allow_incremental_repository_updates
 
 # Disable sandbox on Mac OS for performance reason.
 
+# TODO(https://github.com/MindongLab/yngdieng/issues/61):
 # Cannot disable sandbox for build because of SassCompiler not being herematic.
 #build --spawn_strategy=local
 run --spawn_strategy=local
