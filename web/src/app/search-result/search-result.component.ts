@@ -38,7 +38,8 @@ export class SearchResultComponent implements OnInit, OnDestroy {
   private resultSubscription: Subscription;
 
   constructor(
-      private route: ActivatedRoute, private router: Router,
+      private route: ActivatedRoute,
+      private router: Router,
       private backendService: YngdiengBackendService) {}
 
   ngOnInit() {

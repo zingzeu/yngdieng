@@ -32,15 +32,32 @@ import {YngdiengBackendService} from './yngdieng-backend.service';
 
 @NgModule({
   declarations: [
-    AppComponent, SearchResultComponent, PhonologyComposerComponent,
-    PhonologyQueryRendererComponent, HomeComponent, SingleCharResultComponent, FengResultComponent,
-    DetailsFengComponent, SearchToolbarComponent, AdvancedSearchLandingComponent,
+    AppComponent,
+    SearchResultComponent,
+    PhonologyComposerComponent,
+    PhonologyQueryRendererComponent,
+    HomeComponent,
+    SingleCharResultComponent,
+    FengResultComponent,
+    DetailsFengComponent,
+    SearchToolbarComponent,
+    AdvancedSearchLandingComponent,
     DetailsMonoHanziComponent
   ],
   imports: [
-    BrowserModule, AppRoutingModule, NoopAnimationsModule, MatChipsModule, MatIconModule,
-    MatInputModule, MatToolbarModule, MatButtonModule, MatCardModule, MatSlideToggleModule,
-    MatPaginatorModule, FormsModule, ReactiveFormsModule
+    BrowserModule,
+    AppRoutingModule,
+    NoopAnimationsModule,
+    MatChipsModule,
+    MatIconModule,
+    MatInputModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatCardModule,
+    MatSlideToggleModule,
+    MatPaginatorModule,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers:
       [{provide: YNGDIENG_ENVIRONMENT, useValue: getYngdiengEnvironment()}, YngdiengBackendService],
