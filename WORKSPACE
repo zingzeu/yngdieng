@@ -30,7 +30,7 @@ rules_proto_toolchains()
 ###################################
 git_repository(
     name = "io_bazel_rules_dotnet",
-    commit = "a8f5820a326180e7c9ec9f333bb9081efc843033",  # 0.0.4
+    commit = "0086d349f279784cc66ca16aaaf214b43d69253c",  # 0.0.4
     remote = "https://github.com/bazelbuild/rules_dotnet",
     shallow_since = "1572114700 +0200",
 )
