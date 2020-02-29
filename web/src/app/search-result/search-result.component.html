@@ -17,12 +17,10 @@
     <app-single-char-result
       [document]="document"
       *ngIf="document._type == 'single'"
-      class="result-card"
     ></app-single-char-result>
     <app-feng-result
     [document]="document"
       *ngIf="document._type == 'feng'"
-      class="result-card"
     ></app-feng-result>
   </ng-container>
   <mat-paginator [length]="totalLength"

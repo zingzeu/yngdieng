@@ -10,14 +10,21 @@
     <p>{{ fengDoc.getExplanation() }}</p>
     <p><small>出处：馮愛珍. 1998. 福州方言詞典. 南京: 江蘇教育出版社</small></p>
 
-    <ng-container *ngIf="singleCharResults.length > 0">
-      <h2>历史音韵</h2>
+    <mat-expansion-panel *ngIf="singleCharResults.length > 0">
+      <mat-expansion-panel-header>
+        <mat-panel-title>
+          历史音韵
+        </mat-panel-title>
+        <mat-panel-description>
+          戚林八音、DFD
+        </mat-panel-description>
+      </mat-expansion-panel-header>
+
       <app-single-char-result
         *ngFor="let s of singleCharResults"
         [document]="s"
-        class="result-card"
       ></app-single-char-result>
-    </ng-container>
+    </mat-expansion-panel>
   </div>
 </ng-container>
 
