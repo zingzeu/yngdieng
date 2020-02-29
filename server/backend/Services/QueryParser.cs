@@ -53,6 +53,17 @@ namespace Yngdieng.Backend.Services
           return null;
         }
       }
+
+      if (keyValuePairs.ContainsKey("historial"))
+      {
+          var value = keyValuePairs ["historial"]
+                          .Trim()
+                          .ToLowerInvariant();
+          if (value == "yes" || value == "true")
+          {
+              query.AlwaysIncludeHistorial = true;
+          }
+      }
       if (keyValuePairs.ContainsKey("i") || keyValuePairs.ContainsKey("f") || keyValuePairs.ContainsKey("t"))
       {
         var phonologyQuery = new Query.Types.PhonologyQuery();
