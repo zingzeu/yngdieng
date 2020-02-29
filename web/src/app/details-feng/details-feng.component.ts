@@ -22,7 +22,8 @@ export class DetailsFengComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
 
   constructor(
-      private route: ActivatedRoute, private location: Location,
+      private route: ActivatedRoute,
+      private location: Location,
       private backendService: YngdiengBackendService) {}
 
   ngOnInit() {

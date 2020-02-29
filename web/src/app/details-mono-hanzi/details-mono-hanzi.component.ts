@@ -26,7 +26,9 @@ export class DetailsMonoHanziComponent implements OnInit, OnDestroy {
   private vocabSubscription: Subscription;
 
   constructor(
-      private location: Location, private router: Router, private route: ActivatedRoute,
+      private location: Location,
+      private router: Router,
+      private route: ActivatedRoute,
       private backendService: YngdiengBackendService) {}
 
   ngOnInit() {
