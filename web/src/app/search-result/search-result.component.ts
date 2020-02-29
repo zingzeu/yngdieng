@@ -1,13 +1,11 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
-import {getFinalString, getInitialString, getToneString} from '@yngdieng/utils';
 import {Subscription} from 'rxjs';
 import {switchMap} from 'rxjs/operators';
 import {SearchResultRow} from 'yngdieng/shared/services_pb';
 
 import {AdvancedSearchQueryBuilderService} from '../advanced-search-query-builder.service';
 import {toMonoHanziResultViewModel} from '../common/converters';
-import {getHanziString} from '../common/hanzi-util';
 import {FengResultViewModel, MonoHanziResultViewModel} from '../common/view-models';
 import {YngdiengBackendService} from '../yngdieng-backend.service';
 

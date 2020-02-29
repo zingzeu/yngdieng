@@ -56,7 +56,6 @@ export class DetailsFengComponent implements OnInit, OnDestroy {
             }))
             .subscribe(x => {
               this.singleCharResults = x;
-              console.log(this.singleCharResults);
             });
   }
 
