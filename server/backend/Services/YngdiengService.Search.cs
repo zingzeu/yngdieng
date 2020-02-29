@@ -60,19 +60,19 @@ namespace Yngdieng.Backend.Services
         case Query.QueryOneofCase.HanziQuery:
           {
             string hanziQuery = query.HanziQuery;
+            _logger.LogInformation(query.ToString());
+            IEnumerable<SearchResultRow> monoHanziResults = new List<SearchResultRow>();
             if (query.AlwaysIncludeHistorical)
             {
                 // 单字条目优先
-                var monoHanziResults =
-                    QueryMonoHanziAggregated(query.HanziQuery, query.SortBy)
-                        .Select(a => new SearchResultRow{AggregatedDocument = a});
+                monoHanziResults = QueryMonoHanziAggregated(query.HanziQuery, query.SortBy)
+                                       .Select(a => new SearchResultRow{AggregatedDocument = a});
             }
 
             // 之后是词汇（冯版），如有
-            var vocabResults = QueryVocab(hanziQuery).Select(d => new SearchResultRow
-            {
-              FengDocument = d
-            });
+            var vocabResults =
+                query.OnlyHistorical ? new List<SearchResultRow>()
+                : QueryVocab(hanziQuery).Select(d => new SearchResultRow{FengDocument = d});
             return monoHanziResults.Concat(vocabResults);
           }
         case Query.QueryOneofCase.FuzzyPronQuery:

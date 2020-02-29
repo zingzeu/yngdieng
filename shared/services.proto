@@ -92,5 +92,8 @@ message Query {
     }
 
     // 总是包含历史读音 (DFD/戚林).
-    bool always_include_historial = 6;
+    bool always_include_historical = 6;
+
+    // 仅包含历史读音 (DFD/戚林).
+    bool only_historical = 7;
 }

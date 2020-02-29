@@ -54,14 +54,19 @@ namespace Yngdieng.Backend.Services
         }
       }
 
-      if (keyValuePairs.ContainsKey("historial"))
+      if (keyValuePairs.ContainsKey("historical"))
       {
-          var value = keyValuePairs ["historial"]
+          var value = keyValuePairs ["historical"]
                           .Trim()
                           .ToLowerInvariant();
           if (value == "yes" || value == "true")
           {
-              query.AlwaysIncludeHistorial = true;
+              query.AlwaysIncludeHistorical = true;
+          }
+          else if (value == "only")
+          {
+              query.AlwaysIncludeHistorical = true;
+              query.OnlyHistorical = true;
           }
       }
       if (keyValuePairs.ContainsKey("i") || keyValuePairs.ContainsKey("f") || keyValuePairs.ContainsKey("t"))
