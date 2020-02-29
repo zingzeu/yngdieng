@@ -1,14 +1,11 @@
 import {Location} from '@angular/common';
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {getFinalString, getInitialString, getToneString} from '@yngdieng/utils';
 import {Observable, Subscription} from 'rxjs';
 import {map, switchMap} from 'rxjs/operators';
 import {FengDocument} from 'yngdieng/shared/documents_pb';
-import {AggregatedDocument} from 'yngdieng/shared/documents_pb';
 
-import {getHanziString} from '../common/hanzi-util';
-import {MonoHanziResultViewModel} from '../common/view-models';
+import {toMonoHanziResultViewModel} from '../common/converters';
 import {YngdiengBackendService} from '../yngdieng-backend.service';
 
 @Component({
@@ -55,7 +52,7 @@ export class DetailsFengComponent implements OnInit, OnDestroy {
               return this.backendService.search(`${d.getHanziCanonical()} historical:only`)
                   .pipe(
                       map(response => response.getResultsList().map(
-                              r => this.toMonoHanziResultViewModel(r.getAggregatedDocument()))));
+                              r => toMonoHanziResultViewModel(r.getAggregatedDocument()))));
             }))
             .subscribe(x => {
               this.singleCharResults = x;
@@ -72,18 +69,4 @@ export class DetailsFengComponent implements OnInit, OnDestroy {
     this.location.back();
   }
 
-  private toMonoHanziResultViewModel(a: AggregatedDocument): MonoHanziResultViewModel {
-    return {
-      _type: 'single',
-      id: a.getId(),
-      hanziCanonical: getHanziString(a.getHanziCanonical()),
-      hanziAlternatives: a.getHanziAlternativesList().map(getHanziString),
-      yngping: a.getYngping(),
-      initial: getInitialString(a.getInitial()),
-      final: getFinalString(a.getFinal()),
-      tone: getToneString(a.getTone()),
-      ciklinSource: a.hasCiklinSource() ? '戚林' : null,
-      dfdSource: a.hasDfdSource() ? 'DFD ' + a.getDfdSource().getPageNumber() + ' 页' : null,
-    } as MonoHanziResultViewModel;
-  }
 }
