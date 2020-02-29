@@ -1,12 +1,11 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
-import {getFinalString, getInitialString, getToneString} from '@yngdieng/utils';
 import {Subscription} from 'rxjs';
 import {switchMap} from 'rxjs/operators';
 import {SearchResultRow} from 'yngdieng/shared/services_pb';
 
 import {AdvancedSearchQueryBuilderService} from '../advanced-search-query-builder.service';
-import {getHanziString} from '../common/hanzi-util';
+import {toMonoHanziResultViewModel} from '../common/converters';
 import {FengResultViewModel, MonoHanziResultViewModel} from '../common/view-models';
 import {YngdiengBackendService} from '../yngdieng-backend.service';
 
@@ -109,15 +108,7 @@ export class SearchResultComponent implements OnInit, OnDestroy {
 function resultRowToViewModel(r: SearchResultRow): MonoHanziResultViewModel|FengResultViewModel {
   switch (r.getResultCase()) {
     case SearchResultRow.ResultCase.AGGREGATED_DOCUMENT:
-      let a = r.getAggregatedDocument();
-      return {
-        _type: 'single', id: a.getId(), hanziCanonical: getHanziString(a.getHanziCanonical()),
-            hanziAlternatives: a.getHanziAlternativesList().map(getHanziString),
-            yngping: a.getYngping(), initial: getInitialString(a.getInitial()),
-            final: getFinalString(a.getFinal()), tone: getToneString(a.getTone()),
-            ciklinSource: a.hasCiklinSource() ? '戚林' : null,
-            dfdSource: a.hasDfdSource() ? 'DFD ' + a.getDfdSource().getPageNumber() + ' 页' : null,
-      }
+      return toMonoHanziResultViewModel(r.getAggregatedDocument());
     case SearchResultRow.ResultCase.FENG_DOCUMENT:
       let f = r.getFengDocument();
       return {
