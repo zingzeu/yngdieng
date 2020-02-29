@@ -1,6 +1,8 @@
 Language: JavaScript
 BasedOnStyle: Google
 ColumnLimit: 100
+BinPackArguments: false
+BinPackParameters: false
 ---
 Language: Proto
 ColumnLimit: 100
