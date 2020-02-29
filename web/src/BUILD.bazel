@@ -15,8 +15,11 @@ load("@npm_bazel_terser//:index.bzl", "terser_minified")
 sass_binary(
     name = "global_stylesheet",
     src = "styles.scss",
+    include_paths = ["external/npm/node_modules"],
     output_name = "global_stylesheet.css",
-    deps = [":custom_theme"]
+    deps = [
+        ":custom_theme",
+    ],
 )
 
 sass_library(

@@ -8,8 +8,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "format": "git-clang-format",
-    "precommit": "check-clang-format \"yarn format\""
+    "format": "git-clang-format"
   },
   "engines": {
     "node": ">=10.9.0 <13.0.0",
@@ -82,5 +81,10 @@
     "tslint": "5.15.0",
     "typescript": "3.6.4",
     "webpack": "4.41.5"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "check-clang-format \"yarn format\""
+    }
   }
 }
