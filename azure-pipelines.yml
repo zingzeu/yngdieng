@@ -40,6 +40,10 @@ steps:
   displayName: 'Bazel Build'
 
 - script: |
+    bazel test //web/...
+  displayName: 'Bazel Test //web/...'
+
+- script: |
     pushd server && \
     dotnet build && \
     popd && \
