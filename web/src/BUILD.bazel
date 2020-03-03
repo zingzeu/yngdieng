@@ -225,8 +225,6 @@ history_server(
     templated_args = [
         "-a",
         "web/src/prodapp",
-        #"-p",
-        #"4200",
     ],
 )
 
