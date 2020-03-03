@@ -1,5 +1,3 @@
-package(default_visibility = ["//visibility:public"])
-
 load("@build_bazel_rules_nodejs//:index.bzl", "pkg_web")
 load("@npm_angular_bazel//:index.bzl", "ng_module")
 load("@npm//@babel/cli:index.bzl", "babel")
@@ -11,6 +9,8 @@ load("@npm_bazel_typescript//:index.bzl", "ts_devserver", "ts_library")
 load("@io_bazel_rules_sass//:defs.bzl", "multi_sass_binary", "sass_binary", "sass_library")
 load("@npm//html-insert-assets:index.bzl", "html_insert_assets")
 load("@npm_bazel_terser//:index.bzl", "terser_minified")
+
+package(default_visibility = ["//visibility:public"])
 
 sass_binary(
     name = "global_stylesheet",
@@ -225,8 +225,6 @@ history_server(
     templated_args = [
         "-a",
         "web/src/prodapp",
-        "-p",
-        "4200",
     ],
 )
 
@@ -236,7 +234,6 @@ ts_devserver(
     additional_root_paths = ["web/src"],
     bootstrap = ["@npm_bazel_labs//protobufjs:bootstrap_scripts"],
     entry_module = "yngdieng/web/src/main.dev",
-    port = 4200,
     # These scripts will be included in the JS bundle after require.js
     # They should have only named UMD modules, or require.js will throw.
     scripts = [
