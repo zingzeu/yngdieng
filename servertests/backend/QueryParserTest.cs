@@ -30,6 +30,28 @@ namespace Yngdieng.Backend.Tests
     }
 
     [Fact]
+    public void TestParse_HanziQuery_RespectsAlwaysIncludeHistoricalOption()
+    {
+        Assert.Equal(new Query{HanziQuery = "我",
+                               SortBy = Query.Types.SortByMethod.InitialFinalTone,
+                               AlwaysIncludeHistorical = false},
+                     QueryParser.Parse("我"));
+        Assert.Equal(new Query{HanziQuery = "我",
+                               SortBy = Query.Types.SortByMethod.InitialFinalTone,
+                               AlwaysIncludeHistorical = true},
+                     QueryParser.Parse("我 historical:yes"));
+        Assert.Equal(new Query{HanziQuery = "我",
+                               SortBy = Query.Types.SortByMethod.InitialFinalTone,
+                               AlwaysIncludeHistorical = true},
+                     QueryParser.Parse("我 historical:true"));
+        Assert.Equal(new Query{HanziQuery = "我",
+                               SortBy = Query.Types.SortByMethod.InitialFinalTone,
+                               AlwaysIncludeHistorical = true,
+                               OnlyHistorical = true},
+                     QueryParser.Parse("我 historical:only"));
+    }
+
+    [Fact]
     public void TestParse_FuzzyPronQuery()
     {
       Assert.Equal(new Query

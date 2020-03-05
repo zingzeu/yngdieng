@@ -8,10 +8,12 @@ import {HomeComponent} from './home/home.component';
 import {SearchResultComponent} from './search-result/search-result.component';
 
 const routes: Routes = [
-  {path: '', component: HomeComponent}, {path: 'search/:query', component: SearchResultComponent},
+  {path: '', component: HomeComponent},
+  {path: 'search/:query', component: SearchResultComponent},
   {path: 'advancedSearch', component: AdvancedSearchLandingComponent},
   {path: 'feng/:id', component: DetailsFengComponent},
-  {path: 'char/:id', component: DetailsMonoHanziComponent}, {path: '**', component: HomeComponent}
+  {path: 'char/:id', component: DetailsMonoHanziComponent},
+  {path: '**', component: HomeComponent}
 ];
 
 @NgModule({imports: [RouterModule.forRoot(routes)], exports: [RouterModule]})

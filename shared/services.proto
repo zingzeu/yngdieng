@@ -59,7 +59,7 @@ message GetAggregatedDocumentRequest{
 }
 
 // Internal Query
-// Next ID: 6
+// Next ID: 7
 message Query {
     oneof query {
         // 按模糊音查询
@@ -90,4 +90,10 @@ message Query {
         SORT_BY_UNSPECIFIED = 0;
         INITIAL_FINAL_TONE = 1;
     }
+
+    // 总是包含历史读音 (DFD/戚林).
+    bool always_include_historical = 6;
+
+    // 仅包含历史读音 (DFD/戚林).
+    bool only_historical = 7;
 }
