@@ -44,10 +44,10 @@
     shelljs "0.8.2"
     tsickle "^0.37.1"
 
-"@angular/cdk@9.0.0-rc.6":
-  version "9.0.0-rc.6"
-  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-9.0.0-rc.6.tgz#cbecc5837b08df5cb527a0804ba4cc207eb6c828"
-  integrity sha512-Zhd7+k+5pZnlKpl5wRTTqT8XEw5vo/sUrLQkgtdnuN+BFOIBDjdaeORqzbbKlyPmnrFJhhTbi9+zP55CX/xA5Q==
+"@angular/cdk@9.1.1":
+  version "9.1.1"
+  resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-9.1.1.tgz#343901c5d6c0d6c502ccbd075cb9e17ea3bc05f5"
+  integrity sha512-yzssAqbllGYgX+WeSYLjmEWtXVG5UPZwA0+dPlh+g85nG7b70DVRVYBi8PJySydsfPX/JMherFUU9h0QOWhhZw==
   optionalDependencies:
     parse5 "^5.0.0"
 
@@ -113,10 +113,10 @@
   resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-9.0.0-rc.7.tgz#0b0bfd3d60c3456b4eb0f7bf1dfeec97d04458ba"
   integrity sha512-hY/Dn2zg/yQb8Qk7a8RiwGJrankQAJssV4JJZSBuVGgtbdhdKv1+u9xNVcqYPlY+WuBhyvU+WoRWlooMv3c1AA==
 
-"@angular/material@9.0.0-rc.6":
-  version "9.0.0-rc.6"
-  resolved "https://registry.yarnpkg.com/@angular/material/-/material-9.0.0-rc.6.tgz#5818d1a99e35aaa0cff03b5d7e74b1c26aa3c541"
-  integrity sha512-VwUZncyCqJAvgoW9ySExQPdKmTazyFSjKz7M65VTSdYJBmG/K2V+/plFXC+4Vyjy+cC+B+BIw5hBuv8YjXuKog==
+"@angular/material@9.1.1":
+  version "9.1.1"
+  resolved "https://registry.yarnpkg.com/@angular/material/-/material-9.1.1.tgz#aabd148afac694dcb718ed190c0ac44042c92b56"
+  integrity sha512-XtfVTTzvLvw90g1sG8mV0kzkfnp2g7I/kUgwng7Zv3NG1Tzt/wEXVe6ovI45B/8qpN6i/7f2aCl7Gz4KTldAyA==
 
 "@angular/platform-browser-dynamic@9.0.0-rc.7":
   version "9.0.0-rc.7"
