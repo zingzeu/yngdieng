@@ -3,7 +3,7 @@
   "version": "0.0.0",
   "scripts": {
     "postinstall": "patch-package && ngcc",
-    "serve": "ibazel run //web/src:devserver -- -port=4200",
+    "serve": "ibazel run --spawn_strategy=sandboxed //web/src:devserver -- -port=4200",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
