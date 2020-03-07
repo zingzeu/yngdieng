@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder} from '@angular/forms';
 import {Router} from '@angular/router';
+import {SidenavStateService} from '../sidenav-state.service';
 
 @Component({
   selector: 'app-home',
@@ -11,7 +12,7 @@ export class HomeComponent implements OnInit {
   searchForm;
   private router: Router;
 
-  constructor(router: Router, formBuilder: FormBuilder) {
+  constructor(router: Router, formBuilder: FormBuilder, private sideNav: SidenavStateService) {
     this.router = router;
     this.searchForm = formBuilder.group({
       textQuery: '',
@@ -23,5 +24,9 @@ export class HomeComponent implements OnInit {
   onSubmit() {
     let textQuery = this.searchForm.controls.textQuery.value;
     this.router.navigate(['/search', textQuery])
+  }
+
+  onMenuClicked() {
+    this.sideNav.openSideNav();
   }
 }

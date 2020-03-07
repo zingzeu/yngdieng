@@ -7,6 +7,7 @@ import {MatExpansionModule} from '@angular/material/expansion';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {BrowserModule} from '@angular/platform-browser';
@@ -57,6 +58,7 @@ import {YngdiengBackendService} from './yngdieng-backend.service';
     MatButtonModule,
     MatCardModule,
     MatSlideToggleModule,
+    MatSidenavModule,
     MatPaginatorModule,
     FormsModule,
     ReactiveFormsModule

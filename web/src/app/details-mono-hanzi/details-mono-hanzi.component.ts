@@ -6,6 +6,7 @@ import {map, switchMap} from 'rxjs/operators';
 import {getFinalString, getInitialString, getToneString} from 'yngdieng/web/src/yngdieng/utils';
 
 import {getHanziString} from '../common/hanzi-util';
+import {SidenavStateService} from '../sidenav-state.service';
 import {YngdiengBackendService} from '../yngdieng-backend.service';
 
 @Component({
@@ -29,7 +30,8 @@ export class DetailsMonoHanziComponent implements OnInit, OnDestroy {
       private location: Location,
       private router: Router,
       private route: ActivatedRoute,
-      private backendService: YngdiengBackendService) {}
+      private backendService: YngdiengBackendService,
+      private sideNav: SidenavStateService) {}
 
   ngOnInit() {
     this.isBusy = true;
@@ -120,8 +122,8 @@ export class DetailsMonoHanziComponent implements OnInit, OnDestroy {
     this.vocabSubscription.unsubscribe();
   }
 
-  onBackClicked() {
-    this.location.back();
+  onMenuClicked() {
+    this.sideNav.openSideNav();
   }
 
   onHomophoneClicked(id: string) {
