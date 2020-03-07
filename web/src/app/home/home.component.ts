@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
   searchForm;
   private router: Router;
 
-  constructor(router: Router, formBuilder: FormBuilder, private sideNav: SidenavStateService) {
+  constructor(router: Router, formBuilder: FormBuilder) {
     this.router = router;
     this.searchForm = formBuilder.group({
       textQuery: '',
@@ -26,7 +26,4 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['/search', textQuery])
   }
 
-  onMenuClicked() {
-    this.sideNav.openSideNav();
-  }
 }
