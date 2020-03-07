@@ -9,9 +9,9 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  it('should display welcome message', () => {
-    page.navigateTo();
-    expect(page.getTitleText()).toEqual('web2 app is running!');
+  it('should display welcome message', async () => {
+    await page.navigateTo();
+    expect(await page.getLogoText()).toEqual('榕典');
   });
 
   afterEach(async () => {
