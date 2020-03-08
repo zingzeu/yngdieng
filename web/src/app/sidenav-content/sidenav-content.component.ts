@@ -26,4 +26,10 @@ export class SidenavContentComponent implements OnInit {
     this.sideNavState.closeSideNav();
     this.router.navigate(['/help']);
   }
+
+  onFeedbackClicked(){
+    this.sideNavState.closeSideNav();
+    var win = window.open("https://github.com/MindongLab/yngdieng/issues/new", '_blank');
+    win.focus();
+  }
 }
