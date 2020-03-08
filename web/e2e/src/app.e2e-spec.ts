@@ -1,5 +1,5 @@
 import {browser, logging} from 'protractor';
-
+const { toMatchImageSnapshot } = require('jest-image-snapshot');
 import {AppPage} from './app.po';
 
 describe('workspace-project App', () => {
@@ -10,6 +10,12 @@ describe('workspace-project App', () => {
   });
 
   it('should display welcome message', async () => {
+    await page.navigateTo();
+    expect(await page.getLogoText()).toEqual('榕典');
+  });
+
+
+  it('should match screenshot', async () => {
     await page.navigateTo();
     expect(await page.getLogoText()).toEqual('榕典');
   });

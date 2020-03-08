@@ -14,6 +14,7 @@ ts_library(
         "@npm//@types/node",
         "@npm//jasmine",
         "@npm//protractor",
+        "@npm//jest-image-snapshot",
         "@npm//tslib",
     ],
 )
@@ -23,6 +24,9 @@ protractor_web_test_suite(
     on_prepare = ":protractor.on-prepare.js",
     server = "//web/src:prodserver",
     deps = [":e2e_lib"],
+    #browsers=["@io_bazel_rules_webtesting//browsers:chromium-local",
+    #"@io_bazel_rules_webtesting//browsers:firefox-local"],
+    #tags=["native"]
 )
 
 protractor_web_test_suite(
@@ -38,4 +42,32 @@ protractor_web_test_suite(
 alias(
     name = "e2e",
     actual = "devserver_test",
+)
+
+load(":jest.bzl", "jest_test")
+
+jest_test(
+    name = "snapshot_test",
+    srcs = [
+         "babel.config.js",
+        "src/snapshot/a.test.js",
+        "index.test.js",
+        "setupTests.js",
+    ],
+    jest_config = ":jest.config.js",
+    tags = [
+        # Need to set the pwd to avoid jest needing a runfiles helper
+        # Windows users with permissions can use --enable_runfiles
+        # to make this test work
+        "no-bazelci-windows",
+        # TODO: why does this fail almost all the time, but pass on local Mac?
+        "no-bazelci-mac",
+    ],
+    deps = [
+        "@npm//@babel/core",
+        "@npm//@babel/preset-env",
+        "@npm//@jest/transform",
+        "@npm//babel-jest",
+        "@npm//jest-puppeteer-preset",
+    ],
 )
