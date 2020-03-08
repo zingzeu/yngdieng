@@ -1,5 +1,5 @@
 import {browser, logging} from 'protractor';
-const { toMatchImageSnapshot } = require('jest-image-snapshot');
+const {toMatchImageSnapshot} = require('jest-image-snapshot');
 import {AppPage} from './app.po';
 
 describe('workspace-project App', () => {
