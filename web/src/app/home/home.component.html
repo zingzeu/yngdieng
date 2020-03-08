@@ -1,14 +1,19 @@
-<app-common-toolbar></app-common-toolbar>
-<div class="logo">榕典</div>
+<div class="outer">
+  <app-common-toolbar></app-common-toolbar>
+  <div class="logo">榕典</div>
 
-<form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
-  <div class="fake-search-box">
-    <mat-form-field>
-      <input matInput formControlName="textQuery" placeholder="查字、词、读音..."/>
-      <mat-icon matSuffix (click)="onSubmit()">search</mat-icon>
-    </mat-form-field>
-    <div>
-      <a mat-button routerLink="advancedSearch">高级搜索</a>
+  <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
+    <div class="fake-search-box">
+      <mat-form-field>
+        <input class="search-input" matInput formControlName="textQuery" placeholder="查字、词、读音..."/>
+        <mat-icon matSuffix (click)="onSubmit()">search</mat-icon>
+      </mat-form-field>
+      <div>
+        <a mat-button routerLink="advancedSearch">高级搜索</a>
+      </div>
     </div>
+  </form>
+  <!-- reserved for blocks like 「每日一词」「新增词」 -->
+  <div class="activity-container">
   </div>
-</form>
+</div>
