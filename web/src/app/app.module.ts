@@ -1,16 +1,5 @@
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatButtonModule} from '@angular/material/button';
-import {MatCardModule} from '@angular/material/card';
-import {MatChipsModule} from '@angular/material/chips';
-import {MatExpansionModule} from '@angular/material/expansion';
-import {MatIconModule} from '@angular/material/icon';
-import {MatInputModule} from '@angular/material/input';
-import {MatListModule} from '@angular/material/list';
-import {MatPaginatorModule} from '@angular/material/paginator';
-import {MatSidenavModule} from '@angular/material/sidenav';
-import {MatSlideToggleModule} from '@angular/material/slide-toggle';
-import {MatToolbarModule} from '@angular/material/toolbar';
 import {BrowserModule} from '@angular/platform-browser';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 
@@ -18,6 +7,7 @@ import {YNGDIENG_ENVIRONMENT} from '../environments/environment';
 import {YngdiengDevEnvironment} from '../environments/environment.dev';
 import {YngdiengProdEnvironment} from '../environments/environment.prod';
 import {YngdiengStagingEnvironment} from '../environments/environment.staging';
+import {MaterialModule} from '../material/material.module';
 
 import {AdvancedSearchLandingComponent} from './advanced-search-landing/advanced-search-landing.component';
 import {AppRoutingModule} from './app-routing.module';
@@ -57,19 +47,9 @@ import {YngdiengBackendService} from './yngdieng-backend.service';
     BrowserModule,
     AppRoutingModule,
     NoopAnimationsModule,
-    MatChipsModule,
-    MatIconModule,
-    MatInputModule,
-    MatToolbarModule,
-    MatExpansionModule,
-    MatButtonModule,
-    MatCardModule,
-    MatSlideToggleModule,
-    MatSidenavModule,
-    MatPaginatorModule,
-    MatListModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MaterialModule
   ],
   providers:
       [{provide: YNGDIENG_ENVIRONMENT, useValue: getYngdiengEnvironment()}, YngdiengBackendService],
