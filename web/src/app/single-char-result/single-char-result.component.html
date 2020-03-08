@@ -1,10 +1,33 @@
 <mat-card class="result-card">
-    {{ document.hanziCanonical }} {{ document.yngping }} {{ document.initial
-    }}{{ document.final }} {{ document.tone }}
-    <li *ngFor="let h of document.hanziAlternatives">
-      {{ h }}
-    </li>
-    <p class="source" *ngIf="document.ciklinSource">{{ document.ciklinSource }}</p>
-    <p class="source" *ngIf="document.dfdSource">{{ document.dfdSource }}</p>
-    <p><i><a (click)="onDetailsClicked()">详细</a></i></p>
+  <div class="firstrow">
+    <div class="hanzi">
+      {{ document.hanziCanonical }}
+      <span *ngFor="let h of document.hanziAlternatives">
+        {{ h }}
+      </span>
+    </div>
+  </div>
+  <mat-grid-list cols="4">
+    <mat-grid-tile>
+
+    </mat-grid-tile>
+    <mat-grid-tile>{{ document.yngping }}</mat-grid-tile>
+    <mat-grid-tile
+      >{{ document.initial }}{{ document.final }}
+      {{ document.tone }}</mat-grid-tile
+    >
+    <mat-grid-tile><mat-icon>volume_up</mat-icon></mat-grid-tile>
+    <mat-grid-tile colspan="4"
+      ><span class="source" *ngIf="document.ciklinSource">{{
+        document.ciklinSource
+      }}</span>
+      <span class="source" *ngIf="document.dfdSource">{{
+        document.dfdSource
+      }}</span></mat-grid-tile
+    >
+  </mat-grid-list>
+
+  <p>
+    <i><a (click)="onDetailsClicked()">详细</a></i>
+  </p>
 </mat-card>
