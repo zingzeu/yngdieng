@@ -51,6 +51,7 @@ ng_module(
             "main.ts",
             "test.ts",
             "initialize_testbed.ts",
+            "material/**/*"
         ],
     ),
     assets = glob([
@@ -61,6 +62,7 @@ ng_module(
     deps = [
         "//web/src/yngdieng:lib",
         "//web/src/yngdieng:services_grpc_ts",
+        "//web/src/material",
         "@npm//@angular/core",
         "@npm//@angular/material",
         "@npm//@angular/platform-browser",
