@@ -1,5 +1,7 @@
 <mat-card class="result-card" >
-    <p>{{ document.yngping }}</p>
-    <h2 class="result-hanzi">{{ document.hanzi }}</h2>
-    <p class="source">{{ document.explanation }} <a (click)="onClick(document.id)"><i>详细></i></a></p>
+    <div class="result-yngping">{{ document.yngping }}</div>
+    <div class="result-hanzi">{{ document.hanzi }}</div>
+    <div class="source">{{ document.explanation }}
+      <a class="detail-link" (click)="onClick(document.id)"><i>详细></i></a>
+    </div>
 </mat-card>
