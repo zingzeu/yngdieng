@@ -6,14 +6,13 @@ load("@npm_angular_bazel//:index.bzl", "ng_module")
 load("@npm_bazel_rollup//:index.bzl", "rollup_bundle")
 load("@npm//history-server:index.bzl", "history_server")
 load("@npm_bazel_typescript//:index.bzl", "ts_devserver", "ts_library")
-load("@io_bazel_rules_sass//:defs.bzl", "multi_sass_binary", "sass_binary", "sass_library")
+load("@io_bazel_rules_sass//:defs.bzl", "sass_binary", "sass_library")
 load("@npm//html-insert-assets:index.bzl", "html_insert_assets")
 load("@npm_bazel_terser//:index.bzl", "terser_minified")
 
 package(default_visibility = ["//visibility:public"])
 
 exports_files(["tsconfig.json"])
-
 
 sass_binary(
     name = "global_stylesheet",

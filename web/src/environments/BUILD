@@ -7,6 +7,6 @@ ts_library(
     ]),
     visibility = ["//web:__subpackages__"],
     deps = [
-        "@npm//@angular/core"
-    ]
+        "@npm//@angular/core",
+    ],
 )
