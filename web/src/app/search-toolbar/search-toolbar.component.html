@@ -1,7 +1,7 @@
 <mat-toolbar class="mat-elevation-z4" color="primary">
     <mat-icon (click)="onBackClicked()">keyboard_arrow_left</mat-icon>
     <app-phonology-query-renderer
-    class="phonology-query-input"
+    class="phonology-query-input fill-remaining-space"
       *ngIf="showingPhonologyQuery"
       [initial]="initial"
       [final]="final"
@@ -12,10 +12,10 @@
     ></app-phonology-query-renderer>
     <form
       *ngIf="!showingPhonologyQuery"
-      class="text-query-input"
+      class="text-query-input fill-remaining-space"
       [formGroup]="searchForm"
       (ngSubmit)="onSubmit()">
       <input placeholder="查" formControlName="textQuery"/>
     </form>
-    <mat-icon (click)="onSearch()">search</mat-icon>
+    <mat-icon class="search-icon" (click)="onSearch()">search</mat-icon>
 </mat-toolbar>
