@@ -1,4 +1,3 @@
-import {Location} from '@angular/common';
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Observable, Subscription} from 'rxjs';
@@ -24,7 +23,6 @@ export class DetailsFengComponent implements OnInit, OnDestroy {
 
   constructor(
       private route: ActivatedRoute,
-      private location: Location,
       private backendService: YngdiengBackendService) {}
 
   ngOnInit() {
@@ -62,10 +60,6 @@ export class DetailsFengComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
     this.historicalSubscription.unsubscribe();
-  }
-
-  onBackClicked() {
-    this.location.back();
   }
 
 }

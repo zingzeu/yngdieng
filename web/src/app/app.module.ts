@@ -6,7 +6,9 @@ import {MatChipsModule} from '@angular/material/chips';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
+import {MatListModule} from '@angular/material/list';
 import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatToolbarModule} from '@angular/material/toolbar';
 import {BrowserModule} from '@angular/platform-browser';
@@ -20,14 +22,17 @@ import {YngdiengStagingEnvironment} from '../environments/environment.staging';
 import {AdvancedSearchLandingComponent} from './advanced-search-landing/advanced-search-landing.component';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
+import {CommonToolbarComponent} from './common-toolbar/common-toolbar.component';
 import {DetailsFengComponent} from './details-feng/details-feng.component';
 import {DetailsMonoHanziComponent} from './details-mono-hanzi/details-mono-hanzi.component';
 import {FengResultComponent} from './feng-result/feng-result.component';
+import {HelpComponent} from './help/help.component';
 import {HomeComponent} from './home/home.component';
 import {PhonologyComposerComponent} from './phonology-composer/phonology-composer.component';
 import {PhonologyQueryRendererComponent} from './phonology-query-renderer/phonology-query-renderer.component';
 import {SearchResultComponent} from './search-result/search-result.component';
 import {SearchToolbarComponent} from './search-toolbar/search-toolbar.component';
+import {SidenavContentComponent} from './sidenav-content/sidenav-content.component';
 import {SingleCharResultComponent} from './single-char-result/single-char-result.component';
 import {YngdiengBackendService} from './yngdieng-backend.service';
 
@@ -43,7 +48,10 @@ import {YngdiengBackendService} from './yngdieng-backend.service';
     DetailsFengComponent,
     SearchToolbarComponent,
     AdvancedSearchLandingComponent,
-    DetailsMonoHanziComponent
+    DetailsMonoHanziComponent,
+    SidenavContentComponent,
+    HelpComponent,
+    CommonToolbarComponent
   ],
   imports: [
     BrowserModule,
@@ -57,7 +65,9 @@ import {YngdiengBackendService} from './yngdieng-backend.service';
     MatButtonModule,
     MatCardModule,
     MatSlideToggleModule,
+    MatSidenavModule,
     MatPaginatorModule,
+    MatListModule,
     FormsModule,
     ReactiveFormsModule
   ],
