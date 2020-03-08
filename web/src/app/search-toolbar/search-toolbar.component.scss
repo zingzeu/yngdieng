@@ -1,7 +1,7 @@
 .text-query-input {
-    width: 100%;
+    width: 95%;
     input {
-        width: 100%;
+        width: 95%;
         border: none;
         line-height:40px;
         padding: 4px;
@@ -11,4 +11,10 @@
 
 .phonology-query-input {
     width: 100%;
+}
+
+mat-icon {
+  &:hover { 
+    cursor: pointer;
+  }
 }
