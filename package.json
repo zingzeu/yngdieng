@@ -2,7 +2,7 @@
   "name": "web2",
   "version": "0.0.0",
   "scripts": {
-    "postinstall": "patch-package && ngcc",
+    "postinstall": "ngcc",
     "serve": "ibazel run //web/src:devserver -- -port=4200",
     "build": "ng build",
     "test": "ng test",
