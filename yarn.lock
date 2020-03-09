@@ -3684,10 +3684,10 @@ hosted-git-info@^3.0.2:
   dependencies:
     lru-cache "^5.1.1"
 
-html-insert-assets@0.4.3:
-  version "0.4.3"
-  resolved "https://registry.yarnpkg.com/html-insert-assets/-/html-insert-assets-0.4.3.tgz#8673c4c89f78e3547cac395cf0e1591fa7ec6f00"
-  integrity sha512-X+uHs3XzqM8KP6acCKYkbdKvonAJuLutanmCXxp6zmUXCBfa7Nksy7CyDkf9rwcCn+LrMquEfD1WXwwRF6cD1g==
+html-insert-assets@0.5.0:
+  version "0.5.0"
+  resolved "https://registry.yarnpkg.com/html-insert-assets/-/html-insert-assets-0.5.0.tgz#c9bed8f04689c9aad3f2be26077a9e05e678dee5"
+  integrity sha512-HFvbKEkQOUZZkYLOAcMJKxpT7U16wPhIsnHAY1XXtTWR4urusQeRFgkONw3HdAQbKPtONOldq/Nse9KEZyYuqQ==
   dependencies:
     mkdirp "^0.5.1"
     parse5 "^5.1.1"
