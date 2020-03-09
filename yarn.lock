@@ -1061,10 +1061,10 @@
   dependencies:
     tmp "0.1.0"
 
-"@bazel/labs@1.4.0":
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/@bazel/labs/-/labs-1.4.0.tgz#4521dbfeedb3784a6b84256e0cad101782a498e0"
-  integrity sha512-zqwHvmAYSRdiDMGxuJoPNgiIWuIXwY+2Jgs42QVG/pV6TXbZ4qo/0Uqx2wuWvNKj1xLKV2oPpq93t1jIwlr1Ng==
+"@bazel/labs@1.4.1":
+  version "1.4.1"
+  resolved "https://registry.yarnpkg.com/@bazel/labs/-/labs-1.4.1.tgz#0a8714f7045c662a1456f006664762b2858f6d49"
+  integrity sha512-/4wQ6jmLXDLOiZc5zyndtaWlWXx4oshHWWPoi8xmyIdYf8tfpMUw6ddkJeVKWhEKw19F3LkfcSoRskR8W+QtnA==
 
 "@bazel/protractor@1.0.1":
   version "1.0.1"
