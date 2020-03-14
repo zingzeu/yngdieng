@@ -42,7 +42,7 @@
     "@bazel/bazel": "2.1.0",
     "@bazel/benchmark-runner": "0.1.0",
     "@bazel/buildifier": "2.2.1",
-    "@bazel/ibazel": "0.12.2",
+    "@bazel/ibazel": "0.12.3",
     "@bazel/jasmine": "1.4.1",
     "@bazel/karma": "1.4.1",
     "@bazel/labs": "1.4.1",
