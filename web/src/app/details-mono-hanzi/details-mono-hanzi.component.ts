@@ -1,4 +1,3 @@
-import {Location} from '@angular/common';
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
@@ -26,7 +25,6 @@ export class DetailsMonoHanziComponent implements OnInit, OnDestroy {
   private vocabSubscription: Subscription;
 
   constructor(
-      private location: Location,
       private router: Router,
       private route: ActivatedRoute,
       private backendService: YngdiengBackendService) {}
@@ -118,10 +116,6 @@ export class DetailsMonoHanziComponent implements OnInit, OnDestroy {
     this.currentDocumentSubscription.unsubscribe();
     this.homophonesSubscription.unsubscribe();
     this.vocabSubscription.unsubscribe();
-  }
-
-  onBackClicked() {
-    this.location.back();
   }
 
   onHomophoneClicked(id: string) {

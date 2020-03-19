@@ -3,18 +3,37 @@
     input {
         width: 95%;
         border: none;
-        line-height:40px;
+        line-height:32px;
         padding: 4px;
         font-size: 20px;
+        background-color: #DCD3D0;
     }
 }
 
 .phonology-query-input {
-    width: 100%;
+    // width: 100%;
+    background-color: #DCD3D0;
+    padding: 4px;
 }
 
 mat-icon {
   &:hover { 
     cursor: pointer;
   }
+}
+
+.search-icon {
+  padding-left: 20px;
+}
+
+.fill-remaining-space {
+  /* This fills the remaining space, by using flexbox. 
+     Every toolbar row uses a flexbox row layout. */
+  flex: 1 1 auto;
+  border: 2px red sold;
+}
+
+.mat-toolbar-row, .mat-toolbar-single-row {
+  min-height: 50px !important; 
+  height: 50px !important;
 }

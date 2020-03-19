@@ -1,7 +1,4 @@
-<mat-toolbar>
-  <mat-icon (click)="onBackClicked()">keyboard_arrow_left</mat-icon>
-  <span class="fill-remaining-space"></span>
-</mat-toolbar>
+<app-common-toolbar></app-common-toolbar>
 
 <ng-container *ngIf="!hasError && !isBusy">
   <p>{{ fengDoc.getYngpingCanonical() }}</p>
