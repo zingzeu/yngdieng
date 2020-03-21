@@ -995,6 +995,11 @@
     "@bazel/bazel-linux_x64" "2.1.0"
     "@bazel/bazel-win32_x64" "2.1.0"
 
+"@bazel/bazelisk@^1.3.0":
+  version "1.3.0"
+  resolved "https://registry.yarnpkg.com/@bazel/bazelisk/-/bazelisk-1.3.0.tgz#dc312dd30ad01e9af86e53b40795ab6e545fa55b"
+  integrity sha512-73H1nq3572tTf+dhDT86aWQN+LCyfxrh05jabqPXp6cpR8soxte3gS5oUqkN36fUe+J2HzNiV4CXZTz4Xytd3Q==
+
 "@bazel/benchmark-runner@0.1.0":
   version "0.1.0"
   resolved "https://registry.yarnpkg.com/@bazel/benchmark-runner/-/benchmark-runner-0.1.0.tgz#a586394fcf7f2402b381319fbc2750627b5a06f1"
