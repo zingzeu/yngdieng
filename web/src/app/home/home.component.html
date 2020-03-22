@@ -1,6 +1,11 @@
 <div class="outer">
   <app-common-toolbar></app-common-toolbar>
-  <div class="logo">榕典</div>
+  <div class="hero">
+    <img 
+      class="logo" 
+      src="/assets/logo.png" 
+      alt="榕典 Logo"/>
+  </div>
 
   <form [formGroup]="searchForm" (ngSubmit)="onSubmit()">
     <div class="fake-search-box">
