@@ -11,7 +11,7 @@
 </div>
 <app-phonology-composer *ngIf="showingAdvancedOptions"></app-phonology-composer>
 
-<div class="search-message" *ngIf="isInvalidQuery">搜索格式不正确: {{ queryText }}</div>
+<div class="result-message" *ngIf="isInvalidQuery">搜索格式不正确: {{ queryText }}</div>
 <div *ngIf="!isInvalidQuery && results.length > 0">
   <ng-container *ngFor="let document of results">
     <app-single-char-result
@@ -31,11 +31,11 @@
   </mat-paginator>
 </div>
 
-<div class="search-message" *ngIf="!isInvalidQuery && !isBusy && results.length == 0">
+<div class="result-message" *ngIf="!isInvalidQuery && !isBusy && results.length == 0">
   <h3>没有 {{ queryText }} 的搜索结果</h3>
 </div>
 
-<div class="search-message" *ngIf="isBusy">
+<div class="result-message" *ngIf="isBusy">
   <h3>加载中...</h3>
 </div>
 

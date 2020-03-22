@@ -1,10 +1,10 @@
 <app-common-toolbar></app-common-toolbar>
 
 <ng-container *ngIf="!hasError && !isBusy">
-  <p>{{ fengDoc.getYngpingCanonical() }}</p>
-  <h2>{{ fengDoc.getHanziCanonical() }}</h2>
-  <div class="content">
-    <p>{{ fengDoc.getExplanation() }}</p>
+  <div class="result-yngping result-detail">{{ fengDoc.getYngpingCanonical() }}</div>
+  <div class="result-hanzi result-detail">{{ fengDoc.getHanziCanonical() }}</div>
+  <div class="content result-detail">
+    <div class="source result-detail">{{ fengDoc.getExplanation() }}</div>
     <p><small>出处：馮愛珍. 1998. 福州方言詞典. 南京: 江蘇教育出版社</small></p>
 
     <mat-expansion-panel *ngIf="singleCharResults.length > 0">
