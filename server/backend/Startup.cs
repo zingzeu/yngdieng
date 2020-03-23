@@ -1,7 +1,3 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -24,6 +20,7 @@ namespace Yngdieng.Backend
         services.AddHealthChecks().AddCheck<IndexHealthCheck>("index_file_loading");
         services.AddGrpc();
         services.AddSingleton<IIndexHolder, IndexHolder>();
+        services.AddHostedService<IndexLoaderBackgroundService>();
         services.AddSingleton<ISearchCache, InMemorySearchCache>();
     }
 
