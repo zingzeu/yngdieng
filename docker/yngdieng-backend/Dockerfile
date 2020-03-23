@@ -12,3 +12,8 @@ FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
 WORKDIR /app
 COPY --from=builder /out .
 ENTRYPOINT ["dotnet", "Yngdieng.Backend.dll","--IndexFile=/data/yngdieng_index.bin"]
+
+HEALTHCHECK --start-period=10s \
+    --interval=30s \
+    --timeout=10s \
+    CMD curl --http2-prior-knowledge --fail http://localhost:5001/health || exit 1
