@@ -9,10 +9,11 @@ describe('workspace-project App', () => {
     page = new AppPage();
   });
 
-  // it('should display welcome message', async () => {
-  //   await page.navigateTo();
-  //   expect(await page.getLogoText()).toEqual('榕典');
-  // });
+  it('should display welcome message', async () => {
+    await page.navigateTo();
+    expect(await page.getLogoTag()).toEqual('img');
+    expect(await page.getLogoSrc()).toContain('logo.png');
+  });
 
   afterEach(async () => {
     // Assert that there are no errors emitted from the browser
