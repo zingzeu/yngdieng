@@ -6856,10 +6856,10 @@ symbol-observable@1.2.0:
   resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.2.0.tgz#c22688aed4eab3cdc2dfeacbb561660560a00804"
   integrity sha512-e900nM8RRtGhlV36KGEU9k65K3mPb1WV70OdjfxlG2EAuM1noi/E/BaW/uMhL7bPEssK8QV57vN3esixjUvcXQ==
 
-systemjs@6.2.5:
-  version "6.2.5"
-  resolved "https://registry.yarnpkg.com/systemjs/-/systemjs-6.2.5.tgz#6b01928066704af8d12c56dfb04dd9d8fabcbb36"
-  integrity sha512-Jw1FOgzxG+wIi+ewEPyYKsqxR3IQOQWMwFh1o7C0VfLYoBcVDYSg8EFrKCisUD+5+/KecrDC+NSy4exkl7QRdw==
+systemjs@6.2.6:
+  version "6.2.6"
+  resolved "https://registry.yarnpkg.com/systemjs/-/systemjs-6.2.6.tgz#9e529d6eb4a17929d2052ca0e4699ad5fb0eeed1"
+  integrity sha512-cIGKuf8PwDPsiuC+op7tiyvQTWLDzzXYSx9aYmSrHiz6mVal6VT7uAS0gTEBs5WIWc03RqhvnNbNgodaauBsbg==
 
 tapable@^1.0.0, tapable@^1.1.3:
   version "1.1.3"
