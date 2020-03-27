@@ -13,14 +13,14 @@
           历史音韵
         </mat-panel-title>
         <mat-panel-description>
-          戚林八音、DFD
+          戚林八音、Dictionary of Foochow Dialect
         </mat-panel-description>
       </mat-expansion-panel-header>
 
-      <app-single-char-result
+      <app-mono-hanzi-result
         *ngFor="let s of singleCharResults"
         [document]="s"
-      ></app-single-char-result>
+      ></app-mono-hanzi-result>
     </mat-expansion-panel>
   </div>
 </ng-container>

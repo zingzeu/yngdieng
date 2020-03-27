@@ -15,7 +15,7 @@ export function toMonoHanziResultViewModel(a: AggregatedDocument): MonoHanziResu
     initial: getInitialString(a.getInitial()),
     final: getFinalString(a.getFinal()),
     tone: getToneString(a.getTone()),
-    ciklinSource: a.hasCiklinSource() ? '戚林' : null,
-    dfdSource: a.hasDfdSource() ? 'DFD ' + a.getDfdSource().getPageNumber() + ' 页' : null,
+    ciklinSource: a.hasCiklinSource() ? '《戚林八音校注》' : null,
+    dfdSource: a.hasDfdSource() ? 'Dictionary of Foochow Dialect' : null,
   } as MonoHanziResultViewModel;
 }

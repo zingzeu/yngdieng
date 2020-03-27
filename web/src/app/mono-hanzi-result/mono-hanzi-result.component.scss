@@ -1,0 +1,23 @@
+.result-header {
+    display: flex;
+    flex-direction: row;
+    margin-right: 5px;
+
+    .result-hanzi {
+        flex-grow: 1;
+    }
+    .pron {
+        padding: 5px;
+        .header {
+            color: #aca1a1;
+            font-size: 0.8em;
+            margin-bottom: 4px;
+        }
+        font-size: 1.2em;
+    }
+}
+
+.result-hanzi-alt {
+    font: 1.5em;
+    color: #5e6d8f;
+}
