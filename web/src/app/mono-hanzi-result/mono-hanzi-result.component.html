@@ -1,0 +1,22 @@
+<mat-card class="result-card">
+  <div class="result-header">
+    <div class="result-hanzi">
+      {{ document.hanziCanonical }} 
+      <li *ngFor="let h of document.hanziAlternatives" class="result-hanzi-alt">
+        {{ h }}
+      </li>
+    </div>
+    <div class="pron">
+      <div class="header">榕拼(八音)</div>
+      <div class="text-yngping">{{ document.yngping }}</div>
+    </div>
+    <div class="pron">
+      <div class="header">反切</div>
+      <div>{{ document.initial }}{{ document.final }} {{ document.tone }}</div>
+    </div>
+  </div>
+
+  <div class="source">来源: {{ documentSource }}
+    <a class="detail-link" (click)="onDetailsClicked()"><i>详细></i></a>
+  </div>
+</mat-card>

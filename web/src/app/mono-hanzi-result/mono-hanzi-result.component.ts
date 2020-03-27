@@ -4,12 +4,17 @@ import {Router} from '@angular/router';
 import {MonoHanziResultViewModel} from '../common/view-models';
 
 @Component({
-  selector: 'app-single-char-result',
-  templateUrl: './single-char-result.component.html',
-  styleUrls: ['./single-char-result.component.scss']
+  selector: 'app-mono-hanzi-result',
+  templateUrl: './mono-hanzi-result.component.html',
+  styleUrls: ['./mono-hanzi-result.component.scss']
 })
 export class MonoHanziResultComponent implements OnInit {
   @Input('document') document: MonoHanziResultViewModel;
+  get documentSource() {
+    return [this.document.ciklinSource, this.document.dfdSource]
+        .filter(x => x !== null && x.length > 0)
+        .join('，');
+  }
 
   constructor(private router: Router) {}
 
