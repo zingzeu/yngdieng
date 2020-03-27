@@ -18,12 +18,12 @@ import {DetailsMonoHanziComponent} from './details-mono-hanzi/details-mono-hanzi
 import {FengResultComponent} from './feng-result/feng-result.component';
 import {HelpComponent} from './help/help.component';
 import {HomeComponent} from './home/home.component';
+import {MonoHanziResultComponent} from './mono-hanzi-result/mono-hanzi-result.component';
 import {PhonologyComposerComponent} from './phonology-composer/phonology-composer.component';
 import {PhonologyQueryRendererComponent} from './phonology-query-renderer/phonology-query-renderer.component';
 import {SearchResultComponent} from './search-result/search-result.component';
 import {SearchToolbarComponent} from './search-toolbar/search-toolbar.component';
 import {SidenavContentComponent} from './sidenav-content/sidenav-content.component';
-import {SingleCharResultComponent} from './single-char-result/single-char-result.component';
 import {YngdiengBackendService} from './yngdieng-backend.service';
 
 @NgModule({
@@ -33,7 +33,7 @@ import {YngdiengBackendService} from './yngdieng-backend.service';
     PhonologyComposerComponent,
     PhonologyQueryRendererComponent,
     HomeComponent,
-    SingleCharResultComponent,
+    MonoHanziResultComponent,
     FengResultComponent,
     DetailsFengComponent,
     SearchToolbarComponent,

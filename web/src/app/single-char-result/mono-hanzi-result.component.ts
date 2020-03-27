@@ -8,7 +8,7 @@ import {MonoHanziResultViewModel} from '../common/view-models';
   templateUrl: './single-char-result.component.html',
   styleUrls: ['./single-char-result.component.scss']
 })
-export class SingleCharResultComponent implements OnInit {
+export class MonoHanziResultComponent implements OnInit {
   @Input('document') document: MonoHanziResultViewModel;
 
   constructor(private router: Router) {}
