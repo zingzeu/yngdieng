@@ -80,7 +80,7 @@
     "terser": "4.6.7",
     "tslint": "6.1.0",
     "typescript": "3.6.4",
-    "webpack": "4.42.0"
+    "webpack": "4.42.1"
   },
   "husky": {
     "hooks": {
