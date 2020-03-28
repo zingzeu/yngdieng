@@ -1,0 +1,30 @@
+ol { 
+    counter-reset: item; 
+    padding-left: 2em;
+}
+
+li { 
+    display: block;
+    padding-bottom: 4px;
+}
+
+li:before { 
+    content: counters(item, ".") ". "; 
+    counter-increment: item;
+    font-family: 'Roboto', sans-serif;
+    color: #5a3c3e;
+}
+
+// To-level bullets
+.content > ol > li {
+    font-weight: bold;
+    // All child points
+    padding-top: 4px;
+    > * {
+        font-weight: normal;
+    }
+}
+
+.content > ol {
+    padding-left: 10px;
+}
