@@ -1133,10 +1133,10 @@
   dependencies:
     tmp "0.1.0"
 
-"@bazel/labs@1.4.1":
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/@bazel/labs/-/labs-1.4.1.tgz#0a8714f7045c662a1456f006664762b2858f6d49"
-  integrity sha512-/4wQ6jmLXDLOiZc5zyndtaWlWXx4oshHWWPoi8xmyIdYf8tfpMUw6ddkJeVKWhEKw19F3LkfcSoRskR8W+QtnA==
+"@bazel/labs@1.5.0":
+  version "1.5.0"
+  resolved "https://registry.yarnpkg.com/@bazel/labs/-/labs-1.5.0.tgz#37ea33b27eb199ea8f7fdbf4035459fa3b2b89d2"
+  integrity sha512-tfGvjTaGv/1EZpA7WalV4PM2OK5F/Y3VuM5Wzj0JQWAoEr0LIiYAI2d7Q3D/RytTPhGCBzSt3vEYv8d8MJzeJQ==
 
 "@bazel/protractor@1.4.1":
   version "1.4.1"
