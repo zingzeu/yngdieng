@@ -54,7 +54,7 @@
     "@grpc/proto-loader": "0.5.3",
     "@improbable-eng/grpc-web": "0.12.0",
     "@types/google-protobuf": "3.7.2",
-    "@types/jasmine": "3.5.9",
+    "@types/jasmine": "3.5.10",
     "@types/node": "6.14.9",
     "clang-format": "1.4.0",
     "core-js": "2.6.11",
