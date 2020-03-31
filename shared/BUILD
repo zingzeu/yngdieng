@@ -1,5 +1,4 @@
 load("@rules_proto//proto:defs.bzl", "proto_library")
-load("@rules_proto_grpc//csharp:defs.bzl")
 
 package(default_visibility = ["//visibility:public"])
 
