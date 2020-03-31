@@ -33,7 +33,10 @@ proto_library(
 
 csharp_proto_library(
     name = "documents_proto_csharp.dll",
-    deps = [":documents_proto"],
+    deps = [
+        ":documents_proto",
+        "//shared/zingzeudata:explanation_proto_csharp.dll",
+    ],
 )
 
 java_proto_library(
