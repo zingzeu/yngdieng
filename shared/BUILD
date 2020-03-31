@@ -10,7 +10,7 @@ proto_library(
         "phonology.proto",
     ],
     deps = [
-        #"@com_google_protobuf//:timestamp_proto",
+        "//shared/zingzeudata:explanation_proto",
     ],
 )
 

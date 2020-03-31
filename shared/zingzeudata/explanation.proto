@@ -1,0 +1,33 @@
+// TODO: move to MindongLab/yngdieng
+syntax = "proto3";
+
+package zingzeudata;
+
+option csharp_namespace = "ZingzeuData.Models";
+
+// 结构化的词条解释.
+// Next ID: 4
+message Explanation {
+
+  // 词条的义项.
+  repeated Sense senses = 1;
+
+  // Optional. 原书注释.
+  string notes_original = 2;
+
+  // Optional. 我们的注释.
+  string notes_ours = 3;
+
+  // 义项.
+  // Next ID: 4
+  message Sense {
+    // 义项的基本释义.
+    string text = 1;
+
+    // 例句.
+    repeated string examples = 2;
+
+    // 子义项.
+    repeated Sense child_senses = 3;
+  }
+}
