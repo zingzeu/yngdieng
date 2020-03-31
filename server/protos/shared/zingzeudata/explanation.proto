@@ -1,4 +1,3 @@
-// TODO: move to MindongLab/yngdieng
 syntax = "proto3";
 
 package zingzeudata;

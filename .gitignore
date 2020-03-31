@@ -410,3 +410,5 @@ testem.log
 Thumbs.db
 
 data/
+
+.ionide
