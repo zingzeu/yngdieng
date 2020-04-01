@@ -1,5 +1,10 @@
 <Project Sdk="Microsoft.NET.Sdk.Web">
 
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
+  </PropertyGroup>
+
   <ItemGroup>
     <ProjectReference Include="..\protos\Yngdieng.Protos.csproj" />
     <ProjectReference Include="..\common\Yngdieng.Common.csproj" />
@@ -7,12 +12,24 @@
 
   <ItemGroup>
     <PackageReference Include="CsvHelper" Version="12.3.2" />
-    <PackageReference Include="ZingzeuData.Shared" Version="1.0.1" />
+    <PackageReference Include="FSharp.Core" Version="4.7.1" />
+    <PackageReference Include="ZingzeuData.Shared" Version="1.0.2" />
+
   </ItemGroup>
 
-  <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>netcoreapp3.0</TargetFramework>
-  </PropertyGroup>
+  <!--
+    Workaround for conflicting types ZingzeuData.Models.Explanation in both
+    Yngdieng.Protos.dll and ZingzeuData.Shared.dll.
+    See: https://github.com/NuGet/Samples/issues/39
+
+    The real solution is to have ZingzeuData.Shared reference Yngdieng.Protos.
+  -->
+  <Target Name="AddCustomAliases" BeforeTargets="FindReferenceAssembliesForReferences;ResolveReferences">
+    <ItemGroup>
+      <ReferencePath Condition="'%(FileName)' == 'ZingzeuData.Shared' AND '%(ReferencePath.NuGetPackageId)' == 'ZingzeuData.Shared'">
+        <Aliases>zingzeudata</Aliases>
+      </ReferencePath>
+    </ItemGroup>
+  </Target>
 
 </Project>
