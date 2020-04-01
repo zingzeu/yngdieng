@@ -11,13 +11,13 @@
 </div>
 <app-phonology-composer *ngIf="showingAdvancedOptions"></app-phonology-composer>
 
-<div class="result-message" *ngIf="isInvalidQuery">搜索格式不正确: {{ queryText }}</div>
-<div *ngIf="!isInvalidQuery && results.length > 0">
+<div *ngIf="isInvalidQuery">搜索格式不正确: {{ queryText }}</div>
+<div *ngIf="!isInvalidQuery && results.length > 0" class="search-results-list">
   <ng-container *ngFor="let document of results">
-    <app-single-char-result
+    <app-mono-hanzi-result
       [document]="document"
       *ngIf="document._type == 'single'"
-    ></app-single-char-result>
+    ></app-mono-hanzi-result>
     <app-feng-result
     [document]="document"
       *ngIf="document._type == 'feng'"

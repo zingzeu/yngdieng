@@ -1,36 +1,25 @@
-using System.IO;
-using System;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Configuration;
 using Yngdieng.Protos;
 
 namespace Yngdieng.Backend
 {
   public interface IIndexHolder
   {
-    YngdiengIndex GetIndex();
+      void StoreIndex(YngdiengIndex index);
+      YngdiengIndex GetIndex();
   }
 
   public sealed class IndexHolder : IIndexHolder
   {
-    private readonly ILogger<IndexHolder> _logger;
+      private YngdiengIndex index = new YngdiengIndex();
 
-    private YngdiengIndex index;
-
-    public IndexHolder(IConfiguration config, ILogger<IndexHolder> logger)
-    {
-      var indexFilePath = config["IndexFile"];
-      _logger = logger;
-
-      _logger.LogInformation($"Loading index from {Path.GetFullPath(indexFilePath)}");
-
-      using (var input = File.OpenRead(indexFilePath))
+      public IndexHolder()
       {
-        index = YngdiengIndex.Parser.ParseFrom(input);
       }
 
-      _logger.LogInformation($"{index.Documents.Count} documents loaded.");
-    }
+      public void StoreIndex(YngdiengIndex index)
+      {
+          this.index = index;
+      }
 
     public YngdiengIndex GetIndex()
     {
