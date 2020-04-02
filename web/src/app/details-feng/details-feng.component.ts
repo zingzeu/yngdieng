@@ -4,6 +4,7 @@ import {Observable, Subscription} from 'rxjs';
 import {map, switchMap} from 'rxjs/operators';
 import {FengDocument} from 'yngdieng/shared/documents_pb';
 
+import {renderExplanation} from '../../yngdieng/explanations';
 import {toMonoHanziResultViewModel} from '../common/converters';
 import {YngdiengBackendService} from '../yngdieng-backend.service';
 
@@ -20,6 +21,13 @@ export class DetailsFengComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription;
   private historicalSubscription: Subscription;
+
+  get explanation() {
+    if (this.fengDoc != null && this.fengDoc.getExplanationStructured() != null) {
+      return renderExplanation(this.fengDoc.getExplanationStructured());
+    }
+    return null;
+  }
 
   constructor(
       private route: ActivatedRoute,

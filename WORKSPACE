@@ -32,7 +32,7 @@ git_repository(
     name = "io_bazel_rules_dotnet",
     commit = "a8f5820a326180e7c9ec9f333bb9081efc843033",  # 0.0.4
     remote = "https://github.com/bazelbuild/rules_dotnet",
-    shallow_since = "1572114700 +0200",
+    shallow_since = "1578483019 +0100"
 )
 
 load(

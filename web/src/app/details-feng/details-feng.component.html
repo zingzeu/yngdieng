@@ -5,6 +5,7 @@
   <h2>{{ fengDoc.getHanziCanonical() }}</h2>
   <div class="content">
     <p>{{ fengDoc.getExplanation() }}</p>
+    <div [innerHTML]="explanation"></div>
     <p><small>出处：馮愛珍. 1998. 福州方言詞典. 南京: 江蘇教育出版社</small></p>
 
     <mat-expansion-panel *ngIf="singleCharResults.length > 0">
