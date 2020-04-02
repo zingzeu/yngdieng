@@ -4,7 +4,13 @@
   <p>{{ fengDoc.getYngpingCanonical() }}</p>
   <h2>{{ fengDoc.getHanziCanonical() }}</h2>
   <div class="content">
-    <p>{{ fengDoc.getExplanation() }}</p>
+    <p *ngIf="!showStructuredExplanation" >{{ fengDoc.getExplanation() }}</p>
+    <div *ngIf="showStructuredExplanation" 
+      [innerHTML]="structuredExplanation"></div>
+    <mat-checkbox 
+      class="toggle-structured" 
+      *ngIf="showToggleStructured" 
+      [(ngModel)]="toggleStructured">结构化 (DEBUG)</mat-checkbox>
     <p><small>出处：馮愛珍. 1998. 福州方言詞典. 南京: 江蘇教育出版社</small></p>
 
     <mat-expansion-panel *ngIf="singleCharResults.length > 0">

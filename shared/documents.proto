@@ -2,6 +2,8 @@ syntax = "proto3";
 
 package yngdieng;
 option csharp_namespace = "Yngdieng.Protos";
+
+import "shared/zingzeudata/explanation.proto";
 import "shared/phonology.proto";
 
 // Next ID: 14
@@ -69,7 +71,7 @@ message AggregatedDocument {
     DFDSourceInfo dfd_source = 9;
 }
 
-// Next ID: 10
+// Next ID: 11
 message FengDocument {
     string id = 1;
 
@@ -90,6 +92,8 @@ message FengDocument {
     string explanation = 6;
 
     string explanation_hans = 8;
+
+    .zingzeudata.Explanation explanation_structured = 10;
 
     SourceInfo source = 7;
 

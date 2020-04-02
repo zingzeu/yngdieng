@@ -10,12 +10,14 @@ ts_library(
     name = "lib",
     srcs = [
         "utils.ts",
+        "explanations.ts",
     ],
     module_name = "@yngdieng",
     visibility = ["//visibility:public"],
     deps = [
         ":documents_proto_ts",
         ":services_grpc_ts",
+        ":explanation_proto_ts",
     ],
 )
 
@@ -38,6 +40,12 @@ typescript_proto_library(
 typescript_proto_library(
     name = "documents_proto_ts",
     proto = "//shared:documents_proto",
+    visibility = ["//visibility:public"],
+)
+
+typescript_proto_library(
+    name = "explanation_proto_ts",
+    proto = "//shared/zingzeudata:explanation_proto",
     visibility = ["//visibility:public"],
 )
 

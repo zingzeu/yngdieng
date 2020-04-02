@@ -5,4 +5,10 @@ export const YNGDIENG_ENVIRONMENT =
 
 export interface IYngdiengEnvironment {
   isProduction: boolean, serverUrl: string,
+      // 结构化条目解释。
+      structuredExplanations: {
+        enabled: boolean,
+        // 显示一个 toggle，用于切换到非结构化解释.
+        showDebugToggle: boolean
+      },
 }
