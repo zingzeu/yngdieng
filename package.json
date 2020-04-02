@@ -25,6 +25,7 @@
     "@angular/platform-browser": "9.1.0",
     "@angular/platform-browser-dynamic": "9.1.0",
     "@angular/router": "9.1.0",
+    "font-collector": "^0.0.1",
     "google-protobuf": "3.11.4",
     "rxjs": "6.5.4",
     "systemjs": "6.2.6",
