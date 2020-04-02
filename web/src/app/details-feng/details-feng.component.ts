@@ -1,9 +1,10 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Observable, Subscription} from 'rxjs';
 import {map, switchMap} from 'rxjs/operators';
 import {FengDocument} from 'yngdieng/shared/documents_pb';
 
+import {IYngdiengEnvironment, YNGDIENG_ENVIRONMENT} from '../../environments/environment';
 import {renderExplanation} from '../../yngdieng/explanations';
 import {toMonoHanziResultViewModel} from '../common/converters';
 import {YngdiengBackendService} from '../yngdieng-backend.service';
@@ -16,20 +17,29 @@ import {YngdiengBackendService} from '../yngdieng-backend.service';
 export class DetailsFengComponent implements OnInit, OnDestroy {
   isBusy: boolean = false;
   hasError: boolean = false;
+  toggleStructured: boolean = true;
   fengDoc: FengDocument;
   singleCharResults = [];
 
   private subscription: Subscription;
   private historicalSubscription: Subscription;
 
-  get explanation() {
-    if (this.fengDoc != null && this.fengDoc.getExplanationStructured() != null) {
-      return renderExplanation(this.fengDoc.getExplanationStructured());
-    }
-    return null;
+  get showToggleStructured() {
+    return this.environment.structuredExplanations.enabled &&
+        this.environment.structuredExplanations.showDebugToggle;
+  }
+
+  get showStructuredExplanation() {
+    return this.environment.structuredExplanations.enabled && this.toggleStructured &&
+        this.fengDoc != null && this.fengDoc.getExplanationStructured() != null;
+  }
+
+  get structuredExplanation() {
+    return renderExplanation(this.fengDoc.getExplanationStructured());
   }
 
   constructor(
+      @Inject(YNGDIENG_ENVIRONMENT) private environment: IYngdiengEnvironment,
       private route: ActivatedRoute,
       private backendService: YngdiengBackendService) {}
 

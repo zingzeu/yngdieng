@@ -121,7 +121,7 @@ Try running `yarn bazel` instead.
     (If you did run that, check that you've got a fresh `yarn install`)
 
 """,
-    minimum_bazel_version = "0.27.0",
+    minimum_bazel_version = "2.1.0",
 )
 
 yarn_install(
