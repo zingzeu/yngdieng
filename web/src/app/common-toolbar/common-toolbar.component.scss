@@ -3,6 +3,8 @@
   height: 50px !important;
 }
 
-.menu-icon:hover {
-  cursor: pointer;
+mat-icon {
+  &:hover { 
+    cursor: pointer;
+  }
 }
