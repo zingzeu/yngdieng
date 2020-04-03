@@ -2,6 +2,19 @@
 
 @import "custom-theme";
 
+
+@font-face {
+  font-family: 'Ext-A';
+  src: url('assets/fonts/yngdieng-extended-A.woff') format('woff'), /* Pretty Modern Browsers */
+       url('assets/fonts/yngdieng-extended-A.ttf')  format('truetype'), /* Safari, Android, iOS */
+}
+
+@font-face {
+  font-family: 'Ext-B';
+  src: url('assets/fonts/yngdieng-extended-B.woff') format('woff'), /* Pretty Modern Browsers */
+       url('assets/fonts/yngdieng-extended-B.ttf')  format('truetype'), /* Safari, Android, iOS */
+}
+
 $background-color: #F7EFED;
 
 body {
@@ -26,7 +39,7 @@ body {
     background-color: rgba(220, 210, 208, 1);
     
     .result-hanzi {
-        font-family: 'Noto Serif TC', 'Noto Serif JP', serif;;
+        font-family: 'Noto Serif SC', 'Noto Serif TC', 'Ext-A', 'Ext-B', serif;
         font-size: 2em;
     }
 
@@ -38,4 +51,8 @@ body {
         color: #293249;
     }
   
+}
+
+.search-text {
+    font-family: 'Noto Serif SC', 'Noto Serif TC', 'Ext-A', 'Ext-B', serif;
 }

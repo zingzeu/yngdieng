@@ -15,7 +15,7 @@
       class="text-query-input fill-remaining-space"
       [formGroup]="searchForm"
       (ngSubmit)="onSubmit()">
-      <input placeholder="查" formControlName="textQuery"/>
+      <input class="search-text" placeholder="查" formControlName="textQuery"/>
     </form>
     <mat-icon class="search-icon" (click)="onSearch()">search</mat-icon>
 </mat-toolbar>
