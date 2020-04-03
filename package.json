@@ -50,7 +50,7 @@
     "@bazel/rollup": "1.5.0",
     "@bazel/terser": "1.5.0",
     "@bazel/typescript": "1.0.1",
-    "@grpc/proto-loader": "0.5.3",
+    "@grpc/proto-loader": "0.5.4",
     "@improbable-eng/grpc-web": "0.12.0",
     "@types/google-protobuf": "3.7.2",
     "@types/jasmine": "3.5.10",
