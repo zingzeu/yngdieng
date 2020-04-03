@@ -6,5 +6,6 @@ filegroup(
         "*.svg",
         "*.png",
         "*.css",
+        "fonts/*"
     ]),
 )

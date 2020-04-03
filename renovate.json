@@ -6,6 +6,10 @@
     {
       "updateTypes": ["minor", "patch", "pin", "digest"],
       "automerge": true
+    },
+    {
+      "packageNames": ["@bazel/ibazel"],
+      "enabled": false
     }
   ],
   "schedule": ["every weekend"],

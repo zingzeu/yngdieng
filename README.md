@@ -9,7 +9,7 @@
 ## 本地 Web 开发 Local web development
 
 Web app 技术栈是 Angular + Typescript，建构系统是 Bazel。
-你需要先安装 [Bazel](https://www.bazel.build/)。
+你需要先安装 [Bazel](https://www.bazel.build/) (> 2.2.0)。
 
 代码位置在 [web/src](web/src)。
 

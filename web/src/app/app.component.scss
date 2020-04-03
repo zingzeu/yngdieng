@@ -1,14 +1,5 @@
 $background-color: #F7EFED;
 
-@font-face {
-  font-family: 'Yngdieng Extended B';
-  src: url('../assets/font/yngdieng_extended_B.eot'); /* IE9 Compat Modes */
-  src: url(''../assets/font/yngdieng_extended_B.eot'?#iefix') format('embedded-opentype'), /* IE6-IE8 */
-       url('../assets/font/yngdieng_extended_B.woff') format('woff'), /* Pretty Modern Browsers */
-       url('../assets/font/yngdieng_extended_B.ttf')  format('truetype'), /* Safari, Android, iOS */
-       url('../assets/font/yngdieng_extended_B.svg#svgFontName') format('svg'); /* Legacy iOS */
-}
-
 .fullscreen-container {
     position: fixed;
     top: 0;
