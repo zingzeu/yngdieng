@@ -4,7 +4,7 @@ from os.path import isfile, join
 
 def get_input_files(input_dir):
     return [f for f in listdir(input_dir) \
-        if isfile(join(input_dir, f))]
+        if isfile(join(input_dir, f)) and f.endswith('.txt')]
 
 def in_range(c, unicode_block='A'):
     if unicode_block == 'A':
@@ -51,9 +51,10 @@ def main():
         output_path = sys.argv[2]
         unicode_block = sys.argv[3]
     else:
-        input_dir = 'input'
-        output_path = join('.', 'charset_scaned.txt')
+        input_dir = 'input_text'
+        output_path = join('charset_scanned', 'charset_B.txt')
         unicode_block = 'B'
+
     process(input_dir, output_path, unicode_block)
 
 if __name__ == "__main__":
