@@ -11,6 +11,7 @@ service YngdiengService {
     rpc GetDocument (GetDocumentRequest) returns (GetDocumentResponse);
     rpc GetAggregatedDocument (GetAggregatedDocumentRequest) returns (AggregatedDocument);
     rpc GetFengDocument(GetFengDocumentRequest) returns (FengDocument);
+    rpc GetDebugInfo(GetDebugInfoRequest) returns (DebugInfo);
 }
 
 // Next ID: 3
@@ -96,4 +97,11 @@ message Query {
 
     // 仅包含历史读音 (DFD/戚林).
     bool only_historical = 7;
+}
+
+message GetDebugInfoRequest {
+}
+
+message DebugInfo {
+  string index_version = 1;
 }

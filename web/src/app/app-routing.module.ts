@@ -2,6 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
 import {AdvancedSearchLandingComponent} from './advanced-search-landing/advanced-search-landing.component';
+import {DebugInfoComponent} from './debug-info/debug-info.component';
 import {DetailsFengComponent} from './details-feng/details-feng.component';
 import {DetailsMonoHanziComponent} from './details-mono-hanzi/details-mono-hanzi.component';
 import {HelpComponent} from './help/help.component';
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path: 'help', component: HelpComponent},
   {path: 'feng/:id', component: DetailsFengComponent},
   {path: 'char/:id', component: DetailsMonoHanziComponent},
+  {path: '_debug', component: DebugInfoComponent},
   {path: '**', component: HomeComponent}
 ];
 
