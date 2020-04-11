@@ -10,7 +10,7 @@ namespace Yngdieng.Backend.Services
         public override Task<DebugInfo> GetDebugInfo(GetDebugInfoRequest request,
                                                      ServerCallContext context)
         {
-            return Task.FromResult(new DebugInfo{IndexVersion = "unknown"});
+            return Task.FromResult(new DebugInfo{IndexVersion = _indexHolder.GetIndex().Version});
         }
     }
 }
