@@ -13,6 +13,7 @@ import {AdvancedSearchLandingComponent} from './advanced-search-landing/advanced
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {CommonToolbarComponent} from './common-toolbar/common-toolbar.component';
+import {DebugInfoComponent} from './debug-info/debug-info.component';
 import {DetailsFengComponent} from './details-feng/details-feng.component';
 import {DetailsMonoHanziComponent} from './details-mono-hanzi/details-mono-hanzi.component';
 import {FengResultComponent} from './feng-result/feng-result.component';
@@ -25,7 +26,6 @@ import {SearchResultComponent} from './search-result/search-result.component';
 import {SearchToolbarComponent} from './search-toolbar/search-toolbar.component';
 import {SidenavContentComponent} from './sidenav-content/sidenav-content.component';
 import {YngdiengBackendService} from './yngdieng-backend.service';
-import { DebugInfoComponent } from './debug-info/debug-info.component';
 
 @NgModule({
   declarations: [

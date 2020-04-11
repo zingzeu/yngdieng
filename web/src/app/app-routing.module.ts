@@ -2,12 +2,12 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
 import {AdvancedSearchLandingComponent} from './advanced-search-landing/advanced-search-landing.component';
+import {DebugInfoComponent} from './debug-info/debug-info.component';
 import {DetailsFengComponent} from './details-feng/details-feng.component';
 import {DetailsMonoHanziComponent} from './details-mono-hanzi/details-mono-hanzi.component';
 import {HelpComponent} from './help/help.component';
 import {HomeComponent} from './home/home.component';
 import {SearchResultComponent} from './search-result/search-result.component';
-import { DebugInfoComponent } from './debug-info/debug-info.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},

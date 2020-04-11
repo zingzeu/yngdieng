@@ -1,7 +1,8 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { YngdiengBackendService } from '../yngdieng-backend.service';
-import { Subscription } from 'rxjs';
-import { DebugInfo} from 'yngdieng/shared/services_pb';
+import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Subscription} from 'rxjs';
+import {DebugInfo} from 'yngdieng/shared/services_pb';
+
+import {YngdiengBackendService} from '../yngdieng-backend.service';
 
 @Component({
   selector: 'app-debug-info',
@@ -9,23 +10,22 @@ import { DebugInfo} from 'yngdieng/shared/services_pb';
   styleUrls: ['./debug-info.component.scss']
 })
 export class DebugInfoComponent implements OnInit, OnDestroy {
-
   private subscription: Subscription;
   debugInfo: DebugInfo;
 
-  constructor(private backendService: YngdiengBackendService) { }
+  constructor(private backendService: YngdiengBackendService) {}
 
   ngOnInit(): void {
-    this.subscription = this.backendService.getDebugInfo().subscribe(response => {
-      this.debugInfo = response;
-    },
-    error => {
-      console.error(error);
-    });
+    this.subscription = this.backendService.getDebugInfo().subscribe(
+        response => {
+          this.debugInfo = response;
+        },
+        error => {
+          console.error(error);
+        });
   }
 
-  ngOnDestroy(): void{
+  ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
-
 }

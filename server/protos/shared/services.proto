@@ -100,9 +100,8 @@ message Query {
 }
 
 message GetDebugInfoRequest {
-
 }
 
 message DebugInfo {
-    string index_version = 1;
+  string index_version = 1;
 }
