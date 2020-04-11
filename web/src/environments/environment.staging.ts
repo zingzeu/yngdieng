@@ -2,7 +2,7 @@ import {IYngdiengEnvironment} from './environment';
 
 export const YngdiengStagingEnvironment: IYngdiengEnvironment = {
   isProduction: false,
-  serverUrl: 'http://yngdieng-api-staging.mindong.asia:80',
+  serverUrl: 'https://yngdieng-api-staging.mindong.asia',
   structuredExplanations: {
     enabled: true,
     showDebugToggle: true,
