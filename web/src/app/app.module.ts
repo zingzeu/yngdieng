@@ -25,6 +25,7 @@ import {SearchResultComponent} from './search-result/search-result.component';
 import {SearchToolbarComponent} from './search-toolbar/search-toolbar.component';
 import {SidenavContentComponent} from './sidenav-content/sidenav-content.component';
 import {YngdiengBackendService} from './yngdieng-backend.service';
+import { DebugInfoComponent } from './debug-info/debug-info.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import {YngdiengBackendService} from './yngdieng-backend.service';
     DetailsMonoHanziComponent,
     SidenavContentComponent,
     HelpComponent,
-    CommonToolbarComponent
+    CommonToolbarComponent,
+    DebugInfoComponent
   ],
   imports: [
     BrowserModule,

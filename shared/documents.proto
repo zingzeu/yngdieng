@@ -121,6 +121,7 @@ message DocumentAggregateKey {
 }
 
 message YngdiengIndex {
+    string version = 4;
     repeated Document documents = 1;
     repeated AggregatedDocument aggregated_document = 2;
     repeated FengDocument feng_documents = 3;

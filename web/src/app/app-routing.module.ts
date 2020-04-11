@@ -7,6 +7,7 @@ import {DetailsMonoHanziComponent} from './details-mono-hanzi/details-mono-hanzi
 import {HelpComponent} from './help/help.component';
 import {HomeComponent} from './home/home.component';
 import {SearchResultComponent} from './search-result/search-result.component';
+import { DebugInfoComponent } from './debug-info/debug-info.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -15,6 +16,7 @@ const routes: Routes = [
   {path: 'help', component: HelpComponent},
   {path: 'feng/:id', component: DetailsFengComponent},
   {path: 'char/:id', component: DetailsMonoHanziComponent},
+  {path: '_debug', component: DebugInfoComponent},
   {path: '**', component: HomeComponent}
 ];
 
