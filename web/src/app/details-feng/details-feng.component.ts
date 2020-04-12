@@ -1,4 +1,4 @@
-import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Observable, Subscription} from 'rxjs';
 import {map, switchMap} from 'rxjs/operators';
@@ -12,7 +12,8 @@ import {YngdiengBackendService} from '../yngdieng-backend.service';
 @Component({
   selector: 'app-details-feng',
   templateUrl: './details-feng.component.html',
-  styleUrls: ['./details-feng.component.scss']
+  styleUrls: ['./details-feng.component.scss'],
+  encapsulation: ViewEncapsulation.None,
 })
 export class DetailsFengComponent implements OnInit, OnDestroy {
   isBusy: boolean = false;
@@ -79,5 +80,4 @@ export class DetailsFengComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
     this.historicalSubscription.unsubscribe();
   }
-
 }

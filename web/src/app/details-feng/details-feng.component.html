@@ -1,12 +1,16 @@
 <app-common-toolbar></app-common-toolbar>
 
 <ng-container *ngIf="!hasError && !isBusy">
-  <p>{{ fengDoc.getYngpingCanonical() }}</p>
-  <h2>{{ fengDoc.getHanziCanonical() }}</h2>
+  <div class="hero mat-elevation-z4">
+    <div class="hanzi unihan-text">{{ fengDoc.getHanziCanonical() }}</div>
+    <div class="text-yngping">{{ fengDoc.getYngpingCanonical() }}</div>
+  </div>
+
   <div class="content">
-    <p *ngIf="!showStructuredExplanation" >{{ fengDoc.getExplanation() }}</p>
-    <div *ngIf="showStructuredExplanation" 
-      [innerHTML]="structuredExplanation"></div>
+    <p *ngIf="!showStructuredExplanation" ><pre>{{ fengDoc.getExplanation() }}</pre></p>
+    <div class="unihan-text explanation"
+         *ngIf="showStructuredExplanation" 
+        [innerHTML]="structuredExplanation"></div>
     <mat-checkbox 
       class="toggle-structured" 
       *ngIf="showToggleStructured" 
@@ -30,5 +34,7 @@
     </mat-expansion-panel>
   </div>
 </ng-container>
+
+<p *ngIf="isBusy">加载中...</p>
 
 <p *ngIf="hasError">加载错误</p>

@@ -2,3 +2,62 @@
     text-align: right;
     font-size: 0.8em;
 }
+
+.hero {
+    background-color: #69656F;
+    color: white;
+    padding: 15px 25px 20px 25px;
+    .hanzi {
+        font-size: 2.5em;
+        margin-bottom: 10px;
+    }
+    .text-yngping {
+        font-size: 1em;
+    }
+}
+
+.content {
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.explanation {
+    ol { 
+        counter-reset: item; 
+        padding-left: 1rem;
+    }
+    
+    li { 
+        display: block;
+        padding-bottom: 4px;
+    }
+    
+    li.sense:before { 
+        content: counters(item, ".") ". "; 
+        counter-increment: item;
+        font-family: 'Roboto', sans-serif;
+        font-size: 0.9rem;
+    }
+
+    .sense {
+        font-size: 1.2rem;
+    }
+
+    .example {
+        font-size: 1rem;
+    }
+}
+
+// Top-level points
+.explanation > ol > li {
+    font-weight: bold;
+    // All child points
+    padding-top: 4px;
+    > * {
+        font-weight: normal;
+    }
+}
+
+.explanation > ol {
+    padding-left: 10px;
+}
