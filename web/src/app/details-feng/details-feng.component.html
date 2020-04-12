@@ -7,7 +7,8 @@
   </div>
 
   <div class="content">
-    <p *ngIf="!showStructuredExplanation" ><pre>{{ fengDoc.getExplanation() }}</pre></p>
+    <p class="raw-explanation"
+       *ngIf="!showStructuredExplanation" >{{ fengDoc.getExplanation() }}</p>
     <div class="unihan-text explanation"
          *ngIf="showStructuredExplanation" 
         [innerHTML]="structuredExplanation"></div>
@@ -15,16 +16,13 @@
       class="toggle-structured" 
       *ngIf="showToggleStructured" 
       [(ngModel)]="toggleStructured">结构化 (DEBUG)</mat-checkbox>
-    <p><small>出处：馮愛珍. 1998. 福州方言詞典. 南京: 江蘇教育出版社</small></p>
+    <p><small>出处：馮愛珍. 1998. 福州方言詞典. 南京: 江蘇教育出版社. 第 {{ fengDoc.getSource().getPageNumber() }} 頁.</small></p>
 
     <mat-expansion-panel *ngIf="singleCharResults.length > 0">
       <mat-expansion-panel-header>
         <mat-panel-title>
           历史音韵
         </mat-panel-title>
-        <mat-panel-description>
-          戚林八音、Dictionary of Foochow Dialect
-        </mat-panel-description>
       </mat-expansion-panel-header>
 
       <app-mono-hanzi-result

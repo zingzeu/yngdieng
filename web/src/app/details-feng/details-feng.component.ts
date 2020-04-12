@@ -36,7 +36,8 @@ export class DetailsFengComponent implements OnInit, OnDestroy {
   }
 
   get structuredExplanation() {
-    return renderExplanation(this.fengDoc.getExplanationStructured());
+    return renderExplanation(
+        this.fengDoc.getExplanationStructured(), this.fengDoc.getHanziCanonical());
   }
 
   constructor(

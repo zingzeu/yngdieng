@@ -19,12 +19,17 @@
 .content {
     padding-left: 10px;
     padding-right: 10px;
+    padding-bottom: 25px;
 }
 
 .explanation {
-    ol { 
+    ol {
         counter-reset: item; 
         padding-left: 1rem;
+    }
+
+    ul.examples-list {
+        margin-top: 0.5rem;
     }
     
     li { 
@@ -46,18 +51,24 @@
     .example {
         font-size: 1rem;
     }
+
+    .current-word {
+        font-weight: 900;
+        text-decoration: underline;
+    }
 }
 
 // Top-level points
 .explanation > ol > li {
-    font-weight: bold;
     // All child points
     padding-top: 4px;
-    > * {
-        font-weight: normal;
-    }
 }
 
 .explanation > ol {
     padding-left: 10px;
+}
+
+.raw-explanation {
+    font-family: monospace;
+    font-size: 12px;
 }
