@@ -54,7 +54,7 @@
     "@improbable-eng/grpc-web": "0.12.0",
     "@types/google-protobuf": "3.7.2",
     "@types/jasmine": "3.5.10",
-    "@types/node": "6.14.9",
+    "@types/node": "6.14.10",
     "clang-format": "1.4.0",
     "core-js": "2.6.11",
     "history-server": "1.3.1",
