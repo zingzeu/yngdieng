@@ -70,7 +70,7 @@
     "karma-sourcemap-loader": "0.3.7",
     "opencc": "1.0.6",
     "protobufjs": "6.8.9",
-    "protractor": "5.4.3",
+    "protractor": "5.4.4",
     "requirejs": "2.3.6",
     "rollup": "2.6.0",
     "rollup-plugin-commonjs": "10.1.0",
