@@ -3,9 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Grpc.Core;
 using Yngdieng.Backend.Services;
-using Microsoft.Extensions.Diagnostics.HealthChecks;
 using Yngdieng.Backend.HealthChecks;
 
 namespace Yngdieng.Backend
