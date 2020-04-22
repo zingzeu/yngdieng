@@ -16,7 +16,8 @@
       class="toggle-structured" 
       *ngIf="showToggleStructured" 
       [(ngModel)]="toggleStructured">结构化 (DEBUG)</mat-checkbox>
-    <p><small>出处：馮愛珍. 1998. 福州方言詞典. 南京: 江蘇教育出版社. 第 {{ fengDoc.getSource().getPageNumber() }} 頁.</small></p>
+    <p><small>出处：馮愛珍. 1998. 福州方言詞典. 南京: 江蘇教育出版社. 第 {{ fengDoc.getSource().getPageNumber() }} 頁.
+      用字可能經過<a class="mat-body" style="color:#293249" href="/help">編輯修訂</a>.</small></p>
 
     <mat-expansion-panel *ngIf="singleCharResults.length > 0">
       <mat-expansion-panel-header>
