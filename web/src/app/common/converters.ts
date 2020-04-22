@@ -1,5 +1,5 @@
-import {getFinalString, getInitialString, getToneString} from '@yngdieng/utils';
 import {AggregatedDocument} from 'yngdieng/shared/documents_pb';
+import {getFinalString, getInitialString, getToneString} from 'yngdieng/web/src/yngdieng/utils';
 
 import {getHanziString} from '../common/hanzi-util';
 

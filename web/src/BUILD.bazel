@@ -208,7 +208,6 @@ ts_devserver(
     name = "devserver",
     # serve web/src/index.html at /index.html
     additional_root_paths = ["web/src"],
-    bootstrap = ["@npm_bazel_labs//protobufjs:bootstrap_scripts"],
     entry_module = "yngdieng/web/src/main.dev",
     # These scripts will be included in the JS bundle after require.js
     # They should have only named UMD modules, or require.js will throw.
