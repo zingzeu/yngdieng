@@ -32,7 +32,7 @@ git_repository(
     name = "io_bazel_rules_dotnet",
     commit = "a8f5820a326180e7c9ec9f333bb9081efc843033",  # 0.0.4
     remote = "https://github.com/bazelbuild/rules_dotnet",
-    shallow_since = "1578483019 +0100"
+    shallow_since = "1578483019 +0100",
 )
 
 load(
@@ -82,9 +82,9 @@ load("//nuget:nuget.bzl", "yngdieng_nuget_packages")
 
 yngdieng_nuget_packages()
 
-RULES_NODEJS_VERSION = "1.0.1"
+RULES_NODEJS_VERSION = "1.6.0"
 
-RULES_NODEJS_SHA256 = "e1a0d6eb40ec89f61a13a028e7113aa3630247253bcb1406281b627e44395145"
+RULES_NODEJS_SHA256 = "f9e7b9f42ae202cc2d2ce6d698ccb49a9f7f7ea572a78fd451696d03ef2ee116"
 
 http_archive(
     name = "build_bazel_rules_nodejs",
@@ -93,9 +93,9 @@ http_archive(
 )
 
 # Rules for compiling sass
-RULES_SASS_VERSION = "1.24.0"
+RULES_SASS_VERSION = "1.25.0"
 
-RULES_SASS_SHA256 = "77e241148f26d5dbb98f96fe0029d8f221c6cb75edbb83e781e08ac7f5322c5f"
+RULES_SASS_SHA256 = "c78be58f5e0a29a04686b628cf54faaee0094322ae0ac99da5a8a8afca59a647"
 
 http_archive(
     name = "io_bazel_rules_sass",
@@ -114,14 +114,7 @@ load(
 )
 
 check_bazel_version(
-    message = """
-You no longer need to install Bazel on your machine.
-Your project should have a dependency on the @bazel/bazel package which supplies it.
-Try running `yarn bazel` instead.
-    (If you did run that, check that you've got a fresh `yarn install`)
-
-""",
-    minimum_bazel_version = "2.1.0",
+    minimum_bazel_version = "3.0.0",
 )
 
 yarn_install(

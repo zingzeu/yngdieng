@@ -1060,31 +1060,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@bazel/bazel-darwin_x64@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@bazel/bazel-darwin_x64/-/bazel-darwin_x64-2.1.0.tgz#c36c37080841618f142996884f07ac0e3d6a9598"
-  integrity sha512-9waB/6UT6JmQh8qxlRK9IfSY4Ef+4iGwy5eYK2hoc1zXYDnnZoZoC4eXiq68cWTpyCcT7SNGEb9B3wL5Y5rA9A==
-
-"@bazel/bazel-linux_x64@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@bazel/bazel-linux_x64/-/bazel-linux_x64-2.1.0.tgz#3185cc3d2533641d6a539bf613247d628425ebf0"
-  integrity sha512-ag6ZwYMJblf1YuPhNRAMyCYf164mY8jhdIwPSVFI1CMiBRnSDJBkSg7rVIczPh+8Gp7TDqAno9MMTnfUXzxogA==
-
-"@bazel/bazel-win32_x64@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@bazel/bazel-win32_x64/-/bazel-win32_x64-2.1.0.tgz#013960fe506ddb8dc08f5d54b52420c818eb4264"
-  integrity sha512-Y6cs3frmCqoAsrDmEp0msyS8VYE13JvjVoyvdIXTOh5Cc4fOeWzSPb02VS08asaV1jCnOQbv15Ud286hcxAvxg==
-
-"@bazel/bazel@2.1.0":
-  version "2.1.0"
-  resolved "https://registry.yarnpkg.com/@bazel/bazel/-/bazel-2.1.0.tgz#25a4d3b4171bfb637374133d29878bbcb36b4c92"
-  integrity sha512-3Dhs0uJ69ImqC+VIRcifnptPXytxCNWHqyTMFYf0F5AJCVHHW7uRE0tt3Vhm5BseFpdOsjqcghgxGzR/yo10qw==
-  dependencies:
-    "@bazel/hide-bazel-files" latest
-  optionalDependencies:
-    "@bazel/bazel-darwin_x64" "2.1.0"
-    "@bazel/bazel-linux_x64" "2.1.0"
-    "@bazel/bazel-win32_x64" "2.1.0"
+"@bazel/bazelisk@1.4.0":
+  version "1.4.0"
+  resolved "https://registry.yarnpkg.com/@bazel/bazelisk/-/bazelisk-1.4.0.tgz#401d7b89b8d89dd579d1e16cc24cd4d9281a4fbb"
+  integrity sha512-VNI/jF7baQiBy4x+u8gmSDsFehqaAuzMyLuCj0j6/aZCZSw2OssytJVj73m8sFYbXgj67D8iYEQ0gbuoafDk6w==
 
 "@bazel/benchmark-runner@0.1.0":
   version "0.1.0"
@@ -1101,25 +1080,20 @@
   resolved "https://registry.yarnpkg.com/@bazel/buildifier/-/buildifier-2.2.1.tgz#b5b21d0042ea48a9c43b54ec4824d4d6505988bc"
   integrity sha512-fDWMV2x03/K5dZnAEBeKS0gpn0LWCiv5kjhMB6q0f1Q5x6S7/+xoownxgWyNRo+qHxn+a2CtQSCRUpSC8QNg/w==
 
-"@bazel/hide-bazel-files@latest":
-  version "1.0.1"
-  resolved "https://registry.yarnpkg.com/@bazel/hide-bazel-files/-/hide-bazel-files-1.0.1.tgz#bfba5c73f307cd69c25411084023f60cdd89ef01"
-  integrity sha512-3unoDYZIGxtePTa/bhsWZ0pxtI/G9LYr41Kkb1ZpSaSz27ZDvj6Aysbc0u9TNGTZhqkcr/w66OC9pvmeys4YnQ==
-
-"@bazel/ibazel@0.12.2":
-  version "0.12.2"
-  resolved "https://registry.yarnpkg.com/@bazel/ibazel/-/ibazel-0.12.2.tgz#98a290dbf8025076dd3040eab4f13a3d7e99357c"
-  integrity sha512-CktVREceZn+6VokQ7A2qByuXBSGRM0THuyv68JUShHYyCkYS94nYMZEIe5NXk12CRzcpMLfZGD5Gdtr+jWs9pw==
+"@bazel/ibazel@0.12.4":
+  version "0.12.4"
+  resolved "https://registry.yarnpkg.com/@bazel/ibazel/-/ibazel-0.12.4.tgz#ddda7c8ead6e29dc8d637af446086a750f395218"
+  integrity sha512-FzOy+esB/fXVDbAmL6Ce2yCEy+PESZih8GypKhi0B8XzoZHAAn3QNnQcMNwo9PrIfp3G1989nM/JQ1b8jwEinQ==
 
 "@bazel/ibazel@0.3.1":
   version "0.3.1"
   resolved "https://registry.yarnpkg.com/@bazel/ibazel/-/ibazel-0.3.1.tgz#5f02f208f138e581bbdb1534d5c013d7a0ac9799"
   integrity sha1-XwLyCPE45YG72xU01cAT16Csl5k=
 
-"@bazel/jasmine@1.4.1":
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/@bazel/jasmine/-/jasmine-1.4.1.tgz#eb70ad8099eb82505ee5841981fe4f3b7c8c47d0"
-  integrity sha512-fslF86VzSoQ5ir2aQScKbROqlVdoS0A4zeSslngIwbfhgrXZVbErXtuS43O5FgGCF+1zEfeTgXAgtwtjNdjs6Q==
+"@bazel/jasmine@1.6.0":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@bazel/jasmine/-/jasmine-1.6.0.tgz#c469ab8725d9a2e48c0c3c965861ff8add9272ac"
+  integrity sha512-WtOQDtIMHKTxlp0+FcdrADV6LMrpJV7eEGZippSNFPL5YhwwrPfCSOs5WkooatsrjL5YEszswzqQXFjvC7EZKQ==
   dependencies:
     jasmine "~3.5.0"
     jasmine-core "~3.5.0"
@@ -1138,10 +1112,10 @@
   resolved "https://registry.yarnpkg.com/@bazel/labs/-/labs-1.6.0.tgz#b3b2ac853143b14bce3349c8b105130b9b967bae"
   integrity sha512-Pir3BhqAzlNNhwBCF3DguvhR0+S96OYXWc4Ha2m/0wm1/5G66bGB90CAKwahi52D8JGgg7PDwapCIPrD7ZGK9A==
 
-"@bazel/protractor@1.4.1":
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/@bazel/protractor/-/protractor-1.4.1.tgz#fb668429ddc7d1d725d9ce9cf16a29e0e39ab2e0"
-  integrity sha512-AkgKdd+6cv6tSmCyop11jgfkpCGWsmykgBOAUftBPK2qtn5iHDSpI2xrZUQQv1/F9vhFFvy+09sIslGWP/TyEA==
+"@bazel/protractor@1.6.0":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@bazel/protractor/-/protractor-1.6.0.tgz#cf095a1dbc038def7031c513a3b87f4e79bedb00"
+  integrity sha512-gPiRv0oUJbVPpQ9nrwe5vjkffAc8VsYJhpTGgG+8aPdOaTLWgmBP/sy4BdfijU9O1Z/mNYojQCZgMzQz6kAvdg==
 
 "@bazel/rollup@1.6.0":
   version "1.6.0"

@@ -12,7 +12,6 @@ ts_library(
         "utils.ts",
         "explanations.ts",
     ],
-    module_name = "@yngdieng",
     visibility = ["//visibility:public"],
     deps = [
         ":documents_proto_ts",
