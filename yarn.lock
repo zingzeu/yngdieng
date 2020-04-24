@@ -1315,6 +1315,11 @@
   resolved "https://registry.yarnpkg.com/@types/long/-/long-4.0.0.tgz#719551d2352d301ac8b81db732acb6bdc28dbdef"
   integrity sha512-1w52Nyx4Gq47uuu0EVcsHBxZFJgurQ+rTKS3qMHxR1GY2T8c2AJYd6vZoZ9q1rupaDjU0yT+Jc2XTyXkjeMA+Q==
 
+"@types/long@^4.0.1":
+  version "4.0.1"
+  resolved "https://registry.yarnpkg.com/@types/long/-/long-4.0.1.tgz#459c65fa1867dafe6a8f322c4c51695663cc55e9"
+  integrity sha512-5tXH6Bx/kNGd3MgffdmP4dy2Z+G4eaXw0SE81Tq3BNadtnMR5/ySMzX4SLEzHJzSmPNn4HIdpQsBvXMUykr58w==
+
 "@types/node@*":
   version "13.1.4"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-13.1.4.tgz#4cfd90175a200ee9b02bd6b1cd19bc349741607e"
@@ -1334,6 +1339,11 @@
   version "10.17.13"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-10.17.13.tgz#ccebcdb990bd6139cd16e84c39dc2fb1023ca90c"
   integrity sha512-pMCcqU2zT4TjqYFrWtYHKal7Sl30Ims6ulZ4UFXxI4xbtQqK/qqKwkDoBFCfooRqqmRu9vY3xaJRwxSh673aYg==
+
+"@types/node@^13.7.0":
+  version "13.13.2"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-13.13.2.tgz#160d82623610db590a64e8ca81784e11117e5a54"
+  integrity sha512-LB2R1Oyhpg8gu4SON/mfforE525+Hi/M1ineICEDftqNVTyFg1aRIeGuTvXAoWHc4nbrFncWtJgMmoyRvuGh7A==
 
 "@types/parse-json@^4.0.0":
   version "4.0.0"
@@ -5773,10 +5783,10 @@ protobufjs@6.8.8, protobufjs@^6.8.6:
     "@types/node" "^10.1.0"
     long "^4.0.0"
 
-protobufjs@6.8.9:
-  version "6.8.9"
-  resolved "https://registry.yarnpkg.com/protobufjs/-/protobufjs-6.8.9.tgz#0b1adbcdaa983d369c3d9108a97c814edc030754"
-  integrity sha512-j2JlRdUeL/f4Z6x4aU4gj9I2LECglC+5qR2TrWb193Tla1qfdaNQTZ8I27Pt7K0Ajmvjjpft7O3KWTGciz4gpw==
+protobufjs@6.9.0:
+  version "6.9.0"
+  resolved "https://registry.yarnpkg.com/protobufjs/-/protobufjs-6.9.0.tgz#c08b2bf636682598e6fabbf0edb0b1256ff090bd"
+  integrity sha512-LlGVfEWDXoI/STstRDdZZKb/qusoAWUnmLg9R8OLSO473mBLWHowx8clbX5/+mKDEI+v7GzjoK9tRPZMMcoTrg==
   dependencies:
     "@protobufjs/aspromise" "^1.1.2"
     "@protobufjs/base64" "^1.1.2"
@@ -5788,8 +5798,8 @@ protobufjs@6.8.9:
     "@protobufjs/path" "^1.1.2"
     "@protobufjs/pool" "^1.1.0"
     "@protobufjs/utf8" "^1.1.0"
-    "@types/long" "^4.0.0"
-    "@types/node" "^10.1.0"
+    "@types/long" "^4.0.1"
+    "@types/node" "^13.7.0"
     long "^4.0.0"
 
 protoduck@^5.0.1:
