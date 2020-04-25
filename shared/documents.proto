@@ -41,6 +41,7 @@ message Document {
     }
 }
 
+// 单字条目文档(戚林、榕注合并).
 // Next ID: 12
 message AggregatedDocument {
     // Base64 (URL safe) encoded DocumentAggregateKey
@@ -71,6 +72,7 @@ message AggregatedDocument {
     DFDSourceInfo dfd_source = 9;
 }
 
+// 冯文档.
 // Next ID: 11
 message FengDocument {
     string id = 1;
@@ -88,7 +90,7 @@ message FengDocument {
     // All searchable permuations
     repeated string yngping_permutations = 5;
 
-    // 释义. TODO: structured
+    // 释义(未解析). 
     string explanation = 6;
 
     string explanation_hans = 8;
