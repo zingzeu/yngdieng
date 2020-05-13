@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatDialogModule} from '@angular/material/dialog';
 import {BrowserModule} from '@angular/platform-browser';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 
@@ -26,6 +27,7 @@ import {SearchResultComponent} from './search-result/search-result.component';
 import {SearchToolbarComponent} from './search-toolbar/search-toolbar.component';
 import {SidenavContentComponent} from './sidenav-content/sidenav-content.component';
 import {YngdiengBackendService} from './yngdieng-backend.service';
+import {YngpingHelpDialogComponent} from './yngping-help-dialog/yngping-help-dialog.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,8 @@ import {YngdiengBackendService} from './yngdieng-backend.service';
     SidenavContentComponent,
     HelpComponent,
     CommonToolbarComponent,
-    DebugInfoComponent
+    DebugInfoComponent,
+    YngpingHelpDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -51,8 +54,10 @@ import {YngdiengBackendService} from './yngdieng-backend.service';
     NoopAnimationsModule,
     FormsModule,
     ReactiveFormsModule,
-    MaterialModule
+    MaterialModule,
+    MatDialogModule
   ],
+  entryComponents: [YngpingHelpDialogComponent],
   providers:
       [{provide: YNGDIENG_ENVIRONMENT, useValue: getYngdiengEnvironment()}, YngdiengBackendService],
   bootstrap: [AppComponent]

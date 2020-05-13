@@ -1,4 +1,5 @@
 import {Component, Inject, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
+import {MatDialog} from '@angular/material/dialog';
 import {ActivatedRoute} from '@angular/router';
 import {Observable, Subscription} from 'rxjs';
 import {map, switchMap} from 'rxjs/operators';
@@ -8,6 +9,7 @@ import {IYngdiengEnvironment, YNGDIENG_ENVIRONMENT} from '../../environments/env
 import {renderExplanation} from '../../yngdieng/explanations';
 import {toMonoHanziResultViewModel} from '../common/converters';
 import {YngdiengBackendService} from '../yngdieng-backend.service';
+import {YngpingHelpDialogComponent} from '../yngping-help-dialog/yngping-help-dialog.component';
 
 @Component({
   selector: 'app-details-feng',
@@ -43,7 +45,13 @@ export class DetailsFengComponent implements OnInit, OnDestroy {
   constructor(
       @Inject(YNGDIENG_ENVIRONMENT) private environment: IYngdiengEnvironment,
       private route: ActivatedRoute,
-      private backendService: YngdiengBackendService) {}
+      private backendService: YngdiengBackendService,
+      private dialog: MatDialog) {}
+
+
+  onShowYngpingHelp() {
+    this.dialog.open(YngpingHelpDialogComponent, {width: '80vw'});
+  }
 
   ngOnInit() {
     this.isBusy = true;

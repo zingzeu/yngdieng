@@ -5,7 +5,8 @@
     <div class="hanzi unihan-text">{{ fengDoc.getHanziCanonical() }}</div>
     <div class="text-yngping">
       {{ fengDoc.getYngpingCanonical() }}
-      <button mat-icon-button color="primary" aria-label="Example icon button with a home icon">
+      <button mat-icon-button color="secondary" aria-label="这是什么？" 
+        (click)="onShowYngpingHelp()">
         <mat-icon>help</mat-icon>
       </button>
     </div>
