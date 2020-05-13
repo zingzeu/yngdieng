@@ -32,7 +32,11 @@
 </div>
 
 <div class="result-message" *ngIf="!isInvalidQuery && !isBusy && results.length == 0">
-  <h3>没有 <div class="unihan-text" style="display: inline">{{ queryText }}</div> 的搜索结果</h3>
+  <p>没有 <span class="unihan-text" style="display: inline">{{ queryText }}</span> 的搜索结果 😔</p>
+  <p>试一试不同的关键词和拼写方法，或者：</p>
+  <p style="text-align: center;">
+    <a mat-raised-button href="https://shimo.im/forms/qWhRrxYW6xWq9Wcc/fill" target="_blank">贡献新词条</a>
+  </p>
 </div>
 
 <div class="result-message" *ngIf="isBusy">
