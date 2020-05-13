@@ -48,7 +48,6 @@ export class DetailsFengComponent implements OnInit, OnDestroy {
       private backendService: YngdiengBackendService,
       private dialog: MatDialog) {}
 
-
   onShowYngpingHelp() {
     this.dialog.open(YngpingHelpDialogComponent, {width: '80vw'});
   }
