@@ -5,6 +5,6 @@ export const YngdiengProdEnvironment: IYngdiengEnvironment = {
   serverUrl: 'https://yngdieng-api-staging.mindong.asia',
   structuredExplanations: {
     enabled: true,
-    showDebugToggle: true,
+    showDebugToggle: false,
   }
 }
