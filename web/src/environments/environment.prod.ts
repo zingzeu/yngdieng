@@ -2,7 +2,8 @@ import {IYngdiengEnvironment} from './environment';
 
 export const YngdiengProdEnvironment: IYngdiengEnvironment = {
   isProduction: true,
-  serverUrl: 'https://yngdieng-api-staging.mindong.asia',
+  // TODO: use https
+  serverUrl: 'http://api.yngdieng.org',
   structuredExplanations: {
     enabled: true,
     showDebugToggle: false,
