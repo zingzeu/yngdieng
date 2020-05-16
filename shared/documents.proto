@@ -6,6 +6,24 @@ option csharp_namespace = "Yngdieng.Protos";
 import "shared/zingzeudata/explanation.proto";
 import "shared/phonology.proto";
 
+// Internal. Not served in responses.
+message OneDocument {
+    message DocRef {
+        oneof id {
+            string zingzeu_id = 1;
+            string feng_id = 2;
+            string li_id = 3;
+            string contrib_id = 4;
+        }
+    }
+
+    DocRef doc_ref = 1;
+
+
+}
+
+message
+
 // Next ID: 14
 message Document {
     oneof id {
@@ -18,7 +36,7 @@ message Document {
     // Optional. 等价汉字.
     repeated Hanzi hanzi_alternatives = 3;
 
-    // 所有可搜寻到该文档的汉字.
+    // 所有可搜寻到该文档的汉字. (含简繁异体，索引用)
     repeated string hanzi_matchable = 13;
 
     Initial initial = 4;
@@ -52,7 +70,7 @@ message AggregatedDocument {
     // Optional. 等价汉字.
     repeated Hanzi hanzi_alternatives = 2;
 
-    // 所有可搜寻到该文档的汉字.
+    // 所有可搜寻到该文档的汉字. (含简繁异体，索引用)
     repeated string hanzi_matchable = 3;
 
     Initial initial = 4;
