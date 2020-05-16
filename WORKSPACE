@@ -28,11 +28,14 @@ rules_proto_toolchains()
 ###################################
 # dotnet
 ###################################
-git_repository(
+http_archive(
     name = "io_bazel_rules_dotnet",
-    commit = "a8f5820a326180e7c9ec9f333bb9081efc843033",  # 0.0.4
-    remote = "https://github.com/bazelbuild/rules_dotnet",
-    shallow_since = "1578483019 +0100",
+    sha256 = "645aa46c80f3e8d07084ecf00f9bf8da4212cd260a0c7d6df1f1b2a48077034c",
+    strip_prefix = "rules_dotnet-da9b6c931f49e596dce1e80f7b23d54686ec9248",
+    urls = [
+        # 0.0.4
+        "https://github.com/bazelbuild/rules_dotnet/archive/da9b6c931f49e596dce1e80f7b23d54686ec9248.tar.gz",
+    ],
 )
 
 load(
@@ -53,11 +56,13 @@ core_register_sdk(
 
 # grpc
 
-git_repository(
+http_archive(
     name = "rules_proto_grpc",
-    commit = "1add33fdb7b1f2c85e660bc115c8bfe83d768162",
-    remote = "https://github.com/ztl8702/rules_proto_grpc.git",
-    shallow_since = "1575092578 +1100",
+    sha256 = "cbbcae996d8dd4832645fdf7f9ccdce0a062fb31aee14fb1c42dd335ac8aeaad",
+    strip_prefix = "rules_proto_grpc-1add33fdb7b1f2c85e660bc115c8bfe83d768162",
+    urls = [
+        "https://github.com/ztl8702/rules_proto_grpc/archive/1add33fdb7b1f2c85e660bc115c8bfe83d768162.tar.gz",
+    ],
 )
 
 load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_toolchains")
@@ -158,11 +163,12 @@ load("@io_bazel_rules_sass//sass:sass_repositories.bzl", "sass_repositories")
 
 sass_repositories()
 
-git_repository(
+http_archive(
     name = "rules_typescript_proto",
-    commit = "fa21e6a057a96ea18c2f61d02d90d4bf82db354a",
-    remote = "https://github.com/ztl8702/rules_typescript_proto",
-    shallow_since = "1579365079 -0800",
+    strip_prefix = "rules_typescript_proto-fa21e6a057a96ea18c2f61d02d90d4bf82db354a",
+    urls = [
+        "https://github.com/ztl8702/rules_typescript_proto/archive/fa21e6a057a96ea18c2f61d02d90d4bf82db354a.tar.gz",
+    ],
 )
 
 load("@rules_typescript_proto//:index.bzl", "rules_typescript_proto_dependencies")
