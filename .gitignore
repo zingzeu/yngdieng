@@ -2,10 +2,10 @@
 bazel-*
 
 # Font subsetting:
-subsetting/charset_scanned
-subsetting/input_text 
-subsetting/output_fonts 
-subsetting/preview
+*/subsetting/charset_scanned
+*/subsetting/input_text 
+*/subsetting/output_fonts 
+*/subsetting/preview
 
 
 # Created by https://www.gitignore.io/api/csharp
