@@ -1,35 +1,30 @@
 #!/bin/sh
 
-mkdir -p charset_scanned input_text output_fonts preview
+# mkdir -p charset_scanneds input_text output_fonts preview
 
-
-python3 ./process.py ./input_text ./charset_scanned/charset_A.txt A
-python3 ./process.py ./input_text ./charset_scanned/charset_B.txt B
+python3 ./process.py ./input_text ./charset_scanned/charset_all.txt ABCDEFG
 
 pyftsubset TH-Sung-TP0.ttf \
-  --text-file='./charset_scanned/charset_A.txt' \
-  --output-file='./output_fonts/yngdieng-extended-A.ttf' \
-  --no-ignore-missing-unicodes --no-ignore-missing-glyphs \
-  --xml > ./preview/subset_A_ttf.txt
+  --text-file='./charset_scanned/charset_all.txt' \
+  --output-file='./output_fonts/yngdieng-extended-0.ttf' \
+  --xml > ./preview/subset_all_ttf_0.txt
 
 pyftsubset TH-Sung-TP0.ttf \
-  --text-file='./charset_scanned/charset_A.txt' \
-  --output-file='./output_fonts/yngdieng-extended-A.woff' \
-  --no-ignore-missing-unicodes --no-ignore-missing-glyphs \
+  --text-file='./charset_scanned/charset_all.txt' \
+  --output-file='./output_fonts/yngdieng-extended-0.woff' \
   --flavor=woff \
-  --xml > ./preview/subset_A_woff.txt
+  --xml > ./preview/subset_all_woff_0.txt
 
 pyftsubset TH-Sung-TP2.ttf \
-  --text-file='./charset_scanned/charset_B.txt' \
-  --output-file='./output_fonts/yngdieng-extended-B.ttf' \
-  --no-ignore-missing-unicodes --no-ignore-missing-glyphs \
-  --xml > ./preview/subset_B_ttf.txt
+  --text-file='./charset_scanned/charset_all.txt' \
+  --output-file='./output_fonts/yngdieng-extended-1.ttf' \
+  --xml > ./preview/subset_all_ttf_2.txt
 
 pyftsubset TH-Sung-TP2.ttf \
-  --text-file='./charset_scanned/charset_B.txt' \
-  --output-file='./output_fonts/yngdieng-extended-B.woff' \
-  --no-ignore-missing-unicodes --no-ignore-missing-glyphs \
+  --text-file='./charset_scanned/charset_all.txt' \
+  --output-file='./output_fonts/yngdieng-extended-1.woff' \
   --flavor=woff \
-  --xml > ./preview/subset_B_woff.txt
+  --xml > ./preview/subset_all_woff_2.txt
+
 
 echo 'Please copy the font files into /web/src/assets/fonts.'

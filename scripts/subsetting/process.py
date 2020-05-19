@@ -7,15 +7,21 @@ def get_input_files(input_dir):
         if isfile(join(input_dir, f)) and f.endswith('.txt')]
 
 def in_range(c, unicode_block='A'):
-    if unicode_block == 'A':
-        return 0x3400 < ord(c) and ord(c) < 0x4DBF
-    if unicode_block == 'B':
-        return 0x20000 < ord(c) and ord(c) < 0x2A6D6
-    if unicode_block == 'AB':
-        return (0x3400 < ord(c) and ord(c) < 0x4DBF) or \
-            0x20000 < ord(c) and ord(c) < 0x2A6D6
-    print("Error: Unicode_block should be set to 'A', 'B', or 'AB'.")
-    return false
+    if 0x3400 <= ord(c) <= 0x4DBF:
+        return 'A' in unicode_block
+    if 0x20000 <= ord(c) <= 0x2A6D6:
+        return 'B' in unicode_block
+    if 0x2A700 <= ord(c) <= 0x2B73F:
+        return 'C' in unicode_block
+    if 0x2B740 <= ord(c) <= 0x2B81F:
+        return 'D' in unicode_block
+    if 0x2B820 <= ord(c) <= 0x2CEAF:
+        return 'E' in unicode_block
+    if 0x2CEB0 <= ord(c) <= 0x2EBEF:
+        return 'F' in unicode_block
+    if 0x30000 <= ord(c) <= 0x3134F:
+        return 'G' in unicode_block
+    return False
 
 def scan(filename, charset, unicode_block='B'):
     with open(filename, 'r') as f:
