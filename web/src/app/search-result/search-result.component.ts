@@ -113,9 +113,8 @@ function resultRowToViewModel(r: SearchResultRow): MonoHanziResultViewModel|Feng
       let f = r.getFengDocument();
       return {
         _type: 'feng', yngping: f.getYngpingCanonical(), hanzi: f.getHanziCanonical(),
-            explanation: f.getExplanation().length > 100 ?
-            f.getExplanation().substr(0, 97) + '...' :
-            f.getExplanation(),
+            explanation: f.getExplanation().length > 30 ? f.getExplanation().substr(0, 27) + '...' :
+                                                          f.getExplanation(),
             id: f.getId(),
       }
     default:
