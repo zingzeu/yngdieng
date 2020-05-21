@@ -16,7 +16,8 @@
     <p class="raw-explanation"
        *ngIf="!showStructuredExplanation" >{{ fengDoc.getExplanation() }}</p>
     <div class="unihan-text explanation"
-         *ngIf="showStructuredExplanation">(解释内容稍后上线)</div>
+         *ngIf="showStructuredExplanation" 
+        [innerHTML]="structuredExplanation"></div>
     <mat-checkbox 
       class="toggle-structured" 
       *ngIf="showToggleStructured" 
