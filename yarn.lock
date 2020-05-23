@@ -3609,10 +3609,10 @@ globby@^5.0.0:
     pify "^2.0.0"
     pinkie-promise "^2.0.0"
 
-google-protobuf@3.12.0:
-  version "3.12.0"
-  resolved "https://registry.yarnpkg.com/google-protobuf/-/google-protobuf-3.12.0.tgz#02630b5fa3020fe9fd99a6a602e94e37a43b93bf"
-  integrity sha512-7HZo4ZIcoL8alxDCYphAjsssJrvfD9XPg7rdd1XkQ4273yfyO4dCuPW88ydYcF382ik3Z06/NqMR3rRzldTK4A==
+google-protobuf@3.12.1:
+  version "3.12.1"
+  resolved "https://registry.yarnpkg.com/google-protobuf/-/google-protobuf-3.12.1.tgz#d23a745d9a4365e1e0c5eb87bf17e859b4ffb841"
+  integrity sha512-tsWoKhSuLBrBm+BMDOLrwnSbfWurxZgLBDB7OO+yOIILfBZIlINgz9mrdqnn4YiGY64HwXg1TjaZ/26xgdJ3aQ==
 
 graceful-fs@^4.1.11, graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.1.6:
   version "4.2.3"
