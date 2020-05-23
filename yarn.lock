@@ -7021,10 +7021,10 @@ symbol-observable@1.2.0:
   resolved "https://registry.yarnpkg.com/symbol-observable/-/symbol-observable-1.2.0.tgz#c22688aed4eab3cdc2dfeacbb561660560a00804"
   integrity sha512-e900nM8RRtGhlV36KGEU9k65K3mPb1WV70OdjfxlG2EAuM1noi/E/BaW/uMhL7bPEssK8QV57vN3esixjUvcXQ==
 
-systemjs@6.3.1:
-  version "6.3.1"
-  resolved "https://registry.yarnpkg.com/systemjs/-/systemjs-6.3.1.tgz#661adf60f257c1f65b8075fd5b034c0c69b306f4"
-  integrity sha512-pYAQxEK2a3Xj6cRVXrXgogSfKc3oFTzEWejK8KfHcZxwT31yT2xL43WXjUNcjOk5P048Z1zLRIlfrB3Mq4W+PQ==
+systemjs@6.3.2:
+  version "6.3.2"
+  resolved "https://registry.yarnpkg.com/systemjs/-/systemjs-6.3.2.tgz#2c3407f949260fdfb3b837c191869db933d1fe0f"
+  integrity sha512-zcALS1RIYtsQBG4fbaE+cJzKx+UoEuSM8xCkGGH99i7p7Ym3ALvhi9QrpF2lo0CMQaejqrE1GnbkuG2m/+H7ew==
 
 tapable@^1.0.0, tapable@^1.1.3:
   version "1.1.3"
