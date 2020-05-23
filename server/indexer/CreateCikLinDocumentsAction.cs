@@ -7,6 +7,7 @@ using System.Linq;
 using System.Collections.Generic;
 using static Yngdieng.Common.HanziUtils;
 using static Yngdieng.Common.FoochowRomanziedUtils;
+using System.Globalization;
 
 namespace Yngdieng.Indexer
 {
@@ -83,39 +84,36 @@ namespace Yngdieng.Indexer
       var documents = new List<Document>();
       using (var reader = new StreamReader(_cikLinCsvFile))
       {
-        using (var csv = new CsvReader(reader))
-        {
-          var records = csv.GetRecords<CikLinRow>();
-          foreach (var r in records)
+          using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
           {
-            if (!CharToFinal.ContainsKey(r.Final[0]))
-            {
-              Console.WriteLine($"Skipping {r.Id}, unknown Final {r.Final}");
-              continue;
-            }
-            var document = new Document
-            {
-              CiklinId = r.Id,
-              HanziCanonical = StringToHanziProto(r.Hanzi),
-              Initial = CharToInitial[r.Initial[0]],
-              Final = CharToFinal[r.Final[0]],
-              Tone = IntToTone(r.Tone),
-              Ciklin = new CikLinSourceInfo()
-            };
-            document.Buc = ToBucString(document.Initial, document.Final, document.Tone);
-            if (r.HanziEquiv.Length > 0)
-            {
-              document.HanziAlternatives.Add(StringToHanziProto(r.HanziEquiv));
-            }
-            if (r.HanziAlt.Length > 0)
-            {
-              document.HanziAlternatives.Add(StringToHanziProto(r.HanziAlt));
-            }
-            AddFanoutHanzi(document);
+              var records = csv.GetRecords<CikLinRow>();
+              foreach (var r in records)
+              {
+                  if (!CharToFinal.ContainsKey(r.Final[0]))
+                  {
+                      Console.WriteLine($"Skipping {r.Id}, unknown Final {r.Final}");
+                      continue;
+                  }
+                  var document = new Document{CiklinId = r.Id,
+                                              HanziCanonical = StringToHanziProto(r.Hanzi),
+                                              Initial = CharToInitial[r.Initial[0]],
+                                              Final = CharToFinal[r.Final[0]],
+                                              Tone = IntToTone(r.Tone),
+                                              Ciklin = new CikLinSourceInfo()};
+                  document.Buc = ToBucString(document.Initial, document.Final, document.Tone);
+                  if (r.HanziEquiv.Length > 0)
+                  {
+                      document.HanziAlternatives.Add(StringToHanziProto(r.HanziEquiv));
+                  }
+                  if (r.HanziAlt.Length > 0)
+                  {
+                      document.HanziAlternatives.Add(StringToHanziProto(r.HanziAlt));
+                  }
+                  AddFanoutHanzi(document);
 
-            documents.Add(document);
-            jsonOutput.Add(document.ToString());
-          }
+                  documents.Add(document);
+                  jsonOutput.Add(document.ToString());
+              }
         }
       }
       File.WriteAllLines(Path.Combine(_outputFolder, "ciklin_index_debug.txt"), jsonOutput);
