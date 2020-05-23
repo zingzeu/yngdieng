@@ -68,7 +68,7 @@
     "karma-jasmine": "3.1.1",
     "karma-requirejs": "1.1.0",
     "karma-sourcemap-loader": "0.3.7",
-    "opencc": "1.0.6",
+    "opencc": "1.1.1",
     "protobufjs": "6.9.0",
     "protractor": "5.4.4",
     "requirejs": "2.3.6",
