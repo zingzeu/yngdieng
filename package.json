@@ -43,7 +43,7 @@
     "@bazel/benchmark-runner": "0.1.0",
     "@bazel/buildifier": "3.0.0",
     "@bazel/ibazel": "0.12.4",
-    "@bazel/jasmine": "1.6.1",
+    "@bazel/jasmine": "1.7.0",
     "@bazel/karma": "1.6.1",
     "@bazel/labs": "1.6.1",
     "@bazel/protractor": "1.6.1",
