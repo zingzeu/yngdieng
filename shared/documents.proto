@@ -29,13 +29,13 @@ message YngdiengDocument {
   // 一般从 zingzeu_words 中来.
   Hanzi hanzi_canonical = 3;
 
-  // Optional. 等价汉字 / 异体字. 
+  // Optional. 等价汉字 / 异体字.
   // 这个会从 zingzeu_words 的 A= , 以及各字典的不同写法中来.
   repeated Hanzi hanzi_alternatives = 4;
 
   // 福州市区本字音.
   string yngping_underlying = 5;
- 
+
   // Optional. 福州市区连读音. 单字条目留空.
   string yngping_sandhi = 6;
 
@@ -66,7 +66,6 @@ message YngdiengDocument {
     // Should contain both zh-hans and zh-hant versions.
     repeated string explanation_text = 3;
   }
-
 }
 
 // Next ID: 14
@@ -180,12 +179,12 @@ message ContribDocument {
     string zingzeu_id = 2;
   }
 
-   // 正字写法.
+  // 正字写法.
   string hanzi = 3;
 
   // 福州市区本字音.
   string yngping_underlying = 4;
- 
+
   // Optional. 福州市区连读音. 单字条目留空.
   string yngping_sandhi = 5;
 
@@ -193,7 +192,7 @@ message ContribDocument {
   string explanation_raw = 6;
 
   .zingzeudata.Explanation explanation_structured = 7;
-  
+
   repeated string contributors = 8;
 }
 
