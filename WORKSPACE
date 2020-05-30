@@ -87,9 +87,9 @@ load("//nuget:nuget.bzl", "yngdieng_nuget_packages")
 
 yngdieng_nuget_packages()
 
-RULES_NODEJS_VERSION = "1.6.0"
+RULES_NODEJS_VERSION = "1.6.1"
 
-RULES_NODEJS_SHA256 = "f9e7b9f42ae202cc2d2ce6d698ccb49a9f7f7ea572a78fd451696d03ef2ee116"
+RULES_NODEJS_SHA256 = "d14076339deb08e5460c221fae5c5e9605d2ef4848eee1f0c81c9ffdc1ab31c1"
 
 http_archive(
     name = "build_bazel_rules_nodejs",
