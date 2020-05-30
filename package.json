@@ -46,7 +46,7 @@
     "@bazel/jasmine": "1.7.0",
     "@bazel/karma": "1.7.0",
     "@bazel/labs": "1.7.0",
-    "@bazel/protractor": "1.6.1",
+    "@bazel/protractor": "1.7.0",
     "@bazel/rollup": "1.6.1",
     "@bazel/terser": "1.6.1",
     "@bazel/typescript": "1.0.1",
