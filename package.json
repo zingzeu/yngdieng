@@ -28,7 +28,7 @@
     "google-protobuf": "3.12.1",
     "rxjs": "6.5.5",
     "systemjs": "6.3.2",
-    "tslib": "2.0.0",
+    "tslib": "1.10.0",
     "zone.js": "0.10.3"
   },
   "devDependencies": {
@@ -43,13 +43,13 @@
     "@bazel/benchmark-runner": "0.1.0",
     "@bazel/buildifier": "3.0.0",
     "@bazel/ibazel": "0.12.4",
-    "@bazel/jasmine": "1.7.0",
-    "@bazel/karma": "1.7.0",
-    "@bazel/labs": "1.7.0",
-    "@bazel/protractor": "1.7.0",
-    "@bazel/rollup": "1.7.0",
-    "@bazel/terser": "1.7.0",
-    "@bazel/typescript": "1.7.0",
+    "@bazel/jasmine": "1.6.1",
+    "@bazel/karma": "1.6.1",
+    "@bazel/labs": "1.6.1",
+    "@bazel/protractor": "1.6.1",
+    "@bazel/rollup": "1.6.1",
+    "@bazel/terser": "1.6.1",
+    "@bazel/typescript": "1.6.0",
     "@grpc/proto-loader": "0.5.4",
     "@improbable-eng/grpc-web": "0.12.0",
     "@types/google-protobuf": "3.7.2",
@@ -78,7 +78,7 @@
     "rollup-plugin-sourcemaps": "0.6.2",
     "terser": "4.7.0",
     "tslint": "6.1.2",
-    "typescript": "3.6.4",
+    "typescript": "3.8.3",
     "webpack": "4.43.0"
   },
   "husky": {
