@@ -13,7 +13,7 @@
   <ItemGroup>
     <PackageReference Include="CsvHelper" Version="15.0.5" />
     <PackageReference Include="FSharp.Core" Version="4.7.2" />
-    <PackageReference Include="ZingzeuData.Shared" Version="1.0.11" />
+    <PackageReference Include="ZingzeuData.Shared" Version="1.0.12" />
   </ItemGroup>
 
   <!--
