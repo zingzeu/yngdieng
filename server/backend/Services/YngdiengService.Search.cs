@@ -243,9 +243,10 @@ namespace Yngdieng.Backend.Services
         {
           foreach (var p in d.YngpingPermutations)
           {
-            if (p.Replace(" ", string.Empty).StartsWith(yngping.ToLowerInvariant().Replace(" ", string.Empty)))
-            {
-              return true;
+              if (p.Replace(" ", string.Empty)
+                      .Contains(yngping.ToLowerInvariant().Replace(" ", string.Empty)))
+              {
+                  return true;
             }
           }
           return false;
