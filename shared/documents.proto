@@ -221,7 +221,7 @@ message YngdiengIndex {
   // Deprecated
   repeated FengDocument feng_documents = 3;
 
-  repeated YngdiengDocument yngdieng_documents = 4;
+  repeated YngdiengDocument yngdieng_documents = 5;
 }
 
 message Hanzi {
