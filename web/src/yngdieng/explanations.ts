@@ -52,12 +52,13 @@ function renderExample(e: string, currentWord: string): string {
 }
 
 function maybeAddPeriod(text: string): string {
-  if (text.length == 0) {
+  if (text.trim().length == 0) {
     return text;
   }
-  const lastChar = text[text.length - 1];
+  const trimmed = text.trim();
+  const lastChar = trimmed[trimmed.length - 1];
   if (lastChar === '。' || lastChar === '，' || lastChar === '！' || lastChar === '？') {
-    return text;
+    return trimmed;
   }
-  return text + '。';
+  return trimmed + '。';
 }
