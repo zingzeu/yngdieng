@@ -14,11 +14,11 @@ export function renderExplanation(e: Explanation, currentWord: string = '～'): 
   output += '</ol>';
   if (e.getNotesOriginal().length > 0) {
     output += '<span class="label">注</span>';
-    output += '<p class="notes-original">' + maybeAddPeriod(e.getNotesOriginal()) + '</p>';
+    output += '<p class="notes">' + maybeAddPeriod(e.getNotesOriginal()) + '</p>';
   }
   if (e.getNotesOurs().length > 0) {
     output += '<span class="label">榕典注</span>';
-    output += '<p class="notes-ours">' + maybeAddPeriod(e.getNotesOurs()) + '</p>';
+    output += '<p class="notes">' + maybeAddPeriod(e.getNotesOurs()) + '</p>';
   }
   return output;
 }
