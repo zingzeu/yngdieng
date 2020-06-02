@@ -14,11 +14,11 @@ export function renderExplanation(e: Explanation, currentWord: string = '～'): 
   output += '</ol>';
   if (e.getNotesOriginal().length > 0) {
     output += '<span class="label">注</span>';
-    output += '<p class="notes">' + e.getNotesOriginal() + '</p>';
+    output += '<p class="notes">' + maybeAddPeriod(e.getNotesOriginal()) + '</p>';
   }
   if (e.getNotesOurs().length > 0) {
     output += '<span class="label">榕典注</span>';
-    output += '<p class="notes">' + e.getNotesOurs() + '</p>';
+    output += '<p class="notes">' + maybeAddPeriod(e.getNotesOurs()) + '</p>';
   }
   return output;
 }
@@ -26,7 +26,7 @@ export function renderExplanation(e: Explanation, currentWord: string = '～'): 
 function renderSense(s: Explanation.Sense, currentWord: string): string {
   var output = '';
   if (s.getText().length > 0) {
-    output += s.getText();
+    output += maybeAddPeriod(s.getText());
   }
   if (s.getExamplesList().length > 0) {
     output += '<ul class="examples-list">';
@@ -48,5 +48,16 @@ function renderSense(s: Explanation.Sense, currentWord: string): string {
 }
 
 function renderExample(e: string, currentWord: string): string {
-  return e.replace(/～/g, '<span class="current-word">' + currentWord + '</span>');
+  return maybeAddPeriod(e).replace(/～/g, '<span class="current-word">' + currentWord + '</span>');
+}
+
+function maybeAddPeriod(text: string): string {
+  if (text.length == 0) {
+    return text;
+  }
+  const lastChar = text[text.length - 1];
+  if (lastChar === '。' || lastChar === '，' || lastChar === '！' || lastChar === '？') {
+    return text;
+  }
+  return text + '。';
 }
