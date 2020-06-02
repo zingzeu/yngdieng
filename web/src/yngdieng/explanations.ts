@@ -2,7 +2,9 @@ import {Explanation} from 'yngdieng/shared/zingzeudata/explanation_pb';
 
 
 export function renderExplanation(e: Explanation, currentWord: string = '～'): string {
-  var output = '<ol>';
+  var output = '';
+  output += '<span class="label">释义</span>';
+  output += '<ol>';
   let senses: Explanation.Sense[] = e.getSensesList();
   for (let i = 0; i < senses.length; ++i) {
     output += '<li class="sense">';
@@ -11,9 +13,11 @@ export function renderExplanation(e: Explanation, currentWord: string = '～'): 
   }
   output += '</ol>';
   if (e.getNotesOriginal().length > 0) {
+    output += '<span class="label">注</span>';
     output += '<p class="notes-original">' + maybeAddPeriod(e.getNotesOriginal()) + '</p>';
   }
   if (e.getNotesOurs().length > 0) {
+    output += '<span class="label">榕典注</span>';
     output += '<p class="notes-ours">' + maybeAddPeriod(e.getNotesOurs()) + '</p>';
   }
   return output;
