@@ -39,6 +39,7 @@ message YngdiengDocument {
   // Optional. 福州市区连读音. 单字条目留空.
   string yngping_sandhi = 6;
 
+  // 这个词条具体的来源(词典原文).
   repeated Source sources = 7;
 
   IndexingExtension indexing_extension = 8;
@@ -53,7 +54,7 @@ message YngdiengDocument {
 
   // Extra data to facilitate index creation.
   // This is for our ad hoc index format. Not served to the user.
-  // We plan to deprecate this in favor of an 3rd party indexing
+  // We plan to deprecate this in favor of a 3rd party indexing
   // library.
   message IndexingExtension {
     // All searchable permuations
