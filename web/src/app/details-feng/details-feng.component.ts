@@ -15,6 +15,7 @@ import {YngpingHelpDialogComponent} from '../yngping-help-dialog/yngping-help-di
   selector: 'app-details-feng',
   templateUrl: './details-feng.component.html',
   styleUrls: ['./details-feng.component.scss'],
+  // TODO: FIX THIS.
   encapsulation: ViewEncapsulation.None,
 })
 export class DetailsFengComponent implements OnInit, OnDestroy {
