@@ -4,15 +4,18 @@ ol {
 }
 
 li { 
-    display: block;
     padding-bottom: 4px;
 }
 
-li:before { 
+ol > li:before { 
     content: counters(item, ".") ". "; 
     counter-increment: item;
     font-family: 'Roboto', sans-serif;
     color: #5a3c3e;
+}
+
+ol > li {
+    display: block;
 }
 
 // Top-level points
