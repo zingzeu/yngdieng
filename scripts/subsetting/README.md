@@ -27,4 +27,4 @@ You may check details about subsetted fonts in `preview` directory.
 
 ### Future improvements
 <!-- This tool uses TH-Sung (天珩字库) as the original font. -->
-Currently, the script only works for characters from Unicode Extended-A and Extended-A. 
+The two font files could be merged into one.
