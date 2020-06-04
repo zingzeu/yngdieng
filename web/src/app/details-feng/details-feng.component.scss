@@ -39,7 +39,10 @@
     }
 
     ul.examples-list {
-        margin-top: 0.5rem;
+        margin: 0.5rem 1rem 0 0.5rem;
+        padding-left: 0.5rem;
+        // background-color: #eff5f0;
+        color: #421f01;
     }
     
     li { 
@@ -63,8 +66,10 @@
     }
 
     .current-word {
-        font-weight: 900;
-        text-decoration: underline;
+        // font-weight: 900;
+        color: green;
+        // color: chocolate;
+        // text-decoration: underline;
     }
 
     .label {
