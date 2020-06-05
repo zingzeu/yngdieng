@@ -39,7 +39,7 @@
     "@babel/cli": "7.10.1",
     "@babel/core": "7.10.2",
     "@babel/preset-env": "7.10.2",
-    "@bazel/bazelisk": "1.4.0",
+    "@bazel/bazelisk": "1.5.0",
     "@bazel/benchmark-runner": "0.1.0",
     "@bazel/buildifier": "3.0.0",
     "@bazel/ibazel": "0.12.4",
