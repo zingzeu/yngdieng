@@ -41,7 +41,6 @@
     ul.examples-list {
         margin: 0.5rem 1rem 0 0.5rem;
         padding-left: 0.5rem;
-        // background-color: #eff5f0;
         color: #421f01;
     }
     
@@ -66,10 +65,9 @@
     }
 
     .current-word {
-        // font-weight: 900;
+        font-weight: 900;
         color: green;
-        // color: chocolate;
-        // text-decoration: underline;
+        color: chocolate;
     }
 
     .label {
