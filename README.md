@@ -6,6 +6,8 @@
 
 [![Build Status](https://mindonglab.visualstudio.com/yngdieng/_apis/build/status/MindongLab.yngdieng?branchName=master)](https://mindonglab.visualstudio.com/yngdieng/_build/latest?definitionId=1&branchName=master)
 
+[需求文档](https://shimo.im/docs/35c397ff76b647b1) | [UI 设计](https://www.figma.com/file/FoQGpsir7cH4GSYenYqObf/%E6%A6%95%E5%85%B8) | [开发看板](https://github.com/MindongLab/yngdieng/projects/1)
+
 ## 本地 Web 开发 Local web development
 
 Web app 技术栈是 Angular + Typescript，建构系统是 Bazel。
@@ -28,4 +30,3 @@ Web app 技术栈是 Angular + Typescript，建构系统是 Bazel。
    
 3. 在浏览器中打开 `http://localhost:4200`，进行手工测试。
 
-[UI mocks on Figma](https://www.figma.com/file/FoQGpsir7cH4GSYenYqObf/%E6%A6%95%E5%85%B8)
