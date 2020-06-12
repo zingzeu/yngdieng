@@ -3788,13 +3788,13 @@ hosted-git-info@^3.0.2:
   dependencies:
     lru-cache "^5.1.1"
 
-html-insert-assets@0.9.0:
-  version "0.9.0"
-  resolved "https://registry.yarnpkg.com/html-insert-assets/-/html-insert-assets-0.9.0.tgz#e72f84828caa61b8ecc95cbf9c87a5f1f55dbf93"
-  integrity sha512-4jM4j9Z7sfHLVSgRlF7lwFQwnE5HyUMUae97zBd0XuER+z1LywAGLf8vmmOxCsIZB3eiYlxsgqlFyYt1RQ2J7Q==
+html-insert-assets@0.10.0:
+  version "0.10.0"
+  resolved "https://registry.yarnpkg.com/html-insert-assets/-/html-insert-assets-0.10.0.tgz#4630adf038b1b2895585ea2e24dba7583fb51946"
+  integrity sha512-XaiJOrlsuQ10z3ImvwWAu1fY/cRpmOxTtiDwAN4Cnw6Ppl7j3y+u9/Ozmb3zpUjnoCqDyYPtKpw+Hc23gYuT/Q==
   dependencies:
     mkdirp "^1.0.3"
-    parse5 "^5.1.1"
+    parse5 "^6.0.0"
 
 http-cache-semantics@^3.8.1:
   version "3.8.1"
@@ -5547,10 +5547,15 @@ parse-json@^5.0.0:
     json-parse-better-errors "^1.0.1"
     lines-and-columns "^1.1.6"
 
-parse5@^5.0.0, parse5@^5.1.1:
+parse5@^5.0.0:
   version "5.1.1"
   resolved "https://registry.yarnpkg.com/parse5/-/parse5-5.1.1.tgz#f68e4e5ba1852ac2cadc00f4555fff6c2abb6178"
   integrity sha512-ugq4DFI0Ptb+WWjAdOK16+u/nHfiIrcE+sh8kZMaM0WllQKLI9rOUq6c2b7cwPkXdzfQESqvoqK6ug7U/Yyzug==
+
+parse5@^6.0.0:
+  version "6.0.0"
+  resolved "https://registry.yarnpkg.com/parse5/-/parse5-6.0.0.tgz#d2ac3448289c84b49947d49a39f7bef6200fa6ba"
+  integrity sha512-lC0A+4DefTdRr+DLQlEwwZqndL9VzEjiuegI5bj3hp4bnzzwQldSqCpHv7+msRpSOHGJyJvkcCa4q15LMUJ8rg==
 
 parseqs@0.0.5:
   version "0.0.5"
