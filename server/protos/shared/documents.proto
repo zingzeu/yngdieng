@@ -36,9 +36,12 @@ message YngdiengDocument {
   // 福州市区本字音.
   string yngping_underlying = 5;
 
+  // TODO: 其他地区读音.
+
   // Optional. 福州市区连读音. 单字条目留空.
   string yngping_sandhi = 6;
 
+  // 这个词条具体的来源(词典原文).
   repeated Source sources = 7;
 
   IndexingExtension indexing_extension = 8;
@@ -53,7 +56,7 @@ message YngdiengDocument {
 
   // Extra data to facilitate index creation.
   // This is for our ad hoc index format. Not served to the user.
-  // We plan to deprecate this in favor of an 3rd party indexing
+  // We plan to deprecate this in favor of a 3rd party indexing
   // library.
   message IndexingExtension {
     // All searchable permuations
@@ -115,7 +118,7 @@ message AggregatedDocument {
   // Optional. 等价汉字.
   repeated Hanzi hanzi_alternatives = 2;
 
-  // 所有可搜寻到该文档的汉字. (含简繁异体，索引用)
+  // 所有可搜寻到该文档的汉字.
   repeated string hanzi_matchable = 3;
 
   Initial initial = 4;
@@ -128,9 +131,6 @@ message AggregatedDocument {
 
   // 榕拼（八音音系）
   string yngping = 11;
-
-  // 榕拼（推测得出的福州市区现代音系）
-  string yngping_hukziu = 12;
 
   // 出处信息.
   CikLinSourceInfo ciklin_source = 8;
@@ -221,7 +221,7 @@ message YngdiengIndex {
   // Deprecated
   repeated FengDocument feng_documents = 3;
 
-  repeated YngdiengDocument yngdieng_documents = 4;
+  repeated YngdiengDocument yngdieng_documents = 5;
 }
 
 message Hanzi {
