@@ -11,9 +11,9 @@ using ZingzeuData.Parser;
 using ZingzeuData.Models;
 using Google.Protobuf;
 
-namespace Yngdieng.Indexer
+namespace Yngdieng.Indexer.Loading
 {
-    public sealed class CreateFengDocumentsAction
+    public sealed class FengLoader
     {
 
         private static readonly string OpenCCDaemon = "http://localhost:8081";
@@ -21,7 +21,7 @@ namespace Yngdieng.Indexer
         private readonly string mergedPath;
         private readonly string outputFolder;
 
-        public CreateFengDocumentsAction(string mergedPath, string outputFolder)
+        public FengLoader(string mergedPath, string outputFolder)
         {
             this.mergedPath = mergedPath;
             this.outputFolder = outputFolder;

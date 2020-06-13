@@ -2,6 +2,8 @@
 using System.IO;
 using Yngdieng.Protos;
 using Google.Protobuf;
+using Yngdieng.Indexer.Loading;
+using Yngdieng.Indexer.Processing;
 
 /// <summary>
 /// The indexer reads raw data files and dumps document and index files.
@@ -24,19 +26,17 @@ namespace Yngdieng.Indexer
             Console.WriteLine($"Output: {Path.GetFullPath(outputFolder)}");
             var index = new YngdiengIndex();
             var hanziVariantsUtil = new HanziVariantsUtil(inputFolder);
-            var aggregator = new DocumentAggregator();
+            var aggregator = new HistoricalDocAggregator();
 
-            var ciklin = new CreateCikLinDocumentsAction(Path.Combine(inputFolder, "ciklin.csv"),
-                                                         outputFolder,
-                                                         hanziVariantsUtil)
+            var ciklin = new CikLingLoader(Path.Combine(inputFolder, "ciklin.csv"),
+                                           outputFolder,
+                                           hanziVariantsUtil)
                              .Run();
-            var dfd = new CreateDFDDocumentsAction(Path.Combine(inputFolder, "DFDCharacters.csv"),
-                                                   outputFolder,
-                                                   hanziVariantsUtil)
+            var dfd = new DFDLoader(Path.Combine(inputFolder, "DFDCharacters.csv"),
+                                    outputFolder,
+                                    hanziVariantsUtil)
                           .Run();
-            var feng =
-                new CreateFengDocumentsAction(Path.Combine(inputFolder, "feng.txt"), outputFolder)
-                    .Run();
+            var feng = new FengLoader(Path.Combine(inputFolder, "feng.txt"), outputFolder).Run();
 
             index.Version = versionTag;
             index.Documents.Add(ciklin);
