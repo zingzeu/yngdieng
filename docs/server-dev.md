@@ -34,8 +34,11 @@ The backend server will refuse to run without an index file.
 
   * opencc_data_dictionary -- the `data/dictionary` directory of the [OpenCC](https://github.com/BYVoid/OpenCC) repo
   * ciklin.csv --  `CikLinBekIn.csv` from the [only3km/ciklinbekin](https://github.com/only3km/ciklinbekin/blob/gh-pages/CikLinBekIn.csv) repo
-  * DFDCharacters.csv -- `DFDCharacters.csv` from the [only3km/ciklinbekin](https://github.com/only3km/ciklinbekin/tree/master) repo
+  * DFDCharacters.csv -- `DFDCharacters.csv` from the [only3km/ciklinbekin](https://github.com/only3km/ciklinbekin/blob/gh-pages/DFDCharacters.csv) repo
   * feng.txt -- from the [zingzeu-data](https://github.com/ztl8702/zingzeu-data) repo
+  * feng_zeu_mapping.txt -- from the [zingzeu-data](https://github.com/ztl8702/zingzeu-data) repo
+  * contrib.tsv -- from the [zingzeu-data](https://github.com/ztl8702/zingzeu-data) repo
+  * zingzeu_words.txt -- from the [zingzeu-data](https://github.com/ztl8702/zingzeu-data) repo
 
 1. Start opencc_daemon in one of your terminal windows (词典索引中的简繁模糊查询用)
    ```

@@ -22,46 +22,15 @@ namespace Yngdieng.Indexer
             var inputFolder = args[0];
             var outputFolder = args[1];
             var versionTag = args.Length > 2 ? args[2] : "notag";
-            Console.WriteLine($"Input: {Path.GetFullPath(inputFolder)}");
-            Console.WriteLine($"Output: {Path.GetFullPath(outputFolder)}");
-            var index = new YngdiengIndex();
-            var hanziVariantsUtil = new HanziVariantsUtil(inputFolder);
-            var aggregator = new HistoricalDocAggregator();
-
-            var ciklin = new CikLingLoader(Path.Combine(inputFolder, "ciklin.csv"),
-                                           outputFolder,
-                                           hanziVariantsUtil)
-                             .Run();
-            var dfd = new DFDLoader(Path.Combine(inputFolder, "DFDCharacters.csv"),
-                                    outputFolder,
-                                    hanziVariantsUtil)
-                          .Run();
-            var feng = new FengLoader(Path.Combine(inputFolder, "feng.txt"), outputFolder).Run();
-
-            index.Version = versionTag;
-            index.Documents.Add(ciklin);
-            index.Documents.Add(dfd);
-            index.FengDocuments.Add(feng);
-            foreach (var d in ciklin)
-            {
-                aggregator.Add(d);
-            }
-            foreach (var d in dfd)
-            {
-                aggregator.Add(d);
-            }
-            index.AggregatedDocument.AddRange(aggregator.GetAggregatedDocuments());
-
-            using (var outputFile = File.Create(Path.Combine(outputFolder, "yngdieng_index.bin")))
-            {
-                index.WriteTo(outputFile);
-            }
-            return 0;
+            var useV2 = args.Length > 3 ? args [3]
+                                                  .ToLowerInvariant() == "v2"
+                                        : false;
+            return new IndexV1Creator(inputFolder, outputFolder, versionTag).Run();
         }
 
         private static void PrintHelp()
         {
-            Console.WriteLine("Usage: indexer <data path> <output path>");
+            Console.WriteLine("Usage: indexer <data path> <output path> [v2]");
         }
     }
 }
