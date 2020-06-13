@@ -4,15 +4,15 @@
 
 
 @font-face {
-  font-family: 'Ext-A';
-  src: url('assets/fonts/yngdieng-extended-A.woff') format('woff'), /* Pretty Modern Browsers */
-       url('assets/fonts/yngdieng-extended-A.ttf')  format('truetype'), /* Safari, Android, iOS */
+  font-family: 'Ext-0';
+  src: url('assets/fonts/yngdieng-extended-0.woff') format('woff'), /* Pretty Modern Browsers */
+       url('assets/fonts/yngdieng-extended-0.ttf')  format('truetype'), /* Safari, Android, iOS */
 }
 
 @font-face {
-  font-family: 'Ext-B';
-  src: url('assets/fonts/yngdieng-extended-B.woff') format('woff'), /* Pretty Modern Browsers */
-       url('assets/fonts/yngdieng-extended-B.ttf')  format('truetype'), /* Safari, Android, iOS */
+  font-family: 'Ext-1';
+  src: url('assets/fonts/yngdieng-extended-1.woff') format('woff'), /* Pretty Modern Browsers */
+       url('assets/fonts/yngdieng-extended-1.ttf')  format('truetype'), /* Safari, Android, iOS */
 }
 
 $background-color: #F7EFED;
@@ -23,8 +23,8 @@ body {
 }
 
 .content {
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 2rem;
+    padding-right: 2rem;
 }
 
 .text-yngping {
@@ -32,15 +32,15 @@ body {
 }
 
 .result-card {
-    margin-bottom: 15px;
+    margin-bottom: 10px;
     margin-left: 5px;
     margin-right: 5px;
     border-radius: 5px;
     background-color: rgba(220, 210, 208, 1);
     
     .result-hanzi {
-        font-family: 'Noto Serif SC', 'Noto Serif TC', 'Ext-A', 'Ext-B', serif;
-        font-size: 2em;
+        font-family: 'Noto Serif SC', 'Noto Serif TC', 'Ext-0', 'Ext-1', serif;
+        font-size: 1.8em;
     }
 
     .detail-link {
@@ -50,9 +50,18 @@ body {
         }
         color: #293249;
     }
-  
+}
+
+.mat-card {
+    padding: 12px !important;
 }
 
 .unihan-text {
-    font-family: 'Noto Serif SC', 'Noto Serif TC', 'Ext-A', 'Ext-B', serif;
+    font-family: 'Noto Serif SC', 'Noto Serif TC', 'Ext-0', 'Ext-1', serif;
+
+}
+
+// Details text on search result card
+.source {
+    font-size: 14px;
 }

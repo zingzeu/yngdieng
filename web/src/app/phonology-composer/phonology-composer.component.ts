@@ -1,7 +1,7 @@
 import {Component, EventEmitter, OnDestroy, OnInit, Output} from '@angular/core';
-import {getFinalString, getInitialString, getToneString} from '@yngdieng/utils';
 import {Subscription} from 'rxjs';
 import {Final, Initial, Tone} from 'yngdieng/shared/phonology_pb';
+import {getFinalString, getInitialString, getToneString} from 'yngdieng/web/src/yngdieng/utils';
 
 import {AdvancedSearchQueryBuilderService} from '../advanced-search-query-builder.service';
 

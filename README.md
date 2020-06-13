@@ -6,10 +6,12 @@
 
 [![Build Status](https://mindonglab.visualstudio.com/yngdieng/_apis/build/status/MindongLab.yngdieng?branchName=master)](https://mindonglab.visualstudio.com/yngdieng/_build/latest?definitionId=1&branchName=master)
 
+[需求文档](https://shimo.im/docs/35c397ff76b647b1) | [UI 设计](https://www.figma.com/file/FoQGpsir7cH4GSYenYqObf/%E6%A6%95%E5%85%B8) | [开发看板](https://github.com/MindongLab/yngdieng/projects/1)
+
 ## 本地 Web 开发 Local web development
 
 Web app 技术栈是 Angular + Typescript，建构系统是 Bazel。
-你需要先安装 [Bazel](https://www.bazel.build/) (> 2.2.0)。
+你需要先安装 [yarn](https://yarnpkg.com/getting-started/install/)。
 
 代码位置在 [web/src](web/src)。
 
@@ -20,11 +22,11 @@ Web app 技术栈是 Angular + Typescript，建构系统是 Bazel。
 2. 运行 devserver：
 
    ```
-   $ bazel run //web/src:devserver
+   $ yarn install
+   $ yarn bazel run //web/src:devserver
    ```
    
-   > 或者使用 `npm run serve`，其通过 [iBazel] 跟踪文件变化，并在你保存文件时自动重新建构 devserver。
+   > 或者使用 `yarn serve`，通过 [iBazel](https://github.com/bazelbuild/bazel-watcher) 跟踪文件变化，并在你保存文件时自动重新建构 devserver。
    
 3. 在浏览器中打开 `http://localhost:4200`，进行手工测试。
 
-[UI mocks on Figma](https://www.figma.com/file/FoQGpsir7cH4GSYenYqObf/%E6%A6%95%E5%85%B8)

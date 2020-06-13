@@ -2,9 +2,9 @@
   <div class="result-header">
     <div class="result-hanzi">
       {{ document.hanziCanonical }} 
-      <li *ngFor="let h of document.hanziAlternatives" class="result-hanzi-alt">
+      <span *ngFor="let h of document.hanziAlternatives" class="result-hanzi-alt">
         {{ h }}
-      </li>
+      </span>
     </div>
     <div class="pron">
       <div class="header">榕拼(八音)</div>

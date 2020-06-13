@@ -8,7 +8,6 @@ workspace(
 )
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
-load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 
 http_archive(
     name = "rules_proto",
@@ -28,11 +27,14 @@ rules_proto_toolchains()
 ###################################
 # dotnet
 ###################################
-git_repository(
+http_archive(
     name = "io_bazel_rules_dotnet",
-    commit = "a8f5820a326180e7c9ec9f333bb9081efc843033",  # 0.0.4
-    remote = "https://github.com/bazelbuild/rules_dotnet",
-    shallow_since = "1578483019 +0100"
+    sha256 = "645aa46c80f3e8d07084ecf00f9bf8da4212cd260a0c7d6df1f1b2a48077034c",
+    strip_prefix = "rules_dotnet-da9b6c931f49e596dce1e80f7b23d54686ec9248",
+    urls = [
+        # 0.0.4
+        "https://github.com/bazelbuild/rules_dotnet/archive/da9b6c931f49e596dce1e80f7b23d54686ec9248.tar.gz",
+    ],
 )
 
 load(
@@ -53,11 +55,13 @@ core_register_sdk(
 
 # grpc
 
-git_repository(
+http_archive(
     name = "rules_proto_grpc",
-    commit = "1add33fdb7b1f2c85e660bc115c8bfe83d768162",
-    remote = "https://github.com/ztl8702/rules_proto_grpc.git",
-    shallow_since = "1575092578 +1100",
+    sha256 = "cbbcae996d8dd4832645fdf7f9ccdce0a062fb31aee14fb1c42dd335ac8aeaad",
+    strip_prefix = "rules_proto_grpc-1add33fdb7b1f2c85e660bc115c8bfe83d768162",
+    urls = [
+        "https://github.com/ztl8702/rules_proto_grpc/archive/1add33fdb7b1f2c85e660bc115c8bfe83d768162.tar.gz",
+    ],
 )
 
 load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_toolchains")
@@ -82,9 +86,9 @@ load("//nuget:nuget.bzl", "yngdieng_nuget_packages")
 
 yngdieng_nuget_packages()
 
-RULES_NODEJS_VERSION = "1.0.1"
+RULES_NODEJS_VERSION = "1.6.0"
 
-RULES_NODEJS_SHA256 = "e1a0d6eb40ec89f61a13a028e7113aa3630247253bcb1406281b627e44395145"
+RULES_NODEJS_SHA256 = "f9e7b9f42ae202cc2d2ce6d698ccb49a9f7f7ea572a78fd451696d03ef2ee116"
 
 http_archive(
     name = "build_bazel_rules_nodejs",
@@ -93,9 +97,9 @@ http_archive(
 )
 
 # Rules for compiling sass
-RULES_SASS_VERSION = "1.24.0"
+RULES_SASS_VERSION = "1.25.0"
 
-RULES_SASS_SHA256 = "77e241148f26d5dbb98f96fe0029d8f221c6cb75edbb83e781e08ac7f5322c5f"
+RULES_SASS_SHA256 = "c78be58f5e0a29a04686b628cf54faaee0094322ae0ac99da5a8a8afca59a647"
 
 http_archive(
     name = "io_bazel_rules_sass",
@@ -114,14 +118,7 @@ load(
 )
 
 check_bazel_version(
-    message = """
-You no longer need to install Bazel on your machine.
-Your project should have a dependency on the @bazel/bazel package which supplies it.
-Try running `yarn bazel` instead.
-    (If you did run that, check that you've got a fresh `yarn install`)
-
-""",
-    minimum_bazel_version = "2.1.0",
+    minimum_bazel_version = "3.0.0",
 )
 
 yarn_install(
@@ -165,11 +162,13 @@ load("@io_bazel_rules_sass//sass:sass_repositories.bzl", "sass_repositories")
 
 sass_repositories()
 
-git_repository(
+http_archive(
     name = "rules_typescript_proto",
-    commit = "fa21e6a057a96ea18c2f61d02d90d4bf82db354a",
-    remote = "https://github.com/ztl8702/rules_typescript_proto",
-    shallow_since = "1579365079 -0800",
+    sha256 = "349545b1c8a5c59c0c1bcf325a1cdc26a7f00b513d132226bb4541f1ed9439be",
+    strip_prefix = "rules_typescript_proto-fa21e6a057a96ea18c2f61d02d90d4bf82db354a",
+    urls = [
+        "https://github.com/ztl8702/rules_typescript_proto/archive/fa21e6a057a96ea18c2f61d02d90d4bf82db354a.tar.gz",
+    ],
 )
 
 load("@rules_typescript_proto//:index.bzl", "rules_typescript_proto_dependencies")
