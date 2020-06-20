@@ -76,7 +76,7 @@
     "rollup-plugin-commonjs": "10.1.0",
     "rollup-plugin-node-resolve": "5.2.0",
     "rollup-plugin-sourcemaps": "0.6.2",
-    "terser": "4.7.0",
+    "terser": "4.8.0",
     "tslint": "6.1.2",
     "typescript": "3.6.4",
     "webpack": "4.43.0"
