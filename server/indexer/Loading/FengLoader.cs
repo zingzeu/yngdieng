@@ -41,6 +41,7 @@ namespace Yngdieng.Indexer.Loading
                         Id = $"p{f.PageNumber}_{f.LineNumber}",
                         HanziCanonical = f.HanziClean,
                         YngpingCanonical = f.Pron,
+                        YngpingUnderlying = f.PronUnderlying,
                         Explanation = cleanExplanation,
                         ExplanationHans = Simplify(cleanExplanation),
                         ExplanationStructured = SafeParseExplanation(cleanExplanation),
@@ -50,6 +51,7 @@ namespace Yngdieng.Indexer.Loading
                     tmp.HanziMatchable.Add(f.HanziClean);
                     tmp.HanziMatchable.Add(Simplify(f.HanziClean));
                     tmp.YngpingPermutations.Add(f.Pron);
+                    tmp.YngpingPermutations.Add(f.PronUnderlying);
                     tmp.YngpingPermutations.AddRange(
                         YngpingVariantsUtil.GenerateYngpingVariants(f.Pron));
                     return tmp;
