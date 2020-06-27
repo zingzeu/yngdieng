@@ -43,6 +43,10 @@ export class DetailsFengComponent implements OnInit, OnDestroy {
         this.fengDoc.getExplanationStructured(), this.fengDoc.getHanziCanonical());
   }
 
+  get shouldShowSandhi() {
+    return this.fengDoc.getYngpingUnderlying() !== this.fengDoc.getYngpingCanonical();
+  }
+
   constructor(
       @Inject(YNGDIENG_ENVIRONMENT) private environment: IYngdiengEnvironment,
       private route: ActivatedRoute,
