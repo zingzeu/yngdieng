@@ -29,7 +29,7 @@ export class SidenavContentComponent implements OnInit {
 
   onFeedbackClicked(){
     this.sideNavState.closeSideNav();
-    var win = window.open('https://github.com/MindongLab/yngdieng/issues/new/choose', '_blank');
+    var win = window.open('https://support.qq.com/products/172407', '_blank');
     win.focus();
   }
 }
