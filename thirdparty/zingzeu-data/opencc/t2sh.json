@@ -1,0 +1,25 @@
+{
+  "name": "福州話繁體轉簡體",
+  "segmentation": {
+    "type": "mmseg",
+    "dict": {
+      "type": "ocd2",
+      "file": "TSPhrases.ocd2"
+    }
+  },
+  "conversion_chain": [{
+    "dict": {
+      "type": "group",
+      "dicts": [ {
+        "type": "text",
+        "file": "FoochowPhrases.txt"
+      },{
+        "type": "ocd2",
+        "file": "TSPhrases.ocd2"
+      }, {
+        "type": "ocd2",
+        "file": "TSCharacters.ocd2"
+      }]
+    }
+  }]
+}

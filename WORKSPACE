@@ -7,6 +7,9 @@ workspace(
     managed_directories = {"@npm": ["node_modules"]},
 )
 
+GITHUB_COM = "github.com"
+# GITHUB_COM = "github.wuyanzheshui.workers.dev"
+
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
@@ -14,7 +17,7 @@ http_archive(
     sha256 = "4d421d51f9ecfe9bf96ab23b55c6f2b809cbaf0eea24952683e397decfbd0dd0",
     strip_prefix = "rules_proto-f6b8d89b90a7956f6782a4a3609b2f0eee3ce965",
     urls = [
-        "https://github.com/bazelbuild/rules_proto/archive/f6b8d89b90a7956f6782a4a3609b2f0eee3ce965.tar.gz",
+        "https://" + GITHUB_COM + "/bazelbuild/rules_proto/archive/f6b8d89b90a7956f6782a4a3609b2f0eee3ce965.tar.gz",
     ],
 )
 
@@ -33,7 +36,7 @@ http_archive(
     strip_prefix = "rules_dotnet-da9b6c931f49e596dce1e80f7b23d54686ec9248",
     urls = [
         # 0.0.4
-        "https://github.com/bazelbuild/rules_dotnet/archive/da9b6c931f49e596dce1e80f7b23d54686ec9248.tar.gz",
+        "https://" + GITHUB_COM + "/bazelbuild/rules_dotnet/archive/da9b6c931f49e596dce1e80f7b23d54686ec9248.tar.gz",
     ],
 )
 
@@ -60,7 +63,7 @@ http_archive(
     sha256 = "cbbcae996d8dd4832645fdf7f9ccdce0a062fb31aee14fb1c42dd335ac8aeaad",
     strip_prefix = "rules_proto_grpc-1add33fdb7b1f2c85e660bc115c8bfe83d768162",
     urls = [
-        "https://github.com/ztl8702/rules_proto_grpc/archive/1add33fdb7b1f2c85e660bc115c8bfe83d768162.tar.gz",
+        "https://" + GITHUB_COM + "/ztl8702/rules_proto_grpc/archive/1add33fdb7b1f2c85e660bc115c8bfe83d768162.tar.gz",
     ],
 )
 
@@ -93,7 +96,7 @@ RULES_NODEJS_SHA256 = "f9e7b9f42ae202cc2d2ce6d698ccb49a9f7f7ea572a78fd451696d03e
 http_archive(
     name = "build_bazel_rules_nodejs",
     sha256 = RULES_NODEJS_SHA256,
-    url = "https://github.com/bazelbuild/rules_nodejs/releases/download/%s/rules_nodejs-%s.tar.gz" % (RULES_NODEJS_VERSION, RULES_NODEJS_VERSION),
+    url = "https://" + GITHUB_COM + "/bazelbuild/rules_nodejs/releases/download/%s/rules_nodejs-%s.tar.gz" % (RULES_NODEJS_VERSION, RULES_NODEJS_VERSION),
 )
 
 # Rules for compiling sass
@@ -105,7 +108,7 @@ http_archive(
     name = "io_bazel_rules_sass",
     sha256 = RULES_SASS_SHA256,
     strip_prefix = "rules_sass-%s" % RULES_SASS_VERSION,
-    url = "https://github.com/bazelbuild/rules_sass/archive/%s.zip" % RULES_SASS_VERSION,
+    url = "https://" + GITHUB_COM + "/bazelbuild/rules_sass/archive/%s.zip" % RULES_SASS_VERSION,
 )
 
 ####################################
@@ -167,10 +170,36 @@ http_archive(
     sha256 = "349545b1c8a5c59c0c1bcf325a1cdc26a7f00b513d132226bb4541f1ed9439be",
     strip_prefix = "rules_typescript_proto-fa21e6a057a96ea18c2f61d02d90d4bf82db354a",
     urls = [
-        "https://github.com/ztl8702/rules_typescript_proto/archive/fa21e6a057a96ea18c2f61d02d90d4bf82db354a.tar.gz",
+        "https://" + GITHUB_COM + "/ztl8702/rules_typescript_proto/archive/fa21e6a057a96ea18c2f61d02d90d4bf82db354a.tar.gz",
     ],
 )
 
 load("@rules_typescript_proto//:index.bzl", "rules_typescript_proto_dependencies")
 
 rules_typescript_proto_dependencies()
+
+###################################
+# docker
+###################################
+
+# Download the rules_docker repository at release v0.14.3
+http_archive(
+    name = "io_bazel_rules_docker",
+    sha256 = "6287241e033d247e9da5ff705dd6ef526bac39ae82f3d17de1b69f8cb313f9cd",
+    strip_prefix = "rules_docker-0.14.3",
+    urls = ["https://" + GITHUB_COM + "/bazelbuild/rules_docker/releases/download/v0.14.3/rules_docker-v0.14.3.tar.gz"],
+)
+
+load(
+    "@io_bazel_rules_docker//repositories:repositories.bzl",
+    container_repositories = "repositories",
+)
+
+container_repositories()
+
+load(
+    "@io_bazel_rules_docker//nodejs:image.bzl",
+    _nodejs_image_repos = "repositories",
+)
+
+_nodejs_image_repos()
