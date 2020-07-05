@@ -8,6 +8,7 @@ import {DetailsMonoHanziComponent} from './details-mono-hanzi/details-mono-hanzi
 import {HelpComponent} from './help/help.component';
 import {HomeComponent} from './home/home.component';
 import {SearchResultComponent} from './search-result/search-result.component';
+import {SimplificationToolComponent} from './simplification-tool/simplification-tool.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -16,6 +17,7 @@ const routes: Routes = [
   {path: 'help', component: HelpComponent},
   {path: 'feng/:id', component: DetailsFengComponent},
   {path: 'char/:id', component: DetailsMonoHanziComponent},
+  {path: 'tools/simplify', component: SimplificationToolComponent},
   {path: '_debug', component: DebugInfoComponent},
   {path: '**', component: HomeComponent}
 ];
