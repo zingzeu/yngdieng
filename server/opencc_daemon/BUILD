@@ -11,6 +11,9 @@ nodejs_binary(
     entry_point = ":opencc_daemon.js",
 )
 
+# Because of native dependencies (i.e. OpenCC), this target
+# must be built on Linux. Building on macOS will produce a 
+# broken image.
 nodejs_image(
     name = "nodejs_image",
     binary = ":opencc_daemon",
