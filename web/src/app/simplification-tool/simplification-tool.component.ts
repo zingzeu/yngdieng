@@ -3,14 +3,14 @@ import {Component, OnInit} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {catchError, debounceTime, map, switchMap} from 'rxjs/operators';
 
-// const OPENCC_API = "http://opencc.api.yngdieng.org/hokchew"
-const OPENCC_API = 'http://localhost:8081/hokchew'
+const OPENCC_API = 'http://opencc.api.yngdieng.org/hokchew';
 
-    @Component({
-      selector: 'app-simplification-tool',
-      templateUrl: './simplification-tool.component.html',
-      styleUrls: ['./simplification-tool.component.scss']
-    }) export class SimplificationToolComponent implements OnInit {
+@Component({
+  selector: 'app-simplification-tool',
+  templateUrl: './simplification-tool.component.html',
+  styleUrls: ['./simplification-tool.component.scss']
+})
+export class SimplificationToolComponent implements OnInit {
   inputTextControl = new FormControl('');
   output: string = '';
   hasError = false;
