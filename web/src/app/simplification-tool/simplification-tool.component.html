@@ -1,1 +1,15 @@
-<h1>福州话繁体转简体<h1>
+<div id="container">
+    <h1>福州话繁转简</h1>
+    <div class="panel">
+        <div class="left">繁体</div>
+        <div class="right">简体
+            <div *ngIf="hasError">⚠️ 发生错误</div>
+        </div>
+    </div>
+    <div class="panel">
+        <textarea class="left unihan-text" [formControl]="inputTextControl"></textarea>
+        <textarea readonly class="right unihan-text">{{ output }}</textarea>
+    </div>
+   
+    <div class="hint">基于 OpenCC 繁体转简体，兼顾福州话特殊用字（部分福州话用字不转简体）</div>
+</div>

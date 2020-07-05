@@ -1,3 +1,4 @@
+import {HttpClientModule} from '@angular/common/http';
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
@@ -51,13 +52,14 @@ import {YngpingHelpDialogComponent} from './yngping-help-dialog/yngping-help-dia
     SimplificationToolComponent
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
-    NoopAnimationsModule,
+    BrowserModule,
     FormsModule,
-    ReactiveFormsModule,
+    HttpClientModule,
     MaterialModule,
-    MatDialogModule
+    MatDialogModule,
+    NoopAnimationsModule,
+    ReactiveFormsModule,
   ],
   entryComponents: [YngpingHelpDialogComponent],
   providers:

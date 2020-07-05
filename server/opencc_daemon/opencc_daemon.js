@@ -16,7 +16,7 @@ const server = http.createServer((req, res) => {
         req.on('end', function() {
           const isHokchew = req.url.trimRight().toLowerCase() === '/hokchew'
           console.log((isHokchew ? 'Hokchew: ' : 'Mandarin: ') + body)
-          res.writeHead(200, {'Content-Type': 'text/plain'})
+          res.writeHead(200, {'Content-Type': 'text/plain', 'Access-Control-Allow-Origin': '*'})
           res.end((isHokchew ? openccHokchew : openccMandarin).convertSync(body))
         })
     } else {
