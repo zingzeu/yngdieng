@@ -1,6 +1,6 @@
 #!/bin/sh
 
-# mkdir -p charset_scanneds input_text output_fonts preview
+mkdir -p charset_scanneds input_text output_fonts preview
 
 python3 ./process.py ./input_text ./charset_scanned/charset_all.txt ABCDEFG
 
