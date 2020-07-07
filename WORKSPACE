@@ -167,10 +167,10 @@ sass_repositories()
 
 http_archive(
     name = "rules_typescript_proto",
-    sha256 = "349545b1c8a5c59c0c1bcf325a1cdc26a7f00b513d132226bb4541f1ed9439be",
-    strip_prefix = "rules_typescript_proto-fa21e6a057a96ea18c2f61d02d90d4bf82db354a",
+   # sha256 = "349545b1c8a5c59c0c1bcf325a1cdc26a7f00b513d132226bb4541f1ed9439be",
+    strip_prefix = "rules_typescript_proto-6a0b437d49d000bd4a3bcff1c6cf5117ba40b91f",
     urls = [
-        "https://" + GITHUB_COM + "/ztl8702/rules_typescript_proto/archive/fa21e6a057a96ea18c2f61d02d90d4bf82db354a.tar.gz",
+        "https://" + GITHUB_COM + "/Dig-Doug/rules_typescript_proto/archive/6a0b437d49d000bd4a3bcff1c6cf5117ba40b91f.tar.gz",
     ],
 )
 
