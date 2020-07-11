@@ -107,7 +107,7 @@ export class SearchResultComponent implements OnInit, OnDestroy {
 
 function resultRowToViewModel(r: SearchResultRow): MonoHanziResultViewModel|FengResultViewModel {
   switch (r.getResultCase()) {
-    case SearchResultRow.ResultCase.AGGREGATED_DOCUMENT:
+    case SearchResultRow.ResultCase.HISTORICAL_DOCUMENT:
       return toMonoHanziResultViewModel(r.getHistoricalDocument());
     case SearchResultRow.ResultCase.FENG_DOCUMENT:
       let f = r.getFengDocument();

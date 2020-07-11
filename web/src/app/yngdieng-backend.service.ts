@@ -1,7 +1,7 @@
 import {Inject, Injectable} from '@angular/core';
 import {Observable, Subject} from 'rxjs';
 import {FengDocument, HistoricalDocument} from 'yngdieng/shared/documents_pb';
-import {DebugInfo, GetDebugInfoRequest, GetFengDocumentRequest, GetHistoricalDocumentRequest, SearchRequest, SearchResponse} from 'yngdieng/shared/services_pb';
+import {DebugInfo, GetDebugInfoRequest, GetFengDocumentRequest, GetAggregatedDocumentRequest, SearchRequest, SearchResponse} from 'yngdieng/shared/services_pb';
 import {YngdiengServiceClient} from 'yngdieng/shared/services_pb_service';
 
 import {IYngdiengEnvironment, YNGDIENG_ENVIRONMENT} from '../environments/environment';
@@ -50,9 +50,9 @@ export class YngdiengBackendService {
 
   getHistoricalDocument(docId: string): Observable<HistoricalDocument> {
     let subject = new Subject<HistoricalDocument>();
-    let request = new GetHistoricalDocumentRequest();
+    let request = new GetAggregatedDocumentRequest();
     request.setId(docId);
-    this.grpcClient.getHistoricalDocument(request, (err, response) => {
+    this.grpcClient.getAggregatedDocument(request, (err, response) => {
       if (err != null) {
         subject.error(err);
         return;
