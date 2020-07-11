@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Yngdieng.Protos;
+using static Yngdieng.Indexer.ExplanationUtil;
 using Yngdieng.Common;
 using System.Net.Http;
 using System.Text;
@@ -71,24 +72,6 @@ namespace Yngdieng.Indexer.Loading
                 .Result;
         }
 
-        private static Explanation SafeParseExplanation(string rawExplanation)
-        {
-            try
-            {
-                return ConvertExplanation(FengExplanationParser.Parse(rawExplanation));
-            }
-            catch (Exception e)
-            {
-                Console.WriteLine($"{e.Message} {e.StackTrace}");
-                return null;
-            }
-        }
-
-        private static Explanation ConvertExplanation(
-            zingzeudata.ZingzeuData.Models.Explanation explanation)
-        {
-            return Explanation.Parser.ParseFrom(explanation.ToByteArray());
-        }
     }
 
 }
