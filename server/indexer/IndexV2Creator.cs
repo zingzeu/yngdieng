@@ -44,7 +44,8 @@ namespace Yngdieng.Indexer
                                     hanziVariantsUtil)
                           .Run();
             Console.WriteLine($"Loading Feng...");
-            var feng = new FengLoader(Path.Combine(inputFolder, "feng.txt"), outputFolder).Run();
+            var feng = new FengLoader(Path.Combine(inputFolder, "feng.txt"),
+             Path.Combine(inputFolder, "feng_zeu_mapping.txt"), outputFolder).Run();
 
             index.Version = versionTag;
             index.Documents.Add(ciklin);

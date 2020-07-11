@@ -19,12 +19,14 @@ namespace Yngdieng.Indexer.Loading
 
         private static readonly string OpenCCDaemon = "http://localhost:8081";
         private static readonly HttpClient client = new HttpClient();
-        private readonly string mergedPath;
+        private readonly string fengPath;
+        private readonly string fengZeuMappingPath;
         private readonly string outputFolder;
 
-        public FengLoader(string mergedPath, string outputFolder)
+        public FengLoader(string fengPath, string fengZeuMappingPath, string outputFolder)
         {
-            this.mergedPath = mergedPath;
+            this.fengPath = fengPath;
+            this.fengZeuMappingPath = fengZeuMappingPath;
             this.outputFolder = outputFolder;
         }
 
@@ -32,9 +34,9 @@ namespace Yngdieng.Indexer.Loading
         {
             var jsonOutput = new List<string>();
             var documents = new List<FengDocument>();
-
+            var fengZeuMapping = LoadFengZeuMapping();
             var docs =
-                zingzeudata.ZingzeuData.Parser.ParseFeng.LoadFengRows(mergedPath).Select(f => {
+                zingzeudata.ZingzeuData.Parser.ParseFeng.LoadFengRows(fengPath).Select(f => {
                     var cleanExplanation =
                         zingzeudata.ZingzeuData.Shared.StringHelpers.ReplaceAllBraces(
                             f.ExplanationRaw);
@@ -49,6 +51,9 @@ namespace Yngdieng.Indexer.Loading
                         Source = new FengDocument.Types.SourceInfo{PageNumber = f.PageNumber,
                                                                    LineNumber = f.LineNumber},
                     };
+                    if (fengZeuMapping.ContainsKey((f.PageNumber, f.LineNumber))) {
+                        tmp.ZingzeuId = fengZeuMapping[(f.PageNumber, f.LineNumber)];
+                    }
                     tmp.HanziMatchable.Add(f.HanziClean);
                     tmp.HanziMatchable.Add(Simplify(f.HanziClean));
                     tmp.YngpingPermutations.Add(f.Pron);
@@ -62,6 +67,13 @@ namespace Yngdieng.Indexer.Loading
             jsonOutput.AddRange(docs.Select(proto => proto.ToString()));
             File.WriteAllLines(Path.Combine(outputFolder, "feng_index_debug.txt"), jsonOutput);
             return documents;
+        }
+
+        private IReadOnlyDictionary<(int, int), string> LoadFengZeuMapping()
+        {
+            return zingzeudata.ZingzeuData.Parser.ParseFengZeuMapping
+                .LoadFengZeuMapping(fengZeuMappingPath)
+                .ToDictionary(e =>(e.FengPageNumber, e.FengLineNumber), e => e.ZingzeuId);
         }
 
         private static string Simplify(string traditional)
