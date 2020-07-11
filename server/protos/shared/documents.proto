@@ -139,9 +139,11 @@ message AggregatedDocument {
 }
 
 // 冯 / 李文档.
-// Next ID: 12
+// Next ID: 13
 message FengDocument {
   string id = 1;
+
+  string zingzeu_id = 12;
 
   // 正字写法.
   string hanzi_canonical = 2;
