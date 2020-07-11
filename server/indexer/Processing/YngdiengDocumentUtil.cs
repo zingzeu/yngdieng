@@ -79,8 +79,9 @@ namespace Yngdieng.Indexer.Processing
             foreach (var doc in results)
             {
                 doc.DocId = Base64UrlTextEncoder.Encode(doc.DocRef.ToByteArray());
+                // TODO:Populate remaining fields: hanzi_canonical, yngping_underlying,
+                // yngping_sandhi, indexing_extension
             }
-            // Populate remaining fields
             return results;
         }
     }
