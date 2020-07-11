@@ -1,11 +1,11 @@
-import {AggregatedDocument} from 'yngdieng/shared/documents_pb';
+import {HistoricalDocument} from 'yngdieng/shared/documents_pb';
 import {getFinalString, getInitialString, getToneString} from 'yngdieng/web/src/yngdieng/utils';
 
 import {getHanziString} from '../common/hanzi-util';
 
 import {MonoHanziResultViewModel} from './view-models';
 
-export function toMonoHanziResultViewModel(a: AggregatedDocument): MonoHanziResultViewModel {
+export function toMonoHanziResultViewModel(a: HistoricalDocument): MonoHanziResultViewModel {
   return {
     _type: 'single',
     id: a.getId(),

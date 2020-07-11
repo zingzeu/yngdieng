@@ -50,12 +50,8 @@ namespace Yngdieng.Backend.Services
       {
         case Query.QueryOneofCase.PhonologyQuery:
           {
-            return QueryByPhonologyAggregated(query.PhonologyQuery, query.SortBy).Select(a =>
-             new SearchResultRow
-             {
-               AggregatedDocument = a
-             }
-            );
+            return QueryByPhonologyAggregated(query.PhonologyQuery, query.SortBy)
+                .Select(a => new SearchResultRow{HistoricalDocument = a});
           }
         case Query.QueryOneofCase.HanziQuery:
           {
@@ -66,7 +62,7 @@ namespace Yngdieng.Backend.Services
             {
                 // 单字条目优先
                 monoHanziResults = QueryMonoHanziAggregated(query.HanziQuery, query.SortBy)
-                                       .Select(a => new SearchResultRow{AggregatedDocument = a});
+                                       .Select(a => new SearchResultRow{HistoricalDocument = a});
             }
 
             // 之后是词汇（冯版），如有
@@ -130,7 +126,8 @@ namespace Yngdieng.Backend.Services
       return sorted;
     }
 
-    private IEnumerable<AggregatedDocument> QueryByPhonologyAggregated(PhonologyQuery query, SortByMethod sortBy)
+    private IEnumerable<HistoricalDocument> QueryByPhonologyAggregated(PhonologyQuery query,
+                                                                       SortByMethod sortBy)
     {
       Initial initial = query.Initial;
       Final final = query.Final;
@@ -142,7 +139,7 @@ namespace Yngdieng.Backend.Services
         throw new Exception("Cannot all be unspecified");
       }
       // Filter
-      var documents = _indexHolder.GetIndex().AggregatedDocument.Where(_ => true);
+      var documents = _indexHolder.GetIndex().HistoricalDocuments.Where(_ => true);
       if (initial != Initial.Unspecified)
       {
         documents = documents.Where(d => d.Initial == initial);
@@ -157,7 +154,7 @@ namespace Yngdieng.Backend.Services
       }
       var matchedDocuments = documents;
       // Sort
-      IEnumerable<AggregatedDocument> sorted;
+      IEnumerable<HistoricalDocument> sorted;
       switch (sortBy)
       {
         case SortByMethod.InitialFinalTone:
@@ -256,21 +253,19 @@ namespace Yngdieng.Backend.Services
     }
 
     /// <summary>
-    /// 查询单字条目（合并来源)。
+    /// 查询历史音韵条目.
     /// </summary>
     /// <returns></returns>
-    private IEnumerable<AggregatedDocument> QueryMonoHanziAggregated(string query, SortByMethod sortBy)
+    private IEnumerable<HistoricalDocument> QueryMonoHanziAggregated(string query,
+                                                                     SortByMethod sortBy)
     {
-      var matchedDocuments = _indexHolder.GetIndex().AggregatedDocument
-                .Where(d =>
-                    GetHanzi(d.HanziCanonical) == query
-                    || d.HanziAlternatives.Where(
-                        r => GetHanzi(r) == query).Count() > 0
-                    || d.HanziMatchable.IndexOf(query) >= 0
-                );
-      IEnumerable<AggregatedDocument> sorted;
-      switch (sortBy)
-      {
+        var matchedDocuments = _indexHolder.GetIndex().HistoricalDocuments.Where(
+            d => GetHanzi(d.HanziCanonical) == query ||
+                 d.HanziAlternatives.Where(r => GetHanzi(r) == query).Count() > 0 ||
+                 d.HanziMatchable.IndexOf(query) >= 0);
+        IEnumerable<HistoricalDocument> sorted;
+        switch (sortBy)
+        {
         case SortByMethod.InitialFinalTone:
           sorted = matchedDocuments.OrderBy(d => d.Final)
                       .ThenBy(d => d.Initial)
@@ -280,7 +275,7 @@ namespace Yngdieng.Backend.Services
         default:
           sorted = matchedDocuments;
           break;
-      }
+        }
       return sorted;
     }
 

@@ -32,7 +32,7 @@ export class DetailsMonoHanziComponent implements OnInit, OnDestroy {
   ngOnInit() {
     this.isBusy = true;
     let currentDocument$ = this.route.paramMap.pipe(
-        switchMap(paramMap => this.backendService.getAggregatedDocument(paramMap.get('id'))));
+        switchMap(paramMap => this.backendService.getHistoricalDocument(paramMap.get('id'))));
     this.currentDocumentSubscription = currentDocument$.subscribe(
         response => {
           this.isBusy = false;
@@ -74,12 +74,12 @@ export class DetailsMonoHanziComponent implements OnInit, OnDestroy {
                   return this.backendService.search(`i:${initial} f:${final} t:${tone}`)
                 }),
                 map(response => response.getResultsList()
-                                    .filter(x => x.hasAggregatedDocument())
+                                    .filter(x => x.hasHistoricalDocument())
                                     .map(d => {
                                       return {
                                         hanzi: getHanziString(
-                                            d.getAggregatedDocument().getHanziCanonical()),
-                                        id: d.getAggregatedDocument().getId()
+                                            d.getHistoricalDocument().getHanziCanonical()),
+                                        id: d.getHistoricalDocument().getId()
                                       } as Homophone;
                                     })
                                     .filter(x => x.id != this.route.snapshot.paramMap.get('id'))))

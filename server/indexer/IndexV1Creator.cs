@@ -57,7 +57,7 @@ namespace Yngdieng.Indexer
             {
                 aggregator.Add(d);
             }
-            index.AggregatedDocument.AddRange(aggregator.GetAggregatedDocuments());
+            index.HistoricalDocuments.AddRange(aggregator.GetHistoricalDocuments());
 
             using (var outputFile = File.Create(Path.Combine(outputFolder, "yngdieng_index.bin")))
             {

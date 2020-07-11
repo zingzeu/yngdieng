@@ -63,10 +63,10 @@ namespace Yngdieng.Indexer
             {
                 aggregator.Add(d);
             }
-            index.AggregatedDocument.AddRange(aggregator.GetAggregatedDocuments());
+            index.HistoricalDocuments.AddRange(aggregator.GetHistoricalDocuments());
 
             index.YngdiengDocuments.AddRange(YngdiengDocumentUtil.Combine(
-                zingzeuWords, index.AggregatedDocument, feng, contrib));
+                zingzeuWords, index.HistoricalDocuments, feng, contrib));
 
             var debugJsonOutput = index.ToString();
             File.WriteAllText(Path.Combine(outputFolder, "index_debug.json"), debugJsonOutput);

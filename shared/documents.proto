@@ -12,8 +12,8 @@ message DocRef {
     string feng_id = 2;
     string li_id = 3;
     int32 contrib_row_number = 4;
-    // ID of AggregatedDocument
-    string aggr_doc_id = 5;
+    // ID of HistoricalDocument
+    string historical_doc_id = 5;
   }
 }
 
@@ -48,7 +48,7 @@ message YngdiengDocument {
 
   message Source {
     oneof source {
-      AggregatedDocument ciklin_dfd = 1;
+      HistoricalDocument ciklin_dfd = 1;
       FengDocument feng = 2;
       ContribDocument contrib = 3;
     }
@@ -107,9 +107,9 @@ message Document {
   }
 }
 
-// 单字条目文档(戚林、榕注合并).
+// 历史音韵单字条目文档(戚林、榕注合并).
 // Next ID: 12
-message AggregatedDocument {
+message HistoricalDocument {
   // Base64 (URL safe) encoded DocumentAggregateKey
   string id = 10;
 
@@ -223,7 +223,7 @@ message YngdiengIndex {
   // Deprecated
   repeated Document documents = 1;
   // Deprecated
-  repeated AggregatedDocument aggregated_document = 2;
+  repeated HistoricalDocument historical_documents = 2;
   // Deprecated
   repeated FengDocument feng_documents = 3;
 
