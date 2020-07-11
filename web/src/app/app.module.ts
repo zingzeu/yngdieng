@@ -1,3 +1,4 @@
+import {HttpClientModule} from '@angular/common/http';
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
@@ -26,6 +27,7 @@ import {PhonologyQueryRendererComponent} from './phonology-query-renderer/phonol
 import {SearchResultComponent} from './search-result/search-result.component';
 import {SearchToolbarComponent} from './search-toolbar/search-toolbar.component';
 import {SidenavContentComponent} from './sidenav-content/sidenav-content.component';
+import {SimplificationToolComponent} from './simplification-tool/simplification-tool.component';
 import {YngdiengBackendService} from './yngdieng-backend.service';
 import {YngpingHelpDialogComponent} from './yngping-help-dialog/yngping-help-dialog.component';
 
@@ -46,16 +48,18 @@ import {YngpingHelpDialogComponent} from './yngping-help-dialog/yngping-help-dia
     HelpComponent,
     CommonToolbarComponent,
     DebugInfoComponent,
-    YngpingHelpDialogComponent
+    YngpingHelpDialogComponent,
+    SimplificationToolComponent
   ],
   imports: [
-    BrowserModule,
     AppRoutingModule,
-    NoopAnimationsModule,
+    BrowserModule,
     FormsModule,
-    ReactiveFormsModule,
+    HttpClientModule,
     MaterialModule,
-    MatDialogModule
+    MatDialogModule,
+    NoopAnimationsModule,
+    ReactiveFormsModule,
   ],
   entryComponents: [YngpingHelpDialogComponent],
   providers:

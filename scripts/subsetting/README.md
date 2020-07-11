@@ -4,7 +4,7 @@ This is a tool for font subsetting for yngdieng website.
 
 ### Prerequisites
 
-The script uses [fonttools](https://github.com/fonttools/fonttools). You can install it with pip:
+The script uses [fonttools](https://github.com/fonttools/fonttools). You can install it with pip (pip3):
 
 ```
 pip install fonttools
@@ -13,9 +13,9 @@ pip install fonttools
 
 ### Usage
 
-Make sure you are under `yngdient/subsetting` directory. 
+Make sure you are under `yngdieng/scripts/subsetting` directory. 
 Create a folder named `input_text` or run the following command: `mkdir -p input_text`.
-Move all the text files that we want out font covers to the folder `input_text`.
+Move all the text files (at the moment: feng.txt, CikLinBekIn.csv, DFDCharacters.csv) that we want out font covers to the folder `input_text`.
 Now, run the command:
 ```
 ./subset.sh

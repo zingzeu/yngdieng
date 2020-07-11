@@ -6,130 +6,231 @@ option csharp_namespace = "Yngdieng.Protos";
 import "shared/zingzeudata/explanation.proto";
 import "shared/phonology.proto";
 
-// Next ID: 14
-message Document {
-    oneof id {
-        int32 ciklin_id = 1;
-        int32 dfd_id = 12;
-    }
-
-    Hanzi hanzi_canonical = 2;
-
-    // Optional. 等价汉字.
-    repeated Hanzi hanzi_alternatives = 3;
-
-    // 所有可搜寻到该文档的汉字.
-    repeated string hanzi_matchable = 13;
-
-    Initial initial = 4;
-
-    Final final = 5;
-
-    Tone tone = 6;
-
-    string buc = 7;
-
-    string yngping_canonical = 8;
-
-    // All searchable permuations
-    repeated string yngping_permutations = 9;
-
-    // 出处信息.
-    oneof source_info {
-        CikLinSourceInfo ciklin = 10;
-        DFDSourceInfo dfd = 11;
-    }
+message DocRef {
+  oneof id {
+    string zingzeu_id = 1;
+    string feng_id = 2;
+    string li_id = 3;
+    int32 contrib_row_number = 4;
+    // ID of AggregatedDocument
+    string aggr_doc_id = 5;
+  }
 }
 
+// Unified representation of Yngdieng entries.
+// TODO: Maybe use different protos for serving and indexing.
+message YngdiengDocument {
+  DocRef doc_ref = 1;
+
+  // Base64 (URL safe) encoded DocRef.
+  string doc_id = 2;
+
+  // 显示在榕典条目上方的汉字.
+  // 一般从 zingzeu_words 中来.
+  Hanzi hanzi_canonical = 3;
+
+  // Optional. 等价汉字 / 异体字.
+  // 这个会从 zingzeu_words 的 A= , 以及各字典的不同写法中来.
+  repeated Hanzi hanzi_alternatives = 4;
+
+  // 福州市区本字音.
+  string yngping_underlying = 5;
+
+  // TODO: 其他地区读音.
+
+  // Optional. 福州市区连读音. 单字条目留空.
+  string yngping_sandhi = 6;
+
+  // 这个词条具体的来源(词典原文).
+  repeated Source sources = 7;
+
+  IndexingExtension indexing_extension = 8;
+
+  message Source {
+    oneof source {
+      AggregatedDocument ciklin_dfd = 1;
+      FengDocument feng = 2;
+      ContribDocument contrib = 3;
+    }
+  }
+
+  // Extra data to facilitate index creation.
+  // This is for our ad hoc index format. Not served to the user.
+  // We plan to deprecate this in favor of a 3rd party indexing
+  // library.
+  message IndexingExtension {
+    // All searchable permuations
+    repeated string yngping_permutations = 1;
+
+    // 所有可搜寻到该文档的汉字. (含简繁异体，索引用)
+    repeated string hanzi_matchable = 2;
+
+    // All searchable explanation text.
+    // Should contain both zh-hans and zh-hant versions.
+    repeated string explanation_text = 3;
+  }
+}
+
+// Next ID: 14
+// Deprecated.
+message Document {
+  oneof id {
+    int32 ciklin_id = 1;
+    int32 dfd_id = 12;
+  }
+
+  Hanzi hanzi_canonical = 2;
+
+  // Optional. 等价汉字.
+  repeated Hanzi hanzi_alternatives = 3;
+
+  // 所有可搜寻到该文档的汉字. (含简繁异体，索引用)
+  repeated string hanzi_matchable = 13;
+
+  Initial initial = 4;
+
+  Final final = 5;
+
+  Tone tone = 6;
+
+  string buc = 7;
+
+  string yngping_canonical = 8;
+
+  // All searchable permuations
+  repeated string yngping_permutations = 9;
+
+  // 出处信息.
+  oneof source_info {
+    CikLinSourceInfo ciklin = 10;
+    DFDSourceInfo dfd = 11;
+  }
+}
+
+// 单字条目文档(戚林、榕注合并).
 // Next ID: 12
 message AggregatedDocument {
-    // Base64 (URL safe) encoded DocumentAggregateKey
-    string id = 10;
+  // Base64 (URL safe) encoded DocumentAggregateKey
+  string id = 10;
 
-    Hanzi hanzi_canonical = 1;
+  Hanzi hanzi_canonical = 1;
 
-    // Optional. 等价汉字.
-    repeated Hanzi hanzi_alternatives = 2;
+  // Optional. 等价汉字.
+  repeated Hanzi hanzi_alternatives = 2;
 
-    // 所有可搜寻到该文档的汉字.
-    repeated string hanzi_matchable = 3;
+  // 所有可搜寻到该文档的汉字.
+  repeated string hanzi_matchable = 3;
 
-    Initial initial = 4;
+  Initial initial = 4;
 
-    Final final = 5;
+  Final final = 5;
 
-    Tone tone = 6;
+  Tone tone = 6;
 
-    string buc = 7;
+  string buc = 7;
 
-    // 榕拼（八音音系）
-    string yngping = 11;
+  // 榕拼（八音音系）
+  string yngping = 11;
 
-    // 出处信息.
-    CikLinSourceInfo ciklin_source = 8;
+  // 出处信息.
+  CikLinSourceInfo ciklin_source = 8;
 
-    DFDSourceInfo dfd_source = 9;
+  DFDSourceInfo dfd_source = 9;
 }
 
-// Next ID: 11
+// 冯 / 李文档.
+// Next ID: 12
 message FengDocument {
-    string id = 1;
+  string id = 1;
 
-    // 正字写法.
-    string hanzi_canonical = 2;
+  // 正字写法.
+  string hanzi_canonical = 2;
 
-    repeated string hanzi_matchable = 9;
+  repeated string hanzi_matchable = 9;
 
-    // Optional. 等价汉字写法. 如俗写。
-    repeated string hanzi_alternatives = 3;
+  // Optional. 等价汉字写法. 如俗写。
+  repeated string hanzi_alternatives = 3;
 
-    string yngping_canonical = 4;
+  // 用于显示的榕拼(连读).
+  string yngping_canonical = 4;
 
-    // All searchable permuations
-    repeated string yngping_permutations = 5;
+  // 用于显示的榕拼(单字).
+  string yngping_underlying = 11;
 
-    // 释义. TODO: structured
-    string explanation = 6;
+  // All searchable permuations
+  repeated string yngping_permutations = 5;
 
-    string explanation_hans = 8;
+  // 释义(未解析).
+  string explanation = 6;
 
-    .zingzeudata.Explanation explanation_structured = 10;
+  string explanation_hans = 8;
 
-    SourceInfo source = 7;
+  .zingzeudata.Explanation explanation_structured = 10;
 
-    message SourceInfo {
-        int32 page_number = 1;
-        // Line in page
-        int32 line_number = 2;
-    }
+  SourceInfo source = 7;
+
+  message SourceInfo {
+    int32 page_number = 1;
+    // Line in page
+    int32 line_number = 2;
+  }
+}
+
+// contrib
+message ContribDocument {
+  oneof id {
+    int32 row_number = 1;
+    string zingzeu_id = 2;
+  }
+
+  // 正字写法.
+  string hanzi = 3;
+
+  // 福州市区本字音.
+  string yngping_underlying = 4;
+
+  // Optional. 福州市区连读音. 单字条目留空.
+  string yngping_sandhi = 5;
+
+  // 释义(未解析).
+  string explanation_raw = 6;
+
+  .zingzeudata.Explanation explanation_structured = 7;
+
+  repeated string contributors = 8;
 }
 
 message CikLinSourceInfo {}
 
 message DFDSourceInfo {
-    int32 page_number = 1;
-    int32 column_number = 2;
-    int32 line_number = 3;
-    int32 radical_id = 4;
+  int32 page_number = 1;
+  int32 column_number = 2;
+  int32 line_number = 3;
+  int32 radical_id = 4;
 }
 
 message DocumentAggregateKey {
-    Hanzi hanzi_canonical = 1;
-    Initial initial = 2;
-    Final final = 3;
-    Tone tone = 4;
+  Hanzi hanzi_canonical = 1;
+  Initial initial = 2;
+  Final final = 3;
+  Tone tone = 4;
 }
 
 message YngdiengIndex {
   string version = 4;
+  // Deprecated
   repeated Document documents = 1;
+  // Deprecated
   repeated AggregatedDocument aggregated_document = 2;
+  // Deprecated
   repeated FengDocument feng_documents = 3;
+
+  repeated YngdiengDocument yngdieng_documents = 5;
 }
 
 message Hanzi {
-    oneof hanzi {
-        string regular = 1;
-        string ids = 2;
-    }
+  oneof hanzi {
+    string regular = 1;
+    string ids = 2;
+  }
 }
