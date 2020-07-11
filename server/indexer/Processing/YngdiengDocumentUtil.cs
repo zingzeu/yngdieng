@@ -60,7 +60,7 @@ namespace Yngdieng.Indexer.Processing
             foreach (var h in pendingHistorical)
             {
                 results.Add(new YngdiengDocument{
-                    DocRef = new DocRef{AggrDocId = h.Id},
+                    DocRef = new DocRef{HistoricalDocId = h.Id},
                     Sources = {new YngdiengDocument.Types.Source{CiklinDfd = h}}});
             }
             foreach (var f in pendingFeng)

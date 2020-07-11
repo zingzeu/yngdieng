@@ -13,7 +13,7 @@ message DocRef {
     string li_id = 3;
     int32 contrib_row_number = 4;
     // ID of HistoricalDocument
-    string aggr_doc_id = 5;
+    string historical_doc_id = 5;
   }
 }
 
@@ -107,7 +107,7 @@ message Document {
   }
 }
 
-// 单字条目文档(戚林、榕注合并).
+// 历史音韵单字条目文档(戚林、榕注合并).
 // Next ID: 12
 message HistoricalDocument {
   // Base64 (URL safe) encoded DocumentAggregateKey
