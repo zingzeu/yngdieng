@@ -1,7 +1,7 @@
 import {Inject, Injectable} from '@angular/core';
 import {Observable, Subject} from 'rxjs';
 import {FengDocument, HistoricalDocument} from 'yngdieng/shared/documents_pb';
-import {DebugInfo, GetDebugInfoRequest, GetFengDocumentRequest, GetAggregatedDocumentRequest, SearchRequest, SearchResponse} from 'yngdieng/shared/services_pb';
+import {DebugInfo, GetAggregatedDocumentRequest, GetDebugInfoRequest, GetFengDocumentRequest, SearchRequest, SearchResponse} from 'yngdieng/shared/services_pb';
 import {YngdiengServiceClient} from 'yngdieng/shared/services_pb_service';
 
 import {IYngdiengEnvironment, YNGDIENG_ENVIRONMENT} from '../environments/environment';
