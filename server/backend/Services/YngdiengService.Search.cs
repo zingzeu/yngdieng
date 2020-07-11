@@ -253,7 +253,7 @@ namespace Yngdieng.Backend.Services
     }
 
     /// <summary>
-    /// 查询单字条目（合并来源)。
+    /// 查询历史音韵条目.
     /// </summary>
     /// <returns></returns>
     private IEnumerable<HistoricalDocument> QueryMonoHanziAggregated(string query,
