@@ -51,7 +51,8 @@ namespace Yngdieng.Indexer.Loading
                         Source = new FengDocument.Types.SourceInfo{PageNumber = f.PageNumber,
                                                                    LineNumber = f.LineNumber},
                     };
-                    if (fengZeuMapping.ContainsKey((f.PageNumber, f.LineNumber))) {
+                    if (fengZeuMapping.ContainsKey((f.PageNumber, f.LineNumber)))
+                    {
                         tmp.ZingzeuId = fengZeuMapping[(f.PageNumber, f.LineNumber)];
                     }
                     tmp.HanziMatchable.Add(f.HanziClean);

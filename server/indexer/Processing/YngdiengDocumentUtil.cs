@@ -33,7 +33,8 @@ namespace Yngdieng.Indexer.Processing
 
                 // TODO: Match Historical Docs
                 var fengMatch = pendingFeng.Where(f => f.ZingzeuId == zingzeuId).SingleOrDefault();
-                if (fengMatch != null) {
+                if (fengMatch != null)
+                {
                     pendingFeng.Remove(fengMatch);
                     tmp.Sources.Add(new YngdiengDocument.Types.Source{Feng = fengMatch});
                 }
