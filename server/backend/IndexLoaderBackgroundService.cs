@@ -38,7 +38,8 @@ namespace Yngdieng.Backend
                 var index = YngdiengIndex.Parser.ParseFrom(input);
                 indexHolder.StoreIndex(index);
                 indexHealthCheck.IndexLoaded = true;
-                logger.LogInformation($"{index.Documents.Count} documents loaded.");
+                logger.LogInformation(
+                    $"{index.HistoricalDocuments.Count} + {index.FengDocuments.Count} documents loaded.");
             }
             return Task.CompletedTask;
         }

@@ -83,49 +83,6 @@ namespace Yngdieng.Backend.Services
       }
     }
 
-    private IEnumerable<Document> QueryByPhonology(PhonologyQuery query, SortByMethod sortBy)
-    {
-      Initial initial = query.Initial;
-      Final final = query.Final;
-      Tone tone = query.Tone;
-      if (initial == Initial.Unspecified &&
-          final == Final.Unspecified &&
-          tone == Tone.Unspecified)
-      {
-        throw new Exception("Cannot all be unspecified");
-      }
-      // Filter
-      var documents = _indexHolder.GetIndex().Documents.Where(_ => true);
-      if (initial != Initial.Unspecified)
-      {
-        documents = documents.Where(d => d.Initial == initial);
-      }
-      if (final != Final.Unspecified)
-      {
-        documents = documents.Where(d => d.Final == final);
-      }
-      if (tone != Tone.Unspecified)
-      {
-        documents = documents.Where(d => d.Tone == tone);
-      }
-      var matchedDocuments = documents;
-      // Sort
-      IEnumerable<Document> sorted;
-      switch (sortBy)
-      {
-        case SortByMethod.InitialFinalTone:
-          sorted = matchedDocuments.OrderBy(d => d.Final)
-              .ThenBy(d => d.Initial)
-              .ThenBy(d => d.Tone);
-          break;
-        case SortByMethod.SortByUnspecified:
-        default:
-          sorted = matchedDocuments;
-          break;
-      }
-      return sorted;
-    }
-
     private IEnumerable<HistoricalDocument> QueryByPhonologyAggregated(PhonologyQuery query,
                                                                        SortByMethod sortBy)
     {
@@ -161,34 +118,6 @@ namespace Yngdieng.Backend.Services
           sorted = matchedDocuments.OrderBy(d => d.Final)
               .ThenBy(d => d.Initial)
               .ThenBy(d => d.Tone);
-          break;
-        case SortByMethod.SortByUnspecified:
-        default:
-          sorted = matchedDocuments;
-          break;
-      }
-      return sorted;
-    }
-
-    /// <summary>
-    /// 查询单字条目。
-    /// </summary>
-    private IEnumerable<Document> QueryMonoHanzi(string query, SortByMethod sortBy)
-    {
-      var matchedDocuments = _indexHolder.GetIndex().Documents
-                .Where(d =>
-                    GetHanzi(d.HanziCanonical) == query
-                    || d.HanziAlternatives.Where(
-                        r => GetHanzi(r) == query).Count() > 0
-                    || d.HanziMatchable.IndexOf(query) >= 0
-                );
-      IEnumerable<Document> sorted;
-      switch (sortBy)
-      {
-        case SortByMethod.InitialFinalTone:
-          sorted = matchedDocuments.OrderBy(d => d.Final)
-                      .ThenBy(d => d.Initial)
-                      .ThenBy(d => d.Tone);
           break;
         case SortByMethod.SortByUnspecified:
         default:

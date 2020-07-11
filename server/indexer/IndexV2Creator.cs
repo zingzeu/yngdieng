@@ -52,8 +52,6 @@ namespace Yngdieng.Indexer
             var contrib = new ContribLoader(Path.Combine(inputFolder, "contrib.tsv")).Run();
 
             index.Version = versionTag;
-            index.Documents.Add(ciklin);
-            index.Documents.Add(dfd);
             index.FengDocuments.Add(feng);
             foreach (var d in ciklin)
             {

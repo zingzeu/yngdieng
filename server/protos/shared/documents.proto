@@ -219,9 +219,9 @@ message DocumentAggregateKey {
 }
 
 message YngdiengIndex {
+  reserved 1;
+
   string version = 4;
-  // Deprecated
-  repeated Document documents = 1;
   // Deprecated
   repeated HistoricalDocument historical_documents = 2;
   // Deprecated
