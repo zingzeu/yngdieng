@@ -82,7 +82,7 @@ export class DetailsFengComponent implements OnInit, OnDestroy {
               return this.backendService.search(`${d.getHanziCanonical()} historical:only`)
                   .pipe(
                       map(response => response.getResultsList().map(
-                              r => toMonoHanziResultViewModel(r.getAggregatedDocument()))));
+                              r => toMonoHanziResultViewModel(r.getHistoricalDocument()))));
             }))
             .subscribe(x => {
               this.singleCharResults = x;

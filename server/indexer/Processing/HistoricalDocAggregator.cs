@@ -17,8 +17,8 @@ namespace Yngdieng.Indexer.Processing
         {
         }
 
-        private readonly IDictionary<string, AggregatedDocument> documents =
-            new Dictionary<string, AggregatedDocument>();
+        private readonly IDictionary<string, HistoricalDocument> documents =
+            new Dictionary<string, HistoricalDocument>();
 
         public void Add(Document d)
         {
@@ -31,7 +31,7 @@ namespace Yngdieng.Indexer.Processing
 
             if (!documents.ContainsKey(key))
             {
-                documents[key] = new AggregatedDocument(){Id = key};
+                documents[key] = new HistoricalDocument(){Id = key};
             }
             documents[key].Initial = d.Initial;
             documents[key].Final = d.Final;
@@ -63,7 +63,7 @@ namespace Yngdieng.Indexer.Processing
             }
         }
 
-        public IEnumerable<AggregatedDocument> GetAggregatedDocuments()
+        public IEnumerable<HistoricalDocument> GetHistoricalDocuments()
         {
             return documents.Values;
         }

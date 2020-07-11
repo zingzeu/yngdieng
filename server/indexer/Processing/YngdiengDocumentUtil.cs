@@ -17,13 +17,13 @@ namespace Yngdieng.Indexer.Processing
 
         public static IEnumerable<YngdiengDocument> Combine(
             IEnumerable<zingzeudata.ZingzeuData.Models.ZingzeuEntry> zingzeuEntries,
-            IEnumerable<AggregatedDocument> historicalDocs,
+            IEnumerable<HistoricalDocument> historicalDocs,
             IEnumerable<FengDocument> fengDocs,
             IEnumerable<ContribDocument> contribDocs)
         {
             var results = new List<YngdiengDocument>();
             var pendingFeng = new List<FengDocument>(fengDocs);
-            var pendingHistorical = new List<AggregatedDocument>(historicalDocs);
+            var pendingHistorical = new List<HistoricalDocument>(historicalDocs);
             var pendingContrib = new List<ContribDocument>(contribDocs);
             // 第一阶段: 有 zingzeu_id 的，按相同 zingzeu_id 合并成 YngdiengDocument
             foreach (var zingzeuWordsEntry in zingzeuEntries)
