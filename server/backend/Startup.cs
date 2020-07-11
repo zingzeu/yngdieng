@@ -37,10 +37,21 @@ namespace Yngdieng.Backend
 
           endpoints.MapGrpcService<YngdiengService>();
 
+          endpoints.MapGet("/audio/{yngping:required}", async context => {
+              // FIXME: 1. how to get the url pattern
+              // 2. how to send the byte array as file
+              string yngping = "";
+              var audioFile = GetAudio.GetWaveBinary(yngping);
+              await context.Response.SendFileAsync(audioFile);
+          });
+
           endpoints.MapGet("/", async context => {
               await context.Response.WriteAsync(
                   "Communication with gRPC endpoints must be made through a gRPC client. ");
           });
+
+
+          
       });
     }
   }
