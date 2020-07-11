@@ -31,7 +31,7 @@ namespace Yngdieng.Indexer
 
             Console.WriteLine($"Loading zingzeu_words...");
             var zingzeuWords =
-                new ZingzeuWordsLoader(Path.Combine(inputFolder, "zingzeu_words.txt"));
+                new ZingzeuWordsLoader(Path.Combine(inputFolder, "zingzeu_words.txt")).Run();
 
             Console.WriteLine($"Loading CikLinBekIn...");
             var ciklin = new CikLingLoader(Path.Combine(inputFolder, "CikLinBekIn.csv"),
@@ -48,6 +48,8 @@ namespace Yngdieng.Indexer
                                       Path.Combine(inputFolder, "feng_zeu_mapping.txt"),
                                       outputFolder)
                            .Run();
+            Console.WriteLine($"Loading Contrib...");
+            var contrib = new ContribLoader(Path.Combine(inputFolder, "contrib.tsv")).Run();
 
             index.Version = versionTag;
             index.Documents.Add(ciklin);
@@ -62,6 +64,12 @@ namespace Yngdieng.Indexer
                 aggregator.Add(d);
             }
             index.AggregatedDocument.AddRange(aggregator.GetAggregatedDocuments());
+
+            index.YngdiengDocuments.AddRange(YngdiengDocumentUtil.Combine(
+                zingzeuWords, index.AggregatedDocument, feng, contrib));
+
+            var debugJsonOutput = index.ToString();
+            File.WriteAllText(Path.Combine(outputFolder, "index_debug.json"), debugJsonOutput);
 
             using (var outputFile = File.Create(Path.Combine(outputFolder, "yngdieng_index.bin")))
             {

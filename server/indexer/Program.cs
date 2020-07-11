@@ -25,6 +25,11 @@ namespace Yngdieng.Indexer
             var useV2 = args.Length > 3 ? args [3]
                                                   .ToLowerInvariant() == "v2"
                                         : false;
+            if (useV2)
+            {
+                Console.WriteLine("Using V2 index");
+                return new IndexV2Creator(inputFolder, outputFolder, versionTag).Run();
+            }
             return new IndexV1Creator(inputFolder, outputFolder, versionTag).Run();
         }
 
