@@ -40,7 +40,7 @@ namespace Yngdieng.Backend.TextToSpeech
                 {"53", "05"},  // 陽平
                 {"242", "07"}, // 陽去
                 {"5", "08"},   // 陽入
-                // {"21", "03"},    // 半陰去
+                {"21", "03"},  // 半陰去
                 // {"24","07"}    // 半陽去
             };
 
@@ -93,7 +93,7 @@ namespace Yngdieng.Backend.TextToSpeech
             {
                 return string.Empty;
             }
-            return ConsonantAudioMapping[initial] + final + ToneAudioMapping[tone];
+            return ConsonantAudioMapping[initial] + mappedFinal + ToneAudioMapping[tone];
         }
 
         /// <summary>
@@ -110,9 +110,9 @@ namespace Yngdieng.Backend.TextToSpeech
 
         private static string MapFinal(string final, string tone)
         {
-            var(rime, coda) = DestructureFinal(final);
+            var (rime, coda) = DestructureFinal(final);
             string mappedTone = ToneAudioMapping[tone];
-            foreach (var(key, prons) in FinalAudioMapping)
+            foreach (var (key, prons) in FinalAudioMapping)
             {
                 // 入声韵
                 if (!string.IsNullOrEmpty(coda))
@@ -120,13 +120,13 @@ namespace Yngdieng.Backend.TextToSpeech
                     if (AltTones.Contains(mappedTone))
                     {
                         if ((prons.Length == 2 &&
-                             (prons[1] == rime || prons[1] == rime + "ng") /* 变韵韵母吻合 */) ||
-                            (prons[0] == rime || prons[0] == rime + "ng"))
+                             (prons[1] == final || prons[1] == rime + "ng") /* 变韵韵母吻合 */) ||
+                            (prons[0] == final || prons[0] == rime + "ng"))
                         {
                             return key;
                         }
                     }
-                    else if (prons[0] == rime || prons[0] == rime + "ng")
+                    else if (prons[0] == final || prons[0] == rime + "ng")
                     {
                         return key;
                     }
