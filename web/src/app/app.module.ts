@@ -14,6 +14,7 @@ import {MaterialModule} from '../material/material.module';
 import {AdvancedSearchLandingComponent} from './advanced-search-landing/advanced-search-landing.component';
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
+import {AudioPlayerComponent} from './audio-player/audio-player.component';
 import {CommonToolbarComponent} from './common-toolbar/common-toolbar.component';
 import {DebugInfoComponent} from './debug-info/debug-info.component';
 import {DetailsFengComponent} from './details-feng/details-feng.component';
@@ -49,7 +50,8 @@ import {YngpingHelpDialogComponent} from './yngping-help-dialog/yngping-help-dia
     CommonToolbarComponent,
     DebugInfoComponent,
     YngpingHelpDialogComponent,
-    SimplificationToolComponent
+    SimplificationToolComponent,
+    AudioPlayerComponent
   ],
   imports: [
     AppRoutingModule,
