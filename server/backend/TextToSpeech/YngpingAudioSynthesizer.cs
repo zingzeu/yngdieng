@@ -53,7 +53,6 @@ namespace Yngdieng.Backend.TextToSpeech
                 byte[] sample = new byte[2];
 
                 ushort max = 0;
-                int total = 0;
                 bool starting = true, ending = false;
                 int startBytes = 0, endBytes = 0, startPos = 0, endPos = 0;
                 foreach (string inputPath in inputList)
@@ -61,7 +60,6 @@ namespace Yngdieng.Backend.TextToSpeech
 
                     using (WaveFileReader reader = new WaveFileReader(inputPath))
                     {
-                        // FIXME: clean up comments
                         // int bytesPerSample = reader.WaveFormat.BitsPerSample / 8;
                         // Assuming bytesPerSample == 2
                         int bytesPerMillisecond = reader.WaveFormat.AverageBytesPerSecond / 1000;
@@ -70,23 +68,19 @@ namespace Yngdieng.Backend.TextToSpeech
                         while (bytesRead > 0)
                         {
                             max = 0;
-                            total = 0;
                             for (int i = 0; i + 2 <= bytesRead; i += 2)
                             {
                                 sample[0] = buffer[i];
                                 sample[1] = buffer[i + 1];
                                 ushort val = BitConverter.ToUInt16(sample);
                                 max = val > max ? val : max;
-                                total += val;
                             }
-                            int avg = total / bytesRead * 2;
-                            // Console.Write($"{avg} ");
                             int threashold = 0;
-                            if (avg <= threashold && starting)
+                            if (max <= threashold && starting)
                             {
                                 startBytes += bytesRead;
                             }
-                            else if (avg > threashold && starting)
+                            else if (max > threashold && starting)
                             {
                                 starting = false;
                             }
@@ -101,20 +95,13 @@ namespace Yngdieng.Backend.TextToSpeech
                                     endBytes += bytesRead;
                                 }
                             }
-                            else if (avg > threashold && ending)
+                            else if (max > threashold && ending)
                             {
                                 ending = false;
                                 endBytes = 0;
                             }
                             bytesRead = reader.Read(buffer, 0, bytesPerMillisecond);
                         }
-
-                        // Console.WriteLine($"total milliseconds: {(int)reader.Length /
-                        // bytesPerMillisecond}"); Console.WriteLine($"Milliseconds of silence from
-                        // start: {startBytes / bytesPerMillisecond}");
-                        // Console.WriteLine($"Milliseconds of silence till end: {endBytes /
-                        // bytesPerMillisecond}");
-
                         startPos = 0;
                         endPos = (int)reader.Length;
                         if (startBytes > msReserved * bytesPerMillisecond)
@@ -129,8 +116,6 @@ namespace Yngdieng.Backend.TextToSpeech
                             endBytes -= endBytes % reader.WaveFormat.BlockAlign;
                             endPos = (int)reader.Length - endBytes;
                         }
-                        // Console.WriteLine($"start pos: {startPos / bytesPerMillisecond}");
-                        // Console.WriteLine($"end pos: {endPos / bytesPerMillisecond}");
 
                         TrimWavFile(reader, writer, startPos, endPos);
                     }
