@@ -5,6 +5,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Yngdieng.Backend.Services;
 using Yngdieng.Backend.HealthChecks;
+using Yngdieng.Backend.TextToSpeech;
 
 namespace Yngdieng.Backend
 {
@@ -18,6 +19,7 @@ namespace Yngdieng.Backend
         services.AddHealthChecks().AddCheck<IndexHealthCheck>("index_file_loading");
         services.AddGrpc();
         services.AddSingleton<IIndexHolder, IndexHolder>();
+        services.AddSingleton<YngpingAudioSynthesizer>();
         services.AddHostedService<IndexLoaderBackgroundService>();
         services.AddSingleton<ISearchCache, InMemorySearchCache>();
     }
