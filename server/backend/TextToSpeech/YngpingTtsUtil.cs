@@ -79,6 +79,7 @@ namespace Yngdieng.Backend.TextToSpeech
 
         // 松韵调 (会发生变韵的声调)
         private static HashSet<string> AltTones = new HashSet<string>{"03", "04", "07"};
+        private static HashSet<string> AbruptTones = new HashSet<string>{"04", "08"};
 
         /// <summary>
         /// 将榕拼音节转换为对应音频文件名.
@@ -88,8 +89,12 @@ namespace Yngdieng.Backend.TextToSpeech
         {
             var(initial, final, tone) =
                 Yngping0_4_0Validator.TryParseHukziuSyllable(yngpingSyllable);
+            if (!ConsonantAudioMapping.ContainsKey(initial) || !ToneAudioMapping.ContainsKey(tone))
+            {
+                return string.Empty;
+            }
             var mappedFinal = MapFinal(final, tone);
-            if (string.IsNullOrEmpty(final))
+            if (string.IsNullOrEmpty(mappedFinal))
             {
                 return string.Empty;
             }
@@ -110,23 +115,31 @@ namespace Yngdieng.Backend.TextToSpeech
 
         private static string MapFinal(string final, string tone)
         {
-            var (rime, coda) = DestructureFinal(final);
+            var(rime, coda) = DestructureFinal(final);
+            var hasCoda = !string.IsNullOrEmpty(coda);
             string mappedTone = ToneAudioMapping[tone];
-            foreach (var (key, prons) in FinalAudioMapping)
+            if (AbruptTones.Contains(mappedTone) != hasCoda)
             {
+                // 禁止用非入声韵代替入声
+                // TODO: 其实可以开一些特例；比如说 buk21 用 bu21 代替完全可以.
+                return string.Empty;
+            }
+            foreach (var(key, prons) in FinalAudioMapping)
+            {
+
                 // 入声韵
-                if (!string.IsNullOrEmpty(coda))
+                if (hasCoda)
                 {
                     if (AltTones.Contains(mappedTone))
                     {
                         if ((prons.Length == 2 &&
-                             (prons[1] == final || prons[1] == rime + "ng") /* 变韵韵母吻合 */) ||
-                            (prons[0] == final || prons[0] == rime + "ng"))
+                             (prons[1] == rime || prons[1] == rime + "ng") /* 变韵韵母吻合 */) ||
+                            (prons[0] == rime || prons[0] == rime + "ng"))
                         {
                             return key;
                         }
                     }
-                    else if (prons[0] == final || prons[0] == rime + "ng")
+                    else if (prons[0] == rime || prons[0] == rime + "ng")
                     {
                         return key;
                     }

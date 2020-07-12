@@ -27,6 +27,7 @@ namespace Yngdieng.Backend.TextToSpeech.Tests
 
         [Theory]
         [InlineData("bung24")]
+        [InlineData("buk21")]
         public void TestSyllableToAudio_UnsupportedSyllable_ReturnsEmpty(string yngping)
         {
             Assert.Equal(string.Empty, YngpingTtsUtil.SyllableToAudio(yngping));
