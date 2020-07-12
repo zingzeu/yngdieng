@@ -20,8 +20,13 @@ namespace Yngdieng.Backend.Controllers
         [Route("tts/{text}")]
         public IActionResult GetAudio(string text)
         {
-            logger.LogDebug($"Speak {text}");
-            return new RedirectResult("https://bing.com");
+            var audioBytes = audioSynthesizer.YngpingToAudio(text);
+            if (audioBytes == null)
+            {
+                logger.LogDebug($"Unsupported yngping: {text}");
+                return new NotFoundResult();
+            }
+            return new FileContentResult(audioBytes, "audio/wav");
         }
     }
 }
