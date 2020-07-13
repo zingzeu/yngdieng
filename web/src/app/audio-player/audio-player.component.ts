@@ -27,10 +27,12 @@ export class AudioPlayerComponent implements OnInit {
         this.currentAudio.onended = () => {
           this.state = PlayerState.Idle;
           this.currentAudio = null;
-        } this.currentAudio.oncanplaythrough = () => {
+        };
+        this.currentAudio.oncanplaythrough = () => {
           this.state = PlayerState.Playing;
           this.currentAudio.play();
-        } this.currentAudio.onerror = (e) => {
+        };
+        this.currentAudio.onerror = (e) => {
           let mediaError = this.currentAudio.error;
           this.currentAudio = null;
           if (mediaError.message.indexOf('404') >= 0) {
@@ -39,7 +41,8 @@ export class AudioPlayerComponent implements OnInit {
           } else {
             this.state = PlayerState.Idle;
           }
-        } break;
+        };
+        break;
       case PlayerState.Playing:
         if (this.currentAudio != null) {
         }
