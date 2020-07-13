@@ -22,6 +22,7 @@ namespace Yngdieng.Backend
         services.AddSingleton<YngpingAudioSynthesizer>();
         services.AddHostedService<IndexLoaderBackgroundService>();
         services.AddSingleton<ISearchCache, InMemorySearchCache>();
+        services.AddControllers();
     }
 
     // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -38,6 +39,8 @@ namespace Yngdieng.Backend
           endpoints.MapHealthChecks("/health");
 
           endpoints.MapGrpcService<YngdiengService>();
+
+          endpoints.MapControllers();
 
           endpoints.MapGet("/", async context => {
               await context.Response.WriteAsync(
