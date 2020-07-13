@@ -6,13 +6,11 @@ import {Component, Input, OnInit} from '@angular/core';
   styleUrls: ['./audio-player.component.scss']
 })
 export class AudioPlayerComponent implements OnInit {
-  public PlayerStateEnum = PlayerState
-
-      @Input('audioUrl') audioUrl: string;
-
-  state: PlayerState = PlayerState.Idle
-
-                       private currentAudio: HTMLAudioElement = null;
+  public PlayerStateEnum = PlayerState;
+  
+  @Input('audioUrl') audioUrl: string;
+  state: PlayerState = PlayerState.Idle;
+  private currentAudio: HTMLAudioElement = null;
 
   constructor() {}
 
