@@ -1,1 +1,5 @@
-<p>audio-player works!</p>
+<button mat-icon-button aria-label="播放音频" (click)="onClicked()">
+    <mat-icon *ngIf="state === PlayerStateEnum.Idle">play_arrow</mat-icon>
+    <mat-icon *ngIf="state === PlayerStateEnum.Loading">more_horiz</mat-icon>
+    <mat-icon *ngIf="state === PlayerStateEnum.Playing">stop</mat-icon>
+</button>
