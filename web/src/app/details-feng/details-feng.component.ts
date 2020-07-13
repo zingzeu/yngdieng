@@ -47,6 +47,14 @@ export class DetailsFengComponent implements OnInit, OnDestroy {
     return this.fengDoc.getYngpingUnderlying() !== this.fengDoc.getYngpingCanonical();
   }
 
+  get audioUrlUnderlying() {
+    return this.environment.serverUrl + '/tts/' + this.fengDoc.getYngpingUnderlying()
+  }
+
+  get audioUrlSandhi() {
+    return this.environment.serverUrl + '/tts/' + this.fengDoc.getYngpingCanonical()
+  }
+
   constructor(
       @Inject(YNGDIENG_ENVIRONMENT) private environment: IYngdiengEnvironment,
       private route: ActivatedRoute,
