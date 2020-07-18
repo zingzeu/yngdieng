@@ -182,12 +182,12 @@ rules_typescript_proto_dependencies()
 # docker
 ###################################
 
-# Download the rules_docker repository at release v0.14.3
+# Download the rules_docker repository at release v0.14.4
 http_archive(
     name = "io_bazel_rules_docker",
-    sha256 = "6287241e033d247e9da5ff705dd6ef526bac39ae82f3d17de1b69f8cb313f9cd",
-    strip_prefix = "rules_docker-0.14.3",
-    urls = ["https://" + GITHUB_COM + "/bazelbuild/rules_docker/releases/download/v0.14.3/rules_docker-v0.14.3.tar.gz"],
+    #sha256 = "6287241e033d247e9da5ff705dd6ef526bac39ae82f3d17de1b69f8cb313f9cd",
+    strip_prefix = "rules_docker-0.14.4",
+    urls = ["https://" + GITHUB_COM + "/bazelbuild/rules_docker/releases/download/v0.14.3/rules_docker-v0.14.4.tar.gz"],
 )
 
 load(
