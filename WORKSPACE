@@ -183,7 +183,6 @@ rules_typescript_proto_dependencies()
 ###################################
 
 RULES_DOCKER_VERSION = "0.14.4"
-
 RULES_DOCKER_SHA256 = "4521794f0fba2e20f3bf15846ab5e01d5332e587e9ce81629c7f96c793bb7036"
 
 http_archive(
