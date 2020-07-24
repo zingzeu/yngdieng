@@ -51,7 +51,7 @@
     "@bazel/terser": "1.7.0",
     "@bazel/typescript": "1.7.0",
     "@grpc/proto-loader": "0.5.5",
-    "@improbable-eng/grpc-web": "0.12.0",
+    "@improbable-eng/grpc-web": "0.13.0",
     "@types/google-protobuf": "3.7.2",
     "@types/jasmine": "3.5.11",
     "@types/node": "6.14.10",
