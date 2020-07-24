@@ -184,11 +184,11 @@ rules_typescript_proto_dependencies()
 
 RULES_DOCKER_VERSION = "0.14.4"
 
-RULES_DOCKER_SHA256 = "123"
+RULES_DOCKER_SHA256 = "4521794f0fba2e20f3bf15846ab5e01d5332e587e9ce81629c7f96c793bb7036"
 
 http_archive(
     name = "io_bazel_rules_docker",
-    #sha256 = RULES_DOCKER_SHA256,
+    sha256 = RULES_DOCKER_SHA256,
     strip_prefix = "rules_docker-%s" % RULES_DOCKER_VERSION,
     urls = ["https://%s/bazelbuild/rules_docker/releases/download/v%s/rules_docker-v%s.tar.gz" % (GITHUB_COM, RULES_DOCKER_VERSION, RULES_DOCKER_VERSION)],
 )
