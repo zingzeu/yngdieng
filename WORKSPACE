@@ -7,8 +7,8 @@ workspace(
     managed_directories = {"@npm": ["node_modules"]},
 )
 
-GITHUB_COM = "github.com"
-# GITHUB_COM = "github.wuyanzheshui.workers.dev"
+# GITHUB_COM = "github.com"
+GITHUB_COM = "github.wuyanzheshui.workers.dev"
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 

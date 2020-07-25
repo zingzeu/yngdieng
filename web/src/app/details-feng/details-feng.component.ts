@@ -77,7 +77,7 @@ export class DetailsFengComponent implements OnInit, OnDestroy {
           this.hasError = false;
           this.fengDoc = response;
         },
-        (err) => {
+        (_err) => {
           this.isBusy = false;
           this.hasError = true;
         });

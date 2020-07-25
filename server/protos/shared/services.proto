@@ -10,6 +10,7 @@ service YngdiengService {
     rpc Search (SearchRequest) returns (SearchResponse);
     rpc GetAggregatedDocument(GetAggregatedDocumentRequest) returns (HistoricalDocument);
     rpc GetFengDocument(GetFengDocumentRequest) returns (FengDocument);
+    rpc GetYngdiengDocument(GetYngdiengDocumentRequest) returns (YngdiengDocument);
     rpc GetDebugInfo(GetDebugInfoRequest) returns (DebugInfo);
 }
 
@@ -40,6 +41,10 @@ message SearchResultRow {
 
 message GetFengDocumentRequest {
     string id = 1;
+}
+
+message GetYngdiengDocumentRequest {
+  string id = 1;
 }
 
 message GetAggregatedDocumentRequest{

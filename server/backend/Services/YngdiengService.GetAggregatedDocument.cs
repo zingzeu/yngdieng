@@ -18,7 +18,7 @@ namespace Yngdieng.Backend.Services
               throw new RpcException(new Status(StatusCode.NotFound, "Not found"));
           }
           return Task.FromResult(maybeResult);
-    }
+      }
   }
 
 
