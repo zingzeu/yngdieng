@@ -140,10 +140,6 @@ load("@npm//@bazel/karma:package.bzl", "npm_bazel_karma_dependencies")
 
 npm_bazel_karma_dependencies()
 
-# load("@npm_bazel_labs//:package.bzl", "npm_bazel_labs_dependencies")
-
-# npm_bazel_labs_dependencies()
-
 load("@io_bazel_rules_webtesting//web:repositories.bzl", "web_test_repositories")
 
 web_test_repositories()
