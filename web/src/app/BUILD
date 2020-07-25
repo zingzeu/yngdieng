@@ -1,4 +1,4 @@
-load("@npm_angular_bazel//:index.bzl", "ng_module")
+load("//web/tools:ng_ts_library.bzl", ng_module = "ng_ts_library")
 load("@io_bazel_rules_sass//:defs.bzl", "multi_sass_binary")
 
 ng_module(
@@ -9,7 +9,7 @@ ng_module(
             "**/*.spec.ts",
         ],
     ),
-    assets = glob([
+    angular_assets = glob([
         "**/*.css",
         "**/*.html",
     ]) + [":styles"],

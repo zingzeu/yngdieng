@@ -3,5 +3,5 @@ filegroup(
     srcs = glob([
         "*",
     ]),
-    visibility=["//server/opencc_daemon:__subpackages__"]
+    visibility = ["//server/opencc_daemon:__subpackages__"],
 )

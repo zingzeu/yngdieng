@@ -1,5 +1,5 @@
-load("@npm_bazel_typescript//:index.bzl", "ts_library")
-load("@npm_bazel_jasmine//:index.bzl", "jasmine_node_test")
+load("@npm//@bazel/typescript:index.bzl", "ts_library")
+load("@npm//@bazel/jasmine:index.bzl", "jasmine_node_test")
 load("@rules_typescript_proto//:index.bzl", "typescript_proto_library")
 
 # Examples:
@@ -9,14 +9,14 @@ load("@rules_typescript_proto//:index.bzl", "typescript_proto_library")
 ts_library(
     name = "lib",
     srcs = [
-        "utils.ts",
         "explanations.ts",
+        "utils.ts",
     ],
     visibility = ["//visibility:public"],
     deps = [
         ":documents_proto_ts",
-        ":services_grpc_ts",
         ":explanation_proto_ts",
+        ":services_grpc_ts",
     ],
 )
 
@@ -24,8 +24,8 @@ ts_library(
     name = "tests_ts",
     srcs = glob(["**/*.spec.ts"]),
     deps = [
-        ":lib",
         ":documents_proto_ts",
+        ":lib",
         "@npm//:node_modules",
     ],
 )

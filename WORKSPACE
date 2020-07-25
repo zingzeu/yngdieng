@@ -89,9 +89,9 @@ load("//nuget:nuget.bzl", "yngdieng_nuget_packages")
 
 yngdieng_nuget_packages()
 
-RULES_NODEJS_VERSION = "1.6.0"
+RULES_NODEJS_VERSION = "2.0.1"
 
-RULES_NODEJS_SHA256 = "f9e7b9f42ae202cc2d2ce6d698ccb49a9f7f7ea572a78fd451696d03ef2ee116"
+RULES_NODEJS_SHA256 = "0f2de53628e848c1691e5729b515022f5a77369c76a09fbe55611e12731c90e3"
 
 http_archive(
     name = "build_bazel_rules_nodejs",
@@ -121,7 +121,7 @@ load(
 )
 
 check_bazel_version(
-    minimum_bazel_version = "3.0.0",
+    minimum_bazel_version = "3.3.0",
 )
 
 yarn_install(
@@ -130,25 +130,25 @@ yarn_install(
     yarn_lock = "//:yarn.lock",
 )
 
-load("@npm//:install_bazel_dependencies.bzl", "install_bazel_dependencies")
-
-install_bazel_dependencies()
-
-load("@npm_bazel_protractor//:package.bzl", "npm_bazel_protractor_dependencies")
+# Load @bazel/protractor dependencies
+load("@npm//@bazel/protractor:package.bzl", "npm_bazel_protractor_dependencies")
 
 npm_bazel_protractor_dependencies()
 
-load("@npm_bazel_karma//:package.bzl", "npm_bazel_karma_dependencies")
+# Load @bazel/karma dependencies
+load("@npm//@bazel/karma:package.bzl", "npm_bazel_karma_dependencies")
 
 npm_bazel_karma_dependencies()
 
-load("@npm_bazel_labs//:package.bzl", "npm_bazel_labs_dependencies")
+# load("@npm_bazel_labs//:package.bzl", "npm_bazel_labs_dependencies")
 
-npm_bazel_labs_dependencies()
+# npm_bazel_labs_dependencies()
 
 load("@io_bazel_rules_webtesting//web:repositories.bzl", "web_test_repositories")
 
 web_test_repositories()
+
+# Setup the rules_webtesting toolchain
 
 load("@io_bazel_rules_webtesting//web/versioned:browsers-0.3.2.bzl", "browser_repositories")
 
@@ -156,10 +156,6 @@ browser_repositories(
     chromium = True,
     firefox = True,
 )
-
-load("@npm_bazel_typescript//:index.bzl", "ts_setup_workspace")
-
-ts_setup_workspace()
 
 load("@io_bazel_rules_sass//sass:sass_repositories.bzl", "sass_repositories")
 
