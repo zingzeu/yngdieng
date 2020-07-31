@@ -33,7 +33,7 @@
   },
   "devDependencies": {
     "@angular/bazel": "10.0.5",
-    "@angular/cli": "10.0.4",
+    "@angular/cli": "10.0.5",
     "@angular/compiler": "10.0.5",
     "@angular/compiler-cli": "10.0.5",
     "@babel/cli": "7.10.5",
