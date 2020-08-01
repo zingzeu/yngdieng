@@ -11,7 +11,6 @@ namespace Yngdieng.Backend.Services
         public override Task<YngdiengDocument> GetYngdiengDocument(
             GetYngdiengDocumentRequest request, ServerCallContext context)
         {
-            _logger.LogInformation("Received YngdiengDocument" + request.Id);
             return Task.FromResult(
                 SantizeForServing(_indexHolder.GetIndex()
                                       .YngdiengDocuments.Where(d => d.DocId == request.Id)
