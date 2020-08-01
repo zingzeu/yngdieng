@@ -1,13 +1,12 @@
 version: '3'
 
 services: 
-  # GrpcWeb proxy
-  # Assumes running on macos
-  # Assumes the backend is running at localhost:5001
+  # GrpcWeb proxy, running at port :8080
+  # Uses host network
+  # Assumes the Grpc backend is running at localhost:5001
   envoy:
     build:
       context: ./server/envoy
       dockerfile: Dockerfile
     image: ztl8702/yngdieng-api-frontend:dev
-    ports:
-      - 8080:8080
+    network_mode: "host"
