@@ -2,6 +2,7 @@ using System.Threading.Tasks;
 using Yngdieng.Protos;
 using Grpc.Core;
 using System.Linq;
+using Microsoft.Extensions.Logging;
 namespace Yngdieng.Backend.Services
 {
     public partial class YngdiengService : Yngdieng.Protos.YngdiengService.YngdiengServiceBase
@@ -10,6 +11,7 @@ namespace Yngdieng.Backend.Services
         public override Task<YngdiengDocument> GetYngdiengDocument(
             GetYngdiengDocumentRequest request, ServerCallContext context)
         {
+            _logger.LogInformation("Received YngdiengDocument" + request.Id);
             return Task.FromResult(
                 SantizeForServing(_indexHolder.GetIndex()
                                       .YngdiengDocuments.Where(d => d.DocId == request.Id)
