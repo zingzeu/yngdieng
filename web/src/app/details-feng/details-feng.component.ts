@@ -28,6 +28,10 @@ export class DetailsFengComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   private historicalSubscription: Subscription;
 
+  get enableTtsAudio() {
+    return this.environment.showAudioPlayerButtons;
+  }
+
   get showToggleStructured() {
     return this.environment.structuredExplanations.enabled &&
         this.environment.structuredExplanations.showDebugToggle;
