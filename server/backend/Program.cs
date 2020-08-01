@@ -11,27 +11,21 @@ using System.Net;
 
 namespace Yngdieng.Backend
 {
-  class Program
-  {
-    static int Main(string[] args)
+    class Program
     {
-      CreateHostBuilder(args).Build().Run();
-      return 0;
-    }
+        static int Main(string[] args)
+        {
+            CreateHostBuilder(args).Build().Run();
+            return 0;
+        }
 
-    public static IHostBuilder CreateHostBuilder(string[] args) =>
-        Host.CreateDefaultBuilder(args)
-            .ConfigureWebHostDefaults(webBuilder =>
-            {
-              webBuilder
-                  .UseStartup<Startup>()
-                  .ConfigureKestrel(options =>
-                  {
-                    options.Listen(IPAddress.Any, 5001, listenOptions =>
-                        {
-                          listenOptions.Protocols = HttpProtocols.Http2;
-                        });
-                  });
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args).ConfigureWebHostDefaults(webBuilder => {
+                webBuilder.UseStartup<Startup>().ConfigureKestrel(options => {
+                    options.Listen(IPAddress.Any, 5001, listenOptions => {
+                        listenOptions.Protocols = HttpProtocols.Http2;
+                    });
+                });
             });
-  }
+    }
 }
