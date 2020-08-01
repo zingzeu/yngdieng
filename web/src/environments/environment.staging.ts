@@ -7,5 +7,6 @@ export const YngdiengStagingEnvironment: IYngdiengEnvironment = {
   structuredExplanations: {
     enabled: true,
     showDebugToggle: true,
-  }
+  },
+  showAudioPlayerButtons: true
 }
