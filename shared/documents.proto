@@ -71,6 +71,42 @@ message YngdiengDocument {
   }
 }
 
+// Next ID: 14
+// Deprecated.
+message Document {
+  oneof id {
+    int32 ciklin_id = 1;
+    int32 dfd_id = 12;
+  }
+
+  Hanzi hanzi_canonical = 2;
+
+  // Optional. 等价汉字.
+  repeated Hanzi hanzi_alternatives = 3;
+
+  // 所有可搜寻到该文档的汉字. (含简繁异体，索引用)
+  repeated string hanzi_matchable = 13;
+
+  Initial initial = 4;
+
+  Final final = 5;
+
+  Tone tone = 6;
+
+  string buc = 7;
+
+  string yngping_canonical = 8;
+
+  // All searchable permuations
+  repeated string yngping_permutations = 9;
+
+  // 出处信息.
+  oneof source_info {
+    CikLinSourceInfo ciklin = 10;
+    DFDSourceInfo dfd = 11;
+  }
+}
+
 // 历史音韵单字条目文档(戚林、榕注合并).
 // Next ID: 12
 message HistoricalDocument {

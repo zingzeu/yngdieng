@@ -9,5 +9,4 @@ services:
       context: ./server/envoy
       dockerfile: Dockerfile
     image: ztl8702/yngdieng-api-frontend:dev
-    ports:
-      - 8080:8080
+    network_mode: "host"

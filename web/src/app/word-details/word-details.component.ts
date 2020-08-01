@@ -25,10 +25,10 @@ export class WordDetailsComponent implements OnInit, OnDestroy {
     let currentDocument$ = this.route.paramMap.pipe(
         map(paramMap => paramMap.get('id')),
         switchMap(docId => this.backendService.getYngdiengDocument(docId)));
-    currentDocument$.subscribe(d => {this.text = d.toString()})
+    this.subscription = currentDocument$.subscribe(d => {this.text = d.toString()})
   }
 
   ngOnDestroy(): void {
-    this.subscription.unsubscribe();
+    this.subscription?.unsubscribe();
   }
 }

@@ -42,5 +42,4 @@ static_resources:
     http2_protocol_options: {}
     lb_policy: round_robin
     #hosts: [{ socket_address: { address: localhost, port_value: 9090 }}]
-    # macosonly:
-    hosts: [{ socket_address: { address: host.docker.internal, port_value: 5001 }}]
+    hosts: [{ socket_address: { address: localhost, port_value: 5001 }}]
