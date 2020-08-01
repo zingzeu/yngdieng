@@ -1,5 +1,6 @@
 import {Component, Inject, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
+import {Title} from '@angular/platform-browser';
 import {ActivatedRoute} from '@angular/router';
 import {Observable, Subscription} from 'rxjs';
 import {map, switchMap} from 'rxjs/operators';
@@ -8,6 +9,7 @@ import {FengDocument} from 'yngdieng/shared/documents_pb';
 import {IYngdiengEnvironment, YNGDIENG_ENVIRONMENT} from '../../environments/environment';
 import {renderExplanation} from '../../yngdieng/explanations';
 import {toMonoHanziResultViewModel} from '../common/converters';
+import {getDetailsPageTitle} from '../html-title';
 import {YngdiengBackendService} from '../yngdieng-backend.service';
 import {YngpingHelpDialogComponent} from '../yngping-help-dialog/yngping-help-dialog.component';
 
@@ -58,6 +60,7 @@ export class DetailsFengComponent implements OnInit, OnDestroy {
   constructor(
       @Inject(YNGDIENG_ENVIRONMENT) private environment: IYngdiengEnvironment,
       private route: ActivatedRoute,
+      private titleService: Title,
       private backendService: YngdiengBackendService,
       private dialog: MatDialog) {}
 
@@ -76,6 +79,7 @@ export class DetailsFengComponent implements OnInit, OnDestroy {
           this.isBusy = false;
           this.hasError = false;
           this.fengDoc = response;
+          this.titleService.setTitle(getDetailsPageTitle(response.getHanziCanonical()));
         },
         (err) => {
           this.isBusy = false;

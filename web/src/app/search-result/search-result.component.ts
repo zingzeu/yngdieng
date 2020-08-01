@@ -1,4 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
+import {Title} from '@angular/platform-browser';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {switchMap} from 'rxjs/operators';
@@ -7,6 +8,7 @@ import {SearchResultRow} from 'yngdieng/shared/services_pb';
 import {AdvancedSearchQueryBuilderService} from '../advanced-search-query-builder.service';
 import {toMonoHanziResultViewModel} from '../common/converters';
 import {FengResultViewModel, MonoHanziResultViewModel} from '../common/view-models';
+import {getSearchResultPageTitle} from '../html-title';
 import {YngdiengBackendService} from '../yngdieng-backend.service';
 
 // Keep in sync with server/backend/Services/YngdiengService.Search.cs
@@ -39,14 +41,17 @@ export class SearchResultComponent implements OnInit, OnDestroy {
   constructor(
       private route: ActivatedRoute,
       private router: Router,
+      private titleService: Title,
       private backendService: YngdiengBackendService) {}
 
   ngOnInit() {
     this.isBusy = true;
 
     this.propertiesSubscription = this.route.paramMap.subscribe(paramMap => {
-      this.queryText = paramMap.get('query');
+      let query = paramMap.get('query');
+      this.queryText = query;
       this.offset = this.getOffsetFromParamMap(paramMap);
+      this.titleService.setTitle(getSearchResultPageTitle(query));
     });
     this.resultSubscription =
         this.route.paramMap
