@@ -1,7 +1,7 @@
 import {HistoricalDocument} from 'yngdieng/shared/documents_pb';
 import {getFinalString, getInitialString, getToneString} from 'yngdieng/web/src/yngdieng/utils';
 
-import {getHanziString} from '../common/hanzi-util';
+import {hanziToString} from '../common/hanzi-util';
 
 import {MonoHanziResultViewModel} from './view-models';
 
@@ -9,8 +9,8 @@ export function toMonoHanziResultViewModel(a: HistoricalDocument): MonoHanziResu
   return {
     _type: 'single',
     id: a.getId(),
-    hanziCanonical: getHanziString(a.getHanziCanonical()),
-    hanziAlternatives: a.getHanziAlternativesList().map(getHanziString),
+    hanziCanonical: hanziToString(a.getHanziCanonical()),
+    hanziAlternatives: a.getHanziAlternativesList().map(hanziToString),
     yngping: a.getYngping(),
     initial: getInitialString(a.getInitial()),
     final: getFinalString(a.getFinal()),

@@ -1,0 +1,16 @@
+<div class="details-hero mat-elevation-z4">
+    <div class="hanzi unihan-text">{{ model.hanzi }}</div>
+    <div class="text-yngping">
+        <span class="label">{{ shouldShowSandhi ? "市区单字": "福州市区"}}</span>
+        {{ model.pron.underlying }}
+        <app-audio-player [audioUrl]="audioUrlUnderlying"></app-audio-player>
+        <button mat-icon-button color="secondary" aria-label="这是什么？" (click)="onShowYngpingHelp()">
+            <mat-icon>help</mat-icon>
+        </button>
+    </div>
+    <div class="text-yngping" *ngIf="shouldShowSandhi">
+        <span class="label">市区连读</span>
+        {{ model.pron.sandhi }}
+        <app-audio-player [audioUrl]="audioUrlSandhi"></app-audio-player>
+    </div>
+</div>

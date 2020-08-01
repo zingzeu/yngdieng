@@ -29,6 +29,7 @@ import {SearchResultComponent} from './search-result/search-result.component';
 import {SearchToolbarComponent} from './search-toolbar/search-toolbar.component';
 import {SidenavContentComponent} from './sidenav-content/sidenav-content.component';
 import {SimplificationToolComponent} from './simplification-tool/simplification-tool.component';
+import {WordDetailsHeroComponent} from './word-details-hero/word-details-hero.component';
 import {WordDetailsComponent} from './word-details/word-details.component';
 import {YngdiengBackendService} from './yngdieng-backend.service';
 import {YngpingHelpDialogComponent} from './yngping-help-dialog/yngping-help-dialog.component';
@@ -53,7 +54,8 @@ import {YngpingHelpDialogComponent} from './yngping-help-dialog/yngping-help-dia
     YngpingHelpDialogComponent,
     SimplificationToolComponent,
     AudioPlayerComponent,
-    WordDetailsComponent
+    WordDetailsComponent,
+    WordDetailsHeroComponent
   ],
   imports: [
     AppRoutingModule,

@@ -1,5 +1,4 @@
 import {Component, Inject, OnDestroy, OnInit, ViewEncapsulation} from '@angular/core';
-import {MatDialog} from '@angular/material/dialog';
 import {ActivatedRoute} from '@angular/router';
 import {Observable, Subscription} from 'rxjs';
 import {map, switchMap} from 'rxjs/operators';
@@ -8,8 +7,8 @@ import {FengDocument} from 'yngdieng/shared/documents_pb';
 import {IYngdiengEnvironment, YNGDIENG_ENVIRONMENT} from '../../environments/environment';
 import {renderExplanation} from '../../yngdieng/explanations';
 import {toMonoHanziResultViewModel} from '../common/converters';
+import {WordDetailsHeroModel, WordPronunication} from '../word-details-hero/word-details-hero.component';
 import {YngdiengBackendService} from '../yngdieng-backend.service';
-import {YngpingHelpDialogComponent} from '../yngping-help-dialog/yngping-help-dialog.component';
 
 @Component({
   selector: 'app-details-feng',
@@ -28,6 +27,13 @@ export class DetailsFengComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   private historicalSubscription: Subscription;
 
+  get heroModel() {
+    return new WordDetailsHeroModel(
+        this.fengDoc.getHanziCanonical(),
+        new WordPronunication(
+            this.fengDoc.getYngpingUnderlying(), this.fengDoc.getYngpingCanonical()));
+  }
+
   get showToggleStructured() {
     return this.environment.structuredExplanations.enabled &&
         this.environment.structuredExplanations.showDebugToggle;
@@ -43,27 +49,11 @@ export class DetailsFengComponent implements OnInit, OnDestroy {
         this.fengDoc.getExplanationStructured(), this.fengDoc.getHanziCanonical());
   }
 
-  get shouldShowSandhi() {
-    return this.fengDoc.getYngpingUnderlying() !== this.fengDoc.getYngpingCanonical();
-  }
-
-  get audioUrlUnderlying() {
-    return this.environment.serverUrl + '/tts/' + this.fengDoc.getYngpingUnderlying()
-  }
-
-  get audioUrlSandhi() {
-    return this.environment.serverUrl + '/tts/' + this.fengDoc.getYngpingCanonical()
-  }
-
   constructor(
       @Inject(YNGDIENG_ENVIRONMENT) private environment: IYngdiengEnvironment,
       private route: ActivatedRoute,
       private backendService: YngdiengBackendService,
-      private dialog: MatDialog) {}
-
-  onShowYngpingHelp() {
-    this.dialog.open(YngpingHelpDialogComponent, {width: '80vw'});
-  }
+  ) {}
 
   ngOnInit() {
     this.isBusy = true;
