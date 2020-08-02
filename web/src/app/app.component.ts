@@ -1,11 +1,10 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Title} from '@angular/platform-browser';
 import {NavigationStart, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {filter} from 'rxjs/operators';
 
-import {APP_NAME} from './html-title';
 import {SidenavStateService} from './sidenav-state.service';
+import {YngdiengTitleService} from './yngdieng-title.service';
 
 @Component({
   selector: 'app-root',
@@ -21,7 +20,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   constructor(
       private sideNavState: SidenavStateService,
-      private titleService: Title,
+      private titleService: YngdiengTitleService,
       private router: Router) {}
 
   ngOnInit() {
@@ -30,7 +29,7 @@ export class AppComponent implements OnInit, OnDestroy {
     // Resets html title on navigation
     this.navigateStartSubscription =
         this.router.events.pipe(filter(event => event instanceof NavigationStart))
-            .subscribe(_event => this.titleService.setTitle(APP_NAME));
+            .subscribe(_event => this.titleService.resetTitle());
   }
 
   ngOnDestroy() {

@@ -30,6 +30,7 @@ import {SearchToolbarComponent} from './search-toolbar/search-toolbar.component'
 import {SidenavContentComponent} from './sidenav-content/sidenav-content.component';
 import {SimplificationToolComponent} from './simplification-tool/simplification-tool.component';
 import {YngdiengBackendService} from './yngdieng-backend.service';
+import {YngdiengTitleService} from './yngdieng-title.service';
 import {YngpingHelpDialogComponent} from './yngping-help-dialog/yngping-help-dialog.component';
 
 @NgModule({
@@ -67,6 +68,7 @@ import {YngpingHelpDialogComponent} from './yngping-help-dialog/yngping-help-dia
   providers: [
     {provide: YNGDIENG_ENVIRONMENT, useValue: getYngdiengEnvironment()},
     YngdiengBackendService,
+    YngdiengTitleService,
     Title
   ],
   bootstrap: [AppComponent]

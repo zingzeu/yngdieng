@@ -6,8 +6,8 @@ import {map, switchMap} from 'rxjs/operators';
 import {getFinalString, getInitialString, getToneString} from 'yngdieng/web/src/yngdieng/utils';
 
 import {getHanziString} from '../common/hanzi-util';
-import {getDetailsPageTitle} from '../html-title';
 import {YngdiengBackendService} from '../yngdieng-backend.service';
+import {YngdiengTitleService} from '../yngdieng-title.service';
 
 @Component({
   selector: 'app-details-mono-hanzi',
@@ -29,7 +29,7 @@ export class DetailsMonoHanziComponent implements OnInit, OnDestroy {
   constructor(
       private router: Router,
       private route: ActivatedRoute,
-      private titleService: Title,
+      private titleService: YngdiengTitleService,
       private backendService: YngdiengBackendService) {}
 
   ngOnInit() {
@@ -48,7 +48,7 @@ export class DetailsMonoHanziComponent implements OnInit, OnDestroy {
             yngping: response.getYngping(),
             sources: []
           };
-          this.titleService.setTitle(getDetailsPageTitle(this.vm.hanziCanonical));
+          this.titleService.setTitleForDetailsPage(this.vm.hanziCanonical);
           if (response.hasCiklinSource()) {
             this.vm.sources.push('戚林八音校注');
           }
