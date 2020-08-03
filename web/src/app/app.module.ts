@@ -2,7 +2,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
-import {BrowserModule} from '@angular/platform-browser';
+import {BrowserModule, Title} from '@angular/platform-browser';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 
 import {YNGDIENG_ENVIRONMENT} from '../environments/environment';
@@ -30,6 +30,7 @@ import {SearchToolbarComponent} from './search-toolbar/search-toolbar.component'
 import {SidenavContentComponent} from './sidenav-content/sidenav-content.component';
 import {SimplificationToolComponent} from './simplification-tool/simplification-tool.component';
 import {YngdiengBackendService} from './yngdieng-backend.service';
+import {YngdiengTitleService} from './yngdieng-title.service';
 import {YngpingHelpDialogComponent} from './yngping-help-dialog/yngping-help-dialog.component';
 
 @NgModule({
@@ -64,8 +65,12 @@ import {YngpingHelpDialogComponent} from './yngping-help-dialog/yngping-help-dia
     ReactiveFormsModule,
   ],
   entryComponents: [YngpingHelpDialogComponent],
-  providers:
-      [{provide: YNGDIENG_ENVIRONMENT, useValue: getYngdiengEnvironment()}, YngdiengBackendService],
+  providers: [
+    {provide: YNGDIENG_ENVIRONMENT, useValue: getYngdiengEnvironment()},
+    YngdiengBackendService,
+    YngdiengTitleService,
+    Title
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule {

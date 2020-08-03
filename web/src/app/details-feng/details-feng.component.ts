@@ -9,6 +9,7 @@ import {IYngdiengEnvironment, YNGDIENG_ENVIRONMENT} from '../../environments/env
 import {renderExplanation} from '../../yngdieng/explanations';
 import {toMonoHanziResultViewModel} from '../common/converters';
 import {YngdiengBackendService} from '../yngdieng-backend.service';
+import {YngdiengTitleService} from '../yngdieng-title.service';
 import {YngpingHelpDialogComponent} from '../yngping-help-dialog/yngping-help-dialog.component';
 
 @Component({
@@ -58,6 +59,7 @@ export class DetailsFengComponent implements OnInit, OnDestroy {
   constructor(
       @Inject(YNGDIENG_ENVIRONMENT) private environment: IYngdiengEnvironment,
       private route: ActivatedRoute,
+      private titleService: YngdiengTitleService,
       private backendService: YngdiengBackendService,
       private dialog: MatDialog) {}
 
@@ -76,6 +78,7 @@ export class DetailsFengComponent implements OnInit, OnDestroy {
           this.isBusy = false;
           this.hasError = false;
           this.fengDoc = response;
+          this.titleService.setTitleForDetailsPage(response.getHanziCanonical());
         },
         (err) => {
           this.isBusy = false;
