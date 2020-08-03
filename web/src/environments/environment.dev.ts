@@ -1,5 +1,6 @@
 import {IYngdiengEnvironment} from './environment';
 
+// Local development environment
 export const YngdiengDevEnvironment: IYngdiengEnvironment = {
   isProduction: false,
   serverUrl: 'https://yngdieng-api-staging.mindong.asia',
@@ -7,5 +8,6 @@ export const YngdiengDevEnvironment: IYngdiengEnvironment = {
   structuredExplanations: {
     enabled: true,
     showDebugToggle: true,
-  }
+  },
+  showAudioPlayerButtons: true
 }
