@@ -1,5 +1,6 @@
 import {IYngdiengEnvironment} from './environment';
 
+// Deployed at yngdieng.org
 export const YngdiengProdEnvironment: IYngdiengEnvironment = {
   appName: '榕典',
   isProduction: true,
@@ -8,5 +9,6 @@ export const YngdiengProdEnvironment: IYngdiengEnvironment = {
   structuredExplanations: {
     enabled: true,
     showDebugToggle: false,
-  }
+  },
+  showAudioPlayerButtons: false
 }
