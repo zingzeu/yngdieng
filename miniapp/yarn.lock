@@ -4015,10 +4015,10 @@ escodegen@^1.11.1:
   optionalDependencies:
     source-map "~0.6.1"
 
-eslint-config-taro@3.0.5:
-  version "3.0.5"
-  resolved "https://registry.npmjs.org/eslint-config-taro/-/eslint-config-taro-3.0.5.tgz#b173ed977002e615e8704f898d4713b8d3d7a759"
-  integrity sha512-gybPsR6q2THHE87EQFNulrODqTBKiCQqD7l5pXFvPCCh95DSfBg/sXnRVvDrjlIAiuwWZKaT53h/+1y4w9WpIA==
+eslint-config-taro@3.0.7:
+  version "3.0.7"
+  resolved "https://registry.yarnpkg.com/eslint-config-taro/-/eslint-config-taro-3.0.7.tgz#b04ab50573163a82260c33f8695ba69c2289448e"
+  integrity sha512-/p1HrK7qqln4cXcFo2Bz57rTAn9gTWx+T8YmZuYTAKHttshBYyXSzM2QMHI/WBUhK5OG3tCph4sbhnSkic5K8Q==
   dependencies:
     "@typescript-eslint/parser" "^2.x"
     babel-eslint "^10.0.0"
