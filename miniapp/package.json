@@ -51,7 +51,7 @@
   "devDependencies": {
     "@types/webpack-env": "1.15.2",
     "@types/react": "16.9.44",
-    "@tarojs/mini-runner": "3.0.5",
+    "@tarojs/mini-runner": "3.0.7",
     "@babel/core": "7.11.1",
     "@tarojs/webpack-runner": "3.0.5",
     "babel-preset-taro": "3.0.5",
