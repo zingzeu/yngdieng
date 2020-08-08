@@ -38,7 +38,7 @@
   "dependencies": {
     "@babel/runtime": "7.11.2",
     "@tarojs/components": "3.0.7",
-    "@tarojs/runtime": "3.0.5",
+    "@tarojs/runtime": "3.0.7",
     "@tarojs/taro": "3.0.5",
     "redux-logger": "3.0.6",
     "redux-thunk": "2.3.0",
