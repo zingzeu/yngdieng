@@ -60,7 +60,7 @@
     "eslint-plugin-react": "7.20.5",
     "eslint-plugin-import": "2.22.0",
     "eslint-plugin-react-hooks": "1.7.0",
-    "stylelint": "9.3.0",
+    "stylelint": "9.10.1",
     "@typescript-eslint/parser": "2.34.0",
     "@typescript-eslint/eslint-plugin": "2.34.0",
     "typescript": "3.9.7"
