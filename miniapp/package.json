@@ -45,7 +45,7 @@
     "redux": "4.0.5",
     "react-redux": "7.2.1",
     "react-dom": "16.13.1",
-    "@tarojs/react": "3.0.5",
+    "@tarojs/react": "3.0.7",
     "react": "16.13.1"
   },
   "devDependencies": {
