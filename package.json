@@ -27,7 +27,7 @@
     "@angular/router": "10.0.9",
     "google-protobuf": "3.12.4",
     "rxjs": "6.6.2",
-    "systemjs": "6.4.3",
+    "systemjs": "6.5.0",
     "tslib": "2.0.1",
     "zone.js": "0.10.3"
   },
