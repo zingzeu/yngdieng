@@ -1415,10 +1415,10 @@
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.39.tgz#e177e699ee1b8c22d23174caaa7422644389509f"
   integrity sha512-EYNwp3bU+98cpU4lAWYYL7Zz+2gryWH1qbdDTidVd6hkiR6weksdbMadyXKXNPEkQFhXM+hVO9ZygomHXp+AIw==
 
-"@types/google-protobuf@3.7.2":
-  version "3.7.2"
-  resolved "https://registry.yarnpkg.com/@types/google-protobuf/-/google-protobuf-3.7.2.tgz#cd8a360c193ce4d672575a20a79f49ba036d38d2"
-  integrity sha512-ifFemzjNchFBCtHS6bZNhSZCBu7tbtOe0e8qY0z2J4HtFXmPJjm6fXSaQsTG7yhShBEZtt2oP/bkwu5k+emlkQ==
+"@types/google-protobuf@3.7.3":
+  version "3.7.3"
+  resolved "https://registry.yarnpkg.com/@types/google-protobuf/-/google-protobuf-3.7.3.tgz#429512e541bbd777f2c867692e6335ee08d1f6d4"
+  integrity sha512-FRwj40euE2bYkG+0X5w2nEA8yAzgJRcEa7RBd0Gsdkb9/tPM2pctVVAvnOUTbcXo2VmIHPo0Ae94Gl9vRHfKzg==
 
 "@types/jasmine@3.5.12":
   version "3.5.12"
@@ -3734,10 +3734,10 @@ globby@^5.0.0:
     pify "^2.0.0"
     pinkie-promise "^2.0.0"
 
-google-protobuf@3.12.4:
-  version "3.12.4"
-  resolved "https://registry.yarnpkg.com/google-protobuf/-/google-protobuf-3.12.4.tgz#fd89b7e5052cdb35a80f9b455612851d542a5c9f"
-  integrity sha512-ItTn8YepDQMHEMHloUPH+FDaTPiHTnbsMvP50aXfbI65IK3AA5+wXlHSygJH8xz+h1g4gu7V+CK5X1/SaGITsA==
+google-protobuf@3.13.0:
+  version "3.13.0"
+  resolved "https://registry.yarnpkg.com/google-protobuf/-/google-protobuf-3.13.0.tgz#909c5983d75dd6101ed57c79e0528d000cdc3251"
+  integrity sha512-ZIf3qfLFayVrPvAjeKKxO5FRF1/NwRxt6Dko+fWEMuHwHbZx8/fcaAao9b0wCM6kr8qeg2te8XTpyuvKuD9aKw==
 
 graceful-fs@^4.1.11, graceful-fs@^4.1.6:
   version "4.2.3"
