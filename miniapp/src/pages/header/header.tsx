@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Taro from "@tarojs/taro";
 import { getCurrentInstance } from "@tarojs/taro";
 import { View, Block, Image, Text } from "@tarojs/components";
 import { AtIcon, AtDrawer } from "taro-ui";
@@ -24,12 +25,12 @@ const menuItems: Array<MenuItem> = [
   {
     title: "搜索",
     iconType: "search",
-    navigateToRoute: routes.INDEX,
+    navigateToRoute: routes.SEARCH,
   },
   {
     title: "关于",
     iconType: "alert-circle",
-    navigateToRoute: routes.INDEX,
+    navigateToRoute: routes.ABOUT,
   },
 ];
 
@@ -37,7 +38,12 @@ const Header = () => {
   const routePath = getCurrentInstance().router?.path || "";
   const [showSidebar, toggleSidebar] = useState(false);
 
-  console.log("route path", styles);
+  const navigateTo = (routePath) => {
+    Taro.navigateTo({
+      url: routePath,
+    });
+  };
+
   return (
     <Block>
       <View className={styles.headerPlaceholder} />
@@ -50,7 +56,7 @@ const Header = () => {
             <View>
               <Image className={styles.logo} mode="heightFix" src={logoURL} />
             </View>
-            <View>
+            <View onClick={() => navigateTo(routes.SEARCH)}>
               <AtIcon value="search"></AtIcon>
             </View>
           </Block>
@@ -64,10 +70,14 @@ const Header = () => {
           <View className={styles.content}>
             <View className={styles.title}>榕典</View>
             <View>
-              {menuItems.map((menuitem) => (
-                <View className={styles.menuItem} key={menuitem.title}>
-                  <AtIcon value={menuitem.iconType}></AtIcon>
-                  <Text className={styles.text}>{menuitem.title}</Text>
+              {menuItems.map((menuItem) => (
+                <View
+                  className={styles.menuItem}
+                  key={menuItem.title}
+                  onClick={() => navigateTo(menuItem.navigateToRoute)}
+                >
+                  <AtIcon value={menuItem.iconType}></AtIcon>
+                  <Text className={styles.text}>{menuItem.title}</Text>
                 </View>
               ))}
             </View>

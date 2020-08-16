@@ -15,7 +15,10 @@ const config = {
   alias: {
     '@': path.resolve(__dirname, '..', 'src'),
   },
-  sass: {resource: ['src/styles/variables.scss'], projectDirectory: path.resolve(__dirname, '..')},
+  sass: {
+    resource: ['src/styles/variables.scss', 'src/styles/mixins.scss'],
+    projectDirectory: path.resolve(__dirname, '..')
+  },
   mini: {
     postcss: {
       pxtransform: {
