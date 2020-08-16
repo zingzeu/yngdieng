@@ -1,0 +1,53 @@
+.header {
+  height: $header-height;
+  background-color: $color-brownish-500;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  color: $color-text-light;
+  .logo {
+    height: 60px;
+    filter: brightness(0) invert(1);
+  }
+}
+
+.headerPlaceholder {
+  height: $header-height;
+  width: 100%;
+}
+
+.sidebarContainer {
+  .header {
+    height: $header-height;
+    background-color: $color-brownish-500;
+    display: flex;
+    align-items: center;
+    color: white;
+    padding: 0 20px;
+  }
+  .content {
+    padding-top: $header-height;
+    .title {
+      font-weight: bold;
+      font-size: $font-size-h6;
+      padding: 40px;
+    }
+    .menuItem {
+      font-size: $font-size-body;
+      padding: 20px 40px;
+      transition: background-color .1s;
+      &:active {
+        background-color: $color-brownish-100;
+      }
+      .text {
+        margin-left: 1em;
+      }
+    }
+  }
+}
