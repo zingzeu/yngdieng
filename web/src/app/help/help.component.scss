@@ -22,16 +22,6 @@ ol > li {
     display: block;
 }
 
-// Top-level points
-.content > ol > li {
-    font-weight: bold;
-    // All child points
-    padding-top: 4px;
-    > * {
-        font-weight: normal;
-    }
-}
-
 .content > ol {
     padding-left: 10px;
 }
