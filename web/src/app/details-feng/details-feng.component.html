@@ -4,17 +4,7 @@
   <app-word-details-hero [model]="heroModel"></app-word-details-hero>
 
   <div class="content">
-    <p class="raw-explanation"
-       *ngIf="!showStructuredExplanation" >{{ fengDoc.getExplanation() }}</p>
-    <div class="unihan-text explanation"
-         *ngIf="showStructuredExplanation" 
-        [innerHTML]="structuredExplanation"></div>
-    <mat-checkbox 
-      class="toggle-structured" 
-      *ngIf="showToggleStructured" 
-      [(ngModel)]="toggleStructured">结构化 (DEBUG)</mat-checkbox>
-    <p class="details-source">出处：馮愛珍. 1998. 福州方言詞典. 南京: 江蘇教育出版社. 第 {{ fengDoc.getSource().getPageNumber() }} 頁.
-      用字可能經過<a class="mat-body" href="/help">編輯修訂</a>.</p>
+    <app-feng-explanation [fengDoc]="fengDoc"></app-feng-explanation>
 
     <mat-expansion-panel *ngIf="singleCharResults.length > 0">
       <mat-expansion-panel-header>

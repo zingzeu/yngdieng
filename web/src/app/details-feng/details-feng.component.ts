@@ -4,8 +4,6 @@ import {Observable, Subscription} from 'rxjs';
 import {map, switchMap} from 'rxjs/operators';
 import {FengDocument} from 'yngdieng/shared/documents_pb';
 
-import {IYngdiengEnvironment, YNGDIENG_ENVIRONMENT} from '../../environments/environment';
-import {renderExplanation} from '../../yngdieng/explanations';
 import {toMonoHanziResultViewModel} from '../common/converters';
 import {WordDetailsHeroModel, WordPronunication} from '../word-details-hero/word-details-hero.component';
 import {YngdiengBackendService} from '../yngdieng-backend.service';
@@ -15,13 +13,10 @@ import {YngdiengTitleService} from '../yngdieng-title.service';
   selector: 'app-details-feng',
   templateUrl: './details-feng.component.html',
   styleUrls: ['./details-feng.component.scss'],
-  // TODO: FIX THIS.
-  encapsulation: ViewEncapsulation.None,
 })
 export class DetailsFengComponent implements OnInit, OnDestroy {
   isBusy: boolean = false;
   hasError: boolean = false;
-  toggleStructured: boolean = true;
   fengDoc: FengDocument;
   singleCharResults = [];
 
@@ -35,23 +30,7 @@ export class DetailsFengComponent implements OnInit, OnDestroy {
             this.fengDoc.getYngpingUnderlying(), this.fengDoc.getYngpingCanonical()));
   }
 
-  get showToggleStructured() {
-    return this.environment.structuredExplanations.enabled &&
-        this.environment.structuredExplanations.showDebugToggle;
-  }
-
-  get showStructuredExplanation() {
-    return this.environment.structuredExplanations.enabled && this.toggleStructured &&
-        this.fengDoc != null && this.fengDoc.getExplanationStructured() != null;
-  }
-
-  get structuredExplanation() {
-    return renderExplanation(
-        this.fengDoc.getExplanationStructured(), this.fengDoc.getHanziCanonical());
-  }
-
   constructor(
-      @Inject(YNGDIENG_ENVIRONMENT) private environment: IYngdiengEnvironment,
       private route: ActivatedRoute,
       private titleService: YngdiengTitleService,
       private backendService: YngdiengBackendService,

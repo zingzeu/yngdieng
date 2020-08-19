@@ -19,6 +19,7 @@ import {CommonToolbarComponent} from './common-toolbar/common-toolbar.component'
 import {DebugInfoComponent} from './debug-info/debug-info.component';
 import {DetailsFengComponent} from './details-feng/details-feng.component';
 import {DetailsMonoHanziComponent} from './details-mono-hanzi/details-mono-hanzi.component';
+import {FengExplanationComponent} from './feng-explanation/feng-explanation.component';
 import {FengResultComponent} from './feng-result/feng-result.component';
 import {HelpComponent} from './help/help.component';
 import {HomeComponent} from './home/home.component';
@@ -56,7 +57,8 @@ import {YngpingHelpDialogComponent} from './yngping-help-dialog/yngping-help-dia
     SimplificationToolComponent,
     AudioPlayerComponent,
     WordDetailsComponent,
-    WordDetailsHeroComponent
+    WordDetailsHeroComponent,
+    FengExplanationComponent
   ],
   imports: [
     AppRoutingModule,

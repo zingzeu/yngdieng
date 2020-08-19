@@ -7,6 +7,7 @@ import {YngdiengDocument} from 'yngdieng/shared/documents_pb';
 import {hanziToString} from '../common/hanzi-util';
 import {WordDetailsHeroModel, WordPronunication} from '../word-details-hero/word-details-hero.component';
 import {YngdiengBackendService} from '../yngdieng-backend.service';
+import {YngdiengTitleService} from '../yngdieng-title.service';
 
 @Component({
   selector: 'app-word-details',
@@ -20,6 +21,7 @@ export class WordDetailsComponent implements OnInit, OnDestroy {
   text: string;
 
   constructor(
+      private titleService: YngdiengTitleService,
       private backendService: YngdiengBackendService,
       private route: ActivatedRoute,
   ) {}
@@ -30,10 +32,10 @@ export class WordDetailsComponent implements OnInit, OnDestroy {
         switchMap(docId => this.backendService.getYngdiengDocument(docId)));
     this.subscription = currentDocument$.subscribe(d => {
       console.log(d);
+      let hanzi = d.getHanziCanonical() !== undefined ? hanziToString(d.getHanziCanonical()) : '';
+      this.titleService.setTitleForDetailsPage(hanzi);
       this.heroModel = new WordDetailsHeroModel(
-          /* hanzi= */ d.getHanziCanonical() !== undefined ? hanziToString(d.getHanziCanonical()) :
-                                                             '',
-          new WordPronunication(d.getYngpingUnderlying(), d.getYngpingSandhi()));
+          hanzi, new WordPronunication(d.getYngpingUnderlying(), d.getYngpingSandhi()));
     });
   }
 
