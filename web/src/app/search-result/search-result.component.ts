@@ -8,6 +8,7 @@ import {AdvancedSearchQueryBuilderService} from '../advanced-search-query-builde
 import {toMonoHanziResultViewModel} from '../common/converters';
 import {FengResultViewModel, MonoHanziResultViewModel} from '../common/view-models';
 import {YngdiengBackendService} from '../yngdieng-backend.service';
+import {YngdiengTitleService} from '../yngdieng-title.service';
 
 // Keep in sync with server/backend/Services/YngdiengService.Search.cs
 const PAGE_SIZE = 10;
@@ -39,14 +40,17 @@ export class SearchResultComponent implements OnInit, OnDestroy {
   constructor(
       private route: ActivatedRoute,
       private router: Router,
+      private titleService: YngdiengTitleService,
       private backendService: YngdiengBackendService) {}
 
   ngOnInit() {
     this.isBusy = true;
 
     this.propertiesSubscription = this.route.paramMap.subscribe(paramMap => {
-      this.queryText = paramMap.get('query');
+      let query = paramMap.get('query');
+      this.queryText = query;
       this.offset = this.getOffsetFromParamMap(paramMap);
+      this.titleService.setTitleForSearchResultPage(query);
     });
     this.resultSubscription =
         this.route.paramMap

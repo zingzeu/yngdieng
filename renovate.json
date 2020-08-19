@@ -8,7 +8,7 @@
       "automerge": true
     },
     {
-      "packageNames": ["@bazel/ibazel"],
+      "packageNames": ["@bazel/ibazel", "envoyproxy/envoy"],
       "enabled": false
     }
   ],

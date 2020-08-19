@@ -9,6 +9,7 @@ import {renderExplanation} from '../../yngdieng/explanations';
 import {toMonoHanziResultViewModel} from '../common/converters';
 import {WordDetailsHeroModel, WordPronunication} from '../word-details-hero/word-details-hero.component';
 import {YngdiengBackendService} from '../yngdieng-backend.service';
+import {YngdiengTitleService} from '../yngdieng-title.service';
 
 @Component({
   selector: 'app-details-feng',
@@ -52,6 +53,7 @@ export class DetailsFengComponent implements OnInit, OnDestroy {
   constructor(
       @Inject(YNGDIENG_ENVIRONMENT) private environment: IYngdiengEnvironment,
       private route: ActivatedRoute,
+      private titleService: YngdiengTitleService,
       private backendService: YngdiengBackendService,
   ) {}
 
@@ -66,6 +68,7 @@ export class DetailsFengComponent implements OnInit, OnDestroy {
           this.isBusy = false;
           this.hasError = false;
           this.fengDoc = response;
+          this.titleService.setTitleForDetailsPage(response.getHanziCanonical());
         },
         (_err) => {
           this.isBusy = false;
