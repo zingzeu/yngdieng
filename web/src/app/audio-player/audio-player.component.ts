@@ -1,4 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, Inject, Input, OnInit} from '@angular/core';
+
+import {IYngdiengEnvironment, YNGDIENG_ENVIRONMENT} from '../../environments/environment';
 
 @Component({
   selector: 'app-audio-player',
@@ -7,14 +9,18 @@ import {Component, Input, OnInit} from '@angular/core';
 })
 export class AudioPlayerComponent implements OnInit {
   public PlayerStateEnum = PlayerState;
-  
+
   @Input('audioUrl') audioUrl: string;
   state: PlayerState = PlayerState.Idle;
   private currentAudio: HTMLAudioElement = null;
 
-  constructor() {}
+  constructor(@Inject(YNGDIENG_ENVIRONMENT) private environment: IYngdiengEnvironment) {}
 
   ngOnInit(): void {}
+
+  get shouldShow() {
+    return this.environment.showAudioPlayerButtons && this.state !== PlayerState.Disabled;
+  }
 
   onClicked() {
     switch (this.state) {
