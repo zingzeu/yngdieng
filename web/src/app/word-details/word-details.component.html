@@ -1,3 +1,15 @@
 <app-common-toolbar></app-common-toolbar>
-<app-word-details-hero [model]="heroModel"></app-word-details-hero>
-<p>{{text}}</p>
+<ng-container *ngIf="!hasError && !isBusy">
+    <app-word-details-hero [model]="heroModel"></app-word-details-hero>
+    <div class="content">
+        <ng-container *ngFor="let source of document.getSourcesList()"> 
+            <app-feng-explanation 
+            *ngIf="source.hasFeng()"
+            [fengDoc]="source.getFeng()"></app-feng-explanation>
+        </ng-container>
+    </div>
+</ng-container>
+
+<p *ngIf="isBusy">加载中...</p>
+
+<p *ngIf="hasError">加载错误</p>

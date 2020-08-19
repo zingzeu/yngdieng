@@ -12,6 +12,8 @@ import {renderExplanation} from '../../yngdieng/explanations';
 })
 export class FengExplanationComponent implements OnInit {
   @Input('fengDoc') fengDoc: FengDocument;
+  /** Display the canonical hanzi as part the title of the explanation section */
+  @Input('showTitle') showTitle: boolean = true;
   toggleStructured: boolean = true;
 
   constructor(@Inject(YNGDIENG_ENVIRONMENT) private environment: IYngdiengEnvironment) {}

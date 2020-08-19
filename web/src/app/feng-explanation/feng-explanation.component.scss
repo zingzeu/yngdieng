@@ -1,3 +1,16 @@
+.feng-title {
+    margin-block-end: 4px;
+    .hanzi {
+        font-size: 1.5rem;
+        font-weight: bold;
+        margin-right: 0.2em;
+    }
+
+    .yngping {
+        font-size: 1rem;
+        color: #8f7b7b;
+    }
+}
 
 .explanation {
     ol {
@@ -74,4 +87,9 @@
 .raw-explanation {
     font-family: monospace;
     font-size: 12px;
+}
+
+.toggle-structured {
+    text-align: right;
+    font-size: 0.8em;
 }

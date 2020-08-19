@@ -16,7 +16,9 @@ import {YngdiengTitleService} from '../yngdieng-title.service';
 })
 export class WordDetailsComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
-
+  isBusy: boolean = false;
+  hasError: boolean = false;
+  document: YngdiengDocument;
   heroModel = new WordDetailsHeroModel('', new WordPronunication('', ''));
   text: string;
 
@@ -27,16 +29,26 @@ export class WordDetailsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
+    this.isBusy = true;
     let currentDocument$ = this.route.paramMap.pipe(
         map(paramMap => paramMap.get('id')),
         switchMap(docId => this.backendService.getYngdiengDocument(docId)));
-    this.subscription = currentDocument$.subscribe(d => {
-      console.log(d);
-      let hanzi = d.getHanziCanonical() !== undefined ? hanziToString(d.getHanziCanonical()) : '';
-      this.titleService.setTitleForDetailsPage(hanzi);
-      this.heroModel = new WordDetailsHeroModel(
-          hanzi, new WordPronunication(d.getYngpingUnderlying(), d.getYngpingSandhi()));
-    });
+    this.subscription = currentDocument$.subscribe(
+        d => {
+          this.isBusy = false;
+          this.hasError = false;
+          console.log(d);
+          this.document = d;
+          let hanzi =
+              d.getHanziCanonical() !== undefined ? hanziToString(d.getHanziCanonical()) : '';
+          this.titleService.setTitleForDetailsPage(hanzi);
+          this.heroModel = new WordDetailsHeroModel(
+              hanzi, new WordPronunication(d.getYngpingUnderlying(), d.getYngpingSandhi()));
+        },
+        _err => {
+          this.isBusy = false;
+          this.hasError = true;
+        });
   }
 
   ngOnDestroy(): void {
