@@ -1,3 +1,7 @@
+.content {
+    font-family: 'Noto Serif SC', 'Noto Serif TC', 'Ext-0', 'Ext-1', serif;
+}
+
 ol { 
     counter-reset: item; 
     padding-left: 2em;
@@ -30,4 +34,18 @@ span.space, span.space[hidden] {
     display: inline;
     visibility: hidden;
     font: 0.89em Arial;
+}
+
+.mat-button {
+    padding-left: 0;
+    padding-right: 0;
+    line-height: 1em;
+    // color: /;/
+    min-width: 0;
+    font-family: inherit;
+    font-weight: 900;;
+}
+
+.punctuation-trim {
+  letter-spacing: -0.5em
 }
