@@ -1,7 +1,6 @@
 import React from 'react';
 import { View } from "@tarojs/components";
-
-import styles from './about.detail.scss';
+import styles from './detail.module.scss';
 
 const Detail = () => {
   return (

@@ -3,11 +3,8 @@ import Taro from "@tarojs/taro";
 import { getCurrentInstance } from "@tarojs/taro";
 import { View, Block, Image, Text } from "@tarojs/components";
 import { AtIcon, AtDrawer } from "taro-ui";
-
 import routes from "@/routes";
-
 import logoURL from "@/assets/logo.png";
-
 import styles from "./header.module.scss";
 
 interface MenuItem {

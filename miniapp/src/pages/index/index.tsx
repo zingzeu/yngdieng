@@ -2,15 +2,10 @@ import React, { useState } from "react";
 import Taro from "@tarojs/taro";
 import { View, Image, Input, Text } from "@tarojs/components";
 import { AtIcon } from "taro-ui";
-
 import "taro-ui/dist/style/index.scss";
-
 import Header from "@/pages/header/header";
-
 import routes from "@/routes";
-
 import logoURL from "@/assets/logo.png";
-
 import styles from "./index.module.scss";
 
 const Index = () => {
