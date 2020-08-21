@@ -41,14 +41,14 @@
     "@tarojs/react": "3.0.7",
     "@tarojs/runtime": "3.0.7",
     "@tarojs/taro": "3.0.7",
-    "lodash": "^4.17.20",
+    "lodash": "4.17.20",
     "react": "16.13.1",
     "react-dom": "16.13.1",
     "react-redux": "7.2.1",
     "redux": "4.0.5",
     "redux-logger": "3.0.6",
     "redux-thunk": "2.3.0",
-    "taro-ui": "^3.0.0-alpha.3"
+    "taro-ui": "3.0.0-alpha.3"
   },
   "devDependencies": {
     "@babel/core": "7.11.1",
