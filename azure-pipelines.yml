@@ -16,11 +16,15 @@ steps:
 - task: Docker@2
   inputs:
     containerRegistry: 'aliyunContainerRegistry'
-    command: 'login'
+    repository: 'zingzeu/yngdieng-api-frontend'
+    command: 'buildAndPush'
+    Dockerfile: 'server/envoy/Dockerfile'
+    buildContext: 'server/envoy/'
+ 
 - task: Docker@2
   inputs:
-    containerRegistry: 'aliyunContainerRegistry'
-    repository: 'zingzeu/yngdieng-api-frontend'
+    containerRegistry: 'dockerHub'
+    repository: 'ztl8702/yngdieng-api-frontend'
     command: 'buildAndPush'
     Dockerfile: 'server/envoy/Dockerfile'
     buildContext: 'server/envoy/'
