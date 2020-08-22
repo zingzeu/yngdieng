@@ -39,7 +39,7 @@
     "@babel/runtime": "7.11.2",
     "@tarojs/components": "3.0.8",
     "@tarojs/react": "3.0.8",
-    "@tarojs/runtime": "3.0.7",
+    "@tarojs/runtime": "3.0.8",
     "@tarojs/taro": "3.0.7",
     "lodash": "4.17.20",
     "react": "16.13.1",
