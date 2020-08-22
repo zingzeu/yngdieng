@@ -23,4 +23,5 @@ steps:
     repository: 'zingzeu/yngdieng-api-server'
     command: 'buildAndPush'
     Dockerfile: 'server/envoy/Dockerfile'
-    buildContext: 'server/envoy/**'
+    buildContext: 'server/envoy/'
+ 
