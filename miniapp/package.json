@@ -37,7 +37,7 @@
   "license": "MIT",
   "dependencies": {
     "@babel/runtime": "7.11.2",
-    "@tarojs/components": "3.0.7",
+    "@tarojs/components": "3.0.8",
     "@tarojs/react": "3.0.7",
     "@tarojs/runtime": "3.0.7",
     "@tarojs/taro": "3.0.7",
