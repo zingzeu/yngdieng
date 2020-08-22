@@ -20,7 +20,7 @@ steps:
 - task: Docker@2
   inputs:
     containerRegistry: 'aliyunContainerRegistry'
-    repository: 'zingzeu/yngdieng-api-server'
+    repository: 'zingzeu/yngdieng-api-frontend'
     command: 'buildAndPush'
     Dockerfile: 'server/envoy/Dockerfile'
     buildContext: 'server/envoy/'
