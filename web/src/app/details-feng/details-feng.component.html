@@ -1,36 +1,10 @@
 <app-common-toolbar></app-common-toolbar>
 
 <ng-container *ngIf="!hasError && !isBusy">
-  <div class="details-hero mat-elevation-z4">
-    <div class="hanzi unihan-text">{{ fengDoc.getHanziCanonical() }}</div>
-    <div class="text-yngping">
-      <span class="label">{{ shouldShowSandhi ? "市区单字": "福州市区"}}</span>
-      {{ fengDoc.getYngpingUnderlying() }}
-      <app-audio-player [audioUrl]="audioUrlUnderlying"></app-audio-player>
-      <button mat-icon-button color="secondary" aria-label="这是什么？" 
-        (click)="onShowYngpingHelp()">
-        <mat-icon>help</mat-icon>
-      </button>
-    </div>
-    <div class="text-yngping" *ngIf="shouldShowSandhi">
-      <span class="label">市区连读</span>
-      {{ fengDoc.getYngpingCanonical() }} 
-      <app-audio-player [audioUrl]="audioUrlSandhi"></app-audio-player>
-    </div>
-  </div>
+  <app-word-details-hero [model]="heroModel"></app-word-details-hero>
 
   <div class="content">
-    <p class="raw-explanation"
-       *ngIf="!showStructuredExplanation" >{{ fengDoc.getExplanation() }}</p>
-    <div class="unihan-text explanation"
-         *ngIf="showStructuredExplanation" 
-        [innerHTML]="structuredExplanation"></div>
-    <mat-checkbox 
-      class="toggle-structured" 
-      *ngIf="showToggleStructured" 
-      [(ngModel)]="toggleStructured">结构化 (DEBUG)</mat-checkbox>
-    <p class="details-source">出处：馮愛珍. 1998. 福州方言詞典. 南京: 江蘇教育出版社. 第 {{ fengDoc.getSource().getPageNumber() }} 頁.
-      用字可能經過<a class="mat-body" href="/help">編輯修訂</a>.</p>
+    <app-feng-explanation [fengDoc]="fengDoc" [showTitle]="false"></app-feng-explanation>
 
     <mat-expansion-panel *ngIf="singleCharResults.length > 0">
       <mat-expansion-panel-header>

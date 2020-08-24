@@ -5,7 +5,7 @@ import {Subscription} from 'rxjs';
 import {map, switchMap} from 'rxjs/operators';
 import {getFinalString, getInitialString, getToneString} from 'yngdieng/web/src/yngdieng/utils';
 
-import {getHanziString} from '../common/hanzi-util';
+import {hanziToString} from '../common/hanzi-util';
 import {YngdiengBackendService} from '../yngdieng-backend.service';
 import {YngdiengTitleService} from '../yngdieng-title.service';
 
@@ -41,8 +41,8 @@ export class DetailsMonoHanziComponent implements OnInit, OnDestroy {
           this.isBusy = false;
           this.hasError = false;
           this.vm = {
-            hanziCanonical: getHanziString(response.getHanziCanonical()),
-            hanziAlternatives: response.getHanziAlternativesList().map(h => getHanziString(h)),
+            hanziCanonical: hanziToString(response.getHanziCanonical()),
+            hanziAlternatives: response.getHanziAlternativesList().map(h => hanziToString(h)),
             fanqie: getInitialString(response.getInitial()) + getFinalString(response.getFinal()) +
                 ' ' + getToneString(response.getTone()),
             yngping: response.getYngping(),
@@ -77,16 +77,16 @@ export class DetailsMonoHanziComponent implements OnInit, OnDestroy {
                   let tone = getToneString(a.getTone());
                   return this.backendService.search(`i:${initial} f:${final} t:${tone}`)
                 }),
-                map(response => response.getResultsList()
-                                    .filter(x => x.hasHistoricalDocument())
-                                    .map(d => {
-                                      return {
-                                        hanzi: getHanziString(
-                                            d.getHistoricalDocument().getHanziCanonical()),
-                                        id: d.getHistoricalDocument().getId()
-                                      } as Homophone;
-                                    })
-                                    .filter(x => x.id != this.route.snapshot.paramMap.get('id'))))
+                map(response =>
+                        response.getResultsList()
+                            .filter(x => x.hasHistoricalDocument())
+                            .map(d => {
+                              return {
+                                hanzi: hanziToString(d.getHistoricalDocument().getHanziCanonical()),
+                                id: d.getHistoricalDocument().getId()
+                              } as Homophone;
+                            })
+                            .filter(x => x.id != this.route.snapshot.paramMap.get('id'))))
             .subscribe(x => {
               this.homophones = x;
             });
@@ -94,7 +94,7 @@ export class DetailsMonoHanziComponent implements OnInit, OnDestroy {
     this.vocabSubscription =
         currentDocument$
             .pipe(switchMap(
-                a => this.backendService.search(getHanziString(a.getHanziCanonical()))
+                a => this.backendService.search(hanziToString(a.getHanziCanonical()))
                          .pipe(
                              map(response => response.getResultsList()
                                                  .filter(x => x.hasFengDocument())
@@ -108,7 +108,7 @@ export class DetailsMonoHanziComponent implements OnInit, OnDestroy {
                                                    } as Vocab;
                                                  })
                                                  .filter(
-                                                     v => v.hanzi.indexOf(getHanziString(
+                                                     v => v.hanzi.indexOf(hanziToString(
                                                               a.getHanziCanonical())) >= 0))),
                 ))
             .subscribe(x => {
