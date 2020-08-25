@@ -35,7 +35,7 @@ const Index = () => {
               onConfirm={handleConfirm}
             />
           </View>
-          <View className={styles.confirmBtn}>
+          <View className={styles.confirmBtn} onClick={handleConfirm}>
             <AtIcon value="search"></AtIcon>
           </View>
           <View className={styles.actions}>
