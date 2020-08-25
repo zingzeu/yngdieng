@@ -12,6 +12,9 @@
   }
   .content {
     padding: 20px;
+    .resultTitle {
+      margin-bottom: 20px;
+    }
     .resultAmount {
       font-size: $font-size-secondary;
     }

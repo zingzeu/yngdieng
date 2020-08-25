@@ -3,6 +3,7 @@ import Taro, { useRouter } from "@tarojs/taro";
 import { View, Input, Block } from "@tarojs/components";
 import { AtIcon } from "taro-ui";
 import Header from "@/pages/header/header";
+import WordCard from "@/components/wordCard/wordCard";
 import styles from "./search.module.scss";
 
 const Search = () => {
@@ -52,10 +53,20 @@ const Search = () => {
         {showAdvanced && <Block></Block>}
         {!showAdvanced && (
           <Block>
-            <View className="at-row at-row__justify--between at-row__align--center">
+            <View
+              className={`${styles.resultTitle} at-row at-row__justify--between at-row__align--center`}
+            >
               <View className={styles.resultAmount}>找到 1 个结果</View>
               <View onClick={handleAdvancedSearch}>高级搜索</View>
             </View>
+            <WordCard
+              title="我"
+              description="来源：诸神的游戏 [M]"
+              extraList={[
+                { title: "榕拼", content: "bung1" },
+                { title: "音韵地位", content: "邊春 上平" },
+              ]}
+            />
           </Block>
         )}
       </View>

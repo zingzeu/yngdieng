@@ -1,0 +1,26 @@
+.wordCard {
+  background-color: $color-brownish-100;
+  border-radius: 10px;
+  padding: 20px 30px;
+  .title {
+    font-size: $font-size-h1;
+  }
+  .description {
+    margin-top: 20px;
+    font-size: $font-size-secondary;
+    color: $color-text-dark-secondary;
+  }
+  .extraContainer {
+    display: flex;
+    .extraTitle {
+      color: $color-text-dark-secondary;
+      font-size: $font-size-secondary;
+    }
+    .extraContent {
+
+    }
+    View {
+      margin: 0 5px;
+    }
+  }
+}
