@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import Taro from "@tarojs/taro";
+import Taro, { useRouter } from "@tarojs/taro";
 import { getCurrentInstance } from "@tarojs/taro";
 import { View, Block, Image, Text } from "@tarojs/components";
 import { AtIcon, AtDrawer } from "taro-ui";
@@ -31,8 +31,9 @@ const menuItems: Array<MenuItem> = [
   },
 ];
 
-const Header = () => {
-  const routePath = getCurrentInstance().router?.path || "";
+const Header = ({ injectedComponents = <Block /> }) => {
+  const router = useRouter();
+  const routePath = router.path || "";
   const [showSidebar, toggleSidebar] = useState(false);
 
   const navigateTo = (routePath) => {
@@ -60,6 +61,7 @@ const Header = () => {
             <AtIcon value="search"></AtIcon>
           </View>
         )}
+        {injectedComponents}
       </View>
       <AtDrawer show={showSidebar} onClose={() => toggleSidebar(false)} mask>
         <View id="sidebar_container" className={styles.sidebarContainer}>

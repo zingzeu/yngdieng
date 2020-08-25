@@ -1,3 +1,19 @@
 .search {
-
+  .inputInjected {
+    @include flex-center-center;
+    flex: 1;
+    height: 70px;
+    padding: 0 10px;
+    background-color: $color-brownish-100;
+    Input {
+      width: 100%;
+      color: $color-text-dark;
+    }
+  }
+  .content {
+    padding: 20px;
+    .resultAmount {
+      font-size: $font-size-secondary;
+    }
+  }
 }
