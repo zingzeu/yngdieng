@@ -45,18 +45,20 @@ const Header = () => {
     <Block>
       <View className={styles.headerPlaceholder} />
       <View id="header" className={styles.header}>
+        {[routes.INDEX, routes.SEARCH].includes(routePath) && (
+          <View>
+            <AtIcon value="menu" onClick={() => toggleSidebar(true)}></AtIcon>
+          </View>
+        )}
         {[routes.INDEX].includes(routePath) && (
-          <Block>
-            <View>
-              <AtIcon value="menu" onClick={() => toggleSidebar(true)}></AtIcon>
-            </View>
-            <View>
-              <Image className={styles.logo} mode="heightFix" src={logoURL} />
-            </View>
-            <View onClick={() => navigateTo(routes.SEARCH)}>
-              <AtIcon value="search"></AtIcon>
-            </View>
-          </Block>
+          <View>
+            <Image className={styles.logo} mode="heightFix" src={logoURL} />
+          </View>
+        )}
+        {[routes.INDEX].includes(routePath) && (
+          <View onClick={() => navigateTo(routes.SEARCH)}>
+            <AtIcon value="search"></AtIcon>
+          </View>
         )}
       </View>
       <AtDrawer show={showSidebar} onClose={() => toggleSidebar(false)} mask>
