@@ -1,3 +1,7 @@
+.content {
+    font-family: 'Noto Serif SC', 'Noto Serif TC', 'Ext-0', 'Ext-1', serif;
+}
+
 ol { 
     counter-reset: item; 
     padding-left: 2em;
@@ -22,16 +26,6 @@ ol > li {
     display: block;
 }
 
-// Top-level points
-.content > ol > li {
-    font-weight: bold;
-    // All child points
-    padding-top: 4px;
-    > * {
-        font-weight: normal;
-    }
-}
-
 .content > ol {
     padding-left: 10px;
 }
@@ -40,4 +34,17 @@ span.space, span.space[hidden] {
     display: inline;
     visibility: hidden;
     font: 0.89em Arial;
+}
+
+.mat-button {
+    padding-left: 0;
+    padding-right: 0;
+    line-height: 1em;
+    min-width: 0;
+    font-family: inherit;
+    font-weight: 900;;
+}
+
+.punctuation-trim {
+  letter-spacing: -0.5em
 }
