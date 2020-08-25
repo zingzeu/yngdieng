@@ -11,12 +11,29 @@
     }
   }
   .content {
-    padding: 20px;
-    .resultTitle {
-      margin-bottom: 20px;
-    }
-    .resultAmount {
-      font-size: $font-size-secondary;
+    .result {
+      height: calc(100vh - #{$header-height});
+      display: flex;
+      flex-direction: column;
+      overflow-y: hidden;
+      .resultTitle {
+        padding: 20px;
+        width: calc(100% - 40px);
+        .resultAmount {
+          font-size: $font-size-secondary;
+        }
+      }
+      .resultList {
+        height: 500px;
+        flex: 1;
+        .scrollView {
+          height: 100%;
+        }
+        .resultItem {
+          padding: 0 20px;
+          margin-bottom: 20px;
+        }
+      }
     }
   }
 }

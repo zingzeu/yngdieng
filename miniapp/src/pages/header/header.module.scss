@@ -11,6 +11,7 @@
   justify-content: space-between;
   padding: 0 10px;
   color: $color-text-light;
+  z-index: 100;
   .logo {
     height: 60px;
     filter: brightness(0) invert(1);

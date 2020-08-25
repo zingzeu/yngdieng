@@ -8,7 +8,8 @@ interface Props {
   extraList: {
     title: string;
     content: string;
-  }[];
+  }[],
+  onClick?: Function,
   extra?: any;
 }
 
@@ -17,16 +18,17 @@ const wordCard = ({
   description = "",
   extraList = [],
   extra = <Block />,
+  onClick = () => {}
 }: Props) => {
   return (
-    <View className={styles.wordCard}>
+    <View className={styles.wordCard} onClick={() => onClick()}>
       <View>
         <View className="at-row at-row__align--center at-row__justify--between">
           <View className={styles.title}>{title}</View>
           <View>
             <View className={styles.extraContainer}>
               {extraList.map((extraItem) => (
-                <View>
+                <View key={extraItem.title}>
                   <View className={styles.extraTitle}>{extraItem.title}</View>
                   <View>{extraItem.content}</View>
                 </View>

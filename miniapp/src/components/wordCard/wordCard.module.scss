@@ -19,8 +19,8 @@
     .extraContent {
 
     }
-    View {
-      margin: 0 5px;
+    &>View {
+      margin: 0 10px;
     }
   }
 }
