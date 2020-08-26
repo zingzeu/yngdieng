@@ -1,9 +1,7 @@
 import React, { Component } from 'react'
-import "taro-ui/dist/style/index.scss";
 import { Provider } from 'react-redux'
-
 import configStore from './store'
-
+import "./styles/custom-variables.scss";
 import './app.scss'
 
 const store = configStore()

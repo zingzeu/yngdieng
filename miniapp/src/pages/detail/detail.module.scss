@@ -1,0 +1,42 @@
+.topBar {
+  background-color: #69656F;
+  padding: 40px;
+  color: white;
+  .word {
+    font-size: $font-size-h1;
+  }
+  .actionPanel {
+
+  }
+  .rimeContainer {
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    &>View {
+      margin-right: 15px;
+    }
+    .rimePosition {
+      font-size: $font-size-secondary;
+      border-radius: 10px;
+      border: 1px solid white;
+      padding: .1em .5em;
+    }
+  }
+}
+
+.tabPaneContainer {
+  padding: 20px;
+}
+.explanation {
+  .text {
+
+  }
+  .sentence {
+    text-indent: 1.5em;
+  }
+  .source {
+    margin-top: 10px;
+    color: $color-text-dark-secondary;
+    font-size: $font-size-secondary;
+  }
+}

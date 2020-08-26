@@ -37,7 +37,7 @@ const Header = ({ injectedComponents = <Block /> }) => {
   const [showSidebar, toggleSidebar] = useState(false);
 
   const navigateTo = (routePath) => {
-    Taro.navigateTo({
+    Taro.redirectTo({
       url: routePath,
     });
   };
@@ -46,17 +46,17 @@ const Header = ({ injectedComponents = <Block /> }) => {
     <Block>
       <View className={styles.headerPlaceholder} />
       <View id="header" className={styles.header}>
-        {[routes.INDEX, routes.SEARCH].includes(routePath) && (
+        {[routes.INDEX, routes.SEARCH, routes.DETAIL].includes(routePath) && (
           <View>
             <AtIcon value="menu" onClick={() => toggleSidebar(true)}></AtIcon>
           </View>
         )}
-        {[routes.INDEX].includes(routePath) && (
+        {[routes.INDEX, routes.DETAIL].includes(routePath) && (
           <View>
             <Image className={styles.logo} mode="heightFix" src={logoURL} />
           </View>
         )}
-        {[routes.INDEX].includes(routePath) && (
+        {[routes.INDEX, routes.DETAIL].includes(routePath) && (
           <View onClick={() => navigateTo(routes.SEARCH)}>
             <AtIcon value="search"></AtIcon>
           </View>
