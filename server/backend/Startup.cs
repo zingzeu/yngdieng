@@ -24,6 +24,10 @@ namespace Yngdieng.Backend
             services.AddHostedService<IndexLoaderBackgroundService>();
             services.AddSingleton<ISearchCache, InMemorySearchCache>();
             services.AddControllers();
+            services.AddCors(o => o.AddPolicy("AllowAll", builder => {
+                builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().WithExposedHeaders(
+                    "Grpc-Status", "Grpc-Message", "Grpc-Encoding", "Grpc-Accept-Encoding");
+            }));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request
@@ -37,10 +41,13 @@ namespace Yngdieng.Backend
 
             app.UseRouting();
 
+            app.UseGrpcWeb(); // Must be between UseRouting and UseEndpoints.
+            app.UseCors();
+
             app.UseEndpoints(endpoints => {
                 endpoints.MapHealthChecks("/health");
 
-                endpoints.MapGrpcService<YngdiengService>();
+                endpoints.MapGrpcService<YngdiengService>().EnableGrpcWeb().RequireCors("AllowAll");
 
                 endpoints.MapControllers();
 
