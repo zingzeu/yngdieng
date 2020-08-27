@@ -1,6 +1,6 @@
 import {IYngdiengEnvironment} from './environment';
 
-// Deployed at yngdieng.org
+// Deployed at www.ydict.net
 export const YngdiengProdEnvironment: IYngdiengEnvironment = {
   appName: '榕典',
   isProduction: true,
