@@ -9,14 +9,14 @@ RUN dotnet publish -o /out backend/Yngdieng.Backend.csproj
 # This image does not exist in Docker Hub. It needs to be loaded into the
 # local Docker daemon with:
 # bazel run //assets:tts_audio_wav_image
-FROM bazel/assets:tts_audio_wav_image AS audio_files
+#FROM bazel/assets:tts_audio_wav_image AS audio_files
 # Do nothing
 
 # ztl8702/yngdieng-backend
 # Build runtime image
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
 RUN mkdir -p /data/tts_audio_wav
-COPY --from=audio_files /*.wav /data/tts_audio_wav/
+#COPY --from=audio_files /*.wav /data/tts_audio_wav/
 WORKDIR /app
 COPY --from=builder /out .
 ENTRYPOINT ["dotnet", "Yngdieng.Backend.dll", \
