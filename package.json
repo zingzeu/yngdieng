@@ -68,7 +68,9 @@
     "karma-jasmine": "3.3.1",
     "karma-requirejs": "1.1.0",
     "karma-sourcemap-loader": "0.3.8",
+    "lint-staged": ">=10",
     "opencc": "1.1.1",
+    "prettier": "^2.1.1",
     "protobufjs": "6.10.1",
     "protractor": "7.0.0",
     "requirejs": "2.3.6",
@@ -83,7 +85,14 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "check-clang-format \"yarn format\""
+      "pre-commit": "lint-staged"
     }
+  },
+  "lint-staged": {
+    "*.{tsx,ts,json,scss}": [
+      "prettier --write",
+      "git add"
+    ],
+    "*.{cs}": "check-clang-format \"yarn format\""
   }
 }
