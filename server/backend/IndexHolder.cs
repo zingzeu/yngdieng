@@ -2,28 +2,28 @@ using Yngdieng.Protos;
 
 namespace Yngdieng.Backend
 {
-  public interface IIndexHolder
-  {
-    void StoreIndex(YngdiengIndex index);
-    YngdiengIndex GetIndex();
-  }
-
-  public sealed class IndexHolder : IIndexHolder
-  {
-    private YngdiengIndex index = new YngdiengIndex();
-
-    public IndexHolder()
+    public interface IIndexHolder
     {
+        void StoreIndex(YngdiengIndex index);
+        YngdiengIndex GetIndex();
     }
 
-    public void StoreIndex(YngdiengIndex index)
+    public sealed class IndexHolder : IIndexHolder
     {
-      this.index = index;
-    }
+        private YngdiengIndex index = new YngdiengIndex();
 
-    public YngdiengIndex GetIndex()
-    {
-      return index;
+        public IndexHolder()
+        {
+        }
+
+        public void StoreIndex(YngdiengIndex index)
+        {
+            this.index = index;
+        }
+
+        public YngdiengIndex GetIndex()
+        {
+            return index;
+        }
     }
-  }
 }
