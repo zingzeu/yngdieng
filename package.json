@@ -74,7 +74,7 @@
     "protobufjs": "6.10.1",
     "protractor": "7.0.0",
     "requirejs": "2.3.6",
-    "rollup": "2.26.5",
+    "rollup": "2.26.7",
     "rollup-plugin-commonjs": "10.1.0",
     "rollup-plugin-node-resolve": "5.2.0",
     "rollup-plugin-sourcemaps": "0.6.2",
