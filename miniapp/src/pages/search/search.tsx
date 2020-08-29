@@ -120,7 +120,7 @@ const Search = () => {
                     <WordCard
                       onClick={() =>
                         Taro.navigateTo({
-                          url: `${routes.DETAIL}?id=${resultItem.id}`,
+                          url: `${routes.WORD_DETAIL}?id=${resultItem.id}`,
                         })
                       }
                       title={

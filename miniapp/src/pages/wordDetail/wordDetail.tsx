@@ -4,9 +4,9 @@ import {View} from '@tarojs/components';
 import {AtIcon, AtTabs, AtTabsPane} from 'taro-ui';
 import Header from '@/pages/header/header';
 import WordCard from '@/components/wordCard/wordCard';
-import styles from './detail.module.scss';
+import styles from './wordDetail.module.scss';
 
-const Detail = () => {
+const WordDetail = () => {
   const [currentTab, setCurrentTab] = useState(3);
 
   return (
@@ -82,4 +82,4 @@ const Detail = () => {
   );
 };
 
-export default Detail;
+export default WordDetail;
