@@ -2,14 +2,18 @@ import React, {useState} from 'react';
 import clsx from 'clsx';
 import Taro from '@tarojs/taro';
 import {View} from '@tarojs/components';
-import {AtIcon, AtTabs, AtTabsPane} from 'taro-ui';
+import {AtIcon, AtTabs, AtTabsPane, AtFloatLayout} from 'taro-ui';
 import routes from '@/routes';
 import Header from '@/pages/header/header';
 import WordCard from '@/components/wordCard/wordCard';
 import styles from './wordDetail.module.scss';
 
+const mockStory =
+  '……如做龙骨、钉底板，做船扼、装鱼梁、坐板等等。组装好之后，还要抛光、胶缝，油漆、画花，最后安上雕刻好的龙头。“整个过程中，装鱼梁是最难的。我们制作的龙舟，最长的有23米，所以鱼梁也有20多米，又长又弯，安装全凭老师傅多年积累的技艺和经验。”……';
+
 const WordDetail = () => {
   const [currentTab, setCurrentTab] = useState(4);
+  const [storyToShow, setStoryToShow] = useState('');
 
   return (
     <View>
@@ -77,10 +81,22 @@ const WordDetail = () => {
             </View>
           </AtTabsPane>
           <AtTabsPane current={currentTab} index={4}>
-            <View className={styles.tabPane}>故事</View>
+            <View className={styles.tabPane}>
+              <WordCard
+                onClick={() => setStoryToShow(mockStory)}
+                description={mockStory}
+              />
+            </View>
           </AtTabsPane>
         </AtTabs>
       </View>
+      <AtFloatLayout
+        isOpened={!!storyToShow}
+        title="故事全文"
+        onClose={() => setStoryToShow('')}
+      >
+        {storyToShow}
+      </AtFloatLayout>
     </View>
   );
 };
