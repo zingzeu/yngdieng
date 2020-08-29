@@ -110,6 +110,8 @@ const Search = () => {
             </View>
             <View className={styles.resultList}>
               <ScrollView
+                enableBackToTop
+                enableFlex
                 className={styles.scrollView}
                 scrollY
                 lowerThreshold={20}

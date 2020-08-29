@@ -3,6 +3,7 @@ export default {
     'pages/index/index',
     'pages/search/search',
     'pages/wordDetail/wordDetail',
+    'pages/collectionDetail/collectionDetail',
     'pages/about/about',
   ],
   window: {

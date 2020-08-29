@@ -1,13 +1,15 @@
 import React, {useState} from 'react';
 import clsx from 'clsx';
+import Taro from '@tarojs/taro';
 import {View} from '@tarojs/components';
 import {AtIcon, AtTabs, AtTabsPane} from 'taro-ui';
+import routes from '@/routes';
 import Header from '@/pages/header/header';
 import WordCard from '@/components/wordCard/wordCard';
 import styles from './wordDetail.module.scss';
 
 const WordDetail = () => {
-  const [currentTab, setCurrentTab] = useState(3);
+  const [currentTab, setCurrentTab] = useState(4);
 
   return (
     <View>
@@ -70,6 +72,7 @@ const WordDetail = () => {
                 }
                 description="福州龙船文化词汇全搜罗，一起来做龙癫吧！本书京宝热销中https://tao..."
                 actions={<AtIcon value="heart"></AtIcon>}
+                onClick={() => Taro.redirectTo({url: routes.COLLECTION_DETAIL})}
               />
             </View>
           </AtTabsPane>

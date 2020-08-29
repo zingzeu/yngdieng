@@ -24,7 +24,7 @@
         }
       }
       .resultList {
-        height: 500px;
+        overflow: hidden;
         flex: 1;
         .scrollView {
           height: 100%;
