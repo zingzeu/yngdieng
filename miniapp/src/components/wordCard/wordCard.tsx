@@ -1,24 +1,26 @@
-import React from "react";
-import { View, Block } from "@tarojs/components";
-import styles from "./wordCard.module.scss";
+import React, {ElementType} from 'react';
+import {View} from '@tarojs/components';
+import styles from './wordCard.module.scss';
 
 interface Props {
-  title: string;
-  description: string;
-  extraList: {
+  title?: any;
+  description?: string;
+  extraList?: {
     title: string;
     content: string;
-  }[],
-  onClick?: Function,
+  }[];
+  onClick?: Function;
   extra?: any;
+  actions?: any;
 }
 
 const wordCard = ({
-  title = "",
-  description = "",
+  title = '',
+  description = '',
   extraList = [],
-  extra = <Block />,
-  onClick = () => {}
+  extra = '',
+  onClick = () => {},
+  actions,
 }: Props) => {
   return (
     <View className={styles.wordCard} onClick={() => onClick()}>
@@ -27,7 +29,7 @@ const wordCard = ({
           <View className={styles.title}>{title}</View>
           <View>
             <View className={styles.extraContainer}>
-              {extraList.map((extraItem) => (
+              {extraList.map(extraItem => (
                 <View key={extraItem.title}>
                   <View className={styles.extraTitle}>{extraItem.title}</View>
                   <View>{extraItem.content}</View>
@@ -38,6 +40,7 @@ const wordCard = ({
           </View>
         </View>
         <View className={styles.description}>{description}</View>
+        {actions && <View className={styles.actions}>{actions}</View>}
       </View>
     </View>
   );

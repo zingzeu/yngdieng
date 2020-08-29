@@ -3,7 +3,6 @@
   border-radius: 10px;
   padding: 20px 30px;
   .title {
-    font-size: $font-size-h1;
   }
   .description {
     margin-top: 20px;
@@ -17,10 +16,14 @@
       font-size: $font-size-secondary;
     }
     .extraContent {
-
     }
-    &>View {
+    & > View {
       margin: 0 10px;
     }
+  }
+  .actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
   }
 }

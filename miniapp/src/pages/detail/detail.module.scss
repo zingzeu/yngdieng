@@ -1,36 +1,34 @@
 .topBar {
-  background-color: #69656F;
+  background-color: #69656f;
   padding: 40px;
   color: white;
   .word {
     font-size: $font-size-h1;
   }
   .actionPanel {
-
   }
   .rimeContainer {
     margin-top: 20px;
     display: flex;
     align-items: center;
-    &>View {
+    & > View {
       margin-right: 15px;
     }
     .rimePosition {
       font-size: $font-size-secondary;
       border-radius: 10px;
       border: 1px solid white;
-      padding: .1em .5em;
+      padding: 0.1em 0.5em;
     }
   }
 }
 
-.tabPaneContainer {
+.tabPane {
   padding: 20px;
 }
-.explanation {
-  .text {
 
-  }
+// TODO: 文本大小调整
+.explanation {
   .sentence {
     text-indent: 1.5em;
   }
@@ -38,5 +36,11 @@
     margin-top: 10px;
     color: $color-text-dark-secondary;
     font-size: $font-size-secondary;
+  }
+}
+.collection {
+  .title {
+    @include text-ellipsis;
+    font-size: $font-size-body;
   }
 }
