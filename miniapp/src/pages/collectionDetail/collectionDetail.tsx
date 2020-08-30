@@ -1,70 +1,84 @@
-import React, {useState} from 'react';
-import Taro from '@tarojs/taro';
+import React, {useState, useEffect} from 'react';
+import produce from 'immer';
+import Taro, {useRouter} from '@tarojs/taro';
 import {View, ScrollView} from '@tarojs/components';
 import {AtIcon} from 'taro-ui';
 import Header from '@/pages/header/header';
 import WordCard from '@/components/wordCard/wordCard';
 import routes from '@/routes';
+import {
+  getCollectionById,
+  getWordListByCollectionId,
+} from '@/store/actions/collection';
 import styles from './collectionDetail.module.scss';
 
-const mockCollectionData = {
-  id: '诸神的游戏',
-  name: '《诸神的游戏》官方词表',
-  description:
-    '福州龙船文化词汇全搜罗，一起来做龙癫吧！本书京宝热销中https://tao...',
-  publisher: {
-    name: 'HOMELAND家园官方账号',
+const initialState: {
+  collectionDetail: {
+    name: string;
+    description: string;
+    likes: number;
+    publisher: {
+      name: string;
+    };
+    wordList: {
+      id: string;
+      title: string;
+      description: string;
+      pinyinRong: string;
+      rimePosition: string;
+    }[];
+  };
+} = {
+  collectionDetail: {
+    name: '',
+    description: '',
+    likes: 0,
+    publisher: {
+      name: '',
+    },
+    wordList: [],
   },
-  likes: 334,
-  wordList: [
-    {
-      id: '1',
-      title: '我',
-      description: '来源：诸神的游戏 [M]',
-      pinyinRong: 'bung1',
-      rimePosition: '邊春 上平',
-    },
-    {
-      id: '2',
-      title: '崩',
-      description: '来源：诸神的游戏 [M]',
-      pinyinRong: 'bung1',
-      rimePosition: '邊春 上平',
-    },
-    {
-      id: '3',
-      title: '我',
-      description: '来源：诸神的游戏 [M]',
-      pinyinRong: 'bung1',
-      rimePosition: '邊春 上平',
-    },
-    {
-      id: '4',
-      title: '崩',
-      description: '来源：诸神的游戏 [M]',
-      pinyinRong: 'bung1',
-      rimePosition: '邊春 上平',
-    },
-    {
-      id: '5',
-      title: '我',
-      description: '来源：诸神的游戏 [M]',
-      pinyinRong: 'bung1',
-      rimePosition: '邊春 上平',
-    },
-    {
-      id: '6',
-      title: '崩',
-      description: '来源：诸神的游戏 [M]',
-      pinyinRong: 'bung1',
-      rimePosition: '邊春 上平',
-    },
-  ],
 };
 
 const CollectionDetail = () => {
-  const [collectionDetail, setCollectionDetail] = useState(mockCollectionData);
+  const router = useRouter();
+  const [collectionDetail, setCollectionDetail] = useState(
+    initialState.collectionDetail
+  );
 
+  const handleLoadMore = () => {
+    const collectionId = router.params.id;
+    Taro.showNavigationBarLoading();
+    getWordListByCollectionId(collectionId, collectionDetail.wordList.length)
+      .then(result => {
+        Taro.hideNavigationBarLoading();
+        setCollectionDetail(
+          produce(collectionDetail, draft => {
+            draft.wordList.splice(
+              collectionDetail.wordList.length,
+              0,
+              ...result
+            );
+          })
+        );
+      })
+      .catch(() => {
+        Taro.hideNavigationBarLoading();
+      });
+  };
+
+  useEffect(() => {
+    const collectionId = router.params.id;
+    Taro.showNavigationBarLoading();
+    getCollectionById(collectionId)
+      .then(result => {
+        setCollectionDetail(result);
+        Taro.hideNavigationBarLoading();
+      })
+      .catch(() => {
+        Taro.hideNavigationBarLoading();
+      });
+  }, []);
   return (
     <View className={styles.collectionDetail}>
       <Header />
@@ -93,8 +107,10 @@ const CollectionDetail = () => {
           <ScrollView
             enableBackToTop
             enableFlex
-            className={styles.scrollView}
             scrollY
+            scrollWithAnimation
+            className={styles.scrollView}
+            onScrollToLower={handleLoadMore}
             lowerThreshold={20}
             upperThreshold={20}
           >

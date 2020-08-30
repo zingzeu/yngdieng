@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import produce from 'immer';
 import Taro, {useRouter} from '@tarojs/taro';
 import {View, Input, Block, ScrollView} from '@tarojs/components';
-import {AtIcon, AtActivityIndicator} from 'taro-ui';
+import {AtIcon} from 'taro-ui';
 import routes from '@/routes';
 import Header from '@/pages/header/header';
 import WordCard from '@/components/wordCard/wordCard';
