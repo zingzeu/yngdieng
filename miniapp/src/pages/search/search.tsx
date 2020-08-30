@@ -26,27 +26,26 @@ const Search = () => {
   const [inputString, setInputString] = useState('');
   const [showAdvanced, toggleAdvanced] = useState(false);
   const [resultList, setResultList] = useState(InitialState.resultList);
-  const [loading, setLoading] = useState(false);
 
   const handleConfirm = (word = inputString) => {
     if (inputString !== word) setInputString(word);
     toggleAdvanced(false);
-    setLoading(true);
+    Taro.showNavigationBarLoading();
     search()
       .then(result => {
         setResultList(result);
-        setLoading(false);
+        Taro.hideNavigationBarLoading();
       })
       .catch(() => {
-        setLoading(false);
+        Taro.hideNavigationBarLoading();
       });
     console.log('search word', word);
   };
   const handleLoadMore = () => {
-    setLoading(true);
+    Taro.showNavigationBarLoading();
     search(resultList.length)
       .then(result => {
-        setLoading(false);
+        Taro.hideNavigationBarLoading();
         setResultList(
           produce(resultList, draft => {
             draft.splice(resultList.length, 0, ...result);
@@ -54,7 +53,7 @@ const Search = () => {
         );
       })
       .catch(() => {
-        setLoading(false);
+        Taro.hideNavigationBarLoading();
       });
   };
   const handleAdvancedSearch = () => {
@@ -85,11 +84,7 @@ const Search = () => {
               />
             </View>
             <View onClick={() => handleConfirm()}>
-              {loading ? (
-                <AtActivityIndicator></AtActivityIndicator>
-              ) : (
-                <AtIcon value="search"></AtIcon>
-              )}
+              <AtIcon value="search"></AtIcon>
             </View>
           </Block>
         }
@@ -121,7 +116,7 @@ const Search = () => {
                   <View className={styles.resultItem} key={resultItem.id}>
                     <WordCard
                       onClick={() =>
-                        Taro.navigateTo({
+                        Taro.redirectTo({
                           url: `${routes.WORD_DETAIL}?id=${resultItem.id}`,
                         })
                       }

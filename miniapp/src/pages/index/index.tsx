@@ -1,17 +1,17 @@
-import React, { useState } from "react";
-import Taro from "@tarojs/taro";
-import { View, Image, Input, Text } from "@tarojs/components";
-import { AtIcon } from "taro-ui";
-import Header from "@/pages/header/header";
-import routes from "@/routes";
-import logoURL from "@/assets/logo.png";
-import styles from "./index.module.scss";
+import React, {useState} from 'react';
+import Taro from '@tarojs/taro';
+import {View, Image, Input, Text} from '@tarojs/components';
+import {AtIcon} from 'taro-ui';
+import Header from '@/pages/header/header';
+import routes from '@/routes';
+import logoURL from '@/assets/logo.png';
+import styles from './index.module.scss';
 
 const Index = () => {
-  const [inputString, setInputString] = useState("");
+  const [inputString, setInputString] = useState('');
 
   const handleConfirm = () => {
-    Taro.navigateTo({
+    Taro.redirectTo({
       url: `${routes.SEARCH}?word=${inputString}`,
     });
   };
@@ -30,7 +30,7 @@ const Index = () => {
               value={inputString}
               confirmType="search"
               placeholder="查字、词、读音..."
-              onInput={(e) => setInputString(e.detail.value)}
+              onInput={e => setInputString(e.detail.value)}
               onConfirm={handleConfirm}
             />
           </View>
@@ -38,7 +38,7 @@ const Index = () => {
             <AtIcon value="search"></AtIcon>
           </View>
           <View className={styles.actions}>
-            <Text onClick={() => Taro.navigateTo({ url: routes.SEARCH })}>
+            <Text onClick={() => Taro.redirectTo({url: routes.SEARCH})}>
               高级搜索
             </Text>
           </View>
