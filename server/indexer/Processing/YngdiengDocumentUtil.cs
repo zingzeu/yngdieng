@@ -228,8 +228,8 @@ namespace Yngdieng.Indexer.Processing
               case SourceOneofCase.Feng:
                 return s.Feng.HanziMatchable.ToArray();
               case SourceOneofCase.Contrib:
-                      // TODO: simplify contrib hanzi
-                      return new string[] { };
+                // TODO: simplify contrib hanzi
+                return new string[] { };
             }
             return new string[] { };
           })

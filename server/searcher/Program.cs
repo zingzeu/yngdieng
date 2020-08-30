@@ -3,6 +3,7 @@ using System.IO;
 using Lucene.Net.Index;
 using Lucene.Net.Search;
 using Lucene.Net.Store;
+using Lucene.Net.Util;
 
 namespace searcher
 {
@@ -10,7 +11,7 @@ namespace searcher
   {
     static void Main(string[] args)
     {
-      Console.WriteLine("Hello World!");
+       var AppLuceneVersion = LuceneVersion.LUCENE_48;
       // search with a phrase
       var phrase = new MultiPhraseQuery();
       phrase.Add(new Term("hanzi", "我"));
@@ -21,8 +22,8 @@ namespace searcher
       foreach (var hit in hits)
       {
         var foundDoc = searcher.Doc(hit.Doc);
-        Console.Write(hit.Score);
-        Console.Write(foundDoc.Get("doc_id"));
+        var docId = foundDoc.Get("doc_id");
+        Console.WriteLine($"{hit.Score} {docId}");
       }
     }
   }

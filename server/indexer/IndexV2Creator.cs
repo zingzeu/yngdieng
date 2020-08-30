@@ -88,28 +88,32 @@ namespace Yngdieng.Indexer
       // Ensures index backwards compatibility
       var AppLuceneVersion = LuceneVersion.LUCENE_48;
 
-      var dirInfo = Path.GetFullPath(Path.Join(outputFolder, "lucene" ));
+      var dirInfo = Path.GetFullPath(Path.Join(outputFolder, "lucene"));
       Console.WriteLine($"Writing to {dirInfo}");
-      var dir = FSDirectory.Open(new DirectoryInfo(dirInfo));
-
-      //create an analyzer to process the text
-      var analyzer = new StandardAnalyzer(AppLuceneVersion);
-
-      //create an index writer
-      var indexConfig = new IndexWriterConfig(AppLuceneVersion, analyzer);
-      var writer = new IndexWriter(dir, indexConfig);
-
-      foreach (var yDoc in index.YngdiengDocuments)
+      using (var dir = FSDirectory.Open(new DirectoryInfo(dirInfo)))
       {
-        var doc = new Lucene.Net.Documents.Document{
+
+        //create an analyzer to process the text
+        var analyzer = new StandardAnalyzer(AppLuceneVersion);
+
+        //create an index writer
+        var indexConfig = new IndexWriterConfig(AppLuceneVersion, analyzer);
+        using (var writer = new IndexWriter(dir, indexConfig))
+        {
+
+          foreach (var yDoc in index.YngdiengDocuments)
+          {
+            var doc = new Lucene.Net.Documents.Document{
                     new StringField("yngping", yDoc.YngpingSandhi, Field.Store. NO),
                     new StringField("doc_id", yDoc.DocId,Field.Store.YES),
                     new StringField("hanzi", yDoc.HanziCanonical.Regular, Field.Store.NO),
                 };
-        writer.AddDocument(doc);
+            writer.AddDocument(doc);
 
+          }
+          writer.Flush(triggerMerge: false, applyAllDeletes: false);
+        }
       }
-      writer.Flush(triggerMerge: false, applyAllDeletes: false);
     }
   }
 }
