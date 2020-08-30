@@ -246,7 +246,7 @@ namespace Yngdieng.Indexer.Processing
             switch (s.SourceCase)
             {
               case SourceOneofCase.Feng:
-                return new string[] { s.Feng.Explanation, s.Feng.ExplanationHans };
+                return new string[] { s.Feng.ExplanationTrad, s.Feng.ExplanationHans };
               case SourceOneofCase.Contrib:
                 return new string[]{s.Contrib.ExplanationRaw,
                   /* TODO: simplified variant */

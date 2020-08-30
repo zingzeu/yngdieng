@@ -41,6 +41,8 @@ namespace Yngdieng.Indexer.Loading
             var cleanExplanation =
                       zingzeudata.ZingzeuData.Shared.StringHelpers.ReplaceAllBraces(
                           f.ExplanationRaw);
+            var structured = SafeParseExplanation(cleanExplanation); 
+            var flattened = FlattenExplanation(structured);
             var tmp = new FengDocument
             {
               Id = $"p{f.PageNumber}_{f.LineNumber}",
@@ -48,8 +50,9 @@ namespace Yngdieng.Indexer.Loading
               YngpingCanonical = f.Pron,
               YngpingUnderlying = f.PronUnderlying,
               Explanation = cleanExplanation,
-              ExplanationHans = Simplify(cleanExplanation),
-              ExplanationStructured = SafeParseExplanation(cleanExplanation),
+              ExplanationTrad = flattened,
+              ExplanationHans = Simplify(flattened),
+              ExplanationStructured = structured,
               Source = new FengDocument.Types.SourceInfo
               {
                 PageNumber = f.PageNumber,

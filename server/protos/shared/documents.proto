@@ -71,6 +71,7 @@ message YngdiengDocument {
   }
 }
 
+
 // Next ID: 14
 // Deprecated.
 message Document {
@@ -139,7 +140,7 @@ message HistoricalDocument {
 }
 
 // 冯 / 李文档.
-// Next ID: 13
+// Next ID: 14
 message FengDocument {
   string id = 1;
 
@@ -165,7 +166,11 @@ message FengDocument {
   // 释义(未解析).
   string explanation = 6;
 
+  // 索引用
   string explanation_hans = 8;
+
+  // 索引用
+  string explanation_trad = 13;
 
   .zingzeudata.Explanation explanation_structured = 10;
 
