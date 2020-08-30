@@ -1,67 +1,61 @@
 import React, {useState, useEffect} from 'react';
+import produce from 'immer';
 import Taro, {useRouter} from '@tarojs/taro';
 import {View, Input, Block, ScrollView} from '@tarojs/components';
-import {AtIcon} from 'taro-ui';
+import {AtIcon, AtActivityIndicator} from 'taro-ui';
 import routes from '@/routes';
 import Header from '@/pages/header/header';
 import WordCard from '@/components/wordCard/wordCard';
+import {search} from '@/store/actions/dictionary';
 import styles from './search.module.scss';
 
-const mockResultList = [
-  {
-    id: '1',
-    title: '我',
-    description: '来源：诸神的游戏 [M]',
-    pinyinRong: 'bung1',
-    rimePosition: '邊春 上平',
-  },
-  {
-    id: '2',
-    title: '崩',
-    description: '来源：诸神的游戏 [M]',
-    pinyinRong: 'bung1',
-    rimePosition: '邊春 上平',
-  },
-  {
-    id: '3',
-    title: '我',
-    description: '来源：诸神的游戏 [M]',
-    pinyinRong: 'bung1',
-    rimePosition: '邊春 上平',
-  },
-  {
-    id: '4',
-    title: '崩',
-    description: '来源：诸神的游戏 [M]',
-    pinyinRong: 'bung1',
-    rimePosition: '邊春 上平',
-  },
-  {
-    id: '5',
-    title: '我',
-    description: '来源：诸神的游戏 [M]',
-    pinyinRong: 'bung1',
-    rimePosition: '邊春 上平',
-  },
-  {
-    id: '6',
-    title: '崩',
-    description: '来源：诸神的游戏 [M]',
-    pinyinRong: 'bung1',
-    rimePosition: '邊春 上平',
-  },
-];
+const InitialState: {
+  resultList: {
+    id: string;
+    title: string;
+    description: string;
+    pinyinRong: string;
+    rimePosition: string;
+  }[];
+} = {
+  resultList: [],
+};
 
 const Search = () => {
   const router = useRouter();
   const [inputString, setInputString] = useState('');
   const [showAdvanced, toggleAdvanced] = useState(false);
-  const [resultList, setResultList] = useState(mockResultList);
+  const [resultList, setResultList] = useState(InitialState.resultList);
+  const [loading, setLoading] = useState(false);
 
   const handleConfirm = (word = inputString) => {
     if (inputString !== word) setInputString(word);
     toggleAdvanced(false);
+    setLoading(true);
+    search()
+      .then(result => {
+        setResultList(result);
+        setLoading(false);
+      })
+      .catch(() => {
+        setLoading(false);
+      });
     console.log('search word', word);
+  };
+  const handleLoadMore = () => {
+    setLoading(true);
+    search(resultList.length)
+      .then(result => {
+        setLoading(false);
+        setResultList(
+          produce(resultList, draft => {
+            draft.splice(resultList.length, 0, ...result);
+          })
+        );
+      })
+      .catch(() => {
+        setLoading(false);
+      });
   };
   const handleAdvancedSearch = () => {
     setInputString('');
@@ -91,7 +85,11 @@ const Search = () => {
               />
             </View>
             <View onClick={() => handleConfirm()}>
-              <AtIcon value="search"></AtIcon>
+              {loading ? (
+                <AtActivityIndicator></AtActivityIndicator>
+              ) : (
+                <AtIcon value="search"></AtIcon>
+              )}
             </View>
           </Block>
         }
@@ -112,8 +110,10 @@ const Search = () => {
               <ScrollView
                 enableBackToTop
                 enableFlex
-                className={styles.scrollView}
+                scrollWithAnimation
                 scrollY
+                className={styles.scrollView}
+                onScrollToLower={handleLoadMore}
                 lowerThreshold={20}
                 upperThreshold={20}
               >
