@@ -12,36 +12,41 @@ import styles from './wordDetail.module.scss';
 
 const initialState: {
   wordDetail: {
-    word: string;
-    image: string;
-    pronounces: {
+    word?: string;
+    image?: string;
+    pronounces?: {
       typeName: string;
       symbol: string;
+      audioFileId?: string;
     }[];
-    explainations: {
-      text: string;
-      source: string;
+    explainations?: {
+      text?: string;
+      source?: string;
     }[];
     collections: {
       id: string;
       name: string;
       description: string;
     }[];
-    pronouncesFromDifferentSpeakers: {
+    pronouncesFromDifferentSpeakers?: {
       name: string;
       likes: number;
       speaker: {
         name: string;
-        age: number;
+        age?: number;
         gender: string;
         area: string;
       };
     }[];
-    transcriptions: {
-      value: string;
-      source: string;
+    transcriptions?: {
+      value?: string;
+      name: string;
     }[];
-    stories: string[];
+    wordSplited: {
+      word: string;
+      pinyin: string;
+    }[];
+    stories?: string[];
   };
 } = {
   wordDetail: {
@@ -53,6 +58,7 @@ const initialState: {
     stories: [],
     pronouncesFromDifferentSpeakers: [],
     transcriptions: [],
+    wordSplited: [],
   },
 };
 
@@ -61,6 +67,12 @@ const WordDetail = () => {
   const [wordDetail, setWordDetail] = useState(initialState.wordDetail);
   const [currentTab, setCurrentTab] = useState(0);
   const [storyToShow, setStoryToShow] = useState('');
+
+  const handlePlayAudio = audioFileId => () => {
+    const ctx = Taro.createInnerAudioContext();
+    ctx.src = audioFileId;
+    ctx.play();
+  };
 
   useEffect(() => {
     const wordId = router.params.id;
@@ -86,13 +98,15 @@ const WordDetail = () => {
           </View>
         </View>
         <View>
-          {wordDetail.pronounces.map(pronounce => (
+          {wordDetail.pronounces?.map(pronounce => (
             <View className={styles.rimeContainer}>
               <View className={styles.rimePosition}>{pronounce.typeName}</View>
               <View>{pronounce.symbol}</View>
-              <View>
-                <AtIcon value="volume-plus"></AtIcon>
-              </View>
+              {pronounce.audioFileId && (
+                <View onClick={handlePlayAudio(pronounce.audioFileId)}>
+                  <AtIcon value="volume-plus"></AtIcon>
+                </View>
+              )}
             </View>
           ))}
         </View>
@@ -112,7 +126,7 @@ const WordDetail = () => {
         >
           <AtTabsPane current={currentTab} index={0}>
             <View className={clsx(styles.tabPane, styles.explanation)}>
-              {wordDetail.explainations.map((explaination, index) => (
+              {wordDetail.explainations?.map((explaination, index) => (
                 <Block>
                   <View>
                     <View>
@@ -145,7 +159,7 @@ const WordDetail = () => {
                   description={collection.description}
                   actions={<AtIcon value="heart"></AtIcon>}
                   onClick={() =>
-                    Taro.redirectTo({
+                    Taro.navigateTo({
                       url: `${routes.COLLECTION_DETAIL}?id=${collection.id}`,
                     })
                   }
@@ -155,7 +169,7 @@ const WordDetail = () => {
           </AtTabsPane>
           <AtTabsPane current={currentTab} index={4}>
             <View className={styles.tabPane}>
-              {wordDetail.stories.map(story => (
+              {wordDetail.stories?.map(story => (
                 <WordCard
                   onClick={() => setStoryToShow(story)}
                   description={story}

@@ -42,6 +42,7 @@ const initialState: {
 
 const CollectionDetail = () => {
   const router = useRouter();
+  const [liked, toggleLiked] = useState(false);
   const [collectionDetail, setCollectionDetail] = useState(
     initialState.collectionDetail
   );
@@ -98,8 +99,13 @@ const CollectionDetail = () => {
             <View className={styles.publisher}>
               <View>{collectionDetail.publisher.name}</View>
             </View>
-            <View>
-              {collectionDetail.likes} <AtIcon value="heart"></AtIcon>
+            <View onClick={() => toggleLiked(!liked)}>
+              {collectionDetail.likes + (liked ? 1 : 0)}{' '}
+              {liked ? (
+                <AtIcon value="heart-2"></AtIcon>
+              ) : (
+                <AtIcon value="heart"></AtIcon>
+              )}
             </View>
           </View>
         </View>

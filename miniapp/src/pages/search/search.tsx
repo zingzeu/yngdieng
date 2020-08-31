@@ -116,7 +116,7 @@ const Search = () => {
                   <View className={styles.resultItem} key={resultItem.id}>
                     <WordCard
                       onClick={() =>
-                        Taro.redirectTo({
+                        Taro.navigateTo({
                           url: `${routes.WORD_DETAIL}?id=${resultItem.id}`,
                         })
                       }

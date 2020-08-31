@@ -7,6 +7,9 @@
     border-radius: 10px;
     background-color: $color-brownish-100;
     margin: 10px;
+    .title {
+      flex-wrap: wrap;
+    }
   }
   .name {
     flex: 1;

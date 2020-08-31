@@ -1,3 +1,6 @@
+import mockWordData from '../mock/mockWordData.json';
+import {processWordList} from '../mock/utils';
+
 export const getCollectionById = async collectionId => {
   const mockCollectionData = {
     id: '诸神的游戏',
@@ -8,98 +11,14 @@ export const getCollectionById = async collectionId => {
       name: 'HOMELAND家园官方账号',
     },
     likes: 334,
-    wordList: [
-      {
-        id: '1',
-        title: '我',
-        description: '来源：诸神的游戏 [M]',
-        pinyinRong: 'bung1',
-        rimePosition: '邊春 上平',
-      },
-      {
-        id: '2',
-        title: '崩',
-        description: '来源：诸神的游戏 [M]',
-        pinyinRong: 'bung1',
-        rimePosition: '邊春 上平',
-      },
-      {
-        id: '3',
-        title: '我',
-        description: '来源：诸神的游戏 [M]',
-        pinyinRong: 'bung1',
-        rimePosition: '邊春 上平',
-      },
-      {
-        id: '4',
-        title: '崩',
-        description: '来源：诸神的游戏 [M]',
-        pinyinRong: 'bung1',
-        rimePosition: '邊春 上平',
-      },
-      {
-        id: '5',
-        title: '我',
-        description: '来源：诸神的游戏 [M]',
-        pinyinRong: 'bung1',
-        rimePosition: '邊春 上平',
-      },
-      {
-        id: '6',
-        title: '崩',
-        description: '来源：诸神的游戏 [M]',
-        pinyinRong: 'bung1',
-        rimePosition: '邊春 上平',
-      },
-    ],
+    wordList: processWordList(mockWordData.slice(0, 10)),
   };
   return mockCollectionData;
 };
 
 export const getWordListByCollectionId = async (collectionId, fromIndex) => {
-  const wordList = [
-    {
-      id: '1',
-      title: '我',
-      description: '来源：诸神的游戏 [M]',
-      pinyinRong: 'bung1',
-      rimePosition: '邊春 上平',
-    },
-    {
-      id: '2',
-      title: '崩',
-      description: '来源：诸神的游戏 [M]',
-      pinyinRong: 'bung1',
-      rimePosition: '邊春 上平',
-    },
-    {
-      id: '3',
-      title: '我',
-      description: '来源：诸神的游戏 [M]',
-      pinyinRong: 'bung1',
-      rimePosition: '邊春 上平',
-    },
-    {
-      id: '4',
-      title: '崩',
-      description: '来源：诸神的游戏 [M]',
-      pinyinRong: 'bung1',
-      rimePosition: '邊春 上平',
-    },
-    {
-      id: '5',
-      title: '我',
-      description: '来源：诸神的游戏 [M]',
-      pinyinRong: 'bung1',
-      rimePosition: '邊春 上平',
-    },
-    {
-      id: '6',
-      title: '崩',
-      description: '来源：诸神的游戏 [M]',
-      pinyinRong: 'bung1',
-      rimePosition: '邊春 上平',
-    },
-  ];
-  return wordList;
+  const proccessedData = processWordList(
+    mockWordData.slice(fromIndex, fromIndex + 10)
+  );
+  return proccessedData;
 };
