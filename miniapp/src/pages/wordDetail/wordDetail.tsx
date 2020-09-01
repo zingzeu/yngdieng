@@ -6,6 +6,7 @@ import {AtIcon, AtTabs, AtTabsPane, AtFloatLayout} from 'taro-ui';
 import routes from '@/routes';
 import Header from '@/pages/header/header';
 import WordCard from '@/components/wordCard/wordCard';
+import AudioPlay from '@/components/audioPlay/audioPlay';
 import {fetchWordDetail} from '@/store/actions/dictionary';
 import Phonology from './phonology/phonology';
 import styles from './wordDetail.module.scss';
@@ -68,12 +69,6 @@ const WordDetail = () => {
   const [currentTab, setCurrentTab] = useState(0);
   const [storyToShow, setStoryToShow] = useState('');
 
-  const handlePlayAudio = audioFileId => () => {
-    const ctx = Taro.createInnerAudioContext();
-    ctx.src = audioFileId;
-    ctx.play();
-  };
-
   useEffect(() => {
     const wordId = router.params.id;
     Taro.showNavigationBarLoading();
@@ -103,9 +98,7 @@ const WordDetail = () => {
               <View className={styles.rimePosition}>{pronounce.typeName}</View>
               <View>{pronounce.symbol}</View>
               {pronounce.audioFileId && (
-                <View onClick={handlePlayAudio(pronounce.audioFileId)}>
-                  <AtIcon value="volume-plus"></AtIcon>
-                </View>
+                <AudioPlay audioFileId={pronounce.audioFileId} />
               )}
             </View>
           ))}

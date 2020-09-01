@@ -1,17 +1,11 @@
 import React from 'react';
-import Taro from '@tarojs/taro';
 import clsx from 'clsx';
 import {AtIcon} from 'taro-ui';
 import {View} from '@tarojs/components';
+import AudioPlay from '@/components/audioPlay/audioPlay';
 import styles from './phonology.module.scss';
 
 const Phonology = ({wordDetail}) => {
-  const handlePlayAudio = audioFileId => () => {
-    const ctx = Taro.createInnerAudioContext();
-    ctx.src = audioFileId;
-    ctx.play();
-  };
-
   return (
     <View className={clsx(styles.pronounce, 'at-row')}>
       {wordDetail.pronouncesFromDifferentSpeakers.map(pronounce => {
@@ -25,9 +19,7 @@ const Phonology = ({wordDetail}) => {
                 )}
               >
                 <View className={styles.name}>{pronounce.name}</View>
-                <View onClick={handlePlayAudio(pronounce.audioFileId)}>
-                  <AtIcon value="volume-plus"></AtIcon>
-                </View>
+                <AudioPlay audioFileId={pronounce.audioFileId} />
               </View>
               <View>
                 {pronounce.speaker.name} | {pronounce.speaker.age || '--'}岁 |{' '}
