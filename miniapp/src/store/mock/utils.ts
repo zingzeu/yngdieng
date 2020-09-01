@@ -5,10 +5,5 @@ export const processWordList = wordList =>
     ...word,
     id: word.simplifiedWord || 'mockId',
     title: word.traditionalWord,
-    description: '来源：诸神的游戏 [M]',
-    rimePosition: _get(
-      word,
-      'pronouncesFromDifferentSpeakers.0.speaker.area',
-      ''
-    ),
+    description: _get(word, 'explainations.0.text', ''),
   }));

@@ -31,7 +31,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "lyng²¹-goouk²⁴",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/p91k1c7zk.wav"
       }
@@ -79,7 +79,7 @@
     "wordSplited": [],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "uong³³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/kg4ckuckx.wav"
       }
@@ -138,7 +138,7 @@
     "wordSplited": [],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "uong²⁴-de³³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/7jm6hjh8g.wav"
       }
@@ -233,7 +233,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "lyng³³-moung⁵³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/b2ebt7duc.wav"
       }
@@ -328,7 +328,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "ni⁵³-luo²⁴²",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/eohb2egvi.wav"
       }
@@ -401,7 +401,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "sang⁵³-luo²⁴²",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/i73zabf82.wav"
       }
@@ -463,7 +463,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "si⁵³-luo²⁴²",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/0djlz3u06.wav"
       }
@@ -527,7 +527,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "cuong²¹-lang⁵⁵-moung⁵³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/p74ub3t04.wav"
       }
@@ -575,7 +575,7 @@
       {"word": "底", "pinyin": "de²⁴"},
       {"word": "板", "pinyin": "weing³³"}
     ],
-    "pronounces": [{"typeName": "连续", "symbol": "de²⁴-weing³³"}],
+    "pronounces": [{"typeName": "市区连读", "symbol": "de²⁴-weing³³"}],
     "pronouncesFromDifferentSpeakers": []
   },
   {
@@ -621,7 +621,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "hua⁵⁵-woung⁵³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/r9n7bwt2t.wav"
       }
@@ -683,7 +683,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "cieng⁵³-meing³³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/qtdktade2.wav"
       }
@@ -800,7 +800,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "do⁵⁵-wa⁵⁵",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/rp8bl0n3i.wav"
       }
@@ -923,7 +923,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "mui²¹-tiu⁵⁵",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/pj8p975yc.wav"
       }
@@ -999,7 +999,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "ngy³³-luong⁵³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/izeu29yc6.wav"
       }
@@ -1139,7 +1139,7 @@
     "wordSplited": [],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "zy²¹-wo⁵⁵",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/jblgj5jg3.wav"
       }
@@ -1198,7 +1198,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "zuong⁵³-nooung²⁴²",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/vrrb42qio.wav"
       }
@@ -1244,7 +1244,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "zuong⁵³-nu³³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/upjwc8zq0.wav"
       }
@@ -1303,7 +1303,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "lyng³³-noung³³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/pi14wt4ty.wav"
       }
@@ -1365,7 +1365,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "tau³³-wang⁵³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/17q5cyf2a.wav"
       }
@@ -1411,7 +1411,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "mui²¹-wang⁵³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/w7imh29jw.wav"
       }
@@ -1463,7 +1463,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "leing²¹-ua⁵³-joo²⁴²",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/cylq8x3f4.wav"
       }
@@ -1520,7 +1520,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "sung³³-du³³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/2n0ur06zo.wav"
       }
@@ -1593,7 +1593,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "seoy⁵³-weing³³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/kz80ha2o8.wav"
       }
@@ -1666,7 +1666,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "ka⁵⁵-dak⁵",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/8nvwb47dj.wav"
       }
@@ -1747,7 +1747,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "leoyng²¹-sung⁵³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/npyzv6hlo.wav"
       }
@@ -1874,7 +1874,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "ba²¹-liek²⁴",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/mvey58zvd.wav"
       }
@@ -2010,7 +2010,7 @@
       {"word": "箬", "pinyin": "nuoh²¹"},
       {"word": "枻", "pinyin": "siek²⁴"}
     ],
-    "pronounces": [{"typeName": "连续", "symbol": "liu²¹-nuoh²¹-siek²⁴"}],
+    "pronounces": [{"typeName": "市区连读", "symbol": "liu²¹-nuoh²¹-siek²⁴"}],
     "pronouncesFromDifferentSpeakers": []
   },
   {
@@ -2046,7 +2046,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "si²¹-geoyk⁵⁵-siek²⁴",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/enw9xnza2.wav"
       }
@@ -2098,7 +2098,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "mui²¹-leoy⁵⁵-soung⁵⁵",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/hjpn8kvfk.wav"
       }
@@ -2172,7 +2172,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "lyng²¹-mui²¹-soung⁵⁵",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/c7x73jjti.wav"
       }
@@ -2268,7 +2268,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "gi²¹-ang⁵³-dau³³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/rnisfzmwe.wav"
       }
@@ -2328,7 +2328,7 @@
       {"word": "魚", "pinyin": "ngy⁵⁵"},
       {"word": "栓", "pinyin": "loung⁵⁵"}
     ],
-    "pronounces": [{"typeName": "连续", "symbol": "li²¹-ngy⁵⁵-loung⁵⁵"}],
+    "pronounces": [{"typeName": "市区连读", "symbol": "li²¹-ngy⁵⁵-loung⁵⁵"}],
     "pronouncesFromDifferentSpeakers": []
   },
   {
@@ -2375,7 +2375,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "bi²¹-wa²¹-lai²¹³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/cqjragqim.wav"
       }
@@ -2449,7 +2449,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "hu²¹-lau³³-we⁵³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/nq4x3njlc.wav"
       }
@@ -2507,7 +2507,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "diu⁵⁵-tieng⁵⁵-lyng⁵³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/rx8ijw7hn.wav"
       }
@@ -2544,7 +2544,7 @@
       {"word": "馬", "pinyin": "ma²¹"},
       {"word": "龍", "pinyin": "lyng⁵³"}
     ],
-    "pronounces": [{"typeName": "连续", "symbol": "ma²¹-lyng⁵³"}],
+    "pronounces": [{"typeName": "市区连读", "symbol": "ma²¹-lyng⁵³"}],
     "pronouncesFromDifferentSpeakers": []
   },
   {
@@ -2565,7 +2565,7 @@
       {"word": "虎", "pinyin": "hu²¹"},
       {"word": "頭", "pinyin": "tau⁵³"}
     ],
-    "pronounces": [{"typeName": "连续", "symbol": "hu²¹-tau⁵³"}],
+    "pronounces": [{"typeName": "市区连读", "symbol": "hu²¹-tau⁵³"}],
     "pronouncesFromDifferentSpeakers": []
   },
   {
@@ -2583,7 +2583,7 @@
       {"word": "獅", "pinyin": "sai⁵⁵"},
       {"word": "頭", "pinyin": "tau⁵³"}
     ],
-    "pronounces": [{"typeName": "连续", "symbol": "sai⁵⁵-tau⁵³"}],
+    "pronounces": [{"typeName": "市区连读", "symbol": "sai⁵⁵-tau⁵³"}],
     "pronouncesFromDifferentSpeakers": []
   },
   {
@@ -2602,7 +2602,7 @@
       {"word": "牛", "pinyin": "ngu⁵⁵"},
       {"word": "頭", "pinyin": "tau⁵³"}
     ],
-    "pronounces": [{"typeName": "连续", "symbol": "se²¹-ngu⁵⁵-tau⁵³"}],
+    "pronounces": [{"typeName": "市区连读", "symbol": "se²¹-ngu⁵⁵-tau⁵³"}],
     "pronouncesFromDifferentSpeakers": []
   },
   {
@@ -2620,7 +2620,7 @@
       {"word": "雞", "pinyin": "gie⁵⁵"},
       {"word": "頭", "pinyin": "tau⁵³"}
     ],
-    "pronounces": [{"typeName": "连续", "symbol": "gie⁵⁵-tau⁵³"}],
+    "pronounces": [{"typeName": "市区连读", "symbol": "gie⁵⁵-tau⁵³"}],
     "pronouncesFromDifferentSpeakers": []
   },
   {
@@ -2655,7 +2655,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "suong⁵³-noung³³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/yjn3f702m.wav"
       }
@@ -2706,7 +2706,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "a⁵³-loung³³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/v6gjay9lh.wav"
       }
@@ -2787,7 +2787,7 @@
     "wordSplited": [],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "ciang²¹-ngai²¹-lik⁵",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/x683jns7x.wav"
       }
@@ -2874,7 +2874,7 @@
     "wordSplited": [],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "ciang⁵⁵-ngai⁵⁵",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/b2l661jij.wav"
       }
@@ -2955,7 +2955,7 @@
     "wordSplited": [],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "ko⁵⁵-wiang⁵⁵",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/atfaybyx6.wav"
       }
@@ -3028,7 +3028,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "gu²¹-iu⁵⁵",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/884fnsl4d.wav"
       }
@@ -3076,7 +3076,7 @@
     "wordSplited": [],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "gu²¹-iu⁵⁵ iu²⁴-zy³³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/uz0rclbj6.wav"
       }
@@ -3122,7 +3122,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "iu²⁴-zy³³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/35yyikx21.wav"
       }
@@ -3200,7 +3200,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "kiu⁵³-lou²⁴²",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/3orzd8ojn.wav"
       }
@@ -3251,7 +3251,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "teing⁵³-lou²⁴²",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/ty95bhurz.wav"
       }
@@ -3302,7 +3302,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "giu²¹-lou²⁴²",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/oa6ijypby.wav"
       }
@@ -3404,7 +3404,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "teing⁵³-ne³³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/lusv7xhq9.wav"
       }
@@ -3477,7 +3477,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "seoy⁵³-mui³³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/n0rynrfid.wav"
       }
@@ -3539,7 +3539,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "tik²⁴-zy³³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/q1n4wdpnh.wav"
       }
@@ -3590,7 +3590,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "ak⁵⁵-duai²⁴²",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/dm7kkjv3b.wav"
       }
@@ -3652,7 +3652,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "tau⁵³-duai²⁴²",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/me9iltbgt.wav"
       }
@@ -3697,7 +3697,9 @@
     "pronounceReviewer": ["方紹晃", "方劍偉"],
     "explainationReviewer": ["方紹晃", "方劍偉"],
     "wordSplited": [],
-    "pronounces": [{"typeName": "连续", "symbol": "tau⁵⁵-sang⁵⁵ mui⁵⁵-sei²¹³"}],
+    "pronounces": [
+      {"typeName": "市区连读", "symbol": "tau⁵⁵-sang⁵⁵ mui⁵⁵-sei²¹³"}
+    ],
     "pronouncesFromDifferentSpeakers": []
   },
   {
@@ -3714,7 +3716,7 @@
     "wordSplited": [],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "tau²¹-sang⁵³-looung²⁴² mui²¹-si⁵³-looung²⁴²"
       }
     ],
@@ -3763,7 +3765,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "au⁵³-sooyng²¹³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/hfi35g9hm.wav"
       }
@@ -3848,7 +3850,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "muak²¹-dy⁵⁵-iu⁵³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/6kl9s9xeg.wav"
       }
@@ -4112,7 +4114,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "dau⁵⁵-lyng⁵³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/tfmj1mkz3.wav"
       }
@@ -4174,7 +4176,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "ua⁵⁵-biu⁵⁵",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/7wu7ompre.wav"
       }
@@ -4244,7 +4246,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "ua²¹-zaik²⁴",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/vuqllm2fm.wav"
       }
@@ -4313,7 +4315,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "lung²¹-nung²¹-njuo²¹³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/8bploh69p.wav"
       }
@@ -4362,7 +4364,7 @@
       {"word": "船", "pinyin": "nung²¹"},
       {"word": "架", "pinyin": "nga²¹³"}
     ],
-    "pronounces": [{"typeName": "连续", "symbol": "lung²¹-nung²¹-nga²¹³"}],
+    "pronounces": [{"typeName": "市区连读", "symbol": "lung²¹-nung²¹-nga²¹³"}],
     "pronouncesFromDifferentSpeakers": []
   },
   {
@@ -4408,7 +4410,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "cing⁵⁵-nga⁵⁵",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/dgnz0jc3l.wav"
       }
@@ -4471,7 +4473,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "ua²¹-zia²⁴-jy³³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/q4qbeiq1e.wav"
       }
@@ -4534,7 +4536,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "lung⁵⁵-nung⁵⁵-ging⁵⁵",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/4e5tqmr1o.wav"
       }
@@ -4606,7 +4608,7 @@
     "wordSplited": [],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "lung³³-nung³³-ngu³³ duong²¹-nau⁵³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/usjjt650n.wav"
       }
@@ -4677,7 +4679,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "cai²¹-leing⁵³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/ydizer82d.wav"
       }
@@ -4735,7 +4737,7 @@
     "wordSplited": [],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "cai²¹-leing⁵³ gu³³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/2605poywa.wav"
       }
@@ -4773,7 +4775,7 @@
       {"word": "拾", "pinyin": "kak²¹"},
       {"word": "錢", "pinyin": "zieng⁵³"}
     ],
-    "pronounces": [{"typeName": "连续", "symbol": "kak²¹-zieng⁵³"}],
+    "pronounces": [{"typeName": "市区连读", "symbol": "kak²¹-zieng⁵³"}],
     "pronouncesFromDifferentSpeakers": []
   },
   {
@@ -4794,7 +4796,7 @@
       {"word": "巡", "pinyin": "sung⁵⁵"},
       {"word": "江", "pinyin": "ngeoyng⁵⁵"}
     ],
-    "pronounces": [{"typeName": "连续", "symbol": "sung⁵⁵-ngeoyng⁵⁵"}],
+    "pronounces": [{"typeName": "市区连读", "symbol": "sung⁵⁵-ngeoyng⁵⁵"}],
     "pronouncesFromDifferentSpeakers": []
   },
   {
@@ -4815,7 +4817,7 @@
       {"word": "拜", "pinyin": "bai⁵⁵"},
       {"word": "旗", "pinyin": "gi⁵³"}
     ],
-    "pronounces": [{"typeName": "连续", "symbol": "bai⁵⁵-gi⁵³"}],
+    "pronounces": [{"typeName": "市区连读", "symbol": "bai⁵⁵-gi⁵³"}],
     "pronouncesFromDifferentSpeakers": []
   },
   {
@@ -4879,7 +4881,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "cai²¹-ciang⁵⁵",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/kha78o4x4.wav"
       }
@@ -4964,7 +4966,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "kui⁵³-ngang³³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/py3ffanly.wav"
       }
@@ -5027,7 +5029,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "gak²⁴-zy³³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/9w1aagpuw.wav"
       }
@@ -5095,7 +5097,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "zie⁵⁵-ngeoyng⁵⁵",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/lmtv1e4se.wav"
       }
@@ -5179,7 +5181,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "ing²⁴-geoyng³³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/a2h48f3eu.wav"
       }
@@ -5252,7 +5254,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "zeing⁵³-zuong³³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/5k3w6bsnc.wav"
       }
@@ -5314,7 +5316,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "ciang²¹-yong⁵⁵",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/1nqut77ag.wav"
       }
@@ -5365,7 +5367,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "ang⁵³-ui²⁴²",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/o5vgbv7cl.wav"
       }
@@ -5438,7 +5440,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "zo⁵⁵-tau⁵³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/jzfbr3ve8.wav"
       }
@@ -5508,7 +5510,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "zung²⁴-li³³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/3i3us90re.wav"
       }
@@ -5555,7 +5557,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "lung⁵⁵-nung⁵⁵-dieng⁵⁵",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/i0o1w7d1n.wav"
       }
@@ -5607,7 +5609,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "seoy⁵⁵-lyng⁵⁵-tau⁵³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/5o28zuper.wav"
       }
@@ -5669,7 +5671,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "se²⁴-geoyng³³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/emmz04ysp.wav"
       }
@@ -5728,7 +5730,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "dyk²¹-si⁵⁵",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/vup0tmozs.wav"
       }
@@ -5779,7 +5781,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "mo²¹-leoyk²⁴",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/w2v6o841r.wav"
       }
@@ -5830,7 +5832,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "zy⁵⁵-leoyk²⁴",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/ftoj9p9zp.wav"
       }
@@ -5876,7 +5878,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "lyng³³-tau⁵³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/kztlsv8cy.wav"
       }
@@ -5922,7 +5924,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "sung³³-tau⁵³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/opuh2bze2.wav"
       }
@@ -5968,7 +5970,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "lung³³-sung⁵³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/dbyz5qy7r.wav"
       }
@@ -6005,7 +6007,7 @@
       {"word": "添", "pinyin": "tieng⁵⁵"},
       {"word": "丁", "pinyin": "ding⁵⁵"}
     ],
-    "pronounces": [{"typeName": "连续", "symbol": "tieng⁵⁵-ding⁵⁵"}],
+    "pronounces": [{"typeName": "市区连读", "symbol": "tieng⁵⁵-ding⁵⁵"}],
     "pronouncesFromDifferentSpeakers": []
   },
   {
@@ -6051,7 +6053,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "lo³³-wang⁵³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/aadjt5v25.wav"
       }
@@ -6113,7 +6115,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "kiu⁵⁵-leoy⁵⁵",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/y6p3yf64g.wav"
       }
@@ -6165,7 +6167,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "tiek²¹-tui³³-iang³³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/8fs9w482o.wav"
       }
@@ -6216,7 +6218,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "ak⁵⁵-cuoh²⁴",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/zmvoksqbs.wav"
       }
@@ -6273,7 +6275,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "cieng⁵⁵-gui⁵⁵",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/zpkzxffnr.wav"
       }
@@ -6374,7 +6376,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "yong³³-me⁵³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/i85o3xd1b.wav"
       }
@@ -6513,7 +6515,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "lieng⁵³-nau³³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/kjkei8h53.wav"
       }
@@ -6608,7 +6610,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "gy⁵³-iang³³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/xgfcy3r34.wav"
       }
@@ -6660,7 +6662,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "tiek²¹-ding⁵³-nau³³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/f93f9g7m0.wav"
       }
@@ -6696,7 +6698,7 @@
       {"word": "手", "pinyin": "ciu⁵⁵"},
       {"word": "鑽", "pinyin": "jooung²¹³"}
     ],
-    "pronounces": [{"typeName": "连续", "symbol": "ciu⁵⁵-jooung²¹³"}],
+    "pronounces": [{"typeName": "市区连读", "symbol": "ciu⁵⁵-jooung²¹³"}],
     "pronouncesFromDifferentSpeakers": []
   },
   {
@@ -6726,7 +6728,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "leoy⁵³-jooung²¹³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/t9p2mu224.wav"
       }
@@ -6784,7 +6786,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "ba²¹-la⁵³-zooung²¹³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/wdt7sag6n.wav"
       }
@@ -6856,7 +6858,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "zia⁵⁵-mi⁵⁵",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/cx2nhntuc.wav"
       }
@@ -6918,7 +6920,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "tiek²⁴-nau³³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/idq7u21qt.wav"
       }
@@ -6950,7 +6952,7 @@
       {"word": "繞", "pinyin": "nau²¹"},
       {"word": "車", "pinyin": "jia⁵⁵"}
     ],
-    "pronounces": [{"typeName": "连续", "symbol": "nau²¹-jia⁵⁵"}],
+    "pronounces": [{"typeName": "市区连读", "symbol": "nau²¹-jia⁵⁵"}],
     "pronouncesFromDifferentSpeakers": []
   },
   {
@@ -6993,7 +6995,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "dak⁵⁵-cuoh²⁴",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/cr55z8pnx.wav"
       }
@@ -7050,7 +7052,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "ceoyk⁵³-giang³³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/zevcdgf9e.wav"
       }
@@ -7101,7 +7103,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "ding⁵³-sooyng²¹³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/20r19ifue.wav"
       }
@@ -7152,7 +7154,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "king³³-ngiang³³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/7oie1jchp.wav"
       }
@@ -7198,7 +7200,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "teoy⁵⁵-lo⁵⁵",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/3hvs9wym9.wav"
       }
@@ -7260,7 +7262,7 @@
     ],
     "pronounces": [
       {
-        "typeName": "连续",
+        "typeName": "市区连读",
         "symbol": "to⁵³-eoy²¹³",
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/d8ipa424q.wav"
       }

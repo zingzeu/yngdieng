@@ -7,6 +7,7 @@ import routes from '@/routes';
 import Header from '@/pages/header/header';
 import WordCard from '@/components/wordCard/wordCard';
 import {search} from '@/store/actions/dictionary';
+import mockWordList from '@/store/mock/mockWordData.json';
 import styles from './search.module.scss';
 
 const InitialState: {
@@ -97,9 +98,8 @@ const Search = () => {
               className={`${styles.resultTitle} at-row at-row__justify--between at-row__align--center`}
             >
               <View className={styles.resultAmount}>
-                找到 {resultList.length} 个结果
+                找到 {mockWordList.length} 个结果
               </View>
-              <View onClick={handleAdvancedSearch}>高级搜索</View>
             </View>
             <View className={styles.resultList}>
               <ScrollView
@@ -126,7 +126,6 @@ const Search = () => {
                       description={resultItem.description}
                       extraList={[
                         {title: '榕拼', content: resultItem.pinyinRong},
-                        {title: '音韵地位', content: resultItem.rimePosition},
                       ]}
                     />
                   </View>
