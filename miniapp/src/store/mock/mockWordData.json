@@ -25,10 +25,7 @@
     ],
     "pronounceReviewer": ["方紹晃"],
     "explainationReviewer": [],
-    "wordSplited": [
-      {"word": "龍", "pinyin": "lyng²¹"},
-      {"word": "骨", "pinyin": "goouk²⁴"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -227,10 +224,7 @@
     ],
     "pronounceReviewer": ["方紹晃", "方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [
-      {"word": "龍", "pinyin": "lyng³³"},
-      {"word": "旁", "pinyin": "moung⁵³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -322,10 +316,7 @@
     ],
     "pronounceReviewer": ["方紹晃", "方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [
-      {"word": "二", "pinyin": "ni⁵³"},
-      {"word": "路", "pinyin": "luo²⁴²"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -395,10 +386,7 @@
     ],
     "pronounceReviewer": ["方紹晃", "方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [
-      {"word": "三", "pinyin": "sang⁵³"},
-      {"word": "路", "pinyin": "luo²⁴²"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -457,10 +445,7 @@
     ],
     "pronounceReviewer": ["方紹晃", "方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [
-      {"word": "四", "pinyin": "si⁵³"},
-      {"word": "路", "pinyin": "luo²⁴²"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -520,11 +505,7 @@
     "fuzhouExplaination": "有其龙船比较大，㑚有四路，悬顶无够悬，就补囇穿三旁",
     "pronounceReviewer": ["方紹晃"],
     "explainationReviewer": ["方紹晃"],
-    "wordSplited": [
-      {"word": "穿", "pinyin": "cuong²¹"},
-      {"word": "三", "pinyin": "lang⁵⁵"},
-      {"word": "旁", "pinyin": "moung⁵³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -571,10 +552,7 @@
     ],
     "pronounceReviewer": ["方紹晃"],
     "explainationReviewer": ["方紹晃"],
-    "wordSplited": [
-      {"word": "底", "pinyin": "de²⁴"},
-      {"word": "板", "pinyin": "weing³³"}
-    ],
+    "wordSplited": [],
     "pronounces": [{"typeName": "闽候连读", "symbol": "de²⁴-weing³³"}],
     "pronouncesFromDifferentSpeakers": []
   },
@@ -615,10 +593,7 @@
     ],
     "pronounceReviewer": [],
     "explainationReviewer": [],
-    "wordSplited": [
-      {"word": "花", "pinyin": "hua⁵⁵"},
-      {"word": "旁", "pinyin": "woung⁵³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -677,10 +652,7 @@
     ],
     "pronounceReviewer": ["方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [
-      {"word": "纖", "pinyin": "cieng⁵³"},
-      {"word": "板", "pinyin": "meing³³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -794,10 +766,7 @@
     ],
     "pronounceReviewer": ["方紹晃", "方劍偉"],
     "explainationReviewer": ["方紹晃", "方劍偉"],
-    "wordSplited": [
-      {"word": "舵", "pinyin": "do⁵⁵"},
-      {"word": "舥", "pinyin": "wa⁵⁵"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -917,10 +886,7 @@
     "explainations": [{"source": "诸神的游戏[M]"}],
     "pronounceReviewer": ["方紹晃"],
     "explainationReviewer": ["方紹晃"],
-    "wordSplited": [
-      {"word": "尾", "pinyin": "mui²¹"},
-      {"word": "抽", "pinyin": "tiu⁵⁵"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -993,10 +959,7 @@
     ],
     "pronounceReviewer": ["方紹晃"],
     "explainationReviewer": [],
-    "wordSplited": [
-      {"word": "魚", "pinyin": "ngy³³"},
-      {"word": "樑", "pinyin": "luong⁵³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -1069,7 +1032,7 @@
     ],
     "pronounceReviewer": ["方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [{"word": "枙", "pinyin": "aik²⁴"}],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "单字",
@@ -1192,10 +1155,7 @@
     ],
     "pronounceReviewer": ["方紹晃"],
     "explainationReviewer": ["方紹晃"],
-    "wordSplited": [
-      {"word": "樟", "pinyin": "zuong⁵³"},
-      {"word": "段", "pinyin": "nooung²⁴²"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -1238,10 +1198,7 @@
     "explainations": [{"source": "诸神的游戏[M]"}],
     "pronounceReviewer": ["方紹晃"],
     "explainationReviewer": ["方紹晃"],
-    "wordSplited": [
-      {"word": "樟", "pinyin": "zuong⁵³"},
-      {"word": "堵", "pinyin": "nu³³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -1297,10 +1254,7 @@
     ],
     "pronounceReviewer": ["方紹晃", "方劍偉"],
     "explainationReviewer": ["方紹晃", "方劍偉"],
-    "wordSplited": [
-      {"word": "龍", "pinyin": "lyng³³"},
-      {"word": "檔", "pinyin": "noung³³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -1359,10 +1313,7 @@
     ],
     "pronounceReviewer": ["方紹晃", "方劍偉"],
     "explainationReviewer": ["方紹晃", "方劍偉"],
-    "wordSplited": [
-      {"word": "頭", "pinyin": "tau³³"},
-      {"word": "坪", "pinyin": "wang⁵³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -1405,10 +1356,7 @@
     "explainations": [{"text": "掌舵者站的地方", "source": "诸神的游戏[M]"}],
     "pronounceReviewer": ["方紹晃", "方劍偉"],
     "explainationReviewer": ["方紹晃", "方劍偉"],
-    "wordSplited": [
-      {"word": "尾", "pinyin": "mui²¹"},
-      {"word": "坪", "pinyin": "wang⁵³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -1456,11 +1404,7 @@
     ],
     "pronounceReviewer": ["方紹晃"],
     "explainationReviewer": ["方紹晃"],
-    "wordSplited": [
-      {"word": "蓮", "pinyin": "leing²¹"},
-      {"word": "花", "pinyin": "ua⁵³"},
-      {"word": "座", "pinyin": "joo²⁴²"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -1514,10 +1458,7 @@
     "explainations": [{"text": "船舱", "source": "诸神的游戏[M]"}],
     "pronounceReviewer": ["方紹晃"],
     "explainationReviewer": ["方紹晃"],
-    "wordSplited": [
-      {"word": "船", "pinyin": "sung³³"},
-      {"word": "堵", "pinyin": "du³³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -1587,10 +1528,7 @@
     ],
     "pronounceReviewer": ["方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [
-      {"word": "坐", "pinyin": "seoy⁵³"},
-      {"word": "板", "pinyin": "weing³³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -1660,10 +1598,7 @@
     ],
     "pronounceReviewer": ["方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [
-      {"word": "骹", "pinyin": "ka⁵⁵"},
-      {"word": "踏", "pinyin": "dak⁵"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -1741,10 +1676,7 @@
     ],
     "pronounceReviewer": ["方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [
-      {"word": "攏", "pinyin": "leoyng²¹"},
-      {"word": "船", "pinyin": "sung⁵³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -1814,7 +1746,7 @@
     ],
     "pronounceReviewer": ["方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [{"word": "繞", "pinyin": "nau³³"}],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "单字",
@@ -1868,10 +1800,7 @@
     "explainations": [{"text": "船桨的俗称", "source": "诸神的游戏[M]"}],
     "pronounceReviewer": ["方紹晃", "方劍偉"],
     "explainationReviewer": ["方紹晃", "方劍偉"],
-    "wordSplited": [
-      {"word": "扒", "pinyin": "ba²¹"},
-      {"word": "枻", "pinyin": "liek²⁴"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -1947,7 +1876,7 @@
     "explainations": [{"text": "船桨", "source": "诸神的游戏[M]"}],
     "pronounceReviewer": ["方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [{"word": "槳", "pinyin": "zuong³³"}],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "单字",
@@ -2005,11 +1934,7 @@
     ],
     "pronounceReviewer": ["方紹晃"],
     "explainationReviewer": ["方紹晃"],
-    "wordSplited": [
-      {"word": "柳", "pinyin": "liu²¹"},
-      {"word": "箬", "pinyin": "nuoh²¹"},
-      {"word": "枻", "pinyin": "siek²⁴"}
-    ],
+    "wordSplited": [],
     "pronounces": [{"typeName": "闽候连读", "symbol": "liu²¹-nuoh²¹-siek²⁴"}],
     "pronouncesFromDifferentSpeakers": []
   },
@@ -2039,11 +1964,7 @@
     ],
     "pronounceReviewer": ["方紹晃"],
     "explainationReviewer": ["方紹晃"],
-    "wordSplited": [
-      {"word": "四", "pinyin": "si²¹"},
-      {"word": "角", "pinyin": "geoyk⁵⁵"},
-      {"word": "枻", "pinyin": "siek²⁴"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -2091,11 +2012,7 @@
     ],
     "pronounceReviewer": ["方紹晃"],
     "explainationReviewer": ["方紹晃"],
-    "wordSplited": [
-      {"word": "尾", "pinyin": "mui²¹"},
-      {"word": "塊", "pinyin": "leoy⁵⁵"},
-      {"word": "栓", "pinyin": "soung⁵⁵"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -2165,11 +2082,7 @@
     ],
     "pronounceReviewer": ["方紹晃"],
     "explainationReviewer": ["方紹晃", "方劍偉"],
-    "wordSplited": [
-      {"word": "龍", "pinyin": "lyng²¹"},
-      {"word": "尾", "pinyin": "mui²¹"},
-      {"word": "栓", "pinyin": "soung⁵⁵"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -2261,11 +2174,7 @@
     ],
     "pronounceReviewer": ["方紹晃", "方劍偉"],
     "explainationReviewer": ["方紹晃", "方劍偉"],
-    "wordSplited": [
-      {"word": "旗", "pinyin": "gi²¹"},
-      {"word": "桿", "pinyin": "ang⁵³"},
-      {"word": "斗", "pinyin": "dau³³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -2323,11 +2232,7 @@
     ],
     "pronounceReviewer": ["方紹晃"],
     "explainationReviewer": ["方紹晃"],
-    "wordSplited": [
-      {"word": "鯉", "pinyin": "li²¹"},
-      {"word": "魚", "pinyin": "ngy⁵⁵"},
-      {"word": "栓", "pinyin": "loung⁵⁵"}
-    ],
+    "wordSplited": [],
     "pronounces": [{"typeName": "闽候连读", "symbol": "li²¹-ngy⁵⁵-loung⁵⁵"}],
     "pronouncesFromDifferentSpeakers": []
   },
@@ -2368,11 +2273,7 @@
     ],
     "pronounceReviewer": ["方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [
-      {"word": "琵", "pinyin": "bi²¹"},
-      {"word": "琶", "pinyin": "wa²¹"},
-      {"word": "帶", "pinyin": "lai²¹³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -2442,11 +2343,7 @@
     ],
     "pronounceReviewer": ["方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [
-      {"word": "虎", "pinyin": "hu²¹"},
-      {"word": "頭", "pinyin": "lau³³"},
-      {"word": "牌", "pinyin": "we⁵³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -2500,11 +2397,7 @@
     "explainations": [{"text": "舟头为龙头的龙舟", "source": "诸神的游戏[M]"}],
     "pronounceReviewer": ["方紹晃"],
     "explainationReviewer": ["方紹晃"],
-    "wordSplited": [
-      {"word": "朝", "pinyin": "diu⁵⁵"},
-      {"word": "天", "pinyin": "tieng⁵⁵"},
-      {"word": "龍", "pinyin": "lyng⁵³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -2540,10 +2433,7 @@
     ],
     "pronounceReviewer": ["方紹晃"],
     "explainationReviewer": ["方紹晃"],
-    "wordSplited": [
-      {"word": "馬", "pinyin": "ma²¹"},
-      {"word": "龍", "pinyin": "lyng⁵³"}
-    ],
+    "wordSplited": [],
     "pronounces": [{"typeName": "闽候连读", "symbol": "ma²¹-lyng⁵³"}],
     "pronouncesFromDifferentSpeakers": []
   },
@@ -2561,10 +2451,7 @@
     ],
     "pronounceReviewer": ["方紹晃"],
     "explainationReviewer": ["方紹晃"],
-    "wordSplited": [
-      {"word": "虎", "pinyin": "hu²¹"},
-      {"word": "頭", "pinyin": "tau⁵³"}
-    ],
+    "wordSplited": [],
     "pronounces": [{"typeName": "闽候连读", "symbol": "hu²¹-tau⁵³"}],
     "pronouncesFromDifferentSpeakers": []
   },
@@ -2579,10 +2466,7 @@
     ],
     "pronounceReviewer": ["方紹晃"],
     "explainationReviewer": ["方紹晃"],
-    "wordSplited": [
-      {"word": "獅", "pinyin": "sai⁵⁵"},
-      {"word": "頭", "pinyin": "tau⁵³"}
-    ],
+    "wordSplited": [],
     "pronounces": [{"typeName": "闽候连读", "symbol": "sai⁵⁵-tau⁵³"}],
     "pronouncesFromDifferentSpeakers": []
   },
@@ -2597,11 +2481,7 @@
     ],
     "pronounceReviewer": ["方紹晃"],
     "explainationReviewer": ["方紹晃"],
-    "wordSplited": [
-      {"word": "犀", "pinyin": "se²¹"},
-      {"word": "牛", "pinyin": "ngu⁵⁵"},
-      {"word": "頭", "pinyin": "tau⁵³"}
-    ],
+    "wordSplited": [],
     "pronounces": [{"typeName": "闽候连读", "symbol": "se²¹-ngu⁵⁵-tau⁵³"}],
     "pronouncesFromDifferentSpeakers": []
   },
@@ -2616,10 +2496,7 @@
     ],
     "pronounceReviewer": ["方紹晃"],
     "explainationReviewer": ["方紹晃"],
-    "wordSplited": [
-      {"word": "雞", "pinyin": "gie⁵⁵"},
-      {"word": "頭", "pinyin": "tau⁵³"}
-    ],
+    "wordSplited": [],
     "pronounces": [{"typeName": "闽候连读", "symbol": "gie⁵⁵-tau⁵³"}],
     "pronouncesFromDifferentSpeakers": []
   },
@@ -2649,10 +2526,7 @@
     ],
     "pronounceReviewer": ["方紹晃"],
     "explainationReviewer": ["方紹晃"],
-    "wordSplited": [
-      {"word": "上", "pinyin": "suong⁵³"},
-      {"word": "檔", "pinyin": "noung³³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -2700,10 +2574,7 @@
     ],
     "pronounceReviewer": ["方紹晃"],
     "explainationReviewer": ["方紹晃"],
-    "wordSplited": [
-      {"word": "下", "pinyin": "a⁵³"},
-      {"word": "檔", "pinyin": "loung³³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -3022,10 +2893,7 @@
     ],
     "pronounceReviewer": ["方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [
-      {"word": "鼓", "pinyin": "gu²¹"},
-      {"word": "腰", "pinyin": "iu⁵⁵"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -3116,10 +2984,7 @@
     "explainations": [{"source": "诸神的游戏[M]"}],
     "pronounceReviewer": ["方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [
-      {"word": "舀", "pinyin": "iu²⁴"},
-      {"word": "水", "pinyin": "zy³³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -3194,10 +3059,7 @@
     ],
     "pronounceReviewer": ["方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [
-      {"word": "翹", "pinyin": "kiu⁵³"},
-      {"word": "度", "pinyin": "lou²⁴²"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -3245,10 +3107,7 @@
     ],
     "pronounceReviewer": ["方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [
-      {"word": "蟶", "pinyin": "teing⁵³"},
-      {"word": "度", "pinyin": "lou²⁴²"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -3296,10 +3155,7 @@
     ],
     "pronounceReviewer": ["方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [
-      {"word": "球", "pinyin": "giu²¹"},
-      {"word": "度", "pinyin": "lou²⁴²"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -3344,7 +3200,7 @@
     ],
     "pronounceReviewer": ["方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [{"word": "蟶", "pinyin": "teing⁵⁵"}],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "单字",
@@ -3398,10 +3254,7 @@
     "explainations": [{"source": "诸神的游戏[M]"}],
     "pronounceReviewer": ["方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [
-      {"word": "蟶", "pinyin": "teing⁵³"},
-      {"word": "底", "pinyin": "ne³³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -3471,10 +3324,7 @@
     ],
     "pronounceReviewer": ["方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [
-      {"word": "坐", "pinyin": "seoy⁵³"},
-      {"word": "尾", "pinyin": "mui³³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -3533,10 +3383,7 @@
     ],
     "pronounceReviewer": ["方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [
-      {"word": "踢", "pinyin": "tik²⁴"},
-      {"word": "水", "pinyin": "zy³³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -3584,10 +3431,7 @@
     ],
     "pronounceReviewer": ["方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [
-      {"word": "壓", "pinyin": "ak⁵⁵"},
-      {"word": "舵", "pinyin": "duai²⁴²"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -3646,10 +3490,7 @@
     ],
     "pronounceReviewer": ["方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [
-      {"word": "偷", "pinyin": "tau⁵³"},
-      {"word": "舵", "pinyin": "duai²⁴²"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -3759,10 +3600,7 @@
     ],
     "pronounceReviewer": ["方紹晃", "方劍偉"],
     "explainationReviewer": ["方紹晃", "方劍偉"],
-    "wordSplited": [
-      {"word": "後", "pinyin": "au⁵³"},
-      {"word": "送", "pinyin": "sooyng²¹³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -3843,11 +3681,7 @@
     ],
     "pronounceReviewer": ["方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [
-      {"word": "抹", "pinyin": "muak²¹"},
-      {"word": "豬", "pinyin": "dy⁵⁵"},
-      {"word": "油", "pinyin": "iu⁵³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -3928,7 +3762,7 @@
     ],
     "pronounceReviewer": ["方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [{"word": "抄", "pinyin": "cau⁵⁵"}],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "单字",
@@ -4030,7 +3864,7 @@
     ],
     "pronounceReviewer": ["方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [{"word": "反", "pinyin": "baing²¹³"}],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "单字",
@@ -4108,10 +3942,7 @@
     ],
     "pronounceReviewer": ["方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [
-      {"word": "鬥", "pinyin": "dau⁵⁵"},
-      {"word": "龍", "pinyin": "lyng⁵³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -4170,10 +4001,7 @@
     ],
     "pronounceReviewer": ["方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [
-      {"word": "劃", "pinyin": "ua⁵⁵"},
-      {"word": "標", "pinyin": "biu⁵⁵"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -4240,10 +4068,7 @@
     ],
     "pronounceReviewer": ["方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [
-      {"word": "劃", "pinyin": "ua²¹"},
-      {"word": "節", "pinyin": "zaik²⁴"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -4308,11 +4133,7 @@
     "explainations": [{"text": "指龙舟房", "source": "诸神的游戏[M]"}],
     "pronounceReviewer": ["方紹晃"],
     "explainationReviewer": ["方紹晃", "方劍偉"],
-    "wordSplited": [
-      {"word": "龍", "pinyin": "lung²¹"},
-      {"word": "船", "pinyin": "nung²¹"},
-      {"word": "厝", "pinyin": "njuo²¹³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -4359,11 +4180,7 @@
     ],
     "pronounceReviewer": ["方紹晃"],
     "explainationReviewer": ["方紹晃"],
-    "wordSplited": [
-      {"word": "龍", "pinyin": "lung²¹"},
-      {"word": "船", "pinyin": "nung²¹"},
-      {"word": "架", "pinyin": "nga²¹³"}
-    ],
+    "wordSplited": [],
     "pronounces": [{"typeName": "闽候连读", "symbol": "lung²¹-nung²¹-nga²¹³"}],
     "pronouncesFromDifferentSpeakers": []
   },
@@ -4404,10 +4221,7 @@
     ],
     "pronounceReviewer": ["方紹晃", "方劍偉"],
     "explainationReviewer": ["方紹晃"],
-    "wordSplited": [
-      {"word": "親", "pinyin": "cing⁵⁵"},
-      {"word": "家", "pinyin": "nga⁵⁵"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -4466,11 +4280,7 @@
     ],
     "pronounceReviewer": ["方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [
-      {"word": "劃", "pinyin": "ua²¹"},
-      {"word": "早", "pinyin": "zia²⁴"},
-      {"word": "水", "pinyin": "jy³³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -4529,11 +4339,7 @@
     ],
     "pronounceReviewer": ["方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [
-      {"word": "龍", "pinyin": "lung⁵⁵"},
-      {"word": "船", "pinyin": "nung⁵⁵"},
-      {"word": "經", "pinyin": "ging⁵⁵"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -4673,10 +4479,7 @@
     ],
     "pronounceReviewer": ["何榕"],
     "explainationReviewer": ["方紹晃"],
-    "wordSplited": [
-      {"word": "採", "pinyin": "cai²¹"},
-      {"word": "蓮", "pinyin": "leing⁵³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -4771,10 +4574,7 @@
     ],
     "pronounceReviewer": ["方紹晃"],
     "explainationReviewer": ["方紹晃"],
-    "wordSplited": [
-      {"word": "拾", "pinyin": "kak²¹"},
-      {"word": "錢", "pinyin": "zieng⁵³"}
-    ],
+    "wordSplited": [],
     "pronounces": [{"typeName": "闽候连读", "symbol": "kak²¹-zieng⁵³"}],
     "pronouncesFromDifferentSpeakers": []
   },
@@ -4792,10 +4592,7 @@
     ],
     "pronounceReviewer": [],
     "explainationReviewer": ["方紹晃"],
-    "wordSplited": [
-      {"word": "巡", "pinyin": "sung⁵⁵"},
-      {"word": "江", "pinyin": "ngeoyng⁵⁵"}
-    ],
+    "wordSplited": [],
     "pronounces": [{"typeName": "闽候连读", "symbol": "sung⁵⁵-ngeoyng⁵⁵"}],
     "pronouncesFromDifferentSpeakers": []
   },
@@ -4813,10 +4610,7 @@
     ],
     "pronounceReviewer": [],
     "explainationReviewer": [],
-    "wordSplited": [
-      {"word": "拜", "pinyin": "bai⁵⁵"},
-      {"word": "旗", "pinyin": "gi⁵³"}
-    ],
+    "wordSplited": [],
     "pronounces": [{"typeName": "闽候连读", "symbol": "bai⁵⁵-gi⁵³"}],
     "pronouncesFromDifferentSpeakers": []
   },
@@ -4875,10 +4669,7 @@
     ],
     "pronounceReviewer": ["陳風"],
     "explainationReviewer": ["方紹晃"],
-    "wordSplited": [
-      {"word": "採", "pinyin": "cai²¹"},
-      {"word": "青", "pinyin": "ciang⁵⁵"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -4960,10 +4751,7 @@
     "fuzhouExplaination": "五月节龙船夹水之前做其事计。新其龙船，龙头本底都掏红布鞔起；夹水许蜀日刣鸡，毛笔搵鸡血，乞龙头开眼，开眼囇神就里去。有其地方无做开眼，是做“采青”",
     "pronounceReviewer": ["方紹晃", "陳風"],
     "explainationReviewer": ["方紹晃"],
-    "wordSplited": [
-      {"word": "開", "pinyin": "kui⁵³"},
-      {"word": "眼", "pinyin": "ngang³³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -5023,10 +4811,7 @@
     ],
     "pronounceReviewer": ["方紹晃"],
     "explainationReviewer": [],
-    "wordSplited": [
-      {"word": "夾", "pinyin": "gak²⁴"},
-      {"word": "水", "pinyin": "zy³³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -5091,10 +4876,7 @@
     "explainations": [{"source": "诸神的游戏[M]"}],
     "pronounceReviewer": [],
     "explainationReviewer": [],
-    "wordSplited": [
-      {"word": "祭", "pinyin": "zie⁵⁵"},
-      {"word": "江", "pinyin": "ngeoyng⁵⁵"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -5175,10 +4957,7 @@
     ],
     "pronounceReviewer": ["方紹晃"],
     "explainationReviewer": ["方紹晃"],
-    "wordSplited": [
-      {"word": "引", "pinyin": "ing²⁴"},
-      {"word": "港", "pinyin": "geoyng³³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -5248,10 +5027,7 @@
     ],
     "pronounceReviewer": [],
     "explainationReviewer": [],
-    "wordSplited": [
-      {"word": "贈", "pinyin": "zeing⁵³"},
-      {"word": "槳", "pinyin": "zuong³³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -5310,10 +5086,7 @@
     ],
     "pronounceReviewer": ["方紹晃"],
     "explainationReviewer": ["方紹晃"],
-    "wordSplited": [
-      {"word": "請", "pinyin": "ciang²¹"},
-      {"word": "香", "pinyin": "yong⁵⁵"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -5361,10 +5134,7 @@
     ],
     "pronounceReviewer": ["方紹晃"],
     "explainationReviewer": ["方紹晃"],
-    "wordSplited": [
-      {"word": "安", "pinyin": "ang⁵³"},
-      {"word": "位", "pinyin": "ui²⁴²"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -5434,10 +5204,7 @@
     ],
     "pronounceReviewer": ["方紹晃"],
     "explainationReviewer": ["方紹晃"],
-    "wordSplited": [
-      {"word": "做", "pinyin": "zo⁵⁵"},
-      {"word": "頭", "pinyin": "tau⁵³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -5504,10 +5271,7 @@
     ],
     "pronounceReviewer": ["方紹晃"],
     "explainationReviewer": ["方紹晃"],
-    "wordSplited": [
-      {"word": "總", "pinyin": "zung²⁴"},
-      {"word": "理", "pinyin": "li³³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -5550,11 +5314,7 @@
     "explainations": [{"text": "痴迷于划龙舟的人", "source": "诸神的游戏[M]"}],
     "pronounceReviewer": ["方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [
-      {"word": "龍", "pinyin": "lung⁵⁵"},
-      {"word": "船", "pinyin": "nung⁵⁵"},
-      {"word": "癲", "pinyin": "dieng⁵⁵"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -5602,11 +5362,7 @@
     ],
     "pronounceReviewer": ["方劍偉"],
     "explainationReviewer": ["方紹晃"],
-    "wordSplited": [
-      {"word": "坐", "pinyin": "seoy⁵⁵"},
-      {"word": "龍", "pinyin": "lyng⁵⁵"},
-      {"word": "頭", "pinyin": "tau⁵³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -5665,10 +5421,7 @@
     ],
     "pronounceReviewer": ["方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [
-      {"word": "洗", "pinyin": "se²⁴"},
-      {"word": "港", "pinyin": "geoyng³³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -5724,10 +5477,7 @@
     ],
     "pronounceReviewer": ["方紹晃"],
     "explainationReviewer": ["方紹晃"],
-    "wordSplited": [
-      {"word": "竹", "pinyin": "dyk²¹"},
-      {"word": "絲", "pinyin": "si⁵⁵"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -5775,10 +5525,7 @@
     ],
     "pronounceReviewer": ["方劍偉", "方紹晃"],
     "explainationReviewer": ["方紹晃"],
-    "wordSplited": [
-      {"word": "毛", "pinyin": "mo²¹"},
-      {"word": "竹", "pinyin": "leoyk²⁴"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -5826,10 +5573,7 @@
     ],
     "pronounceReviewer": ["方紹晃"],
     "explainationReviewer": ["方紹晃"],
-    "wordSplited": [
-      {"word": "水", "pinyin": "zy⁵⁵"},
-      {"word": "竹", "pinyin": "leoyk²⁴"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -5872,10 +5616,7 @@
     "explainations": [{"text": "龙舟的前部", "source": "诸神的游戏[M]"}],
     "pronounceReviewer": ["方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [
-      {"word": "龍", "pinyin": "lyng³³"},
-      {"word": "頭", "pinyin": "tau⁵³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -5918,10 +5659,7 @@
     "explainations": [{"text": "船的前部", "source": "诸神的游戏[M]"}],
     "pronounceReviewer": ["方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [
-      {"word": "船", "pinyin": "sung³³"},
-      {"word": "頭", "pinyin": "tau⁵³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -5964,10 +5702,7 @@
     "explainations": [{"text": "龙舟", "source": "诸神的游戏[M]"}],
     "pronounceReviewer": ["方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [
-      {"word": "龍", "pinyin": "lung³³"},
-      {"word": "船", "pinyin": "sung⁵³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -6003,10 +5738,7 @@
     ],
     "pronounceReviewer": ["方紹晃"],
     "explainationReviewer": ["方紹晃"],
-    "wordSplited": [
-      {"word": "添", "pinyin": "tieng⁵⁵"},
-      {"word": "丁", "pinyin": "ding⁵⁵"}
-    ],
+    "wordSplited": [],
     "pronounces": [{"typeName": "闽候连读", "symbol": "tieng⁵⁵-ding⁵⁵"}],
     "pronouncesFromDifferentSpeakers": []
   },
@@ -6047,10 +5779,7 @@
     ],
     "pronounceReviewer": ["方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [
-      {"word": "鑼", "pinyin": "lo³³"},
-      {"word": "坪", "pinyin": "wang⁵³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -6109,10 +5838,7 @@
     ],
     "pronounceReviewer": ["方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [
-      {"word": "翹", "pinyin": "kiu⁵⁵"},
-      {"word": "推", "pinyin": "leoy⁵⁵"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -6160,11 +5886,7 @@
     ],
     "pronounceReviewer": ["方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [
-      {"word": "鐵", "pinyin": "tiek²¹"},
-      {"word": "錘", "pinyin": "tui³³"},
-      {"word": "囝", "pinyin": "iang³³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -6212,10 +5934,7 @@
     ],
     "pronounceReviewer": ["方紹晃", "方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [
-      {"word": "壓", "pinyin": "ak⁵⁵"},
-      {"word": "尺", "pinyin": "cuoh²⁴"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -6269,10 +5988,7 @@
     "explainations": [{}],
     "pronounceReviewer": ["方紹晃"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [
-      {"word": "纖", "pinyin": "cieng⁵⁵"},
-      {"word": "龜", "pinyin": "gui⁵⁵"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -6370,10 +6086,7 @@
     "explainations": [{}],
     "pronounceReviewer": ["方紹晃", "方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [
-      {"word": "洋", "pinyin": "yong³³"},
-      {"word": "䱝", "pinyin": "me⁵³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -6509,10 +6222,7 @@
     ],
     "pronounceReviewer": ["方紹晃", "方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [
-      {"word": "鏈", "pinyin": "lieng⁵³"},
-      {"word": "繞", "pinyin": "nau³³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -6604,10 +6314,7 @@
     ],
     "pronounceReviewer": ["方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [
-      {"word": "鋸", "pinyin": "gy⁵³"},
-      {"word": "囝", "pinyin": "iang³³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -6655,11 +6362,7 @@
     ],
     "pronounceReviewer": ["方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [
-      {"word": "鐵", "pinyin": "tiek²¹"},
-      {"word": "釘", "pinyin": "ding⁵³"},
-      {"word": "斗", "pinyin": "nau³³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -6694,10 +6397,7 @@
     ],
     "pronounceReviewer": ["方紹晃", "方劍偉"],
     "explainationReviewer": ["方紹晃", "方劍偉"],
-    "wordSplited": [
-      {"word": "手", "pinyin": "ciu⁵⁵"},
-      {"word": "鑽", "pinyin": "jooung²¹³"}
-    ],
+    "wordSplited": [],
     "pronounces": [{"typeName": "闽候连读", "symbol": "ciu⁵⁵-jooung²¹³"}],
     "pronouncesFromDifferentSpeakers": []
   },
@@ -6722,10 +6422,7 @@
     "explainations": [{"source": "诸神的游戏[M]: 69."}],
     "pronounceReviewer": ["方紹晃", "方劍偉"],
     "explainationReviewer": ["方紹晃", "方劍偉"],
-    "wordSplited": [
-      {"word": "銇", "pinyin": "leoy⁵³"},
-      {"word": "鑽", "pinyin": "jooung²¹³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -6779,11 +6476,7 @@
     "explainations": [{}],
     "pronounceReviewer": ["方劍偉"],
     "explainationReviewer": ["方紹晃", "方劍偉"],
-    "wordSplited": [
-      {"word": "扒", "pinyin": "ba²¹"},
-      {"word": "喇", "pinyin": "la⁵³"},
-      {"word": "鑽", "pinyin": "zooung²¹³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -6852,10 +6545,7 @@
     ],
     "pronounceReviewer": ["方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [
-      {"word": "遮", "pinyin": "zia⁵⁵"},
-      {"word": "氼", "pinyin": "mi⁵⁵"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -6914,10 +6604,7 @@
     ],
     "pronounceReviewer": ["方紹晃", "方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [
-      {"word": "鐵", "pinyin": "tiek²⁴"},
-      {"word": "繞", "pinyin": "nau³³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -6948,10 +6635,7 @@
     "explainations": [{}],
     "pronounceReviewer": ["方紹晃"],
     "explainationReviewer": [],
-    "wordSplited": [
-      {"word": "繞", "pinyin": "nau²¹"},
-      {"word": "車", "pinyin": "jia⁵⁵"}
-    ],
+    "wordSplited": [],
     "pronounces": [{"typeName": "闽候连读", "symbol": "nau²¹-jia⁵⁵"}],
     "pronouncesFromDifferentSpeakers": []
   },
@@ -6989,10 +6673,7 @@
     ],
     "pronounceReviewer": ["方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [
-      {"word": "搭", "pinyin": "dak⁵⁵"},
-      {"word": "尺", "pinyin": "cuoh²⁴"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -7046,10 +6727,7 @@
     "explainations": [{"text": "凿子", "source": "诸神的游戏[M]: 73."}],
     "pronounceReviewer": ["方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [
-      {"word": "鑿", "pinyin": "ceoyk⁵³"},
-      {"word": "囝", "pinyin": "giang³³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -7097,10 +6775,7 @@
     ],
     "pronounceReviewer": ["方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [
-      {"word": "釘", "pinyin": "ding⁵³"},
-      {"word": "送", "pinyin": "sooyng²¹³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -7148,10 +6823,7 @@
     ],
     "pronounceReviewer": ["方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [
-      {"word": "鉗", "pinyin": "king³³"},
-      {"word": "囝", "pinyin": "ngiang³³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -7194,10 +6866,7 @@
     "explainations": [{"text": "刨刀", "source": "诸神的游戏[M]: 76."}],
     "pronounceReviewer": ["方劍偉"],
     "explainationReviewer": ["方劍偉"],
-    "wordSplited": [
-      {"word": "推", "pinyin": "teoy⁵⁵"},
-      {"word": "刀", "pinyin": "lo⁵⁵"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
@@ -7256,10 +6925,7 @@
     ],
     "pronounceReviewer": ["方紹晃", "方劍偉"],
     "explainationReviewer": ["方紹晃"],
-    "wordSplited": [
-      {"word": "拖", "pinyin": "to⁵³"},
-      {"word": "鋸", "pinyin": "eoy²¹³"}
-    ],
+    "wordSplited": [],
     "pronounces": [
       {
         "typeName": "闽候连读",
