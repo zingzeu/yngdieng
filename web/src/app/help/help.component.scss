@@ -1,50 +1,51 @@
 .content {
-    font-family: 'Noto Serif SC', 'Noto Serif TC', 'Ext-0', 'Ext-1', serif;
+  font-family: 'Noto Serif SC', 'Noto Serif TC', 'Ext-0', 'Ext-1', serif;
 }
 
-ol { 
-    counter-reset: item; 
-    padding-left: 2em;
+ol {
+  counter-reset: item;
+  padding-left: 2em;
 }
 
-li { 
-    padding-bottom: 4px;
+li {
+  padding-bottom: 4px;
 }
 
-ol > li:before { 
-    content: counters(item, ".") ". "; 
-    counter-increment: item;
-    font-family: 'Roboto', sans-serif;
-    color: #5a3c3e;
+ol > li:before {
+  content: counters(item, '.') '. ';
+  counter-increment: item;
+  font-family: 'Roboto', sans-serif;
+  color: #5a3c3e;
 }
 
 ol > li:nth-child(1) {
-    padding-top: 4px;
+  padding-top: 4px;
 }
 
 ol > li {
-    display: block;
+  display: block;
 }
 
 .content > ol {
-    padding-left: 10px;
+  padding-left: 10px;
 }
 
-span.space, span.space[hidden] {
-    display: inline;
-    visibility: hidden;
-    font: 0.89em Arial;
+span.space,
+span.space[hidden] {
+  display: inline;
+  visibility: hidden;
+  font: 0.89em Arial;
 }
 
 .mat-button {
-    padding-left: 0;
-    padding-right: 0;
-    line-height: 1em;
-    min-width: 0;
-    font-family: inherit;
-    font-weight: 900;;
+  padding-left: 0;
+  padding-right: 0;
+  line-height: 1em;
+  min-width: 0;
+  font-family: inherit;
+  font-weight: 900;
 }
 
 .punctuation-trim {
-  letter-spacing: -0.5em
+  letter-spacing: -0.5em;
 }
