@@ -5,6 +5,7 @@ import {MatDialogModule} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {BrowserModule, Title} from '@angular/platform-browser';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+// import {Wad} from 'web-audio-daw';
 
 import {YNGDIENG_ENVIRONMENT} from '../environments/environment';
 import {YngdiengDevEnvironment} from '../environments/environment.dev';
@@ -71,6 +72,7 @@ import {YngpingHelpDialogComponent} from './yngping-help-dialog/yngping-help-dia
     MatSnackBarModule,
     NoopAnimationsModule,
     ReactiveFormsModule,
+    // Wad,
   ],
   entryComponents: [YngpingHelpDialogComponent],
   providers: [

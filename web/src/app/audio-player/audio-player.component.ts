@@ -7,9 +7,6 @@ import {
 
 import {MatSnackBar} from '@angular/material/snack-bar';
 
-// import {Wad} from '../../../../node_modules/web-audio-daw/build/wad.js';
-// const Wad = require('web-audio-daw');
-
 @Component({
   selector: 'app-audio-player',
   templateUrl: './audio-player.component.html',
@@ -19,7 +16,6 @@ export class AudioPlayerComponent implements OnInit {
   public PlayerStateEnum = PlayerState;
   @Input('audioUrl') audioUrl: string;
   state: PlayerState = PlayerState.Idle;
-  // private currentAudio: typeof Wad = null;
   private currentAudio: HTMLAudioElement = null;
 
   constructor(
@@ -40,7 +36,6 @@ export class AudioPlayerComponent implements OnInit {
     switch (this.state) {
       case PlayerState.Idle:
         console.log('playing + ' + this.audioUrl);
-        // this.currentAudio = new Wad({source : this.audioUrl});
         this.currentAudio = new Audio(this.audioUrl);
         this.state = PlayerState.Loading;
         this.currentAudio.onended = () => {
@@ -50,26 +45,11 @@ export class AudioPlayerComponent implements OnInit {
         this.currentAudio.oncanplaythrough = () => {
           this.state = PlayerState.Playing;
           this.currentAudio.play();
-          // this.currentAudio.stop();
         };
         this.currentAudio.onerror = e => {
-          let mediaError = this.currentAudio.error;
-          console.log(e);
-          console.log(mediaError);
           this.currentAudio = null;
-          // if (mediaError.message.indexOf('404') >= 0) {
-          //   console.log('404 encountered. Disabling audio player for ' + this.audioUrl);
-          //   this.state = PlayerState.Disabled;
-          //   // this.openSnackBar();
-          //   this._snackBar.open('暂时没有对应音频', '了解', {
-          //     duration: 2000,
-          //   });
-          // } else {
-          //   console.log("HERE");
-          //   this.state = PlayerState.Idle;
-          // }
           this.state = PlayerState.Disabled;
-          this._snackBar.open('暂时没有对应音频', '了解', {
+          this._snackBar.open('暂时没有对应的音频', '', {
             duration: 2000,
           });
         };
@@ -84,12 +64,6 @@ export class AudioPlayerComponent implements OnInit {
         break;
     }
   }
-
-  // openSnackBar() {
-  //   this._snackBar.open('暂时没有对应音频', '了解', {
-  //     duration: 2000,
-  //   });
-  // }
 }
 
 enum PlayerState {

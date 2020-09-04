@@ -29,7 +29,6 @@
     "rxjs": "6.6.2",
     "systemjs": "6.5.0",
     "tslib": "2.0.1",
-    "web-audio-daw": "^4.9.1",
     "zone.js": "0.10.3"
   },
   "devDependencies": {
