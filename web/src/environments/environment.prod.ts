@@ -1,14 +1,13 @@
 import {IYngdiengEnvironment} from './environment';
 
-// Deployed at yngdieng.org
+// Deployed at www.ydict.net
 export const YngdiengProdEnvironment: IYngdiengEnvironment = {
   appName: '榕典',
   isProduction: true,
-  // TODO: use https
-  serverUrl: 'http://api.yngdieng.org',
+  serverUrl: 'https://api.ydict.net',
   structuredExplanations: {
     enabled: true,
     showDebugToggle: false,
   },
-  showAudioPlayerButtons: false
-}
+  showAudioPlayerButtons: false,
+};

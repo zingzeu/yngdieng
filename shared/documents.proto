@@ -71,7 +71,6 @@ message YngdiengDocument {
   }
 }
 
-
 // Next ID: 14
 // Deprecated.
 message Document {

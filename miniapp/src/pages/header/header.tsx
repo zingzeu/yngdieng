@@ -1,11 +1,11 @@
-import React, { useState } from "react";
-import Taro from "@tarojs/taro";
-import { getCurrentInstance } from "@tarojs/taro";
-import { View, Block, Image, Text } from "@tarojs/components";
-import { AtIcon, AtDrawer } from "taro-ui";
-import routes from "@/routes";
-import logoURL from "@/assets/logo.png";
-import styles from "./header.module.scss";
+import React, {useState} from 'react';
+import Taro, {useRouter} from '@tarojs/taro';
+import {getCurrentInstance} from '@tarojs/taro';
+import {View, Block, Image, Text} from '@tarojs/components';
+import {AtIcon, AtDrawer} from 'taro-ui';
+import routes from '@/routes';
+import logoURL from '@/assets/logo.png';
+import styles from './header.module.scss';
 
 interface MenuItem {
   title: string;
@@ -15,28 +15,29 @@ interface MenuItem {
 
 const menuItems: Array<MenuItem> = [
   {
-    title: "首页",
-    iconType: "home",
+    title: '首页',
+    iconType: 'home',
     navigateToRoute: routes.INDEX,
   },
   {
-    title: "搜索",
-    iconType: "search",
+    title: '搜索',
+    iconType: 'search',
     navigateToRoute: routes.SEARCH,
   },
   {
-    title: "关于",
-    iconType: "alert-circle",
+    title: '关于',
+    iconType: 'alert-circle',
     navigateToRoute: routes.ABOUT,
   },
 ];
 
-const Header = () => {
-  const routePath = getCurrentInstance().router?.path || "";
+const Header = ({injectedComponents = <Block />}) => {
+  const router = useRouter();
+  const routePath = router.path || '';
   const [showSidebar, toggleSidebar] = useState(false);
 
-  const navigateTo = (routePath) => {
-    Taro.navigateTo({
+  const navigateTo = routePath => {
+    Taro.redirectTo({
       url: routePath,
     });
   };
@@ -45,19 +46,31 @@ const Header = () => {
     <Block>
       <View className={styles.headerPlaceholder} />
       <View id="header" className={styles.header}>
-        {[routes.INDEX].includes(routePath) && (
-          <Block>
-            <View>
-              <AtIcon value="menu" onClick={() => toggleSidebar(true)}></AtIcon>
-            </View>
-            <View>
-              <Image className={styles.logo} mode="heightFix" src={logoURL} />
-            </View>
-            <View onClick={() => navigateTo(routes.SEARCH)}>
-              <AtIcon value="search"></AtIcon>
-            </View>
-          </Block>
+        {[
+          routes.INDEX,
+          routes.SEARCH,
+          routes.WORD_DETAIL,
+          routes.COLLECTION_DETAIL,
+        ].includes(routePath) && (
+          <View>
+            <AtIcon value="menu" onClick={() => toggleSidebar(true)}></AtIcon>
+          </View>
         )}
+        {[routes.INDEX, routes.WORD_DETAIL, routes.COLLECTION_DETAIL].includes(
+          routePath
+        ) && (
+          <View>
+            <Image className={styles.logo} mode="heightFix" src={logoURL} />
+          </View>
+        )}
+        {[routes.INDEX, routes.WORD_DETAIL, routes.COLLECTION_DETAIL].includes(
+          routePath
+        ) && (
+          <View onClick={() => navigateTo(routes.SEARCH)}>
+            <AtIcon value="search"></AtIcon>
+          </View>
+        )}
+        {injectedComponents}
       </View>
       <AtDrawer show={showSidebar} onClose={() => toggleSidebar(false)} mask>
         <View id="sidebar_container" className={styles.sidebarContainer}>
@@ -67,7 +80,7 @@ const Header = () => {
           <View className={styles.content}>
             <View className={styles.title}>榕典</View>
             <View>
-              {menuItems.map((menuItem) => (
+              {menuItems.map(menuItem => (
                 <View
                   className={styles.menuItem}
                   key={menuItem.title}

@@ -16,6 +16,7 @@
       $search-height: 70px;
       display: flex;
       flex-wrap: wrap;
+      width: 90%;
       .inputContainer {
         @include flex-center-center;
         flex: 1;
