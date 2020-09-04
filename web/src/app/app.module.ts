@@ -35,6 +35,8 @@ import {WordDetailsComponent} from './word-details/word-details.component';
 import {YngdiengBackendService} from './yngdieng-backend.service';
 import {YngdiengTitleService} from './yngdieng-title.service';
 import {YngpingHelpDialogComponent} from './yngping-help-dialog/yngping-help-dialog.component';
+import {ContribExplanationComponent} from './contrib-explanation/contrib-explanation.component';
+import {HistoricalDetailsComponent} from './historical-details/historical-details.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,9 @@ import {YngpingHelpDialogComponent} from './yngping-help-dialog/yngping-help-dia
     AudioPlayerComponent,
     WordDetailsComponent,
     WordDetailsHeroComponent,
-    FengExplanationComponent
+    FengExplanationComponent,
+    ContribExplanationComponent,
+    HistoricalDetailsComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -75,12 +79,11 @@ import {YngpingHelpDialogComponent} from './yngping-help-dialog/yngping-help-dia
     {provide: YNGDIENG_ENVIRONMENT, useValue: getYngdiengEnvironment()},
     YngdiengBackendService,
     YngdiengTitleService,
-    Title
+    Title,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}
 
 declare const _yngdieng_environment: string;
 
