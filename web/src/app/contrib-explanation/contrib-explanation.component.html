@@ -1,0 +1,9 @@
+<div class="section-title">
+    <span class="unihan-text hanzi">{{ doc.getHanzi() }}</span>
+    <span class="yngping">{{ doc.getYngpingUnderlying() }}</span>
+    <span class="yngping" *ngIf="doc.getYngpingUnderlying() !== doc.getYngpingSandhi()"> →
+        {{ doc.getYngpingSandhi() }}</span>
+    <p class="raw-explanation" *ngIf="!showStructuredExplanation">{{ doc.getExplanationRaw() }}</p>
+    <div class="unihan-text explanation" *ngIf="showStructuredExplanation" [innerHTML]="structuredExplanation"></div>
+</div>
+<p class="details-source">此条目来自网友贡献。贡献者：{{doc.getContributorsList()}}。</p>
