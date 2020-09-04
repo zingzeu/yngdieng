@@ -1,0 +1,4 @@
+steps:
+  - label: ":bazel: Build"
+    commands:
+      - bazel build //web/src/...
