@@ -28,10 +28,6 @@ test --test_output=errors
 # Use the Angular Ivy compiler
 build --define=angular_ivy_enabled=True
 
-# Turn on managed directories feature in Bazel
-# This allows us to avoid installing a second copy of node_modules
-common --experimental_allow_incremental_repository_updates
-
 # Disable sandbox on Mac OS for performance reason.
 
 # TODO(https://github.com/MindongLab/yngdieng/issues/61):
