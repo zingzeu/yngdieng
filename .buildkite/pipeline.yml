@@ -1,0 +1,20 @@
+steps:
+  - label: ":bazel: Build"
+    commands:
+      - |
+          echo "startup --output_base=$(BAZEL_OUTPUT_BASE)
+          common --color=no
+          common --curses=yes
+
+          build --disk_cache=$(BAZEL_DISK_CACHE)
+          build --show_progress_rate_limit=0
+          build --show_task_finish
+          build --show_timestamps
+          build --worker_verbose" >> .bazelrc
+
+          cat .bazelrc
+      - bazel build //web/src:prodapp
+    artifact_paths: 
+      - dist/bin/web/src/prodapp/*
+    agents:
+      queue: "cn"
