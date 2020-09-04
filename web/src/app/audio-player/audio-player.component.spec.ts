@@ -2,12 +2,17 @@ import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {AudioPlayerComponent} from './audio-player.component';
 
+// import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
+
 describe('AudioPlayerComponent', () => {
   let component: AudioPlayerComponent;
   let fixture: ComponentFixture<AudioPlayerComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({declarations: [AudioPlayerComponent]}).compileComponents();
+    TestBed.configureTestingModule({
+      declarations: [AudioPlayerComponent],
+      // imports: [MatSnackBarModule]
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -2,6 +2,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {BrowserModule, Title} from '@angular/platform-browser';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
 
@@ -58,7 +59,7 @@ import {YngpingHelpDialogComponent} from './yngping-help-dialog/yngping-help-dia
     AudioPlayerComponent,
     WordDetailsComponent,
     WordDetailsHeroComponent,
-    FengExplanationComponent
+    FengExplanationComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -67,6 +68,7 @@ import {YngpingHelpDialogComponent} from './yngping-help-dialog/yngping-help-dia
     HttpClientModule,
     MaterialModule,
     MatDialogModule,
+    MatSnackBarModule,
     NoopAnimationsModule,
     ReactiveFormsModule,
   ],
@@ -75,12 +77,11 @@ import {YngpingHelpDialogComponent} from './yngping-help-dialog/yngping-help-dia
     {provide: YNGDIENG_ENVIRONMENT, useValue: getYngdiengEnvironment()},
     YngdiengBackendService,
     YngdiengTitleService,
-    Title
+    Title,
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule {
-}
+export class AppModule {}
 
 declare const _yngdieng_environment: string;
 
