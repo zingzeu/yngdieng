@@ -15,6 +15,6 @@ steps:
           cat .bazelrc
       - bazel build //web/src:prodapp
     artifact_paths: 
-      - dist/bin/web/src/prodapp
+      - dist/bin/web/src/prodapp/*
     agents:
       queue: "cn"
