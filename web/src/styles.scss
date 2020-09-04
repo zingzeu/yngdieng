@@ -1,67 +1,161 @@
 /* You can add global styles to this file, and also import other style files */
 
-@import "custom-theme";
-
+@import 'custom-theme';
 
 @font-face {
   font-family: 'Ext-0';
-  src: url('assets/fonts/yngdieng-extended-0.woff') format('woff'), /* Pretty Modern Browsers */
-       url('assets/fonts/yngdieng-extended-0.ttf')  format('truetype'), /* Safari, Android, iOS */
+  src: url('assets/fonts/yngdieng-extended-0.woff') format('woff'),
+    /* Pretty Modern Browsers */ url('assets/fonts/yngdieng-extended-0.ttf')
+      format('truetype'); /* Safari, Android, iOS */
 }
 
 @font-face {
   font-family: 'Ext-1';
-  src: url('assets/fonts/yngdieng-extended-1.woff') format('woff'), /* Pretty Modern Browsers */
-       url('assets/fonts/yngdieng-extended-1.ttf')  format('truetype'), /* Safari, Android, iOS */
+  src: url('assets/fonts/yngdieng-extended-1.woff') format('woff'),
+    /* Pretty Modern Browsers */ url('assets/fonts/yngdieng-extended-1.ttf')
+      format('truetype'); /* Safari, Android, iOS */
 }
 
-$background-color: #F7EFED;
+$background-color: #f7efed;
 
 body {
-    margin: 0px;
-    background-color: $background-color
+  margin: 0px;
+  background-color: $background-color;
 }
 
 .content {
-    padding-left: 2rem;
-    padding-right: 2rem;
+  padding-left: 2rem;
+  padding-right: 2rem;
 }
 
 .text-yngping {
-    font-family: "Lucida Console", Monaco, monospace;
+  font-family: 'Lucida Console', Monaco, monospace;
 }
 
 .result-card {
-    margin-bottom: 10px;
-    margin-left: 5px;
-    margin-right: 5px;
-    border-radius: 5px;
-    background-color: rgba(220, 210, 208, 1);
-    
-    .result-hanzi {
-        font-family: 'Noto Serif SC', 'Noto Serif TC', 'Ext-0', 'Ext-1', serif;
-        font-size: 1.8em;
-    }
+  margin-bottom: 10px;
+  margin-left: 5px;
+  margin-right: 5px;
+  border-radius: 5px;
+  background-color: rgba(220, 210, 208, 1);
 
-    .detail-link {
-        &:hover {
-            color: black;
-            cursor: pointer;
-        }
-        color: #293249;
+  .result-hanzi {
+    font-family: 'Noto Serif SC', 'Noto Serif TC', 'Ext-0', 'Ext-1', serif;
+    font-size: 1.8em;
+  }
+
+  .detail-link {
+    &:hover {
+      color: black;
+      cursor: pointer;
     }
+    color: #293249;
+  }
 }
 
 .mat-card {
-    padding: 12px !important;
+  padding: 12px !important;
 }
 
 .unihan-text {
-    font-family: 'Noto Serif SC', 'Noto Serif TC', 'Ext-0', 'Ext-1', serif;
-
+  font-family: 'Noto Serif SC', 'Noto Serif TC', 'Ext-0', 'Ext-1', serif;
 }
 
 // Details text on search result card
 .source {
-    font-size: 14px;
+  font-size: 14px;
 }
+
+// BEGIN word details
+.section-title {
+  margin-block-end: 4px;
+  .hanzi {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-right: 0.2em;
+  }
+
+  .yngping {
+    font-size: 1rem;
+    color: #8f7b7b;
+  }
+}
+
+.explanation {
+  ol {
+    counter-reset: item;
+    padding-left: 1rem;
+    margin-block-start: 0.2em;
+  }
+
+  ul.examples-list {
+    margin: 0.5rem 1rem 0 0.5rem;
+    padding-left: 0.5rem;
+    color: #371a01;
+  }
+
+  li {
+    display: block;
+    padding-bottom: 4px;
+  }
+
+  li.sense:before {
+    content: counters(item, '.') '. ';
+    counter-increment: item;
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.9rem;
+  }
+
+  .sense {
+    font-size: 1.2rem;
+  }
+
+  .example {
+    font-size: 1rem;
+  }
+
+  .current-word {
+    font-weight: 900;
+    color: #aa5518;
+  }
+
+  .label {
+    font-family: sans-serif;
+    color: #fff;
+    background-color: #69656f;
+    border-radius: 3px;
+    font-size: 0.8em;
+    padding: 2px 0.4em 2px 0.4em;
+  }
+
+  p.notes {
+    margin-block-start: 0.2em;
+  }
+}
+
+.details-source {
+  font-family: sans-serif;
+  font-size: 12px;
+  color: #69656f;
+  a {
+    font-size: 12px;
+    color: #69656f;
+  }
+}
+
+// Top-level points
+.explanation > ol > li {
+  // All child points
+  padding-top: 4px;
+}
+
+.explanation > ol {
+  padding-left: 10px;
+}
+
+.raw-explanation {
+  font-family: monospace;
+  font-size: 12px;
+}
+
+// END word details

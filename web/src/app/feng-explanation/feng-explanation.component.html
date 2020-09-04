@@ -1,4 +1,4 @@
-<div class="feng-title" *ngIf="showTitle">
+<div class="section-title" *ngIf="showTitle">
     <span class="unihan-text hanzi">{{ fengDoc.getHanziCanonical() }}</span>
     <span class="yngping">{{ fengDoc.getYngpingUnderlying() }}</span>
     <span class="yngping" *ngIf="fengDoc.getYngpingUnderlying() !== fengDoc.getYngpingCanonical()"> →

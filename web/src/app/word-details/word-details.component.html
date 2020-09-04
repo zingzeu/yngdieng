@@ -6,6 +6,12 @@
             <app-feng-explanation 
             *ngIf="source.hasFeng()"
             [fengDoc]="source.getFeng()"></app-feng-explanation>
+            <app-contrib-explanation 
+            *ngIf="source.hasContrib()"
+            [doc]="source.getContrib()"></app-contrib-explanation>
+            <app-historical-details 
+            *ngIf="source.hasCiklinDfd()"
+            [doc]="source.getCiklinDfd()"></app-historical-details>
         </ng-container>
     </div>
 </ng-container>
