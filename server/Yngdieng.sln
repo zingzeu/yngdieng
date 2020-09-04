@@ -11,6 +11,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yngdieng.Backend.Tests", ".
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yngdieng.Common", "common\Yngdieng.Common.csproj", "{949BA8B5-6CA6-477C-AAC4-E2DC8E9A3580}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Yngdieng.Search.Common", "Yngdieng.Search.Common\Yngdieng.Search.Common.csproj", "{58A87B79-6242-4AAB-BDF6-FE4ED41C4C97}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -37,5 +39,9 @@ Global
 		{949BA8B5-6CA6-477C-AAC4-E2DC8E9A3580}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{949BA8B5-6CA6-477C-AAC4-E2DC8E9A3580}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{949BA8B5-6CA6-477C-AAC4-E2DC8E9A3580}.Release|Any CPU.Build.0 = Release|Any CPU
+		{58A87B79-6242-4AAB-BDF6-FE4ED41C4C97}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{58A87B79-6242-4AAB-BDF6-FE4ED41C4C97}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{58A87B79-6242-4AAB-BDF6-FE4ED41C4C97}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{58A87B79-6242-4AAB-BDF6-FE4ED41C4C97}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

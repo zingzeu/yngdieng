@@ -6,15 +6,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-      <PackageReference Include="Lucene.Net.Contrib" Version="3.0.3" />
       <PackageReference Include="Lucene.Net.QueryParser" Version="4.8.0-beta00011" />
-    <PackageReference Include="Lucene.Net.Analysis.Common" Version="4.8.0-beta00011" />
-    <PackageReference Include="Lucene.Net" Version="4.8.0-beta00011" />
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
-    <PackageReference Include="System.IO.MemoryMappedFiles" Version="4.3.0" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\common\Yngdieng.Common.csproj" />
+    <ProjectReference Include="..\Yngdieng.Search.Common\Yngdieng.Search.Common.csproj" />
   </ItemGroup>
 </Project>

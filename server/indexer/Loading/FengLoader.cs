@@ -41,7 +41,7 @@ namespace Yngdieng.Indexer.Loading
             var cleanExplanation =
                       zingzeudata.ZingzeuData.Shared.StringHelpers.ReplaceAllBraces(
                           f.ExplanationRaw);
-            var structured = SafeParseExplanation(cleanExplanation); 
+            var structured = SafeParseExplanation(cleanExplanation);
             var flattened = FlattenExplanation(structured);
             var tmp = new FengDocument
             {

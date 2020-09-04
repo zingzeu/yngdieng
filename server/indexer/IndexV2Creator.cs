@@ -1,14 +1,19 @@
 using System;
 using System.IO;
+using System.Collections.Generic;
 using Google.Protobuf;
 using Lucene.Net.Documents;
 using Lucene.Net.Index;
 using Lucene.Net.Store;
 using Lucene.Net.Util;
 using Lucene.Net.Analysis.Standard;
+using Lucene.Net.Analysis;
+using Lucene.Net.Analysis.Miscellaneous;
+using Lucene.Net.Analysis.Cn.Smart;
 using Yngdieng.Indexer.Loading;
 using Yngdieng.Indexer.Processing;
 using Yngdieng.Protos;
+using Yngdieng.Search.Common;
 
 namespace Yngdieng.Indexer
 {
@@ -85,29 +90,26 @@ namespace Yngdieng.Indexer
 
     private void CreateLuceneIndex(YngdiengIndex index)
     {
-      // Ensures index backwards compatibility
-      var AppLuceneVersion = LuceneVersion.LUCENE_48;
-
       var dirInfo = Path.GetFullPath(Path.Join(outputFolder, "lucene"));
       Console.WriteLine($"Writing to {dirInfo}");
       using (var dir = FSDirectory.Open(new DirectoryInfo(dirInfo)))
       {
-
-        //create an analyzer to process the text
-        var analyzer = new StandardAnalyzer(AppLuceneVersion);
-
-        //create an index writer
-        var indexConfig = new IndexWriterConfig(AppLuceneVersion, analyzer);
+        var indexConfig = new IndexWriterConfig(LuceneUtils.AppLuceneVersion,
+          LuceneUtils.GetAnalyzer());
         using (var writer = new IndexWriter(dir, indexConfig))
         {
-
+          writer.DeleteAll();
           foreach (var yDoc in index.YngdiengDocuments)
           {
-            var doc = new Lucene.Net.Documents.Document{
-                    new StringField("yngping", yDoc.YngpingSandhi, Field.Store. NO),
-                    new StringField("doc_id", yDoc.DocId,Field.Store.YES),
-                    new StringField("hanzi", yDoc.HanziCanonical.Regular, Field.Store.NO),
-                };
+            var doc = new Lucene.Net.Documents.Document {
+                            new StringField("yngping", yDoc.YngpingSandhi, Field.Store. NO),
+                            new StringField("doc_id", yDoc.DocId,Field.Store.YES),
+                            new StringField("hanzi", yDoc.HanziCanonical.Regular, Field.Store.NO)
+                        };
+            foreach (var e in yDoc.IndexingExtension.ExplanationText)
+            {
+              doc.Add(new TextField("explanation", e, Field.Store.NO));
+            }
             writer.AddDocument(doc);
 
           }
