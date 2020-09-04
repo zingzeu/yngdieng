@@ -14,6 +14,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 })
 export class AudioPlayerComponent implements OnInit {
   public PlayerStateEnum = PlayerState;
+
   @Input('audioUrl') audioUrl: string;
   state: PlayerState = PlayerState.Idle;
   private currentAudio: HTMLAudioElement = null;
