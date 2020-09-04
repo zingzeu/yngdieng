@@ -29,8 +29,8 @@ namespace Yngdieng.Indexer.Loading
           YngpingUnderlying = entry.PronUnderlying,
           YngpingSandhi = entry.PronSandhi,
           ExplanationRaw = entry.ExplanationRaw,
-          ExplanationStructured =
-                                          SafeParseExplanation(entry.ExplanationRaw)
+          ExplanationStructured = SafeParseExplanation(entry.ExplanationRaw),
+          Contributors = { entry.Contributors }
         };
         if (string.IsNullOrEmpty(entry.ZingzeuId))
         {
