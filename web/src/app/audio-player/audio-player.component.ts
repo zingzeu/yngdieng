@@ -36,7 +36,12 @@ export class AudioPlayerComponent implements OnInit {
     );
   }
 
+  get debugLocalStorage() {
+    return this.environment.showClearLocalStorage;
+  }
+
   onClicked() {
+    this.firstVisit();
     switch (this.state) {
       case PlayerState.Idle:
         console.log('playing + ' + this.audioUrl);
@@ -78,6 +83,10 @@ export class AudioPlayerComponent implements OnInit {
         localStorage.setItem('visited', 'yes');
       }
     }
+  }
+
+  clearStorage() {
+    localStorage.removeItem('visited');
   }
 }
 

@@ -3,3 +3,4 @@
     <mat-icon *ngIf="state === PlayerStateEnum.Loading">more_horiz</mat-icon>
     <mat-icon *ngIf="state === PlayerStateEnum.Playing">stop</mat-icon>
 </button>
+<button *ngIf="debugLocalStorage" (click)="clearStorage()">clear storage</button>

@@ -9,5 +9,6 @@ export const YngdiengStagingEnvironment: IYngdiengEnvironment = {
     enabled: true,
     showDebugToggle: true,
   },
-  showAudioPlayerButtons: true
-}
+  showAudioPlayerButtons: true,
+  showClearLocalStorage: false,
+};

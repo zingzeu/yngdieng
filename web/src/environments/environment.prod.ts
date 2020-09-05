@@ -10,4 +10,5 @@ export const YngdiengProdEnvironment: IYngdiengEnvironment = {
     showDebugToggle: false,
   },
   showAudioPlayerButtons: false,
+  showClearLocalStorage: false,
 };
