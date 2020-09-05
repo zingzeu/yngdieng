@@ -102,13 +102,13 @@ namespace Yngdieng.Indexer
           foreach (var yDoc in index.YngdiengDocuments)
           {
             var doc = new Lucene.Net.Documents.Document {
-                            new StringField("doc_id", yDoc.DocId,Field.Store.YES),
-                            new StringField("yngping", yDoc.YngpingSandhi, Field.Store.NO),
-                            new StringField("hanzi", yDoc.HanziCanonical.Regular, Field.Store.NO)
+                            new StringField(LuceneUtils.Fields.DocId, yDoc.DocId,Field.Store.YES),
+                            new StringField(LuceneUtils.Fields.Yngping, yDoc.YngpingSandhi, Field.Store.NO),
+                            new TextField(LuceneUtils.Fields.Hanzi, yDoc.HanziCanonical.Regular, Field.Store.NO)
                         };
             foreach (var e in yDoc.IndexingExtension.ExplanationText)
             {
-              doc.Add(new TextField("explanation", e, Field.Store.NO));
+              doc.Add(new TextField(LuceneUtils.Fields.Explanation, e, Field.Store.NO));
             }
             writer.AddDocument(doc);
           }

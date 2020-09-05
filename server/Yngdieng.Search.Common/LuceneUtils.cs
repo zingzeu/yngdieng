@@ -15,12 +15,21 @@ namespace Yngdieng.Search.Common
         public static Analyzer GetAnalyzer()
         {
             var analyzerPerField = new Dictionary<string, Analyzer> {
-                { "explanation", new SmartChineseAnalyzer(AppLuceneVersion)}
+                { Fields.Hanzi, new SmartChineseAnalyzer(AppLuceneVersion)},
+                { Fields.Explanation, new SmartChineseAnalyzer(AppLuceneVersion)}
                 };
             // create an analyzer to process the text
             return new PerFieldAnalyzerWrapper(
               /* default=*/ new StandardAnalyzer(AppLuceneVersion),
               analyzerPerField);
+        }
+
+        public static class Fields {
+          public static string DocId {get=>"doc_id";}
+
+          public static string Hanzi {get=>"hanzi";}
+          public static string Yngping {get=>"yngping";}
+          public static string Explanation {get=>"explanation";}
         }
     }
 }

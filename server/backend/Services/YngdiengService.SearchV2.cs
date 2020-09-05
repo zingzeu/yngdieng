@@ -30,18 +30,19 @@ namespace Yngdieng.Backend.Services
 
         private IEnumerable<SearchV2Response.Types.SearchCard> HandleHanziQuery(string queryText)
         {
-            var queryParser = new MultiFieldQueryParser(LuceneUtils.AppLuceneVersion, new string[] { "hanzi", "explanation" },
+            var queryParser = new MultiFieldQueryParser(LuceneUtils.AppLuceneVersion, 
+            new string[] { LuceneUtils.Fields.Hanzi, LuceneUtils.Fields.Explanation },
                         LuceneUtils.GetAnalyzer(),
                         new Dictionary<string, float>{
-                {"hanzi", 10},
-                {"explanation", 1}
+                {LuceneUtils.Fields.Hanzi, 100},
+                {LuceneUtils.Fields.Explanation, 1}
                         });
             var query = queryParser.Parse(queryText);
             var searcher = this._indexHolder.LuceneIndexSearcher;
             var results = searcher.Search(query, 100);
             return results.ScoreDocs.Select(sd =>
            {
-               var docId = searcher.Doc(sd.Doc).GetField("doc_id").GetStringValue();
+               var docId = searcher.Doc(sd.Doc).GetField(LuceneUtils.Fields.DocId).GetStringValue();
                var ydDoc = _indexHolder.GetIndex().YngdiengDocuments.Single(y => y.DocId == docId);
 
                return new SearchV2Response.Types.SearchCard
