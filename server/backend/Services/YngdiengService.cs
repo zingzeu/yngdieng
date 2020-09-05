@@ -1,5 +1,7 @@
 using Yngdieng.Protos;
 using Microsoft.Extensions.Logging;
+using System;
+
 namespace Yngdieng.Backend.Services
 {
   public partial class YngdiengService : Yngdieng.Protos.YngdiengService.YngdiengServiceBase
@@ -36,6 +38,13 @@ namespace Yngdieng.Backend.Services
         }
       }
       return count;
+    }
+
+    public static string Truncate(this string value, int maxLength)
+    {
+      if (string.IsNullOrEmpty(value)) { return value; }
+
+      return value.Substring(0, Math.Min(value.Length, maxLength));
     }
   }
 }

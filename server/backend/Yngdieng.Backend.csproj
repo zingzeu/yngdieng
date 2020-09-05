@@ -16,6 +16,8 @@
 
     <ItemGroup>
       <ProjectReference Include="..\protos\Yngdieng.Protos.csproj" />
+      <ProjectReference Include="..\Yngdieng.Search.Common\Yngdieng.Search.Common.csproj" />
+      <ProjectReference Include="..\common\Yngdieng.Common.csproj" />
     </ItemGroup>
 
 </Project>

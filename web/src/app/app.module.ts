@@ -38,6 +38,8 @@ import {YngpingHelpDialogComponent} from './yngping-help-dialog/yngping-help-dia
 import {ContribExplanationComponent} from './contrib-explanation/contrib-explanation.component';
 import {HistoricalDetailsComponent} from './historical-details/historical-details.component';
 import {SearchV2ResultComponent} from './search-v2-result/search-v2-result.component';
+import {WordCardComponent} from './word-card/word-card.component';
+import {RichtextFlattenPipe} from './richtext-flatten.pipe';
 
 @NgModule({
   declarations: [
@@ -65,6 +67,8 @@ import {SearchV2ResultComponent} from './search-v2-result/search-v2-result.compo
     ContribExplanationComponent,
     HistoricalDetailsComponent,
     SearchV2ResultComponent,
+    WordCardComponent,
+    RichtextFlattenPipe,
   ],
   imports: [
     AppRoutingModule,

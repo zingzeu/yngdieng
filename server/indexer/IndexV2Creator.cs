@@ -102,8 +102,8 @@ namespace Yngdieng.Indexer
           foreach (var yDoc in index.YngdiengDocuments)
           {
             var doc = new Lucene.Net.Documents.Document {
-                            new StringField("yngping", yDoc.YngpingSandhi, Field.Store. NO),
                             new StringField("doc_id", yDoc.DocId,Field.Store.YES),
+                            new StringField("yngping", yDoc.YngpingSandhi, Field.Store.NO),
                             new StringField("hanzi", yDoc.HanziCanonical.Regular, Field.Store.NO)
                         };
             foreach (var e in yDoc.IndexingExtension.ExplanationText)
@@ -111,7 +111,6 @@ namespace Yngdieng.Indexer
               doc.Add(new TextField("explanation", e, Field.Store.NO));
             }
             writer.AddDocument(doc);
-
           }
           writer.Flush(triggerMerge: false, applyAllDeletes: false);
         }
