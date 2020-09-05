@@ -8,6 +8,7 @@ import "shared/documents.proto";
 
 service YngdiengService {
     rpc Search (SearchRequest) returns (SearchResponse);
+    rpc SearchV2 (SearchV2Request) returns (SearchV2Response);
     rpc GetAggregatedDocument(GetAggregatedDocumentRequest) returns (HistoricalDocument);
     rpc GetFengDocument(GetFengDocumentRequest) returns (FengDocument);
     rpc GetYngdiengDocument(GetYngdiengDocumentRequest) returns (YngdiengDocument);
@@ -29,6 +30,54 @@ message SearchResponse {
 
     // Total number of results.
     int64 length = 3;
+}
+
+message SearchV2Request {
+    string query = 1;
+    string pagination_token = 2;
+}
+
+message SearchV2Response {
+
+    repeated SearchCard result_cards = 1;
+
+    string next_page_token = 2;
+
+    message SearchCard {
+        oneof card {
+            NoResultsCard no_results = 1;
+            EndOfResultsCard end_of_results = 2;
+            WordCard word = 3;
+        }
+
+        message EndOfResultsCard {}
+
+        message NoResultsCard {}
+
+        message WordCard {
+
+            string id = 1;
+
+            RichText yngping = 2;
+
+            RichText hanzi = 3;
+
+            RichText details = 4;
+        }
+
+        message MonoHanziCard {
+
+        }
+    }
+}
+
+message RichText {
+    repeated Segment segments = 1;
+    
+    message Segment {
+        string text = 1;
+        bool highlighted = 2;
+    }
 }
 
 message SearchResultRow {
