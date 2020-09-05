@@ -2283,15 +2283,15 @@ babel-plugin-transform-react-jsx@^6.24.1:
     babel-plugin-syntax-jsx "^6.8.0"
     babel-runtime "^6.22.0"
 
-babel-plugin-transform-taroapi@3.0.8:
-  version "3.0.8"
-  resolved "https://registry.yarnpkg.com/babel-plugin-transform-taroapi/-/babel-plugin-transform-taroapi-3.0.8.tgz#371ae94e83663c21e421f52f98bf00e4934f4afb"
-  integrity sha512-dwvnLGX924iOYe6UhG/dv2eziZjBOdDlqyiPw+oGKDvn0DaZdEHJYQdcWr6tAfIaiR0sENu3+KVwiwET1+qu9g==
+babel-plugin-transform-taroapi@3.0.9:
+  version "3.0.9"
+  resolved "https://registry.yarnpkg.com/babel-plugin-transform-taroapi/-/babel-plugin-transform-taroapi-3.0.9.tgz#390fefe266a15c184d8605584ad4573f97c12f57"
+  integrity sha512-3vwmrKCsjn6PFAtiQ9CRaD2VkJI4HRzHTGQ7Vl9UX0xS+oR+BAQLW/BbeEwMg77hMrUnZ2vt6bcwAnXmvd5ksQ==
 
-babel-preset-taro@3.0.8:
-  version "3.0.8"
-  resolved "https://registry.yarnpkg.com/babel-preset-taro/-/babel-preset-taro-3.0.8.tgz#50321285541160f5ca636044cee753a271e31bf2"
-  integrity sha512-NX6mgxXuxrFv5vAptM04Bx/bH2DqcLl1xK96gP0JiP3iYkOcDSPzOtq7M+TsGoH4BMJPzmjeCky5F4/CXx1kKA==
+babel-preset-taro@3.0.9:
+  version "3.0.9"
+  resolved "https://registry.yarnpkg.com/babel-preset-taro/-/babel-preset-taro-3.0.9.tgz#a449e4edc63f45c59823712634840b509fcde601"
+  integrity sha512-q5LQgx3v1aEkbBnuZWbgnBvhG5aG/zJprcRS5MzypdPqrQVoZUkCOJ4YanWszKRM6/PRwZxtM22sLKuizTyAjQ==
   dependencies:
     "@babel/core" "^7.8.0"
     "@babel/plugin-proposal-class-properties" "^7.7.4"
@@ -2302,9 +2302,9 @@ babel-preset-taro@3.0.8:
     "@babel/preset-react" "^7.7.4"
     "@babel/preset-typescript" "^7.8.0"
     "@babel/runtime" "^7.7.4"
-    "@tarojs/taro-h5" "3.0.8"
+    "@tarojs/taro-h5" "3.0.9"
     babel-plugin-dynamic-import-node "^2.3.3"
-    babel-plugin-transform-taroapi "3.0.8"
+    babel-plugin-transform-taroapi "3.0.9"
     core-js "^3.6.3"
 
 babel-runtime@^6.0.0, babel-runtime@^6.22.0, babel-runtime@^6.23.0, babel-runtime@^6.26.0:
