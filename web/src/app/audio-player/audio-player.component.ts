@@ -7,7 +7,7 @@ import {
 
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {MatDialog} from '@angular/material/dialog';
-import {YngpingHelpDialogComponent} from '../yngping-help-dialog/yngping-help-dialog.component';
+import {AudioAlertDialogComponent} from '../audio-alert-dialog/audio-alert-dialog.component';
 
 @Component({
   selector: 'app-audio-player',
@@ -79,7 +79,7 @@ export class AudioPlayerComponent implements OnInit {
       var visits = localStorage.getItem('visited');
       if (visits == null) {
         console.log('First visit');
-        this.dialog.open(YngpingHelpDialogComponent, {width: '80vw'});
+        this.dialog.open(AudioAlertDialogComponent, {width: '80vw'});
         localStorage.setItem('visited', 'yes');
       }
     }
