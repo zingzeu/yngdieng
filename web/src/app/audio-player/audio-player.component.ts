@@ -6,6 +6,8 @@ import {
 } from '../../environments/environment';
 
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatDialog} from '@angular/material/dialog';
+import {YngpingHelpDialogComponent} from '../yngping-help-dialog/yngping-help-dialog.component';
 
 @Component({
   selector: 'app-audio-player',
@@ -21,7 +23,8 @@ export class AudioPlayerComponent implements OnInit {
 
   constructor(
     @Inject(YNGDIENG_ENVIRONMENT) private environment: IYngdiengEnvironment,
-    private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar,
+    private dialog: MatDialog
   ) {}
 
   ngOnInit(): void {}
@@ -63,6 +66,17 @@ export class AudioPlayerComponent implements OnInit {
       case PlayerState.Disabled:
         console.log('Do nothing');
         break;
+    }
+  }
+
+  private firstVisit() {
+    if (localStorage) {
+      var visits = localStorage.getItem('visited');
+      if (visits == null) {
+        console.log('First visit');
+        this.dialog.open(YngpingHelpDialogComponent, {width: '80vw'});
+        localStorage.setItem('visited', 'yes');
+      }
     }
   }
 }
