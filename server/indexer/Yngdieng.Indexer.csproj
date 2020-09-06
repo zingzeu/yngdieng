@@ -8,12 +8,14 @@
   <ItemGroup>
     <ProjectReference Include="..\protos\Yngdieng.Protos.csproj" />
     <ProjectReference Include="..\common\Yngdieng.Common.csproj" />
+    <ProjectReference Include="..\Yngdieng.Search.Common\Yngdieng.Search.Common.csproj" />
   </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="CsvHelper" Version="15.0.5" />
     <PackageReference Include="FSharp.Core" Version="4.7.2" />
-    <PackageReference Include="ZingzeuData.Shared" Version="1.1.1" />
+    <PackageReference Include="LibHokchew.Shared" Version="0.1.0" />
+    <PackageReference Include="ZingzeuData.Shared" Version="1.1.2" />
   </ItemGroup>
 
   <!--
