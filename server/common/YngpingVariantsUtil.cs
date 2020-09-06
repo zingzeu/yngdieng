@@ -11,7 +11,8 @@ namespace Yngdieng.Common
     {
       var tmp = new YngpingWord(canonical);
       tmp.Transform(@"^\{?([a-z]+)([0-5]*)\}?$", match => $"{match.Groups[1]}");
-      tmp.Derive(@"^([gkhlnmbpdtzcs]|ng)[aoeiuy]+(ng|h|k)?$", match => $"{match.Groups[1]}");
+      // 首字母缩写
+      //tmp.Derive(@"^([gkhlnmbpdtzcs]|ng)[aoeiuy]+(ng|h|k)?$", match => $"{match.Groups[1]}");
       tmp.Derive(@"^([lnm]|ng).+$", match => $"{match.Groups[1]}");
 
       // ——————模糊音——————
@@ -131,6 +132,7 @@ namespace Yngdieng.Common
       var tmp = new List<string>();
       tmp.Add(string.Join(" ", canonicalSyllables));
       tmp.AddRange(derivatives.Select(w => string.Join(" ", w)));
+      tmp.AddRange(derivatives.Select(w => string.Join("", w)));
       return tmp.Distinct();
     }
   }
