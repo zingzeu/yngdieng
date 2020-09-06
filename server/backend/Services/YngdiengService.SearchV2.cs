@@ -102,14 +102,14 @@ namespace Yngdieng.Backend.Services
                 ?.Feng.ExplanationTrad;
             if (fengExplation != null)
             {
-                return fengExplation.Truncate(50);
+                return fengExplation.Truncate(100);
             }
             var contribExplanation = ydDoc.Sources
                         .FirstOrDefault(s => s.SourceCase == YngdiengDocument.Types.Source.SourceOneofCase.Contrib)
                         ?.Contrib.ExplanationRaw; //TODO:fix. explanation flattened.
             if (contribExplanation != null)
             {
-                return contribExplanation.Truncate(50);
+                return contribExplanation.Truncate(100);
             }
             return string.Empty;
         }

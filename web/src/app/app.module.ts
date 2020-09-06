@@ -40,6 +40,8 @@ import {HistoricalDetailsComponent} from './historical-details/historical-detail
 import {SearchV2ResultComponent} from './search-v2-result/search-v2-result.component';
 import {WordCardComponent} from './word-card/word-card.component';
 import {RichtextFlattenPipe} from './richtext-flatten.pipe';
+import {NoResultsCardComponent} from './no-results-card/no-results-card.component';
+import {EndOfResultsCardComponent} from './end-of-results-card/end-of-results-card.component';
 
 @NgModule({
   declarations: [
@@ -69,6 +71,8 @@ import {RichtextFlattenPipe} from './richtext-flatten.pipe';
     SearchV2ResultComponent,
     WordCardComponent,
     RichtextFlattenPipe,
+    NoResultsCardComponent,
+    EndOfResultsCardComponent,
   ],
   imports: [
     AppRoutingModule,
