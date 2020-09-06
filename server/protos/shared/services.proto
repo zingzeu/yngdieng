@@ -106,11 +106,13 @@ message GetAggregatedDocumentRequest{
 }
 
 // Internal Query
-// Next ID: 7
+// Next ID: 9
 message Query {
     oneof query {
         // 按模糊音查询
         string fuzzy_pron_query = 1;
+        // 
+        string yngping_tone_pattern_query = 8;
         // 音韵地位查询
         PhonologyQuery phonology_query = 2;
         // 汉字查询（单字或词汇）

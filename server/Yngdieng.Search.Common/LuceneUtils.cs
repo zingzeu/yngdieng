@@ -26,9 +26,16 @@ namespace Yngdieng.Search.Common
 
         public static class Fields {
           public static string DocId {get=>"doc_id";}
-
           public static string Hanzi {get=>"hanzi";}
+          /// <summary>
+          /// Exact sandhi yngping
+          /// </summary>
           public static string Yngping {get=>"yngping";}
+          
+          /// <summary>
+          /// 连读后的声调.
+          /// </summary>
+          public static string YngpingSandhiTonePattern {get=>"yngping_sandhi_tone_pattern";}
           public static string Explanation {get=>"explanation";}
         }
     }

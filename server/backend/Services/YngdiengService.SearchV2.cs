@@ -33,6 +33,16 @@ namespace Yngdieng.Backend.Services
                             NextPageToken = ""
                         });
                     }
+                case Yngdieng.Protos.Query.QueryOneofCase.YngpingTonePatternQuery:
+                    {
+                       return Task.FromResult(new SearchV2Response
+                        {
+                            ResultCards = {HandleYngpingTonePatternQuery(query.YngpingTonePatternQuery),
+                               EndOfResultsCard()
+                               },
+                            NextPageToken = ""
+                        });
+                    }
                 case Yngdieng.Protos.Query.QueryOneofCase.FuzzyPronQuery:
                     {
                        return Task.FromResult(new SearchV2Response
@@ -57,6 +67,14 @@ namespace Yngdieng.Backend.Services
                 {LuceneUtils.Fields.Yngping, 100},
                         });
             var query = queryParser.Parse(queryText);
+            var searcher = this._indexHolder.LuceneIndexSearcher;
+            var results = searcher.Search(query, 100);
+            return RenderDocs(results.ScoreDocs);
+        }
+
+        private IEnumerable<SearchV2Response.Types.SearchCard> HandleYngpingTonePatternQuery(string queryText)
+        {
+            var query = new WildcardQuery(new Lucene.Net.Index.Term(LuceneUtils.Fields.YngpingSandhiTonePattern, queryText));
             var searcher = this._indexHolder.LuceneIndexSearcher;
             var results = searcher.Search(query, 100);
             return RenderDocs(results.ScoreDocs);

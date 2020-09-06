@@ -108,6 +108,11 @@ namespace Yngdieng.Backend.Services
         return query;
       }
 
+      if (keyValuePairs.ContainsKey("tones")) {
+        query.YngpingTonePatternQuery = keyValuePairs["tones"];
+        return query;
+      }
+
       if (remainingTokens.Length > 0 && remainingTokens.All(t => rAlphaNumeric.IsMatch(t)))
       {
         query.FuzzyPronQuery = String.Join(" ", remainingTokens);
