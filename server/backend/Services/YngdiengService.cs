@@ -44,7 +44,10 @@ namespace Yngdieng.Backend.Services
     {
       if (string.IsNullOrEmpty(value)) { return value; }
 
-      return value.Substring(0, Math.Min(value.Length, maxLength));
+      if (value.Length > maxLength) {
+        return value.Substring(0, maxLength-3)+"...";
+      }
+      return value;
     }
 
     public static string OrElse(this string value, string alt) {
