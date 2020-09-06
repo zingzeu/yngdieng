@@ -48,6 +48,11 @@ message SearchV2Response {
             NoResultsCard no_results = 1;
             EndOfResultsCard end_of_results = 2;
             WordCard word = 3;
+            GenericMessageCard generic_message = 4;
+        }
+
+        message GenericMessageCard {
+            RichText message = 1;
         }
 
         message EndOfResultsCard {}

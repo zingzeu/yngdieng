@@ -20,42 +20,33 @@ namespace Yngdieng.Backend.Services
                                                         ServerCallContext context)
         {
             var query = QueryParser.Parse(request.Query);
+            var resultCards = new List<SearchV2Response.Types.SearchCard>();
+            resultCards.Add(GenericMessageCard("你正在試用榕典搜索V2。如遇問題，請將截圖和網址發送到 radium@mindong.asia。"));
+
             switch (query.QueryCase)
             {
-
                 case Yngdieng.Protos.Query.QueryOneofCase.HanziQuery:
-                    {
-                        return Task.FromResult(new SearchV2Response
-                        {
-                            ResultCards = {HandleHanziQuery(query.HanziQuery),
-                               EndOfResultsCard()
-                               },
-                            NextPageToken = ""
-                        });
-                    }
+                    resultCards.AddRange(HandleHanziQuery(query.HanziQuery));
+                    break;
                 case Yngdieng.Protos.Query.QueryOneofCase.YngpingTonePatternQuery:
-                    {
-                       return Task.FromResult(new SearchV2Response
-                        {
-                            ResultCards = {HandleYngpingTonePatternQuery(query.YngpingTonePatternQuery),
-                               EndOfResultsCard()
-                               },
-                            NextPageToken = ""
-                        });
-                    }
+                    resultCards.AddRange(HandleYngpingTonePatternQuery(query.YngpingTonePatternQuery));
+                    break;
                 case Yngdieng.Protos.Query.QueryOneofCase.FuzzyPronQuery:
-                    {
-                       return Task.FromResult(new SearchV2Response
-                        {
-                            ResultCards = {HandleFuzzyYngpingQuery(query.FuzzyPronQuery),
-                               EndOfResultsCard()
-                               },
-                            NextPageToken = ""
-                        });
-                    }
+                    resultCards.AddRange(HandleFuzzyYngpingQuery(query.FuzzyPronQuery));
+                    break;
                 default:
-                    throw new Exception("Not implemented");
+                    _logger.LogError($"Unsupported query type: {query.QueryCase}");
+                    resultCards.Add(GenericMessageCard($"不支持的搜索類型： {query.QueryCase}"));
+                    break;
             }
+            return Task.FromResult(new SearchV2Response
+            {
+                ResultCards = {
+                                resultCards,
+                                EndOfResultsCard()
+                               },
+                NextPageToken = ""
+            });
         }
 
         private IEnumerable<SearchV2Response.Types.SearchCard> HandleFuzzyYngpingQuery(string queryText)
@@ -114,8 +105,8 @@ namespace Yngdieng.Backend.Services
             return string.Empty;
         }
 
-
-        private IEnumerable<SearchV2Response.Types.SearchCard> RenderDocs(ScoreDoc[] scoreDocs) {
+        private IEnumerable<SearchV2Response.Types.SearchCard> RenderDocs(ScoreDoc[] scoreDocs)
+        {
             var searcher = this._indexHolder.LuceneIndexSearcher;
 
             return scoreDocs.Select(sd =>
@@ -137,7 +128,17 @@ namespace Yngdieng.Backend.Services
            });
         }
 
-
+        private static SearchV2Response.Types.SearchCard GenericMessageCard(string message)
+        {
+            return new SearchV2Response.Types.SearchCard
+            {
+                GenericMessage = new SearchV2Response.Types.SearchCard.Types
+                                                          .GenericMessageCard()
+                {
+                    Message = RichTextUtil.FromString(message)
+                }
+            };
+        }
         private static SearchV2Response.Types.SearchCard EndOfResultsCard()
         {
             return new SearchV2Response.Types.SearchCard
