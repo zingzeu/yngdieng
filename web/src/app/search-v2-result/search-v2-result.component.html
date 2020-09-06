@@ -1,0 +1,10 @@
+<p>search-v2</p>
+
+<div *ngFor="let card of results">
+    <app-word-card [card]="card.getWord()" *ngIf="card.hasWord()">
+    </app-word-card>
+    <ng-container *ngIf="!card.hasWord()">
+        {{ s(card) }}
+    </ng-container>
+    <br /><br />
+</div>

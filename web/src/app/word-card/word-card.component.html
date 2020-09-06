@@ -1,0 +1,8 @@
+<div>
+    {{card.getYngping() | rf}}
+</div>
+<div>{{card.getHanzi() | rf}}</div>
+<div>{{card.getDetails() | rf}}</div>
+<div>{{card.getScore()}}</div>
+<a routerLink="/w/{{card.getId()}}">{{card.getId()}}</a>
+<br />
