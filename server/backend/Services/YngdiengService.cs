@@ -46,5 +46,12 @@ namespace Yngdieng.Backend.Services
 
       return value.Substring(0, Math.Min(value.Length, maxLength));
     }
+
+    public static string OrElse(this string value, string alt) {
+      if (string.IsNullOrEmpty(value)) {
+        return alt;
+      }
+      return value;
+    }
   }
 }
