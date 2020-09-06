@@ -1,29 +1,38 @@
 using Yngdieng.Protos;
-
+using Lucene.Net.Index;
+using Lucene.Net.Search;
+using Lucene.Net.Store;
+using Lucene.Net.Util;
+using Lucene.Net.QueryParsers.Classic;
 namespace Yngdieng.Backend
 {
-    public interface IIndexHolder
+  public interface IIndexHolder
+  {
+    void StoreIndex(YngdiengIndex index);
+    YngdiengIndex GetIndex();
+
+    IndexSearcher LuceneIndexSearcher { get; set; }
+
+  }
+
+  public sealed class IndexHolder : IIndexHolder
+  {
+    private YngdiengIndex index = new YngdiengIndex();
+    public IndexSearcher? LuceneIndexSearcher { get; set; }
+
+    public IndexHolder()
     {
-        void StoreIndex(YngdiengIndex index);
-        YngdiengIndex GetIndex();
     }
 
-    public sealed class IndexHolder : IIndexHolder
+    public void StoreIndex(YngdiengIndex index)
     {
-        private YngdiengIndex index = new YngdiengIndex();
-
-        public IndexHolder()
-        {
-        }
-
-        public void StoreIndex(YngdiengIndex index)
-        {
-            this.index = index;
-        }
-
-        public YngdiengIndex GetIndex()
-        {
-            return index;
-        }
+      this.index = index;
     }
+
+    public YngdiengIndex GetIndex()
+    {
+      return index;
+    }
+
+  }
 }
