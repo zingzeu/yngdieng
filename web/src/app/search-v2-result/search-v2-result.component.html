@@ -6,7 +6,13 @@
     <ng-container *ngFor="let card of results">
         <app-word-card [card]="card.getWord()" *ngIf="card.hasWord()">
         </app-word-card>
-        <ng-container *ngIf="!card.hasWord()">
+        <app-generic-message-card 
+            [message]="card.getGenericMessage().getMessage() | rf"
+            *ngIf="card.hasGenericMessage()">
+        </app-generic-message-card>
+        <app-end-of-results-card *ngIf="card.hasEndOfResults()">
+        </app-end-of-results-card>
+        <ng-container *ngIf="!card.hasWord() && !card.hasGenericMessage() && !card.hasEndOfResults()">
             {{ s(card) }}
         </ng-container>
     </ng-container>

@@ -42,6 +42,7 @@ import {WordCardComponent} from './word-card/word-card.component';
 import {RichtextFlattenPipe} from './richtext-flatten.pipe';
 import {NoResultsCardComponent} from './no-results-card/no-results-card.component';
 import {EndOfResultsCardComponent} from './end-of-results-card/end-of-results-card.component';
+import {GenericMessageCardComponent} from './generic-message-card/generic-message-card.component';
 
 @NgModule({
   declarations: [
@@ -73,6 +74,7 @@ import {EndOfResultsCardComponent} from './end-of-results-card/end-of-results-ca
     RichtextFlattenPipe,
     NoResultsCardComponent,
     EndOfResultsCardComponent,
+    GenericMessageCardComponent,
   ],
   imports: [
     AppRoutingModule,
