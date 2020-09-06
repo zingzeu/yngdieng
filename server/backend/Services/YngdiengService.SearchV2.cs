@@ -35,11 +35,31 @@ namespace Yngdieng.Backend.Services
                     }
                 case Yngdieng.Protos.Query.QueryOneofCase.FuzzyPronQuery:
                     {
-                        throw new Exception("Not implemented");
+                       return Task.FromResult(new SearchV2Response
+                        {
+                            ResultCards = {HandleFuzzyYngpingQuery(query.FuzzyPronQuery),
+                               EndOfResultsCard()
+                               },
+                            NextPageToken = ""
+                        });
                     }
                 default:
                     throw new Exception("Not implemented");
             }
+        }
+
+        private IEnumerable<SearchV2Response.Types.SearchCard> HandleFuzzyYngpingQuery(string queryText)
+        {
+            var queryParser = new MultiFieldQueryParser(LuceneUtils.AppLuceneVersion,
+            new string[] { LuceneUtils.Fields.Yngping },
+                        LuceneUtils.GetAnalyzer(),
+                        new Dictionary<string, float>{
+                {LuceneUtils.Fields.Yngping, 100},
+                        });
+            var query = queryParser.Parse(queryText);
+            var searcher = this._indexHolder.LuceneIndexSearcher;
+            var results = searcher.Search(query, 100);
+            return RenderDocs(results.ScoreDocs);
         }
 
         private IEnumerable<SearchV2Response.Types.SearchCard> HandleHanziQuery(string queryText)
@@ -54,23 +74,7 @@ namespace Yngdieng.Backend.Services
             var query = queryParser.Parse(queryText);
             var searcher = this._indexHolder.LuceneIndexSearcher;
             var results = searcher.Search(query, 100);
-            return results.ScoreDocs.Select(sd =>
-           {
-               var docId = searcher.Doc(sd.Doc).GetField(LuceneUtils.Fields.DocId).GetStringValue();
-               var ydDoc = _indexHolder.GetIndex().YngdiengDocuments.Single(y => y.DocId == docId);
-
-               return new SearchV2Response.Types.SearchCard
-               {
-                   Word = new SearchV2Response.Types.SearchCard.Types.WordCard
-                   {
-                       Id = docId,
-                       Yngping = RichTextUtil.FromString(ydDoc.YngpingSandhi.OrElse(ydDoc.YngpingUnderlying)),
-                       Hanzi = RichTextUtil.FromString(HanziUtils.HanziToString(ydDoc.HanziCanonical)),
-                       Details = RichTextUtil.FromString(FindBestExplanation(ydDoc)),
-                       Score = sd.Score
-                   }
-               };
-           });
+            return RenderDocs(results.ScoreDocs);
         }
 
         private static string FindBestExplanation(YngdiengDocument ydDoc)
@@ -91,6 +95,30 @@ namespace Yngdieng.Backend.Services
             }
             return string.Empty;
         }
+
+
+        private IEnumerable<SearchV2Response.Types.SearchCard> RenderDocs(ScoreDoc[] scoreDocs) {
+            var searcher = this._indexHolder.LuceneIndexSearcher;
+
+            return scoreDocs.Select(sd =>
+           {
+               var docId = searcher.Doc(sd.Doc).GetField(LuceneUtils.Fields.DocId).GetStringValue();
+               var ydDoc = _indexHolder.GetIndex().YngdiengDocuments.Single(y => y.DocId == docId);
+
+               return new SearchV2Response.Types.SearchCard
+               {
+                   Word = new SearchV2Response.Types.SearchCard.Types.WordCard
+                   {
+                       Id = docId,
+                       Yngping = RichTextUtil.FromString(ydDoc.YngpingSandhi.OrElse(ydDoc.YngpingUnderlying)),
+                       Hanzi = RichTextUtil.FromString(HanziUtils.HanziToString(ydDoc.HanziCanonical)),
+                       Details = RichTextUtil.FromString(FindBestExplanation(ydDoc)),
+                       Score = sd.Score
+                   }
+               };
+           });
+        }
+
 
         private static SearchV2Response.Types.SearchCard EndOfResultsCard()
         {
