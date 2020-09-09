@@ -1,16 +1,35 @@
 import {Inject, Injectable} from '@angular/core';
 import {Observable, Subject} from 'rxjs';
-import {FengDocument, HistoricalDocument, YngdiengDocument} from 'yngdieng/shared/documents_pb';
-import {DebugInfo, GetAggregatedDocumentRequest, GetDebugInfoRequest, GetFengDocumentRequest, GetYngdiengDocumentRequest, SearchRequest, SearchResponse} from 'yngdieng/shared/services_pb';
+import {
+  FengDocument,
+  HistoricalDocument,
+  YngdiengDocument,
+} from 'yngdieng/shared/documents_pb';
+import {
+  DebugInfo,
+  GetAggregatedDocumentRequest,
+  GetDebugInfoRequest,
+  GetFengDocumentRequest,
+  GetYngdiengDocumentRequest,
+  SearchRequest,
+  SearchResponse,
+  SearchV2Request,
+  SearchV2Response,
+} from 'yngdieng/shared/services_pb';
 import {YngdiengServiceClient} from 'yngdieng/shared/services_pb_service';
 
-import {IYngdiengEnvironment, YNGDIENG_ENVIRONMENT} from '../environments/environment';
+import {
+  IYngdiengEnvironment,
+  YNGDIENG_ENVIRONMENT,
+} from '../environments/environment';
 
 @Injectable({providedIn: 'root'})
 export class YngdiengBackendService {
   private grpcClient: YngdiengServiceClient;
 
-  constructor(@Inject(YNGDIENG_ENVIRONMENT) private environment: IYngdiengEnvironment) {
+  constructor(
+    @Inject(YNGDIENG_ENVIRONMENT) private environment: IYngdiengEnvironment
+  ) {
     this.grpcClient = new YngdiengServiceClient(this.environment.serverUrl);
   }
 
@@ -27,7 +46,28 @@ export class YngdiengBackendService {
       }
 
       subject.next(response);
-    })
+    });
+
+    return subject.asObservable();
+  }
+
+  searchV2(
+    queryText: string,
+    paginationToken: string
+  ): Observable<SearchV2Response> {
+    let subject = new Subject<SearchV2Response>();
+    let request = new SearchV2Request();
+    request.setQuery(queryText);
+    request.setPaginationToken(paginationToken);
+
+    this.grpcClient.searchV2(request, (err, response) => {
+      if (err != null) {
+        subject.error(err);
+        return;
+      }
+
+      subject.next(response);
+    });
 
     return subject.asObservable();
   }
@@ -42,7 +82,7 @@ export class YngdiengBackendService {
         return;
       }
       subject.next(response);
-    })
+    });
     return subject.asObservable();
   }
 
@@ -56,7 +96,7 @@ export class YngdiengBackendService {
         return;
       }
       subject.next(response);
-    })
+    });
     return subject.asObservable();
   }
 
@@ -71,7 +111,7 @@ export class YngdiengBackendService {
       }
 
       subject.next(response);
-    })
+    });
 
     return subject.asObservable();
   }
@@ -84,7 +124,7 @@ export class YngdiengBackendService {
         return;
       }
       subject.next(response);
-    })
+    });
 
     return subject.asObservable();
   }

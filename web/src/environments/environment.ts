@@ -1,21 +1,24 @@
-import {InjectionToken} from '@angular/core'
+import {InjectionToken} from '@angular/core';
 
-export const YNGDIENG_ENVIRONMENT =
-    new InjectionToken<IYngdiengEnvironment>('yngdieng-environment');
+export const YNGDIENG_ENVIRONMENT = new InjectionToken<IYngdiengEnvironment>(
+  'yngdieng-environment'
+);
 
 export interface IYngdiengEnvironment {
   // Name of the app, used in the html title.
-  appName: string,
+  appName: string;
   // Whether the environment is production.
-  isProduction: boolean,
+  isProduction: boolean;
   // API Server URL. No trailing slash.
-  serverUrl: string,
+  serverUrl: string;
   // 结构化条目解释。
   structuredExplanations: {
-    enabled: boolean,
+    enabled: boolean;
     // 显示一个 toggle，用于切换到非结构化解释.
-    showDebugToggle: boolean
-  },
+    showDebugToggle: boolean;
+  };
   // TTS Audio player buttons
-  showAudioPlayerButtons: boolean
+  showAudioPlayerButtons: boolean;
+  // Whether to show an entry point to search V2.
+  showSearchV2InMenu: boolean;
 }

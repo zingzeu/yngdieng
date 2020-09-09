@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.IO;
 using Yngdieng.Protos;
 using Google.Protobuf;
@@ -10,32 +10,32 @@ using Yngdieng.Indexer.Processing;
 /// </summary>
 namespace Yngdieng.Indexer
 {
-    class Program
+  class Program
+  {
+    static int Main(string[] args)
     {
-        static int Main(string[] args)
-        {
-            if (args.Length < 2)
-            {
-                PrintHelp();
-                return -1;
-            }
-            var inputFolder = args[0];
-            var outputFolder = args[1];
-            var versionTag = args.Length > 2 ? args[2] : "notag";
-            var useV2 = args.Length > 3 ? args [3]
-                                                  .ToLowerInvariant() == "v2"
-                                        : false;
-            if (useV2)
-            {
-                Console.WriteLine("Using V2 index");
-                return new IndexV2Creator(inputFolder, outputFolder, versionTag).Run();
-            }
-            return new IndexV1Creator(inputFolder, outputFolder, versionTag).Run();
-        }
-
-        private static void PrintHelp()
-        {
-            Console.WriteLine("Usage: indexer <data path> <output path> [v2]");
-        }
+      if (args.Length < 2)
+      {
+        PrintHelp();
+        return -1;
+      }
+      var inputFolder = args[0];
+      var outputFolder = args[1];
+      var versionTag = args.Length > 2 ? args[2] : "notag";
+      var useV2 = args.Length > 3 ? args[3]
+                                            .ToLowerInvariant() == "v2"
+                                  : false;
+      if (useV2)
+      {
+        Console.WriteLine("Using V2 index");
+        return new IndexV2Creator(inputFolder, outputFolder, versionTag).Run();
+      }
+      return new IndexV1Creator(inputFolder, outputFolder, versionTag).Run();
     }
+
+    private static void PrintHelp()
+    {
+      Console.WriteLine("Usage: indexer <data path> <output path> [v2]");
+    }
+  }
 }
