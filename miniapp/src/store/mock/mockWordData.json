@@ -50,426 +50,6 @@
   {
     "files": [
       {
-        "fileName": "3 𤾮.wav",
-        "speakerName": "方劍偉",
-        "sheetName": "折页",
-        "tableIndex": 1,
-        "age": 31,
-        "gender": "男",
-        "area": "閩侯南通方莊",
-        "mp3FileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/kg4ckuckx.mp3",
-        "wavFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/kg4ckuckx.wav"
-      }
-    ],
-    "simplifiedWord": "𤾮",
-    "traditionalWord": "𤾮",
-    "pinyinRong": "uong³³",
-    "transcriptions": [{"name": "教会罗马字", "value": "uōng"}],
-    "explainations": [
-      {
-        "text": "龙骨的一般说法。龙舟四大件之一，主要用来控制龙舟的弯度",
-        "source": "诸神的游戏[M]"
-      }
-    ],
-    "pronounceReviewer": ["方紹晃", "方劍偉"],
-    "explainationReviewer": ["方劍偉"],
-    "wordSplited": [],
-    "pronounces": [
-      {
-        "typeName": "闽候连读",
-        "symbol": "uong³³",
-        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/kg4ckuckx.mp3"
-      }
-    ],
-    "pronouncesFromDifferentSpeakers": [
-      {
-        "name": "uong³³",
-        "likes": 122,
-        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/kg4ckuckx.mp3",
-        "speaker": {
-          "name": "方劍偉",
-          "age": 31,
-          "gender": "男",
-          "area": "閩侯南通方莊"
-        }
-      }
-    ]
-  },
-  {
-    "files": [
-      {
-        "fileName": "4 𤾮底 (1).wav",
-        "speakerName": "方劍偉",
-        "sheetName": "折页",
-        "tableIndex": 2,
-        "age": 31,
-        "gender": "男",
-        "area": "閩侯南通方莊",
-        "mp3FileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/5vcwtgy0i.mp3",
-        "wavFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/5vcwtgy0i.wav"
-      },
-      {
-        "fileName": "4 𤾮底.wav",
-        "speakerName": "方劍偉",
-        "sheetName": "折页",
-        "tableIndex": 2,
-        "age": 31,
-        "gender": "男",
-        "area": "閩侯南通方莊",
-        "mp3FileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/7jm6hjh8g.mp3",
-        "wavFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/7jm6hjh8g.wav"
-      }
-    ],
-    "simplifiedWord": "𤾮底",
-    "traditionalWord": "𤾮底",
-    "pinyinRong": "uong²⁴-de³³",
-    "transcriptions": [{"name": "教会罗马字", "value": "uōng-dā̤"}],
-    "explainations": [
-      {
-        "text": "意为龙骨的底部，不包括船的底板。通常指龙骨摆下去，固定住，而底板尚未钉进去之时，龙骨底部呈现出的弧度",
-        "source": "诸神的游戏[M]"
-      }
-    ],
-    "pronounceReviewer": ["方劍偉", "方劍偉"],
-    "explainationReviewer": ["方劍偉"],
-    "wordSplited": [],
-    "pronounces": [
-      {
-        "typeName": "闽候连读",
-        "symbol": "uong²⁴-de³³",
-        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/7jm6hjh8g.mp3"
-      }
-    ],
-    "pronouncesFromDifferentSpeakers": [
-      {
-        "name": "uong²⁴-de³³",
-        "likes": 4,
-        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/5vcwtgy0i.mp3",
-        "speaker": {
-          "name": "方劍偉",
-          "age": 31,
-          "gender": "男",
-          "area": "閩侯南通方莊"
-        }
-      },
-      {
-        "name": "uong²⁴-de³³",
-        "likes": 114,
-        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/7jm6hjh8g.mp3",
-        "speaker": {
-          "name": "方劍偉",
-          "age": 31,
-          "gender": "男",
-          "area": "閩侯南通方莊"
-        }
-      }
-    ]
-  },
-  {
-    "files": [
-      {
-        "fileName": "5 龙旁 (1).wav",
-        "speakerName": "方劍偉",
-        "sheetName": "折页",
-        "tableIndex": 3,
-        "age": 31,
-        "gender": "男",
-        "area": "閩侯南通方莊",
-        "mp3FileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/2uutudv8h.mp3",
-        "wavFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/2uutudv8h.wav"
-      },
-      {
-        "fileName": "5 龙旁 (2).wav",
-        "speakerName": "方劍偉",
-        "sheetName": "折页",
-        "tableIndex": 3,
-        "age": 31,
-        "gender": "男",
-        "area": "閩侯南通方莊",
-        "mp3FileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/p8d69nvp6.mp3",
-        "wavFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/p8d69nvp6.wav"
-      },
-      {
-        "fileName": "5 龙旁 (3).wav",
-        "speakerName": "方劍偉",
-        "sheetName": "折页",
-        "tableIndex": 3,
-        "age": 31,
-        "gender": "男",
-        "area": "閩侯南通方莊",
-        "mp3FileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/3llg5dxvg.mp3",
-        "wavFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/3llg5dxvg.wav"
-      },
-      {
-        "fileName": "5 龙旁.wav",
-        "speakerName": "方劍偉",
-        "sheetName": "折页",
-        "tableIndex": 3,
-        "age": 31,
-        "gender": "男",
-        "area": "閩侯南通方莊",
-        "mp3FileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/b2ebt7duc.mp3",
-        "wavFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/b2ebt7duc.wav"
-      }
-    ],
-    "simplifiedWord": "龙旁",
-    "traditionalWord": "龍旁",
-    "pinyinRong": "lyng³³-moung⁵³",
-    "transcriptions": [{"name": "教会罗马字", "value": "lṳ̀ng-bòng"}],
-    "explainations": [
-      {
-        "text": "𤾮底上面的船板，龙骨固定后钉的第一对板",
-        "source": "诸神的游戏[M]"
-      }
-    ],
-    "pronounceReviewer": ["方紹晃", "方劍偉"],
-    "explainationReviewer": ["方劍偉"],
-    "wordSplited": [],
-    "pronounces": [
-      {
-        "typeName": "闽候连读",
-        "symbol": "lyng³³-moung⁵³",
-        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/b2ebt7duc.mp3"
-      }
-    ],
-    "pronouncesFromDifferentSpeakers": [
-      {
-        "name": "lyng³³-moung⁵³",
-        "likes": 10,
-        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/2uutudv8h.mp3",
-        "speaker": {
-          "name": "方劍偉",
-          "age": 31,
-          "gender": "男",
-          "area": "閩侯南通方莊"
-        }
-      },
-      {
-        "name": "lyng³³-moung⁵³",
-        "likes": 10,
-        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/p8d69nvp6.mp3",
-        "speaker": {
-          "name": "方劍偉",
-          "age": 31,
-          "gender": "男",
-          "area": "閩侯南通方莊"
-        }
-      },
-      {
-        "name": "lyng³³-moung⁵³",
-        "likes": 9,
-        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/3llg5dxvg.mp3",
-        "speaker": {
-          "name": "方劍偉",
-          "age": 31,
-          "gender": "男",
-          "area": "閩侯南通方莊"
-        }
-      },
-      {
-        "name": "lyng³³-moung⁵³",
-        "likes": 111,
-        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/b2ebt7duc.mp3",
-        "speaker": {
-          "name": "方劍偉",
-          "age": 31,
-          "gender": "男",
-          "area": "閩侯南通方莊"
-        }
-      }
-    ]
-  },
-  {
-    "files": [
-      {
-        "fileName": "6 二路 (1).wav",
-        "speakerName": "方劍偉",
-        "sheetName": "折页",
-        "tableIndex": 4,
-        "age": 31,
-        "gender": "男",
-        "area": "閩侯南通方莊",
-        "mp3FileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/u7wti4uat.mp3",
-        "wavFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/u7wti4uat.wav"
-      },
-      {
-        "fileName": "6 二路.wav",
-        "speakerName": "方劍偉",
-        "sheetName": "折页",
-        "tableIndex": 4,
-        "age": 31,
-        "gender": "男",
-        "area": "閩侯南通方莊",
-        "mp3FileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/eohb2egvi.mp3",
-        "wavFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/eohb2egvi.wav"
-      }
-    ],
-    "simplifiedWord": "二路",
-    "traditionalWord": "二路",
-    "pinyinRong": "ni⁵³-luo²⁴²",
-    "transcriptions": [{"name": "教会罗马字", "value": "nê-duô"}],
-    "explainations": [
-      {
-        "text": "𤾮底上面的船板，龙骨固定后钉的第二对板",
-        "source": "诸神的游戏[M]"
-      }
-    ],
-    "pronounceReviewer": ["方紹晃", "方劍偉"],
-    "explainationReviewer": ["方劍偉"],
-    "wordSplited": [],
-    "pronounces": [
-      {
-        "typeName": "闽候连读",
-        "symbol": "ni⁵³-luo²⁴²",
-        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/eohb2egvi.mp3"
-      }
-    ],
-    "pronouncesFromDifferentSpeakers": [
-      {
-        "name": "ni⁵³-luo²⁴²",
-        "likes": 4,
-        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/u7wti4uat.mp3",
-        "speaker": {
-          "name": "方劍偉",
-          "age": 31,
-          "gender": "男",
-          "area": "閩侯南通方莊"
-        }
-      },
-      {
-        "name": "ni⁵³-luo²⁴²",
-        "likes": 134,
-        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/eohb2egvi.mp3",
-        "speaker": {
-          "name": "方劍偉",
-          "age": 31,
-          "gender": "男",
-          "area": "閩侯南通方莊"
-        }
-      }
-    ]
-  },
-  {
-    "files": [
-      {
-        "fileName": "7 三路 (1).wav",
-        "speakerName": "方劍偉",
-        "sheetName": "折页",
-        "tableIndex": 5,
-        "age": 31,
-        "gender": "男",
-        "area": "閩侯南通方莊",
-        "mp3FileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/635yalxz3.mp3",
-        "wavFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/635yalxz3.wav"
-      },
-      {
-        "fileName": "7 三路.wav",
-        "speakerName": "方劍偉",
-        "sheetName": "折页",
-        "tableIndex": 5,
-        "age": 31,
-        "gender": "男",
-        "area": "閩侯南通方莊",
-        "mp3FileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/i73zabf82.mp3",
-        "wavFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/i73zabf82.wav"
-      }
-    ],
-    "simplifiedWord": "三路",
-    "traditionalWord": "三路",
-    "pinyinRong": "sang⁵³-luo²⁴²",
-    "transcriptions": [{"name": "教会罗马字", "value": "săng-duô"}],
-    "explainations": [
-      {
-        "text": "𤾮底上面的船板，龙骨固定后钉的第三对板",
-        "source": "诸神的游戏[M]"
-      }
-    ],
-    "pronounceReviewer": ["方紹晃", "方劍偉"],
-    "explainationReviewer": ["方劍偉"],
-    "wordSplited": [],
-    "pronounces": [
-      {
-        "typeName": "闽候连读",
-        "symbol": "sang⁵³-luo²⁴²",
-        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/i73zabf82.mp3"
-      }
-    ],
-    "pronouncesFromDifferentSpeakers": [
-      {
-        "name": "sang⁵³-luo²⁴²",
-        "likes": 4,
-        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/635yalxz3.mp3",
-        "speaker": {
-          "name": "方劍偉",
-          "age": 31,
-          "gender": "男",
-          "area": "閩侯南通方莊"
-        }
-      },
-      {
-        "name": "sang⁵³-luo²⁴²",
-        "likes": 126,
-        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/i73zabf82.mp3",
-        "speaker": {
-          "name": "方劍偉",
-          "age": 31,
-          "gender": "男",
-          "area": "閩侯南通方莊"
-        }
-      }
-    ]
-  },
-  {
-    "files": [
-      {
-        "fileName": "8 四路.wav",
-        "speakerName": "方劍偉",
-        "sheetName": "折页",
-        "tableIndex": 6,
-        "age": 31,
-        "gender": "男",
-        "area": "閩侯南通方莊",
-        "mp3FileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/0djlz3u06.mp3",
-        "wavFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/0djlz3u06.wav"
-      }
-    ],
-    "simplifiedWord": "四路",
-    "traditionalWord": "四路",
-    "pinyinRong": "si⁵³-luo²⁴²",
-    "transcriptions": [{"name": "教会罗马字", "value": "sé-duô"}],
-    "explainations": [
-      {
-        "text": "𤾮底上面的船板，龙骨固定后钉的第四对板",
-        "source": "诸神的游戏[M]"
-      }
-    ],
-    "pronounceReviewer": ["方紹晃", "方劍偉"],
-    "explainationReviewer": ["方劍偉"],
-    "wordSplited": [],
-    "pronounces": [
-      {
-        "typeName": "闽候连读",
-        "symbol": "si⁵³-luo²⁴²",
-        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/0djlz3u06.mp3"
-      }
-    ],
-    "pronouncesFromDifferentSpeakers": [
-      {
-        "name": "si⁵³-luo²⁴²",
-        "likes": 107,
-        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/0djlz3u06.mp3",
-        "speaker": {
-          "name": "方劍偉",
-          "age": 31,
-          "gender": "男",
-          "area": "閩侯南通方莊"
-        }
-      }
-    ]
-  },
-  {
-    "files": [
-      {
         "fileName": "9 穿三旁 (1).wav",
         "speakerName": "方劍偉",
         "sheetName": "折页",
@@ -2587,185 +2167,6 @@
         "name": "a⁵³-loung³³",
         "likes": 121,
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/v6gjay9lh.mp3",
-        "speaker": {
-          "name": "方劍偉",
-          "age": 31,
-          "gender": "男",
-          "area": "閩侯南通方莊"
-        }
-      }
-    ]
-  },
-  {
-    "files": [
-      {
-        "fileName": "47 蜻𧊏翼 (1).wav",
-        "speakerName": "方劍偉",
-        "sheetName": "折页",
-        "tableIndex": 45,
-        "age": 31,
-        "gender": "男",
-        "area": "閩侯南通方莊",
-        "mp3FileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/kh2dhb14u.mp3",
-        "wavFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/kh2dhb14u.wav"
-      },
-      {
-        "fileName": "47 蜻𧊏翼 (2).wav",
-        "speakerName": "方劍偉",
-        "sheetName": "折页",
-        "tableIndex": 45,
-        "age": 31,
-        "gender": "男",
-        "area": "閩侯南通方莊",
-        "mp3FileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/awx901by8.mp3",
-        "wavFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/awx901by8.wav"
-      },
-      {
-        "fileName": "47 蜻𧊏翼 (3).wav",
-        "speakerName": "方劍偉",
-        "sheetName": "折页",
-        "tableIndex": 45,
-        "age": 31,
-        "gender": "男",
-        "area": "閩侯南通方莊",
-        "mp3FileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/ec75658rq.mp3",
-        "wavFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/ec75658rq.wav"
-      },
-      {
-        "fileName": "47 蜻𧊏翼.wav",
-        "speakerName": "方劍偉",
-        "sheetName": "折页",
-        "tableIndex": 45,
-        "age": 31,
-        "gender": "男",
-        "area": "閩侯南通方莊",
-        "mp3FileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/x683jns7x.mp3",
-        "wavFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/x683jns7x.wav"
-      }
-    ],
-    "simplifiedWord": "蜻𧊏翼",
-    "traditionalWord": "蜻𧊏翼",
-    "pinyinRong": "ciang²¹-ngai²¹-lik⁵",
-    "transcriptions": [{"name": "教会罗马字", "value": "chiăng-găi-sĭk"}],
-    "explainations": [
-      {
-        "text": "最具福州特色的龙舟部件之一。是位于船尾枙上方形似勺柄的木板，其上用于安置尾坪。一般在翼上画境社图腾，或写上境社名",
-        "source": "诸神的游戏[M]"
-      }
-    ],
-    "pronounceReviewer": ["方劍偉"],
-    "explainationReviewer": ["方劍偉"],
-    "wordSplited": [],
-    "pronounces": [
-      {
-        "typeName": "闽候连读",
-        "symbol": "ciang²¹-ngai²¹-lik⁵",
-        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/x683jns7x.mp3"
-      }
-    ],
-    "pronouncesFromDifferentSpeakers": [
-      {
-        "name": "ciang²¹-ngai²¹-lik⁵",
-        "likes": 4,
-        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/kh2dhb14u.mp3",
-        "speaker": {
-          "name": "方劍偉",
-          "age": 31,
-          "gender": "男",
-          "area": "閩侯南通方莊"
-        }
-      },
-      {
-        "name": "ciang²¹-ngai²¹-lik⁵",
-        "likes": 8,
-        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/awx901by8.mp3",
-        "speaker": {
-          "name": "方劍偉",
-          "age": 31,
-          "gender": "男",
-          "area": "閩侯南通方莊"
-        }
-      },
-      {
-        "name": "ciang²¹-ngai²¹-lik⁵",
-        "likes": 4,
-        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/ec75658rq.mp3",
-        "speaker": {
-          "name": "方劍偉",
-          "age": 31,
-          "gender": "男",
-          "area": "閩侯南通方莊"
-        }
-      },
-      {
-        "name": "ciang²¹-ngai²¹-lik⁵",
-        "likes": 100,
-        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/x683jns7x.mp3",
-        "speaker": {
-          "name": "方劍偉",
-          "age": 31,
-          "gender": "男",
-          "area": "閩侯南通方莊"
-        }
-      }
-    ]
-  },
-  {
-    "files": [
-      {
-        "fileName": "48 蜻𧊏 (1).wav",
-        "speakerName": "方劍偉",
-        "sheetName": "折页",
-        "tableIndex": 46,
-        "age": 31,
-        "gender": "男",
-        "area": "閩侯南通方莊",
-        "mp3FileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/ppyeux7cm.mp3",
-        "wavFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/ppyeux7cm.wav"
-      },
-      {
-        "fileName": "48 蜻𧊏.wav",
-        "speakerName": "方劍偉",
-        "sheetName": "折页",
-        "tableIndex": 46,
-        "age": 31,
-        "gender": "男",
-        "area": "閩侯南通方莊",
-        "mp3FileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/b2l661jij.mp3",
-        "wavFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/b2l661jij.wav"
-      }
-    ],
-    "simplifiedWord": "蜻𧊏",
-    "traditionalWord": "蜻𧊏",
-    "pinyinRong": "ciang⁵⁵-ngai⁵⁵",
-    "transcriptions": [{"name": "教会罗马字", "value": "chiăng-găi"}],
-    "explainations": [{"text": "蜻蜓", "source": "诸神的游戏[M]"}],
-    "pronounceReviewer": ["方劍偉"],
-    "explainationReviewer": ["方劍偉"],
-    "wordSplited": [],
-    "pronounces": [
-      {
-        "typeName": "闽候连读",
-        "symbol": "ciang⁵⁵-ngai⁵⁵",
-        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/b2l661jij.mp3"
-      }
-    ],
-    "pronouncesFromDifferentSpeakers": [
-      {
-        "name": "ciang⁵⁵-ngai⁵⁵",
-        "likes": 8,
-        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/ppyeux7cm.mp3",
-        "speaker": {
-          "name": "方劍偉",
-          "age": 31,
-          "gender": "男",
-          "area": "閩侯南通方莊"
-        }
-      },
-      {
-        "name": "ciang⁵⁵-ngai⁵⁵",
-        "likes": 136,
-        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/b2l661jij.mp3",
         "speaker": {
           "name": "方劍偉",
           "age": 31,
@@ -6949,6 +6350,605 @@
         "name": "to⁵³-eoy²¹³",
         "likes": 115,
         "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/d8ipa424q.mp3",
+        "speaker": {
+          "name": "方劍偉",
+          "age": 31,
+          "gender": "男",
+          "area": "閩侯南通方莊"
+        }
+      }
+    ]
+  },
+  {
+    "files": [
+      {
+        "fileName": "3 𤾮.wav",
+        "speakerName": "方劍偉",
+        "sheetName": "折页",
+        "tableIndex": 1,
+        "age": 31,
+        "gender": "男",
+        "area": "閩侯南通方莊",
+        "mp3FileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/kg4ckuckx.mp3",
+        "wavFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/kg4ckuckx.wav"
+      }
+    ],
+    "simplifiedWord": "𤾮",
+    "traditionalWord": "𤾮",
+    "pinyinRong": "uong³³",
+    "transcriptions": [{"name": "教会罗马字", "value": "uōng"}],
+    "explainations": [
+      {
+        "text": "龙骨的一般说法。龙舟四大件之一，主要用来控制龙舟的弯度",
+        "source": "诸神的游戏[M]"
+      }
+    ],
+    "pronounceReviewer": ["方紹晃", "方劍偉"],
+    "explainationReviewer": ["方劍偉"],
+    "wordSplited": [],
+    "pronounces": [
+      {
+        "typeName": "闽候连读",
+        "symbol": "uong³³",
+        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/kg4ckuckx.mp3"
+      }
+    ],
+    "pronouncesFromDifferentSpeakers": [
+      {
+        "name": "uong³³",
+        "likes": 122,
+        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/kg4ckuckx.mp3",
+        "speaker": {
+          "name": "方劍偉",
+          "age": 31,
+          "gender": "男",
+          "area": "閩侯南通方莊"
+        }
+      }
+    ]
+  },
+  {
+    "files": [
+      {
+        "fileName": "4 𤾮底 (1).wav",
+        "speakerName": "方劍偉",
+        "sheetName": "折页",
+        "tableIndex": 2,
+        "age": 31,
+        "gender": "男",
+        "area": "閩侯南通方莊",
+        "mp3FileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/5vcwtgy0i.mp3",
+        "wavFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/5vcwtgy0i.wav"
+      },
+      {
+        "fileName": "4 𤾮底.wav",
+        "speakerName": "方劍偉",
+        "sheetName": "折页",
+        "tableIndex": 2,
+        "age": 31,
+        "gender": "男",
+        "area": "閩侯南通方莊",
+        "mp3FileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/7jm6hjh8g.mp3",
+        "wavFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/7jm6hjh8g.wav"
+      }
+    ],
+    "simplifiedWord": "𤾮底",
+    "traditionalWord": "𤾮底",
+    "pinyinRong": "uong²⁴-de³³",
+    "transcriptions": [{"name": "教会罗马字", "value": "uōng-dā̤"}],
+    "explainations": [
+      {
+        "text": "意为龙骨的底部，不包括船的底板。通常指龙骨摆下去，固定住，而底板尚未钉进去之时，龙骨底部呈现出的弧度",
+        "source": "诸神的游戏[M]"
+      }
+    ],
+    "pronounceReviewer": ["方劍偉", "方劍偉"],
+    "explainationReviewer": ["方劍偉"],
+    "wordSplited": [],
+    "pronounces": [
+      {
+        "typeName": "闽候连读",
+        "symbol": "uong²⁴-de³³",
+        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/7jm6hjh8g.mp3"
+      }
+    ],
+    "pronouncesFromDifferentSpeakers": [
+      {
+        "name": "uong²⁴-de³³",
+        "likes": 4,
+        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/5vcwtgy0i.mp3",
+        "speaker": {
+          "name": "方劍偉",
+          "age": 31,
+          "gender": "男",
+          "area": "閩侯南通方莊"
+        }
+      },
+      {
+        "name": "uong²⁴-de³³",
+        "likes": 114,
+        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/7jm6hjh8g.mp3",
+        "speaker": {
+          "name": "方劍偉",
+          "age": 31,
+          "gender": "男",
+          "area": "閩侯南通方莊"
+        }
+      }
+    ]
+  },
+  {
+    "files": [
+      {
+        "fileName": "5 龙旁 (1).wav",
+        "speakerName": "方劍偉",
+        "sheetName": "折页",
+        "tableIndex": 3,
+        "age": 31,
+        "gender": "男",
+        "area": "閩侯南通方莊",
+        "mp3FileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/2uutudv8h.mp3",
+        "wavFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/2uutudv8h.wav"
+      },
+      {
+        "fileName": "5 龙旁 (2).wav",
+        "speakerName": "方劍偉",
+        "sheetName": "折页",
+        "tableIndex": 3,
+        "age": 31,
+        "gender": "男",
+        "area": "閩侯南通方莊",
+        "mp3FileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/p8d69nvp6.mp3",
+        "wavFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/p8d69nvp6.wav"
+      },
+      {
+        "fileName": "5 龙旁 (3).wav",
+        "speakerName": "方劍偉",
+        "sheetName": "折页",
+        "tableIndex": 3,
+        "age": 31,
+        "gender": "男",
+        "area": "閩侯南通方莊",
+        "mp3FileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/3llg5dxvg.mp3",
+        "wavFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/3llg5dxvg.wav"
+      },
+      {
+        "fileName": "5 龙旁.wav",
+        "speakerName": "方劍偉",
+        "sheetName": "折页",
+        "tableIndex": 3,
+        "age": 31,
+        "gender": "男",
+        "area": "閩侯南通方莊",
+        "mp3FileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/b2ebt7duc.mp3",
+        "wavFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/b2ebt7duc.wav"
+      }
+    ],
+    "simplifiedWord": "龙旁",
+    "traditionalWord": "龍旁",
+    "pinyinRong": "lyng³³-moung⁵³",
+    "transcriptions": [{"name": "教会罗马字", "value": "lṳ̀ng-bòng"}],
+    "explainations": [
+      {
+        "text": "𤾮底上面的船板，龙骨固定后钉的第一对板",
+        "source": "诸神的游戏[M]"
+      }
+    ],
+    "pronounceReviewer": ["方紹晃", "方劍偉"],
+    "explainationReviewer": ["方劍偉"],
+    "wordSplited": [],
+    "pronounces": [
+      {
+        "typeName": "闽候连读",
+        "symbol": "lyng³³-moung⁵³",
+        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/b2ebt7duc.mp3"
+      }
+    ],
+    "pronouncesFromDifferentSpeakers": [
+      {
+        "name": "lyng³³-moung⁵³",
+        "likes": 10,
+        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/2uutudv8h.mp3",
+        "speaker": {
+          "name": "方劍偉",
+          "age": 31,
+          "gender": "男",
+          "area": "閩侯南通方莊"
+        }
+      },
+      {
+        "name": "lyng³³-moung⁵³",
+        "likes": 10,
+        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/p8d69nvp6.mp3",
+        "speaker": {
+          "name": "方劍偉",
+          "age": 31,
+          "gender": "男",
+          "area": "閩侯南通方莊"
+        }
+      },
+      {
+        "name": "lyng³³-moung⁵³",
+        "likes": 9,
+        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/3llg5dxvg.mp3",
+        "speaker": {
+          "name": "方劍偉",
+          "age": 31,
+          "gender": "男",
+          "area": "閩侯南通方莊"
+        }
+      },
+      {
+        "name": "lyng³³-moung⁵³",
+        "likes": 111,
+        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/b2ebt7duc.mp3",
+        "speaker": {
+          "name": "方劍偉",
+          "age": 31,
+          "gender": "男",
+          "area": "閩侯南通方莊"
+        }
+      }
+    ]
+  },
+  {
+    "files": [
+      {
+        "fileName": "6 二路 (1).wav",
+        "speakerName": "方劍偉",
+        "sheetName": "折页",
+        "tableIndex": 4,
+        "age": 31,
+        "gender": "男",
+        "area": "閩侯南通方莊",
+        "mp3FileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/u7wti4uat.mp3",
+        "wavFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/u7wti4uat.wav"
+      },
+      {
+        "fileName": "6 二路.wav",
+        "speakerName": "方劍偉",
+        "sheetName": "折页",
+        "tableIndex": 4,
+        "age": 31,
+        "gender": "男",
+        "area": "閩侯南通方莊",
+        "mp3FileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/eohb2egvi.mp3",
+        "wavFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/eohb2egvi.wav"
+      }
+    ],
+    "simplifiedWord": "二路",
+    "traditionalWord": "二路",
+    "pinyinRong": "ni⁵³-luo²⁴²",
+    "transcriptions": [{"name": "教会罗马字", "value": "nê-duô"}],
+    "explainations": [
+      {
+        "text": "𤾮底上面的船板，龙骨固定后钉的第二对板",
+        "source": "诸神的游戏[M]"
+      }
+    ],
+    "pronounceReviewer": ["方紹晃", "方劍偉"],
+    "explainationReviewer": ["方劍偉"],
+    "wordSplited": [],
+    "pronounces": [
+      {
+        "typeName": "闽候连读",
+        "symbol": "ni⁵³-luo²⁴²",
+        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/eohb2egvi.mp3"
+      }
+    ],
+    "pronouncesFromDifferentSpeakers": [
+      {
+        "name": "ni⁵³-luo²⁴²",
+        "likes": 4,
+        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/u7wti4uat.mp3",
+        "speaker": {
+          "name": "方劍偉",
+          "age": 31,
+          "gender": "男",
+          "area": "閩侯南通方莊"
+        }
+      },
+      {
+        "name": "ni⁵³-luo²⁴²",
+        "likes": 134,
+        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/eohb2egvi.mp3",
+        "speaker": {
+          "name": "方劍偉",
+          "age": 31,
+          "gender": "男",
+          "area": "閩侯南通方莊"
+        }
+      }
+    ]
+  },
+  {
+    "files": [
+      {
+        "fileName": "7 三路 (1).wav",
+        "speakerName": "方劍偉",
+        "sheetName": "折页",
+        "tableIndex": 5,
+        "age": 31,
+        "gender": "男",
+        "area": "閩侯南通方莊",
+        "mp3FileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/635yalxz3.mp3",
+        "wavFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/635yalxz3.wav"
+      },
+      {
+        "fileName": "7 三路.wav",
+        "speakerName": "方劍偉",
+        "sheetName": "折页",
+        "tableIndex": 5,
+        "age": 31,
+        "gender": "男",
+        "area": "閩侯南通方莊",
+        "mp3FileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/i73zabf82.mp3",
+        "wavFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/i73zabf82.wav"
+      }
+    ],
+    "simplifiedWord": "三路",
+    "traditionalWord": "三路",
+    "pinyinRong": "sang⁵³-luo²⁴²",
+    "transcriptions": [{"name": "教会罗马字", "value": "săng-duô"}],
+    "explainations": [
+      {
+        "text": "𤾮底上面的船板，龙骨固定后钉的第三对板",
+        "source": "诸神的游戏[M]"
+      }
+    ],
+    "pronounceReviewer": ["方紹晃", "方劍偉"],
+    "explainationReviewer": ["方劍偉"],
+    "wordSplited": [],
+    "pronounces": [
+      {
+        "typeName": "闽候连读",
+        "symbol": "sang⁵³-luo²⁴²",
+        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/i73zabf82.mp3"
+      }
+    ],
+    "pronouncesFromDifferentSpeakers": [
+      {
+        "name": "sang⁵³-luo²⁴²",
+        "likes": 4,
+        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/635yalxz3.mp3",
+        "speaker": {
+          "name": "方劍偉",
+          "age": 31,
+          "gender": "男",
+          "area": "閩侯南通方莊"
+        }
+      },
+      {
+        "name": "sang⁵³-luo²⁴²",
+        "likes": 126,
+        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/i73zabf82.mp3",
+        "speaker": {
+          "name": "方劍偉",
+          "age": 31,
+          "gender": "男",
+          "area": "閩侯南通方莊"
+        }
+      }
+    ]
+  },
+  {
+    "files": [
+      {
+        "fileName": "8 四路.wav",
+        "speakerName": "方劍偉",
+        "sheetName": "折页",
+        "tableIndex": 6,
+        "age": 31,
+        "gender": "男",
+        "area": "閩侯南通方莊",
+        "mp3FileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/0djlz3u06.mp3",
+        "wavFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/0djlz3u06.wav"
+      }
+    ],
+    "simplifiedWord": "四路",
+    "traditionalWord": "四路",
+    "pinyinRong": "si⁵³-luo²⁴²",
+    "transcriptions": [{"name": "教会罗马字", "value": "sé-duô"}],
+    "explainations": [
+      {
+        "text": "𤾮底上面的船板，龙骨固定后钉的第四对板",
+        "source": "诸神的游戏[M]"
+      }
+    ],
+    "pronounceReviewer": ["方紹晃", "方劍偉"],
+    "explainationReviewer": ["方劍偉"],
+    "wordSplited": [],
+    "pronounces": [
+      {
+        "typeName": "闽候连读",
+        "symbol": "si⁵³-luo²⁴²",
+        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/0djlz3u06.mp3"
+      }
+    ],
+    "pronouncesFromDifferentSpeakers": [
+      {
+        "name": "si⁵³-luo²⁴²",
+        "likes": 107,
+        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/0djlz3u06.mp3",
+        "speaker": {
+          "name": "方劍偉",
+          "age": 31,
+          "gender": "男",
+          "area": "閩侯南通方莊"
+        }
+      }
+    ]
+  },
+  {
+    "files": [
+      {
+        "fileName": "47 蜻𧊏翼 (1).wav",
+        "speakerName": "方劍偉",
+        "sheetName": "折页",
+        "tableIndex": 45,
+        "age": 31,
+        "gender": "男",
+        "area": "閩侯南通方莊",
+        "mp3FileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/kh2dhb14u.mp3",
+        "wavFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/kh2dhb14u.wav"
+      },
+      {
+        "fileName": "47 蜻𧊏翼 (2).wav",
+        "speakerName": "方劍偉",
+        "sheetName": "折页",
+        "tableIndex": 45,
+        "age": 31,
+        "gender": "男",
+        "area": "閩侯南通方莊",
+        "mp3FileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/awx901by8.mp3",
+        "wavFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/awx901by8.wav"
+      },
+      {
+        "fileName": "47 蜻𧊏翼 (3).wav",
+        "speakerName": "方劍偉",
+        "sheetName": "折页",
+        "tableIndex": 45,
+        "age": 31,
+        "gender": "男",
+        "area": "閩侯南通方莊",
+        "mp3FileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/ec75658rq.mp3",
+        "wavFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/ec75658rq.wav"
+      },
+      {
+        "fileName": "47 蜻𧊏翼.wav",
+        "speakerName": "方劍偉",
+        "sheetName": "折页",
+        "tableIndex": 45,
+        "age": 31,
+        "gender": "男",
+        "area": "閩侯南通方莊",
+        "mp3FileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/x683jns7x.mp3",
+        "wavFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/x683jns7x.wav"
+      }
+    ],
+    "simplifiedWord": "蜻𧊏翼",
+    "traditionalWord": "蜻𧊏翼",
+    "pinyinRong": "ciang²¹-ngai²¹-lik⁵",
+    "transcriptions": [{"name": "教会罗马字", "value": "chiăng-găi-sĭk"}],
+    "explainations": [
+      {
+        "text": "最具福州特色的龙舟部件之一。是位于船尾枙上方形似勺柄的木板，其上用于安置尾坪。一般在翼上画境社图腾，或写上境社名",
+        "source": "诸神的游戏[M]"
+      }
+    ],
+    "pronounceReviewer": ["方劍偉"],
+    "explainationReviewer": ["方劍偉"],
+    "wordSplited": [],
+    "pronounces": [
+      {
+        "typeName": "闽候连读",
+        "symbol": "ciang²¹-ngai²¹-lik⁵",
+        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/x683jns7x.mp3"
+      }
+    ],
+    "pronouncesFromDifferentSpeakers": [
+      {
+        "name": "ciang²¹-ngai²¹-lik⁵",
+        "likes": 4,
+        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/kh2dhb14u.mp3",
+        "speaker": {
+          "name": "方劍偉",
+          "age": 31,
+          "gender": "男",
+          "area": "閩侯南通方莊"
+        }
+      },
+      {
+        "name": "ciang²¹-ngai²¹-lik⁵",
+        "likes": 8,
+        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/awx901by8.mp3",
+        "speaker": {
+          "name": "方劍偉",
+          "age": 31,
+          "gender": "男",
+          "area": "閩侯南通方莊"
+        }
+      },
+      {
+        "name": "ciang²¹-ngai²¹-lik⁵",
+        "likes": 4,
+        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/ec75658rq.mp3",
+        "speaker": {
+          "name": "方劍偉",
+          "age": 31,
+          "gender": "男",
+          "area": "閩侯南通方莊"
+        }
+      },
+      {
+        "name": "ciang²¹-ngai²¹-lik⁵",
+        "likes": 100,
+        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/x683jns7x.mp3",
+        "speaker": {
+          "name": "方劍偉",
+          "age": 31,
+          "gender": "男",
+          "area": "閩侯南通方莊"
+        }
+      }
+    ]
+  },
+  {
+    "files": [
+      {
+        "fileName": "48 蜻𧊏 (1).wav",
+        "speakerName": "方劍偉",
+        "sheetName": "折页",
+        "tableIndex": 46,
+        "age": 31,
+        "gender": "男",
+        "area": "閩侯南通方莊",
+        "mp3FileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/ppyeux7cm.mp3",
+        "wavFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/ppyeux7cm.wav"
+      },
+      {
+        "fileName": "48 蜻𧊏.wav",
+        "speakerName": "方劍偉",
+        "sheetName": "折页",
+        "tableIndex": 46,
+        "age": 31,
+        "gender": "男",
+        "area": "閩侯南通方莊",
+        "mp3FileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/b2l661jij.mp3",
+        "wavFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/b2l661jij.wav"
+      }
+    ],
+    "simplifiedWord": "蜻𧊏",
+    "traditionalWord": "蜻𧊏",
+    "pinyinRong": "ciang⁵⁵-ngai⁵⁵",
+    "transcriptions": [{"name": "教会罗马字", "value": "chiăng-găi"}],
+    "explainations": [{"text": "蜻蜓", "source": "诸神的游戏[M]"}],
+    "pronounceReviewer": ["方劍偉"],
+    "explainationReviewer": ["方劍偉"],
+    "wordSplited": [],
+    "pronounces": [
+      {
+        "typeName": "闽候连读",
+        "symbol": "ciang⁵⁵-ngai⁵⁵",
+        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/b2l661jij.mp3"
+      }
+    ],
+    "pronouncesFromDifferentSpeakers": [
+      {
+        "name": "ciang⁵⁵-ngai⁵⁵",
+        "likes": 8,
+        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/ppyeux7cm.mp3",
+        "speaker": {
+          "name": "方劍偉",
+          "age": 31,
+          "gender": "男",
+          "area": "閩侯南通方莊"
+        }
+      },
+      {
+        "name": "ciang⁵⁵-ngai⁵⁵",
+        "likes": 136,
+        "audioFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/b2l661jij.mp3",
         "speaker": {
           "name": "方劍偉",
           "age": 31,
