@@ -19,10 +19,19 @@ const AudioPlay = ({audioFileId = ''}: Props) => {
 
   const handlePlayAudio = () => {
     if (status === Status.Playing) return;
-    ctx.src = audioFileId;
+    if (!ctx.src) {
+      setStatus(Status.Loading);
+      ctx.src = audioFileId;
+    } else {
+      setStatus(Status.Playing);
+    }
     ctx.play();
   };
   const handleCanPlay = () => {
+    console.log('handle can play');
+    ctx.play();
+  };
+  const handlePlay = () => {
     console.log('handle play');
     setStatus(Status.Playing);
   };
@@ -38,10 +47,12 @@ const AudioPlay = ({audioFileId = ''}: Props) => {
   useEffect(() => {
     ctx.onWaiting(handleWaiting);
     ctx.onCanplay(handleCanPlay);
+    ctx.onPlay(handlePlay);
     ctx.onEnded(handleEnded);
     return () => {
       ctx.offWaiting(handleWaiting);
       ctx.offCanplay(handleCanPlay);
+      ctx.offPlay(handlePlay);
       ctx.offEnded(handleEnded);
     };
   }, []);
