@@ -47,7 +47,7 @@ def process(input_dir, output_path, unicode_block='B'):
         with open(input_path, 'r') as f:
             charset = scan(input_path, charset, unicode_block)
         with open(output_path, 'w') as out:
-            for hanzi in charset:
+            for hanzi in sorted(charset):
                 out.write(hanzi + '\n')
 
 
