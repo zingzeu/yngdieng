@@ -4,7 +4,7 @@ from os.path import isfile, join
 
 def get_input_files(input_dir):
     return [f for f in listdir(input_dir) \
-        if isfile(join(input_dir, f)) and f.endswith('.txt')]
+        if isfile(join(input_dir, f)) and (f.endswith('.txt') or f.endswith('.csv') or f.endswith('.tsv') )]
 
 def in_range(c, unicode_block='A'):
     if 0x3400 <= ord(c) <= 0x4DBF:
