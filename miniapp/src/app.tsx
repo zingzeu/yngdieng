@@ -61,6 +61,12 @@ const loadFonts = async () => {
       console.log('fetch font failed', font, e);
     }
   }
+
+  // iOS 设备如果侧边的静音开关打开，默认情况播放会无声。此设置忽略 iOS 的静音开关。
+  // 参见 https://developers.weixin.qq.com/community/develop/doc/0004a810988f50e89a37fe5f45b000
+  Taro.setInnerAudioOption({
+    obeyMuteSwitch: false,
+  });
 };
 
 class App extends Component {
