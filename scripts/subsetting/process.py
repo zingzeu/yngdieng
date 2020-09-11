@@ -2,9 +2,15 @@ import sys
 from os import listdir
 from os.path import isfile, join
 
+
 def get_input_files(input_dir):
-    return [f for f in listdir(input_dir) \
-        if isfile(join(input_dir, f)) and (f.endswith('.txt') or f.endswith('.csv') or f.endswith('.tsv') )]
+    return [f for f in listdir(input_dir)
+            if isfile(join(input_dir, f)) and \
+                (f.endswith('.txt') or \
+                 f.endswith('.csv') or \
+                 f.endswith('.tsv') or \
+                 f.endswith('.json'))]
+
 
 def in_range(c, unicode_block='A'):
     if 0x3400 <= ord(c) <= 0x4DBF:
@@ -22,6 +28,7 @@ def in_range(c, unicode_block='A'):
     if 0x30000 <= ord(c) <= 0x3134F:
         return 'G' in unicode_block
     return False
+
 
 def scan(filename, charset, unicode_block='B'):
     with open(filename, 'r') as f:
@@ -62,6 +69,7 @@ def main():
         unicode_block = 'B'
 
     process(input_dir, output_path, unicode_block)
+
 
 if __name__ == "__main__":
     main()

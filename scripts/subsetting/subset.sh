@@ -27,4 +27,4 @@ pyftsubset TH-Sung-TP2.ttf \
   --xml > ./preview/subset_all_woff_2.txt
 
 
-echo 'Please copy the font files into /web/src/assets/fonts.'
+cp -f ./output_fonts/* ../../web/src/assets/fonts/
