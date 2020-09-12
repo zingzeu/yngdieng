@@ -1395,11 +1395,6 @@
   resolved "https://registry.yarnpkg.com/@tarojs/runtime/-/runtime-3.0.10.tgz#5c12ec4ca27fd4fefb3f3e054dc711e4d93c680e"
   integrity sha512-z2eiRncbfExieM9+XcMw0D2wsly3Uk1md4Sej0oD2OdWdQRaMFrGXs1pyS4QTDTjBMr4m8hwewqm+LxQCtuCVw==
 
-"@tarojs/runtime@3.0.9":
-  version "3.0.9"
-  resolved "https://registry.yarnpkg.com/@tarojs/runtime/-/runtime-3.0.9.tgz#912ed65b0845ed21a36ff272a3182f59d3063604"
-  integrity sha512-WUecDKFgE1am0cf3DgG7tAE+RN7SXrbdUzb/G+iyOalcg1lT6v2/GNDKC9KyRV0C3GhEDnzWr/fosf9Um31IVQ==
-
 "@tarojs/shared@3.0.10":
   version "3.0.10"
   resolved "https://registry.yarnpkg.com/@tarojs/shared/-/shared-3.0.10.tgz#e0e41786ff2ae7709dd4dd7537dc5fd0e5e794ec"
