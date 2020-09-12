@@ -1,6 +1,6 @@
 #!/bin/sh
 
-mkdir -p charset_scanneds input_text output_fonts preview
+mkdir -p charset_scanned input_text output_fonts preview
 
 python3 ./process.py ./input_text ./charset_scanned/charset_all.txt ABCDEFG
 
@@ -27,4 +27,4 @@ pyftsubset TH-Sung-TP2.ttf \
   --xml > ./preview/subset_all_woff_2.txt
 
 
-echo 'Please copy the font files into /web/src/assets/fonts.'
+cp -f ./output_fonts/* ../../web/src/assets/fonts/
