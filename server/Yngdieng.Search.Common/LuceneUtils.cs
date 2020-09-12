@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using Lucene.Net.Analysis;
 using Lucene.Net.Analysis.Cn.Smart;
@@ -24,19 +24,20 @@ namespace Yngdieng.Search.Common
               analyzerPerField);
         }
 
-        public static class Fields {
-          public static string DocId {get=>"doc_id";}
-          public static string Hanzi {get=>"hanzi";}
-          /// <summary>
-          /// Exact sandhi yngping
-          /// </summary>
-          public static string Yngping {get=>"yngping";}
-          
-          /// <summary>
-          /// 连读后的声调.
-          /// </summary>
-          public static string YngpingSandhiTonePattern {get=>"yngping_sandhi_tone_pattern";}
-          public static string Explanation {get=>"explanation";}
+        public static class Fields
+        {
+            public static string DocId { get => "doc_id"; }
+            public static string Hanzi { get => "hanzi"; }
+            /// <summary>
+            /// Exact sandhi yngping
+            /// </summary>
+            public static string Yngping { get => "yngping"; }
+
+            /// <summary>
+            /// 连读后的声调.
+            /// </summary>
+            public static string YngpingSandhiTonePattern { get => "yngping_sandhi_tone_pattern"; }
+            public static string Explanation { get => "explanation"; }
         }
     }
 }

@@ -1,14 +1,14 @@
-extern alias zingzeudata;
+﻿extern alias zingzeudata;
 using System;
 using System.Collections.Generic;
-using Yngdieng.Protos;
-using Yngdieng.Common;
-using Google.Protobuf;
 using System.Linq;
-using static zingzeudata.ZingzeuData.Models.ZingzeuEntryExtensions;
-using zingzeudata.ZingzeuData.Models;
+using Google.Protobuf;
 using Microsoft.AspNetCore.WebUtilities;
+using Yngdieng.Common;
+using Yngdieng.Protos;
+using zingzeudata.ZingzeuData.Models;
 using static Yngdieng.Protos.YngdiengDocument.Types.Source;
+using static zingzeudata.ZingzeuData.Models.ZingzeuEntryExtensions;
 
 namespace Yngdieng.Indexer.Processing
 {

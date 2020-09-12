@@ -55,7 +55,6 @@
     "@types/google-protobuf": "3.7.3",
     "@types/jasmine": "3.5.14",
     "@types/node": "6.14.11",
-    "clang-format": "1.4.0",
     "core-js": "2.6.11",
     "history-server": "1.3.1",
     "html-insert-assets": "0.10.0",
@@ -89,10 +88,13 @@
     }
   },
   "lint-staged": {
-    "*.{tsx,ts,json,scss}": [
+    "*.{tsx,ts,jsx,js,json,scss}": [
       "prettier --write",
       "git add"
     ],
-    "*.{cs}": "check-clang-format \"yarn format\""
+    "*.{cs,csx,csproj}": [
+      "dotnet format -f server --files ",
+      "git add"
+    ]
   }
 }

@@ -1,16 +1,16 @@
-extern alias zingzeudata;
+﻿extern alias zingzeudata;
 using System;
 using System.IO;
 using System.Linq;
 using Google.Protobuf;
+using Lucene.Net.Analysis;
+using Lucene.Net.Analysis.Cn.Smart;
+using Lucene.Net.Analysis.Miscellaneous;
+using Lucene.Net.Analysis.Standard;
 using Lucene.Net.Documents;
 using Lucene.Net.Index;
 using Lucene.Net.Store;
 using Lucene.Net.Util;
-using Lucene.Net.Analysis.Standard;
-using Lucene.Net.Analysis;
-using Lucene.Net.Analysis.Miscellaneous;
-using Lucene.Net.Analysis.Cn.Smart;
 using Yngdieng.Indexer.Loading;
 using Yngdieng.Indexer.Processing;
 using Yngdieng.Protos;
@@ -113,7 +113,8 @@ namespace Yngdieng.Indexer
                             doc.Add(new TextField(LuceneUtils.Fields.Explanation, e, Field.Store.NO));
                         }
                         // TODO: encapsulate this in a YngpingAnalyzer
-                        foreach (var yp in yDoc.IndexingExtension.YngpingPermutations) {
+                        foreach (var yp in yDoc.IndexingExtension.YngpingPermutations)
+                        {
                             doc.Add(new TextField(LuceneUtils.Fields.Yngping, yp, Field.Store.NO));
                         }
                         writer.AddDocument(doc);

@@ -1,15 +1,15 @@
-using System.Threading.Tasks;
-using Yngdieng.Protos;
-using Grpc.Core;
-using System.Linq;
-using Microsoft.Extensions.Logging;
-using LuceneQuery = Lucene.Net.Search.Query;
-using Lucene.Net.Search;
-using Lucene.Net.QueryParsers.Classic;
-using Yngdieng.Search.Common;
-using Yngdieng.Common;
+﻿using System;
 using System.Collections.Generic;
-using System;
+using System.Linq;
+using System.Threading.Tasks;
+using Grpc.Core;
+using Lucene.Net.QueryParsers.Classic;
+using Lucene.Net.Search;
+using Microsoft.Extensions.Logging;
+using Yngdieng.Common;
+using Yngdieng.Protos;
+using Yngdieng.Search.Common;
+using LuceneQuery = Lucene.Net.Search.Query;
 
 namespace Yngdieng.Backend.Services
 {
