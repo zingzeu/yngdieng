@@ -12,7 +12,10 @@
         </app-generic-message-card>
         <app-end-of-results-card *ngIf="card.hasEndOfResults()">
         </app-end-of-results-card>
-        <ng-container *ngIf="!card.hasWord() && !card.hasGenericMessage() && !card.hasEndOfResults()">
+        <ng-container *ngIf="card.hasIsLoading()">
+            Loading
+        </ng-container>
+        <ng-container *ngIf="!card.hasWord() && !card.hasGenericMessage() && !card.hasEndOfResults() && !card.hasIsLoading()">
             {{ s(card) }}
         </ng-container>
     </ng-container>

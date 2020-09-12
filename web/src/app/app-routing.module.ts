@@ -15,7 +15,6 @@ import {SearchV2ResultComponent} from './search-v2-result/search-v2-result.compo
 const routes: Routes = [
   {path: '', component: HomeComponent},
   {path: 'search/:query', component: SearchResultComponent},
-  {path: 'search2/:query/:pageToken', component: SearchV2ResultComponent},
   {path: 'search2/:query', component: SearchV2ResultComponent},
   {path: 'advancedSearch', component: AdvancedSearchLandingComponent},
   {path: 'help', component: HelpComponent},

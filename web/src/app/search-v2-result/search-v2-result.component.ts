@@ -1,7 +1,7 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
 import {switchMap} from 'rxjs/operators';
 import {YngdiengBackendService} from '../yngdieng-backend.service';
-import {Subscription} from 'rxjs';
+import {Subscription, BehaviorSubject, Observable} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
 import {SearchV2Response} from 'yngdieng/shared/services_pb';
 import {YngdiengTitleService} from '../yngdieng-title.service';
@@ -14,10 +14,10 @@ import {YngdiengTitleService} from '../yngdieng-title.service';
 export class SearchV2ResultComponent implements OnInit, OnDestroy {
   private resultSubscription: Subscription;
   queryText: string;
-  results: SearchV2Response.SearchCard[];
-  isBusy: boolean;
+  results: SearchV2Response.SearchCard[] = [];
   isInvalidQuery: boolean;
   propertiesSubscription: Subscription;
+  dataService: SearchDataService;
 
   constructor(
     private route: ActivatedRoute,
@@ -30,33 +30,16 @@ export class SearchV2ResultComponent implements OnInit, OnDestroy {
     return JSON.stringify(x.toObject());
   }
   ngOnInit(): void {
-    this.isBusy = true;
     this.propertiesSubscription = this.route.paramMap.subscribe(paramMap => {
       let query = paramMap.get('query');
+      this.dataService = new SearchDataService(this.backendService, query);
+      this.resultSubscription?.unsubscribe();
+      this.resultSubscription = this.dataService.resultCards$.subscribe(s => {
+        this.results = s;
+      });
       this.queryText = query;
       this.titleService.setTitleForSearchResultPage(query);
     });
-    this.resultSubscription = this.route.paramMap
-      .pipe(
-        switchMap(paramMap => {
-          return this.backendService.searchV2(
-            paramMap.get('query'),
-            paramMap.get('pageToken')
-          );
-        })
-      )
-      .subscribe(
-        response => {
-          this.isBusy = false;
-          this.results = response.getResultCardsList();
-        },
-        err => {
-          this.results = [];
-          console.error(err);
-          this.isBusy = false;
-          this.isInvalidQuery = true;
-        }
-      );
   }
 
   onNavigateBack() {
@@ -76,5 +59,73 @@ export class SearchV2ResultComponent implements OnInit, OnDestroy {
     this.router
       .navigateByUrl('/', {skipLocationChange: true})
       .then(() => this.router.navigate(commands));
+  }
+}
+
+class SearchDataService {
+  //private seenPages = new Set<string>();
+  private nextPageToken = null;
+  private cardsSubject = new BehaviorSubject<SearchV2Response.SearchCard[]>([]);
+  private isBusySubject = new BehaviorSubject<boolean>(false);
+  private hasErrorSubject = new BehaviorSubject<boolean>(false);
+  private cards: SearchV2Response.SearchCard[] = [];
+
+  constructor(
+    private backendService: YngdiengBackendService,
+    private queryText: string
+  ) {
+    this.fetchNextPage();
+  }
+
+  fetchNextPage() {
+    if (this.isBusySubject.getValue()) {
+      console.log(
+        'skipping fetchNextPage because a request is already in-flight.'
+      );
+      return;
+    }
+    this.isBusySubject.next(true);
+    console.log('SearchDataService', this.queryText, this.nextPageToken);
+    let nextPageSubscription = this.backendService
+      .searchV2(this.queryText, this.nextPageToken || '')
+      .subscribe(
+        response => {
+          this.cards = this.cards.concat(response.getResultCardsList());
+          this.nextPageToken = response.getNextPageToken();
+          this.cardsSubject.next(this.toCardsShown());
+          this.isBusySubject.next(false);
+          this.hasErrorSubject.next(false);
+          nextPageSubscription.unsubscribe();
+        },
+        err => {
+          console.error(err);
+          this.hasErrorSubject.next(true);
+          this.isBusySubject.next(false);
+          nextPageSubscription.unsubscribe();
+        }
+      );
+  }
+
+  get resultCards$(): Observable<SearchV2Response.SearchCard[]> {
+    return this.cardsSubject.asObservable();
+  }
+
+  get isBusy$(): Observable<boolean> {
+    return this.isBusySubject.asObservable();
+  }
+
+  get hasError$(): Observable<boolean> {
+    return this.hasErrorSubject.asObservable();
+  }
+
+  private toCardsShown() {
+    if (this.nextPageToken === '') {
+      // last page
+      return this.cards;
+    } else {
+      var loadingCard = new SearchV2Response.SearchCard();
+      loadingCard.setIsLoading(true);
+      return this.cards.concat([loadingCard]);
+    }
   }
 }

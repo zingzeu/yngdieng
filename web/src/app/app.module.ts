@@ -4,7 +4,7 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
 import {BrowserModule, Title} from '@angular/platform-browser';
 import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-
+//import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import {YNGDIENG_ENVIRONMENT} from '../environments/environment';
 import {YngdiengDevEnvironment} from '../environments/environment.dev';
 import {YngdiengProdEnvironment} from '../environments/environment.prod';
@@ -85,6 +85,7 @@ import {GenericMessageCardComponent} from './generic-message-card/generic-messag
     MatDialogModule,
     NoopAnimationsModule,
     ReactiveFormsModule,
+    // InfiniteScrollModule,
   ],
   entryComponents: [YngpingHelpDialogComponent],
   providers: [
