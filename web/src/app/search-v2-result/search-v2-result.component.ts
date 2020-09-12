@@ -39,7 +39,10 @@ export class SearchV2ResultComponent implements OnInit, OnDestroy {
     this.resultSubscription = this.route.paramMap
       .pipe(
         switchMap(paramMap => {
-          return this.backendService.searchV2(paramMap.get('query'), '');
+          return this.backendService.searchV2(
+            paramMap.get('query'),
+            paramMap.get('pageToken')
+          );
         })
       )
       .subscribe(
