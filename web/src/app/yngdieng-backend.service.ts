@@ -51,14 +51,11 @@ export class YngdiengBackendService {
     return subject.asObservable();
   }
 
-  searchV2(
-    queryText: string,
-    paginationToken: string
-  ): Observable<SearchV2Response> {
+  searchV2(queryText: string, pageToken: string): Observable<SearchV2Response> {
     let subject = new Subject<SearchV2Response>();
     let request = new SearchV2Request();
     request.setQuery(queryText);
-    request.setPaginationToken(paginationToken);
+    request.setPageToken(pageToken);
 
     this.grpcClient.searchV2(request, (err, response) => {
       if (err != null) {

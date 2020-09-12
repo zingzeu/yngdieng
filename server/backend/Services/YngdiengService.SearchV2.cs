@@ -16,43 +16,50 @@ namespace Yngdieng.Backend.Services
     public partial class YngdiengService : Yngdieng.Protos.YngdiengService.YngdiengServiceBase
     {
 
+        private static readonly int DEFAULT_PAGE_SIZE = 10;
+
         public override Task<SearchV2Response> SearchV2(SearchV2Request request,
                                                         ServerCallContext context)
         {
             var query = GetLuceneQuery(QueryParser.Parse(request.Query));
+            var desiredPageSize = request.PageSize > 0 ? request.PageSize : DEFAULT_PAGE_SIZE;
             var searcher = this._indexHolder.LuceneIndexSearcher;
 
             var resultCards = new List<SearchV2Response.Types.SearchCard>();
-            resultCards.Add(GenericMessageCard("你正在試用榕典搜索V2。如遇問題，請將截圖和網址發送到 radium@mindong.asia。"));
 
             TopDocs results;
             if (string.IsNullOrEmpty(request.PageToken))
             {
-                results = searcher.Search(query, request.PageSize + 1);
+                // Is first page 
+                resultCards.Add(GenericMessageCard("你正在試用榕典搜索V2。如遇問題，請將截圖和網址發送到 radium@mindong.asia。"));
+                results = searcher.Search(query, desiredPageSize + 1);
             }
             else
             {
                 var lastPage = PaginationTokens.Parse(request.PageToken);
                 var lastScoreDoc = new ScoreDoc(lastPage.LastDoc.Doc, lastPage.LastDoc.Score);
-                results = searcher.SearchAfter(lastScoreDoc, query, request.PageSize + 1);
+                results = searcher.SearchAfter(lastScoreDoc, query, desiredPageSize + 1);
             }
-            resultCards.AddRange(RenderDocs(results.ScoreDocs));
 
             var response = new SearchV2Response();
-            var isEndOfResults = results.ScoreDocs.Length < request.PageSize + 1;
+            var isEndOfResults = results.ScoreDocs.Length < desiredPageSize + 1;
             if (isEndOfResults)
             {
+                resultCards.AddRange(RenderDocs(results.ScoreDocs));
                 resultCards.Add(EndOfResultsCard());
             }
             else
             {
-                var nextPageToken = PaginationTokens.FromScoreDoc(results.ScoreDocs.Last());
+                var visibleRange = results.ScoreDocs.Take(desiredPageSize);
+                var nextPageToken = PaginationTokens.FromScoreDoc(visibleRange.Last());
                 response.NextPageToken = nextPageToken;
+                resultCards.AddRange(RenderDocs(visibleRange));
+
                 // debug only
                 resultCards.Add(GenericMessageCard($"next_page_token: {nextPageToken}"));
             }
-            response.ResultCards.AddRange(resultCards);
 
+            response.ResultCards.AddRange(resultCards);
             return Task.FromResult(response);
         }
 
@@ -118,7 +125,7 @@ namespace Yngdieng.Backend.Services
             return string.Empty;
         }
 
-        private IEnumerable<SearchV2Response.Types.SearchCard> RenderDocs(ScoreDoc[] scoreDocs)
+        private IEnumerable<SearchV2Response.Types.SearchCard> RenderDocs(IEnumerable<ScoreDoc> scoreDocs)
         {
             var searcher = this._indexHolder.LuceneIndexSearcher;
 
