@@ -1,5 +1,7 @@
 <mat-card class="result-card" >
-    <div class="text-yngping">{{card.getYngping() | rf}}</div>
+    <div class="text-yngping">{{card.getYngping() | rf}}
+      <app-audio-player [audioUrl]="audioUrl"></app-audio-player>
+    </div>
     <div class="result-hanzi">{{card.getHanzi() | rf}}</div>
     <div class="source">{{card.getDetails() | rf}}
       <a color="primary" routerLink="/w/{{card.getId()}}" mat-button>详细</a>
