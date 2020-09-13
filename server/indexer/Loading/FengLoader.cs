@@ -84,7 +84,7 @@ namespace Yngdieng.Indexer.Loading
 
         private string Simplify(string tradChineseText)
         {
-            return openCc.SimplifyHukziuText(tradChineseText);
+            return openCc.SimplifyMandarinText(tradChineseText);
         }
 
     }
