@@ -25,6 +25,8 @@ namespace Yngdieng.Indexer
         private readonly string outputFolder;
         private readonly string versionTag;
 
+        private readonly OpenCcClient openCcClient = new OpenCcClient();
+
         public IndexV2Creator(string inputFolder, string outputFolder, string versionTag)
         {
             this.inputFolder = inputFolder;
@@ -57,7 +59,8 @@ namespace Yngdieng.Indexer
             Console.WriteLine($"Loading Feng...");
             var feng = new FengLoader(Path.Combine(inputFolder, "feng.txt"),
                                       Path.Combine(inputFolder, "feng_zeu_mapping.txt"),
-                                      outputFolder)
+                                      outputFolder,
+                                      openCcClient)
                            .Run();
             Console.WriteLine($"Loading Contrib...");
             var contrib = new ContribLoader(Path.Combine(inputFolder, "contrib.tsv")).Run();
@@ -108,6 +111,8 @@ namespace Yngdieng.Indexer
                             new TextField(LuceneUtils.Fields.Hanzi, yDoc.HanziCanonical.Regular, Field.Store.NO),
                             new StringField(LuceneUtils.Fields.YngpingSandhiTonePattern, GetTonePattern(yDoc.YngpingSandhi), Field.Store.NO)
                         };
+                        // Simplify Hanzi for search
+                        doc.Add(new TextField(LuceneUtils.Fields.Hanzi, openCcClient.SimplifyHukziuText(yDoc.HanziCanonical.Regular), Field.Store.NO));
                         foreach (var e in yDoc.IndexingExtension.ExplanationText)
                         {
                             doc.Add(new TextField(LuceneUtils.Fields.Explanation, e, Field.Store.NO));
