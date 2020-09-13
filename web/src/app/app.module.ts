@@ -3,8 +3,7 @@ import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
 import {BrowserModule, Title} from '@angular/platform-browser';
-import {NoopAnimationsModule} from '@angular/platform-browser/animations';
-
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {YNGDIENG_ENVIRONMENT} from '../environments/environment';
 import {YngdiengDevEnvironment} from '../environments/environment.dev';
 import {YngdiengProdEnvironment} from '../environments/environment.prod';
@@ -43,6 +42,7 @@ import {RichtextFlattenPipe} from './richtext-flatten.pipe';
 import {NoResultsCardComponent} from './no-results-card/no-results-card.component';
 import {EndOfResultsCardComponent} from './end-of-results-card/end-of-results-card.component';
 import {GenericMessageCardComponent} from './generic-message-card/generic-message-card.component';
+import {LoadingCardComponent} from './loading-card/loading-card.component';
 
 @NgModule({
   declarations: [
@@ -75,6 +75,7 @@ import {GenericMessageCardComponent} from './generic-message-card/generic-messag
     NoResultsCardComponent,
     EndOfResultsCardComponent,
     GenericMessageCardComponent,
+    LoadingCardComponent,
   ],
   imports: [
     AppRoutingModule,
@@ -83,8 +84,8 @@ import {GenericMessageCardComponent} from './generic-message-card/generic-messag
     HttpClientModule,
     MaterialModule,
     MatDialogModule,
-    NoopAnimationsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
   ],
   entryComponents: [YngpingHelpDialogComponent],
   providers: [

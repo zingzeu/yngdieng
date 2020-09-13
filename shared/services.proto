@@ -53,6 +53,8 @@ message SearchV2Response {
             EndOfResultsCard end_of_results = 2;
             WordCard word = 3;
             GenericMessageCard generic_message = 4;
+            // Client use only
+            bool is_loading = 5;
         }
 
         message GenericMessageCard {
