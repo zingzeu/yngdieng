@@ -121,11 +121,6 @@
   dependencies:
     tslib "^2.0.0"
 
-"@angular/core@^9.1.2":
-  version "9.1.12"
-  resolved "https://registry.yarnpkg.com/@angular/core/-/core-9.1.12.tgz#e7e10f72f84f0787551424ad86279436e0b5edbe"
-  integrity sha512-WVA/eh3fzjx0apOzkKot4YRRUsGkHj50zFQWrAOMgivGaj1YVrvhf+m3hpglj5fn/BkLiFDl8RT0wAE8z9X+gQ==
-
 "@angular/forms@10.0.9":
   version "10.0.9"
   resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-10.0.9.tgz#1472c18995fffb80027c5399b2c587348914fce1"
@@ -5364,11 +5359,6 @@ neo-async@^2.5.0, neo-async@^2.6.0, neo-async@^2.6.1:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.1.tgz#ac27ada66167fa8849a6addd837f6b189ad2081c"
   integrity sha512-iyam8fBuCUpWeKPGpaNMetEocMt364qkCsfL9JuhjXX6dRnguRVOfk2GZaDpPjcOKiiXCPINZC1GczQ7iTq3Zw==
-
-"ngx-infinite-scroll@file:../MindongLab/ngx-infinite-scroll/dist":
-  version "9.1.0-fix2"
-  dependencies:
-    "@angular/core" "^9.1.2"
 
 nice-try@^1.0.4:
   version "1.0.5"

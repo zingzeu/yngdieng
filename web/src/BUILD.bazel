@@ -255,7 +255,6 @@ ts_devserver(
     scripts = [
         "@npm//:node_modules/tslib/tslib.js",
         ":rxjs_umd_modules",
-        "@npm//ngx-infinite-scroll:ngx-infinite-scroll__umd",
         ":google_protobuf_requirejs",
         ":improbable_eng_grpc_web_requirejs",
     ],

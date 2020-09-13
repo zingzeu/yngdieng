@@ -50,6 +50,10 @@ export class SearchV2ResultComponent implements OnInit, OnDestroy {
     this.redirectTo(['/search2', searchText]);
   }
 
+  onLoadNext() {
+    this.dataService?.fetchNextPage();
+  }
+
   ngOnDestroy(): void {
     this.resultSubscription?.unsubscribe();
     this.propertiesSubscription?.unsubscribe();
