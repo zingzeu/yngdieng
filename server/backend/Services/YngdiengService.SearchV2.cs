@@ -54,9 +54,6 @@ namespace Yngdieng.Backend.Services
                 var nextPageToken = PaginationTokens.FromScoreDoc(visibleRange.Last());
                 response.NextPageToken = nextPageToken;
                 resultCards.AddRange(RenderDocs(visibleRange));
-
-                // debug only
-                resultCards.Add(GenericMessageCard($"next_page_token: {nextPageToken}"));
             }
 
             response.ResultCards.AddRange(resultCards);
