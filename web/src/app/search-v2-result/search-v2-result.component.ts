@@ -67,7 +67,7 @@ export class SearchV2ResultComponent implements OnInit, OnDestroy {
 }
 
 class SearchDataService {
-  //private seenPages = new Set<string>();
+  // TODO: cache results
   private nextPageToken = null;
   private cardsSubject = new BehaviorSubject<SearchV2Response.SearchCard[]>([]);
   private isBusySubject = new BehaviorSubject<boolean>(false);
