@@ -1,2 +1,10 @@
-<p>loading-card works!</p>
-<button (click)="onNextClicked()">next</button>
+<button *ngIf="!clicked" 
+        mat-stroked-button 
+        class="loading-button"
+        color="primary" 
+        (click)="onNextClicked()">
+    加載更多
+</button>
+<div class="spinner-container">
+    <mat-spinner diameter="24"></mat-spinner>
+</div>

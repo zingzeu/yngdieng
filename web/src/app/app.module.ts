@@ -3,7 +3,7 @@ import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
 import {BrowserModule, Title} from '@angular/platform-browser';
-import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {YNGDIENG_ENVIRONMENT} from '../environments/environment';
 import {YngdiengDevEnvironment} from '../environments/environment.dev';
 import {YngdiengProdEnvironment} from '../environments/environment.prod';
@@ -84,8 +84,8 @@ import {LoadingCardComponent} from './loading-card/loading-card.component';
     HttpClientModule,
     MaterialModule,
     MatDialogModule,
-    NoopAnimationsModule,
     ReactiveFormsModule,
+    BrowserAnimationsModule,
   ],
   entryComponents: [YngpingHelpDialogComponent],
   providers: [

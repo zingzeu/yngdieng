@@ -7,11 +7,13 @@ import {Component, OnInit, Output, EventEmitter} from '@angular/core';
 })
 export class LoadingCardComponent implements OnInit {
   @Output() reload = new EventEmitter<boolean>();
+  clicked = false;
   constructor() {}
 
   ngOnInit(): void {}
 
   onNextClicked() {
+    this.clicked = true;
     this.reload.emit(true);
   }
 }
