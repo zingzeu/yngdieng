@@ -10,6 +10,7 @@ import {YngdiengTitleService} from '../yngdieng-title.service';
   selector: 'app-search-v2-result',
   templateUrl: './search-v2-result.component.html',
   styleUrls: ['./search-v2-result.component.scss'],
+  // TODO: keep scroll position
 })
 export class SearchV2ResultComponent implements OnInit, OnDestroy {
   private resultSubscription: Subscription;
