@@ -33,6 +33,12 @@ namespace Yngdieng.Backend.Services
                 // Is first page 
                 resultCards.Add(GenericMessageCard("你正在試用榕典搜索V2。如遇問題，請將截圖和網址發送到 radium@mindong.asia。"));
                 results = searcher.Search(query, desiredPageSize + 1);
+                // first page && no results
+                if (results.ScoreDocs.Length == 0) {
+                    return Task.FromResult(new SearchV2Response{
+                        ResultCards = {NoResultsCard()}
+                    });
+                }
             }
             else
             {
@@ -162,6 +168,15 @@ namespace Yngdieng.Backend.Services
             {
                 EndOfResults = new SearchV2Response.Types.SearchCard.Types
                                                           .EndOfResultsCard()
+            };
+        }
+
+        private static SearchV2Response.Types.SearchCard NoResultsCard()
+        {
+            return new SearchV2Response.Types.SearchCard
+            {
+                NoResults = new SearchV2Response.Types.SearchCard.Types
+                                                          .NoResultsCard()
             };
         }
     }

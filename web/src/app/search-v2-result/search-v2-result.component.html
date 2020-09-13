@@ -1,20 +1,22 @@
 <app-search-toolbar [queryFromUrl]="queryText" (navigateBack)="onNavigateBack()"
     (performSearch)="onPerformSearch($event)"></app-search-toolbar>
-<br/>
+<br />
 <div *ngIf="isInvalidQuery">搜索格式不正确: {{ queryText }}</div>
 <div *ngIf="!isInvalidQuery && results.length > 0" class="search-results-list">
     <ng-container *ngFor="let card of results">
         <app-word-card [card]="card.getWord()" *ngIf="card.hasWord()">
         </app-word-card>
-        <app-generic-message-card 
-            [message]="card.getGenericMessage().getMessage() | rf"
+        <app-generic-message-card [message]="card.getGenericMessage().getMessage() | rf"
             *ngIf="card.hasGenericMessage()">
         </app-generic-message-card>
+        <app-no-results-card *ngIf="card.hasNoResults()" [queryText]="queryText">
+        </app-no-results-card>
         <app-end-of-results-card *ngIf="card.hasEndOfResults()">
         </app-end-of-results-card>
         <app-loading-card *ngIf="card.hasIsLoading()" (reload)="onLoadNext()">
         </app-loading-card>
-        <ng-container *ngIf="!card.hasWord() && !card.hasGenericMessage() && !card.hasEndOfResults() && !card.hasIsLoading()">
+        <ng-container
+            *ngIf="!card.hasWord() && !card.hasGenericMessage() && !card.hasEndOfResults() && !card.hasNoResults() && !card.hasIsLoading()">
             {{ s(card) }}
         </ng-container>
     </ng-container>
