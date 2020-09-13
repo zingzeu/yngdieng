@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
+using System;
 
 namespace Yngdieng.Common
 {
@@ -9,130 +10,139 @@ namespace Yngdieng.Common
 
         public static string[] GenerateYngpingVariants(string canonical)
         {
-            var tmp = new YngpingWord(canonical);
-            tmp.Transform(@"^\{?([a-z]+)([0-5]*)\}?$", match => $"{match.Groups[1]}");
+            var word = new YngpingWord(canonical);
+            word.Transform(@"^\{?([a-z]+)([0-5]*)\}?$", match => $"{match.Groups[1]}");
             // 首字母缩写
             //tmp.Derive(@"^([gkhlnmbpdtzcs]|ng)[aoeiuy]+(ng|h|k)?$", match => $"{match.Groups[1]}");
-            tmp.Derive(@"^([lnm]|ng).+$", match => $"{match.Groups[1]}");
+            word.Derive(@"^([lnm]|ng).+$", match => $"{match.Groups[1]}");
 
             // ——————模糊音——————
             // 普通話拼音模糊音
-            tmp.Derive(@"y", match => $"v");
-            tmp.Derive(@"au", match => $"ao");
-            tmp.Derive(@"yo", match => $"ue");
-            tmp.Derive(@"^yo", match => $"yue");
-            tmp.Derive(@"^yong", match => $"yuan");
-            tmp.Derive(@"ieng", match => $"ian");
-            tmp.Derive(@"oung", match => $"ong");
-            tmp.Derive(@"yng", match => $"yun");
-            tmp.Derive(@"iau", match => $"yao");
+            word.Derive(@"y", match => $"v");
+            word.Derive(@"au", match => $"ao");
+            word.Derive(@"yo", match => $"ue");
+            word.Derive(@"^yo", match => $"yue");
+            word.Derive(@"^yong", match => $"yuan");
+            word.Derive(@"ieng", match => $"ian");
+            word.Derive(@"oung", match => $"ong");
+            word.Derive(@"yng", match => $"yun");
+            word.Derive(@"iau", match => $"yao");
             // 普通話拼音的零声母辅音
-            tmp.Derive(@"^ia", match => $"ya");
-            tmp.Derive(@"^i", match => $"yi");
-            tmp.Derive(@"^iu", match => $"you");
-            tmp.Derive(@"^y", match => $"yu");
-            tmp.Derive(@"^ie", match => $"ye");
+            word.Derive(@"^ia", match => $"ya");
+            word.Derive(@"^i", match => $"yi");
+            word.Derive(@"^iu", match => $"you");
+            word.Derive(@"^y", match => $"yu");
+            word.Derive(@"^ie", match => $"ye");
             // 鼻音韵尾简化
-            tmp.Derive(@"ang", match => $"an");
-            tmp.Derive(@"ing", match => $"in");
-            tmp.Derive(@"yng", match => $"vn");
+            word.Derive(@"ang", match => $"an");
+            word.Derive(@"ing", match => $"in");
+            word.Derive(@"yng", match => $"vn");
             // 戚林八音音系
-            tmp.Derive(@"eing", match => $"eng");
-            tmp.Derive(@"yo", match => $"io");
-            tmp.Derive(@"iu", match => $"ieu");
-            tmp.Derive(@"ui", match => $"uoi");
-            tmp.Derive(@"oey", match => $"oi");
-            tmp.Derive(@"ooy", match => $"oi");
+            word.Derive(@"eing", match => $"eng");
+            word.Derive(@"yo", match => $"io");
+            word.Derive(@"iu", match => $"ieu");
+            word.Derive(@"ui", match => $"uoi");
+            word.Derive(@"oey", match => $"oi");
+            word.Derive(@"ooy", match => $"oi");
             // 入聲模糊音
-            tmp.Derive(@"^(.+)[hk]$", match => $"{match.Groups[1]}");
-            tmp.Derive(@"^(.+)[hk]$", match => $"{match.Groups[1]}h");
-            tmp.Derive(@"^(.+)[hk]$", match => $"{match.Groups[1]}k");
+            word.Derive(@"^(.+)[hk]$", match => $"{match.Groups[1]}");
+            word.Derive(@"^(.+)[hk]$", match => $"{match.Groups[1]}h");
+            word.Derive(@"^(.+)[hk]$", match => $"{match.Groups[1]}k");
             // 类化音模糊音（大部分是）
-            tmp.Derive(@"^ui", match => $"wei");
-            tmp.Derive(@"w", match => $"b");
-            tmp.Derive(@"^ua", match => $"wa");
-            tmp.Derive(@"^uai", match => $"wai");
-            tmp.Derive(@"^u", match => $"wu");
-            tmp.Derive(@"^uo", match => $"wo");
-            tmp.Derive(@"j", match => $"z");
-            tmp.Derive(@"j", match => $"c");
-            tmp.Derive(@"zi", match => $"ji");
-            tmp.Derive(@"ci", match => $"qi");
-            tmp.Derive(@"si", match => $"xi");
-            tmp.Derive(@"zy", match => $"ju");
-            tmp.Derive(@"cy", match => $"qu");
-            tmp.Derive(@"sy", match => $"xu");
-            tmp.Derive(@"nj", match => $"z");
-            tmp.Derive(@"nj", match => $"c");
-            tmp.Derive(@"nj", match => $"j");
-            tmp.Derive(@"nj", match => $"n");
+            word.Derive(@"^ui", match => $"wei");
+            word.Derive(@"w", match => $"b");
+            word.Derive(@"^ua", match => $"wa");
+            word.Derive(@"^uai", match => $"wai");
+            word.Derive(@"^u", match => $"wu");
+            word.Derive(@"^uo", match => $"wo");
+            word.Derive(@"j", match => $"z");
+            word.Derive(@"j", match => $"c");
+            word.Derive(@"zi", match => $"ji");
+            word.Derive(@"ci", match => $"qi");
+            word.Derive(@"si", match => $"xi");
+            word.Derive(@"zy", match => $"ju");
+            word.Derive(@"cy", match => $"qu");
+            word.Derive(@"sy", match => $"xu");
+            word.Derive(@"nj", match => $"z");
+            word.Derive(@"nj", match => $"c");
+            word.Derive(@"nj", match => $"j");
+            word.Derive(@"nj", match => $"n");
             // oo的模糊音
-            tmp.Derive(@"oo", match => $"o");
-            tmp.Derive(@"ooung", match => $"aung");
-            tmp.Derive(@"oouk", match => $"auk");
-            tmp.Derive(@"ooyng", match => $"ayng");
-            tmp.Derive(@"ooyk", match => $"ayk");
-            tmp.Derive(@"ooy", match => $"oey");
-            tmp.Derive(@"oeyng", match => $"oeng");
-            tmp.Derive(@"oeyng", match => $"oyng");
+            word.Derive(@"oo", match => $"o");
+            word.Derive(@"ooung", match => $"aung");
+            word.Derive(@"oouk", match => $"auk");
+            word.Derive(@"ooyng", match => $"ayng");
+            word.Derive(@"ooyk", match => $"ayk");
+            word.Derive(@"ooy", match => $"oey");
+            word.Derive(@"oeyng", match => $"oeng");
+            word.Derive(@"oeyng", match => $"oyng");
             // 泥來混
-            tmp.Derive(@"^[ln](.*)$", match => $"l{match.Groups[1]}");
-            tmp.Derive(@"^[nl](.*)$", match => $"n{match.Groups[1]}");
+            word.Derive(@"^[ln](.*)$", match => $"l{match.Groups[1]}");
+            word.Derive(@"^[nl](.*)$", match => $"n{match.Groups[1]}");
             //  新老派 城乡 口音差异
-            tmp.Derive(@"ooy", match => $"uai");
-            tmp.Derive(@"yo", match => $"yoe");
-            tmp.Derive(@"za", match => $"zia");
-            tmp.Derive(@"ca", match => $"cia");
-            tmp.Derive(@"ja", match => $"ia");
+            word.Derive(@"ooy", match => $"uai");
+            word.Derive(@"yo", match => $"yoe");
+            word.Derive(@"za", match => $"zia");
+            word.Derive(@"ca", match => $"cia");
+            word.Derive(@"ja", match => $"ia");
             // 新老派、城乡口音差异的普通话拼音模糊音
-            tmp.Derive(@"za", match => $"jia");
-            tmp.Derive(@"ca", match => $"qia");
-            tmp.Derive(@"ja", match => $"ya");
-            tmp.Derive(@"nja", match => $"ya");
-            tmp.Derive(@"nja", match => $"ia");
+            word.Derive(@"za", match => $"jia");
+            word.Derive(@"ca", match => $"qia");
+            word.Derive(@"ja", match => $"ya");
+            word.Derive(@"nja", match => $"ya");
+            word.Derive(@"nja", match => $"ia");
             // TODO(ztl8702/yngping-rime#58):
             // 关于eo的模糊音，以后会把这几行去掉
-            tmp.Derive(@"oeyng", match => $"eong");
-            tmp.Derive(@"oeyng", match => $"eoyng");
-            tmp.Derive(@"oeyng", match => $"oyeng");
-            tmp.Derive(@"oeyng", match => $"eyong");
-            tmp.Derive(@"oe", match => $"eo");
+            word.Derive(@"oeyng", match => $"eong");
+            word.Derive(@"oeyng", match => $"eoyng");
+            word.Derive(@"oeyng", match => $"oyeng");
+            word.Derive(@"oeyng", match => $"eyong");
+            word.Derive(@"oe", match => $"eo");
 
-            return tmp.GetAllVariants().ToArray();
+            return word.GetAllVariants().ToArray();
         }
     }
 
     sealed class YngpingWord
     {
-        string[] canonicalSyllables;
-        List<string[]> derivatives = new List<string[]>();
+        string canonicalSyllables;
+        List<string> derivatives = new List<string>();
 
         public YngpingWord(string canonical)
         {
-            canonicalSyllables = canonical.Split(' ');
+            canonicalSyllables = canonical;
+            derivatives.Add(canonical);
         }
 
         public void Transform(string pattern, MatchEvaluator evaluator)
         {
-            canonicalSyllables = canonicalSyllables.Select(s =>
-                Regex.Replace(s, pattern, evaluator)
-            ).ToArray();
+            var newProns = derivatives.Select(
+                pron => string.Join(' ', pron.Split(' ').Select(s =>
+                
+                 Regex.Replace(s, pattern, evaluator)
+                
+            ))).ToList();
+            derivatives.Clear();
+            derivatives.AddRange(newProns);
         }
 
         public void Derive(string pattern, MatchEvaluator evaluator)
         {
-            derivatives.Add(
-                canonicalSyllables.Select(s =>
-                    Regex.Replace(s, pattern, evaluator))
-                .ToArray());
+            var newProns =
+                derivatives
+                .Select(pron => string.Join(' ', pron.Split(' ').Select(s =>
+                     Regex.Replace(s, pattern, evaluator)
+                ))).ToList();
+            derivatives.AddRange(newProns);
+            derivatives = derivatives.Distinct().ToList();
         }
 
         public IEnumerable<string> GetAllVariants()
         {
             var tmp = new List<string>();
-            tmp.Add(string.Join(" ", canonicalSyllables));
-            tmp.AddRange(derivatives.Select(w => string.Join(" ", w)));
-            tmp.AddRange(derivatives.Select(w => string.Join("", w)));
+            tmp.Add(canonicalSyllables);
+            tmp.AddRange(derivatives);
+            tmp.AddRange(derivatives.Select(w => string.Join("", w.Split(' '))));
             return tmp.Distinct();
         }
     }
