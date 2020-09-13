@@ -56,6 +56,8 @@ export class YngdiengBackendService {
     let request = new SearchV2Request();
     request.setQuery(queryText);
     request.setPageToken(pageToken);
+    // TODO: parameterize
+    request.setPageSize(15);
 
     this.grpcClient.searchV2(request, (err, response) => {
       if (err != null) {
