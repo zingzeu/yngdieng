@@ -1,5 +1,10 @@
-import {Component, OnInit, Input} from '@angular/core';
+import {Component, OnInit, Input, Inject} from '@angular/core';
 import {SearchV2Response} from 'yngdieng/shared/services_pb';
+import {
+  YNGDIENG_ENVIRONMENT,
+  IYngdiengEnvironment,
+} from '../../environments/environment';
+import {flatten} from '../richtext-flatten.pipe';
 
 @Component({
   selector: 'app-word-card',
@@ -9,7 +14,15 @@ import {SearchV2Response} from 'yngdieng/shared/services_pb';
 export class WordCardComponent implements OnInit {
   @Input('card') card: SearchV2Response.SearchCard.WordCard;
 
-  constructor() {}
+  constructor(
+    @Inject(YNGDIENG_ENVIRONMENT) private environment: IYngdiengEnvironment
+  ) {}
+
+  get audioUrl() {
+    return (
+      this.environment.serverUrl + '/tts/' + flatten(this.card.getYngping())
+    );
+  }
 
   ngOnInit(): void {}
 }
