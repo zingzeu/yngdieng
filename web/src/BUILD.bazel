@@ -2,7 +2,6 @@ load("@build_bazel_rules_nodejs//:index.bzl", "pkg_web")
 load("@npm//@babel/cli:index.bzl", "babel")
 load("@npm_angular_bazel//:index.bzl", "ng_module")
 
-#load("@npm_bazel_karma//:index.bzl", "ts_web_test_suite")
 load("@npm_bazel_rollup//:index.bzl", "rollup_bundle")
 load("@npm//history-server:index.bzl", "history_server")
 load("@npm_bazel_typescript//:index.bzl", "ts_devserver", "ts_library")
@@ -56,7 +55,6 @@ genrule(
     outs = [
         "google-protobuf.js",
     ],
-    # cmd = "cp $< $@",
     cmd = """echo "define('google-protobuf', function(require, exports, module) {" > $@ \
             && cat $< >> $@ \
             && echo '});' >> $@""",
@@ -70,7 +68,6 @@ genrule(
     outs = [
         "grpc-web.js",
     ],
-    # cmd = "cp $< $@",
     cmd = """echo "define('@improbable-eng/grpc-web', function(require, exports, module) {" > $@ \
             && cat $< >> $@ \
             && echo '});' >> $@""",
@@ -84,6 +81,15 @@ filegroup(
         ":rxjs_shims.js",
     ],
 )
+
+# filegroup(
+#     name = "ngx-infinite-scroll_umd_modules",
+#     srcs = [
+#         # do not sort
+#         "@npm//:node_modules/ngx-infinite-scroll/bundles/ngx-infinite-scroll.umd.js",
+#         ":ngx-infinite-scroll_shim.js",
+#     ],
+# )
 
 # Files that we serve in both development and production
 _ASSETS = [
@@ -249,6 +255,7 @@ ts_devserver(
     scripts = [
         "@npm//:node_modules/tslib/tslib.js",
         ":rxjs_umd_modules",
+        "@npm//ngx-infinite-scroll:ngx-infinite-scroll__umd",
         ":google_protobuf_requirejs",
         ":improbable_eng_grpc_web_requirejs",
     ],
@@ -258,18 +265,6 @@ ts_devserver(
     ],
     deps = [":src"],
 )
-
-# ts_library(
-#     name = "test_lib",
-#     testonly = 1,
-#     srcs = glob(["**/*.spec.ts"]),
-#     deps = [
-#         ":src",
-#         "@npm//@angular/core",
-#         "@npm//@angular/router",
-#         "@npm//@types",
-#     ],
-# )
 
 ts_library(
     name = "initialize_testbed",
@@ -284,25 +279,4 @@ ts_library(
     ],
 )
 
-# ts_web_test_suite(
-#     name = "test",
-#     srcs = [
-#         "@npm//:node_modules/tslib/tslib.js",
-#     ],
-#     runtime_deps = [
-#         ":initialize_testbed",
-#     ],
-#     # do not sort
-#     bootstrap = [
-#         "@npm//:node_modules/zone.js/dist/zone-testing-bundle.js",
-#         "@npm//:node_modules/reflect-metadata/Reflect.js",
-#     ],
-#     browsers = [
-#         "@io_bazel_rules_webtesting//browsers:chromium-local",
-#     ],
-#     deps = [
-#         ":rxjs_umd_modules",
-#         ":test_lib",
-#         "@npm//karma-jasmine",
-#     ],
-# )
+# TODO: tests

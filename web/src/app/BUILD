@@ -26,7 +26,7 @@ ng_module(
         "@npm//@angular/router",
         "@npm//@types",
         "@npm//rxjs",
-       # "@npm//ngx-infinite-scroll",
+        "@npm//ngx-infinite-scroll",
     ],
 )
 

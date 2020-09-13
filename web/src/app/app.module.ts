@@ -85,7 +85,7 @@ import {GenericMessageCardComponent} from './generic-message-card/generic-messag
     MatDialogModule,
     NoopAnimationsModule,
     ReactiveFormsModule,
-    // InfiniteScrollModule,
+    //  InfiniteScrollModule,
   ],
   entryComponents: [YngpingHelpDialogComponent],
   providers: [
