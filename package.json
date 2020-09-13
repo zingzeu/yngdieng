@@ -95,6 +95,9 @@
     "*.{cs,csx,csproj}": [
       "dotnet format -f server --files ",
       "git add"
+    ],
+    "(BUILD|WORKSPACE|*.bazel|*.bzl)": [
+      "buildifier"
     ]
   }
 }
