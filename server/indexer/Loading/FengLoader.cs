@@ -1,15 +1,11 @@
 ﻿extern alias zingzeudata;
-using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net.Http;
+
 using System.Text;
-using Google.Protobuf;
 using Yngdieng.Common;
 using Yngdieng.Protos;
-using ZingzeuData.Models;
-using ZingzeuData.Parser;
 using static Yngdieng.Indexer.ExplanationUtil;
 
 namespace Yngdieng.Indexer.Loading
@@ -17,17 +13,18 @@ namespace Yngdieng.Indexer.Loading
     public sealed class FengLoader
     {
 
-        private static readonly string OpenCCDaemon = "http://localhost:8081";
-        private static readonly HttpClient client = new HttpClient();
         private readonly string fengPath;
         private readonly string fengZeuMappingPath;
         private readonly string outputFolder;
 
-        public FengLoader(string fengPath, string fengZeuMappingPath, string outputFolder)
+        private readonly OpenCcClient openCc;
+
+        public FengLoader(string fengPath, string fengZeuMappingPath, string outputFolder, OpenCcClient openCcClient)
         {
             this.fengPath = fengPath;
             this.fengZeuMappingPath = fengZeuMappingPath;
             this.outputFolder = outputFolder;
+            this.openCc = openCcClient;
         }
 
         public IEnumerable<FengDocument> Run()
@@ -85,12 +82,9 @@ namespace Yngdieng.Indexer.Loading
                 .ToDictionary(e => (e.FengPageNumber, e.FengLineNumber), e => e.ZingzeuId);
         }
 
-        private static string Simplify(string traditional)
+        private string Simplify(string tradChineseText)
         {
-            return client
-                .PostAsync(OpenCCDaemon, new ByteArrayContent(Encoding.UTF8.GetBytes(traditional)))
-                .Result.Content.ReadAsStringAsync()
-                .Result;
+            return openCc.SimplifyMandarinText(tradChineseText);
         }
 
     }

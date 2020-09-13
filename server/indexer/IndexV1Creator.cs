@@ -28,6 +28,7 @@ namespace Yngdieng.Indexer
             var index = new YngdiengIndex();
             var hanziVariantsUtil = new HanziVariantsUtil(inputFolder);
             var aggregator = new HistoricalDocAggregator();
+            var openCcClient = new OpenCcClient();
 
             Console.WriteLine($"Loading CikLinBekIn...");
             var ciklin = new CikLingLoader(Path.Combine(inputFolder, "CikLinBekIn.csv"),
@@ -42,7 +43,8 @@ namespace Yngdieng.Indexer
             Console.WriteLine($"Loading Feng...");
             var feng = new FengLoader(Path.Combine(inputFolder, "feng.txt"),
                                       Path.Combine(inputFolder, "feng_zeu_mapping.txt"),
-                                      outputFolder)
+                                      outputFolder,
+                                      openCcClient)
                            .Run();
 
             index.Version = versionTag;
