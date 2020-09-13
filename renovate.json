@@ -9,6 +9,7 @@
     },
     {
       "packageNames": ["@bazel/ibazel", "envoyproxy/envoy"],
+      "packagePatterns": ["^Lucene.Net"],
       "enabled": false
     }
   ],
