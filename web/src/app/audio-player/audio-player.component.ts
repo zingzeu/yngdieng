@@ -40,9 +40,7 @@ export class AudioPlayerComponent implements OnInit {
         fetch(this.audioUrl)
           .then(response => {
             if (!response.ok) {
-              console.log('response status: ' + response.status);
-              console.log(response.status == 404);
-              if (response.status == 404) {
+              if (response.status === 404) {
                 this.state = PlayerState.Disabled;
                 this.snackBar.open(
                   '不好意思，这条发音暂时没有对应的音频。',
