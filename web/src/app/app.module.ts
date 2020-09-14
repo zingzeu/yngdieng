@@ -2,6 +2,7 @@ import {HttpClientModule} from '@angular/common/http';
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {BrowserModule, Title} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {YNGDIENG_ENVIRONMENT} from '../environments/environment';
@@ -84,6 +85,7 @@ import {LoadingCardComponent} from './loading-card/loading-card.component';
     HttpClientModule,
     MaterialModule,
     MatDialogModule,
+    MatSnackBarModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
   ],
