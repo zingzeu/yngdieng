@@ -1,6 +1,9 @@
-using System.IO;
+﻿using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
+using Lucene.Net.Index;
+using Lucene.Net.Search;
+using Lucene.Net.Store;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
@@ -30,8 +33,13 @@ namespace Yngdieng.Backend
 
         protected override Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            var indexFilePath = config["IndexFile"];
-            logger.LogInformation($"Loading index from {Path.GetFullPath(indexFilePath)}");
+            return Task.WhenAll(LoadYngdiengIndex(), LoadLuceneIndex());
+        }
+
+        private Task LoadYngdiengIndex()
+        {
+            var indexFilePath = Path.GetFullPath(Path.Join(config["IndexPath"], "yngdieng_index.bin"));
+            logger.LogInformation($"Loading index from {indexFilePath}");
 
             using (var input = File.OpenRead(indexFilePath))
             {
@@ -41,6 +49,18 @@ namespace Yngdieng.Backend
                 logger.LogInformation(
                     $"{index.HistoricalDocuments.Count} + {index.FengDocuments.Count} documents loaded.");
             }
+            return Task.CompletedTask;
+        }
+
+        private Task LoadLuceneIndex()
+        {
+            var luceneIndexPath = Path.GetFullPath(Path.Join(config["IndexPath"], "lucene"));
+            logger.LogInformation($"Loading Lucene index from {luceneIndexPath}");
+
+            var reader = DirectoryReader.Open(FSDirectory.Open(new DirectoryInfo(luceneIndexPath)));
+            var searcher = new IndexSearcher(reader);
+            logger.LogInformation($"{reader.NumDocs} docs in lucene index");
+            indexHolder.LuceneIndexSearcher = searcher;
             return Task.CompletedTask;
         }
     }

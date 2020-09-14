@@ -53,6 +53,12 @@ body {
   }
 }
 
+.search-results-list,
+.result-message {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
 .mat-card {
   padding: 12px !important;
 }

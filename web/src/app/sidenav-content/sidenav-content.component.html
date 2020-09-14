@@ -12,6 +12,10 @@
       <mat-icon matListIcon>search</mat-icon>
       <h3 matLine>搜索</h3>
     </mat-list-item>
+    <mat-list-item (click)="onSearch2Clicked()" *ngIf="showSearchV2">
+      <mat-icon matListIcon>search</mat-icon>
+      <h3 matLine>搜索2</h3>
+    </mat-list-item>
     <mat-list-item (click)="onHelpClicked()">
       <mat-icon matListIcon>help</mat-icon>
       <h3 matLine>帮助</h3>

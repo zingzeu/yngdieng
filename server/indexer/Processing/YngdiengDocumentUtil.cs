@@ -1,14 +1,14 @@
-extern alias zingzeudata;
+﻿extern alias zingzeudata;
 using System;
 using System.Collections.Generic;
-using Yngdieng.Protos;
-using Yngdieng.Common;
-using Google.Protobuf;
 using System.Linq;
-using static zingzeudata.ZingzeuData.Models.ZingzeuEntryExtensions;
-using zingzeudata.ZingzeuData.Models;
+using Google.Protobuf;
 using Microsoft.AspNetCore.WebUtilities;
+using Yngdieng.Common;
+using Yngdieng.Protos;
+using zingzeudata.ZingzeuData.Models;
 using static Yngdieng.Protos.YngdiengDocument.Types.Source;
+using static zingzeudata.ZingzeuData.Models.ZingzeuEntryExtensions;
 
 namespace Yngdieng.Indexer.Processing
 {
@@ -32,18 +32,20 @@ namespace Yngdieng.Indexer.Processing
             foreach (var zingzeuWordsEntry in zingzeuEntries)
             {
                 var zingzeuId = zingzeuWordsEntry.Id;
-                var tmp = new YngdiengDocument{
-                    DocRef = new DocRef{ZingzeuId = zingzeuId},
-                    HanziCanonical = new Hanzi{Regular = zingzeuWordsEntry.Hanzi},
+                var tmp = new YngdiengDocument
+                {
+                    DocRef = new DocRef { ZingzeuId = zingzeuId },
+                    HanziCanonical = new Hanzi { Regular = zingzeuWordsEntry.Hanzi },
                     YngpingSandhi =
-                        zingzeuWordsEntry.Prons.FirstOrDefault() ?.Pron() ?? string.Empty, };
+                        zingzeuWordsEntry.Prons.FirstOrDefault()?.Pron() ?? string.Empty,
+                };
 
                 // TODO: Match Historical Docs
                 var fengMatches = pendingFeng.Where(f => f.ZingzeuId == zingzeuId).ToArray();
                 foreach (var fengMatch in fengMatches)
                 {
                     pendingFeng.Remove(fengMatch);
-                    tmp.Sources.Add(new YngdiengDocument.Types.Source{Feng = fengMatch});
+                    tmp.Sources.Add(new YngdiengDocument.Types.Source { Feng = fengMatch });
                 }
 
                 var contribMatch =
@@ -51,13 +53,10 @@ namespace Yngdieng.Indexer.Processing
                 if (contribMatch != null)
                 {
                     pendingContrib.Remove(contribMatch);
-                    tmp.Sources.Add(new YngdiengDocument.Types.Source{Contrib = contribMatch});
+                    tmp.Sources.Add(new YngdiengDocument.Types.Source { Contrib = contribMatch });
                 }
 
-                if (tmp.Sources.Count > 0)
-                {
-                    results.Add(tmp);
-                }
+                results.Add(tmp);
             }
             Console.WriteLine($"{results.Count} matched.");
             // 第二阶段: 无 zingzeu_id 的，各自单独生成 YngdiengDocument
@@ -66,21 +65,28 @@ namespace Yngdieng.Indexer.Processing
             Console.WriteLine($"{pendingContrib.Count} unmatched contribDocs.");
             foreach (var h in pendingHistorical)
             {
-                results.Add(new YngdiengDocument{
-                    DocRef = new DocRef{HistoricalDocId = h.Id},
-                    Sources = {new YngdiengDocument.Types.Source{CiklinDfd = h}}});
+                results.Add(new YngdiengDocument
+                {
+                    DocRef = new DocRef { HistoricalDocId = h.Id },
+                    Sources = { new YngdiengDocument.Types.Source { CiklinDfd = h } }
+                });
             }
             foreach (var f in pendingFeng)
             {
                 results.Add(
-                    new YngdiengDocument{DocRef = new DocRef{FengId = f.Id},
-                                         Sources = {new YngdiengDocument.Types.Source{Feng = f}}});
+                    new YngdiengDocument
+                    {
+                        DocRef = new DocRef { FengId = f.Id },
+                        Sources = { new YngdiengDocument.Types.Source { Feng = f } }
+                    });
             }
             foreach (var c in pendingContrib)
             {
-                results.Add(new YngdiengDocument{
-                    DocRef = new DocRef{ContribRowNumber = c.RowNumber},
-                    Sources = {new YngdiengDocument.Types.Source{Contrib = c}}});
+                results.Add(new YngdiengDocument
+                {
+                    DocRef = new DocRef { ContribRowNumber = c.RowNumber },
+                    Sources = { new YngdiengDocument.Types.Source { Contrib = c } }
+                });
             }
             // Generated base64 encoded doc id
             foreach (var doc in results)
@@ -90,18 +96,14 @@ namespace Yngdieng.Indexer.Processing
                 {
                     doc.HanziCanonical = FindHanziCanonical(doc.Sources);
                 }
-                if (doc.YngpingUnderlying == string.Empty)
+                doc.YngpingUnderlying = FindYngpingUnderlying(doc.Sources, doc.YngpingUnderlying);
+                doc.YngpingSandhi = FindYngpingSandhi(doc.Sources,doc.YngpingSandhi);
+                doc.IndexingExtension = new YngdiengDocument.Types.IndexingExtension
                 {
-                    doc.YngpingUnderlying = FindYngpingUnderlying(doc.Sources);
-                }
-                if (doc.YngpingSandhi == string.Empty)
-                {
-                    doc.YngpingSandhi = FindYngpingSandhi(doc.Sources);
-                }
-                doc.IndexingExtension = new YngdiengDocument.Types.IndexingExtension{
-                    YngpingPermutations = {CollectYngpingPermutations(doc.Sources)},
-                    HanziMatchable = {CollectHanziMatchable(doc.Sources)},
-                    ExplanationText = {CollectExplanationTexts(doc.Sources)}};
+                    YngpingPermutations = { CollectYngpingPermutations(doc.Sources) },
+                    HanziMatchable = { CollectHanziMatchable(doc.Sources) },
+                    ExplanationText = { CollectExplanationTexts(doc.Sources) }
+                };
             }
             return results;
         }
@@ -110,11 +112,13 @@ namespace Yngdieng.Indexer.Processing
             IReadOnlyCollection<YngdiengDocument.Types.Source> sources)
         {
             var feng =
-                sources.FirstOrDefault(s => s.SourceCase == SourceOneofCase.Feng) ?.Feng ?? null;
+                sources.FirstOrDefault(s => s.SourceCase == SourceOneofCase.Feng)?.Feng ?? null;
             if (feng != null)
             {
-                return new Hanzi{/* TODO: check for IDS in FengDocument.HanziCanonical */ Regular =
-                                     feng.HanziCanonical};
+                return new Hanzi
+                {/* TODO: check for IDS in FengDocument.HanziCanonical */
+                    Regular = feng.HanziCanonical
+                };
             }
             var historicalDoc =
                 sources.FirstOrDefault(s => s.SourceCase == SourceOneofCase.CiklinDfd)
@@ -127,28 +131,32 @@ namespace Yngdieng.Indexer.Processing
                 ?.Contrib ?? null;
             if (contrib != null)
             {
-                return new Hanzi{/* TODO: check for IDS in ContribDocument.Hanzi */ Regular =
-                                     contrib.Hanzi};
+                return new Hanzi
+                {/* TODO: check for IDS in ContribDocument.Hanzi */
+                    Regular = contrib.Hanzi
+                };
             }
             return null;
         }
 
         private static string FindYngpingUnderlying(
-            IReadOnlyCollection<YngdiengDocument.Types.Source> sources)
+            IReadOnlyCollection<YngdiengDocument.Types.Source> sources, string fromZingzeuWords)
         {
             var feng =
-                sources.FirstOrDefault(s => s.SourceCase == SourceOneofCase.Feng) ?.Feng ?? null;
+                sources.FirstOrDefault(s => s.SourceCase == SourceOneofCase.Feng)?.Feng ?? null;
             if (feng != null)
             {
                 return feng.YngpingUnderlying;
+            }
+            if (!string.IsNullOrEmpty(fromZingzeuWords)) {
+                return fromZingzeuWords;
             }
             var historicalDoc =
                 sources.FirstOrDefault(s => s.SourceCase == SourceOneofCase.CiklinDfd)
                 ?.CiklinDfd ?? null;
             if (historicalDoc != null)
             {
-                // TODO: convert to modern yngping
-                return historicalDoc.Yngping;
+                return historicalDoc.YngpingModern;
             }
             var contrib = sources.FirstOrDefault(s => s.SourceCase == SourceOneofCase.Contrib)
                 ?.Contrib ?? null;
@@ -160,13 +168,16 @@ namespace Yngdieng.Indexer.Processing
         }
 
         private static string FindYngpingSandhi(
-            IReadOnlyCollection<YngdiengDocument.Types.Source> sources)
+            IReadOnlyCollection<YngdiengDocument.Types.Source> sources, string fromZingzeuWords)
         {
             var feng =
-                sources.FirstOrDefault(s => s.SourceCase == SourceOneofCase.Feng) ?.Feng ?? null;
+                sources.FirstOrDefault(s => s.SourceCase == SourceOneofCase.Feng)?.Feng ?? null;
             if (feng != null)
             {
                 return feng.YngpingCanonical;
+            }
+            if (!string.IsNullOrEmpty(fromZingzeuWords)) {
+                return fromZingzeuWords;
             }
             var contrib = sources.FirstOrDefault(s => s.SourceCase == SourceOneofCase.Contrib)
                 ?.Contrib ?? null;
@@ -181,18 +192,19 @@ namespace Yngdieng.Indexer.Processing
             IReadOnlyCollection<YngdiengDocument.Types.Source> sources)
         {
             return sources
-                .SelectMany(s => {
+                .SelectMany(s =>
+                {
                     switch (s.SourceCase)
                     {
-                    case SourceOneofCase.CiklinDfd:
-                        return new string[]{s.CiklinDfd.Yngping};
-                    case SourceOneofCase.Feng:
-                        return s.Feng.YngpingPermutations.ToArray();
-                    case SourceOneofCase.Contrib:
-                        return YngpingVariantsUtil.GenerateYngpingVariants(s.Contrib.YngpingSandhi)
-                            .Concat(new string[]{s.Contrib.YngpingUnderlying});
+                        case SourceOneofCase.CiklinDfd:
+                            return new string[] { s.CiklinDfd.Yngping };
+                        case SourceOneofCase.Feng:
+                            return s.Feng.YngpingPermutations.ToArray();
+                        case SourceOneofCase.Contrib:
+                            return YngpingVariantsUtil.GenerateYngpingVariants(s.Contrib.YngpingSandhi)
+                                .Concat(new string[] { s.Contrib.YngpingUnderlying });
                     }
-                    return new string[]{};
+                    return new string[] { };
                 })
                 .Distinct()
                 .ToArray();
@@ -201,18 +213,19 @@ namespace Yngdieng.Indexer.Processing
             IReadOnlyCollection<YngdiengDocument.Types.Source> sources)
         {
             return sources
-                .SelectMany(s => {
+                .SelectMany(s =>
+                {
                     switch (s.SourceCase)
                     {
-                    case SourceOneofCase.CiklinDfd:
-                        return s.CiklinDfd.HanziMatchable.ToArray();
-                    case SourceOneofCase.Feng:
-                        return s.Feng.HanziMatchable.ToArray();
-                    case SourceOneofCase.Contrib:
-                        // TODO: simplify contrib hanzi
-                        return new string[]{};
+                        case SourceOneofCase.CiklinDfd:
+                            return s.CiklinDfd.HanziMatchable.ToArray();
+                        case SourceOneofCase.Feng:
+                            return s.Feng.HanziMatchable.ToArray();
+                        case SourceOneofCase.Contrib:
+                            // TODO: simplify contrib hanzi
+                            return new string[] { };
                     }
-                    return new string[]{};
+                    return new string[] { };
                 })
                 .Distinct()
                 .ToArray();
@@ -222,18 +235,20 @@ namespace Yngdieng.Indexer.Processing
             IReadOnlyCollection<YngdiengDocument.Types.Source> sources)
         {
             return sources
-                .SelectMany(s => {
+                .SelectMany(s =>
+                {
                     switch (s.SourceCase)
                     {
-                    case SourceOneofCase.Feng:
-                        return new string[]{s.Feng.Explanation, s.Feng.ExplanationHans};
-                    case SourceOneofCase.Contrib:
-                        return new string[]{s.Contrib.ExplanationRaw,
-                                            /* TODO: simplified variant */};
-                    case SourceOneofCase.CiklinDfd:
-                        return new string[]{};
+                        case SourceOneofCase.Feng:
+                            return new string[] { s.Feng.ExplanationTrad, s.Feng.ExplanationHans };
+                        case SourceOneofCase.Contrib:
+                            return new string[]{s.Contrib.ExplanationRaw,
+                                /* TODO: simplified variant */
+                                                                          };
+                        case SourceOneofCase.CiklinDfd:
+                            return new string[] { };
                     }
-                    return new string[]{};
+                    return new string[] { };
                 })
                 .Distinct()
                 .ToArray();

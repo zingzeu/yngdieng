@@ -1,11 +1,11 @@
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
-using Yngdieng.Protos;
-using static Yngdieng.Protos.Query.Types;
 using Grpc.Core;
 using Microsoft.Extensions.Logging;
-using System.Linq;
-using System.Collections.Generic;
+using Yngdieng.Protos;
+using static Yngdieng.Protos.Query.Types;
 namespace Yngdieng.Backend.Services
 {
     public partial class YngdiengService : Yngdieng.Protos.YngdiengService.YngdiengServiceBase
@@ -50,34 +50,37 @@ namespace Yngdieng.Backend.Services
         {
             switch (query.QueryCase)
             {
-            case Query.QueryOneofCase.PhonologyQuery: {
-                return QueryByPhonologyAggregated(query.PhonologyQuery, query.SortBy)
-                    .Select(a => new SearchResultRow{HistoricalDocument = a});
-            }
-            case Query.QueryOneofCase.HanziQuery: {
-                string hanziQuery = query.HanziQuery;
-                _logger.LogInformation(query.ToString());
-                IEnumerable<SearchResultRow> monoHanziResults = new List<SearchResultRow>();
-                if (query.AlwaysIncludeHistorical)
-                {
-                    // 单字条目优先
-                    monoHanziResults =
-                        QueryMonoHanziAggregated(query.HanziQuery, query.SortBy)
-                            .Select(a => new SearchResultRow{HistoricalDocument = a});
-                }
+                case Query.QueryOneofCase.PhonologyQuery:
+                    {
+                        return QueryByPhonologyAggregated(query.PhonologyQuery, query.SortBy)
+                            .Select(a => new SearchResultRow { HistoricalDocument = a });
+                    }
+                case Query.QueryOneofCase.HanziQuery:
+                    {
+                        string hanziQuery = query.HanziQuery;
+                        _logger.LogInformation(query.ToString());
+                        IEnumerable<SearchResultRow> monoHanziResults = new List<SearchResultRow>();
+                        if (query.AlwaysIncludeHistorical)
+                        {
+                            // 单字条目优先
+                            monoHanziResults =
+                                QueryMonoHanziAggregated(query.HanziQuery, query.SortBy)
+                                    .Select(a => new SearchResultRow { HistoricalDocument = a });
+                        }
 
-                // 之后是词汇（冯版），如有
-                var vocabResults =
-                    query.OnlyHistorical ? new List<SearchResultRow>()
-                    : QueryVocab(hanziQuery).Select(d => new SearchResultRow{FengDocument = d});
-                return monoHanziResults.Concat(vocabResults);
-            }
-            case Query.QueryOneofCase.FuzzyPronQuery: {
-                return QueryByFuzzyPron(query.FuzzyPronQuery)
-                    .Select(d => new SearchResultRow{FengDocument = d});
-            }
-            default:
-                throw new Exception("Not implemented");
+                        // 之后是词汇（冯版），如有
+                        var vocabResults =
+                            query.OnlyHistorical ? new List<SearchResultRow>()
+                            : QueryVocab(hanziQuery).Select(d => new SearchResultRow { FengDocument = d });
+                        return monoHanziResults.Concat(vocabResults);
+                    }
+                case Query.QueryOneofCase.FuzzyPronQuery:
+                    {
+                        return QueryByFuzzyPron(query.FuzzyPronQuery)
+                            .Select(d => new SearchResultRow { FengDocument = d });
+                    }
+                default:
+                    throw new Exception("Not implemented");
             }
         }
 
@@ -111,15 +114,15 @@ namespace Yngdieng.Backend.Services
             IEnumerable<HistoricalDocument> sorted;
             switch (sortBy)
             {
-            case SortByMethod.InitialFinalTone:
-                sorted = matchedDocuments.OrderBy(d => d.Final)
-                             .ThenBy(d => d.Initial)
-                             .ThenBy(d => d.Tone);
-                break;
-            case SortByMethod.SortByUnspecified:
-            default:
-                sorted = matchedDocuments;
-                break;
+                case SortByMethod.InitialFinalTone:
+                    sorted = matchedDocuments.OrderBy(d => d.Final)
+                                 .ThenBy(d => d.Initial)
+                                 .ThenBy(d => d.Tone);
+                    break;
+                case SortByMethod.SortByUnspecified:
+                default:
+                    sorted = matchedDocuments;
+                    break;
             }
             return sorted;
         }
@@ -162,11 +165,12 @@ namespace Yngdieng.Backend.Services
         /// <returns></returns>
         private IEnumerable<FengDocument> QueryByFuzzyPron(string yngping)
         {
-            var matchedDocuments = _indexHolder.GetIndex().FengDocuments.Where(d => {
+            var matchedDocuments = _indexHolder.GetIndex().FengDocuments.Where(d =>
+            {
                 foreach (var p in d.YngpingPermutations)
                 {
                     if (p.Replace(" ", string.Empty)
-                            .StartsWith(yngping.ToLowerInvariant().Replace(" ", string.Empty)))
+                      .StartsWith(yngping.ToLowerInvariant().Replace(" ", string.Empty)))
                     {
                         return true;
                     }
@@ -191,15 +195,15 @@ namespace Yngdieng.Backend.Services
             IEnumerable<HistoricalDocument> sorted;
             switch (sortBy)
             {
-            case SortByMethod.InitialFinalTone:
-                sorted = matchedDocuments.OrderBy(d => d.Final)
-                             .ThenBy(d => d.Initial)
-                             .ThenBy(d => d.Tone);
-                break;
-            case SortByMethod.SortByUnspecified:
-            default:
-                sorted = matchedDocuments;
-                break;
+                case SortByMethod.InitialFinalTone:
+                    sorted = matchedDocuments.OrderBy(d => d.Final)
+                                 .ThenBy(d => d.Initial)
+                                 .ThenBy(d => d.Tone);
+                    break;
+                case SortByMethod.SortByUnspecified:
+                default:
+                    sorted = matchedDocuments;
+                    break;
             }
             return sorted;
         }
