@@ -86,7 +86,6 @@ import {LoadingCardComponent} from './loading-card/loading-card.component';
     MaterialModule,
     MatDialogModule,
     MatSnackBarModule,
-    NoopAnimationsModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
   ],
