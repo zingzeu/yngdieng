@@ -28,8 +28,10 @@ const AudioPlay = ({audioFileId = ''}: Props) => {
     ctx.play();
   };
   const handleCanPlay = () => {
-    console.log('handle can play');
-    ctx.play();
+    if (status === Status.Loading) {
+      ctx.play();
+      setStatus(Status.Playing);
+    }
   };
   const handlePlay = () => {
     console.log('handle play');
@@ -40,7 +42,7 @@ const AudioPlay = ({audioFileId = ''}: Props) => {
     setStatus(Status.Loading);
   };
   const handleEnded = () => {
-    console.log('handle stop');
+    console.log('handle ended');
     setStatus(Status.Default);
   };
 
@@ -55,12 +57,12 @@ const AudioPlay = ({audioFileId = ''}: Props) => {
       ctx.offPlay(handlePlay);
       ctx.offEnded(handleEnded);
     };
-  }, []);
+  }, [status]);
   return (
     <View onClick={handlePlayAudio}>
       {status === Status.Loading && <AtActivityIndicator />}
       {status === Status.Default && <AtIcon value="volume-plus"></AtIcon>}
-      {status === Status.Playing && <AtIcon value="play"></AtIcon>}
+      {status === Status.Playing && <AtIcon value="streaming"></AtIcon>}
     </View>
   );
 };
