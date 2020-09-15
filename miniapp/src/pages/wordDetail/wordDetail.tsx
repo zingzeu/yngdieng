@@ -119,6 +119,9 @@ const WordDetail = () => {
         >
           <AtTabsPane current={currentTab} index={0}>
             <View className={clsx(styles.tabPane, styles.explanation)}>
+              {!(wordDetail.explainations?.length !== 0) && (
+                <View>暂无解释</View>
+              )}
               {wordDetail.explainations?.map((explaination, index) => (
                 <Block>
                   <View>
