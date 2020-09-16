@@ -130,10 +130,7 @@ const CollectionDetail = () => {
                   }
                   title={<View className={styles.title}>{word.title}</View>}
                   description={word.description}
-                  extraList={[
-                    {title: '榕拼', content: word.pinyinRong},
-                    {title: '音韵地位', content: word.rimePosition},
-                  ]}
+                  extraList={[{title: '榕拼', content: word.pinyinRong}]}
                 />
               </View>
             ))}
