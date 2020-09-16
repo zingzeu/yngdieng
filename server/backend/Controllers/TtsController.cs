@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.Extensions.Logging;
 using Yngdieng.Backend.TextToSpeech;
+
 
 namespace Yngdieng.Backend.Controllers
 {
@@ -18,6 +20,7 @@ namespace Yngdieng.Backend.Controllers
         }
 
         [Route("tts/{text}")]
+        [EnableCors("AllowAudioFileGet")]  
         public IActionResult GetAudio(string text)
         {
             var audioBytes = audioSynthesizer.YngpingToAudio(text);
