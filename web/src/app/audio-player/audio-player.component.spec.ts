@@ -7,7 +7,9 @@ describe('AudioPlayerComponent', () => {
   let fixture: ComponentFixture<AudioPlayerComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({declarations: [AudioPlayerComponent]}).compileComponents();
+    TestBed.configureTestingModule({
+      declarations: [AudioPlayerComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

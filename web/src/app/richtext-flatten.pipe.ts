@@ -6,9 +6,13 @@ import {RichText} from 'yngdieng/shared/services_pb';
 })
 export class RichtextFlattenPipe implements PipeTransform {
   transform(richText: RichText): string {
-    return richText
-      .getSegmentsList()
-      .map(s => s.getText())
-      .join();
+    return flatten(richText);
   }
+}
+
+export function flatten(richText: RichText): string {
+  return richText
+    .getSegmentsList()
+    .map(s => s.getText())
+    .join();
 }

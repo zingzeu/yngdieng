@@ -2,7 +2,6 @@
 bazel-*
 
 # Font subsetting:
-*/subsetting/charset_scanned
 */subsetting/input_text 
 */subsetting/output_fonts 
 */subsetting/preview

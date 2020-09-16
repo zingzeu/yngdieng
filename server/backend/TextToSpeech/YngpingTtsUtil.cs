@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using ZingzeuData.Yngping;
 
@@ -78,8 +78,8 @@ namespace Yngdieng.Backend.TextToSpeech
                                              {"36", new string[]{"eu"}}};
 
         // 松韵调 (会发生变韵的声调)
-        private static HashSet<string> AltTones = new HashSet<string>{"03", "04", "07"};
-        private static HashSet<string> AbruptTones = new HashSet<string>{"04", "08"};
+        private static HashSet<string> AltTones = new HashSet<string> { "03", "04", "07" };
+        private static HashSet<string> AbruptTones = new HashSet<string> { "04", "08" };
 
         /// <summary>
         /// 将榕拼音节转换为对应音频文件名.
@@ -87,7 +87,7 @@ namespace Yngdieng.Backend.TextToSpeech
         /// <returns>Empty string if unsupported</returns>
         public static string SyllableToAudio(string yngpingSyllable)
         {
-            var(initial, final, tone) =
+            var (initial, final, tone) =
                 Yngping0_4_0Validator.TryParseHukziuSyllable(yngpingSyllable);
             if (!ConsonantAudioMapping.ContainsKey(initial) || !ToneAudioMapping.ContainsKey(tone))
             {
@@ -104,7 +104,7 @@ namespace Yngdieng.Backend.TextToSpeech
         /// <summary>
         /// 把榕拼韵母拆成韵腹和韵尾.
         /// </summary>
-        private static(string, string) DestructureFinal(string final)
+        private static (string, string) DestructureFinal(string final)
         {
             if (final.EndsWith('h') || final.EndsWith('k'))
             {
@@ -115,7 +115,7 @@ namespace Yngdieng.Backend.TextToSpeech
 
         private static string MapFinal(string final, string tone)
         {
-            var(rime, coda) = DestructureFinal(final);
+            var (rime, coda) = DestructureFinal(final);
             var hasCoda = !string.IsNullOrEmpty(coda);
             string mappedTone = ToneAudioMapping[tone];
             if (AbruptTones.Contains(mappedTone) != hasCoda)
@@ -124,7 +124,7 @@ namespace Yngdieng.Backend.TextToSpeech
                 // TODO: 其实可以开一些特例；比如说 buk21 用 bu21 代替完全可以.
                 return string.Empty;
             }
-            foreach (var(key, prons) in FinalAudioMapping)
+            foreach (var (key, prons) in FinalAudioMapping)
             {
 
                 // 入声韵

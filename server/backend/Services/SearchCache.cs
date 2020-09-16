@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Yngdieng.Protos;
 
 namespace Yngdieng.Backend.Services
@@ -8,7 +8,7 @@ namespace Yngdieng.Backend.Services
 
         private readonly Dictionary<string, IEnumerable<SearchResultRow>> _cache =
             new Dictionary<string, IEnumerable<SearchResultRow>>();
-        IEnumerable<SearchResultRow> ? ISearchCache.Get(string queryText)
+        IEnumerable<SearchResultRow>? ISearchCache.Get(string queryText)
         {
             if (_cache.ContainsKey(queryText))
             {
@@ -29,6 +29,6 @@ namespace Yngdieng.Backend.Services
     public interface ISearchCache
     {
         void Put(string queryText, IEnumerable<SearchResultRow> completeSearchResult);
-        IEnumerable<SearchResultRow> ? Get(string queryText);
+        IEnumerable<SearchResultRow>? Get(string queryText);
     }
 }

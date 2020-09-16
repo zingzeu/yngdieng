@@ -1,4 +1,4 @@
-extern alias zingzeudata;
+﻿extern alias zingzeudata;
 using System.Collections.Generic;
 using Yngdieng.Protos;
 using static Yngdieng.Indexer.ExplanationUtil;
@@ -6,44 +6,44 @@ using static Yngdieng.Indexer.ExplanationUtil;
 namespace Yngdieng.Indexer.Loading
 {
 
-  public sealed class ContribLoader
-  {
-    private readonly string contribPath;
-
-    public ContribLoader(string contribPath)
+    public sealed class ContribLoader
     {
-      this.contribPath = contribPath;
-    }
+        private readonly string contribPath;
 
-    public IEnumerable<ContribDocument> Run()
-    {
-      var contribEntries =
-          zingzeudata.ZingzeuData.Parser.ParseContrib.GetContribEntries(contribPath);
-      var results = new List<ContribDocument>();
-      for (var i = 0; i < contribEntries.Count; ++i)
-      {
-        var entry = contribEntries[i];
-        var tmp = new ContribDocument
+        public ContribLoader(string contribPath)
         {
-          Hanzi = entry.Hanzi,
-          YngpingUnderlying = entry.PronUnderlying,
-          YngpingSandhi = entry.PronSandhi,
-          ExplanationRaw = entry.ExplanationRaw,
-          ExplanationStructured = SafeParseExplanation(entry.ExplanationRaw),
-          Contributors = { entry.Contributors }
-        };
-        if (string.IsNullOrEmpty(entry.ZingzeuId))
-        {
-          tmp.RowNumber = i + 1;
+            this.contribPath = contribPath;
         }
-        else
+
+        public IEnumerable<ContribDocument> Run()
         {
-          tmp.ZingzeuId = entry.ZingzeuId;
+            var contribEntries =
+                zingzeudata.ZingzeuData.Parser.ParseContrib.GetContribEntries(contribPath);
+            var results = new List<ContribDocument>();
+            for (var i = 0; i < contribEntries.Count; ++i)
+            {
+                var entry = contribEntries[i];
+                var tmp = new ContribDocument
+                {
+                    Hanzi = entry.Hanzi,
+                    YngpingUnderlying = entry.PronUnderlying,
+                    YngpingSandhi = entry.PronSandhi,
+                    ExplanationRaw = entry.ExplanationRaw,
+                    ExplanationStructured = SafeParseExplanation(entry.ExplanationRaw),
+                    Contributors = { entry.Contributors }
+                };
+                if (string.IsNullOrEmpty(entry.ZingzeuId))
+                {
+                    tmp.RowNumber = i + 1;
+                }
+                else
+                {
+                    tmp.ZingzeuId = entry.ZingzeuId;
+                }
+                results.Add(tmp);
+            }
+            return results;
         }
-        results.Add(tmp);
-      }
-      return results;
     }
-  }
 
 }
