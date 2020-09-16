@@ -1,3 +1,4 @@
+# https://kodiakhq.com/docs/config-reference
 version = 1
 
 [merge]
@@ -7,13 +8,12 @@ require_automerge_label = true
 dont_wait_on_status_checks = ["buildkite/yngdieng-web-build"]
 
 [merge.message]
-# use title of PR for merge commit.
 title = "pull_request_title"
-# use body of PR for merge commit.
 body = "pull_request_body"
-# add the PR number to the merge commit title, like GitHub.
 include_pr_number = true
-# use the default markdown content of the PR for the merge commit.
 body_type = "markdown"
-# remove html comments to auto remove PR templates.
 strip_html_comments = true
+
+[update]
+always = false
+require_automerge_label = true
