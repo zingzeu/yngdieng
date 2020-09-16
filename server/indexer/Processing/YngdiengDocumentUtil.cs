@@ -1,14 +1,14 @@
-extern alias zingzeudata;
+﻿extern alias zingzeudata;
 using System;
 using System.Collections.Generic;
-using Yngdieng.Protos;
-using Yngdieng.Common;
-using Google.Protobuf;
 using System.Linq;
-using static zingzeudata.ZingzeuData.Models.ZingzeuEntryExtensions;
-using zingzeudata.ZingzeuData.Models;
+using Google.Protobuf;
 using Microsoft.AspNetCore.WebUtilities;
+using Yngdieng.Common;
+using Yngdieng.Protos;
+using zingzeudata.ZingzeuData.Models;
 using static Yngdieng.Protos.YngdiengDocument.Types.Source;
+using static zingzeudata.ZingzeuData.Models.ZingzeuEntryExtensions;
 
 namespace Yngdieng.Indexer.Processing
 {
@@ -96,14 +96,8 @@ namespace Yngdieng.Indexer.Processing
                 {
                     doc.HanziCanonical = FindHanziCanonical(doc.Sources);
                 }
-                if (doc.YngpingUnderlying == string.Empty)
-                {
-                    doc.YngpingUnderlying = FindYngpingUnderlying(doc.Sources);
-                }
-                if (doc.YngpingSandhi == string.Empty)
-                {
-                    doc.YngpingSandhi = FindYngpingSandhi(doc.Sources);
-                }
+                doc.YngpingUnderlying = FindYngpingUnderlying(doc.Sources, doc.YngpingUnderlying);
+                doc.YngpingSandhi = FindYngpingSandhi(doc.Sources,doc.YngpingSandhi);
                 doc.IndexingExtension = new YngdiengDocument.Types.IndexingExtension
                 {
                     YngpingPermutations = { CollectYngpingPermutations(doc.Sources) },
@@ -146,13 +140,16 @@ namespace Yngdieng.Indexer.Processing
         }
 
         private static string FindYngpingUnderlying(
-            IReadOnlyCollection<YngdiengDocument.Types.Source> sources)
+            IReadOnlyCollection<YngdiengDocument.Types.Source> sources, string fromZingzeuWords)
         {
             var feng =
                 sources.FirstOrDefault(s => s.SourceCase == SourceOneofCase.Feng)?.Feng ?? null;
             if (feng != null)
             {
                 return feng.YngpingUnderlying;
+            }
+            if (!string.IsNullOrEmpty(fromZingzeuWords)) {
+                return fromZingzeuWords;
             }
             var historicalDoc =
                 sources.FirstOrDefault(s => s.SourceCase == SourceOneofCase.CiklinDfd)
@@ -171,13 +168,16 @@ namespace Yngdieng.Indexer.Processing
         }
 
         private static string FindYngpingSandhi(
-            IReadOnlyCollection<YngdiengDocument.Types.Source> sources)
+            IReadOnlyCollection<YngdiengDocument.Types.Source> sources, string fromZingzeuWords)
         {
             var feng =
                 sources.FirstOrDefault(s => s.SourceCase == SourceOneofCase.Feng)?.Feng ?? null;
             if (feng != null)
             {
                 return feng.YngpingCanonical;
+            }
+            if (!string.IsNullOrEmpty(fromZingzeuWords)) {
+                return fromZingzeuWords;
             }
             var contrib = sources.FirstOrDefault(s => s.SourceCase == SourceOneofCase.Contrib)
                 ?.Contrib ?? null;

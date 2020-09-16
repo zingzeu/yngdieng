@@ -1,7 +1,5 @@
 {
-  "extends": [
-    "config:base"
-  ],
+  "extends": ["config:base"],
   "packageRules": [
     {
       "updateTypes": ["minor", "patch", "pin", "digest"],
@@ -9,6 +7,7 @@
     },
     {
       "packageNames": ["@bazel/ibazel", "envoyproxy/envoy"],
+      "packagePatterns": ["^Lucene.Net"],
       "enabled": false
     }
   ],

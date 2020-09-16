@@ -1,55 +1,87 @@
-using System.Threading.Tasks;
-using Yngdieng.Protos;
-using Grpc.Core;
-using System.Linq;
-using Microsoft.Extensions.Logging;
-using LuceneQuery = Lucene.Net.Search.Query;
-using Lucene.Net.Search;
-using Lucene.Net.QueryParsers.Classic;
-using Yngdieng.Search.Common;
-using Yngdieng.Common;
+﻿using System;
 using System.Collections.Generic;
-using System;
+using System.Linq;
+using System.Threading.Tasks;
+using Grpc.Core;
+using Lucene.Net.QueryParsers.Classic;
+using Lucene.Net.Search;
+using Microsoft.Extensions.Logging;
+using Yngdieng.Common;
+using Yngdieng.Protos;
+using Yngdieng.Search.Common;
+using LuceneQuery = Lucene.Net.Search.Query;
 
 namespace Yngdieng.Backend.Services
 {
     public partial class YngdiengService : Yngdieng.Protos.YngdiengService.YngdiengServiceBase
     {
 
+        private static readonly int DEFAULT_PAGE_SIZE = 10;
+
         public override Task<SearchV2Response> SearchV2(SearchV2Request request,
                                                         ServerCallContext context)
         {
-            var query = QueryParser.Parse(request.Query);
-            var resultCards = new List<SearchV2Response.Types.SearchCard>();
-            resultCards.Add(GenericMessageCard("你正在試用榕典搜索V2。如遇問題，請將截圖和網址發送到 radium@mindong.asia。"));
+            var query = GetLuceneQuery(QueryParser.Parse(request.Query));
+            var desiredPageSize = request.PageSize > 0 ? request.PageSize : DEFAULT_PAGE_SIZE;
+            var searcher = this._indexHolder.LuceneIndexSearcher;
 
+            var resultCards = new List<SearchV2Response.Types.SearchCard>();
+
+            TopDocs results;
+            if (string.IsNullOrEmpty(request.PageToken))
+            {
+                // Is first page 
+                resultCards.Add(GenericMessageCard("你正在試用榕典搜索V2。如遇問題，請將截圖和網址發送到 radium@mindong.asia。"));
+                results = searcher.Search(query, desiredPageSize + 1);
+                // first page && no results
+                if (results.ScoreDocs.Length == 0) {
+                    return Task.FromResult(new SearchV2Response{
+                        ResultCards = {NoResultsCard()}
+                    });
+                }
+            }
+            else
+            {
+                var lastPage = PaginationTokens.Parse(request.PageToken);
+                var lastScoreDoc = new ScoreDoc(lastPage.LastDoc.Doc, lastPage.LastDoc.Score);
+                results = searcher.SearchAfter(lastScoreDoc, query, desiredPageSize + 1);
+            }
+
+            var response = new SearchV2Response();
+            var isEndOfResults = results.ScoreDocs.Length < desiredPageSize + 1;
+            if (isEndOfResults)
+            {
+                resultCards.AddRange(RenderDocs(results.ScoreDocs));
+                resultCards.Add(EndOfResultsCard());
+            }
+            else
+            {
+                var visibleRange = results.ScoreDocs.Take(desiredPageSize);
+                var nextPageToken = PaginationTokens.FromScoreDoc(visibleRange.Last());
+                response.NextPageToken = nextPageToken;
+                resultCards.AddRange(RenderDocs(visibleRange));
+            }
+
+            response.ResultCards.AddRange(resultCards);
+            return Task.FromResult(response);
+        }
+
+        private LuceneQuery GetLuceneQuery(Yngdieng.Protos.Query query)
+        {
             switch (query.QueryCase)
             {
                 case Yngdieng.Protos.Query.QueryOneofCase.HanziQuery:
-                    resultCards.AddRange(HandleHanziQuery(query.HanziQuery));
-                    break;
+                    return HandleHanziQuery(query.HanziQuery);
                 case Yngdieng.Protos.Query.QueryOneofCase.YngpingTonePatternQuery:
-                    resultCards.AddRange(HandleYngpingTonePatternQuery(query.YngpingTonePatternQuery));
-                    break;
+                    return HandleYngpingTonePatternQuery(query.YngpingTonePatternQuery);
                 case Yngdieng.Protos.Query.QueryOneofCase.FuzzyPronQuery:
-                    resultCards.AddRange(HandleFuzzyYngpingQuery(query.FuzzyPronQuery));
-                    break;
+                    return HandleFuzzyYngpingQuery(query.FuzzyPronQuery);
                 default:
-                    _logger.LogError($"Unsupported query type: {query.QueryCase}");
-                    resultCards.Add(GenericMessageCard($"不支持的搜索類型： {query.QueryCase}"));
-                    break;
+                    throw new ArgumentException($"Unsupported query type: {query.QueryCase}");
             }
-            return Task.FromResult(new SearchV2Response
-            {
-                ResultCards = {
-                                resultCards,
-                                EndOfResultsCard()
-                               },
-                NextPageToken = ""
-            });
         }
 
-        private IEnumerable<SearchV2Response.Types.SearchCard> HandleFuzzyYngpingQuery(string queryText)
+        private static LuceneQuery HandleFuzzyYngpingQuery(string queryText)
         {
             var queryParser = new MultiFieldQueryParser(LuceneUtils.AppLuceneVersion,
             new string[] { LuceneUtils.Fields.Yngping },
@@ -57,21 +89,15 @@ namespace Yngdieng.Backend.Services
                         new Dictionary<string, float>{
                 {LuceneUtils.Fields.Yngping, 100},
                         });
-            var query = queryParser.Parse(queryText);
-            var searcher = this._indexHolder.LuceneIndexSearcher;
-            var results = searcher.Search(query, 100);
-            return RenderDocs(results.ScoreDocs);
+            return queryParser.Parse(queryText);
         }
 
-        private IEnumerable<SearchV2Response.Types.SearchCard> HandleYngpingTonePatternQuery(string queryText)
+        private static LuceneQuery HandleYngpingTonePatternQuery(string queryText)
         {
-            var query = new WildcardQuery(new Lucene.Net.Index.Term(LuceneUtils.Fields.YngpingSandhiTonePattern, queryText));
-            var searcher = this._indexHolder.LuceneIndexSearcher;
-            var results = searcher.Search(query, 100);
-            return RenderDocs(results.ScoreDocs);
+            return new WildcardQuery(new Lucene.Net.Index.Term(LuceneUtils.Fields.YngpingSandhiTonePattern, queryText));
         }
 
-        private IEnumerable<SearchV2Response.Types.SearchCard> HandleHanziQuery(string queryText)
+        private static LuceneQuery HandleHanziQuery(string queryText)
         {
             var queryParser = new MultiFieldQueryParser(LuceneUtils.AppLuceneVersion,
             new string[] { LuceneUtils.Fields.Hanzi, LuceneUtils.Fields.Explanation },
@@ -80,10 +106,7 @@ namespace Yngdieng.Backend.Services
                 {LuceneUtils.Fields.Hanzi, 100},
                 {LuceneUtils.Fields.Explanation, 1}
                         });
-            var query = queryParser.Parse(queryText);
-            var searcher = this._indexHolder.LuceneIndexSearcher;
-            var results = searcher.Search(query, 100);
-            return RenderDocs(results.ScoreDocs);
+            return queryParser.Parse(queryText);
         }
 
         private static string FindBestExplanation(YngdiengDocument ydDoc)
@@ -105,7 +128,7 @@ namespace Yngdieng.Backend.Services
             return string.Empty;
         }
 
-        private IEnumerable<SearchV2Response.Types.SearchCard> RenderDocs(ScoreDoc[] scoreDocs)
+        private IEnumerable<SearchV2Response.Types.SearchCard> RenderDocs(IEnumerable<ScoreDoc> scoreDocs)
         {
             var searcher = this._indexHolder.LuceneIndexSearcher;
 
@@ -145,6 +168,15 @@ namespace Yngdieng.Backend.Services
             {
                 EndOfResults = new SearchV2Response.Types.SearchCard.Types
                                                           .EndOfResultsCard()
+            };
+        }
+
+        private static SearchV2Response.Types.SearchCard NoResultsCard()
+        {
+            return new SearchV2Response.Types.SearchCard
+            {
+                NoResults = new SearchV2Response.Types.SearchCard.Types
+                                                          .NoResultsCard()
             };
         }
     }

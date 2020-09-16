@@ -1,11 +1,11 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using Yngdieng.Protos;
-using Yngdieng.Common;
-using Google.Protobuf;
 using System.Linq;
-using Microsoft.AspNetCore.WebUtilities;
+using Google.Protobuf;
 using LibHokchew.Shared;
+using Microsoft.AspNetCore.WebUtilities;
+using Yngdieng.Common;
+using Yngdieng.Protos;
 
 namespace Yngdieng.Indexer.Processing
 {
@@ -43,8 +43,8 @@ namespace Yngdieng.Indexer.Processing
             documents[key].HanziCanonical = d.HanziCanonical;
             documents[key].Buc = d.Buc;
             documents[key].Yngping = YngpingBekinUtil.FanqieToYngping(d.Initial, d.Final, d.Tone);
-            documents[key].YngpingModern = 
-              CikLingUtil.ToYngPingHokchew(GetInitial(d.Initial), GetFinal(d.Final),GetTone(d.Tone));
+            documents[key].YngpingModern =
+              CikLingUtil.ToYngPingHokchew(GetInitial(d.Initial), GetFinal(d.Final), GetTone(d.Tone));
 
             var altA = documents[key].HanziAlternatives;
             var altB = d.HanziAlternatives;

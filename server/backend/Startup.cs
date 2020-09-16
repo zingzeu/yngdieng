@@ -1,10 +1,10 @@
-using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Yngdieng.Backend.Services;
 using Yngdieng.Backend.HealthChecks;
+using Yngdieng.Backend.Services;
 using Yngdieng.Backend.TextToSpeech;
 
 namespace Yngdieng.Backend
@@ -21,7 +21,8 @@ namespace Yngdieng.Backend
             services.AddHostedService<IndexLoaderBackgroundService>();
             services.AddSingleton<ISearchCache, InMemorySearchCache>();
             services.AddControllers();
-            services.AddCors(o => o.AddPolicy("AllowAll", builder => {
+            services.AddCors(o => o.AddPolicy("AllowAll", builder =>
+            {
                 builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().WithExposedHeaders(
                     "Grpc-Status", "Grpc-Message", "Grpc-Encoding", "Grpc-Accept-Encoding");
             }));
@@ -41,14 +42,16 @@ namespace Yngdieng.Backend
             app.UseGrpcWeb(); // Must be between UseRouting and UseEndpoints.
             app.UseCors();
 
-            app.UseEndpoints(endpoints => {
+            app.UseEndpoints(endpoints =>
+            {
                 endpoints.MapHealthChecks("/health");
 
                 endpoints.MapGrpcService<YngdiengService>().EnableGrpcWeb().RequireCors("AllowAll");
 
                 endpoints.MapControllers();
 
-                endpoints.MapGet("/", async context => {
+                endpoints.MapGet("/", async context =>
+                {
                     await context.Response.WriteAsync(
                         "Communication with gRPC endpoints must be made through a gRPC client. ");
                 });

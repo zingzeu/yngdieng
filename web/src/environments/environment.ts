@@ -7,6 +7,8 @@ export const YNGDIENG_ENVIRONMENT = new InjectionToken<IYngdiengEnvironment>(
 export interface IYngdiengEnvironment {
   // Name of the app, used in the html title.
   appName: string;
+  // Name of the environment. Shown as a tag on the UI, for non-production environments.
+  envName?: string;
   // Whether the environment is production.
   isProduction: boolean;
   // API Server URL. No trailing slash.

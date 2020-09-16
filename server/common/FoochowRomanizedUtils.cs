@@ -1,7 +1,7 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
-using Yngdieng.Protos;
 using System.Linq;
+using Yngdieng.Protos;
 
 namespace Yngdieng.Common
 {
@@ -75,22 +75,22 @@ namespace Yngdieng.Common
             {
                 switch (toneNumber)
                 {
-                case 0:
-                    return Tone.UpLevel;
-                case 1:
-                    return Tone.UpUp;
-                case 2:
-                    return Tone.UpFalling;
-                case 3:
-                    return Tone.UpAbrupt;
-                case 4:
-                    return Tone.DownLevel;
-                case 5:
-                    return Tone.DownFalling;
-                case 6:
-                    return Tone.DownAbrupt;
-                default:
-                    throw new Exception("Unknown tone");
+                    case 0:
+                        return Tone.UpLevel;
+                    case 1:
+                        return Tone.UpUp;
+                    case 2:
+                        return Tone.UpFalling;
+                    case 3:
+                        return Tone.UpAbrupt;
+                    case 4:
+                        return Tone.DownLevel;
+                    case 5:
+                        return Tone.DownFalling;
+                    case 6:
+                        return Tone.DownAbrupt;
+                    default:
+                        throw new Exception("Unknown tone");
                 }
             }
 
@@ -113,7 +113,7 @@ namespace Yngdieng.Common
             return output;
         }
 
-        public static(Initial, Final, Tone) Parse(string buc)
+        public static (Initial, Final, Tone) Parse(string buc)
         {
             string remaining = buc.Normalize().Trim().ToLower();
 
@@ -153,25 +153,25 @@ namespace Yngdieng.Common
             {
                 switch (t)
                 {
-                case Tone.UpLevel:
-                    return 0;
-                case Tone.UpUp:
-                    return 1;
-                case Tone.UpFalling:
-                    return 2;
-                case Tone.UpAbrupt:
-                    return 3;
-                case Tone.DownLevel:
-                    return 4;
-                case Tone.DownFalling:
-                    return 5;
-                case Tone.DownAbrupt:
-                    return 6;
-                default:
-                    throw new Exception("Unknown tone");
+                    case Tone.UpLevel:
+                        return 0;
+                    case Tone.UpUp:
+                        return 1;
+                    case Tone.UpFalling:
+                        return 2;
+                    case Tone.UpAbrupt:
+                        return 3;
+                    case Tone.DownLevel:
+                        return 4;
+                    case Tone.DownFalling:
+                        return 5;
+                    case Tone.DownAbrupt:
+                        return 6;
+                    default:
+                        throw new Exception("Unknown tone");
                 }
             }
-            return FrInitials[Array.IndexOf(FrInitialsProto, i)] + FrFinals [f]
+            return FrInitials[Array.IndexOf(FrInitialsProto, i)] + FrFinals[f]
                                                                    [ToneToIndex(t)];
         }
     }
