@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import Taro, {useRouter} from '@tarojs/taro';
 import {getCurrentInstance} from '@tarojs/taro';
+import clsx from 'clsx';
 import {View, Block, Image, Text} from '@tarojs/components';
 import {AtIcon, AtDrawer} from 'taro-ui';
 import routes from '@/routes';
@@ -45,7 +46,13 @@ const Header = ({injectedComponents = <Block />}) => {
   return (
     <Block>
       <View className={styles.headerPlaceholder} />
-      <View id="header" className={styles.header}>
+      <View
+        id="header"
+        className={clsx(
+          styles.header,
+          routePath === routes.INDEX && styles.index
+        )}
+      >
         {[
           routes.INDEX,
           routes.SEARCH,
@@ -56,16 +63,12 @@ const Header = ({injectedComponents = <Block />}) => {
             <AtIcon value="menu" onClick={() => toggleSidebar(true)}></AtIcon>
           </View>
         )}
-        {[routes.INDEX, routes.WORD_DETAIL, routes.COLLECTION_DETAIL].includes(
-          routePath
-        ) && (
+        {[routes.WORD_DETAIL, routes.COLLECTION_DETAIL].includes(routePath) && (
           <View>
             <Image className={styles.logo} mode="heightFix" src={logoURL} />
           </View>
         )}
-        {[routes.INDEX, routes.WORD_DETAIL, routes.COLLECTION_DETAIL].includes(
-          routePath
-        ) && (
+        {[routes.WORD_DETAIL, routes.COLLECTION_DETAIL].includes(routePath) && (
           <View onClick={() => navigateTo(routes.SEARCH)}>
             <AtIcon value="search"></AtIcon>
           </View>

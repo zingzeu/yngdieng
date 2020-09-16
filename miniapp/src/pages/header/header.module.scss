@@ -12,6 +12,10 @@
   padding: 0 10px;
   color: $color-text-light;
   z-index: 100;
+  &.index {
+    background-color: $color-brownish-100;
+    box-shadow: none;
+  }
   .logo {
     height: 60px;
     filter: brightness(0) invert(1);
@@ -45,7 +49,7 @@
     .menuItem {
       font-size: $font-size-body;
       padding: 20px 40px;
-      transition: background-color .1s;
+      transition: background-color 0.1s;
       &:active {
         background-color: $color-brownish-100;
       }

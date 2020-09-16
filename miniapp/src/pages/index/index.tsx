@@ -37,11 +37,7 @@ const Index = () => {
           <View className={styles.confirmBtn} onClick={handleConfirm}>
             <AtIcon value="search"></AtIcon>
           </View>
-          <View className={styles.actions}>
-            <Text onClick={() => Taro.redirectTo({url: routes.SEARCH})}>
-              高级搜索
-            </Text>
-          </View>
+          <View className={styles.actions}></View>
         </View>
       </View>
     </View>
