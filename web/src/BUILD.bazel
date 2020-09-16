@@ -184,6 +184,7 @@ pkg_web(
     name = "prodapp",
     srcs = _ASSETS + [
         "favicon.ico",
+        "manifest.json",
         ":bundle-es2015.min",
         ":bundle-es5.min",
         ":inject_scripts_for_prod",
@@ -206,6 +207,7 @@ pkg_web(
     name = "staging_app",
     srcs = _ASSETS + [
         "favicon.ico",
+        "manifest.json",
         ":bundle-es2015.min",
         ":bundle-es5.min",
         ":inject_scripts_for_staging",
@@ -249,6 +251,8 @@ ts_devserver(
         ":improbable_eng_grpc_web_requirejs",
     ],
     static_files = _ASSETS + [
+        "favicon.ico",
+        "manifest.json",
         ":inject_scripts_for_dev",
         "//web/src/assets",
     ],
