@@ -220,8 +220,8 @@
         "wavFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/qtdktade2.wav"
       }
     ],
-    "simplifiedWord": "纤板",
-    "traditionalWord": "纖板",
+    "simplifiedWord": "杄板",
+    "traditionalWord": "杄板",
     "pinyinRong": "cieng⁵³-meing³³",
     "transcriptions": [{"name": "教会罗马字", "value": "chiĕng-bēng"}],
     "explainations": [
@@ -673,7 +673,7 @@
     "simplifiedWord": "水𦨭",
     "traditionalWord": "水𦨭",
     "pinyinRong": "zy²¹-wo⁵⁵",
-    "transcriptions": [{"name": "教会罗马字", "value": "cṳ̆-pŏ̤"}],
+    "transcriptions": [{"name": "教会罗马字", "value": "cṳ̄-pŏ̤"}],
     "explainations": [
       {"text": "意为船沿。是枙上面的板，用以挡水", "source": "诸神的游戏[M]"}
     ],
@@ -933,7 +933,12 @@
     "traditionalWord": "尾坪",
     "pinyinRong": "mui²¹-wang⁵³",
     "transcriptions": [{"name": "教会罗马字", "value": "muōi-bàng"}],
-    "explainations": [{"text": "掌舵者站的地方", "source": "诸神的游戏[M]"}],
+    "explainations": [
+      {
+        "text": "掌舵者站的地方，有的地方又因形状名之“莲花座”，如下长乐",
+        "source": "诸神的游戏[M]"
+      }
+    ],
     "pronounceReviewer": ["方紹晃", "方劍偉"],
     "explainationReviewer": ["方紹晃", "方劍偉"],
     "wordSplited": [],
@@ -976,12 +981,7 @@
     "traditionalWord": "蓮花座",
     "pinyinRong": "leing²¹-ua⁵³-joo²⁴²",
     "transcriptions": [{"name": "教会罗马字", "value": "lèng-huă-cô̤"}],
-    "explainations": [
-      {
-        "text": "掌舵者站的地方。有些地域（如下长乐）的龙舟，其尾抽处有贴樟木板，上雕莲花图案，故名",
-        "source": "诸神的游戏[M]"
-      }
-    ],
+    "explainations": [],
     "pronounceReviewer": ["方紹晃"],
     "explainationReviewer": ["方紹晃"],
     "wordSplited": [],
@@ -1504,11 +1504,11 @@
     "files": [],
     "simplifiedWord": "柳箬枻",
     "traditionalWord": "柳箬枻",
-    "pinyinRong": "liu²¹-nuoh²¹-siek²⁴",
+    "pinyinRong": "liu²¹-nuoh⁵ siek²⁴",
     "transcriptions": [{"name": "教会罗马字", "value": "liū-niŏh-siék"}],
     "explainations": [
       {
-        "text": "福州传统划桨的一种，因状若细长的柳叶而得名",
+        "text": "福州传统划桨的一种，因状若细长的柳叶而得名。又称“柳箬桨”",
         "source": "诸神的游戏[M]"
       }
     ],
@@ -1972,9 +1972,14 @@
     ],
     "simplifiedWord": "朝天龙",
     "traditionalWord": "朝天龍",
-    "pinyinRong": "diu⁵⁵-tieng⁵⁵-lyng⁵³",
+    "pinyinRong": "diu²¹-tieng⁵⁵-lyng⁵³",
     "transcriptions": [{"name": "教会罗马字", "value": "dièu-tiĕng-lṳ̀ng"}],
-    "explainations": [{"text": "舟头为龙头的龙舟", "source": "诸神的游戏[M]"}],
+    "explainations": [
+      {
+        "text": "舟头不分上、下档的龙舟。以其头部翘起，眼嘴朝天，有类朝天之龙，故名。其舟头一般也是龙形",
+        "source": "诸神的游戏[M]"
+      }
+    ],
     "pronounceReviewer": ["方紹晃"],
     "explainationReviewer": ["方紹晃"],
     "wordSplited": [],
@@ -2007,7 +2012,7 @@
     "transcriptions": [{"name": "教会罗马字", "value": "mā-lṳ̀ng"}],
     "explainations": [
       {
-        "text": "舟头为马头的龙舟。其马头又分上档、下档",
+        "text": "舟头有分上下档的龙舟。其结构类似于马，眼嘴朝前，故名。惟其舟头未必为马形",
         "source": "诸神的游戏[M]"
       }
     ],
@@ -2148,7 +2153,7 @@
     "transcriptions": [{"name": "教会罗马字", "value": "â-dōng"}],
     "explainations": [
       {
-        "text": "指船型龙舟头的下方直木部分，即脖子部分",
+        "text": "指部分船型龙舟头的下方直木部分，即脖子部分",
         "source": "诸神的游戏[M]"
       }
     ],
@@ -2411,7 +2416,7 @@
     "files": [],
     "simplifiedWord": "社旗",
     "traditionalWord": "社旗",
-    "pinyinRong": "sia²⁴² gi⁵³",
+    "pinyinRong": "sia⁵⁵-gi⁵³",
     "transcriptions": [{"name": "教会罗马字", "value": "siâ-gì"}],
     "explainations": [
       {"text": "各境社龙舟队的队旗", "source": "诸神的游戏[M]"}
@@ -2426,7 +2431,7 @@
     "files": [],
     "simplifiedWord": "令旗",
     "traditionalWord": "令旗",
-    "pinyinRong": "leing²⁴² gi⁵³",
+    "pinyinRong": "ling⁵⁵-gi⁵³",
     "transcriptions": [{"name": "教会罗马字", "value": "lêng-gì"}],
     "explainations": [
       {"text": "各境社主祀的神明的旗子", "source": "诸神的游戏[M]"}
@@ -2948,7 +2953,7 @@
     "files": [],
     "simplifiedWord": "头三段尾四段",
     "traditionalWord": "頭三段尾四段",
-    "pinyinRong": "tau²¹-sang⁵³-looung²⁴² mui²¹-si⁵³-looung²⁴²",
+    "pinyinRong": "tau⁵³ sang⁵³-looung²⁴² mui³³ si⁵³-looung²⁴²",
     "transcriptions": [
       {"name": "教会罗马字", "value": "tàu-săng-dâung muōi-sé-dâung"}
     ],
@@ -3616,7 +3621,7 @@
     "transcriptions": [{"name": "教会罗马字", "value": "chĭng-gă"}],
     "explainations": [
       {
-        "text": "福州龙舟队之间互认亲家的一种习俗。两条龙舟因某种机缘，如同姓氏、同祀一神、同生产队，或因叹服划船技艺，结成类似亲戚的关系。一个龙舟队可同时结多个亲家。结成亲家后，则相互探访、互帮互助，如赛时划手不够互相借调等",
+        "text": "福州龙舟队之间互认亲家的一种习俗。两条龙舟因某种机缘，如同姓氏、同祀一神、同生产队，或因叹服划船技艺，结成类似亲戚的关系。一个龙舟队可同时结多个亲家。结成亲家后，则相互探访、互帮互助，如钉龙骨时互相延请、赛时划手不够互相借调等",
         "source": "诸神的游戏[M]"
       }
     ],
@@ -3806,7 +3811,7 @@
     ],
     "explainations": [
       {
-        "text": "又称“醒龙”，指每年农历四月初一，人们敲锣打鼓，抬着龙舟头游境。如遇当年是农历闰四月，要再醒龙一次",
+        "text": "又称“醒龙”，指每年农历四月初一，人们敲锣打鼓，抬着龙舟头游境，唤醒上次回港后沉睡的龙舟。如遇当年是农历闰四月，要再醒龙一次",
         "source": "诸神的游戏[M]"
       }
     ],
@@ -4061,7 +4066,7 @@
     "simplifiedWord": "采青",
     "traditionalWord": "採青",
     "pinyinRong": "cai²¹-ciang⁵⁵",
-    "transcriptions": [{"name": "教会罗马字", "value": "chāi-chiăng"}],
+    "transcriptions": [{"name": "教会罗马字", "value": "chāi-chăng"}],
     "explainations": [
       {
         "text": "端午节龙舟下水前的一种仪式。如果龙舟头为龙形，在其嘴中放入榕树叶；如果是其他动物，则放入青草，寓意吃饱了有力气取胜。比较特别的是如果龙舟头为青蛤，要在它嘴里放红色的木珠，即“青蛤含珠”。有些地方不采青，而是行“开眼”仪式",
@@ -4149,7 +4154,7 @@
         "source": "诸神的游戏[M]"
       }
     ],
-    "fuzhouExplaination": "五月节龙船夹水之前做其事计。新其龙船，龙头本底都掏红布鞔起；夹水许蜀日刣鸡，毛笔搵鸡血，乞龙头开眼，开眼囇神就里去。有其地方无做开眼，是做“采青”",
+    "fuzhouExplaination": "五日节龙船夹水之前做其事计。新其龙船，龙头本底都掏红布鞔起；夹水许蜀日刣鸡，毛笔搵鸡血，乞龙头开眼，开眼囇神就里去。有其地方无做开眼，是做“采青”",
     "pronounceReviewer": ["方紹晃", "陳風"],
     "explainationReviewer": ["方紹晃"],
     "wordSplited": [],
@@ -4200,13 +4205,13 @@
         "wavFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/9w1aagpuw.wav"
       }
     ],
-    "simplifiedWord": "夹水",
-    "traditionalWord": "夾水",
+    "simplifiedWord": "甲水",
+    "traditionalWord": "甲水",
     "pinyinRong": "gak²⁴-zy³³",
     "transcriptions": [{"name": "教会罗马字", "value": "gák-cṳ̄"}],
     "explainations": [
       {
-        "text": "择吉日为新龙舟下水举行的仪式。在闽侯上街地区又称“祭江”。举行夹水仪式要邀请宾客、宗亲一同来庆贺",
+        "text": "择吉日为新龙舟下水举行的仪式。在闽侯上街地区又称“祭江”。举行夹水仪式要邀请宾客、宗亲一同来庆贺‖又写作“夹水”",
         "source": "诸神的游戏[M]"
       }
     ],
@@ -5014,7 +5019,9 @@
     "traditionalWord": "龍頭",
     "pinyinRong": "lyng³³-tau⁵³",
     "transcriptions": [{"name": "教会罗马字", "value": "lṳ̀ng-tàu"}],
-    "explainations": [{"text": "龙舟的前部", "source": "诸神的游戏[M]"}],
+    "explainations": [
+      {"text": "龙舟的前部。又称“龙船头”", "source": "诸神的游戏[M]"}
+    ],
     "pronounceReviewer": ["方劍偉"],
     "explainationReviewer": ["方劍偉"],
     "wordSplited": [],
@@ -5329,7 +5336,7 @@
     "transcriptions": [{"name": "教会罗马字", "value": "ák-chióh"}],
     "explainations": [
       {
-        "text": "设计龙舟图纸时，用来压住确定弧度的木尺。因外形相似，俗称洋䱝",
+        "text": "设计龙舟图纸时，用以压住确定弧度的尺。最初用铸铁，后改以更重的铅，故又以形状名铅龟。因外形相似，俗称洋䱝‖铅字读音特殊",
         "source": "诸神的游戏[M]: 65."
       }
     ],
@@ -5382,11 +5389,11 @@
         "wavFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/zpkzxffnr.wav"
       }
     ],
-    "simplifiedWord": "纤龟",
-    "traditionalWord": "纖龜",
+    "simplifiedWord": "铅龟",
+    "traditionalWord": "鉛龜",
     "pinyinRong": "cieng⁵⁵-gui⁵⁵",
     "transcriptions": [{"name": "教会罗马字", "value": "chiĕng-gŭi"}],
-    "explainations": [{}],
+    "explainations": [],
     "pronounceReviewer": ["方紹晃"],
     "explainationReviewer": ["方劍偉"],
     "wordSplited": [],
@@ -5484,7 +5491,7 @@
     "traditionalWord": "洋䱝",
     "pinyinRong": "yong³³-me⁵³",
     "transcriptions": [{"name": "教会罗马字", "value": "iòng-pà̤"}],
-    "explainations": [{}],
+    "explainations": [],
     "pronounceReviewer": ["方紹晃", "方劍偉"],
     "explainationReviewer": ["方劍偉"],
     "wordSplited": [],
@@ -5874,7 +5881,7 @@
     "traditionalWord": "扒喇鑽",
     "pinyinRong": "ba²¹-la⁵³-zooung²¹³",
     "transcriptions": [{"name": "教会罗马字", "value": "bă-lă-cáung"}],
-    "explainations": [{}],
+    "explainations": [],
     "pronounceReviewer": ["方劍偉"],
     "explainationReviewer": ["方紹晃", "方劍偉"],
     "wordSplited": [],
@@ -5935,12 +5942,13 @@
         "wavFileId": "cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/audio/cx2nhntuc.wav"
       }
     ],
-    "traditionalWord": "遮氼",
+    "traditionalWord": "鏨㓟",
+    "simplifiedWord": "鏨㓟",
     "pinyinRong": "zia⁵⁵-mi⁵⁵",
-    "transcriptions": [{"name": "教会罗马字"}],
+    "transcriptions": [{"name": "教会罗马字", "value": "câng-piĕ"}],
     "explainations": [
       {
-        "text": "以前做龙舟时，用于填充竹丝。只在修补龙舟漏水时使用",
+        "text": "以前做龙舟时，用于打制修补龙舟漏水时的填充竹丝。",
         "source": "诸神的游戏[M]: 70."
       }
     ],
@@ -6033,7 +6041,7 @@
     "traditionalWord": "繞車",
     "pinyinRong": "nau²¹-jia⁵⁵",
     "transcriptions": [{"name": "教会罗马字", "value": "nāu-chiă"}],
-    "explainations": [{}],
+    "explainations": [],
     "pronounceReviewer": ["方紹晃"],
     "explainationReviewer": [],
     "wordSplited": [],
