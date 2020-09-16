@@ -26,10 +26,6 @@ namespace Yngdieng.Backend
                 builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().WithExposedHeaders(
                     "Grpc-Status", "Grpc-Message", "Grpc-Encoding", "Grpc-Accept-Encoding");
             }));
-            services.AddCors(o => o.AddPolicy("AllowAudioFileGet", builder =>
-            {
-                builder.AllowAnyOrigin().WithMethods("GET").AllowAnyHeader();
-            }));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request
