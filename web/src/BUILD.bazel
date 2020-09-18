@@ -188,6 +188,7 @@ pkg_web(
         ":bundle-es2015.min",
         ":bundle-es5.min",
         ":inject_scripts_for_prod",
+        "robots.txt",
         "//web/src/assets",
         # ":global_stylesheet",
         # Include polyfills that will be requested by old browsers
@@ -202,6 +203,14 @@ pkg_web(
     ],
 )
 
+genrule(
+    name = "robots_txt_staging",
+    srcs = ["robots.staging.txt"],
+    # pkg_web rule will re-root paths with _{name} by default.
+    outs = ["_staging_app/web/src/robots.txt"],
+    cmd = "cp $< $@",
+)
+
 # Like prodapp, except the environment in index.html is set to 'staging'
 pkg_web(
     name = "staging_app",
@@ -211,6 +220,7 @@ pkg_web(
         ":bundle-es2015.min",
         ":bundle-es5.min",
         ":inject_scripts_for_staging",
+        ":robots_txt_staging",
         "//web/src/assets",
         # Include polyfills that will be requested by old browsers
         "@npm//:node_modules/systemjs/dist/system.js",
