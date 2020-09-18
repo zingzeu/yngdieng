@@ -57,7 +57,7 @@
     "@tarojs/mini-runner": "3.0.11",
     "@tarojs/webpack-runner": "3.0.11",
     "@types/react": "16.9.49",
-    "@types/webpack-env": "1.15.2",
+    "@types/webpack-env": "1.15.3",
     "@typescript-eslint/eslint-plugin": "2.34.0",
     "@typescript-eslint/parser": "2.34.0",
     "babel-preset-taro": "3.0.10",
