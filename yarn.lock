@@ -1226,10 +1226,10 @@
   resolved "https://registry.yarnpkg.com/@bazel/protractor/-/protractor-1.7.0.tgz#1ced325a64d77bccca4bf881e62982d017d6b639"
   integrity sha512-sLbejWwmwTupCS3JKdBeiZMUbylLpJxJdlrz8sZ9t4KV6YiFAXNOloCScrrdOkeiJz5QQZRG3p3rqHbIszUAwQ==
 
-"@bazel/rollup@1.7.0":
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/@bazel/rollup/-/rollup-1.7.0.tgz#5c0f0d51d2f3f14e78781a4b9e6a9ffba87f1579"
-  integrity sha512-Pp5aCJw3gwu77zn6/fQgZ39ArrWEI5O3dja5wKadBnfOQ66PImIEr+bf7JgROoWvACH1kGxaS423rq51fiuCsA==
+"@bazel/rollup@2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@bazel/rollup/-/rollup-2.2.0.tgz#15651d545114e08db056f10a1eeaa4e76fc4df56"
+  integrity sha512-N4SyrvFkdAVc24CqFNhDtrR6P3XJTdPGziCuF7QM/BGihnsGlxF6+Dt2n5BTLJnObiB1St8vtRwCtAY8faxYWQ==
 
 "@bazel/terser@1.7.0":
   version "1.7.0"
