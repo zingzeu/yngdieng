@@ -1216,10 +1216,10 @@
   dependencies:
     tmp "0.1.0"
 
-"@bazel/labs@1.7.0":
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/@bazel/labs/-/labs-1.7.0.tgz#9e627e579073ec14fca85e35493c17493684a221"
-  integrity sha512-xAGPHB6rbCnmjIHEhPA1a34AbsXpQPrJr1edrSmcWJjDFSA7PJZBv/YEYW0dC9Zm+VjIhX76Vw93mplxDlBQXg==
+"@bazel/labs@2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@bazel/labs/-/labs-2.2.0.tgz#f841b754285d1a8988ef4c012fae2a71df67e527"
+  integrity sha512-drz17XRZgUT+p/4vN4R4Chcg0tCoN418TjWKMG+w555BZmpULZe57+XuFu0zv1kisipFEymy1ThqYdacH2YMvg==
 
 "@bazel/protractor@1.7.0":
   version "1.7.0"
