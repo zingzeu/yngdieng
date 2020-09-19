@@ -27,35 +27,6 @@ rules_proto_dependencies()
 
 rules_proto_toolchains()
 
-###################################
-# dotnet
-###################################
-http_archive(
-    name = "io_bazel_rules_dotnet",
-    sha256 = "645aa46c80f3e8d07084ecf00f9bf8da4212cd260a0c7d6df1f1b2a48077034c",
-    strip_prefix = "rules_dotnet-da9b6c931f49e596dce1e80f7b23d54686ec9248",
-    urls = [
-        # 0.0.4
-        "https://" + GITHUB_COM + "/bazelbuild/rules_dotnet/archive/da9b6c931f49e596dce1e80f7b23d54686ec9248.tar.gz",
-    ],
-)
-
-load(
-    "@io_bazel_rules_dotnet//dotnet:defs.bzl",
-    "core_register_sdk",
-    "dotnet_register_toolchains",
-    "dotnet_repositories",
-)
-
-dotnet_register_toolchains()
-
-dotnet_repositories()
-
-core_register_sdk(
-    "v3.0.100",
-    name = "core_sdk",
-)
-
 # grpc
 
 http_archive(
@@ -70,24 +41,6 @@ http_archive(
 load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_toolchains")
 
 rules_proto_grpc_toolchains()
-
-load("@rules_proto_grpc//csharp:repositories.bzl", rules_proto_grpc_csharp_repos = "csharp_repos")
-
-rules_proto_grpc_csharp_repos()
-
-load("@rules_proto_grpc//csharp/nuget:packages.bzl", nuget_packages = "packages")
-
-nuget_packages()
-
-load("@rules_proto_grpc//csharp/nuget:nuget.bzl", "nuget_grpc_packages", "nuget_protobuf_packages")
-
-nuget_protobuf_packages()
-
-nuget_grpc_packages()
-
-load("//nuget:nuget.bzl", "yngdieng_nuget_packages")
-
-yngdieng_nuget_packages()
 
 RULES_NODEJS_VERSION = "2.0.1"
 

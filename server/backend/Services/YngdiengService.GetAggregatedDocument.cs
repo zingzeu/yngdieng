@@ -1,25 +1,23 @@
+﻿using System.Linq;
 using System.Threading.Tasks;
-using Yngdieng.Protos;
 using Grpc.Core;
-using System.Linq;
+using Yngdieng.Protos;
 namespace Yngdieng.Backend.Services
 {
-  public partial class YngdiengService : Yngdieng.Protos.YngdiengService.YngdiengServiceBase
-  {
+    public partial class YngdiengService : Yngdieng.Protos.YngdiengService.YngdiengServiceBase
+    {
 
-      public override Task<HistoricalDocument> GetAggregatedDocument(
-          GetAggregatedDocumentRequest request, ServerCallContext context)
-      {
-          var maybeResult = _indexHolder.GetIndex()
-                                .HistoricalDocuments.Where(f => f.Id == request.Id)
-                                .FirstOrDefault();
-          if (maybeResult == null)
-          {
-              throw new RpcException(new Status(StatusCode.NotFound, "Not found"));
-          }
-          return Task.FromResult(maybeResult);
+        public override Task<HistoricalDocument> GetAggregatedDocument(
+            GetAggregatedDocumentRequest request, ServerCallContext context)
+        {
+            var maybeResult = _indexHolder.GetIndex()
+                                  .HistoricalDocuments.Where(f => f.Id == request.Id)
+                                  .FirstOrDefault();
+            if (maybeResult == null)
+            {
+                throw new RpcException(new Status(StatusCode.NotFound, "Not found"));
+            }
+            return Task.FromResult(maybeResult);
+        }
     }
-  }
-
-
 }

@@ -1,9 +1,9 @@
 ﻿using System;
 using System.IO;
-using Yngdieng.Protos;
 using Google.Protobuf;
 using Yngdieng.Indexer.Loading;
 using Yngdieng.Indexer.Processing;
+using Yngdieng.Protos;
 
 /// <summary>
 /// The indexer reads raw data files and dumps document and index files.
@@ -22,7 +22,7 @@ namespace Yngdieng.Indexer
             var inputFolder = args[0];
             var outputFolder = args[1];
             var versionTag = args.Length > 2 ? args[2] : "notag";
-            var useV2 = args.Length > 3 ? args [3]
+            var useV2 = args.Length > 3 ? args[3]
                                                   .ToLowerInvariant() == "v2"
                                         : false;
             if (useV2)

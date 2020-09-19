@@ -1,8 +1,9 @@
-extern alias zingzeudata;
+﻿extern alias zingzeudata;
 using System;
-using ZingzeuData.Parser;
-using ZingzeuData.Models;
+using System.Linq;
 using Google.Protobuf;
+using ZingzeuData.Models;
+using ZingzeuData.Parser;
 
 namespace Yngdieng.Indexer
 {
@@ -21,10 +22,32 @@ namespace Yngdieng.Indexer
             }
         }
 
+
+        /// <summary>
+        /// 
+        /// </summary>
+        public static string FlattenExplanation(Explanation explanation)
+        {
+            return string.Join(
+              " ",
+              explanation.Senses.SelectMany(s => FlattenExplanation(s))
+                .Where(t => !string.IsNullOrWhiteSpace(t))
+            );
+        }
+
+        private static string[] FlattenExplanation(Explanation.Types.Sense sense)
+        {
+            return (new string[] { sense.Text })
+              .Concat(sense.ChildSenses
+                .SelectMany(s => FlattenExplanation(s)))
+              .ToArray();
+        }
+
         private static Explanation ConvertExplanation(
             zingzeudata.ZingzeuData.Models.Explanation explanation)
         {
             return Explanation.Parser.ParseFrom(explanation.ToByteArray());
         }
+
     }
 }

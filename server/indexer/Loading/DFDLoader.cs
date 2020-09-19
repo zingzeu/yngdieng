@@ -1,13 +1,13 @@
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Linq;
 using CsvHelper;
 using CsvHelper.Configuration.Attributes;
 using Yngdieng.Protos;
-using System.IO;
-using System.Linq;
-using System.Collections.Generic;
-using static Yngdieng.Common.HanziUtils;
 using static Yngdieng.Common.FoochowRomanziedUtils;
-using System.Globalization;
+using static Yngdieng.Common.HanziUtils;
 
 namespace Yngdieng.Indexer.Loading
 {
@@ -42,17 +42,22 @@ namespace Yngdieng.Indexer.Loading
                         try
                         {
                             (var sInitial, var sFinal, var sTone) = Parse(r.Buc);
-                            var document = new Document{
+                            var document = new Document
+                            {
                                 DfdId = ++id,
                                 HanziCanonical = StringToHanziProto(r.Hanzi),
                                 Initial = sInitial,
                                 Final = sFinal,
                                 Tone = sTone,
                                 Buc = r.Buc,
-                                Dfd = new DFDSourceInfo(){PageNumber = r.PageNumber,
-                                                          ColumnNumber = r.ColumnNumber,
-                                                          LineNumber = r.LineNumber,
-                                                          RadicalId = r.RadicalId}};
+                                Dfd = new DFDSourceInfo()
+                                {
+                                    PageNumber = r.PageNumber,
+                                    ColumnNumber = r.ColumnNumber,
+                                    LineNumber = r.LineNumber,
+                                    RadicalId = r.RadicalId
+                                }
+                            };
                             if (r.HanziAlt.Length > 0)
                             {
                                 document.HanziAlternatives.Add(StringToHanziProto(r.HanziAlt));

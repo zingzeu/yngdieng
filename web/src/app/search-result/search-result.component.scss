@@ -4,7 +4,7 @@
   flex: 1 1 auto;
 }
 
-.prelude  {
+.prelude {
   display: flex;
   width: 100%;
   .results-info {
@@ -14,13 +14,4 @@
     font-size: 12px;
     font-family: Arial, Helvetica, sans-serif;
   }
-
-  .options {
-
-  }
-}
-
-.search-results-list, .result-message {
-  padding-left: 10px;
-  padding-right: 10px;
 }

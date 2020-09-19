@@ -20,7 +20,7 @@ COPY --from=audio_files /*.wav /data/tts_audio_wav/
 WORKDIR /app
 COPY --from=builder /out .
 ENTRYPOINT ["dotnet", "Yngdieng.Backend.dll", \
-    "--IndexFile=/data/hotswap/yngdieng_index.bin", \
+    "--IndexPath=/data/hotswap/", \
     "--TtsAudioFolder=/data/tts_audio_wav/"]
 
 HEALTHCHECK --start-period=10s \

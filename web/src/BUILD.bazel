@@ -1,11 +1,8 @@
 load("@build_bazel_rules_nodejs//:index.bzl", "pkg_web")
 load("@npm//@babel/cli:index.bzl", "babel")
 load("//web/tools:ng_ts_library.bzl", ng_module = "ng_ts_library")
-
-#load("@npm_bazel_karma//:index.bzl", "ts_web_test_suite")
 load("@npm//@bazel/rollup:index.bzl", "rollup_bundle")
-load("@npm//history-server:index.bzl", "history_server")
-load("@npm//@bazel/typescript:index.bzl", "ts_devserver", "ts_library")
+load("@npm_angular_bazel//:index.bzl", "ng_module")
 load("@io_bazel_rules_sass//:defs.bzl", "sass_binary", "sass_library")
 load("@npm//html-insert-assets:index.bzl", "html_insert_assets")
 load("@npm//@bazel/terser:index.bzl", "terser_minified")
@@ -56,7 +53,6 @@ genrule(
     outs = [
         "google-protobuf.js",
     ],
-    # cmd = "cp $< $@",
     cmd = """echo "define('google-protobuf', function(require, exports, module) {" > $@ \
             && cat $< >> $@ \
             && echo '});' >> $@""",
@@ -70,7 +66,6 @@ genrule(
     outs = [
         "grpc-web.js",
     ],
-    # cmd = "cp $< $@",
     cmd = """echo "define('@improbable-eng/grpc-web', function(require, exports, module) {" > $@ \
             && cat $< >> $@ \
             && echo '});' >> $@""",
@@ -188,9 +183,11 @@ pkg_web(
     name = "prodapp",
     srcs = _ASSETS + [
         "favicon.ico",
+        "manifest.json",
         ":bundle-es2015.min",
         ":bundle-es5.min",
         ":inject_scripts_for_prod",
+        "robots.txt",
         "//web/src/assets",
         # ":global_stylesheet",
         # Include polyfills that will be requested by old browsers
@@ -205,14 +202,24 @@ pkg_web(
     ],
 )
 
+genrule(
+    name = "robots_txt_staging",
+    srcs = ["robots.staging.txt"],
+    # pkg_web rule will re-root paths with _{name} by default.
+    outs = ["_staging_app/web/src/robots.txt"],
+    cmd = "cp $< $@",
+)
+
 # Like prodapp, except the environment in index.html is set to 'staging'
 pkg_web(
     name = "staging_app",
     srcs = _ASSETS + [
         "favicon.ico",
+        "manifest.json",
         ":bundle-es2015.min",
         ":bundle-es5.min",
         ":inject_scripts_for_staging",
+        ":robots_txt_staging",
         "//web/src/assets",
         # Include polyfills that will be requested by old browsers
         "@npm//:node_modules/systemjs/dist/system.js",
@@ -253,23 +260,13 @@ ts_devserver(
         ":improbable_eng_grpc_web_requirejs",
     ],
     static_files = _ASSETS + [
+        "favicon.ico",
+        "manifest.json",
         ":inject_scripts_for_dev",
         "//web/src/assets",
     ],
     deps = [":src"],
 )
-
-# ts_library(
-#     name = "test_lib",
-#     testonly = 1,
-#     srcs = glob(["**/*.spec.ts"]),
-#     deps = [
-#         ":src",
-#         "@npm//@angular/core",
-#         "@npm//@angular/router",
-#         "@npm//@types",
-#     ],
-# )
 
 ts_library(
     name = "initialize_testbed",
@@ -284,25 +281,4 @@ ts_library(
     ],
 )
 
-# ts_web_test_suite(
-#     name = "test",
-#     srcs = [
-#         "@npm//:node_modules/tslib/tslib.js",
-#     ],
-#     runtime_deps = [
-#         ":initialize_testbed",
-#     ],
-#     # do not sort
-#     bootstrap = [
-#         "@npm//:node_modules/zone.js/dist/zone-testing-bundle.js",
-#         "@npm//:node_modules/reflect-metadata/Reflect.js",
-#     ],
-#     browsers = [
-#         "@io_bazel_rules_webtesting//browsers:chromium-local",
-#     ],
-#     deps = [
-#         ":rxjs_umd_modules",
-#         ":test_lib",
-#         "@npm//karma-jasmine",
-#     ],
-# )
+# TODO: tests

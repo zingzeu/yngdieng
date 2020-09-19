@@ -1,0 +1,19 @@
+# https://kodiakhq.com/docs/config-reference
+version = 1
+
+[merge]
+method = "squash"
+automerge_label = "automerge"
+require_automerge_label = true
+dont_wait_on_status_checks = ["buildkite/yngdieng-web-build"]
+
+[merge.message]
+title = "pull_request_title"
+body = "pull_request_body"
+include_pr_number = true
+body_type = "markdown"
+strip_html_comments = true
+
+[update]
+always = false
+require_automerge_label = true

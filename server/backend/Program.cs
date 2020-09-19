@@ -1,37 +1,28 @@
 ﻿using System;
-using System.IO;
-using Yngdieng.Protos;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Hosting;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
-using System.Net;
+using Microsoft.Extensions.Hosting;
+using Yngdieng.Protos;
 
 namespace Yngdieng.Backend
 {
-  class Program
-  {
-    static int Main(string[] args)
+    class Program
     {
-      CreateHostBuilder(args).Build().Run();
-      return 0;
-    }
+        static int Main(string[] args)
+        {
+            CreateHostBuilder(args).Build().Run();
+            return 0;
+        }
 
-    public static IHostBuilder CreateHostBuilder(string[] args) =>
-        Host.CreateDefaultBuilder(args)
-            .ConfigureWebHostDefaults(webBuilder =>
+        public static IHostBuilder CreateHostBuilder(string[] args) =>
+            Host.CreateDefaultBuilder(args).ConfigureWebHostDefaults(webBuilder =>
             {
-              webBuilder
-                  .UseStartup<Startup>()
-                  .ConfigureKestrel(options =>
-                  {
-                    options.Listen(IPAddress.Any, 5001, listenOptions =>
-                        {
-                          listenOptions.Protocols = HttpProtocols.Http2;
-                        });
-                  });
+                webBuilder.UseStartup<Startup>();
             });
-  }
+    }
 }

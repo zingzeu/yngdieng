@@ -17,7 +17,7 @@ docker-compose up -d
 
 Launch Yngdieng backend server:
 ```
-dotnet run -p server/backend/Yngdieng.Backend.csproj -- --IndexFile=../../output/yngdieng_index.bin
+./run_backend.sh
 ```
 
 The server will be responding to requests at http://localhost:8080/.

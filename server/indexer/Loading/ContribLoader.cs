@@ -1,4 +1,4 @@
-extern alias zingzeudata;
+﻿extern alias zingzeudata;
 using System.Collections.Generic;
 using Yngdieng.Protos;
 using static Yngdieng.Indexer.ExplanationUtil;
@@ -23,12 +23,15 @@ namespace Yngdieng.Indexer.Loading
             for (var i = 0; i < contribEntries.Count; ++i)
             {
                 var entry = contribEntries[i];
-                var tmp = new ContribDocument{Hanzi = entry.Hanzi,
-                                              YngpingUnderlying = entry.PronUnderlying,
-                                              YngpingSandhi = entry.PronSandhi,
-                                              ExplanationRaw = entry.ExplanationRaw,
-                                              ExplanationStructured =
-                                                  SafeParseExplanation(entry.ExplanationRaw)};
+                var tmp = new ContribDocument
+                {
+                    Hanzi = entry.Hanzi,
+                    YngpingUnderlying = entry.PronUnderlying,
+                    YngpingSandhi = entry.PronSandhi,
+                    ExplanationRaw = entry.ExplanationRaw,
+                    ExplanationStructured = SafeParseExplanation(entry.ExplanationRaw),
+                    Contributors = { entry.Contributors }
+                };
                 if (string.IsNullOrEmpty(entry.ZingzeuId))
                 {
                     tmp.RowNumber = i + 1;
