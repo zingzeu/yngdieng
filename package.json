@@ -44,7 +44,7 @@
     "@bazel/buildifier": "3.4.0",
     "@bazel/ibazel": "0.12.4",
     "@bazel/jasmine": "1.7.0",
-    "@bazel/karma": "1.7.0",
+    "@bazel/karma": "2.2.0",
     "@bazel/labs": "1.7.0",
     "@bazel/protractor": "1.7.0",
     "@bazel/rollup": "1.7.0",

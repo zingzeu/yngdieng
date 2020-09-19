@@ -1209,10 +1209,10 @@
     jasmine-reporters "~2.3.2"
     v8-coverage "1.0.9"
 
-"@bazel/karma@1.7.0":
-  version "1.7.0"
-  resolved "https://registry.yarnpkg.com/@bazel/karma/-/karma-1.7.0.tgz#ec7e97a2629f5af0b2abe9a99ae30363a34af97d"
-  integrity sha512-mGYVD9DldB3v/DjxJpS39X1vUD6M32Al96DMoilwW3TSAazcRWwUAC6HY9z5Wtyeqwxyk8BY1Mg1/berWpoTxg==
+"@bazel/karma@2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@bazel/karma/-/karma-2.2.0.tgz#9bf6f6f1aa5f12b25468b1cad5e4404138436600"
+  integrity sha512-qyVE7vZ/qaibmpmcRdjS0rlorLGR0zZtlUSImVVTcPTSXqt364fp8TWBWe7oOneJ1SOVyUmTOAzyE86ArxZ/AA==
   dependencies:
     tmp "0.1.0"
 
