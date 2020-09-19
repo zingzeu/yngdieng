@@ -9,16 +9,24 @@ import "google/api/annotations.proto";
 
 service YngdiengService {
   rpc Search(SearchRequest) returns (SearchResponse) {
+  }
+  rpc SearchV2(SearchV2Request) returns (SearchV2Response) {
     option (google.api.http) = {
-      post: "/v1/example/search"
-      body: "*"
+      get: "/v2/search/{query}/{page_token}"
     };
   }
-  rpc SearchV2(SearchV2Request) returns (SearchV2Response);
   rpc GetAggregatedDocument(GetAggregatedDocumentRequest) returns (HistoricalDocument);
   rpc GetFengDocument(GetFengDocumentRequest) returns (FengDocument);
-  rpc GetYngdiengDocument(GetYngdiengDocumentRequest) returns (YngdiengDocument);
-  rpc GetDebugInfo(GetDebugInfoRequest) returns (DebugInfo);
+  rpc GetYngdiengDocument(GetYngdiengDocumentRequest) returns (YngdiengDocument) {
+    option (google.api.http) = {
+      get: "/v2/yngdieng_document/{id}"
+    };
+  }
+  rpc GetDebugInfo(GetDebugInfoRequest) returns (DebugInfo) {
+    option (google.api.http) = {
+      get: "/v2/debugz"
+    };
+  }
 }
 
 // Next ID: 3

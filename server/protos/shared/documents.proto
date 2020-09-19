@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package yngdieng;
 option csharp_namespace = "Yngdieng.Protos";
-
+option go_package = "github.com/mindonglab/yngdieng/shared";
 import "shared/zingzeudata/explanation.proto";
 import "shared/phonology.proto";
 
@@ -208,7 +208,8 @@ message ContribDocument {
   repeated string contributors = 8;
 }
 
-message CikLinSourceInfo {}
+message CikLinSourceInfo {
+}
 
 message DFDSourceInfo {
   int32 page_number = 1;
