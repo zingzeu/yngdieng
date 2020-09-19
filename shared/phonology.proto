@@ -5,123 +5,123 @@ package yngdieng;
 option csharp_namespace = "Yngdieng.Protos";
 option go_package = "github.com/mindonglab/yngdieng/shared";
 enum Final {
-    FINAL_UNSPECIFIED = 0;
-    // 春
-    UNG = 1;
-    // 花
-    UA = 2;
-    // 香
-    YONG = 3;
-    // 秋
-    IU = 4;
-    // 山
-    ANG = 5;
-    // 開
-    AI = 6;
-    // 嘉
-    A = 7;
-    // 賓
-    ING = 8;
-    // 歡
-    UANG = 9;
-    // 歌
-    O = 10;
-    // 須
-    Y = 11;
-    // 杯
-    UOI = 12;
-    // 孤
-    U = 13;
-    // 燈
-    EING = 14;
-    // 光
-    UONG = 15;
-    // 輝
-    UI = 16;
-    // 燒
-    IEU = 17;
-    // 銀
-    YNG = 18;
-    // 釭
-    ONG = 19;
-    // 之
-    I = 20;
-    // 東
-    OENG = 21;
-    // 郊
-    AU = 22;
-    // 過
-    UO = 23;
-    // 西
-    E = 24;
-    // 橋
-    IO = 25;
-    // 雞
-    IE = 26;
-    // 聲
-    IANG = 27;
-    // 催
-    OEY = 28;
-    // 初
-    OE = 29;
-    // 天
-    IENG = 30;
-    // 奇
-    IA = 31;
-    // 歪
-    UAI = 32;
-    // 溝
-    EU = 33;
+  FINAL_UNSPECIFIED = 0;
+  // 春
+  UNG = 1;
+  // 花
+  UA = 2;
+  // 香
+  YONG = 3;
+  // 秋
+  IU = 4;
+  // 山
+  ANG = 5;
+  // 開
+  AI = 6;
+  // 嘉
+  A = 7;
+  // 賓
+  ING = 8;
+  // 歡
+  UANG = 9;
+  // 歌
+  O = 10;
+  // 須
+  Y = 11;
+  // 杯
+  UOI = 12;
+  // 孤
+  U = 13;
+  // 燈
+  EING = 14;
+  // 光
+  UONG = 15;
+  // 輝
+  UI = 16;
+  // 燒
+  IEU = 17;
+  // 銀
+  YNG = 18;
+  // 釭
+  ONG = 19;
+  // 之
+  I = 20;
+  // 東
+  OENG = 21;
+  // 郊
+  AU = 22;
+  // 過
+  UO = 23;
+  // 西
+  E = 24;
+  // 橋
+  IO = 25;
+  // 雞
+  IE = 26;
+  // 聲
+  IANG = 27;
+  // 催
+  OEY = 28;
+  // 初
+  OE = 29;
+  // 天
+  IENG = 30;
+  // 奇
+  IA = 31;
+  // 歪
+  UAI = 32;
+  // 溝
+  EU = 33;
 }
 
 enum Initial {
-    INITIAL_UNSPECIFIED = 0;
-    // 柳
-    L = 1;
-    // 邊
-    B = 2;
-    // 求
-    G = 3;
-    // 氣
-    K = 4;
-    // 低
-    D = 5;
-    // 波
-    P = 6;
-    // 他
-    T = 7;
-    // 曾
-    Z = 8;
-    // 日
-    N = 9;
-    // 時
-    S = 10;
-    // 鶯
-    NONE = 11;
-    // 蒙
-    M = 12;
-    // 語
-    NG = 13;
-    // 出
-    C = 14;
-    // 非
-    H = 15;
+  INITIAL_UNSPECIFIED = 0;
+  // 柳
+  L = 1;
+  // 邊
+  B = 2;
+  // 求
+  G = 3;
+  // 氣
+  K = 4;
+  // 低
+  D = 5;
+  // 波
+  P = 6;
+  // 他
+  T = 7;
+  // 曾
+  Z = 8;
+  // 日
+  N = 9;
+  // 時
+  S = 10;
+  // 鶯
+  NONE = 11;
+  // 蒙
+  M = 12;
+  // 語
+  NG = 13;
+  // 出
+  C = 14;
+  // 非
+  H = 15;
 }
 
 enum Tone {
-    TONE_UNSPECIFIED = 0;
-    // 上平
-    UP_LEVEL = 1;
-    // 上上
-    UP_UP = 2;
-    // 上去
-    UP_FALLING = 3;
-    // 上入
-    UP_ABRUPT = 4;
-    // 下平
-    DOWN_LEVEL = 5;
-    // 下去
-    DOWN_FALLING = 6;
-    // 下入
-    DOWN_ABRUPT = 7;
+  TONE_UNSPECIFIED = 0;
+  // 上平
+  UP_LEVEL = 1;
+  // 上上
+  UP_UP = 2;
+  // 上去
+  UP_FALLING = 3;
+  // 上入
+  UP_ABRUPT = 4;
+  // 下平
+  DOWN_LEVEL = 5;
+  // 下去
+  DOWN_FALLING = 6;
+  // 下入
+  DOWN_ABRUPT = 7;
 }

@@ -208,7 +208,8 @@ message ContribDocument {
   repeated string contributors = 8;
 }
 
-message CikLinSourceInfo {}
+message CikLinSourceInfo {
+}
 
 message DFDSourceInfo {
   int32 page_number = 1;
