@@ -49,7 +49,7 @@
     "@bazel/protractor": "1.7.0",
     "@bazel/rollup": "1.7.0",
     "@bazel/terser": "1.7.0",
-    "@bazel/typescript": "1.7.0",
+    "@bazel/typescript": "2.2.0",
     "@grpc/proto-loader": "0.5.5",
     "@improbable-eng/grpc-web": "0.13.0",
     "@types/google-protobuf": "3.7.3",
