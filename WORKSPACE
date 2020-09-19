@@ -7,9 +7,6 @@ workspace(
     managed_directories = {"@npm": ["node_modules"]},
 )
 
-GITHUB_COM = "github.com"
-
-# GITHUB_COM = "github.wuyanzheshui.workers.dev"
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 #############
@@ -40,7 +37,8 @@ http_archive(
     sha256 = "602e7161d9195e50246177e7c55b2f39950a9cf7366f74ed5f22fd45750cd208",
     strip_prefix = "rules_proto-97d8af4dc474595af3900dd85cb3a29ad28cc313",
     urls = [
-        "https://" + GITHUB_COM + "/bazelbuild/rules_proto/archive/97d8af4dc474595af3900dd85cb3a29ad28cc313.tar.gz",
+        "https://github.com/bazelbuild/rules_proto/archive/97d8af4dc474595af3900dd85cb3a29ad28cc313.tar.gz",
+        "https://github.wuyanzheshui.workers.dev/bazelbuild/rules_proto/archive/97d8af4dc474595af3900dd85cb3a29ad28cc313.tar.gz",
     ],
 )
 
@@ -59,6 +57,7 @@ http_archive(
     urls = [
         "https://mirror.bazel.build/github.com/bazelbuild/rules_go/releases/download/v0.23.3/rules_go-v0.23.3.tar.gz",
         "https://github.com/bazelbuild/rules_go/releases/download/v0.23.3/rules_go-v0.23.3.tar.gz",
+         "https://github.wuyanzheshui.workers.dev/bazelbuild/rules_go/releases/download/v0.23.3/rules_go-v0.23.3.tar.gz",
     ],
 )
 
@@ -79,7 +78,10 @@ RULES_NODEJS_SHA256 = "4952ef879704ab4ad6729a29007e7094aef213ea79e9f2e94cbe1c9a7
 http_archive(
     name = "build_bazel_rules_nodejs",
     sha256 = RULES_NODEJS_SHA256,
-    url = "https://" + GITHUB_COM + "/bazelbuild/rules_nodejs/releases/download/%s/rules_nodejs-%s.tar.gz" % (RULES_NODEJS_VERSION, RULES_NODEJS_VERSION),
+    urls = [
+        "https://github.com/bazelbuild/rules_nodejs/releases/download/%s/rules_nodejs-%s.tar.gz" % (RULES_NODEJS_VERSION, RULES_NODEJS_VERSION),
+        "https://github.wuyanzheshui.workers.dev/bazelbuild/rules_nodejs/releases/download/%s/rules_nodejs-%s.tar.gz" % (RULES_NODEJS_VERSION, RULES_NODEJS_VERSION),
+    ],
 )
 
 load(
@@ -140,7 +142,13 @@ http_archive(
     name = "io_bazel_rules_sass",
     sha256 = RULES_SASS_SHA256,
     strip_prefix = "rules_sass-%s" % RULES_SASS_VERSION,
-    url = "https://" + GITHUB_COM + "/bazelbuild/rules_sass/archive/%s.zip" % RULES_SASS_VERSION,
+    urls = [
+        
+        "https://github.com/bazelbuild/rules_sass/archive/%s.zip" % RULES_SASS_VERSION,
+        "https://github.wuyanzheshui.workers.dev/bazelbuild/rules_sass/archive/%s.zip" % RULES_SASS_VERSION,
+        
+        ],
+
 )
 
 load("@io_bazel_rules_sass//sass:sass_repositories.bzl", "sass_repositories")
@@ -159,7 +167,10 @@ http_archive(
     name = "io_bazel_rules_docker",
     sha256 = RULES_DOCKER_SHA256,
     strip_prefix = "rules_docker-%s" % RULES_DOCKER_VERSION,
-    urls = ["https://%s/bazelbuild/rules_docker/releases/download/v%s/rules_docker-v%s.tar.gz" % (GITHUB_COM, RULES_DOCKER_VERSION, RULES_DOCKER_VERSION)],
+    urls = [
+        "https://github.com/bazelbuild/rules_docker/releases/download/v%s/rules_docker-v%s.tar.gz" % (RULES_DOCKER_VERSION, RULES_DOCKER_VERSION),
+        "https://github.wuyanzheshui.workers.dev/bazelbuild/rules_docker/releases/download/v%s/rules_docker-v%s.tar.gz" % (RULES_DOCKER_VERSION, RULES_DOCKER_VERSION),
+    ],
 )
 
 load(
@@ -186,3 +197,36 @@ load(
 )
 
 _nodejs_image_repos()
+
+# Golang
+
+http_archive(
+    name = "io_bazel_rules_go",
+    sha256 = "08c3cd71857d58af3cda759112437d9e63339ac9c6e0042add43f4d94caf632d",
+    urls = [
+        "https://mirror.bazel.build/github.com/bazelbuild/rules_go/releases/download/v0.24.2/rules_go-v0.24.2.tar.gz",
+        "https://github.com/bazelbuild/rules_go/releases/download/v0.24.2/rules_go-v0.24.2.tar.gz",
+        "https://github.wuyanzheshui.workers.dev/bazelbuild/rules_go/releases/download/v0.24.2/rules_go-v0.24.2.tar.gz",
+    ],
+)
+
+load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
+
+go_rules_dependencies()
+
+go_register_toolchains()
+
+# grpc-gateway
+
+http_archive(
+    name = "com_github_grpc_ecosystem_grpc_gateway",
+    strip_prefix = "grpc-gateway-1.15.0",
+    urls = [
+        "https://github.wuyanzheshui.workers.dev/grpc-ecosystem/grpc-gateway/archive/v1.15.0.tar.gz",
+        "https://github.com/grpc-ecosystem/grpc-gateway/archive/v1.15.0.tar.gz",
+    ],
+)
+
+load("@com_github_grpc_ecosystem_grpc_gateway//:repositories.bzl", "go_repositories")
+
+go_repositories()
