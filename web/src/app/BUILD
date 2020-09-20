@@ -16,10 +16,10 @@ ng_module(
     tsconfig = "//web/src:tsconfig.json",
     visibility = ["//web:__subpackages__"],
     deps = [
+        "//shared:test",
         "//web/src/environments",
         "//web/src/material",
         "//web/src/yngdieng:lib",
-        "//web/src/yngdieng:services_grpc_ts",
         "@npm//@angular/core",
         "@npm//@angular/material",
         "@npm//@angular/platform-browser",
