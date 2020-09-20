@@ -145,18 +145,6 @@ browser_repositories(
     firefox = True,
 )
 
-# GAPIC Typescript
-load("@gapic_generator_typescript//:repositories.bzl", "gapic_generator_typescript_repositories")
-
-gapic_generator_typescript_repositories()
-
-yarn_install(
-    name = "npm_gapic",
-    package_json = "@gapic_generator_typescript//:package.json",
-    symlink_node_modules = False,
-    yarn_lock = "@gapic_generator_typescript//:yarn.lock",
-)
-
 load("@com_google_protobuf//:protobuf_deps.bzl", "protobuf_deps")
 
 protobuf_deps()
@@ -178,3 +166,43 @@ http_archive(
 load("@io_bazel_rules_sass//sass:sass_repositories.bzl", "sass_repositories")
 
 sass_repositories()
+
+###################################
+# docker
+###################################
+
+RULES_DOCKER_VERSION = "0.14.4"
+
+RULES_DOCKER_SHA256 = "4521794f0fba2e20f3bf15846ab5e01d5332e587e9ce81629c7f96c793bb7036"
+
+http_archive(
+    name = "io_bazel_rules_docker",
+    sha256 = RULES_DOCKER_SHA256,
+    strip_prefix = "rules_docker-%s" % RULES_DOCKER_VERSION,
+    urls = ["https://%s/bazelbuild/rules_docker/releases/download/v%s/rules_docker-v%s.tar.gz" % (GITHUB_COM, RULES_DOCKER_VERSION, RULES_DOCKER_VERSION)],
+)
+
+load(
+    "@io_bazel_rules_docker//repositories:repositories.bzl",
+    container_repositories = "repositories",
+)
+
+container_repositories()
+
+load(
+    "@io_bazel_rules_docker//repositories:deps.bzl",
+    container_deps = "deps",
+)
+
+container_deps()
+
+load("@io_bazel_rules_docker//repositories:pip_repositories.bzl", "pip_deps")
+
+pip_deps()
+
+load(
+    "@io_bazel_rules_docker//nodejs:image.bzl",
+    _nodejs_image_repos = "repositories",
+)
+
+_nodejs_image_repos()
