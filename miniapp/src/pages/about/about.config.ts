@@ -1,1 +1,1 @@
-export default {navigationBarTitleText: '关于'};
+export default {navigationBarTitleText: '关于'}
