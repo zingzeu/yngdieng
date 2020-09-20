@@ -45,14 +45,6 @@ ts_proto_library(
     proto = ":services_proto",
 )
 
-proto_library(
-    name = "tt",
-    srcs = ["echo.proto"],
-    deps = [
-        "@go_googleapis//google/api:annotations_proto",
-    ],
-)
-
 go_proto_library(
     name = "services_go_proto",
     compilers = [
