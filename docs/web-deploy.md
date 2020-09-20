@@ -4,6 +4,6 @@ bazel build --workspace_status_command=$(pwd)/status.sh --stamp //web/src:prodap
 ```
 
 ```
-bazel build --workspace_status_command=$(pwd)/status.sh --stamp //web/src:staging
-~/ossutil64 cp -rf dist/bin/web/src/staging/ oss://yngdieng-web-staging/
+bazel build --workspace_status_command=$(pwd)/status.sh --stamp //web/src:staging_app
+~/ossutil64 cp -rf dist/bin/web/src/staging_app/ oss://yngdieng-web-staging/
 ```
