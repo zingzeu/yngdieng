@@ -9,9 +9,8 @@ ts_library(
     ],
     visibility = ["//visibility:public"],
     deps = [
-        ":documents_proto_ts",
-        ":explanation_proto_ts",
-        ":services_grpc_ts",
+        "//shared:documents_ts_proto",
+        "//shared/zingzeudata:explanation_ts_proto",
     ],
 )
 
@@ -19,8 +18,8 @@ ts_library(
     name = "tests_ts",
     srcs = glob(["**/*.spec.ts"]),
     deps = [
-        ":documents_proto_ts",
         ":lib",
+        "//shared:documents_ts_proto",
         "@npm//:node_modules",
     ],
 )
