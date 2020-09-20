@@ -17,6 +17,7 @@ load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
     name = "rules_python",
+    sha256 = "d3e40ca3b7e00b72d2b1585e0b3396bcce50f0fc692e2b7c91d8b0dc471e3eaf",
     strip_prefix = "rules_python-748aa53d7701e71101dfd15d800e100f6ff8e5d1",
     url = "https://github.com/bazelbuild/rules_python/archive/748aa53d7701e71101dfd15d800e100f6ff8e5d1.zip",
 )
@@ -208,6 +209,7 @@ _go_image_repos()
 
 http_archive(
     name = "com_github_grpc_ecosystem_grpc_gateway",
+    sha256 = "0630c364e47aa7f813dd92f1874c778e496251304719c65e959675b15f7c7f15",
     strip_prefix = "grpc-gateway-1.15.0",
     urls = [
         "https://github.wuyanzheshui.workers.dev/grpc-ecosystem/grpc-gateway/archive/v1.15.0.tar.gz",
