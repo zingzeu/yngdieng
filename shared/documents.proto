@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package mindonglab.yngdieng;
+package yngdieng;
 option csharp_namespace = "Yngdieng.Protos";
 
 import "shared/zingzeudata/explanation.proto";

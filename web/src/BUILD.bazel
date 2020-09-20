@@ -62,12 +62,12 @@ genrule(
 genrule(
     name = "improbable_eng_grpc_web_requirejs",
     srcs = [
-        "@npm//:node_modules/@improbable-eng/grpc-web/dist/grpc-web-client.js",
+        "@npm//:node_modules/grpc-web/index.js",
     ],
     outs = [
         "grpc-web.js",
     ],
-    cmd = """echo "define('@improbable-eng/grpc-web', function(require, exports, module) {" > $@ \
+    cmd = """echo "define('grpc-web', function(require, exports, module) {" > $@ \
             && cat $< >> $@ \
             && echo '});' >> $@""",
 )
