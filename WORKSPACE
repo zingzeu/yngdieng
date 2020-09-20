@@ -53,11 +53,11 @@ rules_proto_toolchains()
 ##############
 http_archive(
     name = "io_bazel_rules_go",
-    sha256 = "a8d6b1b354d371a646d2f7927319974e0f9e52f73a2452d2b3877118169eb6bb",
+    sha256 = "08c3cd71857d58af3cda759112437d9e63339ac9c6e0042add43f4d94caf632d",
     urls = [
-        "https://mirror.bazel.build/github.com/bazelbuild/rules_go/releases/download/v0.23.3/rules_go-v0.23.3.tar.gz",
-        "https://github.com/bazelbuild/rules_go/releases/download/v0.23.3/rules_go-v0.23.3.tar.gz",
-         "https://github.wuyanzheshui.workers.dev/bazelbuild/rules_go/releases/download/v0.23.3/rules_go-v0.23.3.tar.gz",
+        "https://mirror.bazel.build/github.com/bazelbuild/rules_go/releases/download/v0.24.2/rules_go-v0.24.2.tar.gz",
+        "https://github.com/bazelbuild/rules_go/releases/download/v0.24.2/rules_go-v0.24.2.tar.gz",
+        "https://github.wuyanzheshui.workers.dev/bazelbuild/rules_go/releases/download/v0.24.2/rules_go-v0.24.2.tar.gz",
     ],
 )
 
@@ -143,12 +143,9 @@ http_archive(
     sha256 = RULES_SASS_SHA256,
     strip_prefix = "rules_sass-%s" % RULES_SASS_VERSION,
     urls = [
-        
         "https://github.com/bazelbuild/rules_sass/archive/%s.zip" % RULES_SASS_VERSION,
         "https://github.wuyanzheshui.workers.dev/bazelbuild/rules_sass/archive/%s.zip" % RULES_SASS_VERSION,
-        
-        ],
-
+    ],
 )
 
 load("@io_bazel_rules_sass//sass:sass_repositories.bzl", "sass_repositories")
@@ -198,25 +195,16 @@ load(
 
 _nodejs_image_repos()
 
-# Golang
-
-http_archive(
-    name = "io_bazel_rules_go",
-    sha256 = "08c3cd71857d58af3cda759112437d9e63339ac9c6e0042add43f4d94caf632d",
-    urls = [
-        "https://mirror.bazel.build/github.com/bazelbuild/rules_go/releases/download/v0.24.2/rules_go-v0.24.2.tar.gz",
-        "https://github.com/bazelbuild/rules_go/releases/download/v0.24.2/rules_go-v0.24.2.tar.gz",
-        "https://github.wuyanzheshui.workers.dev/bazelbuild/rules_go/releases/download/v0.24.2/rules_go-v0.24.2.tar.gz",
-    ],
+load(
+    "@io_bazel_rules_docker//go:image.bzl",
+    _go_image_repos = "repositories",
 )
 
-load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
+_go_image_repos()
 
-go_rules_dependencies()
-
-go_register_toolchains()
-
+##################
 # grpc-gateway
+##################
 
 http_archive(
     name = "com_github_grpc_ecosystem_grpc_gateway",
@@ -227,6 +215,6 @@ http_archive(
     ],
 )
 
-load("@com_github_grpc_ecosystem_grpc_gateway//:repositories.bzl", "go_repositories")
+load("@com_github_grpc_ecosystem_grpc_gateway//:repositories.bzl", grpc_gateway_go_repositories = "go_repositories")
 
-go_repositories()
+grpc_gateway_go_repositories()
