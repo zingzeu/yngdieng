@@ -3,11 +3,7 @@ import {Title} from '@angular/platform-browser';
 import {ActivatedRoute, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {map, switchMap} from 'rxjs/operators';
-import {
-  getFinalString,
-  getInitialString,
-  getToneString,
-} from 'yngdieng/web/src/yngdieng/utils';
+import {getFinalString, getInitialString, getToneString} from '../../lib/utils';
 
 import {hanziToString} from '../common/hanzi-util';
 import {YngdiengBackendService} from '../yngdieng-backend.service';

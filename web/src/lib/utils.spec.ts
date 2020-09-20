@@ -1,4 +1,4 @@
-import {Tone} from 'yngdieng/shared/phonology_pb';
+import {Tone} from '../../shared/phonology_pb';
 
 import {getToneFromString} from './utils';
 

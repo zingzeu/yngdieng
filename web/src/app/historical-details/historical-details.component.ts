@@ -1,11 +1,7 @@
 import {Component, OnInit, Input} from '@angular/core';
-import {HistoricalDocument} from 'yngdieng/shared/documents_pb';
+import {HistoricalDocument} from '../../../../shared/documents_pb';
 import {hanziToString} from '../common/hanzi-util';
-import {
-  getInitialString,
-  getToneString,
-  getFinalString,
-} from '../../yngdieng/utils';
+import {getInitialString, getToneString, getFinalString} from '../../lib/utils';
 
 @Component({
   selector: 'app-historical-details',

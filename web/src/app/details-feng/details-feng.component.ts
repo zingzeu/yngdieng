@@ -1,14 +1,8 @@
-import {
-  Component,
-  Inject,
-  OnDestroy,
-  OnInit,
-  ViewEncapsulation,
-} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Observable, Subscription} from 'rxjs';
 import {map, switchMap} from 'rxjs/operators';
-import {FengDocument} from 'yngdieng/shared/documents_pb';
+import {FengDocument} from '../../../../shared/documents_pb';
 
 import {toMonoHanziResultViewModel} from '../common/converters';
 import {

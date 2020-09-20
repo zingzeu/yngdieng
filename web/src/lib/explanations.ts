@@ -1,7 +1,9 @@
-import {Explanation} from 'yngdieng/shared/zingzeudata/explanation_pb';
+import {Explanation} from '../../../shared/zingzeudata/explanation_pb';
 
-
-export function renderExplanation(e: Explanation, currentWord: string = '～'): string {
+export function renderExplanation(
+  e: Explanation,
+  currentWord: string = '～'
+): string {
   var output = '';
   output += '<span class="label">释义</span>';
   output += '<ol>';
@@ -9,12 +11,13 @@ export function renderExplanation(e: Explanation, currentWord: string = '～'): 
   for (let i = 0; i < senses.length; ++i) {
     output += '<li class="sense">';
     output += renderSense(senses[i], currentWord);
-    output += '</li>'
+    output += '</li>';
   }
   output += '</ol>';
   if (e.getNotesOriginal().length > 0) {
     output += '<span class="label">注</span>';
-    output += '<p class="notes">' + maybeAddPeriod(e.getNotesOriginal()) + '</p>';
+    output +=
+      '<p class="notes">' + maybeAddPeriod(e.getNotesOriginal()) + '</p>';
   }
   if (e.getNotesOurs().length > 0) {
     output += '<span class="label">榕典注</span>';
@@ -32,7 +35,9 @@ function renderSense(s: Explanation.Sense, currentWord: string): string {
     output += '<ul class="examples-list">';
     for (let e in s.getExamplesList()) {
       output +=
-          '<li class="example">' + renderExample(s.getExamplesList()[e], currentWord) + '</li>';
+        '<li class="example">' +
+        renderExample(s.getExamplesList()[e], currentWord) +
+        '</li>';
     }
     output += '</ul>';
   }
@@ -40,7 +45,9 @@ function renderSense(s: Explanation.Sense, currentWord: string): string {
     output += '<ol>';
     for (let i = 0; i < s.getChildSensesList().length; ++i) {
       output +=
-          '<li class="sense">' + renderSense(s.getChildSensesList()[i], currentWord) + '</li>';
+        '<li class="sense">' +
+        renderSense(s.getChildSensesList()[i], currentWord) +
+        '</li>';
     }
     output += '</ol>';
   }
@@ -48,7 +55,10 @@ function renderSense(s: Explanation.Sense, currentWord: string): string {
 }
 
 function renderExample(e: string, currentWord: string): string {
-  return maybeAddPeriod(e).replace(/～/g, '<span class="current-word">' + currentWord + '</span>');
+  return maybeAddPeriod(e).replace(
+    /～/g,
+    '<span class="current-word">' + currentWord + '</span>'
+  );
 }
 
 function maybeAddPeriod(text: string): string {
@@ -57,7 +67,12 @@ function maybeAddPeriod(text: string): string {
   }
   const trimmed = text.trim();
   const lastChar = trimmed[trimmed.length - 1];
-  if (lastChar === '。' || lastChar === '，' || lastChar === '！' || lastChar === '？') {
+  if (
+    lastChar === '。' ||
+    lastChar === '，' ||
+    lastChar === '！' ||
+    lastChar === '？'
+  ) {
     return trimmed;
   }
   return trimmed + '。';

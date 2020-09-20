@@ -2,7 +2,7 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Observable, Subscription} from 'rxjs';
 import {map, switchMap} from 'rxjs/operators';
-import {YngdiengDocument} from 'yngdieng/shared/documents_pb';
+import {YngdiengDocument} from '../../../../shared/documents_pb';
 
 import {hanziToString} from '../common/hanzi-util';
 import {

@@ -5,13 +5,13 @@ import {
   OnInit,
   ViewEncapsulation,
 } from '@angular/core';
-import {FengDocument} from 'yngdieng/shared/documents_pb';
+import {FengDocument} from '../../../../shared/documents_pb';
 
 import {
   IYngdiengEnvironment,
   YNGDIENG_ENVIRONMENT,
 } from '../../environments/environment';
-import {renderExplanation} from '../../yngdieng/explanations';
+import {renderExplanation} from '../../lib/explanations';
 
 @Component({
   selector: 'app-feng-explanation',
