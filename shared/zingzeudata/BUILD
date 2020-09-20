@@ -15,8 +15,9 @@ ts_proto_library(
     name = "explanation_ts_proto",
     proto = ":explanation_proto",
 )
+
 go_proto_library(
-name="explanation_go_proto",
-proto = ":explanation_proto",
-importpath = "github.com/mindonglab/libhokchew/zingzeu-data/model"
+    name = "explanation_go_proto",
+    importpath = "github.com/mindonglab/libhokchew/zingzeu-data/model",
+    proto = ":explanation_proto",
 )

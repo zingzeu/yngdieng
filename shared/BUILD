@@ -15,19 +15,18 @@ proto_library(
     ],
 )
 
-
 ts_proto_library(
     name = "documents_ts_proto",
     proto = ":documents_proto",
-
 )
+
 go_proto_library(
-   name = "documents_go_proto",
-   importpath = "github.com/mindonglab/yngdieng/shared/documents",
-   proto=":documents_proto",
-deps = [
- "//shared/zingzeudata:explanation_go_proto"]
- 
+    name = "documents_go_proto",
+    importpath = "github.com/mindonglab/yngdieng/shared/documents",
+    proto = ":documents_proto",
+    deps = [
+        "//shared/zingzeudata:explanation_go_proto",
+    ],
 )
 
 proto_library(
@@ -38,7 +37,6 @@ proto_library(
     deps = [
         ":documents_proto",
         "@go_googleapis//google/api:annotations_proto",
-
     ],
 )
 
@@ -64,6 +62,7 @@ go_proto_library(
     importpath = "github.com/mindonglab/yngdieng/shared/services",
     proto = ":services_proto",
     deps = [
-  "@go_googleapis//google/api:annotations_go_proto",
-     ":documents_go_proto"]
+        ":documents_go_proto",
+        "@go_googleapis//google/api:annotations_go_proto",
+    ],
 )
