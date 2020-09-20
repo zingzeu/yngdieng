@@ -148,8 +148,8 @@ rollup_bundle(
     deps = [
         ":src",
         "@npm//:node_modules",
-        "@npm//rollup-plugin-commonjs",
-        "@npm//rollup-plugin-node-resolve",
+        "@npm//@rollup/plugin-commonjs",
+        "@npm//@rollup/plugin-node-resolve",
     ],
 )
 
@@ -257,8 +257,7 @@ ts_devserver(
     scripts = [
         "@npm//:node_modules/tslib/tslib.js",
         ":rxjs_umd_modules",
-        ":google_protobuf_requirejs",
-        ":improbable_eng_grpc_web_requirejs",
+        "@npm//@bazel/labs/grpc_web:bootstrap_scripts",
     ],
     static_files = _ASSETS + [
         "favicon.ico",
