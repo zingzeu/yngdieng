@@ -1,4 +1,3 @@
-  
 load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_binary")
 
 # Custom ts_library compiler that runs tsc_wrapped with angular/compiler-cli statically linked

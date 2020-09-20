@@ -27,45 +27,71 @@ rules_proto_dependencies()
 
 rules_proto_toolchains()
 
-# grpc
+# Note gapic-generator contains java-specific and common code, that is why it is imported in common
+# section
+http_archive(
+    name = "com_google_api_codegen",
+    strip_prefix = "gapic-generator-2.4.6",
+    urls = ["https://github.com/googleapis/gapic-generator/archive/v2.4.6.zip"],
+)
+
+#############
+# Python
+#############
+
+load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
-    name = "rules_proto_grpc",
-    sha256 = "cbbcae996d8dd4832645fdf7f9ccdce0a062fb31aee14fb1c42dd335ac8aeaad",
-    strip_prefix = "rules_proto_grpc-1add33fdb7b1f2c85e660bc115c8bfe83d768162",
+    name = "rules_python",
+    sha256 = "b5668cde8bb6e3515057ef465a35ad712214962f0b3a314e551204266c7be90c",
+    strip_prefix = "rules_python-0.0.2",
+    url = "https://github.com/bazelbuild/rules_python/releases/download/0.0.2/rules_python-0.0.2.tar.gz",
+)
+
+##############
+# Go
+##############
+http_archive(
+    name = "io_bazel_rules_go",
+    sha256 = "a8d6b1b354d371a646d2f7927319974e0f9e52f73a2452d2b3877118169eb6bb",
     urls = [
-        "https://" + GITHUB_COM + "/ztl8702/rules_proto_grpc/archive/1add33fdb7b1f2c85e660bc115c8bfe83d768162.tar.gz",
+        "https://mirror.bazel.build/github.com/bazelbuild/rules_go/releases/download/v0.23.3/rules_go-v0.23.3.tar.gz",
+        "https://github.com/bazelbuild/rules_go/releases/download/v0.23.3/rules_go-v0.23.3.tar.gz",
     ],
 )
 
-load("@rules_proto_grpc//:repositories.bzl", "rules_proto_grpc_toolchains")
+load("@io_bazel_rules_go//go:deps.bzl", "go_register_toolchains", "go_rules_dependencies")
 
-rules_proto_grpc_toolchains()
+go_rules_dependencies()
 
-RULES_NODEJS_VERSION = "2.0.1"
+go_register_toolchains()
 
-RULES_NODEJS_SHA256 = "0f2de53628e848c1691e5729b515022f5a77369c76a09fbe55611e12731c90e3"
+##############
+# JavaScript
+##############
+
+RULES_NODEJS_VERSION = "2.1.0"
+
+RULES_NODEJS_SHA256 = "19e21c39055906f854ad9aad3f3837cfcbd6dabc25f19dc0031bd4d6211cd6f0"
 
 http_archive(
     name = "build_bazel_rules_nodejs",
     sha256 = RULES_NODEJS_SHA256,
-    url = "https://" + GITHUB_COM + "/bazelbuild/rules_nodejs/releases/download/%s/rules_nodejs-%s.tar.gz" % (RULES_NODEJS_VERSION, RULES_NODEJS_VERSION),
+    strip_prefix = "rules_nodejs-%s" % RULES_NODEJS_VERSION,
+    url = "https://" + GITHUB_COM + "/bazelbuild/rules_nodejs/archive/%s/%s.tar.gz" % (RULES_NODEJS_VERSION, RULES_NODEJS_VERSION),
 )
 
-# Rules for compiling sass
-RULES_SASS_VERSION = "1.25.0"
-
-RULES_SASS_SHA256 = "c78be58f5e0a29a04686b628cf54faaee0094322ae0ac99da5a8a8afca59a647"
-
+### TypeScript generator
 http_archive(
-    name = "io_bazel_rules_sass",
-    sha256 = RULES_SASS_SHA256,
-    strip_prefix = "rules_sass-%s" % RULES_SASS_VERSION,
-    url = "https://" + GITHUB_COM + "/bazelbuild/rules_sass/archive/%s.zip" % RULES_SASS_VERSION,
+    name = "gapic_generator_typescript",
+    repo_mapping = {"@npm": "@npm_gapic"},
+    strip_prefix = "gapic-generator-typescript-1.1.0",
+    urls = ["https://github.com/googleapis/gapic-generator-typescript/archive/v1.1.0.tar.gz"],
 )
 
-####################################
-# Load and install our dependencies downloaded above.
+load("@gapic_generator_typescript//:repositories.bzl", "gapic_generator_typescript_repositories")
+
+gapic_generator_typescript_repositories()
 
 load(
     "@build_bazel_rules_nodejs//:index.bzl",
@@ -81,6 +107,13 @@ yarn_install(
     name = "npm",
     package_json = "//:package.json",
     yarn_lock = "//:yarn.lock",
+)
+
+yarn_install(
+    name = "npm_gapic",
+    package_json = "@gapic_generator_typescript//:package.json",
+    symlink_node_modules = False,
+    yarn_lock = "@gapic_generator_typescript//:yarn.lock",
 )
 
 # Load @bazel/protractor dependencies
@@ -106,59 +139,23 @@ browser_repositories(
     firefox = True,
 )
 
+#################
+# Sass
+#################
+RULES_SASS_VERSION = "1.25.0"
+
+RULES_SASS_SHA256 = "c78be58f5e0a29a04686b628cf54faaee0094322ae0ac99da5a8a8afca59a647"
+
+http_archive(
+    name = "io_bazel_rules_sass",
+    sha256 = RULES_SASS_SHA256,
+    strip_prefix = "rules_sass-%s" % RULES_SASS_VERSION,
+    url = "https://" + GITHUB_COM + "/bazelbuild/rules_sass/archive/%s.zip" % RULES_SASS_VERSION,
+)
+
 load("@io_bazel_rules_sass//sass:sass_repositories.bzl", "sass_repositories")
 
 sass_repositories()
 
-http_archive(
-    name = "rules_typescript_proto",
-    sha256 = "a7f46b105c26fa0ad4ce26430772745a22274fd05e903db973f896872a29f776",
-    strip_prefix = "rules_typescript_proto-a8804e688d32b234b4cd06fe66557f256f0cd76c",
-    urls = [
-        "https://" + GITHUB_COM + "/ztl8702/rules_typescript_proto/archive/a8804e688d32b234b4cd06fe66557f256f0cd76c.tar.gz",
-    ],
-)
-
-load("@rules_typescript_proto//:index.bzl", "rules_typescript_proto_dependencies")
-
-rules_typescript_proto_dependencies()
-
-###################################
-# docker
-###################################
-
-RULES_DOCKER_VERSION = "0.14.4"
-
-RULES_DOCKER_SHA256 = "4521794f0fba2e20f3bf15846ab5e01d5332e587e9ce81629c7f96c793bb7036"
-
-http_archive(
-    name = "io_bazel_rules_docker",
-    sha256 = RULES_DOCKER_SHA256,
-    strip_prefix = "rules_docker-%s" % RULES_DOCKER_VERSION,
-    urls = ["https://%s/bazelbuild/rules_docker/releases/download/v%s/rules_docker-v%s.tar.gz" % (GITHUB_COM, RULES_DOCKER_VERSION, RULES_DOCKER_VERSION)],
-)
-
-load(
-    "@io_bazel_rules_docker//repositories:repositories.bzl",
-    container_repositories = "repositories",
-)
-
-container_repositories()
-
-load(
-    "@io_bazel_rules_docker//repositories:deps.bzl",
-    container_deps = "deps",
-)
-
-container_deps()
-
-load("@io_bazel_rules_docker//repositories:pip_repositories.bzl", "pip_deps")
-
-pip_deps()
-
-load(
-    "@io_bazel_rules_docker//nodejs:image.bzl",
-    _nodejs_image_repos = "repositories",
-)
-
-_nodejs_image_repos()
+####################################
+# Load and install our dependencies downloaded above.

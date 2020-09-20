@@ -1,4 +1,8 @@
 load("@rules_proto//proto:defs.bzl", "proto_library")
+load(
+    "@gapic_generator_typescript//rules_typescript_gapic:typescript_gapic.bzl",
+    "typescript_gapic_library",
+)
 
 package(default_visibility = ["//visibility:public"])
 
@@ -20,10 +24,12 @@ proto_library(
     ],
     deps = [
         ":documents_proto",
+        "@go_googleapis//google/api:annotations_proto",
     ],
 )
 
-java_proto_library(
-    name = "foo",
-    deps = [":services_proto"],
+typescript_gapic_library(
+    name = "test",
+    src = ":services_proto",
+    deps = [],
 )
