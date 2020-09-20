@@ -50,14 +50,6 @@ rules_proto_dependencies()
 
 rules_proto_toolchains()
 
-# Note gapic-generator contains java-specific and common code, that is why it is imported in common
-# section
-http_archive(
-    name = "com_google_api_codegen",
-    strip_prefix = "gapic-generator-2.4.6",
-    urls = ["https://github.com/googleapis/gapic-generator/archive/v2.4.6.zip"],
-)
-
 ##############
 # Go
 ##############
@@ -89,18 +81,6 @@ http_archive(
     sha256 = RULES_NODEJS_SHA256,
     url = "https://" + GITHUB_COM + "/bazelbuild/rules_nodejs/releases/download/%s/rules_nodejs-%s.tar.gz" % (RULES_NODEJS_VERSION, RULES_NODEJS_VERSION),
 )
-
-### TypeScript generator
-http_archive(
-    name = "gapic_generator_typescript",
-    repo_mapping = {"@npm": "@npm_gapic"},
-    strip_prefix = "gapic-generator-typescript-1.1.0",
-    urls = ["https://github.com/googleapis/gapic-generator-typescript/archive/v1.1.0.tar.gz"],
-)
-
-load("@gapic_generator_typescript//:repositories.bzl", "gapic_generator_typescript_repositories")
-
-gapic_generator_typescript_repositories()
 
 load(
     "@build_bazel_rules_nodejs//:index.bzl",
