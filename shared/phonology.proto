@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package yngdieng;
+package mindonglab.yngdieng;
 
 option csharp_namespace = "Yngdieng.Protos";
 

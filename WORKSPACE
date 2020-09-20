@@ -8,16 +8,39 @@ workspace(
 )
 
 GITHUB_COM = "github.com"
-# GITHUB_COM = "github.wuyanzheshui.workers.dev"
 
+# GITHUB_COM = "github.wuyanzheshui.workers.dev"
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
+
+#############
+# Python
+#############
+# Python rules should go early in the dependencies list, otherwise a wrong
+# version of the library will be selected as a transitive dependency of gRPC.
+
+http_archive(
+    name = "rules_python",
+    strip_prefix = "rules_python-748aa53d7701e71101dfd15d800e100f6ff8e5d1",
+    url = "https://github.com/bazelbuild/rules_python/archive/748aa53d7701e71101dfd15d800e100f6ff8e5d1.zip",
+)
+
+#############
+# Protobuf
+#############
+
+http_archive(
+    name = "com_google_protobuf",
+    sha256 = "1c744a6a1f2c901e68c5521bc275e22bdc66256eeb605c2781923365b7087e5f",
+    strip_prefix = "protobuf-3.13.0",
+    urls = ["https://github.com/protocolbuffers/protobuf/archive/v3.13.0.zip"],
+)
 
 http_archive(
     name = "rules_proto",
-    sha256 = "4d421d51f9ecfe9bf96ab23b55c6f2b809cbaf0eea24952683e397decfbd0dd0",
-    strip_prefix = "rules_proto-f6b8d89b90a7956f6782a4a3609b2f0eee3ce965",
+    sha256 = "602e7161d9195e50246177e7c55b2f39950a9cf7366f74ed5f22fd45750cd208",
+    strip_prefix = "rules_proto-97d8af4dc474595af3900dd85cb3a29ad28cc313",
     urls = [
-        "https://" + GITHUB_COM + "/bazelbuild/rules_proto/archive/f6b8d89b90a7956f6782a4a3609b2f0eee3ce965.tar.gz",
+        "https://" + GITHUB_COM + "/bazelbuild/rules_proto/archive/97d8af4dc474595af3900dd85cb3a29ad28cc313.tar.gz",
     ],
 )
 
@@ -33,19 +56,6 @@ http_archive(
     name = "com_google_api_codegen",
     strip_prefix = "gapic-generator-2.4.6",
     urls = ["https://github.com/googleapis/gapic-generator/archive/v2.4.6.zip"],
-)
-
-#############
-# Python
-#############
-
-load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
-
-http_archive(
-    name = "rules_python",
-    sha256 = "b5668cde8bb6e3515057ef465a35ad712214962f0b3a314e551204266c7be90c",
-    strip_prefix = "rules_python-0.0.2",
-    url = "https://github.com/bazelbuild/rules_python/releases/download/0.0.2/rules_python-0.0.2.tar.gz",
 )
 
 ##############
@@ -70,15 +80,14 @@ go_register_toolchains()
 # JavaScript
 ##############
 
-RULES_NODEJS_VERSION = "2.1.0"
+RULES_NODEJS_VERSION = "2.2.0"
 
-RULES_NODEJS_SHA256 = "19e21c39055906f854ad9aad3f3837cfcbd6dabc25f19dc0031bd4d6211cd6f0"
+RULES_NODEJS_SHA256 = "4952ef879704ab4ad6729a29007e7094aef213ea79e9f2e94cbe1c9a753e63ef"
 
 http_archive(
     name = "build_bazel_rules_nodejs",
     sha256 = RULES_NODEJS_SHA256,
-    strip_prefix = "rules_nodejs-%s" % RULES_NODEJS_VERSION,
-    url = "https://" + GITHUB_COM + "/bazelbuild/rules_nodejs/archive/%s/%s.tar.gz" % (RULES_NODEJS_VERSION, RULES_NODEJS_VERSION),
+    url = "https://" + GITHUB_COM + "/bazelbuild/rules_nodejs/releases/download/%s/rules_nodejs-%s.tar.gz" % (RULES_NODEJS_VERSION, RULES_NODEJS_VERSION),
 )
 
 ### TypeScript generator
@@ -109,13 +118,6 @@ yarn_install(
     yarn_lock = "//:yarn.lock",
 )
 
-yarn_install(
-    name = "npm_gapic",
-    package_json = "@gapic_generator_typescript//:package.json",
-    symlink_node_modules = False,
-    yarn_lock = "@gapic_generator_typescript//:yarn.lock",
-)
-
 # Load @bazel/protractor dependencies
 load("@npm//@bazel/protractor:package.bzl", "npm_bazel_protractor_dependencies")
 
@@ -125,6 +127,10 @@ npm_bazel_protractor_dependencies()
 load("@npm//@bazel/karma:package.bzl", "npm_bazel_karma_dependencies")
 
 npm_bazel_karma_dependencies()
+
+load("@npm//@bazel/labs:package.bzl", "npm_bazel_labs_dependencies")
+
+npm_bazel_labs_dependencies()
 
 load("@io_bazel_rules_webtesting//web:repositories.bzl", "web_test_repositories")
 
@@ -138,6 +144,22 @@ browser_repositories(
     chromium = True,
     firefox = True,
 )
+
+# GAPIC Typescript
+load("@gapic_generator_typescript//:repositories.bzl", "gapic_generator_typescript_repositories")
+
+gapic_generator_typescript_repositories()
+
+yarn_install(
+    name = "npm_gapic",
+    package_json = "@gapic_generator_typescript//:package.json",
+    symlink_node_modules = False,
+    yarn_lock = "@gapic_generator_typescript//:yarn.lock",
+)
+
+load("@com_google_protobuf//:protobuf_deps.bzl", "protobuf_deps")
+
+protobuf_deps()
 
 #################
 # Sass
@@ -156,6 +178,3 @@ http_archive(
 load("@io_bazel_rules_sass//sass:sass_repositories.bzl", "sass_repositories")
 
 sass_repositories()
-
-####################################
-# Load and install our dependencies downloaded above.

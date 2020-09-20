@@ -1199,45 +1199,45 @@
   resolved "https://registry.yarnpkg.com/@bazel/ibazel/-/ibazel-0.3.1.tgz#5f02f208f138e581bbdb1534d5c013d7a0ac9799"
   integrity sha1-XwLyCPE45YG72xU01cAT16Csl5k=
 
-"@bazel/jasmine@2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@bazel/jasmine/-/jasmine-2.0.1.tgz#bab3c174a44aae191051c820abb65d34dc973b5c"
-  integrity sha512-iynq37+ngTgf4cSCGxs8WpX240OvHctD7Pp0oPIokC+nfFIWD20OU0r2RGyFwEEVne3KKmxLLgDNw49QiU51Ug==
+"@bazel/jasmine@2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@bazel/jasmine/-/jasmine-2.2.0.tgz#78fc4171362113d993e2473b0168ee8c255e05c9"
+  integrity sha512-NmrgbHBSWUaBXT9rFqeC+bYYWfHtPphnfgchusy7LOQMs/aWVePEo9tsbggNBt1pf6NYv+Y/cHLgtlL/EdQ6Dg==
   dependencies:
     c8 "~7.1.0"
     jasmine-reporters "~2.3.2"
 
-"@bazel/karma@2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@bazel/karma/-/karma-2.0.1.tgz#8e4a2ab6ffc73a10439387d25acc12d9460df91a"
-  integrity sha512-jf9qF7Q/qP2YmJ5SEiWVormG45CiMLHult5kvKKN1Y1GH9iHJ++DMwM21HWz+xa8gYWkhklUVfY0wA7nZw4wAQ==
+"@bazel/karma@2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@bazel/karma/-/karma-2.2.0.tgz#9bf6f6f1aa5f12b25468b1cad5e4404138436600"
+  integrity sha512-qyVE7vZ/qaibmpmcRdjS0rlorLGR0zZtlUSImVVTcPTSXqt364fp8TWBWe7oOneJ1SOVyUmTOAzyE86ArxZ/AA==
   dependencies:
     tmp "0.1.0"
 
-"@bazel/labs@2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@bazel/labs/-/labs-2.0.1.tgz#02af1ffd8b15c9cf595ef12df4a9d36fd9b34e50"
-  integrity sha512-HLKIMPds8A572CkP3qGGmB3aPNI7EwFehoDultyx4RVY2oF3BHDtk8vv4HIamuK/0aGa+yT82KcQp4gMT4nCgA==
+"@bazel/labs@2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@bazel/labs/-/labs-2.2.0.tgz#f841b754285d1a8988ef4c012fae2a71df67e527"
+  integrity sha512-drz17XRZgUT+p/4vN4R4Chcg0tCoN418TjWKMG+w555BZmpULZe57+XuFu0zv1kisipFEymy1ThqYdacH2YMvg==
 
-"@bazel/protractor@2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@bazel/protractor/-/protractor-2.0.1.tgz#c0322c504c4ad532e519e246f47ebb182e6d9989"
-  integrity sha512-Wwjrh/6rPKzXgvIXbu1QGua+7piEjjHYhcR94158NSeQOKBwXTyiFrdsBiutjUaNWw6ZZel2Xwr1sBTa3/E5wg==
+"@bazel/protractor@2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@bazel/protractor/-/protractor-2.2.0.tgz#721b06507b84bf6d61d0e843e0af9939c6ad35a4"
+  integrity sha512-7dvAXxf/rGoi+S4+DWg8HNx3Co9s0kMg1xnBJ4T4nPF5wqSEoItkR6wsjkjQyocA2kIXan+HQcQvw4iIDMhGmg==
 
-"@bazel/rollup@2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@bazel/rollup/-/rollup-2.0.1.tgz#a826ab15fa02b7b81c13af3acf52eeaeb5813530"
-  integrity sha512-xDNj7BO5A3Sdfmliy3MVNDR3jmtPT+W7PB71Txg/jE0xEPS8Ntw0yPgPNBb+PPIZJRZr5smix9KTNL2oeI08GA==
+"@bazel/rollup@2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@bazel/rollup/-/rollup-2.2.0.tgz#15651d545114e08db056f10a1eeaa4e76fc4df56"
+  integrity sha512-N4SyrvFkdAVc24CqFNhDtrR6P3XJTdPGziCuF7QM/BGihnsGlxF6+Dt2n5BTLJnObiB1St8vtRwCtAY8faxYWQ==
 
-"@bazel/terser@2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@bazel/terser/-/terser-2.0.1.tgz#e4626f90337e61230fa50f5a221d12fc56e4010d"
-  integrity sha512-8FKQw1QQH/lX9DVWoOcm60fcuAoPyFVM//5RcorsXsw+WYnWEJVRRyD04mRRK5X5qWr+qI6GpYQ2RCCare6Epg==
+"@bazel/terser@2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@bazel/terser/-/terser-2.2.0.tgz#e0452f3d20e41d5e63048b3eea3280256172fd30"
+  integrity sha512-vukKS9ayJsW/eFFX6tG2Blem+NmEWbcYuCXxwgjL/uYiMCL/uowaTpcvVp9B+DsNSXhGyohOYwud0nBreSUFzg==
 
-"@bazel/typescript@2.0.1":
-  version "2.0.1"
-  resolved "https://registry.yarnpkg.com/@bazel/typescript/-/typescript-2.0.1.tgz#f99405ce53e2d16a98f9b66da42bff9f5c055c24"
-  integrity sha512-zoaxp57m8WbBILv8MlNEcRf1xRbtvAyDAy2nekEy2RhvCx96slZ5+JJIQJ7AW6teb37iqvurg1OvNZsO/1bc7Q==
+"@bazel/typescript@2.2.0":
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/@bazel/typescript/-/typescript-2.2.0.tgz#f2d3dce8715d574fe3146f19fdb8479abcc4d608"
+  integrity sha512-Thf8pXntBzE3EvJtyiTBNsfIf1QnYmGPQmUSGLcKUuuFoplUVYShMRHaxBoPZmYsnD/x+BFLgUKIzlXiEQpGqQ==
   dependencies:
     protobufjs "6.8.8"
     semver "5.6.0"
@@ -1256,13 +1256,6 @@
   dependencies:
     lodash.camelcase "^4.3.0"
     protobufjs "^6.8.6"
-
-"@improbable-eng/grpc-web@0.13.0":
-  version "0.13.0"
-  resolved "https://registry.yarnpkg.com/@improbable-eng/grpc-web/-/grpc-web-0.13.0.tgz#289e6fc4dafc00b1af8e2b93b970e6892299014d"
-  integrity sha512-vaxxT+Qwb7GPqDQrBV4vAAfH0HywgOLw6xGIKXd9Q8hcV63CQhmS3p4+pZ9/wVvt4Ph3ZDK9fdC983b9aGMUFg==
-  dependencies:
-    browser-headers "^0.4.0"
 
 "@istanbuljs/schema@^0.1.2":
   version "0.1.2"
@@ -2117,11 +2110,6 @@ brorand@^1.0.1:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/brorand/-/brorand-1.1.0.tgz#12c25efe40a45e3c323eb8675a0a0ce57b22371f"
   integrity sha1-EsJe/kCkXjwyPrhnWgoM5XsiNx8=
-
-browser-headers@^0.4.0:
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/browser-headers/-/browser-headers-0.4.1.tgz#4308a7ad3b240f4203dbb45acedb38dc2d65dd02"
-  integrity sha512-CA9hsySZVo9371qEHjHZtYxV2cFtVj5Wj/ZHi8ooEsrtm4vOnl9Y9HmyYWk9q+05d7K3rdoAE0j3MVEFVvtQtg==
 
 browserify-aes@^1.0.0, browserify-aes@^1.0.4:
   version "1.2.0"
@@ -3833,6 +3821,11 @@ graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.2.0, graceful-fs@^4.2.4:
   version "4.2.4"
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.4.tgz#2256bde14d3632958c465ebc96dc467ca07a29fb"
   integrity sha512-WjKPNJF79dtJAVniUlGGWHYGz2jWxT6VhN/4m1NdkbZ2nOsEF+cI1Edgql5zCRhs/VsQYRvrXctxktVXZUkixw==
+
+grpc-web@1.1.0:
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/grpc-web/-/grpc-web-1.1.0.tgz#18f73583a0a8c0b6c44a5cba62e66376d0ad019e"
+  integrity sha512-oPoS4/E/EO0TA2ZOSf3AxV2AbWDeabwfbAo+8oXNenOw87RmKz4hME8Sy4KDu2dUnqK8cuGfzdQlJPAEQEygNQ==
 
 har-schema@^2.0.0:
   version "2.0.0"

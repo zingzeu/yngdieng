@@ -1,12 +1,13 @@
 syntax = "proto3";
 
-package yngdieng;
+package mindonglab.yngdieng.v1;
 option csharp_namespace = "Yngdieng.Protos";
 
 import "shared/phonology.proto";
 import "shared/documents.proto";
-
-service YngdiengService {
+import "google/api/annotations.proto";
+import "google/api/client.proto";
+service YngdiengService {option (google.api.default_host) = "foo.googleapi.com";
     rpc Search (SearchRequest) returns (SearchResponse);
     rpc SearchV2 (SearchV2Request) returns (SearchV2Response);
     rpc GetAggregatedDocument(GetAggregatedDocumentRequest) returns (HistoricalDocument);

@@ -1,10 +1,5 @@
 load("@npm//@bazel/typescript:index.bzl", "ts_library")
 load("@npm//@bazel/jasmine:index.bzl", "jasmine_node_test")
-load("@rules_typescript_proto//:index.bzl", "typescript_proto_library")
-
-# Examples:
-# https://github.com/bazelbuild/rules_nodejs/blob/master/examples/protocol_buffers/BUILD.bazel
-# https://github.com/Dig-Doug/rules_typescript_proto/blob/bb9ff5a2f7f629276a8da796bf8a77987e95ca67/test/BUILD.bazel#L128
 
 ts_library(
     name = "lib",
@@ -28,24 +23,6 @@ ts_library(
         ":lib",
         "@npm//:node_modules",
     ],
-)
-
-typescript_proto_library(
-    name = "services_grpc_ts",
-    proto = "//shared:services_proto",
-    visibility = ["//visibility:public"],
-)
-
-typescript_proto_library(
-    name = "documents_proto_ts",
-    proto = "//shared:documents_proto",
-    visibility = ["//visibility:public"],
-)
-
-typescript_proto_library(
-    name = "explanation_proto_ts",
-    proto = "//shared/zingzeudata:explanation_proto",
-    visibility = ["//visibility:public"],
 )
 
 jasmine_node_test(
