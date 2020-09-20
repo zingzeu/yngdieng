@@ -7,7 +7,9 @@ describe('WordDetailsComponent', () => {
   let fixture: ComponentFixture<WordDetailsComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({declarations: [WordDetailsComponent]}).compileComponents();
+    TestBed.configureTestingModule({
+      declarations: [WordDetailsComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

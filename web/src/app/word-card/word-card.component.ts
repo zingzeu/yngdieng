@@ -1,5 +1,5 @@
 import {Component, OnInit, Input, Inject} from '@angular/core';
-import {SearchV2Response} from 'yngdieng/shared/services_pb';
+import {SearchV2Response} from '../../../../shared/services_pb';
 import {
   YNGDIENG_ENVIRONMENT,
   IYngdiengEnvironment,

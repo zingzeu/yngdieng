@@ -1,4 +1,4 @@
-load("@npm_angular_bazel//:index.bzl", "ng_module")
+load("//web/tools:ng_ts_library.bzl", ng_module = "ng_ts_library")
 
 package(default_visibility = ["//web:__subpackages__"])
 

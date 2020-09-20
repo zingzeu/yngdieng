@@ -1,5 +1,4 @@
-import * as shared_phonology_pb from 'yngdieng/shared/phonology_pb';
-import {Final, Initial, Tone} from 'yngdieng/shared/phonology_pb';
+import {Final, Initial, Tone} from '../../../shared/phonology_pb';
 
 const INITIAL_TO_HANZI_MAPPING = {
   [Initial.L]: '柳',
@@ -17,7 +16,7 @@ const INITIAL_TO_HANZI_MAPPING = {
   [Initial.NG]: '語',
   [Initial.C]: '出',
   [Initial.H]: '非',
-}
+};
 
 const HANZI_TO_INITIAL_MAPPING = reverseMap(INITIAL_TO_HANZI_MAPPING);
 
@@ -55,7 +54,7 @@ const FINAL_TO_HANZI_MAPPING = {
   [Final.IA]: '奇',
   [Final.UAI]: '歪',
   [Final.EU]: '溝',
-}
+};
 
 const HANZI_TO_FINAL_MAPPING = reverseMap(FINAL_TO_HANZI_MAPPING);
 
@@ -67,37 +66,31 @@ const TONE_TO_HANZI_MAPPING = {
   [Tone.DOWN_LEVEL]: '下平',
   [Tone.DOWN_FALLING]: '下去',
   [Tone.DOWN_ABRUPT]: '下入',
-}
+};
 
 const HANZI_TO_TONE_MAPPING = reverseMap(TONE_TO_HANZI_MAPPING);
 
-export function getInitialString(
-    initial: shared_phonology_pb.InitialMap[keyof shared_phonology_pb.InitialMap]): string {
+export function getInitialString(initial): string {
   return INITIAL_TO_HANZI_MAPPING[initial];
 }
 
-export function getInitialFromString(s: string):
-    shared_phonology_pb.InitialMap[keyof shared_phonology_pb.InitialMap] {
+export function getInitialFromString(s: string): Initial {
   return HANZI_TO_INITIAL_MAPPING[s];
 }
 
-export function getFinalString(
-    final: shared_phonology_pb.FinalMap[keyof shared_phonology_pb.FinalMap]): string {
+export function getFinalString(final: Final): string {
   return FINAL_TO_HANZI_MAPPING[final];
 }
 
-export function getFinalFromString(s: string):
-    shared_phonology_pb.FinalMap[keyof shared_phonology_pb.FinalMap] {
+export function getFinalFromString(s: string): Final {
   return HANZI_TO_FINAL_MAPPING[s];
 }
 
-export function getToneString(tone: shared_phonology_pb.ToneMap[keyof shared_phonology_pb.ToneMap]):
-    string {
+export function getToneString(tone: Tone): string {
   return TONE_TO_HANZI_MAPPING[tone];
 }
 
-export function getToneFromString(s: string):
-    shared_phonology_pb.ToneMap[keyof shared_phonology_pb.ToneMap] {
+export function getToneFromString(s: string): Tone {
   return HANZI_TO_TONE_MAPPING[s];
 }
 

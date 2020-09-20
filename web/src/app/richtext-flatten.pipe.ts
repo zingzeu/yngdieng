@@ -1,5 +1,5 @@
 import {Pipe, PipeTransform} from '@angular/core';
-import {RichText} from 'yngdieng/shared/services_pb';
+import {RichText} from '../../../shared/services_pb';
 
 @Pipe({
   name: 'rf',

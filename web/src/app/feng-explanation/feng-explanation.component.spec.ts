@@ -7,7 +7,9 @@ describe('FengExplanationComponent', () => {
   let fixture: ComponentFixture<FengExplanationComponent>;
 
   beforeEach(async(() => {
-    TestBed.configureTestingModule({declarations: [FengExplanationComponent]}).compileComponents();
+    TestBed.configureTestingModule({
+      declarations: [FengExplanationComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {

@@ -1,12 +1,12 @@
 load("@build_bazel_rules_nodejs//:index.bzl", "pkg_web")
 load("@npm//@babel/cli:index.bzl", "babel")
-load("@npm_angular_bazel//:index.bzl", "ng_module")
-load("@npm_bazel_rollup//:index.bzl", "rollup_bundle")
+load("//web/tools:ng_ts_library.bzl", ng_module = "ng_ts_library")
+load("@npm//@bazel/rollup:index.bzl", "rollup_bundle")
 load("@npm//history-server:index.bzl", "history_server")
-load("@npm_bazel_typescript//:index.bzl", "ts_devserver", "ts_library")
+load("@npm//@bazel/typescript:index.bzl", "ts_devserver", "ts_library")
 load("@io_bazel_rules_sass//:defs.bzl", "sass_binary", "sass_library")
 load("@npm//html-insert-assets:index.bzl", "html_insert_assets")
-load("@npm_bazel_terser//:index.bzl", "terser_minified")
+load("@npm//@bazel/terser:index.bzl", "terser_minified")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -42,34 +42,6 @@ ng_module(
         "@npm//@angular/core",
         "@npm//@angular/platform-browser",
     ],
-)
-
-# Copy the google-protobuf library and convert it to a AMD module so it can be loaded in the
-# RequireJS test environment.
-genrule(
-    name = "google_protobuf_requirejs",
-    srcs = [
-        "@npm//:node_modules/google-protobuf/google-protobuf.js",
-    ],
-    outs = [
-        "google-protobuf.js",
-    ],
-    cmd = """echo "define('google-protobuf', function(require, exports, module) {" > $@ \
-            && cat $< >> $@ \
-            && echo '});' >> $@""",
-)
-
-genrule(
-    name = "improbable_eng_grpc_web_requirejs",
-    srcs = [
-        "@npm//:node_modules/@improbable-eng/grpc-web/dist/grpc-web-client.js",
-    ],
-    outs = [
-        "grpc-web.js",
-    ],
-    cmd = """echo "define('@improbable-eng/grpc-web', function(require, exports, module) {" > $@ \
-            && cat $< >> $@ \
-            && echo '});' >> $@""",
 )
 
 filegroup(
@@ -148,8 +120,8 @@ rollup_bundle(
     deps = [
         ":src",
         "@npm//:node_modules",
-        "@npm//rollup-plugin-commonjs",
-        "@npm//rollup-plugin-node-resolve",
+        "@npm//@rollup/plugin-commonjs",
+        "@npm//@rollup/plugin-node-resolve",
     ],
 )
 
@@ -257,8 +229,7 @@ ts_devserver(
     scripts = [
         "@npm//:node_modules/tslib/tslib.js",
         ":rxjs_umd_modules",
-        ":google_protobuf_requirejs",
-        ":improbable_eng_grpc_web_requirejs",
+        "@npm//@bazel/labs/grpc_web:bootstrap_scripts",
     ],
     static_files = _ASSETS + [
         "favicon.ico",

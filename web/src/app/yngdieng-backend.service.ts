@@ -4,7 +4,7 @@ import {
   FengDocument,
   HistoricalDocument,
   YngdiengDocument,
-} from 'yngdieng/shared/documents_pb';
+} from '../../../shared/documents_pb';
 import {
   DebugInfo,
   GetAggregatedDocumentRequest,
@@ -15,8 +15,8 @@ import {
   SearchResponse,
   SearchV2Request,
   SearchV2Response,
-} from 'yngdieng/shared/services_pb';
-import {YngdiengServiceClient} from 'yngdieng/shared/services_pb_service';
+} from '../../../shared/services_pb';
+import {YngdiengServiceClient} from '../../../shared/services_grpc_web_pb';
 
 import {
   IYngdiengEnvironment,
@@ -39,7 +39,7 @@ export class YngdiengBackendService {
     request.setQuery(queryText);
     request.setOffset(offset);
 
-    this.grpcClient.search(request, (err, response) => {
+    this.grpcClient.search(request, undefined, (err, response) => {
       if (err != null) {
         subject.error(err);
         return;
@@ -59,7 +59,7 @@ export class YngdiengBackendService {
     // TODO: parameterize
     request.setPageSize(15);
 
-    this.grpcClient.searchV2(request, (err, response) => {
+    this.grpcClient.searchV2(request, undefined, (err, response) => {
       if (err != null) {
         subject.error(err);
         return;
@@ -75,7 +75,7 @@ export class YngdiengBackendService {
     let subject = new Subject<FengDocument>();
     let request = new GetFengDocumentRequest();
     request.setId(fengDocId);
-    this.grpcClient.getFengDocument(request, (err, response) => {
+    this.grpcClient.getFengDocument(request, undefined, (err, response) => {
       if (err != null) {
         subject.error(err);
         return;
@@ -89,7 +89,7 @@ export class YngdiengBackendService {
     let subject = new Subject<YngdiengDocument>();
     let request = new GetYngdiengDocumentRequest();
     request.setId(docId);
-    this.grpcClient.getYngdiengDocument(request, (err, response) => {
+    this.grpcClient.getYngdiengDocument(request, undefined, (err, response) => {
       if (err != null) {
         subject.error(err);
         return;
@@ -103,27 +103,35 @@ export class YngdiengBackendService {
     let subject = new Subject<HistoricalDocument>();
     let request = new GetAggregatedDocumentRequest();
     request.setId(docId);
-    this.grpcClient.getAggregatedDocument(request, (err, response) => {
-      if (err != null) {
-        subject.error(err);
-        return;
-      }
+    this.grpcClient.getAggregatedDocument(
+      request,
+      undefined,
+      (err, response) => {
+        if (err != null) {
+          subject.error(err);
+          return;
+        }
 
-      subject.next(response);
-    });
+        subject.next(response);
+      }
+    );
 
     return subject.asObservable();
   }
 
   getDebugInfo(): Observable<DebugInfo> {
     let subject = new Subject<DebugInfo>();
-    this.grpcClient.getDebugInfo(new GetDebugInfoRequest(), (err, response) => {
-      if (err != null) {
-        subject.error(err);
-        return;
+    this.grpcClient.getDebugInfo(
+      new GetDebugInfoRequest(),
+      undefined,
+      (err, response) => {
+        if (err != null) {
+          subject.error(err);
+          return;
+        }
+        subject.next(response);
       }
-      subject.next(response);
-    });
+    );
 
     return subject.asObservable();
   }
