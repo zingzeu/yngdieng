@@ -124,7 +124,7 @@ const CollectionDetail = () => {
               <View className={styles.listItem} key={word.id}>
                 <WordCard
                   onClick={() =>
-                    Taro.redirectTo({
+                    Taro.navigateTo({
                       url: `${routes.WORD_DETAIL}?id=${word.id}`,
                     })
                   }
