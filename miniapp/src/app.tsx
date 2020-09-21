@@ -31,16 +31,16 @@ const loadFonts = async () => {
         'cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/font/yngdieng-extended-1.woff',
       family: 'Ext-1',
     },
-    {
-      fileId:
-        'cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/font/NotoSerifSC-Regular.otf',
-      family: 'Noto Serif SC',
-    },
-    {
-      fileId:
-        'cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/font/NotoSerifTC-Regular.otf',
-      family: 'Noto Serif TC',
-    },
+    // {
+    //   fileId:
+    //     'cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/font/NotoSerifSC-Regular.otf',
+    //   family: 'Noto Serif SC',
+    // },
+    // {
+    //   fileId:
+    //     'cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/font/NotoSerifTC-Regular.otf',
+    //   family: 'Noto Serif TC',
+    // },
   ];
   const tempFileURLResult = await await Taro.cloud.getTempFileURL({
     fileList: fonts.map(font => font.fileId),
