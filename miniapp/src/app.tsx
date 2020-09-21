@@ -74,6 +74,25 @@ class App extends Component {
     });
   }
 
+  onLoad(options) {
+    const scannedURL = decodeURIComponent(options.q);
+    if (!scannedURL) return;
+    const splittedURL = scannedURL.split('/');
+    const id = splittedURL.pop();
+    const type = splittedURL.pop();
+    if (type === 'campaign') {
+      switch (id) {
+        case 'lung-nung-dieng': {
+          // TODO: 词表 ID 确定下来之后替换掉下方的 mockId
+          Taro.reLaunch({
+            url: 'pages/collectionDetail/collectionDetail?id=mockId',
+          });
+          break;
+        }
+      }
+    }
+  }
+
   componentDidShow() {}
 
   componentDidHide() {}
