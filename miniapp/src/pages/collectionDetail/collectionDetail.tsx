@@ -48,7 +48,7 @@ const CollectionDetail = () => {
   );
 
   const handleLoadMore = () => {
-    const collectionId = router.params.id;
+    const collectionId = decodeURIComponent(router.params.id || '');
     Taro.showNavigationBarLoading();
     getWordListByCollectionId(collectionId, collectionDetail.wordList.length)
       .then(result => {

@@ -70,7 +70,7 @@ const WordDetail = () => {
   const [storyToShow, setStoryToShow] = useState('');
 
   useEffect(() => {
-    const wordId = router.params.id;
+    const wordId = decodeURIComponent(router.params.id || '');
     Taro.showNavigationBarLoading();
     fetchWordDetail(wordId)
       .then(result => {
