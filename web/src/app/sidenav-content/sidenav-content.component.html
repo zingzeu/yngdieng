@@ -1,20 +1,20 @@
 <div class="sidenav-container">
   <div class="sidenav-header">
     <h2>榕典</h2>
-    <p class="version-code">v0.3-preview</p>
+    <p class="version-code">0.0.0-PLACEHOLDER</p>
   </div>
   <mat-nav-list>
     <mat-list-item (click)="onHomeClicked()">
       <mat-icon matListIcon>home</mat-icon>
       <h3 matLine>首页</h3>
     </mat-list-item>
-    <mat-list-item (click)="onSearchClicked()">
+    <mat-list-item (click)="onSearch2Clicked()" *ngIf="showSearchV2">
       <mat-icon matListIcon>search</mat-icon>
       <h3 matLine>搜索</h3>
     </mat-list-item>
-    <mat-list-item (click)="onSearch2Clicked()" *ngIf="showSearchV2">
+    <mat-list-item (click)="onSearchClicked()">
       <mat-icon matListIcon>search</mat-icon>
-      <h3 matLine>搜索2</h3>
+      <h3 matLine>八音检索</h3>
     </mat-list-item>
     <mat-list-item (click)="onHelpClicked()">
       <mat-icon matListIcon>help</mat-icon>

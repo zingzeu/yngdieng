@@ -7,7 +7,7 @@
   <div class="results-info">
     <div *ngIf="!isBusy && !isInvalidQuery">{{ totalLength }} 个搜索结果, 耗时 {{ computationTimeMs }}ms</div>
   </div>
-  <div class="options"><button mat-button color="primary" (click)="toggleAdvancedOptions()">高级搜索</button></div>
+  <div class="options"><button mat-button color="primary" (click)="toggleAdvancedOptions()">八音检索</button></div>
 </div>
 <app-phonology-composer *ngIf="showingAdvancedOptions"></app-phonology-composer>
 
