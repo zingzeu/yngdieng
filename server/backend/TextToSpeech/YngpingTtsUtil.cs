@@ -77,15 +77,74 @@ namespace Yngdieng.Backend.TextToSpeech
                                              {"34", new string[]{"uai"}},
                                              {"36", new string[]{"eu"}}};
 
+        private static Dictionary<string, string> SyllableMappings =
+            new Dictionary<string, string>();
+
         // 松韵调 (会发生变韵的声调)
         private static HashSet<string> AltTones = new HashSet<string> { "03", "04", "07" };
         private static HashSet<string> AbruptTones = new HashSet<string> { "04", "08" };
 
         /// <summary>
+        /// 生成所有{音节, 音频名}的字典
+        /// </summary>
+        public static void GenerateMappings()
+        {
+            foreach(var (consonant, consonantId) in ConsonantAudioMapping)
+            {
+                foreach(var (finalId, finals) in FinalAudioMapping)
+                {
+                    foreach(var (toneId, tone) in ToneAudioMapping) 
+                    {
+                        string audioFileName = consonantId + finalId + toneId;
+                        if (finals.Length == 1 || !AltTones.Contains(toneId))
+                        {   
+                            string syllable = consonant + finals[0] + tone;
+                        }
+                        else
+                        {
+                            string syllable = consonant + finals[1] + tone;
+                        }
+                        WholeMappings.Add(syllable, AudioFileName);
+                    }
+                }
+            }
+            return;
+        }
+
+        /// <summary>
+        /// 将榕拼音节转换为对应音频文件名。
+        /// </summary>
+        /// <returns>Empty string if none is matched</returns>
+        public static string SyllableToAudio(string yngpingSyllable)
+        {
+            if (SyllableMappings.Count == 0)
+            {
+                GenerateMappings();
+            }
+            string audioFileName = "";
+            if (SyllableMappings.TryGetValue(yngpingSyllable, audioFileName))
+            {
+                return audioFileName;    
+            }
+
+            // TODO: add extra rules
+            var (initial, final, tone) =
+                Yngping0_4_0Validator.TryParseHukziuSyllable(yngpingSyllable);
+            if (tone == "21" && SyllableMappings.ContainsKey(initial + final + "213"))
+            {
+                return SyllableMappings[audioFileName];
+            }
+            return string.Empty;
+        }
+
+
+
+
+        /// <summary>
         /// 将榕拼音节转换为对应音频文件名.
         /// </summary>
         /// <returns>Empty string if unsupported</returns>
-        public static string SyllableToAudio(string yngpingSyllable)
+        public static string SyllableToAudioDeprecated(string yngpingSyllable)
         {
             var (initial, final, tone) =
                 Yngping0_4_0Validator.TryParseHukziuSyllable(yngpingSyllable);
