@@ -89,22 +89,27 @@ namespace Yngdieng.Backend.TextToSpeech
         /// </summary>
         public static void GenerateMappings()
         {
-            foreach(var (consonant, consonantId) in ConsonantAudioMapping)
+            foreach(var (consonant, consonantCode) in ConsonantAudioMapping)
             {
-                foreach(var (finalId, finals) in FinalAudioMapping)
+                foreach(var (finalCode, finals) in FinalAudioMapping)
                 {
-                    foreach(var (toneId, tone) in ToneAudioMapping) 
+                    foreach(var (tone, toneCode) in ToneAudioMapping) 
                     {
-                        string audioFileName = consonantId + finalId + toneId;
-                        if (finals.Length == 1 || !AltTones.Contains(toneId))
+                        string syllableCode = consonantCode + finalCode + toneCode;
+                        string syllable = "";
+                        if (finals.Length == 1 || !AltTones.Contains(toneCode))
                         {   
-                            string syllable = consonant + finals[0] + tone;
+                            syllable = consonant + finals[0] + tone;
                         }
                         else
                         {
-                            string syllable = consonant + finals[1] + tone;
+                            syllable = consonant + finals[1] + tone;
                         }
-                        WholeMappings.Add(syllable, AudioFileName);
+                        if (SyllableMappings.ContainsKey(syllable))
+                        {
+                            Console.WriteLine($"syllable: {syllable}; code: {SyllableMappings[syllable]}; audioFileName: {syllableCode}");
+                        }
+                        SyllableMappings.Add(syllable, syllableCode);
                     }
                 }
             }
@@ -121,10 +126,9 @@ namespace Yngdieng.Backend.TextToSpeech
             {
                 GenerateMappings();
             }
-            string audioFileName = "";
-            if (SyllableMappings.TryGetValue(yngpingSyllable, audioFileName))
+            if (SyllableMappings.ContainsKey(yngpingSyllable))
             {
-                return audioFileName;    
+                return SyllableMappings[yngpingSyllable];    
             }
 
             // TODO: add extra rules
@@ -132,13 +136,10 @@ namespace Yngdieng.Backend.TextToSpeech
                 Yngping0_4_0Validator.TryParseHukziuSyllable(yngpingSyllable);
             if (tone == "21" && SyllableMappings.ContainsKey(initial + final + "213"))
             {
-                return SyllableMappings[audioFileName];
+                return SyllableMappings[initial + final + "213"];
             }
             return string.Empty;
         }
-
-
-
 
         /// <summary>
         /// 将榕拼音节转换为对应音频文件名.
