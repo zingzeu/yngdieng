@@ -61,7 +61,7 @@ namespace Yngdieng.Backend.TextToSpeech
                                              {"15", new string[]{"eing", "aing"}},
                                              {"16", new string[]{"uong"}},
                                              {"19", new string[]{"yng", "eoyng"}},
-                                             {"20", new string[]{"oung", "aung"}},
+                                             {"20", new string[]{"oung", "ooung"}},
                                              {"21", new string[]{"i", "ei"}},
                                              {"22", new string[]{"eoyng", "ooyng"}},
                                              {"23", new string[]{"au"}},
