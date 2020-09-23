@@ -1,11 +1,32 @@
-import React, {useState} from 'react';
-import Taro from '@tarojs/taro';
-import {View, Image, Input, Text} from '@tarojs/components';
+import React, {useState, useEffect} from 'react';
+import Taro, {getCurrentInstance} from '@tarojs/taro';
+import {View, Image, Input} from '@tarojs/components';
 import {AtIcon} from 'taro-ui';
 import Header from '@/pages/header/header';
 import routes from '@/routes';
 import logoURL from '@/assets/logo.png';
 import styles from './index.module.scss';
+
+const parseRouterParams = () => {
+  const scannedURL = decodeURIComponent(
+    getCurrentInstance().router?.params.q || ''
+  );
+  if (!scannedURL) return;
+  const splittedURL = scannedURL.split('/');
+  const id = splittedURL.pop();
+  const type = splittedURL.pop();
+  if (type === 'campaign') {
+    switch (id) {
+      case 'lung-nung-dieng': {
+        // TODO: 词表 ID 确定下来之后替换掉下方的 mockId
+        Taro.reLaunch({
+          url: '/pages/collectionDetail/collectionDetail?id=mockId',
+        });
+        break;
+      }
+    }
+  }
+};
 
 const Index = () => {
   const [inputString, setInputString] = useState('');
@@ -16,6 +37,9 @@ const Index = () => {
     });
   };
 
+  useEffect(() => {
+    parseRouterParams();
+  }, []);
   return (
     <View className={styles.index}>
       <Header />
