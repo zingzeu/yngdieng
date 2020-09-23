@@ -94,9 +94,45 @@ namespace Yngdieng.Backend.TextToSpeech
                 foreach(var (finalCode, finals) in FinalAudioMapping)
                 {
                     foreach(var (tone, toneCode) in ToneAudioMapping) 
-                    {
-                        string syllableCode = consonantCode + finalCode + toneCode;
+                    {   
+                        // var (rime, coda) = DestructureFinal(final);
+                        // if (string.IsNullOrEmpty(coda) && )
+                        // {
+                        //     finalCode = rime
+                        // }
                         string syllable = "";
+                        string final = "";
+                        string syllableCode = consonantCode + finalCode + toneCode;
+                        if (AbruptTones.Contains(toneCode))
+                        {
+                            final = finals.Length == 2 && AltTones.Contains(toneCode) ? finals[1] : finals[0];
+                            if (final.EndsWith("ng"))
+                            {
+                                final = final.Substring(0, final.Length - 2);
+                            }
+                            syllable = consonant + final + "h" + tone;
+                            if (!SyllableMappings.ContainsKey(syllable))
+                            {
+                                SyllableMappings.Add(syllable, syllableCode);
+                                
+                            }
+                            else {
+                                Console.WriteLine($"syllable: {syllable}; code: {SyllableMappings[syllable]}; audioFileName: {syllableCode}");
+                            }
+                            syllable = consonant + final + "k" + tone;
+                            if (!SyllableMappings.ContainsKey(syllable))
+                            {
+                                SyllableMappings.Add(syllable, syllableCode);
+                                
+                            }
+                            else {
+                                Console.WriteLine($"syllable: {syllable}; code: {SyllableMappings[syllable]}; audioFileName: {syllableCode}");
+                            }
+                            // SyllableMappings.Add(, syllableCode);
+                            // SyllableMappings.Add(consonant + final + "k" + tone, syllableCode);
+                            continue;
+                        }
+
                         if (finals.Length == 1 || !AltTones.Contains(toneCode))
                         {   
                             syllable = consonant + finals[0] + tone;
@@ -105,11 +141,11 @@ namespace Yngdieng.Backend.TextToSpeech
                         {
                             syllable = consonant + finals[1] + tone;
                         }
-                        if (SyllableMappings.ContainsKey(syllable))
+                        if (!SyllableMappings.ContainsKey(syllable))
                         {
-                            Console.WriteLine($"syllable: {syllable}; code: {SyllableMappings[syllable]}; audioFileName: {syllableCode}");
+                            SyllableMappings.Add(syllable, syllableCode);
+                            // Console.WriteLine($"syllable: {syllable}; code: {SyllableMappings[syllable]}; audioFileName: {syllableCode}");
                         }
-                        SyllableMappings.Add(syllable, syllableCode);
                     }
                 }
             }
@@ -121,13 +157,14 @@ namespace Yngdieng.Backend.TextToSpeech
         /// </summary>
         /// <returns>Empty string if none is matched</returns>
         public static string SyllableToAudio(string yngpingSyllable)
-        {
+        {   
             if (SyllableMappings.Count == 0)
             {
                 GenerateMappings();
             }
             if (SyllableMappings.ContainsKey(yngpingSyllable))
             {
+                Console.WriteLine($"\n\nresult: {SyllableMappings[yngpingSyllable]}");
                 return SyllableMappings[yngpingSyllable];    
             }
 
