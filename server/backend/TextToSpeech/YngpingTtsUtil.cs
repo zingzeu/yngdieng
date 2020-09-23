@@ -94,57 +94,21 @@ namespace Yngdieng.Backend.TextToSpeech
                 foreach(var (finalCode, finals) in FinalAudioMapping)
                 {
                     foreach(var (tone, toneCode) in ToneAudioMapping) 
-                    {   
-                        // var (rime, coda) = DestructureFinal(final);
-                        // if (string.IsNullOrEmpty(coda) && )
-                        // {
-                        //     finalCode = rime
-                        // }
-                        string syllable = "";
-                        string final = "";
+                    {
+                        string final = (finals.Length == 2 && AltTones.Contains(toneCode)) ? finals[1] : finals[0];
                         string syllableCode = consonantCode + finalCode + toneCode;
                         if (AbruptTones.Contains(toneCode))
                         {
-                            final = finals.Length == 2 && AltTones.Contains(toneCode) ? finals[1] : finals[0];
                             if (final.EndsWith("ng"))
                             {
                                 final = final.Substring(0, final.Length - 2);
                             }
-                            syllable = consonant + final + "h" + tone;
-                            if (!SyllableMappings.ContainsKey(syllable))
-                            {
-                                SyllableMappings.Add(syllable, syllableCode);
-                                
-                            }
-                            else {
-                                Console.WriteLine($"syllable: {syllable}; code: {SyllableMappings[syllable]}; audioFileName: {syllableCode}");
-                            }
-                            syllable = consonant + final + "k" + tone;
-                            if (!SyllableMappings.ContainsKey(syllable))
-                            {
-                                SyllableMappings.Add(syllable, syllableCode);
-                                
-                            }
-                            else {
-                                Console.WriteLine($"syllable: {syllable}; code: {SyllableMappings[syllable]}; audioFileName: {syllableCode}");
-                            }
-                            // SyllableMappings.Add(, syllableCode);
-                            // SyllableMappings.Add(consonant + final + "k" + tone, syllableCode);
-                            continue;
-                        }
-
-                        if (finals.Length == 1 || !AltTones.Contains(toneCode))
-                        {   
-                            syllable = consonant + finals[0] + tone;
-                        }
-                        else
+                            SyllableMappings.TryAdd(consonant + final + "h" + tone, syllableCode);
+                            SyllableMappings.TryAdd(consonant + final + "k" + tone, syllableCode);
+                        } 
+                        else 
                         {
-                            syllable = consonant + finals[1] + tone;
-                        }
-                        if (!SyllableMappings.ContainsKey(syllable))
-                        {
-                            SyllableMappings.Add(syllable, syllableCode);
-                            // Console.WriteLine($"syllable: {syllable}; code: {SyllableMappings[syllable]}; audioFileName: {syllableCode}");
+                            SyllableMappings.TryAdd(consonant + final + tone, syllableCode);
                         }
                     }
                 }
@@ -164,17 +128,10 @@ namespace Yngdieng.Backend.TextToSpeech
             }
             if (SyllableMappings.ContainsKey(yngpingSyllable))
             {
-                Console.WriteLine($"\n\nresult: {SyllableMappings[yngpingSyllable]}");
+                Console.WriteLine($"\n\nDEBUG: {SyllableMappings[yngpingSyllable]}");
                 return SyllableMappings[yngpingSyllable];    
             }
-
             // TODO: add extra rules
-            var (initial, final, tone) =
-                Yngping0_4_0Validator.TryParseHukziuSyllable(yngpingSyllable);
-            if (tone == "21" && SyllableMappings.ContainsKey(initial + final + "213"))
-            {
-                return SyllableMappings[initial + final + "213"];
-            }
             return string.Empty;
         }
 
