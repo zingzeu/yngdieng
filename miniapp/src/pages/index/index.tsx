@@ -7,7 +7,7 @@ import routes from '@/routes';
 import logoURL from '@/assets/logo.png';
 import styles from './index.module.scss';
 
-const parseRouterParams = () => {
+const handleRouterParams = () => {
   const scannedURL = decodeURIComponent(
     getCurrentInstance().router?.params.q || ''
   );
@@ -38,7 +38,7 @@ const Index = () => {
   };
 
   useEffect(() => {
-    parseRouterParams();
+    handleRouterParams();
   }, []);
   return (
     <View className={styles.index}>
