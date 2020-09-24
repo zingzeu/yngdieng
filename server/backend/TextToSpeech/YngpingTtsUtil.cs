@@ -47,7 +47,7 @@ namespace Yngdieng.Backend.TextToSpeech
         private static Dictionary<string, string[]> FinalAudioMapping =
             new Dictionary<string, string[]>{{"01", new string[]{"ung", "oung"}},
                                              {"02", new string[]{"ua"}},
-                                             {"03", new string[]{"io"}},
+                                             {"03", new string[]{"yo"}},
                                              {"04", new string[]{"iu"}},
                                              {"05", new string[]{"ang"}},
                                              {"06", new string[]{"ai"}},
@@ -128,7 +128,6 @@ namespace Yngdieng.Backend.TextToSpeech
             }
             if (SyllableMappings.ContainsKey(yngpingSyllable))
             {
-                Console.WriteLine($"\n\nDEBUG: {SyllableMappings[yngpingSyllable]}");
                 return SyllableMappings[yngpingSyllable];    
             }
             // TODO: add extra rules
