@@ -47,7 +47,7 @@ namespace Yngdieng.Backend.TextToSpeech
         private static Dictionary<string, string[]> FinalAudioMapping =
             new Dictionary<string, string[]>{{"01", new string[]{"ung", "oung"}},
                                              {"02", new string[]{"ua"}},
-                                             {"03", new string[]{"io"}},
+                                             {"03", new string[]{"yo"}},
                                              {"04", new string[]{"iu"}},
                                              {"05", new string[]{"ang"}},
                                              {"06", new string[]{"ai"}},
@@ -61,7 +61,7 @@ namespace Yngdieng.Backend.TextToSpeech
                                              {"15", new string[]{"eing", "aing"}},
                                              {"16", new string[]{"uong"}},
                                              {"19", new string[]{"yng", "eoyng"}},
-                                             {"20", new string[]{"oung", "aung"}},
+                                             {"20", new string[]{"oung", "ooung"}},
                                              {"21", new string[]{"i", "ei"}},
                                              {"22", new string[]{"eoyng", "ooyng"}},
                                              {"23", new string[]{"au"}},
@@ -77,86 +77,60 @@ namespace Yngdieng.Backend.TextToSpeech
                                              {"34", new string[]{"uai"}},
                                              {"36", new string[]{"eu"}}};
 
+        private static Dictionary<string, string> SyllableMappings =
+            new Dictionary<string, string>();
+
         // 松韵调 (会发生变韵的声调)
         private static HashSet<string> AltTones = new HashSet<string> { "03", "04", "07" };
         private static HashSet<string> AbruptTones = new HashSet<string> { "04", "08" };
 
         /// <summary>
-        /// 将榕拼音节转换为对应音频文件名.
+        /// 生成所有{音节, 音频名}的字典
         /// </summary>
-        /// <returns>Empty string if unsupported</returns>
-        public static string SyllableToAudio(string yngpingSyllable)
+        public static void GenerateMappings()
         {
-            var (initial, final, tone) =
-                Yngping0_4_0Validator.TryParseHukziuSyllable(yngpingSyllable);
-            if (!ConsonantAudioMapping.ContainsKey(initial) || !ToneAudioMapping.ContainsKey(tone))
+            foreach(var (consonant, consonantCode) in ConsonantAudioMapping)
             {
-                return string.Empty;
+                foreach(var (finalCode, finals) in FinalAudioMapping)
+                {
+                    foreach(var (tone, toneCode) in ToneAudioMapping) 
+                    {
+                        string final = (finals.Length == 2 && AltTones.Contains(toneCode)) ? finals[1] : finals[0];
+                        string syllableCode = consonantCode + finalCode + toneCode;
+                        if (AbruptTones.Contains(toneCode))
+                        {
+                            if (final.EndsWith("ng"))
+                            {
+                                final = final.Substring(0, final.Length - 2);
+                            }
+                            SyllableMappings.TryAdd(consonant + final + "h" + tone, syllableCode);
+                            SyllableMappings.TryAdd(consonant + final + "k" + tone, syllableCode);
+                        } 
+                        else 
+                        {
+                            SyllableMappings.TryAdd(consonant + final + tone, syllableCode);
+                        }
+                    }
+                }
             }
-            var mappedFinal = MapFinal(final, tone);
-            if (string.IsNullOrEmpty(mappedFinal))
-            {
-                return string.Empty;
-            }
-            return ConsonantAudioMapping[initial] + mappedFinal + ToneAudioMapping[tone];
+            return;
         }
 
         /// <summary>
-        /// 把榕拼韵母拆成韵腹和韵尾.
+        /// 将榕拼音节转换为对应音频文件名。
         /// </summary>
-        private static (string, string) DestructureFinal(string final)
-        {
-            if (final.EndsWith('h') || final.EndsWith('k'))
+        /// <returns>Empty string if none is matched</returns>
+        public static string SyllableToAudio(string yngpingSyllable)
+        {   
+            if (SyllableMappings.Count == 0)
             {
-                return (final.Substring(0, final.Length - 1), final.Substring(final.Length - 1));
+                GenerateMappings();
             }
-            return (final, string.Empty);
-        }
-
-        private static string MapFinal(string final, string tone)
-        {
-            var (rime, coda) = DestructureFinal(final);
-            var hasCoda = !string.IsNullOrEmpty(coda);
-            string mappedTone = ToneAudioMapping[tone];
-            if (AbruptTones.Contains(mappedTone) != hasCoda)
+            if (SyllableMappings.ContainsKey(yngpingSyllable))
             {
-                // 禁止用非入声韵代替入声
-                // TODO: 其实可以开一些特例；比如说 buk21 用 bu21 代替完全可以.
-                return string.Empty;
+                return SyllableMappings[yngpingSyllable];    
             }
-            foreach (var (key, prons) in FinalAudioMapping)
-            {
-
-                // 入声韵
-                if (hasCoda)
-                {
-                    if (AltTones.Contains(mappedTone))
-                    {
-                        if ((prons.Length == 2 &&
-                             (prons[1] == rime || prons[1] == rime + "ng") /* 变韵韵母吻合 */) ||
-                            (prons[0] == rime || prons[0] == rime + "ng"))
-                        {
-                            return key;
-                        }
-                    }
-                    else if (prons[0] == rime || prons[0] == rime + "ng")
-                    {
-                        return key;
-                    }
-                }
-                // 非入声
-                else if (AltTones.Contains(mappedTone) &&
-
-                         ((prons.Length == 2 && prons[1] == final /* 变韵韵母吻合 */) ||
-                          (prons.Length == 1 && prons[0] == final)))
-                {
-                    return key;
-                }
-                else if (prons[0] == final)
-                {
-                    return key;
-                }
-            }
+            // TODO: add extra rules
             return string.Empty;
         }
     }
