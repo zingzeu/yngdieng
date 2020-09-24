@@ -24,6 +24,12 @@ const handleRouterParams = () => {
         });
         break;
       }
+      case 'lung-nung-dieng-2': {
+        Taro.reLaunch({
+          url: '/pages/collectionDetail/collectionDetail?id=lung-nung-dieng-2',
+        });
+        break;
+      }
     }
   }
 };
