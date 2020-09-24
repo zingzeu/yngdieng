@@ -31,6 +31,7 @@ const wordCard = ({
             <View className={styles.extraContainer}>
               {extraList.map(extraItem => (
                 <View key={extraItem.title}>
+                  <View className={styles.extraTitle}>{extraItem.title}</View>
                   <View>{extraItem.content}</View>
                 </View>
               ))}
