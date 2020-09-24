@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Taro from '@tarojs/taro';
+import Taro, {getCurrentInstance} from '@tarojs/taro';
 import {Provider} from 'react-redux';
 import configStore from './store';
 import './styles/custom-variables.scss';
@@ -30,16 +30,6 @@ const loadFonts = async () => {
       fileId:
         'cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/font/yngdieng-extended-1.woff',
       family: 'Ext-1',
-    },
-    {
-      fileId:
-        'cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/font/NotoSerifSC-Regular.otf',
-      family: 'Noto Serif SC',
-    },
-    {
-      fileId:
-        'cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/font/NotoSerifTC-Regular.otf',
-      family: 'Noto Serif TC',
     },
   ];
   const tempFileURLResult = await await Taro.cloud.getTempFileURL({

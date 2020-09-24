@@ -2,6 +2,17 @@ import mockWordData from '../mock/mockWordData.json';
 import {processWordList} from '../mock/utils';
 
 export const getCollectionById = async collectionId => {
+  if (collectionId === 'lung-nung-dieng-2')
+    return {
+      id: 'long-zhou',
+      name: '--',
+      description: '--',
+      publisher: {
+        name: '--',
+      },
+      likes: 0,
+      wordList: [],
+    };
   const mockCollectionData = {
     id: '诸神的游戏',
     name: '《诸神的游戏》官方词表',
@@ -17,6 +28,7 @@ export const getCollectionById = async collectionId => {
 };
 
 export const getWordListByCollectionId = async (collectionId, fromIndex) => {
+  if (collectionId === 'lung-nung-dieng-2') return [];
   const proccessedData = processWordList(
     mockWordData.slice(fromIndex, fromIndex + 10)
   );

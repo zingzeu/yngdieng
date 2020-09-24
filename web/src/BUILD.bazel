@@ -174,7 +174,7 @@ pkg_web(
         "npm/node_modules/core-js/client",
         "npm/node_modules/systemjs/dist",
     ],
-    substitutions = {"0.0.0-PLACEHOLDER": "{BUILD_TAG}"},
+    substitutions = {"0.0.0-PLACEHOLDER": "{STABLE_GIT_COMMIT_SHORT}"},
 )
 
 genrule(
@@ -206,7 +206,7 @@ pkg_web(
         "npm/node_modules/core-js/client",
         "npm/node_modules/systemjs/dist",
     ],
-    substitutions = {"0.0.0-PLACEHOLDER": "{BUILD_TAG}"},
+    substitutions = {"0.0.0-PLACEHOLDER": "{STABLE_GIT_COMMIT_SHORT}"},
 )
 
 history_server(
