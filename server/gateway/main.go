@@ -13,6 +13,7 @@ import (
 )
 
 var (
+	port       = flag.String("port", "8081", "HTTP port to listen on")
 	endpoint   = flag.String("endpoint", "localhost:5002", "endpoint of the gRPC service")
 	network    = flag.String("network", "tcp", `one of "tcp" or "unix". Must be consistent to -endpoint`)
 	swaggerDir = flag.String("swagger_dir", "examples/internal/proto/examplepb", "path to the directory which contains swagger definitions")
@@ -24,7 +25,7 @@ func main() {
 
 	ctx := context.Background()
 	opts := internal.Options{
-		Addr: ":8080",
+		Addr: ":" + port,
 		GRPCServer: internal.Endpoint{
 			Network: *network,
 			Addr:    *endpoint,
