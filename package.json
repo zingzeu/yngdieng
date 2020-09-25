@@ -40,7 +40,7 @@
     "@babel/preset-env": "7.11.5",
     "@bazel/bazelisk": "1.6.1",
     "@bazel/benchmark-runner": "0.1.0",
-    "@bazel/buildifier": "3.4.0",
+    "@bazel/buildifier": "3.5.0",
     "@bazel/ibazel": "0.12.4",
     "@bazel/jasmine": "2.2.0",
     "@bazel/karma": "2.2.0",
