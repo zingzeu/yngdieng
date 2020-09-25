@@ -48,11 +48,10 @@ namespace Yngdieng.Backend
                 endpoints.MapHealthChecks("/health");
 
                 endpoints.MapGrpcService<YngdiengService>().EnableGrpcWeb().RequireCors("AllowAll");
-                 if (env.IsDevelopment())
-                    {
-                            endpoints.MapGrpcReflectionService();
-
-                    }
+                if (env.IsDevelopment())
+                {
+                    endpoints.MapGrpcReflectionService();
+                }
                 
                 endpoints.MapControllers();
 
