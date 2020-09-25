@@ -1366,12 +1366,12 @@
     webpack-format-messages "^2.0.5"
     yauzl "2.10.0"
 
-"@tarojs/react@3.0.10":
-  version "3.0.10"
-  resolved "https://registry.yarnpkg.com/@tarojs/react/-/react-3.0.10.tgz#800b68106a395144bddf93b88252eb99e4807439"
-  integrity sha512-frdv+SoM8NikHbR5aLsVQr5CefwGvtCq3zqnjn7BMhi92bZC+2T6Zy8AblS8SiW1xxPJlPChw73rC9P/CZpFxw==
+"@tarojs/react@3.0.13":
+  version "3.0.13"
+  resolved "https://registry.yarnpkg.com/@tarojs/react/-/react-3.0.13.tgz#4f97259cc1f2f5e1c9a5caa076deb6855b440ff6"
+  integrity sha512-izoHqmGup6W8uc2joKAxN9clBNdeEcQNmKzEQgymwOngFG8zuLmp4a4Tg6BYP+XvMBUf7wdTO682TYr7omsanQ==
   dependencies:
-    "@tarojs/runtime" "3.0.10"
+    "@tarojs/runtime" "3.0.13"
     react-reconciler "^0.23.0"
     scheduler "^0.17.0"
 
@@ -1411,6 +1411,11 @@
   version "3.0.10"
   resolved "https://registry.yarnpkg.com/@tarojs/runtime/-/runtime-3.0.10.tgz#5c12ec4ca27fd4fefb3f3e054dc711e4d93c680e"
   integrity sha512-z2eiRncbfExieM9+XcMw0D2wsly3Uk1md4Sej0oD2OdWdQRaMFrGXs1pyS4QTDTjBMr4m8hwewqm+LxQCtuCVw==
+
+"@tarojs/runtime@3.0.13":
+  version "3.0.13"
+  resolved "https://registry.yarnpkg.com/@tarojs/runtime/-/runtime-3.0.13.tgz#2458c3ae2e9e31200b87e8f259f8846c8e0619ba"
+  integrity sha512-ZIL4R2MntejAoq9mbJvuZEU2/TGMKNtrYtBzW1yk82K9/5Rt+asWSFLuJv4AM6PooJUXzMTMYNfbO39T4RRGRw==
 
 "@tarojs/runtime@^3.0.11":
   version "3.0.11"
