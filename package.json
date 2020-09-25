@@ -92,7 +92,7 @@
       "git add"
     ],
     "*.{cs,csx,csproj}": [
-      "dotnet format --workspace server --include ",
+      "bash ./dotnet-format.sh",
       "git add"
     ],
     "(BUILD|WORKSPACE|*.bazel|*.bzl)": [
