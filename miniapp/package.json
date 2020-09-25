@@ -38,7 +38,7 @@
   "dependencies": {
     "@babel/runtime": "7.11.2",
     "@tarojs/components": "3.0.11",
-    "@tarojs/react": "3.0.10",
+    "@tarojs/react": "3.0.13",
     "@tarojs/runtime": "3.0.10",
     "@tarojs/taro": "3.0.10",
     "clsx": "1.1.1",
