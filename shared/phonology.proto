@@ -3,7 +3,7 @@ syntax = "proto3";
 package yngdieng;
 
 option csharp_namespace = "Yngdieng.Protos";
-
+option go_package = "github.com/mindonglab/yngdieng/shared";
 enum Final {
   FINAL_UNSPECIFIED = 0;
   // 春

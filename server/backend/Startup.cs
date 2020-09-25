@@ -16,6 +16,7 @@ namespace Yngdieng.Backend
             services.AddSingleton<IndexHealthCheck>();
             services.AddHealthChecks().AddCheck<IndexHealthCheck>("index_file_loading");
             services.AddGrpc();
+            services.AddGrpcReflection();
             services.AddSingleton<IIndexHolder, IndexHolder>();
             services.AddSingleton<YngpingAudioSynthesizer>();
             services.AddHostedService<IndexLoaderBackgroundService>();
@@ -47,6 +48,10 @@ namespace Yngdieng.Backend
                 endpoints.MapHealthChecks("/health");
 
                 endpoints.MapGrpcService<YngdiengService>().EnableGrpcWeb().RequireCors("AllowAll");
+                if (env.IsDevelopment())
+                {
+                    endpoints.MapGrpcReflectionService();
+                }
 
                 endpoints.MapControllers();
 

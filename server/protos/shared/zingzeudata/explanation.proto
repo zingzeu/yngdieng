@@ -3,7 +3,7 @@ syntax = "proto3";
 package zingzeudata;
 
 option csharp_namespace = "ZingzeuData.Models";
-
+option go_package = "github.com/mindonglab/libhokchew/zingzeu-data/models";
 // 结构化的词条解释.
 // Next ID: 4
 message Explanation {
