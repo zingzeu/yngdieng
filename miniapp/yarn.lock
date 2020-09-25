@@ -1271,13 +1271,13 @@
   dependencies:
     "@tarojs/runtime" "^3.0.11"
 
-"@tarojs/components@3.0.10":
-  version "3.0.10"
-  resolved "https://registry.yarnpkg.com/@tarojs/components/-/components-3.0.10.tgz#e1ca1a4a60aef0a1aad63484e0790af3fe7adc2b"
-  integrity sha512-Kd6rrvldsVIYlXOU+Lnn4gNuwqbMpYc9DYVqbMBDpmxnY2/0fJFZecrKrL7B9HqL32bDPA7wZ3zyrpUz6tmBSA==
+"@tarojs/components@3.0.11":
+  version "3.0.11"
+  resolved "https://registry.yarnpkg.com/@tarojs/components/-/components-3.0.11.tgz#6545ea1531f5470034e2cf7c77441207bb22d001"
+  integrity sha512-Bt8YxIvTf9gCivkzSvgpdzaxVViH9mRTIFGzjpHfWiJ2q4cR9z9I8Mh0EVP5uTk4fkSMag8xDUzVj2T0zP00bQ==
   dependencies:
     "@stencil/core" "^1.8.1"
-    "@tarojs/taro" "3.0.10"
+    "@tarojs/taro" "^3.0.11"
     better-scroll "^1.14.1"
     classnames "^2.2.5"
     intersection-observer "^0.7.0"
