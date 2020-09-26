@@ -3871,10 +3871,10 @@ graceful-fs@^4.1.15, graceful-fs@^4.1.2, graceful-fs@^4.2.0, graceful-fs@^4.2.4:
   resolved "https://registry.yarnpkg.com/graceful-fs/-/graceful-fs-4.2.4.tgz#2256bde14d3632958c465ebc96dc467ca07a29fb"
   integrity sha512-WjKPNJF79dtJAVniUlGGWHYGz2jWxT6VhN/4m1NdkbZ2nOsEF+cI1Edgql5zCRhs/VsQYRvrXctxktVXZUkixw==
 
-grpc-web@1.1.0:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/grpc-web/-/grpc-web-1.1.0.tgz#18f73583a0a8c0b6c44a5cba62e66376d0ad019e"
-  integrity sha512-oPoS4/E/EO0TA2ZOSf3AxV2AbWDeabwfbAo+8oXNenOw87RmKz4hME8Sy4KDu2dUnqK8cuGfzdQlJPAEQEygNQ==
+grpc-web@1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/grpc-web/-/grpc-web-1.2.1.tgz#860051d705bf5baa7b81fcbd14030060bf16b7b9"
+  integrity sha512-ibBaJPzfMVuLPgaST9w0kZl60s+SnkPBQp6QKdpEr85tpc1gXW2QDqSne9xiyiym0logDfdUSm4aX5h9YBA2mw==
 
 har-schema@^2.0.0:
   version "2.0.0"
