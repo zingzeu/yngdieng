@@ -25,7 +25,7 @@ func main() {
 
 	ctx := context.Background()
 	opts := internal.Options{
-		Addr: ":" + port,
+		Addr: ":" + *port,
 		GRPCServer: internal.Endpoint{
 			Network: *network,
 			Addr:    *endpoint,
