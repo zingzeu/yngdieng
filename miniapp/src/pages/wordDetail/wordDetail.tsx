@@ -13,13 +13,16 @@ import styles from './wordDetail.module.scss';
 import {renderExplanation} from './explanations';
 interface Feng {
   explanation: string;
+  hanzi_canonical: string;
   explanation_structured?: any;
   source: {
     page_number: number;
   };
 }
+interface Contrib {}
 interface Source {
   feng?: Feng;
+  contrib?: Contrib;
   generic?: {text: string; source: string};
 }
 
@@ -131,9 +134,10 @@ const WordDetail = () => {
             <View className={clsx(styles.tabPane, styles.explanation)}>
               {!(wordDetail.sources?.length !== 0) && <View>暂无解释</View>}
               {wordDetail.sources?.map(
-                (source, index) =>
+                source =>
                   (source.generic && renderGeneric(source.generic)) ||
-                  (source.feng && renderFeng(source.feng))
+                  (source.feng && renderFeng(source.feng)) ||
+                  (source.contrib && renderContrib(source.contrib))
               )}
               {wordDetail.image && <Image src={wordDetail.image} />}
             </View>
@@ -206,10 +210,12 @@ function renderFeng(feng: Feng) {
       <View>
         <View>
           <View>
-            {' '}
             {feng.explanation_structured && (
               <RichText
-                nodes={renderExplanation(feng.explanation_structured)}
+                nodes={renderExplanation(
+                  feng.explanation_structured,
+                  feng.hanzi_canonical
+                )}
               ></RichText>
             )}
           </View>
@@ -218,6 +224,28 @@ function renderFeng(feng: Feng) {
       <View className={styles.source}>
         出处：馮愛珍. 1998. 福州方言詞典. 南京: 江蘇教育出版社. 第{' '}
         {feng.source.page_number} 頁. 用字可能經過編輯修訂
+      </View>
+    </Block>
+  );
+}
+
+function renderContrib(doc: Contrib) {
+  return (
+    <Block>
+      <View>
+        <View>
+          <View>
+            {doc.explanation_structured && (
+              <RichText
+                nodes={renderExplanation(doc.explanation_structured, doc.hanzi)}
+              ></RichText>
+            )}
+          </View>
+        </View>
+      </View>
+      <View className={styles.source}>
+        此条目来自网友贡献。贡献者：
+        {doc.contributors.join(',')} 。
       </View>
     </Block>
   );

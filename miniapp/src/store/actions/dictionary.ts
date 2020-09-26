@@ -88,9 +88,10 @@ const fetchMockWordDetail = async wordId => {
   if (wordDetail === undefined) return undefined;
   return {
     ...wordDetail,
-    sources: wordDetail.explainations.map(e => {
-      generic: e;
-    }),
+    sources:
+      wordDetail.explainations?.map(x => ({
+        generic: x,
+      })) || [],
     word: wordDetail?.traditionalWord,
     stories: wordDetail?.stories || [],
     wordSplited: wordDetail?.wordSplited || [],

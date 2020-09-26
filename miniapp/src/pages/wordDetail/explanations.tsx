@@ -63,10 +63,12 @@ function renderSense(s: Sense, currentWord: string): string {
 }
 
 function renderExample(e: string, currentWord: string): string {
-  return maybeAddPeriod(e).replace(
+  let x = maybeAddPeriod(e).replace(
     /～/g,
     '<span class="current-word">' + currentWord + '</span>'
   );
+  console.log(x);
+  return x;
 }
 
 function maybeAddPeriod(text: string): string {

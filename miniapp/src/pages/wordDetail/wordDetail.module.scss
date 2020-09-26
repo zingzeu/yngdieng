@@ -37,6 +37,9 @@
     color: $color-text-dark-secondary;
     font-size: $font-size-secondary;
   }
+  .current-word {
+    color: red;
+  }
 }
 .collection {
   .title {
