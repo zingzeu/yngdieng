@@ -125,7 +125,7 @@ const Search = () => {
                 scrollY
                 className={styles.scrollView}
                 onScrollToLower={handleLoadMore}
-                lowerThreshold={20}
+                lowerThreshold={100}
                 upperThreshold={20}
               >
                 {resultList.map(resultItem => renderResultItem(resultItem))}
@@ -140,22 +140,22 @@ const Search = () => {
 
 function renderResultItem(resultCard: ResultCard) {
   if (resultCard.no_results !== undefined) {
-    return renderTextMessage('没有找到结果。换个关键词试试？');
+    return renderHintText('没有找到结果。换个关键词试试？');
   }
   if (resultCard.word !== undefined) {
     return renderWordCard(resultCard.word);
   }
   if (resultCard.generic_message !== undefined) {
-    return renderTextMessage(flatten(resultCard.generic_message.message));
+    return renderHintText(flatten(resultCard.generic_message.message));
   }
   if (resultCard.end_of_results !== undefined) {
-    return renderTextMessage('没有更多结果了');
+    return renderHintText('没有更多结果了');
   }
 }
 
-function renderTextMessage(message: string) {
+function renderHintText(message: string) {
   return (
-    <View className={styles.resultItem} key={'txt' + message}>
+    <View className={styles.hintText} key={'hintText-' + message}>
       {message}
     </View>
   );
