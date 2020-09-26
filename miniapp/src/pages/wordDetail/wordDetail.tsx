@@ -74,6 +74,7 @@ const WordDetail = () => {
     Taro.showNavigationBarLoading();
     fetchWordDetail(wordId)
       .then(result => {
+        console.log(result);
         setWordDetail(result);
         Taro.hideNavigationBarLoading();
       })

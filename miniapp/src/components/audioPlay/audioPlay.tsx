@@ -7,6 +7,7 @@ enum Status {
   Default,
   Loading,
   Playing,
+  Disabled,
 }
 
 interface Props {
@@ -45,17 +46,23 @@ const AudioPlay = ({audioFileId = ''}: Props) => {
     console.log('handle ended');
     setStatus(Status.Default);
   };
+  const handleError = e => {
+    console.log('error', e);
+    setStatus(Status.Disabled);
+  };
 
   useEffect(() => {
     ctx.onWaiting(handleWaiting);
     ctx.onCanplay(handleCanPlay);
     ctx.onPlay(handlePlay);
     ctx.onEnded(handleEnded);
+    ctx.onError(handleError);
     return () => {
       ctx.offWaiting(handleWaiting);
       ctx.offCanplay(handleCanPlay);
       ctx.offPlay(handlePlay);
       ctx.offEnded(handleEnded);
+      ctx.offError(handleError);
     };
   }, [status]);
   return (
