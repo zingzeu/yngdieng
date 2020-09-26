@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Cors;
+﻿using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Yngdieng.Backend.TextToSpeech;
 
@@ -19,7 +19,7 @@ namespace Yngdieng.Backend.Controllers
         }
 
         [Route("tts/{text}")]
-        [EnableCors("AllowAll")]  
+        [EnableCors("AllowAll")]
         public IActionResult GetAudio(string text)
         {
             var audioBytes = audioSynthesizer.YngpingToAudio(text);
@@ -28,7 +28,7 @@ namespace Yngdieng.Backend.Controllers
                 logger.LogDebug($"Unsupported yngping: {text}");
                 return new NotFoundResult();
             }
-            return new FileContentResult(audioBytes, "audio/wav");
+            return new FileContentResult(audioBytes, "audio/vnd.wav");
         }
     }
 }
