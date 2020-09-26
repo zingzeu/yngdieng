@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import clsx from 'clsx';
-import Taro, {useRouter} from '@tarojs/taro';
-import {View, Block, Image} from '@tarojs/components';
+import Taro, {useRouter, render} from '@tarojs/taro';
+import {View, Block, Image, RichText} from '@tarojs/components';
 import {AtIcon, AtTabs, AtTabsPane, AtFloatLayout} from 'taro-ui';
 import routes from '@/routes';
 import Header from '@/pages/header/header';
@@ -10,6 +10,18 @@ import AudioPlay from '@/components/audioPlay/audioPlay';
 import {fetchWordDetail} from '@/store/actions/dictionary';
 import Phonology from './phonology/phonology';
 import styles from './wordDetail.module.scss';
+import {renderExplanation} from './explanations';
+interface Feng {
+  explanation: string;
+  explanation_structured?: any;
+  source: {
+    page_number: number;
+  };
+}
+interface Source {
+  feng?: Feng;
+  generic?: {text: string; source: string};
+}
 
 const initialState: {
   wordDetail: {
@@ -20,10 +32,7 @@ const initialState: {
       symbol: string;
       audioFileId?: string;
     }[];
-    explainations?: {
-      text?: string;
-      source?: string;
-    }[];
+    sources?: Source[];
     collections: {
       id: string;
       name: string;
@@ -54,7 +63,7 @@ const initialState: {
     word: '',
     image: '',
     pronounces: [],
-    explainations: [],
+    sources: [],
     collections: [],
     stories: [],
     pronouncesFromDifferentSpeakers: [],
@@ -120,21 +129,12 @@ const WordDetail = () => {
         >
           <AtTabsPane current={currentTab} index={0}>
             <View className={clsx(styles.tabPane, styles.explanation)}>
-              {!(wordDetail.explainations?.length !== 0) && (
-                <View>暂无解释</View>
+              {!(wordDetail.sources?.length !== 0) && <View>暂无解释</View>}
+              {wordDetail.sources?.map(
+                (source, index) =>
+                  (source.generic && renderGeneric(source.generic)) ||
+                  (source.feng && renderFeng(source.feng))
               )}
-              {wordDetail.explainations?.map((explaination, index) => (
-                <Block>
-                  <View>
-                    <View>
-                      <View>{`${index + 1}. ${explaination.text}`}</View>
-                    </View>
-                  </View>
-                  <View className={styles.source}>
-                    来源：{explaination.source}
-                  </View>
-                </Block>
-              ))}
               {wordDetail.image && <Image src={wordDetail.image} />}
             </View>
           </AtTabsPane>
@@ -186,5 +186,41 @@ const WordDetail = () => {
     </View>
   );
 };
+
+function renderGeneric(generic) {
+  return (
+    <Block>
+      <View>
+        <View>
+          <View>{generic.text}</View>
+        </View>
+      </View>
+      <View className={styles.source}>来源：{generic.source}</View>
+    </Block>
+  );
+}
+
+function renderFeng(feng: Feng) {
+  return (
+    <Block>
+      <View>
+        <View>
+          <View>
+            {' '}
+            {feng.explanation_structured && (
+              <RichText
+                nodes={renderExplanation(feng.explanation_structured)}
+              ></RichText>
+            )}
+          </View>
+        </View>
+      </View>
+      <View className={styles.source}>
+        出处：馮愛珍. 1998. 福州方言詞典. 南京: 江蘇教育出版社. 第{' '}
+        {feng.source.page_number} 頁. 用字可能經過編輯修訂
+      </View>
+    </Block>
+  );
+}
 
 export default WordDetail;

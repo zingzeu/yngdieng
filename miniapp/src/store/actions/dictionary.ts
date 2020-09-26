@@ -76,6 +76,7 @@ const fetchYngdiengDocument = async docId => {
     pronouncesFromDifferentSpeakers: [],
     collections: [MOCK_COLLECTION],
     wordSplited: [],
+    sources: yDoc.sources,
   };
 };
 
@@ -87,6 +88,9 @@ const fetchMockWordDetail = async wordId => {
   if (wordDetail === undefined) return undefined;
   return {
     ...wordDetail,
+    sources: wordDetail.explainations.map(e => {
+      generic: e;
+    }),
     word: wordDetail?.traditionalWord,
     stories: wordDetail?.stories || [],
     wordSplited: wordDetail?.wordSplited || [],
