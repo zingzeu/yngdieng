@@ -1,7 +1,24 @@
 import _get from 'lodash/get';
 import mockWordData from '../mock/mockWordData.json';
 import {processWordList} from '../mock/utils';
+import Taro from '@tarojs/taro';
 
+export const realSearch = async (
+  query: string,
+  pageToken: string = '',
+  pageSize: number = 10
+) => {
+  let requestUrl = `https://api-rest.ydict.net/v2/search/${encodeURIComponent(
+    query
+  )}/${encodeURIComponent(pageToken)}?pageSize=${pageSize}`;
+  console.log('search', requestUrl);
+  const response = await Taro.request({
+    url: requestUrl,
+  });
+  return response.data;
+};
+
+// Fake search
 export const search = async (fromIndex = 0, amountToFetch = 10) => {
   console.log('fetch word list', fromIndex, amountToFetch);
   const proccessedData = processWordList(
