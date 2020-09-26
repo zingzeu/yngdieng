@@ -1,15 +1,23 @@
 import _get from 'lodash/get';
 import mockWordData from '../mock/mockWordData.json';
-import {processWordList} from '../mock/utils';
 import Taro from '@tarojs/taro';
 
+const API_PREFIX = 'https://api-rest.ydict.net/v2/';
+const MOCK_COLLECTION = {
+  id: '诸神的游戏',
+  name: '《诸神的游戏》官方词表',
+  description:
+    '福州龙船文化词汇全搜罗，一起来做龙癫吧！本书京宝热销中https://tao...',
+  likes: 102,
+};
 export const realSearch = async (
   query: string,
   pageToken: string = '',
   pageSize: number = 10
 ) => {
   let requestUrl =
-    'https://api-rest.ydict.net/v2/search/' +
+    API_PREFIX +
+    'search/' +
     encodeURIComponent(query) +
     '/' +
     encodeURIComponent(pageToken) +
@@ -30,9 +38,7 @@ export const fetchWordDetail = async wordId => {
 const fetchYngdiengDocument = async docId => {
   const yDoc = (
     await Taro.request({
-      url:
-        'https://api-rest.ydict.net/v2/yngdieng_document/' +
-        encodeURIComponent(docId),
+      url: API_PREFIX + 'yngdieng_document/' + encodeURIComponent(docId),
     })
   ).data;
   const shouldShowSandhi =
@@ -68,7 +74,7 @@ const fetchYngdiengDocument = async docId => {
         ]
       : [{name: '福州市区', value: yDoc.yngping_sandhi}],
     pronouncesFromDifferentSpeakers: [],
-    collections: [],
+    collections: [MOCK_COLLECTION],
     wordSplited: [],
   };
 };
@@ -84,15 +90,7 @@ const fetchMockWordDetail = async wordId => {
     word: wordDetail?.traditionalWord,
     stories: wordDetail?.stories || [],
     wordSplited: wordDetail?.wordSplited || [],
-    collections: [
-      {
-        id: '诸神的游戏',
-        name: '《诸神的游戏》官方词表',
-        description:
-          '福州龙船文化词汇全搜罗，一起来做龙癫吧！本书京宝热销中https://tao...',
-        likes: 102,
-      },
-    ],
+    collections: [MOCK_COLLECTION],
   };
 };
 
