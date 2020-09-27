@@ -49,4 +49,9 @@ export class SidenavContentComponent implements OnInit {
     var win = window.open('https://support.qq.com/products/172407', '_blank');
     win.focus();
   }
+
+  onAboutClicked() {
+    this.sideNavState.closeSideNav();
+    this.router.navigate(['/about']);
+  }
 }

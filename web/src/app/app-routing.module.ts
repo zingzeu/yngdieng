@@ -11,6 +11,7 @@ import {SearchResultComponent} from './search-result/search-result.component';
 import {SimplificationToolComponent} from './simplification-tool/simplification-tool.component';
 import {WordDetailsComponent} from './word-details/word-details.component';
 import {SearchV2ResultComponent} from './search-v2-result/search-v2-result.component';
+import {AboutComponent} from './about/about.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -18,6 +19,7 @@ const routes: Routes = [
   {path: 'search2/:query/:pageToken', component: SearchV2ResultComponent},
   {path: 'search2/:query', component: SearchV2ResultComponent},
   {path: 'advancedSearch', component: AdvancedSearchLandingComponent},
+  {path: 'about', component: AboutComponent},
   {path: 'help', component: HelpComponent},
   {path: 'w/:id', component: WordDetailsComponent},
   // (Deprecated) 冯版条目

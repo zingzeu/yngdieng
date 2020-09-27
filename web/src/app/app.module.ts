@@ -44,6 +44,7 @@ import {NoResultsCardComponent} from './no-results-card/no-results-card.componen
 import {EndOfResultsCardComponent} from './end-of-results-card/end-of-results-card.component';
 import {GenericMessageCardComponent} from './generic-message-card/generic-message-card.component';
 import {LoadingCardComponent} from './loading-card/loading-card.component';
+import {AboutComponent} from './about/about.component';
 
 @NgModule({
   declarations: [
@@ -77,6 +78,7 @@ import {LoadingCardComponent} from './loading-card/loading-card.component';
     EndOfResultsCardComponent,
     GenericMessageCardComponent,
     LoadingCardComponent,
+    AboutComponent,
   ],
   imports: [
     AppRoutingModule,
