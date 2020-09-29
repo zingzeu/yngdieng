@@ -48,7 +48,7 @@ const AudioPlay = ({audioFileId = ''}: Props) => {
   };
   const handleError = e => {
     console.log('error', e);
-    setStatus(Status.Disabled);
+    setStatus(Status.Default);
   };
 
   useEffect(() => {

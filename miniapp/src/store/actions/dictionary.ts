@@ -15,16 +15,13 @@ export const realSearch = async (
   pageToken: string = '',
   pageSize: number = 10
 ) => {
-  let requestUrl =
-    API_PREFIX +
-    'search/' +
-    encodeURIComponent(query) +
-    '/' +
-    encodeURIComponent(pageToken) +
-    `?pageSize=${pageSize}`;
-  console.log('search', requestUrl);
   const response = await Taro.request({
-    url: requestUrl,
+    url: `${API_PREFIX}search`,
+    data: {
+      query,
+      pageToken,
+      pageSize,
+    },
   });
   return response.data;
 };

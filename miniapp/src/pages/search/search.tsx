@@ -8,7 +8,7 @@ import WordCard from '@/components/wordCard/wordCard';
 import {realSearch} from '@/store/actions/dictionary';
 import styles from './search.module.scss';
 
-// Empty page token returned by the server indicates end of pages.
+// Empty page token returned by the server indicates the end of pages.
 const FINAL_PAGE_TOKEN = '';
 
 interface RichText {
@@ -62,11 +62,7 @@ const Search = () => {
 
   const fetchOnePage = (word: string, nextPageToken?: string) => {
     Taro.showNavigationBarLoading();
-    const resultPromise =
-      nextPageToken !== undefined
-        ? realSearch(word, nextPageToken)
-        : realSearch(word);
-    resultPromise
+    realSearch(word, nextPageToken)
       .then(result => {
         if (nextPageToken === undefined) {
           setResultList(result.result_cards);
