@@ -28,6 +28,7 @@ ng_module(
         "@npm//@angular/platform-browser",
         "@npm//@angular/router",
         "@npm//@types",
+        "@npm//howler",
         "@npm//rxjs",
     ],
 )
