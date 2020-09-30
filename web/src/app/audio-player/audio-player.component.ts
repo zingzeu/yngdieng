@@ -35,6 +35,9 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
     console.log('loading', this.audioUrl);
     this.currentAudio = new Howl({
       src: [`${this.audioUrl}.wav`, `${this.audioUrl}.mp3`],
+      // Use HTML5 <audio> to bypass silent mode on iOS.
+      // Howler defaults to Web Audio, which will be muted in silent mode.
+      html5: true,
       preload: this.preload,
       onload: () => {
         this.state = PlayerState.Idle;
