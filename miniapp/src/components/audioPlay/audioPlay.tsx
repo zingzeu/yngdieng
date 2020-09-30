@@ -22,6 +22,7 @@ const AudioPlay = ({audioFileId = ''}: Props) => {
     if (status === Status.Playing) return;
     if (!ctx.src) {
       setStatus(Status.Loading);
+      console.log(audioFileId);
       ctx.src = audioFileId;
     } else {
       setStatus(Status.Playing);
