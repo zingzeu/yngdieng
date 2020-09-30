@@ -14,7 +14,7 @@
   $ yarn dev:weapp
   ```
 
-  > 如果微信开发者工具提示小程序打包后大小太大，可使用 `NODE_ENV=production yarn dev:weapp。
+  > 如果微信开发者工具提示小程序打包后大小太大，可使用 `NODE_ENV=production yarn dev:weapp`。
 
 2. 在「微信开发者工具」中添加小程序，选择目录为 [miniapp](.)
 
