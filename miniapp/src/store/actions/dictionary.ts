@@ -78,7 +78,7 @@ const fetchYngdiengDocument = async docId => {
 };
 
 const getTtsAudioUrl = yngping =>
-  'https://api.ydict.net/tts/' + encodeURIComponent(yngping) + '+.mp3';
+  'https://api.ydict.net/tts/' + encodeURIComponent(yngping) + '.mp3';
 
 const fetchMockWordDetail = async wordId => {
   const wordDetail = mockWordData.find(word => word.simplifiedWord === wordId);
