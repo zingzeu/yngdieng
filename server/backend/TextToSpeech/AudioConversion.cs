@@ -3,6 +3,8 @@ using System.IO;
 using System.Threading.Tasks;
 using Xabe.FFmpeg;
 using Xabe.FFmpeg.Streams;
+using Xabe.FFmpeg.Streams.SubtitleStream;
+
 namespace Yngdieng.Backend.TextToSpeech
 {
     public static class AudioConversion
@@ -17,9 +19,9 @@ namespace Yngdieng.Backend.TextToSpeech
             var conversion = await FFmpeg.Conversions.FromSnippet.Transcode(
                 inputFilePath: wavPath,
                 outputFilePath: mp3Path,
-             videoCodec: VideoCodec.copy,
+                videoCodec: VideoCodec.copy,
                 audioCodec: AudioCodec.mp3,
-                 subtitleCodec: Xabe.FFmpeg.Streams.SubtitleStream.SubtitleCodec.copy,
+                subtitleCodec: SubtitleCodec.copy,
                 keepSubtitles: false);
             IConversionResult result = await conversion
                 .Start();
