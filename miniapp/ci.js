@@ -22,4 +22,7 @@ const ciTag = process.argv.length > 2 ? `ci-${process.argv[2]}` : 'local';
     onProgressUpdate: console.log,
   });
   console.log(uploadResult);
-})();
+})().catch(e => {
+  console.error(e);
+  process.exit(-1);
+});
