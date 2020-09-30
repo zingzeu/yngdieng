@@ -35,8 +35,8 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
     console.log('loading', this.audioUrl);
     this.currentAudio = new Howl({
       src: [this.audioUrl],
-      preload: this.preload,
       format: ['wav'],
+      preload: this.preload,
       onload: () => {
         this.state = PlayerState.Idle;
       },
@@ -97,7 +97,8 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
       case PlayerState.Idle:
         if (this.currentAudio.state() !== 'loaded') {
           this.state = PlayerState.Loading;
-          this.currentAudio.load().play();
+          this.currentAudio.once('load', () => this.currentAudio.play());
+          this.currentAudio.load();
         } else {
           this.currentAudio.play();
         }
