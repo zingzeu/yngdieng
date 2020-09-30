@@ -69,13 +69,14 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
         console.error('Audio playback error', errorCode);
         this.currentAudio = null;
         this.state = PlayerState.Disabled;
-        this.snackBar.open(
-          `音频文件无法播放。（错误代码：${errorCode}）`,
-          'OK',
-          {
-            duration: SNACKBAR_DURATION_MS,
-          }
-        );
+        this.hasClicked &&
+          this.snackBar.open(
+            `音频文件无法播放。（错误代码：${errorCode}）`,
+            'OK',
+            {
+              duration: SNACKBAR_DURATION_MS,
+            }
+          );
       },
     });
   }
