@@ -34,8 +34,7 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
     this.state = this.preload ? PlayerState.Loading : PlayerState.Idle;
     console.log('loading', this.audioUrl);
     this.currentAudio = new Howl({
-      src: [/*this.audioUrl*/ 'https://staging.ydict.net/a242.wav'],
-      format: ['wav'],
+      src: [`${this.audioUrl}.wav`, `${this.audioUrl}.mp3`],
       preload: this.preload,
       onload: () => {
         this.state = PlayerState.Idle;
