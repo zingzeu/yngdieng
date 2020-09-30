@@ -15,8 +15,15 @@ FROM bazel/assets:tts_audio_wav_image AS audio_files
 # ztl8702/yngdieng-backend
 # Build runtime image
 FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
+
+# Install ffmpeg
+RUN apt-get update && apt-get install -y ffmpeg
+
+# Copy TTS source files
 RUN mkdir -p /data/tts_audio_wav
 COPY --from=audio_files /*.wav /data/tts_audio_wav/
+
+# Copy server binary
 WORKDIR /app
 COPY --from=builder /out .
 ENTRYPOINT ["dotnet", "Yngdieng.Backend.dll", \

@@ -1,8 +1,6 @@
 import {HttpClientModule} from '@angular/common/http';
 import {NgModule} from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MatDialogModule} from '@angular/material/dialog';
-import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {BrowserModule, Title} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {YNGDIENG_ENVIRONMENT} from '../environments/environment';
@@ -45,6 +43,7 @@ import {EndOfResultsCardComponent} from './end-of-results-card/end-of-results-ca
 import {GenericMessageCardComponent} from './generic-message-card/generic-message-card.component';
 import {LoadingCardComponent} from './loading-card/loading-card.component';
 import {AboutComponent} from './about/about.component';
+import {PlatformModule} from '@angular/cdk/platform';
 
 @NgModule({
   declarations: [
@@ -86,10 +85,9 @@ import {AboutComponent} from './about/about.component';
     FormsModule,
     HttpClientModule,
     MaterialModule,
-    MatDialogModule,
-    MatSnackBarModule,
     ReactiveFormsModule,
     BrowserAnimationsModule,
+    PlatformModule,
   ],
   entryComponents: [YngpingHelpDialogComponent],
   providers: [

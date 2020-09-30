@@ -41,7 +41,6 @@ export class WordDetailsComponent implements OnInit, OnDestroy {
       d => {
         this.isBusy = false;
         this.hasError = false;
-        console.log(d);
         this.document = d;
         let hanzi =
           d.getHanziCanonical() !== undefined

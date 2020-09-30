@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using System;
+using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Cors;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Yngdieng.Backend.TextToSpeech;
 
@@ -8,6 +11,8 @@ namespace Yngdieng.Backend.Controllers
 
     public sealed class TtsController : Controller
     {
+
+        private static readonly ISet<string> SupportedFormats = new HashSet<string>() { "wav", "mp3" };
         private readonly ILogger<TtsController> logger;
         private readonly YngpingAudioSynthesizer audioSynthesizer;
 
@@ -19,16 +24,42 @@ namespace Yngdieng.Backend.Controllers
         }
 
         [Route("tts/{text}")]
-        [EnableCors("AllowAll")]  
-        public IActionResult GetAudio(string text)
+        [EnableCors("AllowAll")]
+        public async Task<IActionResult> GetAudio(string text)
         {
-            var audioBytes = audioSynthesizer.YngpingToAudio(text);
+            var dotPosition = text.LastIndexOf(".");
+            string yngping;
+            string ext;
+            if (dotPosition != -1)
+            {
+                yngping = text.Substring(0, dotPosition);
+                ext = text.Substring(dotPosition + 1).ToLowerInvariant().Trim();
+            }
+            else
+            {
+                yngping = text;
+                ext = "wav";
+            }
+            if (!SupportedFormats.Contains(ext))
+            {
+                return new UnsupportedMediaTypeResult();
+            }
+            var audioBytes = audioSynthesizer.YngpingToAudio(yngping);
             if (audioBytes == null)
             {
-                logger.LogDebug($"Unsupported yngping: {text}");
+                logger.LogDebug($"Unsupported yngping: {yngping}");
                 return new NotFoundResult();
             }
-            return new FileContentResult(audioBytes, "audio/wav");
+            switch (ext)
+            {
+                case "wav":
+                    return new FileContentResult(audioBytes, "audio/wav");
+                case "mp3":
+                    return new FileContentResult(await AudioConversion.WavToMp3(audioBytes), "audio/mp3");
+                default:
+                    throw new Exception("Should not have reached here.");
+            }
+
         }
     }
 }

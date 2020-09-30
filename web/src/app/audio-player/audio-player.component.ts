@@ -1,30 +1,112 @@
-import {Component, Inject, Input, OnInit} from '@angular/core';
-
+import {Component, Inject, Input, OnInit, OnDestroy} from '@angular/core';
+import {Howl} from 'howler';
 import {
   IYngdiengEnvironment,
   YNGDIENG_ENVIRONMENT,
 } from '../../environments/environment';
 
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {Platform} from '@angular/cdk/platform';
+const SNACKBAR_DURATION_MS = 4000;
 
 @Component({
   selector: 'app-audio-player',
   templateUrl: './audio-player.component.html',
   styleUrls: ['./audio-player.component.scss'],
 })
-export class AudioPlayerComponent implements OnInit {
+export class AudioPlayerComponent implements OnInit, OnDestroy {
   public PlayerStateEnum = PlayerState;
 
   @Input('audioUrl') audioUrl: string;
+  @Input('preload') preload: boolean = false;
+
   state: PlayerState = PlayerState.Idle;
-  private currentAudio: HTMLAudioElement = null;
+  private currentAudio: Howl = null;
+
+  private hasClicked = false;
 
   constructor(
     @Inject(YNGDIENG_ENVIRONMENT) private environment: IYngdiengEnvironment,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private platform: Platform
   ) {}
 
-  ngOnInit(): void {}
+  private getHowlSrc() {
+    if (this.platform.IOS) {
+      return [`${this.audioUrl}.mp3`];
+    } else {
+      return [`${this.audioUrl}.wav`, `${this.audioUrl}.mp3`];
+    }
+  }
+
+  private getHowlProps() {
+    if (this.platform.IOS) {
+      return {
+        // Use HTML5 <audio> to bypass silent mode on iOS.
+        // Howler defaults to Web Audio, which will be muted in silent mode.
+        html5: true,
+        mute: false,
+        useWebAudio: false,
+        webAudio: false,
+        volume: 1,
+      };
+    } else {
+      return {};
+    }
+  }
+  ngOnInit(): void {
+    this.state = this.preload ? PlayerState.Loading : PlayerState.Idle;
+    console.log('loading', this.audioUrl);
+    this.currentAudio = new Howl({
+      src: this.getHowlSrc(),
+      ...this.getHowlProps(),
+      preload: this.preload,
+      onload: () => {
+        this.state = PlayerState.Idle;
+      },
+      onplay: () => {
+        this.state = PlayerState.Playing;
+      },
+      onend: () => {
+        this.state = PlayerState.Idle;
+      },
+      onloaderror: (_, errorCode) => {
+        console.log('audio load error', errorCode);
+        if (typeof errorCode === 'string' && errorCode.indexOf('404') !== -1) {
+          this.state = PlayerState.Disabled;
+          this.hasClicked &&
+            this.snackBar.open(`暂时没有这个读音对应的音频。`, 'OK', {
+              duration: SNACKBAR_DURATION_MS,
+            });
+        } else {
+          // transient network error
+          this.state = PlayerState.Idle;
+          this.hasClicked &&
+            this.snackBar.open(`暂时无法播放音频。请稍后重试。`, 'OK', {
+              duration: SNACKBAR_DURATION_MS,
+            });
+        }
+      },
+      onplayerror: (_, errorCode) => {
+        // expecting decoding error
+        console.error('Audio playback error', errorCode);
+        this.currentAudio = null;
+        this.state = PlayerState.Disabled;
+        this.hasClicked &&
+          this.snackBar.open(
+            `音频文件无法播放。（错误代码：${errorCode}）`,
+            'OK',
+            {
+              duration: SNACKBAR_DURATION_MS,
+            }
+          );
+      },
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.currentAudio?.unload();
+  }
 
   get shouldShow() {
     return (
@@ -34,79 +116,23 @@ export class AudioPlayerComponent implements OnInit {
   }
 
   onClicked() {
+    this.hasClicked = true;
     switch (this.state) {
       case PlayerState.Idle:
-        console.log('playing + ' + this.audioUrl);
-        fetch(this.audioUrl)
-          .then(response => {
-            if (!response.ok) {
-              if (response.status === 404) {
-                this.state = PlayerState.Disabled;
-                this.snackBar.open(
-                  '不好意思，这条发音暂时没有对应的音频。',
-                  '那好吧',
-                  {
-                    duration: 10000,
-                  }
-                );
-                return null;
-              }
-              throw new Error('other error');
-            }
-            return response.blob();
-          })
-          .then(audioBlob => {
-            if (audioBlob != null) {
-              var blobUrl = window.URL.createObjectURL(audioBlob);
-              this.currentAudio = new Audio(blobUrl);
-              this.state = PlayerState.Loading;
-              this.currentAudio.onended = () => {
-                this.state = PlayerState.Idle;
-                this.currentAudio = null;
-              };
-              this.currentAudio.oncanplaythrough = () => {
-                this.state = PlayerState.Playing;
-                this.currentAudio.play();
-              };
-              this.currentAudio.onerror = e => {
-                // expecting decoding error
-                console.log(this.currentAudio.error.code);
-                this.currentAudio = null;
-                this.state = PlayerState.Disabled;
-                this.snackBar.open(
-                  '不好意思，音频文件无法播放。\n' +
-                    '麻烦你把这个状况反馈给我们团队。' +
-                    '你可以在「帮助」找到我们的联系方式。',
-                  '好的',
-                  {
-                    duration: 20000,
-                  }
-                );
-              };
-            }
-          })
-          .catch(error => {
-            // expecting network connection error or server error
-            console.log(error);
-            this.snackBar.open(
-              '暂时无法下载音频文件。请确认你的网络连接是否正常。\n' +
-                '如果重试多次依然不成功，可以联系我们来帮忙。\n' +
-                '在「帮助」页面能找到我们的联系方式。',
-              '好的',
-              {
-                duration: 20000,
-              }
-            );
-            this.state = PlayerState.Idle;
-          });
+        if (this.currentAudio.state() !== 'loaded') {
+          this.state = PlayerState.Loading;
+          this.currentAudio.once('load', () => this.currentAudio.play());
+          this.currentAudio.load();
+        } else {
+          this.currentAudio.play();
+        }
         break;
       case PlayerState.Playing:
-        if (this.currentAudio != null) {
-        }
+        this.currentAudio?.stop();
         break;
       case PlayerState.Loading:
       case PlayerState.Disabled:
-        console.log('Do nothing');
+        // do nothing
         break;
     }
   }
