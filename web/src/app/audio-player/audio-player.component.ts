@@ -40,7 +40,6 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
       onload: () => {
         this.state = PlayerState.Idle;
       },
-
       onplay: () => {
         this.state = PlayerState.Playing;
       },
