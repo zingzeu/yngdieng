@@ -1,13 +1,8 @@
 import React from 'react';
-import { View } from "@tarojs/components";
-import styles from './about.module.scss';
+import {WebView} from '@tarojs/components';
 
 const About = () => {
-  return (
-    <View>
-      about
-    </View>
-  );
-}
+  return <WebView src="https://www.ydict.net/about"></WebView>;
+};
 
 export default About;
