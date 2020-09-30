@@ -21,6 +21,7 @@ ng_module(
         "//web/src/environments",
         "//web/src/lib",
         "//web/src/material",
+        "@npm//@angular/cdk",
         "@npm//@angular/common",
         "@npm//@angular/core",
         "@npm//@angular/forms",

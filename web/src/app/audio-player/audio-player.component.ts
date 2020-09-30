@@ -6,7 +6,7 @@ import {
 } from '../../environments/environment';
 
 import {MatSnackBar} from '@angular/material/snack-bar';
-
+import {Platform} from '@angular/cdk/platform';
 const SNACKBAR_DURATION_MS = 4000;
 
 @Component({
@@ -27,21 +27,39 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
 
   constructor(
     @Inject(YNGDIENG_ENVIRONMENT) private environment: IYngdiengEnvironment,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private platform: Platform
   ) {}
 
+  private getHowlSrc() {
+    if (this.platform.IOS) {
+      return [`${this.audioUrl}.mp3`];
+    } else {
+      return [`${this.audioUrl}.wav`, `${this.audioUrl}.mp3`];
+    }
+  }
+
+  private getHowlProps() {
+    if (this.platform.IOS) {
+      return {
+        // Use HTML5 <audio> to bypass silent mode on iOS.
+        // Howler defaults to Web Audio, which will be muted in silent mode.
+        html5: true,
+        mute: false,
+        useWebAudio: false,
+        webAudio: false,
+        volume: 1,
+      };
+    } else {
+      return {};
+    }
+  }
   ngOnInit(): void {
     this.state = this.preload ? PlayerState.Loading : PlayerState.Idle;
     console.log('loading', this.audioUrl);
     this.currentAudio = new Howl({
-      src: [`${this.audioUrl}.mp3`, `${this.audioUrl}.wav`],
-      // Use HTML5 <audio> to bypass silent mode on iOS.
-      // Howler defaults to Web Audio, which will be muted in silent mode.
-      html5: true,
-      mute: false,
-      useWebAudio: false,
-      webAudio: false,
-      volume: 1,
+      src: this.getHowlSrc(),
+      ...this.getHowlProps(),
       preload: this.preload,
       onload: () => {
         this.state = PlayerState.Idle;
