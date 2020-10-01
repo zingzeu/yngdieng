@@ -5,7 +5,7 @@ import {
   YNGDIENG_ENVIRONMENT,
 } from '../../environments/environment';
 
-import {AudioAlertDialogComponent} from '../audio-alert-dialog/audio-alert-dialog.component';
+import {AudioAckDialogComponent} from '../audio-ack-dialog/audio-ack-dialog.component';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {MatDialog} from '@angular/material/dialog';
 import {Platform} from '@angular/cdk/platform';
@@ -157,7 +157,7 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
       var ackShown = localStorage.getItem('tts-acknowledgement-shown');
       if (ackShown == null) {
         console.log('[Debug] Play button is clicked for the first time.');
-        let ackDialogRef = this.ackDialog.open(AudioAlertDialogComponent, {
+        let ackDialogRef = this.ackDialog.open(AudioAckDialogComponent, {
           width: '80vw',
         });
         ackDialogRef.afterClosed().subscribe(() => this.playAudio());

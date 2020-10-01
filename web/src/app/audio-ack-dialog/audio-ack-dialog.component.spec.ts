@@ -1,6 +1,6 @@
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {AudioAlertDialogComponent} from './audio-alert-dialog.component';
+import {AudioAckDialogComponent} from './audio-ack-dialog.component';
 
 describe('AudioAlertDialogComponent', () => {
   let component: AudioAlertDialogComponent;
