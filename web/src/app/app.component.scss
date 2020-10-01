@@ -1,10 +1,23 @@
-$background-color: #F7EFED;
+$background-color: #f7efed;
 
 .fullscreen-container {
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background: $background-color;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: $background-color;
+}
+
+.env-tag {
+  position: fixed;
+  top: 0;
+  right: 12vw;
+  border-radius: 0 0 8px 8px;
+  background-color: royalblue;
+  padding: 4px;
+  color: cornsilk;
+  font-size: 12px;
+  font-family: sans-serif;
+  z-index: 1000;
 }

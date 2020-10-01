@@ -3,7 +3,7 @@
     <div class="text-yngping">
         <span class="label">{{ shouldShowSandhi ? "市区单字": "福州市区"}}</span>
         {{ model.pron.underlying }}
-        <app-audio-player [audioUrl]="audioUrlUnderlying"></app-audio-player>
+        <app-audio-player [audioUrl]="audioUrlUnderlying" [preload]="true"></app-audio-player>
         <button mat-icon-button color="secondary" aria-label="这是什么？" (click)="onShowYngpingHelp()">
             <mat-icon>help</mat-icon>
         </button>
@@ -11,6 +11,6 @@
     <div class="text-yngping" *ngIf="shouldShowSandhi">
         <span class="label">市区连读</span>
         {{ model.pron.sandhi }}
-        <app-audio-player [audioUrl]="audioUrlSandhi"></app-audio-player>
+        <app-audio-player [audioUrl]="audioUrlSandhi" [preload]="true"></app-audio-player>
     </div>
 </div>

@@ -1,7 +1,10 @@
 import {Inject, Injectable} from '@angular/core';
 import {Title} from '@angular/platform-browser';
 
-import {IYngdiengEnvironment, YNGDIENG_ENVIRONMENT} from '../environments/environment';
+import {
+  IYngdiengEnvironment,
+  YNGDIENG_ENVIRONMENT,
+} from '../environments/environment';
 
 /**
  * Our wrapper of the angular {@code Title} service.
@@ -10,8 +13,9 @@ import {IYngdiengEnvironment, YNGDIENG_ENVIRONMENT} from '../environments/enviro
 export class YngdiengTitleService {
   private readonly appName: string;
   constructor(
-      @Inject(YNGDIENG_ENVIRONMENT) environment: IYngdiengEnvironment,
-      private titleService: Title) {
+    @Inject(YNGDIENG_ENVIRONMENT) environment: IYngdiengEnvironment,
+    private titleService: Title
+  ) {
     this.appName = environment.appName;
   }
 
@@ -30,10 +34,10 @@ export class YngdiengTitleService {
   private getSearchResultPageTitle(query: string) {
     let trimmed = query.trim();
     return (trimmed == '' ? '搜索' : trimmed) + ' | ' + this.appName;
-  };
+  }
 
   private getDetailsPageTitle(word: string) {
     let trimmed = word.trim();
-    return trimmed == '' ? this.appName : (trimmed + ' | ' + this.appName);
-  };
+    return trimmed == '' ? this.appName : trimmed + ' | ' + this.appName;
+  }
 }

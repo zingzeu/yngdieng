@@ -1,13 +1,13 @@
-using System;
+﻿using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Linq;
 using CsvHelper;
 using CsvHelper.Configuration.Attributes;
 using Yngdieng.Protos;
-using System.IO;
-using System.Linq;
-using System.Collections.Generic;
-using static Yngdieng.Common.HanziUtils;
 using static Yngdieng.Common.FoochowRomanziedUtils;
-using System.Globalization;
+using static Yngdieng.Common.HanziUtils;
 
 namespace Yngdieng.Indexer.Loading
 {
@@ -72,12 +72,15 @@ namespace Yngdieng.Indexer.Loading
                             Console.WriteLine($"Skipping {r.Id}, unknown Final {r.Final}");
                             continue;
                         }
-                        var document = new Document{CiklinId = r.Id,
-                                                    HanziCanonical = StringToHanziProto(r.Hanzi),
-                                                    Initial = CharToInitial[r.Initial[0]],
-                                                    Final = CharToFinal[r.Final[0]],
-                                                    Tone = IntToTone(r.Tone),
-                                                    Ciklin = new CikLinSourceInfo()};
+                        var document = new Document
+                        {
+                            CiklinId = r.Id,
+                            HanziCanonical = StringToHanziProto(r.Hanzi),
+                            Initial = CharToInitial[r.Initial[0]],
+                            Final = CharToFinal[r.Final[0]],
+                            Tone = IntToTone(r.Tone),
+                            Ciklin = new CikLinSourceInfo()
+                        };
                         document.Buc = ToBucString(document.Initial, document.Final, document.Tone);
                         if (r.HanziEquiv.Length > 0)
                         {
@@ -111,22 +114,22 @@ namespace Yngdieng.Indexer.Loading
         {
             switch (toneNumber)
             {
-            case 1:
-                return Tone.UpLevel;
-            case 2:
-                return Tone.UpUp;
-            case 3:
-                return Tone.UpFalling;
-            case 4:
-                return Tone.UpAbrupt;
-            case 5:
-                return Tone.DownLevel;
-            case 7:
-                return Tone.DownFalling;
-            case 8:
-                return Tone.DownAbrupt;
-            default:
-                throw new Exception("Unknown tone");
+                case 1:
+                    return Tone.UpLevel;
+                case 2:
+                    return Tone.UpUp;
+                case 3:
+                    return Tone.UpFalling;
+                case 4:
+                    return Tone.UpAbrupt;
+                case 5:
+                    return Tone.DownLevel;
+                case 7:
+                    return Tone.DownFalling;
+                case 8:
+                    return Tone.DownAbrupt;
+                default:
+                    throw new Exception("Unknown tone");
             }
         }
     }

@@ -1,14 +1,30 @@
 import React, {useEffect, useState} from 'react';
 import clsx from 'clsx';
-import Taro, {useRouter} from '@tarojs/taro';
-import {View, Block, Image} from '@tarojs/components';
+import Taro, {useRouter, render} from '@tarojs/taro';
+import {View, Block, Image, RichText} from '@tarojs/components';
 import {AtIcon, AtTabs, AtTabsPane, AtFloatLayout} from 'taro-ui';
 import routes from '@/routes';
 import Header from '@/pages/header/header';
 import WordCard from '@/components/wordCard/wordCard';
+import AudioPlay from '@/components/audioPlay/audioPlay';
 import {fetchWordDetail} from '@/store/actions/dictionary';
 import Phonology from './phonology/phonology';
 import styles from './wordDetail.module.scss';
+import {renderExplanation} from './explanations';
+interface Feng {
+  explanation: string;
+  hanzi_canonical: string;
+  explanation_structured?: any;
+  source: {
+    page_number: number;
+  };
+}
+interface Contrib {}
+interface Source {
+  feng?: Feng;
+  contrib?: Contrib;
+  generic?: {text: string; source: string};
+}
 
 const initialState: {
   wordDetail: {
@@ -19,10 +35,7 @@ const initialState: {
       symbol: string;
       audioFileId?: string;
     }[];
-    explainations?: {
-      text?: string;
-      source?: string;
-    }[];
+    sources?: Source[];
     collections: {
       id: string;
       name: string;
@@ -53,7 +66,7 @@ const initialState: {
     word: '',
     image: '',
     pronounces: [],
-    explainations: [],
+    sources: [],
     collections: [],
     stories: [],
     pronouncesFromDifferentSpeakers: [],
@@ -68,17 +81,12 @@ const WordDetail = () => {
   const [currentTab, setCurrentTab] = useState(0);
   const [storyToShow, setStoryToShow] = useState('');
 
-  const handlePlayAudio = audioFileId => () => {
-    const ctx = Taro.createInnerAudioContext();
-    ctx.src = audioFileId;
-    ctx.play();
-  };
-
   useEffect(() => {
-    const wordId = router.params.id;
+    const wordId = decodeURIComponent(router.params.id || '');
     Taro.showNavigationBarLoading();
     fetchWordDetail(wordId)
       .then(result => {
+        console.log(result);
         setWordDetail(result);
         Taro.hideNavigationBarLoading();
       })
@@ -103,9 +111,7 @@ const WordDetail = () => {
               <View className={styles.rimePosition}>{pronounce.typeName}</View>
               <View>{pronounce.symbol}</View>
               {pronounce.audioFileId && (
-                <View onClick={handlePlayAudio(pronounce.audioFileId)}>
-                  <AtIcon value="volume-plus"></AtIcon>
-                </View>
+                <AudioPlay audioFileId={pronounce.audioFileId} />
               )}
             </View>
           ))}
@@ -126,18 +132,13 @@ const WordDetail = () => {
         >
           <AtTabsPane current={currentTab} index={0}>
             <View className={clsx(styles.tabPane, styles.explanation)}>
-              {wordDetail.explainations?.map((explaination, index) => (
-                <Block>
-                  <View>
-                    <View>
-                      <View>{`${index + 1}. ${explaination.text}`}</View>
-                    </View>
-                  </View>
-                  <View className={styles.source}>
-                    来源：{explaination.source}
-                  </View>
-                </Block>
-              ))}
+              {!(wordDetail.sources?.length !== 0) && <View>暂无解释</View>}
+              {wordDetail.sources?.map(
+                source =>
+                  (source.generic && renderGeneric(source.generic)) ||
+                  (source.feng && renderFeng(source.feng)) ||
+                  (source.contrib && renderContrib(source.contrib))
+              )}
               {wordDetail.image && <Image src={wordDetail.image} />}
             </View>
           </AtTabsPane>
@@ -189,5 +190,65 @@ const WordDetail = () => {
     </View>
   );
 };
+
+function renderGeneric(generic) {
+  return (
+    <Block>
+      <View>
+        <View>
+          <View>{generic.text}</View>
+        </View>
+      </View>
+      <View className={styles.source}>来源：{generic.source}</View>
+    </Block>
+  );
+}
+
+function renderFeng(feng: Feng) {
+  return (
+    <Block>
+      <View>
+        <View>
+          <View>
+            {feng.explanation_structured && (
+              <RichText
+                nodes={renderExplanation(
+                  feng.explanation_structured,
+                  feng.hanzi_canonical
+                )}
+              ></RichText>
+            )}
+          </View>
+        </View>
+      </View>
+      <View className={styles.source}>
+        出处：馮愛珍. 1998. 福州方言詞典. 南京: 江蘇教育出版社. 第{' '}
+        {feng.source.page_number} 頁. 用字可能經過編輯修訂
+      </View>
+    </Block>
+  );
+}
+
+function renderContrib(doc: Contrib) {
+  return (
+    <Block>
+      <View>
+        <View>
+          <View>
+            {doc.explanation_structured && (
+              <RichText
+                nodes={renderExplanation(doc.explanation_structured, doc.hanzi)}
+              ></RichText>
+            )}
+          </View>
+        </View>
+      </View>
+      <View className={styles.source}>
+        此条目来自网友贡献。贡献者：
+        {doc.contributors.join(',')} 。
+      </View>
+    </Block>
+  );
+}
 
 export default WordDetail;

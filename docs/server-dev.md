@@ -20,8 +20,17 @@ Launch Yngdieng backend server:
 ./run_backend.sh
 ```
 
-The server will be responding to requests at http://localhost:8080/.
+> If you want to test TTS endpoint. Run `bazel build //assets:tts_audio_wav` before starting the backend.
 
+The server will be responding to requests at http://localhost:5000/. (gRPC and gPRC-Web)
+
+Launch the gateway server:
+
+```
+bazel run //server/gateway
+```
+
+The gateway server will be responding to requests at http://localhost:8081/. (REST)
 
 ## Building the Index locally
 

@@ -2,7 +2,7 @@ syntax = "proto3";
 
 package yngdieng;
 option csharp_namespace = "Yngdieng.Protos";
-
+option go_package = "github.com/mindonglab/yngdieng/shared";
 import "shared/zingzeudata/explanation.proto";
 import "shared/phonology.proto";
 
@@ -108,7 +108,7 @@ message Document {
 }
 
 // 历史音韵单字条目文档(戚林、榕注合并).
-// Next ID: 12
+// Next ID: 13
 message HistoricalDocument {
   // Base64 (URL safe) encoded DocumentAggregateKey
   string id = 10;
@@ -132,6 +132,8 @@ message HistoricalDocument {
   // 榕拼（八音音系）
   string yngping = 11;
 
+  string yngping_modern = 12;
+
   // 出处信息.
   CikLinSourceInfo ciklin_source = 8;
 
@@ -139,7 +141,7 @@ message HistoricalDocument {
 }
 
 // 冯 / 李文档.
-// Next ID: 13
+// Next ID: 14
 message FengDocument {
   string id = 1;
 
@@ -165,7 +167,11 @@ message FengDocument {
   // 释义(未解析).
   string explanation = 6;
 
+  // 索引用
   string explanation_hans = 8;
+
+  // 索引用
+  string explanation_trad = 13;
 
   .zingzeudata.Explanation explanation_structured = 10;
 
@@ -202,7 +208,8 @@ message ContribDocument {
   repeated string contributors = 8;
 }
 
-message CikLinSourceInfo {}
+message CikLinSourceInfo {
+}
 
 message DFDSourceInfo {
   int32 page_number = 1;

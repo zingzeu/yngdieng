@@ -48,7 +48,7 @@ const CollectionDetail = () => {
   );
 
   const handleLoadMore = () => {
-    const collectionId = router.params.id;
+    const collectionId = decodeURIComponent(router.params.id || '');
     Taro.showNavigationBarLoading();
     getWordListByCollectionId(collectionId, collectionDetail.wordList.length)
       .then(result => {
@@ -124,16 +124,13 @@ const CollectionDetail = () => {
               <View className={styles.listItem} key={word.id}>
                 <WordCard
                   onClick={() =>
-                    Taro.redirectTo({
+                    Taro.navigateTo({
                       url: `${routes.WORD_DETAIL}?id=${word.id}`,
                     })
                   }
                   title={<View className={styles.title}>{word.title}</View>}
                   description={word.description}
-                  extraList={[
-                    {title: '榕拼', content: word.pinyinRong},
-                    {title: '音韵地位', content: word.rimePosition},
-                  ]}
+                  extraList={[{title: '榕拼', content: word.pinyinRong}]}
                 />
               </View>
             ))}

@@ -40,7 +40,7 @@ body {
   background-color: rgba(220, 210, 208, 1);
 
   .result-hanzi {
-    font-family: 'Noto Serif SC', 'Noto Serif TC', 'Ext-0', 'Ext-1', serif;
+    font-family: 'Noto Sans SC', 'Noto Sans TC', 'Ext-0', 'Ext-1', serif;
     font-size: 1.8em;
   }
 
@@ -53,12 +53,18 @@ body {
   }
 }
 
+.search-results-list,
+.result-message {
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
 .mat-card {
   padding: 12px !important;
 }
 
 .unihan-text {
-  font-family: 'Noto Serif SC', 'Noto Serif TC', 'Ext-0', 'Ext-1', serif;
+  font-family: 'Noto Sans SC', 'Noto Sans TC', 'Ext-0', 'Ext-1', serif;
 }
 
 // Details text on search result card

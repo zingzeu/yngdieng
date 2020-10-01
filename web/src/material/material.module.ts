@@ -11,25 +11,31 @@ import {MatPaginatorModule} from '@angular/material/paginator';
 import {MatSidenavModule} from '@angular/material/sidenav';
 import {MatSlideToggleModule} from '@angular/material/slide-toggle';
 import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 const matModules = [
-  MatChipsModule,
-  MatIconModule,
-  MatInputModule,
-  MatToolbarModule,
-  MatExpansionModule,
+  // keep sorted
   MatButtonModule,
   MatCardModule,
+  MatCheckboxModule,
+  MatChipsModule,
+  MatDialogModule,
+  MatExpansionModule,
+  MatIconModule,
+  MatInputModule,
+  MatListModule,
+  MatPaginatorModule,
+  MatProgressSpinnerModule,
   MatSlideToggleModule,
   MatSidenavModule,
-  MatPaginatorModule,
-  MatListModule,
-  MatCheckboxModule
+  MatSnackBarModule,
+  MatToolbarModule,
 ];
 
 /**
  * A module for importing Angular Material components.
  */
 @NgModule({imports: matModules, exports: matModules})
-export class MaterialModule {
-}
+export class MaterialModule {}

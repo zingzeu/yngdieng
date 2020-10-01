@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -56,7 +56,7 @@ namespace Yngdieng.Backend.Services
 
             if (keyValuePairs.ContainsKey("historical"))
             {
-                var value = keyValuePairs ["historical"]
+                var value = keyValuePairs["historical"]
                                 .Trim()
                                 .ToLowerInvariant();
                 if (value == "yes" || value == "true")
@@ -108,6 +108,12 @@ namespace Yngdieng.Backend.Services
                 return query;
             }
 
+            if (keyValuePairs.ContainsKey("tones"))
+            {
+                query.YngpingTonePatternQuery = keyValuePairs["tones"];
+                return query;
+            }
+
             if (remainingTokens.Length > 0 && remainingTokens.All(t => rAlphaNumeric.IsMatch(t)))
             {
                 query.FuzzyPronQuery = String.Join(" ", remainingTokens);
@@ -128,7 +134,7 @@ namespace Yngdieng.Backend.Services
         /// </summary>
         /// <param name="text"></param>
         /// <returns>(key value pairs, remaining tokens)</returns>
-        private static(IDictionary<string, string>, string[]) ParseAsKeyValuePairs(string text)
+        private static (IDictionary<string, string>, string[]) ParseAsKeyValuePairs(string text)
         {
             var tokens = text.Trim().Split(" ").Where(t => t.Length > 0);
             if (tokens.Count() == 0)
@@ -157,12 +163,12 @@ namespace Yngdieng.Backend.Services
         {
             switch (text.Trim().ToLower())
             {
-            case "ift":
-            case "phonology":
-            case "initial_final_tone":
-                return Query.Types.SortByMethod.InitialFinalTone;
-            default:
-                return null;
+                case "ift":
+                case "phonology":
+                case "initial_final_tone":
+                    return Query.Types.SortByMethod.InitialFinalTone;
+                default:
+                    return null;
             }
         }
     }

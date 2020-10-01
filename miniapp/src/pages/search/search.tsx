@@ -1,25 +1,40 @@
 import React, {useState, useEffect} from 'react';
-import produce from 'immer';
 import Taro, {useRouter} from '@tarojs/taro';
 import {View, Input, Block, ScrollView} from '@tarojs/components';
 import {AtIcon} from 'taro-ui';
 import routes from '@/routes';
 import Header from '@/pages/header/header';
 import WordCard from '@/components/wordCard/wordCard';
-import {search} from '@/store/actions/dictionary';
-import mockWordList from '@/store/mock/mockWordData.json';
+import {realSearch} from '@/store/actions/dictionary';
 import styles from './search.module.scss';
 
+// Empty page token returned by the server indicates the end of pages.
+const FINAL_PAGE_TOKEN = '';
+
+interface RichText {
+  segments: {text: string}[];
+}
+interface GenericMessage {
+  message: RichText;
+}
+interface Word {
+  id: string;
+  yngping: RichText;
+  hanzi: RichText;
+  details: RichText;
+}
+interface ResultCard {
+  no_results?: any;
+  generic_message?: GenericMessage;
+  end_of_results?: any;
+  word?: Word;
+}
 const InitialState: {
-  resultList: {
-    id: string;
-    title: string;
-    description: string;
-    pinyinRong: string;
-    rimePosition: string;
-  }[];
+  resultList: ResultCard[];
+  nextPageToken?: string;
 } = {
   resultList: [],
+  nextPageToken: undefined,
 };
 
 const Search = () => {
@@ -27,39 +42,40 @@ const Search = () => {
   const [inputString, setInputString] = useState('');
   const [showAdvanced, toggleAdvanced] = useState(false);
   const [resultList, setResultList] = useState(InitialState.resultList);
+  const [nextPageToken, setNextPageToken] = useState(
+    InitialState.nextPageToken
+  );
 
   const handleConfirm = (word = inputString) => {
     if (inputString !== word) setInputString(word);
+    setNextPageToken(undefined);
     toggleAdvanced(false);
-    Taro.showNavigationBarLoading();
-    search()
-      .then(result => {
-        setResultList(result);
-        Taro.hideNavigationBarLoading();
-      })
-      .catch(() => {
-        Taro.hideNavigationBarLoading();
-      });
-    console.log('search word', word);
+    fetchOnePage(word);
   };
   const handleLoadMore = () => {
+    if (nextPageToken === FINAL_PAGE_TOKEN || nextPageToken === undefined) {
+      // do nothing.
+      return;
+    }
+    fetchOnePage(inputString, nextPageToken);
+  };
+
+  const fetchOnePage = (word: string, nextPageToken?: string) => {
     Taro.showNavigationBarLoading();
-    search(resultList.length)
+    realSearch(word, nextPageToken)
       .then(result => {
+        if (nextPageToken === undefined) {
+          setResultList(result.result_cards);
+        } else {
+          setResultList(resultList.concat(result.result_cards));
+        }
+        setNextPageToken(result.next_page_token);
         Taro.hideNavigationBarLoading();
-        setResultList(
-          produce(resultList, draft => {
-            draft.splice(resultList.length, 0, ...result);
-          })
-        );
       })
-      .catch(() => {
+      .catch(e => {
+        console.error(e);
         Taro.hideNavigationBarLoading();
       });
-  };
-  const handleAdvancedSearch = () => {
-    setInputString('');
-    toggleAdvanced(true);
   };
 
   useEffect(() => {
@@ -96,11 +112,7 @@ const Search = () => {
           <View className={styles.result}>
             <View
               className={`${styles.resultTitle} at-row at-row__justify--between at-row__align--center`}
-            >
-              <View className={styles.resultAmount}>
-                找到 {mockWordList.length} 个结果
-              </View>
-            </View>
+            ></View>
             <View className={styles.resultList}>
               <ScrollView
                 enableBackToTop
@@ -109,27 +121,10 @@ const Search = () => {
                 scrollY
                 className={styles.scrollView}
                 onScrollToLower={handleLoadMore}
-                lowerThreshold={20}
+                lowerThreshold={100}
                 upperThreshold={20}
               >
-                {resultList.map(resultItem => (
-                  <View className={styles.resultItem} key={resultItem.id}>
-                    <WordCard
-                      onClick={() =>
-                        Taro.navigateTo({
-                          url: `${routes.WORD_DETAIL}?id=${resultItem.id}`,
-                        })
-                      }
-                      title={
-                        <View className={styles.title}>{resultItem.title}</View>
-                      }
-                      description={resultItem.description}
-                      extraList={[
-                        {title: '榕拼', content: resultItem.pinyinRong},
-                      ]}
-                    />
-                  </View>
-                ))}
+                {resultList.map(resultItem => renderResultItem(resultItem))}
               </ScrollView>
             </View>
           </View>
@@ -139,4 +134,48 @@ const Search = () => {
   );
 };
 
+function renderResultItem(resultCard: ResultCard) {
+  if (resultCard.no_results !== undefined) {
+    return renderHintText('没有找到结果。换个关键词试试？');
+  }
+  if (resultCard.word !== undefined) {
+    return renderWordCard(resultCard.word);
+  }
+  if (resultCard.generic_message !== undefined) {
+    return renderHintText(flatten(resultCard.generic_message.message));
+  }
+  if (resultCard.end_of_results !== undefined) {
+    return renderHintText('没有更多结果了');
+  }
+}
+
+function renderHintText(message: string) {
+  return (
+    <View className={styles.hintText} key={'hintText-' + message}>
+      {message}
+    </View>
+  );
+}
+
+function renderWordCard(word: Word) {
+  return (
+    <View className={styles.resultItem} key={word!.id}>
+      <WordCard
+        onClick={() =>
+          Taro.navigateTo({
+            url: `${routes.WORD_DETAIL}?id=${word.id}`,
+          })
+        }
+        title={<View className={styles.title}>{flatten(word.hanzi)}</View>}
+        description={flatten(word.details)}
+        extraList={[{title: '榕拼', content: flatten(word.yngping)}]}
+      />
+    </View>
+  );
+}
+
 export default Search;
+
+export function flatten(richText: RichText): string {
+  return richText.segments.map(s => s.text).join();
+}

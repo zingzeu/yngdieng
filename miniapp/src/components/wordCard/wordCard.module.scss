@@ -2,8 +2,7 @@
   background-color: $color-brownish-100;
   border-radius: 10px;
   padding: 20px 30px;
-  .title {
-  }
+
   .description {
     margin-top: 20px;
     font-size: $font-size-secondary;
@@ -11,12 +10,12 @@
   }
   .extraContainer {
     display: flex;
+    text-align: right;
     .extraTitle {
       color: $color-text-dark-secondary;
       font-size: $font-size-secondary;
     }
-    .extraContent {
-    }
+
     & > View {
       margin: 0 10px;
     }

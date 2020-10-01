@@ -1,0 +1,4 @@
+# Yngdieng Staging
+
+User-agent: *
+Disallow: /

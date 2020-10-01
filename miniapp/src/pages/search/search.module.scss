@@ -36,6 +36,12 @@
             font-size: $font-size-h1;
           }
         }
+        .hintText {
+          padding: 0 44px;
+          margin-bottom: 20px;
+          color: $color-text-dark-secondary;
+          font-size: $font-size-body;
+        }
       }
     }
   }

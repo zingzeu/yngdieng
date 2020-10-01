@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import Taro, {useRouter} from '@tarojs/taro';
-import {getCurrentInstance} from '@tarojs/taro';
+import clsx from 'clsx';
 import {View, Block, Image, Text} from '@tarojs/components';
 import {AtIcon, AtDrawer} from 'taro-ui';
 import routes from '@/routes';
-import logoURL from '@/assets/logo.png';
+import logoURL from '@/assets/logo-header.png';
 import styles from './header.module.scss';
 
 interface MenuItem {
@@ -45,27 +45,35 @@ const Header = ({injectedComponents = <Block />}) => {
   return (
     <Block>
       <View className={styles.headerPlaceholder} />
-      <View id="header" className={styles.header}>
-        {[
-          routes.INDEX,
-          routes.SEARCH,
-          routes.WORD_DETAIL,
-          routes.COLLECTION_DETAIL,
-        ].includes(routePath) && (
+      <View
+        id="header"
+        className={clsx(
+          styles.header,
+          routePath === routes.INDEX && styles.index
+        )}
+      >
+        {[routes.INDEX].includes(routePath) && (
+          <View>
+            <AtIcon
+              value="menu"
+              color="#664445"
+              onClick={() => toggleSidebar(true)}
+            ></AtIcon>
+          </View>
+        )}
+        {[routes.SEARCH, routes.WORD_DETAIL, routes.COLLECTION_DETAIL].includes(
+          routePath
+        ) && (
           <View>
             <AtIcon value="menu" onClick={() => toggleSidebar(true)}></AtIcon>
           </View>
         )}
-        {[routes.INDEX, routes.WORD_DETAIL, routes.COLLECTION_DETAIL].includes(
-          routePath
-        ) && (
+        {[routes.WORD_DETAIL, routes.COLLECTION_DETAIL].includes(routePath) && (
           <View>
             <Image className={styles.logo} mode="heightFix" src={logoURL} />
           </View>
         )}
-        {[routes.INDEX, routes.WORD_DETAIL, routes.COLLECTION_DETAIL].includes(
-          routePath
-        ) && (
+        {[routes.WORD_DETAIL, routes.COLLECTION_DETAIL].includes(routePath) && (
           <View onClick={() => navigateTo(routes.SEARCH)}>
             <AtIcon value="search"></AtIcon>
           </View>

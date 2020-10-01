@@ -2,11 +2,14 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {switchMap} from 'rxjs/operators';
-import {SearchResultRow} from 'yngdieng/shared/services_pb';
+import {SearchResultRow} from '../../../../shared/services_pb';
 
 import {AdvancedSearchQueryBuilderService} from '../advanced-search-query-builder.service';
 import {toMonoHanziResultViewModel} from '../common/converters';
-import {FengResultViewModel, MonoHanziResultViewModel} from '../common/view-models';
+import {
+  FengResultViewModel,
+  MonoHanziResultViewModel,
+} from '../common/view-models';
 import {YngdiengBackendService} from '../yngdieng-backend.service';
 import {YngdiengTitleService} from '../yngdieng-title.service';
 
@@ -16,13 +19,13 @@ const PAGE_SIZE = 10;
   selector: 'app-search-result',
   templateUrl: './search-result.component.html',
   styleUrls: ['./search-result.component.scss'],
-  providers: [AdvancedSearchQueryBuilderService]
+  providers: [AdvancedSearchQueryBuilderService],
 })
 export class SearchResultComponent implements OnInit, OnDestroy {
-  queryText: any;
+  queryText: string;
   isBusy: boolean = false;
   showingAdvancedOptions: boolean = false;
-  results: Array<MonoHanziResultViewModel|FengResultViewModel> = [];
+  results: Array<MonoHanziResultViewModel | FengResultViewModel> = [];
   computationTimeMs: number;
   isInvalidQuery: boolean = false;
 
@@ -38,10 +41,11 @@ export class SearchResultComponent implements OnInit, OnDestroy {
   private resultSubscription: Subscription;
 
   constructor(
-      private route: ActivatedRoute,
-      private router: Router,
-      private titleService: YngdiengTitleService,
-      private backendService: YngdiengBackendService) {}
+    private route: ActivatedRoute,
+    private router: Router,
+    private titleService: YngdiengTitleService,
+    private backendService: YngdiengBackendService
+  ) {}
 
   ngOnInit() {
     this.isBusy = true;
@@ -52,24 +56,29 @@ export class SearchResultComponent implements OnInit, OnDestroy {
       this.offset = this.getOffsetFromParamMap(paramMap);
       this.titleService.setTitleForSearchResultPage(query);
     });
-    this.resultSubscription =
-        this.route.paramMap
-            .pipe(switchMap(
-                paramMap => {return this.backendService.search(
-                    paramMap.get('query'), this.getOffsetFromParamMap(paramMap))}))
-            .subscribe(
-                response => {
-                  this.isBusy = false;
-                  this.computationTimeMs = response.getComputationTimeMs();
-                  this.results = response.getResultsList().map(resultRowToViewModel);
-                  this.totalLength = response.getLength();
-                },
-                err => {
-                  this.results = [];
-                  console.error(err);
-                  this.isBusy = false;
-                  this.isInvalidQuery = true;
-                })
+    this.resultSubscription = this.route.paramMap
+      .pipe(
+        switchMap(paramMap => {
+          return this.backendService.search(
+            paramMap.get('query'),
+            this.getOffsetFromParamMap(paramMap)
+          );
+        })
+      )
+      .subscribe(
+        response => {
+          this.isBusy = false;
+          this.computationTimeMs = response.getComputationTimeMs();
+          this.results = response.getResultsList().map(resultRowToViewModel);
+          this.totalLength = response.getLength();
+        },
+        err => {
+          this.results = [];
+          console.error(err);
+          this.isBusy = false;
+          this.isInvalidQuery = true;
+        }
+      );
   }
 
   ngOnDestroy() {
@@ -87,11 +96,11 @@ export class SearchResultComponent implements OnInit, OnDestroy {
   }
 
   onNavigateBack() {
-    this.router.navigate(['/'])
+    this.router.navigate(['/']);
   }
 
   onPerformSearch(searchText: string) {
-    this.redirectTo(['/search', searchText])
+    this.redirectTo(['/search', searchText]);
   }
 
   toggleAdvancedOptions() {
@@ -100,29 +109,39 @@ export class SearchResultComponent implements OnInit, OnDestroy {
 
   onPageChanged(pageEvent) {
     let newPageIndex = pageEvent['pageIndex'];
-    this.redirectTo(['/search', this.queryText, {'offset': this.pageSize * newPageIndex}])
+    this.redirectTo([
+      '/search',
+      this.queryText,
+      {offset: this.pageSize * newPageIndex},
+    ]);
   }
 
   private redirectTo(commands: any[]) {
-    this.router.navigateByUrl('/', {skipLocationChange: true})
-        .then(() => this.router.navigate(commands));
+    this.router
+      .navigateByUrl('/', {skipLocationChange: true})
+      .then(() => this.router.navigate(commands));
   }
 }
 
-function resultRowToViewModel(r: SearchResultRow): MonoHanziResultViewModel|FengResultViewModel {
+function resultRowToViewModel(
+  r: SearchResultRow
+): MonoHanziResultViewModel | FengResultViewModel {
   switch (r.getResultCase()) {
     case SearchResultRow.ResultCase.HISTORICAL_DOCUMENT:
       return toMonoHanziResultViewModel(r.getHistoricalDocument());
     case SearchResultRow.ResultCase.FENG_DOCUMENT:
       let f = r.getFengDocument();
       return {
-        _type: 'feng', yngping: f.getYngpingCanonical(), hanzi: f.getHanziCanonical(),
-            explanation: f.getExplanation().length > 100 ?
-            f.getExplanation().substr(0, 97) + '...' :
-            f.getExplanation(),
-            id: f.getId(),
-      }
+        _type: 'feng',
+        yngping: f.getYngpingCanonical(),
+        hanzi: f.getHanziCanonical(),
+        explanation:
+          f.getExplanation().length > 100
+            ? f.getExplanation().substr(0, 97) + '...'
+            : f.getExplanation(),
+        id: f.getId(),
+      };
     default:
-      return null
+      return null;
   }
 }
