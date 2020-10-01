@@ -5,7 +5,9 @@ import {
   YNGDIENG_ENVIRONMENT,
 } from '../../environments/environment';
 
+import {AudioAlertDialogComponent} from '../audio-alert-dialog/audio-alert-dialog.component';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatDialog} from '@angular/material/dialog';
 import {Platform} from '@angular/cdk/platform';
 const SNACKBAR_DURATION_MS = 4000;
 
@@ -22,13 +24,13 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
 
   state: PlayerState = PlayerState.Idle;
   private currentAudio: Howl = null;
-
   private hasClicked = false;
 
   constructor(
     @Inject(YNGDIENG_ENVIRONMENT) private environment: IYngdiengEnvironment,
     private snackBar: MatSnackBar,
-    private platform: Platform
+    private platform: Platform,
+    private ackDialog: MatDialog
   ) {}
 
   private getHowlSrc() {
@@ -115,12 +117,21 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
     );
   }
 
-  // get debugLocalStorage() {
-  //   return this.environment.showClearLocalStorage;
-  // }
+  get debugLocalStorage() {
+    return this.environment.envName === 'dev';
+  }
 
   onClicked() {
-    this.hasClicked = true;
+    if (!this.hasClicked) {
+      this.hasClicked = true;
+      // show dialog
+      this.logTtsAcknowledgementShown();
+    } else {
+      this.playAudio();
+    }
+  }
+
+  playAudio() {
     switch (this.state) {
       case PlayerState.Idle:
         if (this.currentAudio.state() !== 'loaded') {
@@ -141,19 +152,24 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
     }
   }
 
-  private firstVisit() {
+  private logTtsAcknowledgementShown() {
     if (localStorage) {
-      var visits = localStorage.getItem('visited');
-      if (visits == null) {
-        console.log('First visit');
-        this.dialog.open(AudioAlertDialogComponent, {width: '80vw'});
-        localStorage.setItem('visited', 'yes');
+      var ackShown = localStorage.getItem('tts-acknowledgement-shown');
+      if (ackShown == null) {
+        console.log('[Debug] Play button is clicked for the first time.');
+        let ackDialogRef = this.ackDialog.open(AudioAlertDialogComponent, {
+          width: '80vw',
+        });
+        ackDialogRef.afterClosed().subscribe(() => this.playAudio());
+        localStorage.setItem('tts-acknowledgement-shown', 'yes');
+      } else {
+        this.playAudio();
       }
     }
   }
 
   clearStorage() {
-    localStorage.removeItem('visited');
+    localStorage.removeItem('tts-acknowledgement-shown');
   }
 }
 
