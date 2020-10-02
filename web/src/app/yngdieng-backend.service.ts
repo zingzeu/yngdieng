@@ -15,6 +15,8 @@ import {
   SearchResponse,
   SearchV2Request,
   SearchV2Response,
+  ZhConversionPreference,
+  UserPreference,
 } from '../../../shared/services_pb';
 import {YngdiengServiceClient} from '../../../shared/services_grpc_web_pb';
 
@@ -22,7 +24,7 @@ import {
   IYngdiengEnvironment,
   YNGDIENG_ENVIRONMENT,
 } from '../environments/environment';
-
+import * as jspb from 'google-protobuf';
 @Injectable({providedIn: 'root'})
 export class YngdiengBackendService {
   private grpcClient: YngdiengServiceClient;
@@ -59,16 +61,28 @@ export class YngdiengBackendService {
     // TODO: parameterize
     request.setPageSize(15);
 
-    this.grpcClient.searchV2(request, undefined, (err, response) => {
-      if (err != null) {
-        subject.error(err);
-        return;
-      }
+    this.grpcClient.searchV2(
+      request,
+      {'x-yngdieng-options': this.getUserPreference()},
+      (err, response) => {
+        if (err != null) {
+          subject.error(err);
+          return;
+        }
 
-      subject.next(response);
-    });
+        subject.next(response);
+      }
+    );
 
     return subject.asObservable();
+  }
+
+  private getUserPreference() {
+    let userPreference = new UserPreference();
+    userPreference.setZhConversionPreference(
+      ZhConversionPreference.LANGAUGE_PREFERENCE_HANS
+    );
+    return jspb.Message.bytesAsB64(userPreference.serializeBinary());
   }
 
   getFengDocument(fengDocId: string): Observable<FengDocument> {

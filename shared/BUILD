@@ -36,6 +36,7 @@ proto_library(
     ],
     deps = [
         ":documents_proto",
+        "@com_google_protobuf//:any_proto",
         "@go_googleapis//google/api:annotations_proto",
     ],
 )
@@ -43,11 +44,6 @@ proto_library(
 ts_proto_library(
     name = "services_ts_proto",
     proto = ":services_proto",
-)
-
-ts_proto_library(
-    name = "googleapis_annotations_ts_proto",
-    proto = "@go_googleapis//google/api:annotations_proto",
 )
 
 go_proto_library(

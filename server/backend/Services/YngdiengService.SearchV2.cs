@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 using Grpc.Core;
 using Lucene.Net.QueryParsers.Classic;
@@ -18,9 +19,27 @@ namespace Yngdieng.Backend.Services
 
         private static readonly int DEFAULT_PAGE_SIZE = 10;
 
+        private UserPreference GetUserPreference(ServerCallContext context)
+        {
+            var base64Value = context.RequestHeaders.GetValue("x-yngdieng-options");
+            if (base64Value == null)
+            {
+                return new UserPreference();
+            }
+            try
+            {
+                return UserPreference.Parser.ParseFrom(Convert.FromBase64String(base64Value));
+            }
+            catch
+            {
+                _logger.LogError($"Error parsing user preference: {base64Value}");
+                return new UserPreference();
+            }
+        }
         public override Task<SearchV2Response> SearchV2(SearchV2Request request,
                                                         ServerCallContext context)
         {
+            var userPreference = GetUserPreference(context);
             var query = GetLuceneQuery(QueryParser.Parse(request.Query));
             var desiredPageSize = request.PageSize > 0 ? request.PageSize : DEFAULT_PAGE_SIZE;
             var searcher = this._indexHolder.LuceneIndexSearcher;
@@ -32,7 +51,7 @@ namespace Yngdieng.Backend.Services
             {
                 // Is first page 
                 resultCards.Add(GenericMessageCard("你正在试用榕典搜索V2。如遇问题，请将截图和网址发送到 radium@mindong.asia。"));
-                results = searcher.Search(query, desiredPageSize + 1);
+                results = searcher.Search(query, NumericRangeFilter.NewInt32Range(LuceneUtils.Fields.IsSourceless, 4, 0, 0, true, true), desiredPageSize + 1);
                 // first page && no results
                 if (results.ScoreDocs.Length == 0)
                 {
