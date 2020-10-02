@@ -1770,20 +1770,46 @@
     resolve "1.15.1"
     yauzl "2.10.0"
 
-"@tarojs/mini-runner@3.0.13":
-  version "3.0.13"
-  resolved "https://registry.yarnpkg.com/@tarojs/mini-runner/-/mini-runner-3.0.13.tgz#94ee15e56502eadbd0b831234269d576af884e8c"
-  integrity sha512-ll2vwsciY2pwy0+lYhsMusbq75eEErS5R7OwQ6iApY2n5ZIP18WzVV0g2Igi0FX6kT6zguBmyZqvhHcBqr3fHQ==
+"@tarojs/helper@3.0.14":
+  version "3.0.14"
+  resolved "https://registry.yarnpkg.com/@tarojs/helper/-/helper-3.0.14.tgz#26c75dd2ac83fc98f162a5eb6401bdb7a98d715d"
+  integrity sha512-G7s69A2SpUAP3X29G0Pg9jypFxCaRZ0RyV/9J9yJa3Dtu/oU68YolNGWKHTomFisYadbpwL8V1pzLGdupu4KEA==
+  dependencies:
+    "@babel/core" "7.11.1"
+    "@babel/plugin-proposal-class-properties" "7.10.4"
+    "@babel/plugin-proposal-decorators" "7.10.5"
+    "@babel/plugin-proposal-object-rest-spread" "7.11.0"
+    "@babel/plugin-transform-runtime" "7.11.0"
+    "@babel/preset-env" "7.11.0"
+    "@babel/preset-typescript" "7.10.4"
+    "@babel/register" "7.9.0"
+    "@babel/runtime" "7.9.2"
+    "@tarojs/taro" "3.0.14"
+    babel-plugin-transform-react-jsx "^6.24.1"
+    chalk "3.0.0"
+    chokidar "3.3.1"
+    cross-spawn "7.0.3"
+    debug "4.1.1"
+    find-yarn-workspace-root "1.2.1"
+    fs-extra "8.1.0"
+    lodash "4.17.20"
+    resolve "1.15.1"
+    yauzl "2.10.0"
+
+"@tarojs/mini-runner@3.0.14":
+  version "3.0.14"
+  resolved "https://registry.yarnpkg.com/@tarojs/mini-runner/-/mini-runner-3.0.14.tgz#5d2411da3521ae80ee493874de3ddaebdf8f3d27"
+  integrity sha512-txDXtSsJodgBVlAxmv/abpm06cighE2rAWZMuObWLJMSwRrWkue3bi0m144uz7+IcTh8LjD2dj3cmCIRER5+fw==
   dependencies:
     "@babel/core" "7.11.1"
     "@babel/plugin-proposal-class-properties" "7.10.4"
     "@babel/preset-env" "7.11.0"
-    "@tarojs/helper" "3.0.13"
-    "@tarojs/runner-utils" "3.0.13"
-    "@tarojs/runtime" "3.0.13"
-    "@tarojs/shared" "3.0.13"
-    "@tarojs/taro" "3.0.13"
-    "@tarojs/taro-loader" "3.0.13"
+    "@tarojs/helper" "3.0.14"
+    "@tarojs/runner-utils" "3.0.14"
+    "@tarojs/runtime" "3.0.14"
+    "@tarojs/shared" "3.0.14"
+    "@tarojs/taro" "3.0.14"
+    "@tarojs/taro-loader" "3.0.14"
     babel-loader "8.0.6"
     babel-types "^6.26.0"
     copy-webpack-plugin "^5.0.3"
@@ -1865,6 +1891,18 @@
     lodash "^4.17.15"
     scss-bundle "^3.0.2"
 
+"@tarojs/runner-utils@3.0.14":
+  version "3.0.14"
+  resolved "https://registry.yarnpkg.com/@tarojs/runner-utils/-/runner-utils-3.0.14.tgz#185a4f65b88cd1d8efc7a643672cb648c6ae92ce"
+  integrity sha512-NcE7KYLxEKzcYYZo4C5ebqJMHyqCB+aFVvRRv41q8JOpoo3+L6HyJxctVfdPEjDKlLKJ2JokHREtbdixwJ8dNg==
+  dependencies:
+    "@babel/core" "7.11.1"
+    "@tarojs/helper" "3.0.14"
+    chalk "^3.0.0"
+    fs-extra "^8.1.0"
+    lodash "^4.17.15"
+    scss-bundle "^3.0.2"
+
 "@tarojs/runtime@3.0.13":
   version "3.0.13"
   resolved "https://registry.yarnpkg.com/@tarojs/runtime/-/runtime-3.0.13.tgz#2458c3ae2e9e31200b87e8f259f8846c8e0619ba"
@@ -1879,6 +1917,11 @@
   version "3.0.13"
   resolved "https://registry.yarnpkg.com/@tarojs/shared/-/shared-3.0.13.tgz#14788903484f9c5298774dd0633a5c47e5d7c5c7"
   integrity sha512-WAMKqEUF9dL9YcJJPW6pNTYBrGpf/7d2han23FUOAT9034+bUsVMJy9x5oXgG8OeVVbA/QyxcxJZSeAa60SmAg==
+
+"@tarojs/shared@3.0.14":
+  version "3.0.14"
+  resolved "https://registry.yarnpkg.com/@tarojs/shared/-/shared-3.0.14.tgz#899227035d049dda08af6dd64da1b4c11cd5df07"
+  integrity sha512-hcHSZeERdo+HXRO50BLiWVeNtKiIyOgJ9LLHzwhgPfzX3MHG+LG18ftoAswgYCeyL+BDD533xcaGX30m8Xtlpg==
 
 "@tarojs/taro-h5@3.0.13":
   version "3.0.13"
@@ -1912,6 +1955,13 @@
   version "3.0.13"
   resolved "https://registry.yarnpkg.com/@tarojs/taro-loader/-/taro-loader-3.0.13.tgz#ab45c0b08044868ef4f543561df342470fa67198"
   integrity sha512-n86Lzofg41rJcagEcq8MQPCK4FzJPrSEtTsdHdbQbJAARQaWjyuObdIPAv/9Noa3EdMie8uPKqN54QpmQntghQ==
+  dependencies:
+    loader-utils "^1.2.3"
+
+"@tarojs/taro-loader@3.0.14":
+  version "3.0.14"
+  resolved "https://registry.yarnpkg.com/@tarojs/taro-loader/-/taro-loader-3.0.14.tgz#ecc80ce8e77b38f691c38b50e9b877883b765706"
+  integrity sha512-rMNnj6TAQdTOJ96VELbIzfnRJdywF9bKleqzYmZh4fLTsQKHj7EF3i6V4Yr+ZhnG0JsyKreMzCFz+LqamcMzqg==
   dependencies:
     loader-utils "^1.2.3"
 
