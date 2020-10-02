@@ -8314,7 +8314,7 @@ miniprogram-api-typings@^2.11.0:
   resolved "https://registry.npmjs.org/miniprogram-api-typings/-/miniprogram-api-typings-2.12.0.tgz#7a29c90f3e5efa36588422d1f01e22d3394aaaa1"
   integrity sha512-ibvbqeslVFur0IAvTxLMvsbtvVcMo6gwvOnj0YZHV7aeDLu091VQRrETT2QuiG9P6aZWRcxeNGJChRKVPCp9VQ==
 
-miniprogram-ci@^1.0.83:
+miniprogram-ci@1.0.83:
   version "1.0.83"
   resolved "https://registry.yarnpkg.com/miniprogram-ci/-/miniprogram-ci-1.0.83.tgz#90bce4439e8f3d7ec278b32a76e0246e9fca66f8"
   integrity sha512-6iPjvKPKw8ICwJbxVMiNzVSSKfZCeEU8IHTghpOq4Pyn0xImJZv7AgLKeXrR0ZlsobEDEeUjHXNPicSGD8Bh0g==
