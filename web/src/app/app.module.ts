@@ -44,6 +44,7 @@ import {GenericMessageCardComponent} from './generic-message-card/generic-messag
 import {LoadingCardComponent} from './loading-card/loading-card.component';
 import {AboutComponent} from './about/about.component';
 import {PlatformModule} from '@angular/cdk/platform';
+import {SettingsComponent} from './settings/settings.component';
 
 @NgModule({
   declarations: [
@@ -78,6 +79,7 @@ import {PlatformModule} from '@angular/cdk/platform';
     GenericMessageCardComponent,
     LoadingCardComponent,
     AboutComponent,
+    SettingsComponent,
   ],
   imports: [
     AppRoutingModule,

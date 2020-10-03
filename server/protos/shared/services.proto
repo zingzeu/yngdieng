@@ -207,4 +207,7 @@ enum ZhConversionPreference {
 
 message UserPreference {
   ZhConversionPreference zh_conversion_preference = 1;
+
+  // If true, includes zingzeu_words-only entries in the search result.
+  bool show_sourceless_search_results = 2;
 }

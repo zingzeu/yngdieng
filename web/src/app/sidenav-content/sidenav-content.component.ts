@@ -24,6 +24,10 @@ export class SidenavContentComponent implements OnInit {
     return this.environment.showSearchV2InMenu;
   }
 
+  get showSettings() {
+    return this.environment.showSettingsInMenu;
+  }
+
   onHomeClicked() {
     this.sideNavState.closeSideNav();
     this.router.navigate(['/']);
@@ -37,6 +41,11 @@ export class SidenavContentComponent implements OnInit {
   onSearch2Clicked() {
     this.sideNavState.closeSideNav();
     this.router.navigate(['/search2/huziu']);
+  }
+
+  onSettingsClicked() {
+    this.sideNavState.closeSideNav();
+    this.router.navigate(['/settings']);
   }
 
   onHelpClicked() {
