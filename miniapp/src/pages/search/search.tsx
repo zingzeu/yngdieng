@@ -79,6 +79,7 @@ const Search = () => {
   };
 
   useEffect(() => {
+    Taro.showShareMenu({});
     const wordFromParams = router.params.word;
     if (wordFromParams) {
       handleConfirm(wordFromParams);

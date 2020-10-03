@@ -44,6 +44,7 @@ const Index = () => {
   };
 
   useEffect(() => {
+    Taro.showShareMenu({});
     handleRouterParams();
   }, []);
   return (
