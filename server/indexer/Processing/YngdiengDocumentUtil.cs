@@ -106,7 +106,7 @@ namespace Yngdieng.Indexer.Processing
         }
 
         private static Hanzi FindHanziCanonical(
-            IReadOnlyCollection<YngdiengDocument.Types.Source> sources, string fromZingzeuWords)
+            IReadOnlyCollection<YngdiengDocument.Types.Source> sources, Hanzi fromZingzeuWords)
         {
             var feng =
                 sources.FirstOrDefault(s => s.SourceCase == SourceOneofCase.Feng)?.Feng ?? null;
@@ -117,7 +117,7 @@ namespace Yngdieng.Indexer.Processing
                     Regular = feng.HanziCanonical
                 };
             }
-            if (!string.IsNullOrEmpty(fromZingzeuWords))
+            if (fromZingzeuWords != null)
             {
                 return fromZingzeuWords;
             }
