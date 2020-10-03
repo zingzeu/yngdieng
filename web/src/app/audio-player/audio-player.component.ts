@@ -124,20 +124,16 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
   onClicked() {
     if (!this.hasClicked) {
       this.hasClicked = true;
-      // show dialog
-      this.logTtsAcknowledgementShown();
-    } else {
-      this.playAudio();
     }
-  }
-
-  playAudio() {
+    // play audio
     switch (this.state) {
       case PlayerState.Idle:
         if (this.currentAudio.state() !== 'loaded') {
           this.state = PlayerState.Loading;
           this.currentAudio.once('load', () => this.currentAudio.play());
           this.currentAudio.load();
+        } else if (this.shouldShowAckDialog()) {
+          this.showTtsAcknowledgement();
         } else {
           this.currentAudio.play();
         }
@@ -152,20 +148,25 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
     }
   }
 
-  private logTtsAcknowledgementShown() {
+  private shouldShowAckDialog() {
+    // TODO: separate localstorage availability from here
     if (localStorage) {
-      var ackShown = localStorage.getItem('tts-acknowledgement-shown');
+      let ackShown = localStorage.getItem('tts-acknowledgement-shown');
       if (ackShown == null) {
         console.log('[Debug] Play button is clicked for the first time.');
-        let ackDialogRef = this.ackDialog.open(AudioAckDialogComponent, {
-          width: '80vw',
-        });
-        ackDialogRef.afterClosed().subscribe(() => this.playAudio());
         localStorage.setItem('tts-acknowledgement-shown', 'yes');
+        return true;
       } else {
-        this.playAudio();
+        return false;
       }
     }
+  }
+
+  private showTtsAcknowledgement() {
+    let ackDialogRef = this.ackDialog.open(AudioAckDialogComponent, {
+      width: '80vw',
+    });
+    ackDialogRef.afterClosed().subscribe(() => this.currentAudio.play());
   }
 
   clearStorage() {
