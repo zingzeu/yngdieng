@@ -69,7 +69,6 @@ const CollectionDetail = () => {
   };
 
   useEffect(() => {
-    Taro.showShareMenu({});
     const collectionId = router.params.id;
     Taro.showNavigationBarLoading();
     getCollectionById(collectionId)

@@ -82,7 +82,6 @@ const WordDetail = () => {
   const [storyToShow, setStoryToShow] = useState('');
 
   useEffect(() => {
-    Taro.showShareMenu({});
     const wordId = decodeURIComponent(router.params.id || '');
     Taro.showNavigationBarLoading();
     fetchWordDetail(wordId)
