@@ -68,7 +68,7 @@ namespace Yngdieng.Backend.Services
             {
                 var lastPage = PaginationTokens.Parse(request.PageToken);
                 var lastScoreDoc = new ScoreDoc(lastPage.LastDoc.Doc, lastPage.LastDoc.Score);
-                results = searcher.SearchAfter(lastScoreDoc, query, desiredPageSize + 1);
+                results = searcher.SearchAfter(lastScoreDoc, query, userPreference.ShowSourcelessSearchResults ? null : FilterSourcelessDocs, desiredPageSize + 1);
             }
 
             var response = new SearchV2Response();
