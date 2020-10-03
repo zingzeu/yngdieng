@@ -1,1 +1,4 @@
-export default {navigationBarTitleText: '高级搜索'}
+export default {
+  navigationBarTitleText: '搜索',
+  enableShareAppMessage: true,
+};

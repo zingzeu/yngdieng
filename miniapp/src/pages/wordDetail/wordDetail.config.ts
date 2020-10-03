@@ -1,1 +1,1 @@
-export default {navigationBarTitleText: '详情'};
+export default {navigationBarTitleText: '详情', enableShareAppMessage: true};
