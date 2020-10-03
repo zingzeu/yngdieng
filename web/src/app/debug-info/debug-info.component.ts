@@ -29,4 +29,16 @@ export class DebugInfoComponent implements OnInit, OnDestroy {
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
+
+  clearAckStorage() {
+    try {
+      console.log(
+        "[_debug]: 'tts-acknowledgement-shown': " +
+          localStorage.getItem('tts-acknowledgement-shown')
+      );
+      localStorage.removeItem('tts-acknowledgement-shown');
+    } catch {
+      console.log('[_debug] localStorage error');
+    }
+  }
 }

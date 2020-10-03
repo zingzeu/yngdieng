@@ -110,15 +110,11 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
     this.currentAudio?.unload();
   }
 
-  get shouldShow() {
+  get shouldShowPlayButton() {
     return (
       this.environment.showAudioPlayerButtons &&
       this.state !== PlayerState.Disabled
     );
-  }
-
-  get debugLocalStorage() {
-    return this.environment.envName === 'dev';
   }
 
   onClicked() {
@@ -153,7 +149,9 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
     if (localStorage) {
       let ackShown = localStorage.getItem('tts-acknowledgement-shown');
       if (ackShown == null) {
-        console.log('[Debug] Play button is clicked for the first time.');
+        console.log(
+          '[Audio Player] Play button is clicked for the first time.'
+        );
         localStorage.setItem('tts-acknowledgement-shown', 'yes');
         return true;
       } else {
@@ -167,10 +165,6 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
       width: '80vw',
     });
     ackDialogRef.afterClosed().subscribe(() => this.currentAudio.play());
-  }
-
-  clearStorage() {
-    localStorage.removeItem('tts-acknowledgement-shown');
   }
 }
 
