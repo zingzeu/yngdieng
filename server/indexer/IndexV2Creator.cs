@@ -11,11 +11,11 @@ using Lucene.Net.Documents;
 using Lucene.Net.Index;
 using Lucene.Net.Store;
 using Lucene.Net.Util;
+using Yngdieng.Common;
 using Yngdieng.Indexer.Loading;
 using Yngdieng.Indexer.Processing;
 using Yngdieng.Protos;
 using Yngdieng.Search.Common;
-using Yngdieng.Common;
 
 namespace Yngdieng.Indexer
 {

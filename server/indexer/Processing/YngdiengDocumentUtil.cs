@@ -97,7 +97,7 @@ namespace Yngdieng.Indexer.Processing
                     doc.HanziCanonical = FindHanziCanonical(doc.Sources);
                 }
                 doc.YngpingUnderlying = FindYngpingUnderlying(doc.Sources, doc.YngpingUnderlying);
-                doc.YngpingSandhi = FindYngpingSandhi(doc.Sources,doc.YngpingSandhi);
+                doc.YngpingSandhi = FindYngpingSandhi(doc.Sources, doc.YngpingSandhi);
                 doc.IndexingExtension = new YngdiengDocument.Types.IndexingExtension
                 {
                     YngpingPermutations = { CollectYngpingPermutations(doc.Sources) },
@@ -148,7 +148,8 @@ namespace Yngdieng.Indexer.Processing
             {
                 return feng.YngpingUnderlying;
             }
-            if (!string.IsNullOrEmpty(fromZingzeuWords)) {
+            if (!string.IsNullOrEmpty(fromZingzeuWords))
+            {
                 return fromZingzeuWords;
             }
             var historicalDoc =
@@ -176,7 +177,8 @@ namespace Yngdieng.Indexer.Processing
             {
                 return feng.YngpingCanonical;
             }
-            if (!string.IsNullOrEmpty(fromZingzeuWords)) {
+            if (!string.IsNullOrEmpty(fromZingzeuWords))
+            {
                 return fromZingzeuWords;
             }
             var contrib = sources.FirstOrDefault(s => s.SourceCase == SourceOneofCase.Contrib)
