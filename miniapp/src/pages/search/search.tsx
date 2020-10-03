@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import Taro, {useRouter} from '@tarojs/taro';
+import Taro, {useRouter, useShareAppMessage} from '@tarojs/taro';
 import {View, Input, Block, ScrollView} from '@tarojs/components';
 import {AtIcon} from 'taro-ui';
 import routes from '@/routes';
@@ -78,6 +78,11 @@ const Search = () => {
       });
   };
 
+  useShareAppMessage(() => {
+    return {
+      path: `${routes.SEARCH}?word=${inputString}`,
+    };
+  });
   useEffect(() => {
     Taro.showShareMenu({});
     const wordFromParams = router.params.word;
