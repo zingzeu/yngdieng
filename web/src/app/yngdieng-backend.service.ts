@@ -25,12 +25,14 @@ import {
   YNGDIENG_ENVIRONMENT,
 } from '../environments/environment';
 import * as jspb from 'google-protobuf';
+import {UserSettingsService} from './user-settings.service';
 @Injectable({providedIn: 'root'})
 export class YngdiengBackendService {
   private grpcClient: YngdiengServiceClient;
 
   constructor(
-    @Inject(YNGDIENG_ENVIRONMENT) private environment: IYngdiengEnvironment
+    @Inject(YNGDIENG_ENVIRONMENT) private environment: IYngdiengEnvironment,
+    private userSettings: UserSettingsService
   ) {
     this.grpcClient = new YngdiengServiceClient(this.environment.serverUrl);
   }
@@ -63,7 +65,7 @@ export class YngdiengBackendService {
 
     this.grpcClient.searchV2(
       request,
-      {'x-yngdieng-options': this.getUserPreference()},
+      {'x-ydict-options': this.getUserPreference()},
       (err, response) => {
         if (err != null) {
           subject.error(err);
@@ -80,7 +82,10 @@ export class YngdiengBackendService {
   private getUserPreference() {
     let userPreference = new UserPreference();
     userPreference.setZhConversionPreference(
-      ZhConversionPreference.LANGAUGE_PREFERENCE_HANS
+      this.userSettings.getZhConversionPreference()
+    );
+    userPreference.setShowSourcelessSearchResults(
+      this.userSettings.getShowSourcelessSearchResults()
     );
     return jspb.Message.bytesAsB64(userPreference.serializeBinary());
   }
