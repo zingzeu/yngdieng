@@ -80,6 +80,7 @@ const Search = () => {
 
   useShareAppMessage(() => {
     return {
+      title: inputString,
       path: `${routes.SEARCH}?word=${inputString}`,
     };
   });
