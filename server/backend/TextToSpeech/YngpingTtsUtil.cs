@@ -89,11 +89,11 @@ namespace Yngdieng.Backend.TextToSpeech
         /// </summary>
         public static void GenerateMappings()
         {
-            foreach(var (consonant, consonantCode) in ConsonantAudioMapping)
+            foreach (var (consonant, consonantCode) in ConsonantAudioMapping)
             {
-                foreach(var (finalCode, finals) in FinalAudioMapping)
+                foreach (var (finalCode, finals) in FinalAudioMapping)
                 {
-                    foreach(var (tone, toneCode) in ToneAudioMapping) 
+                    foreach (var (tone, toneCode) in ToneAudioMapping)
                     {
                         string final = (finals.Length == 2 && AltTones.Contains(toneCode)) ? finals[1] : finals[0];
                         string syllableCode = consonantCode + finalCode + toneCode;
@@ -105,8 +105,8 @@ namespace Yngdieng.Backend.TextToSpeech
                             }
                             SyllableMappings.TryAdd(consonant + final + "h" + tone, syllableCode);
                             SyllableMappings.TryAdd(consonant + final + "k" + tone, syllableCode);
-                        } 
-                        else 
+                        }
+                        else
                         {
                             SyllableMappings.TryAdd(consonant + final + tone, syllableCode);
                         }
@@ -121,14 +121,14 @@ namespace Yngdieng.Backend.TextToSpeech
         /// </summary>
         /// <returns>Empty string if none is matched</returns>
         public static string SyllableToAudio(string yngpingSyllable)
-        {   
+        {
             if (SyllableMappings.Count == 0)
             {
                 GenerateMappings();
             }
             if (SyllableMappings.ContainsKey(yngpingSyllable))
             {
-                return SyllableMappings[yngpingSyllable];    
+                return SyllableMappings[yngpingSyllable];
             }
             // TODO: add extra rules
             return string.Empty;
