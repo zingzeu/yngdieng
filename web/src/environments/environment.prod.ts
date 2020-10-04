@@ -9,7 +9,7 @@ export const YngdiengProdEnvironment: IYngdiengEnvironment = {
     enabled: true,
     showDebugToggle: false,
   },
-  showAudioPlayerButtons: false,
+  showAudioPlayerButtons: true,
   showSearchV2InMenu: false,
   showSettingsInMenu: false,
 };
