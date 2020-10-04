@@ -62,11 +62,7 @@ export class DetailsMonoHanziComponent implements OnInit, OnDestroy {
           this.vm.sources.push('戚林八音校注');
         }
         if (response.hasDfdSource()) {
-          this.vm.sources.push(
-            'Dictionary of Foochow Dialect ' +
-              response.getDfdSource().getPageNumber() +
-              ' 页'
-          );
+          this.vm.sources.push('Dictionary of Foochow Dialect');
         }
 
         let initial = getInitialString(response.getInitial());

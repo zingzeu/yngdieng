@@ -74,6 +74,9 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
       onend: () => {
         this.state = PlayerState.Idle;
       },
+      onstop: () => {
+        this.state = PlayerState.Idle;
+      },
       onloaderror: (_, errorCode) => {
         console.log('audio load error', errorCode);
         if (typeof errorCode === 'string' && errorCode.indexOf('404') !== -1) {
