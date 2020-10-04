@@ -1,7 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
-using System;
 
 namespace Yngdieng.Common
 {
@@ -118,9 +118,7 @@ namespace Yngdieng.Common
         {
             var newProns = derivatives.Select(
                 pron => string.Join(' ', pron.Split(' ').Select(s =>
-                
                  Regex.Replace(s, pattern, evaluator)
-                
             ))).ToList();
             derivatives.Clear();
             derivatives.AddRange(newProns);

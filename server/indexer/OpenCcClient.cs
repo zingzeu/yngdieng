@@ -19,7 +19,7 @@ namespace Yngdieng.Indexer
         public string SimplifyHukziuText(string traditional)
         {
             return client
-                .PostAsync(OpenCCDaemon+"/hokchew", new ByteArrayContent(Encoding.UTF8.GetBytes(traditional)))
+                .PostAsync(OpenCCDaemon + "/hokchew", new ByteArrayContent(Encoding.UTF8.GetBytes(traditional)))
                 .Result.Content.ReadAsStringAsync()
                 .Result;
         }
