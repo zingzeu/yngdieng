@@ -1,1 +1,1 @@
-export default {navigationBarTitleText: '首页'}
+export default {navigationBarTitleText: '首页', enableShareAppMessage: true};

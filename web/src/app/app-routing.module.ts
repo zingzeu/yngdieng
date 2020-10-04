@@ -12,6 +12,7 @@ import {SimplificationToolComponent} from './simplification-tool/simplification-
 import {WordDetailsComponent} from './word-details/word-details.component';
 import {SearchV2ResultComponent} from './search-v2-result/search-v2-result.component';
 import {AboutComponent} from './about/about.component';
+import {SettingsComponent} from './settings/settings.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -21,6 +22,7 @@ const routes: Routes = [
   {path: 'advancedSearch', component: AdvancedSearchLandingComponent},
   {path: 'about', component: AboutComponent},
   {path: 'help', component: HelpComponent},
+  {path: 'settings', component: SettingsComponent},
   {path: 'w/:id', component: WordDetailsComponent},
   // (Deprecated) 冯版条目
   {path: 'feng/:id', component: DetailsFengComponent},

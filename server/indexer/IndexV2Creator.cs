@@ -3,14 +3,13 @@ using System;
 using System.IO;
 using System.Linq;
 using Google.Protobuf;
-using Lucene.Net.Analysis;
-using Lucene.Net.Analysis.Cn.Smart;
-using Lucene.Net.Analysis.Miscellaneous;
-using Lucene.Net.Analysis.Standard;
 using Lucene.Net.Documents;
 using Lucene.Net.Index;
 using Lucene.Net.Store;
+<<<<<<< HEAD
 using Lucene.Net.Util;
+=======
+>>>>>>> main
 using Yngdieng.Common;
 using Yngdieng.Indexer.Loading;
 using Yngdieng.Indexer.Processing;
@@ -109,6 +108,7 @@ namespace Yngdieng.Indexer
                     foreach (var yDoc in index.YngdiengDocuments)
                     {
                         var doc = new Lucene.Net.Documents.Document {
+                            new Int32Field(LuceneUtils.Fields.IsSourceless, yDoc.Sources.Count == 0?1:0, Field.Store.YES),
                             new StringField(LuceneUtils.Fields.DocId, yDoc.DocId,Field.Store.YES),
                             new TextField(LuceneUtils.Fields.Yngping, yDoc.YngpingSandhi, Field.Store.NO),
                             new TextField(LuceneUtils.Fields.Hanzi, yDoc.HanziCanonical.Regular, Field.Store.NO),

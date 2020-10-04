@@ -92,10 +92,7 @@ namespace Yngdieng.Indexer.Processing
             foreach (var doc in results)
             {
                 doc.DocId = Base64UrlTextEncoder.Encode(doc.DocRef.ToByteArray());
-                if (doc.HanziCanonical == null)
-                {
-                    doc.HanziCanonical = FindHanziCanonical(doc.Sources);
-                }
+                doc.HanziCanonical = FindHanziCanonical(doc.Sources, doc.HanziCanonical);
                 doc.YngpingUnderlying = FindYngpingUnderlying(doc.Sources, doc.YngpingUnderlying);
                 doc.YngpingSandhi = FindYngpingSandhi(doc.Sources, doc.YngpingSandhi);
                 doc.IndexingExtension = new YngdiengDocument.Types.IndexingExtension
@@ -109,7 +106,7 @@ namespace Yngdieng.Indexer.Processing
         }
 
         private static Hanzi FindHanziCanonical(
-            IReadOnlyCollection<YngdiengDocument.Types.Source> sources)
+            IReadOnlyCollection<YngdiengDocument.Types.Source> sources, Hanzi fromZingzeuWords)
         {
             var feng =
                 sources.FirstOrDefault(s => s.SourceCase == SourceOneofCase.Feng)?.Feng ?? null;
@@ -119,6 +116,10 @@ namespace Yngdieng.Indexer.Processing
                 {/* TODO: check for IDS in FengDocument.HanziCanonical */
                     Regular = feng.HanziCanonical
                 };
+            }
+            if (fromZingzeuWords != null)
+            {
+                return fromZingzeuWords;
             }
             var historicalDoc =
                 sources.FirstOrDefault(s => s.SourceCase == SourceOneofCase.CiklinDfd)

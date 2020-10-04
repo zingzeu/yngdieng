@@ -21,6 +21,7 @@ ng_module(
         "//web/src/environments",
         "//web/src/lib",
         "//web/src/material",
+        "//web/src/protos:settings_ts_proto",
         "@npm//@angular/cdk",
         "@npm//@angular/common",
         "@npm//@angular/core",

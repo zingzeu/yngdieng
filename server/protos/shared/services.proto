@@ -12,11 +12,12 @@ service YngdiengService {
   }
   rpc SearchV2(SearchV2Request) returns (SearchV2Response) {
     option (google.api.http) = {
-      get: "/v2/search/{query}/{page_token}"
+      get: "/v2/search"
     };
   }
   rpc GetAggregatedDocument(GetAggregatedDocumentRequest) returns (HistoricalDocument);
   rpc GetFengDocument(GetFengDocumentRequest) returns (FengDocument);
+  // TODO: we need a better API resource for a "Word".
   rpc GetYngdiengDocument(GetYngdiengDocumentRequest) returns (YngdiengDocument) {
     option (google.api.http) = {
       get: "/v2/yngdieng_document/{id}"
@@ -191,4 +192,22 @@ message GetDebugInfoRequest {
 
 message DebugInfo {
   string index_version = 1;
+}
+
+enum ZhConversionPreference {
+  // Do not use.
+  LANGUAGE_PREFERENCE_UNKNOWN = 0;
+  // No conversion.
+  LANGAUGE_PREFERENCE_ORIGINAL = 1;
+  // Convert to zh-hans
+  LANGAUGE_PREFERENCE_HANS = 2;
+  // Convert to zh-hant
+  LANGAUGE_PREFERENCE_HANT = 3;
+}
+
+message UserPreference {
+  ZhConversionPreference zh_conversion_preference = 1;
+
+  // If true, includes zingzeu_words-only entries in the search result.
+  bool show_sourceless_search_results = 2;
 }

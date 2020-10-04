@@ -1,0 +1,18 @@
+<app-common-toolbar></app-common-toolbar>
+<h1>设置</h1>
+<div>
+    <mat-checkbox [(ngModel)]="showSourcelessSearchResults" (change)="onShowSourcelessSearchResultsChanged()">
+        在搜索结果中显示无来源条目</mat-checkbox>
+</div>
+<div>
+    <mat-checkbox [(ngModel)]="showOriginalOrthography" (change)="onShowOriginalOrthographyChanged()">显示原书用字
+    </mat-checkbox>
+</div>
+<mat-form-field appearance="fill">
+    <mat-label>简繁转换偏好</mat-label>
+    <mat-select [(value)]="zhConversionPreference" (selectionChange)="onZhConversionPreferenceChanged()">
+        <mat-option *ngFor="let opt of zhConversionOptions" [value]="opt.value">
+            {{opt.viewValue}}
+        </mat-option>
+    </mat-select>
+</mat-form-field>

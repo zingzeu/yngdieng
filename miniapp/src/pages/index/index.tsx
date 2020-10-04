@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import Taro, {getCurrentInstance} from '@tarojs/taro';
+import Taro, {getCurrentInstance, useShareAppMessage} from '@tarojs/taro';
 import {View, Image, Input} from '@tarojs/components';
 import {AtIcon} from 'taro-ui';
 import Header from '@/pages/header/header';
@@ -43,6 +43,9 @@ const Index = () => {
     });
   };
 
+  useShareAppMessage(() => ({
+    title: '平话电子词典',
+  }));
   useEffect(() => {
     handleRouterParams();
   }, []);

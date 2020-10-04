@@ -23,4 +23,5 @@ export interface IYngdiengEnvironment {
   showAudioPlayerButtons: boolean;
   // Whether to show an entry point to search V2.
   showSearchV2InMenu: boolean;
+  showSettingsInMenu: boolean;
 }

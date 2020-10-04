@@ -16,6 +16,10 @@
       <mat-icon matListIcon>search</mat-icon>
       <h3 matLine>八音检索</h3>
     </mat-list-item>
+    <mat-list-item (click)="onSettingsClicked()" *ngIf="showSettings">
+      <mat-icon matListIcon>settings</mat-icon>
+      <h3 matLine>设置</h3>
+    </mat-list-item>
     <mat-list-item (click)="onHelpClicked()">
       <mat-icon matListIcon>help</mat-icon>
       <h3 matLine>帮助</h3>
