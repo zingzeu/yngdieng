@@ -193,3 +193,21 @@ message GetDebugInfoRequest {
 message DebugInfo {
   string index_version = 1;
 }
+
+enum ZhConversionPreference {
+  // Do not use.
+  LANGUAGE_PREFERENCE_UNKNOWN = 0;
+  // No conversion.
+  LANGAUGE_PREFERENCE_ORIGINAL = 1;
+  // Convert to zh-hans
+  LANGAUGE_PREFERENCE_HANS = 2;
+  // Convert to zh-hant
+  LANGAUGE_PREFERENCE_HANT = 3;
+}
+
+message UserPreference {
+  ZhConversionPreference zh_conversion_preference = 1;
+
+  // If true, includes zingzeu_words-only entries in the search result.
+  bool show_sourceless_search_results = 2;
+}

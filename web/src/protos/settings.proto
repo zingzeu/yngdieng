@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package yngdieng.web.src.protos;
+
+import "shared/services.proto";
+
+// Stored in local storage.
+message Settings {
+  // 在搜索结果中显示无来源(zingzeu_words only) 的词条.
+  bool show_sourceless_search_results = 1;
+
+  // 显示feng/li条目时, 使用原书用字(而非榕典推荐用字).
+  bool show_original_orthography = 2;
+
+  .yngdieng.ZhConversionPreference zh_conversion_preference = 3;
+}

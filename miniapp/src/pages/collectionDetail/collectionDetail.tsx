@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import produce from 'immer';
-import Taro, {useRouter} from '@tarojs/taro';
+import Taro, {useRouter, useShareAppMessage} from '@tarojs/taro';
 import {View, ScrollView} from '@tarojs/components';
 import {AtIcon} from 'taro-ui';
 import Header from '@/pages/header/header';
@@ -68,6 +68,9 @@ const CollectionDetail = () => {
       });
   };
 
+  useShareAppMessage(() => ({
+    title: collectionDetail.name,
+  }));
   useEffect(() => {
     const collectionId = router.params.id;
     Taro.showNavigationBarLoading();

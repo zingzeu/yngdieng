@@ -119,7 +119,6 @@ rollup_bundle(
     output_dir = True,
     deps = [
         ":src",
-        "//shared:googleapis_annotations_ts_proto",
         "@npm//:node_modules",
         "@npm//@rollup/plugin-commonjs",
         "@npm//@rollup/plugin-node-resolve",

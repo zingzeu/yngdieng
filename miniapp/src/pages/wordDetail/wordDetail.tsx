@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import clsx from 'clsx';
-import Taro, {useRouter, render} from '@tarojs/taro';
+import Taro, {useRouter, useShareAppMessage} from '@tarojs/taro';
 import {View, Block, Image, RichText} from '@tarojs/components';
 import {AtIcon, AtTabs, AtTabsPane, AtFloatLayout} from 'taro-ui';
 import routes from '@/routes';
@@ -81,6 +81,9 @@ const WordDetail = () => {
   const [currentTab, setCurrentTab] = useState(0);
   const [storyToShow, setStoryToShow] = useState('');
 
+  useShareAppMessage(() => ({
+    title: wordDetail.word,
+  }));
   useEffect(() => {
     const wordId = decodeURIComponent(router.params.id || '');
     Taro.showNavigationBarLoading();
@@ -222,8 +225,8 @@ function renderFeng(feng: Feng) {
         </View>
       </View>
       <View className={styles.source}>
-        出处：馮愛珍. 1998. 福州方言詞典. 南京: 江蘇教育出版社. 第{' '}
-        {feng.source.page_number} 頁. 用字可能經過編輯修訂
+        出处：冯爱珍. 1998. 福州方言词典. 南京: 江苏教育出版社. 第{' '}
+        {feng.source.page_number} 页. 用字可能经过编辑修订.
       </View>
     </Block>
   );

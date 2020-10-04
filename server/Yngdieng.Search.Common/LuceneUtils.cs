@@ -26,6 +26,8 @@ namespace Yngdieng.Search.Common
 
         public static class Fields
         {
+            public static string IsSourceless { get => "is_sourceless"; }
+
             public static string DocId { get => "doc_id"; }
             public static string Hanzi { get => "hanzi"; }
             /// <summary>
