@@ -118,9 +118,7 @@ namespace Yngdieng.Common
         {
             var newProns = derivatives.Select(
                 pron => string.Join(' ', pron.Split(' ').Select(s =>
-
                  Regex.Replace(s, pattern, evaluator)
-
             ))).ToList();
             derivatives.Clear();
             derivatives.AddRange(newProns);
