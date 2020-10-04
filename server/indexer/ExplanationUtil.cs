@@ -29,7 +29,7 @@ namespace Yngdieng.Indexer
         public static string FlattenExplanation(Explanation explanation)
         {
             return string.Join(
-              " ",
+              "；",
               explanation.Senses.SelectMany(s => FlattenExplanation(s))
                 .Where(t => !string.IsNullOrWhiteSpace(t))
             );
