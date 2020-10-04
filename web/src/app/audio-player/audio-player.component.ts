@@ -5,7 +5,9 @@ import {
   YNGDIENG_ENVIRONMENT,
 } from '../../environments/environment';
 
+import {AudioAckDialogComponent} from '../audio-ack-dialog/audio-ack-dialog.component';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {MatDialog} from '@angular/material/dialog';
 import {Platform} from '@angular/cdk/platform';
 const SNACKBAR_DURATION_MS = 4000;
 
@@ -22,13 +24,13 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
 
   state: PlayerState = PlayerState.Idle;
   private currentAudio: Howl = null;
-
   private hasClicked = false;
 
   constructor(
     @Inject(YNGDIENG_ENVIRONMENT) private environment: IYngdiengEnvironment,
     private snackBar: MatSnackBar,
-    private platform: Platform
+    private platform: Platform,
+    private ackDialog: MatDialog
   ) {}
 
   private getHowlSrc() {
@@ -108,7 +110,7 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
     this.currentAudio?.unload();
   }
 
-  get shouldShow() {
+  get shouldShowPlayButton() {
     return (
       this.environment.showAudioPlayerButtons &&
       this.state !== PlayerState.Disabled
@@ -117,12 +119,15 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
 
   onClicked() {
     this.hasClicked = true;
+    // play audio
     switch (this.state) {
       case PlayerState.Idle:
         if (this.currentAudio.state() !== 'loaded') {
           this.state = PlayerState.Loading;
           this.currentAudio.once('load', () => this.currentAudio.play());
           this.currentAudio.load();
+        } else if (this.shouldShowAckDialog()) {
+          this.showTtsAcknowledgement();
         } else {
           this.currentAudio.play();
         }
@@ -135,6 +140,29 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
         // do nothing
         break;
     }
+  }
+
+  private shouldShowAckDialog() {
+    // TODO: separate localstorage availability from here
+    if (localStorage) {
+      let ackShown = localStorage.getItem('tts-acknowledgement-shown');
+      if (ackShown == null) {
+        console.log(
+          '[Audio Player] Play button is clicked for the first time.'
+        );
+        localStorage.setItem('tts-acknowledgement-shown', 'yes');
+        return true;
+      } else {
+        return false;
+      }
+    }
+  }
+
+  private showTtsAcknowledgement() {
+    let ackDialogRef = this.ackDialog.open(AudioAckDialogComponent, {
+      width: '80vw',
+    });
+    ackDialogRef.afterClosed().subscribe(() => this.currentAudio.play());
   }
 }
 
