@@ -118,9 +118,7 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
   }
 
   onClicked() {
-    if (!this.hasClicked) {
-      this.hasClicked = true;
-    }
+    this.hasClicked = true;
     // play audio
     switch (this.state) {
       case PlayerState.Idle:
