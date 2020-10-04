@@ -124,6 +124,85 @@ namespace Yngdieng.Backend.TextToSpeech
             return outStream.ToArray();
         }
 
+        private static byte[] TrimAudio(string[] inputList, int minLenMs = 700, int maxLenMs = 900)
+        {
+            WaveFormat inputFormat;
+            using (WaveFileReader reader = new WaveFileReader(inputList[0]))
+            {
+                inputFormat = reader.WaveFormat;
+            }
+
+            MemoryStream outStream = new MemoryStream();
+            using (WaveFileWriter writer = new WaveFileWriter(outStream, inputFormat))
+            {
+                byte[] buffer = new byte[1024];
+                byte[] sample = new byte[2];
+
+                ushort max = 0;
+                bool starting = true, ending = false;
+                int startBytes = 0, endBytes = 0, startPos = 0, endPos = 0;
+                foreach (string inputPath in inputList)
+                {
+                    using (WaveFileReader reader = new WaveFileReader(inputPath))
+                    {
+                        // int bytesPerSample = reader.WaveFormat.BitsPerSample / 8;
+                        // Assuming bytesPerSample == 2
+                        int bytesPerMillisecond = reader.WaveFormat.AverageBytesPerSecond / 1000;
+                        int bytesRead = reader.Read(buffer, 0, bytesPerMillisecond);
+                        while (bytesRead > 0)
+                        {
+                            bool allZero = true;
+                            for (int i = 0; i + 2 <= bytesRead; i += 2)
+                            {
+                                sample[0] = buffer[i];
+                                sample[1] = buffer[i + 1];
+                                ushort val = BitConverter.ToUInt16(sample);
+                                if (val > 0) allZero = false;
+                            }
+                            if (allZero && starting)
+                            {
+                                startBytes += bytesRead;
+                            }
+                            else if (!allZero && starting)
+                            {
+                                starting = false;
+                            }
+                            else if (allZero && !starting)
+                            {
+                                if (!ending)
+                                {
+                                    ending = true;
+                                }
+                                else
+                                {
+                                    endBytes += bytesRead;
+                                }
+                            }
+                            else if (!allZero && ending)
+                            {
+                                ending = false;
+                                endBytes = 0;
+                            }
+                            bytesRead = reader.Read(buffer, 0, bytesPerMillisecond);
+                        }
+
+                        startPos = startBytes - startBytes % reader.WaveFormat.BlockAlign;
+                        endPos = (int)reader.Length - (endBytes - endBytes % reader.WaveFormat.BlockAlign);
+                        if (endPos - startPos < minLen)
+                        {
+                            endPos = startPos + minLen;
+                        }
+                        else if (endPos - startPos > maxLen)
+                        {
+                            endPos = startPos + maxLen;
+                        }
+                        TrimWavFile(reader, writer, startPos, endPos);
+                    }
+                }
+            }
+            return outStream.ToArray();
+        }
+
         private static void TrimWavFile(WaveFileReader reader,
                                         WaveFileWriter writer,
                                         int startPos,
