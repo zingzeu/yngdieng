@@ -6,10 +6,6 @@ using Google.Protobuf;
 using Lucene.Net.Documents;
 using Lucene.Net.Index;
 using Lucene.Net.Store;
-<<<<<<< HEAD
-using Lucene.Net.Util;
-=======
->>>>>>> main
 using Yngdieng.Common;
 using Yngdieng.Indexer.Loading;
 using Yngdieng.Indexer.Processing;
