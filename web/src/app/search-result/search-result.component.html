@@ -3,7 +3,7 @@
   (navigateBack)="onNavigateBack()"
   (performSearch)="onPerformSearch($event)"></app-search-toolbar>
 
-<div class="prelude">
+<div class="prelude no-select">
   <div class="results-info">
     <div *ngIf="!isBusy && !isInvalidQuery">{{ totalLength }} 个搜索结果, 耗时 {{ computationTimeMs }}ms</div>
   </div>
