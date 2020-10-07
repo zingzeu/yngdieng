@@ -20,13 +20,13 @@ namespace Yngdieng.Indexer.Loading
         public IDictionary<string, string> Run()
         {
             return File.ReadAllLines(redirectsPath)
-                .Select(x => RemoveComment(x.Trim()).Split(' '))
+                .Select(x => RemoveComment(x).Trim().Split(' '))
                 .Where(tokens => tokens.Length == 2)
                 .Select(tokens => new {
                     FromDocId = tokens[0],
                     ToDocId = tokens[1] 
                 })
-                .ToDictionary(x=>x.FromDocId,x=>x.ToDocId);
+                .ToDictionary(x => x.FromDocId,x => x.ToDocId);
         }
 
         private static string RemoveComment(string x)
