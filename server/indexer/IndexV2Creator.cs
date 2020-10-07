@@ -62,6 +62,8 @@ namespace Yngdieng.Indexer
                            .Run();
             Console.WriteLine($"Loading Contrib...");
             var contrib = new ContribLoader(Path.Combine(inputFolder, "contrib.tsv")).Run();
+            Console.WriteLine($"Loading Redirects...");
+            var redirects = new RedirectsLoader(Path.Combine(inputFolder, "redirects.txt")).Run();
 
             index.Version = versionTag;
             index.FengDocuments.Add(feng);
@@ -77,6 +79,8 @@ namespace Yngdieng.Indexer
 
             index.YngdiengDocuments.AddRange(YngdiengDocumentUtil.Combine(
                 zingzeuWords, index.HistoricalDocuments, feng, contrib));
+
+            index.DocIdRedirections.Add(redirects);
 
             var debugJsonOutput = index.ToString();
             File.WriteAllText(Path.Combine(outputFolder, "index_debug.json"), debugJsonOutput);

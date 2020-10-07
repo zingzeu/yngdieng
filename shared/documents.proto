@@ -235,6 +235,8 @@ message YngdiengIndex {
   repeated FengDocument feng_documents = 3;
 
   repeated YngdiengDocument yngdieng_documents = 5;
+
+  map<string, string> doc_id_redirections = 6;
 }
 
 message Hanzi {

@@ -11,9 +11,15 @@ namespace Yngdieng.Backend.Services
         public override Task<YngdiengDocument> GetYngdiengDocument(
             GetYngdiengDocumentRequest request, ServerCallContext context)
         {
+            var docId = request.Id;
+            if (_indexHolder.GetIndex().DocIdRedirections.ContainsKey(docId)) {
+                var redirectionTarget = _indexHolder.GetIndex().DocIdRedirections[docId];
+                _logger.LogInformation($"DocId Redirection: {docId} -> {redirectionTarget}");
+                docId = redirectionTarget;
+            }
             return Task.FromResult(
                 SantizeForServing(_indexHolder.GetIndex()
-                                      .YngdiengDocuments.Where(d => d.DocId == request.Id)
+                                      .YngdiengDocuments.Where(d => d.DocId == docId)
                                       .FirstOrDefault()));
         }
 
