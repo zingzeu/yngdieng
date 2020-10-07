@@ -25,7 +25,7 @@ namespace Yngdieng.Indexer.Loading
                 var entry = contribEntries[i];
                 var tmp = new ContribDocument
                 {
-                    Hanzi = entry.Hanzi,
+                    Hanzi = entry.Hanzi.Replace("*", ""),
                     YngpingUnderlying = entry.PronUnderlying,
                     YngpingSandhi = entry.PronSandhi,
                     ExplanationRaw = entry.ExplanationRaw,
