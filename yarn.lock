@@ -1207,10 +1207,10 @@
     c8 "~7.1.0"
     jasmine-reporters "~2.3.2"
 
-"@bazel/karma@2.2.0":
-  version "2.2.0"
-  resolved "https://registry.yarnpkg.com/@bazel/karma/-/karma-2.2.0.tgz#9bf6f6f1aa5f12b25468b1cad5e4404138436600"
-  integrity sha512-qyVE7vZ/qaibmpmcRdjS0rlorLGR0zZtlUSImVVTcPTSXqt364fp8TWBWe7oOneJ1SOVyUmTOAzyE86ArxZ/AA==
+"@bazel/karma@2.2.1":
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/@bazel/karma/-/karma-2.2.1.tgz#f59bf39fe044940c87c5ab00cc0e0dcdfe522cd9"
+  integrity sha512-4rOeweI9IaQ60/T1igk6IcqmX6v+OyIQFLzieeYrb/EYs+iNirw8sZtsVjMKoZ59dA1zSjxDIVWH0yRJI/SAwQ==
   dependencies:
     tmp "0.1.0"
 
