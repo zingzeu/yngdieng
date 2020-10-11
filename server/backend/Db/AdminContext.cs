@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
+using NodaTime;
+using Npgsql.NodaTime;
 namespace Yngdieng.Backend.Db
 {
     public sealed class YngdiengContext : DbContext
@@ -16,9 +18,9 @@ namespace Yngdieng.Backend.Db
         public DbSet<WordListWord> WordListWords { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder options)
-           => options.UseNpgsql("Host=localhost;Database=yngdieng;Username=postgres;Password=postgres")
+           => options.UseNpgsql("Host=localhost;Database=yngdieng;Username=postgres;Password=postgres", o => o.UseNodaTime())
            .UseSnakeCaseNamingConvention()
-           .UseNodaTime();
+        ;
 
     }
 
@@ -98,22 +100,26 @@ namespace Yngdieng.Backend.Db
 
         public string MimeType { get; set; }
 
-
+        public Instant CreationTime { get; set; }
     }
 
-    public sealed class WordAudioClip
-    {
-
-    }
 
     public sealed class WordList
     {
+        public int WordListId { get; set; }
 
+        public string Title { get; set; }
+        public string Description { get; set; }
+
+        public Instant UpdateTime { get; set; }
+        public Instant CreationTime { get; set; }
     }
 
     public sealed class WordListWord
     {
-
+        public int WordListId { get; set; }
+        public int WordId { get; set; }
+        public int Rank { get; set; }
     }
 
 }
