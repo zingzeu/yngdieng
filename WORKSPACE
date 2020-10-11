@@ -209,11 +209,11 @@ _go_image_repos()
 
 http_archive(
     name = "com_github_grpc_ecosystem_grpc_gateway",
-    sha256 = "0630c364e47aa7f813dd92f1874c778e496251304719c65e959675b15f7c7f15",
-    strip_prefix = "grpc-gateway-1.15.0",
+    sha256 = "f03e3554d1547f7b57009beab88922612abf2d8fc7c2db9fece998cb625c530e",
+    strip_prefix = "grpc-gateway-1.15.2",
     urls = [
-        "https://github.wuyanzheshui.workers.dev/grpc-ecosystem/grpc-gateway/archive/v1.15.0.tar.gz",
-        "https://github.com/grpc-ecosystem/grpc-gateway/archive/v1.15.0.tar.gz",
+        "https://github.wuyanzheshui.workers.dev/grpc-ecosystem/grpc-gateway/archive/v1.15.2.tar.gz",
+        "https://github.com/grpc-ecosystem/grpc-gateway/archive/v1.15.2.tar.gz",
     ],
 )
 
