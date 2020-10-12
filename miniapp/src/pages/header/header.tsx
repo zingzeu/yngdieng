@@ -10,7 +10,8 @@ import styles from './header.module.scss';
 interface MenuItem {
   title: string;
   iconType: string;
-  navigateToRoute: string;
+  navigateToRoute?: string;
+  navigateToMiniApp?: any;
 }
 
 const menuItems: Array<MenuItem> = [
@@ -29,6 +30,17 @@ const menuItems: Array<MenuItem> = [
     iconType: 'alert-circle',
     navigateToRoute: routes.ABOUT,
   },
+  {
+    title: '意见反馈',
+    iconType: 'message',
+    navigateToMiniApp: {
+      // 兔小巢
+      appId: 'wx8abaf00ee8c3202e',
+      extraData: {
+        id: '172407',
+      },
+    },
+  },
 ];
 
 const Header = ({injectedComponents = <Block />}) => {
@@ -40,6 +52,13 @@ const Header = ({injectedComponents = <Block />}) => {
     Taro.redirectTo({
       url: routePath,
     });
+  };
+  const menuItemClicked = (menuItem: MenuItem) => {
+    if (menuItem.navigateToRoute) {
+      navigateTo(menuItem.navigateToRoute);
+    } else if (menuItem.navigateToMiniApp) {
+      Taro.navigateToMiniProgram(menuItem.navigateToMiniApp);
+    }
   };
 
   return (
@@ -92,7 +111,7 @@ const Header = ({injectedComponents = <Block />}) => {
                 <View
                   className={styles.menuItem}
                   key={menuItem.title}
-                  onClick={() => navigateTo(menuItem.navigateToRoute)}
+                  onClick={() => menuItemClicked(menuItem)}
                 >
                   <AtIcon value={menuItem.iconType}></AtIcon>
                   <Text className={styles.text}>{menuItem.title}</Text>
