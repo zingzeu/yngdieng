@@ -15,7 +15,9 @@ namespace Yngdieng.Search.Common
         public static Analyzer GetAnalyzer()
         {
             var analyzerPerField = new Dictionary<string, Analyzer> {
+                { Fields.Mandarin, new SmartChineseAnalyzer(AppLuceneVersion)},
                 { Fields.Hanzi, new SmartChineseAnalyzer(AppLuceneVersion)},
+                { Fields.HanziAlternative, new SmartChineseAnalyzer(AppLuceneVersion)},
                 { Fields.Explanation, new SmartChineseAnalyzer(AppLuceneVersion)}
                 };
             // create an analyzer to process the text
@@ -30,6 +32,10 @@ namespace Yngdieng.Search.Common
 
             public static string DocId { get => "doc_id"; }
             public static string Hanzi { get => "hanzi"; }
+
+            // 普通话直译
+            public static string Mandarin { get => "mandarin"; }
+            public static string HanziAlternative { get => "hanzi_alt"; }
             /// <summary>
             /// Exact sandhi yngping
             /// </summary>
