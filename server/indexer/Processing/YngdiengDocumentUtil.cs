@@ -38,6 +38,10 @@ namespace Yngdieng.Indexer.Processing
                     HanziCanonical = new Hanzi { Regular = zingzeuWordsEntry.Hanzi },
                     YngpingSandhi =
                         zingzeuWordsEntry.Prons.FirstOrDefault()?.Pron() ?? string.Empty,
+                    IndexingExtension = new YngdiengDocument.Types.IndexingExtension
+                    {
+                        MandarinWords = { zingzeuWordsEntry.MandarinWords }
+                    }
                 };
 
                 // TODO: Match Historical Docs

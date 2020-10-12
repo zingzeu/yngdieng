@@ -30,6 +30,9 @@ namespace Yngdieng.Search.Common
 
             public static string DocId { get => "doc_id"; }
             public static string Hanzi { get => "hanzi"; }
+
+            // 普通话直译
+            public static string Mandarin { get => "mandarin"; }
             /// <summary>
             /// Exact sandhi yngping
             /// </summary>
