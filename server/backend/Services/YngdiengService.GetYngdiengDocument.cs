@@ -12,7 +12,8 @@ namespace Yngdieng.Backend.Services
             GetYngdiengDocumentRequest request, ServerCallContext context)
         {
             var docId = request.Id;
-            if (_indexHolder.GetIndex().DocIdRedirections.ContainsKey(docId)) {
+            if (_indexHolder.GetIndex().DocIdRedirections.ContainsKey(docId))
+            {
                 var redirectionTarget = _indexHolder.GetIndex().DocIdRedirections[docId];
                 _logger.LogInformation($"DocId Redirection: {docId} -> {redirectionTarget}");
                 docId = redirectionTarget;

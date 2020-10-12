@@ -1,11 +1,19 @@
 ﻿using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using NodaTime;
+using Npgsql;
 using Npgsql.NodaTime;
 namespace Yngdieng.Backend.Db
 {
     public sealed class YngdiengContext : DbContext
     {
+
+        static YngdiengContext()
+            => NpgsqlConnection.GlobalTypeMapper
+                .MapEnum<ContribScope>()
+                .MapEnum<Variant>()
+                .MapEnum<SandhiCategory>();
+
         public DbSet<Word> Words { get; set; }
         public DbSet<Pron> Prons { get; set; }
 
@@ -21,6 +29,20 @@ namespace Yngdieng.Backend.Db
            => options.UseNpgsql("Host=localhost;Database=yngdieng;Username=postgres;Password=postgres", o => o.UseNodaTime())
            .UseSnakeCaseNamingConvention()
         ;
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder
+                .HasPostgresEnum<ContribScope>()
+                .HasPostgresEnum<Variant>()
+                .HasPostgresEnum<SandhiCategory>();
+            builder.Entity<Pron>().HasKey(p => new { p.WordId, p.PronId });
+            builder.Entity<Pron>().Property(b => b.PronId).UseIdentityByDefaultColumn();
+            builder.Entity<PronAudioClip>().HasKey(p => new { p.WordId, p.PronId, p.AudioClipId });
+            builder.Entity<Contrib>().HasKey(p => new { p.WordId, p.ContribId });
+            builder.Entity<Contrib>().Property(b => b.ContribId).UseIdentityByDefaultColumn();
+            builder.Entity<WordListWord>().HasKey(p => new { p.WordListId, p.WordId });
+        }
 
     }
 
@@ -40,7 +62,7 @@ namespace Yngdieng.Backend.Db
         public List<string> MandarinWords { get; set; }
 
         // G=
-        public string Gloss { get; set; }
+        public string? Gloss { get; set; }
 
 
     }
@@ -53,7 +75,26 @@ namespace Yngdieng.Backend.Db
         public string Pronunciation { get; set; }
 
         // Word frequency for IME
-        public long Weight { get; set; }
+        public long? Weight { get; set; }
+
+        public Variant? Variant { get; set; }
+
+        public SandhiCategory? SandhiCategory { get; set; }
+    }
+
+    public enum Variant
+    {
+        UNSPECIFIED = 0,
+        FUZHOU_CITY = 1,
+        LIANJIANG = 2,
+        CIKLING = 3
+    }
+
+    public enum SandhiCategory
+    {
+        UNSPECIFIED = 0,
+        SANDHI = 1,
+        BENGZI = 2
     }
 
     public sealed class PronAudioClip
@@ -69,7 +110,7 @@ namespace Yngdieng.Backend.Db
         public int WordId { get; set; }
         public int ContribId { get; set; }
 
-        public ContribScope Source { get; set; }
+        public ContribScope Scope { get; set; }
 
     }
 
@@ -85,7 +126,7 @@ namespace Yngdieng.Backend.Db
 
         public string DisplayName { get; set; }
 
-        public string Location { get; set; }
+        public string? Location { get; set; }
     }
 
     public sealed class AudioClip
@@ -107,7 +148,6 @@ namespace Yngdieng.Backend.Db
     public sealed class WordList
     {
         public int WordListId { get; set; }
-
         public string Title { get; set; }
         public string Description { get; set; }
 
@@ -119,7 +159,12 @@ namespace Yngdieng.Backend.Db
     {
         public int WordListId { get; set; }
         public int WordId { get; set; }
-        public int Rank { get; set; }
+        public int Ordering { get; set; }
+
+        public string Explanation { get; set; }
+
+        public string Description { get; set; }
+        public string[] Authors { get; set; }
     }
 
 }
