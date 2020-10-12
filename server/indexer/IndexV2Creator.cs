@@ -121,7 +121,7 @@ namespace Yngdieng.Indexer
                         }
                         foreach (var a in yDoc.HanziAlternatives)
                         {
-                            doc.Add(new TextField(LuceneUtils.Fields.HanziAlternative, a, Field.Store.NO));
+                            doc.Add(new TextField(LuceneUtils.Fields.HanziAlternative, a.Regular, Field.Store.NO));
                         }
                         // Simplify Hanzi for search
                         doc.Add(new TextField(LuceneUtils.Fields.Hanzi, openCcClient.SimplifyHukziuText(yDoc.HanziCanonical.Regular), Field.Store.NO));
