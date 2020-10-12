@@ -38,6 +38,7 @@ namespace Yngdieng.Indexer.Processing
                     HanziCanonical = new Hanzi { Regular = zingzeuWordsEntry.Hanzi },
                     YngpingSandhi =
                         zingzeuWordsEntry.Prons.FirstOrDefault()?.Pron() ?? string.Empty,
+                    HanziAlternatives = { zingzeuWordsEntry.HanziAlt.Select(a => new Hanzi { Regular = a }) },
                     IndexingExtension = new YngdiengDocument.Types.IndexingExtension
                     {
                         MandarinWords = { zingzeuWordsEntry.MandarinWords }
@@ -99,12 +100,10 @@ namespace Yngdieng.Indexer.Processing
                 doc.HanziCanonical = FindHanziCanonical(doc.Sources, doc.HanziCanonical);
                 doc.YngpingUnderlying = FindYngpingUnderlying(doc.Sources, doc.YngpingUnderlying);
                 doc.YngpingSandhi = FindYngpingSandhi(doc.Sources, doc.YngpingSandhi);
-                doc.IndexingExtension = new YngdiengDocument.Types.IndexingExtension
-                {
-                    YngpingPermutations = { CollectYngpingPermutations(doc.Sources) },
-                    HanziMatchable = { CollectHanziMatchable(doc.Sources) },
-                    ExplanationText = { CollectExplanationTexts(doc.Sources) }
-                };
+                doc.IndexingExtension = doc.IndexingExtension ?? new YngdiengDocument.Types.IndexingExtension { };
+                doc.IndexingExtension.YngpingPermutations.AddRange(CollectYngpingPermutations(doc.Sources));
+                doc.IndexingExtension.HanziMatchable.AddRange(CollectHanziMatchable(doc.Sources));
+                doc.IndexingExtension.ExplanationText.AddRange(CollectExplanationTexts(doc.Sources));
             }
             return results;
         }

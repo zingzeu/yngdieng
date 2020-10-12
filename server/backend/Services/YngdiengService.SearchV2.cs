@@ -124,10 +124,12 @@ namespace Yngdieng.Backend.Services
         private static LuceneQuery HandleHanziQuery(string queryText)
         {
             var queryParser = new MultiFieldQueryParser(LuceneUtils.AppLuceneVersion,
-            new string[] { LuceneUtils.Fields.Hanzi, LuceneUtils.Fields.Explanation },
+            new string[] { LuceneUtils.Fields.Mandarin, LuceneUtils.Fields.Hanzi, LuceneUtils.Fields.HanziAlternative, LuceneUtils.Fields.Explanation },
                         LuceneUtils.GetAnalyzer(),
                         new Dictionary<string, float>{
+                {LuceneUtils.Fields.Mandarin, 200},
                 {LuceneUtils.Fields.Hanzi, 100},
+                {LuceneUtils.Fields.HanziAlternative, 50},
                 {LuceneUtils.Fields.Explanation, 1}
                         });
             return queryParser.Parse(queryText);

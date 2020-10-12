@@ -114,6 +114,15 @@ namespace Yngdieng.Indexer
                             new TextField(LuceneUtils.Fields.Hanzi, yDoc.HanziCanonical.Regular, Field.Store.NO),
                             new StringField(LuceneUtils.Fields.YngpingSandhiTonePattern, GetTonePattern(yDoc.YngpingSandhi), Field.Store.NO)
                         };
+                        foreach (var m in yDoc.IndexingExtension.MandarinWords)
+                        {
+                            doc.Add(new TextField(LuceneUtils.Fields.Mandarin, m, Field.Store.NO));
+                            doc.Add(new TextField(LuceneUtils.Fields.Mandarin, openCcClient.SimplifyMandarinText(m), Field.Store.NO));
+                        }
+                        foreach (var a in yDoc.HanziAlternatives)
+                        {
+                            doc.Add(new TextField(LuceneUtils.Fields.HanziAlternative, a, Field.Store.NO));
+                        }
                         // Simplify Hanzi for search
                         doc.Add(new TextField(LuceneUtils.Fields.Hanzi, openCcClient.SimplifyHukziuText(yDoc.HanziCanonical.Regular), Field.Store.NO));
                         foreach (var e in yDoc.IndexingExtension.ExplanationText)
