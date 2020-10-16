@@ -1,4 +1,4 @@
-package(default_visibility = ["//web/src:__subpackages__"])
+package(default_visibility = ["//web/admin:__subpackages__"])
 
 filegroup(
     name = "assets",

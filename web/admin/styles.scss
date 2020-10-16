@@ -1,0 +1,24 @@
+/* You can add global styles to this file, and also import other style files */
+
+@import 'custom-theme';
+
+@font-face {
+  font-family: 'Ext-0';
+  src: url('assets/fonts/yngdieng-extended-0.woff') format('woff'),
+    /* Pretty Modern Browsers */ url('assets/fonts/yngdieng-extended-0.ttf')
+      format('truetype'); /* Safari, Android, iOS */
+}
+
+@font-face {
+  font-family: 'Ext-1';
+  src: url('assets/fonts/yngdieng-extended-1.woff') format('woff'),
+    /* Pretty Modern Browsers */ url('assets/fonts/yngdieng-extended-1.ttf')
+      format('truetype'); /* Safari, Android, iOS */
+}
+
+$background-color: #f7efed;
+
+body {
+  margin: 0px;
+  background-color: $background-color;
+}
