@@ -4,7 +4,7 @@
         <a>榕典后台</a>
     </mat-toolbar>
     <mat-sidenav-container class="content" hasBackdrop="false">
-        <mat-sidenav mode="push" [(opened)]="sideNavOpened" class="no-select"><app-sidenav-content></app-sidenav-content></mat-sidenav>
+        <mat-sidenav mode="side" [(opened)]="sideNavOpened" class="no-select"><app-sidenav-content></app-sidenav-content></mat-sidenav>
         <mat-sidenav-content>
             <router-outlet></router-outlet>
         </mat-sidenav-content>

@@ -1,0 +1,15 @@
+.container {
+  display: grid;
+  grid-template-rows: 3em auto;
+  grid-template-columns: auto auto;
+  h2 {
+    grid-row: 1;
+    grid-column: 1;
+  }
+}
+
+.table {
+  grid-row: 2;
+  grid-column-start: 1;
+  grid-column-end: span 2;
+}
