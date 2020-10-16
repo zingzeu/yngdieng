@@ -10,7 +10,7 @@ namespace Yngdieng.Backend.Db
 
         static YngdiengContext()
             => NpgsqlConnection.GlobalTypeMapper
-                .MapEnum<ContribScope>()
+                .MapEnum<ExtensionScope>()
                 .MapEnum<Variant>()
                 .MapEnum<SandhiCategory>();
 
@@ -19,7 +19,7 @@ namespace Yngdieng.Backend.Db
 
         public DbSet<PronAudioClip> PronAudioClips { get; set; }
 
-        public DbSet<Contrib> Contribs { get; set; }
+        public DbSet<Extension> Extensions { get; set; }
         public DbSet<Speaker> Speakers { get; set; }
         public DbSet<AudioClip> AudioClips { get; set; }
         public DbSet<WordList> WordLists { get; set; }
@@ -33,14 +33,15 @@ namespace Yngdieng.Backend.Db
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder
-                .HasPostgresEnum<ContribScope>()
+                .HasPostgresEnum<ExtensionScope
+    >()
                 .HasPostgresEnum<Variant>()
                 .HasPostgresEnum<SandhiCategory>();
             builder.Entity<Pron>().HasKey(p => new { p.WordId, p.PronId });
             builder.Entity<Pron>().Property(b => b.PronId).UseIdentityByDefaultColumn();
             builder.Entity<PronAudioClip>().HasKey(p => new { p.WordId, p.PronId, p.AudioClipId });
-            builder.Entity<Contrib>().HasKey(p => new { p.WordId, p.ContribId });
-            builder.Entity<Contrib>().Property(b => b.ContribId).UseIdentityByDefaultColumn();
+            builder.Entity<Extension>().HasKey(p => new { p.WordId, p.ExtensionId });
+            builder.Entity<Extension>().Property(b => b.ExtensionId).UseIdentityByDefaultColumn();
             builder.Entity<WordListWord>().HasKey(p => new { p.WordListId, p.WordId });
         }
 
@@ -105,21 +106,21 @@ namespace Yngdieng.Backend.Db
         public int AudioClipId { get; set; }
     }
 
-    public sealed class Contrib
+    public sealed class Extension
     {
         public int WordId { get; set; }
-        public int ContribId { get; set; }
+        public int ExtensionId { get; set; }
         public string Explanation { get; set; }
         public string[] Contributors { get; set; }
         public string Source { get; set; }
 
-        public ContribScope Scope { get; set; }
+        public ExtensionScope Scope { get; set; }
 
     }
 
-    public enum ContribScope
+    public enum ExtensionScope
     {
-        DEFAULT = 0,
+        CONTRIB = 0,
         DRAGON_BOAT = 1
     }
 
@@ -136,7 +137,7 @@ namespace Yngdieng.Backend.Db
     {
         public int AudioClipId { get; set; }
 
-        public int SpeakerId { get; set; }
+        public int? SpeakerId { get; set; }
 
         public string Pronunciation { get; set; }
 
@@ -164,10 +165,6 @@ namespace Yngdieng.Backend.Db
         public int WordId { get; set; }
         public int Ordering { get; set; }
 
-        public string Explanation { get; set; }
-
-        public string Description { get; set; }
-        public string[] Authors { get; set; }
     }
 
 }

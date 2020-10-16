@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Aliyun.OSS.SDK.NetCore" Version="2.12.0" />
     <PackageReference Include="EFCore.NamingConventions" Version="1.1.0" />
     <PackageReference Include="Grpc.AspNetCore" Version="2.32.0" />
     <PackageReference Include="Grpc.AspNetCore.Server.Reflection" Version="2.32.0" />

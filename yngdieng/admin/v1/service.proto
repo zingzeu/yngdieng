@@ -6,47 +6,148 @@ import "google/api/annotations.proto";
 
 service AdminService {
   rpc CreateWord(CreateWordRequest) returns (Word) {
-    option (google.api.http) {
-    post:
-      "v1/words" body: "word"
+    option (google.api.http) = {
+      post: "v1/words"
+      body: "word"
     };
   };
   rpc GetWord(GetWordRequest) returns (Word) {
-    option (google.api.http) {
-    get:
-      "/v1/{name=words/*}"
+    option (google.api.http) = {
+      get: "/v1/{name=words/*}"
     };
   };
-  rpc ListWords(ListWordsRequest) return (ListWordsResponse) {
-    option (google.api.http) {
-    get:
-      "/v1/words"
+  rpc UpdateWord(UpdateWordRequest) returns (Word) {
+    option (google.api.http) = {
+      patch: "/v1/{word.name=words/*}"
+      body: "word"
+    }
+  };
+  rpc ListWords(ListWordsRequest) returns (ListWordsResponse) {
+    option (google.api.http) = {
+      get: "/v1/words"
     };
   };
-  rpc DeleteWord(DeleteWordRequest) return (Word) {
+  rpc DeleteWord(DeleteWordRequest) returns (Word) {
     option (google.api.http) = {
       delete: "/v1/{name=words/*}"
     };
   };
   // TODO: MergeWord();
 
-  CreateWordList();
-  GetWordList();
-  ListWordLists();
-  DeleteWordList();
-  AddWordListWord();
+  // CreatePron
+  // DeletePron
+  // UpdatePron
+  // BatchGetPron
+  // AttachPronAudioClip
+  // DetachPronAudioClip
+
+  // CreateExtension
+  // UpdateExtension
+  // DeleteExtension
+  // GetExtension
+
+  rpc CreateWordList(CreateWordListRequest) returns (WordList);
+  rpc GetWordList(GetWordListRequest) returns (WordList);
+  rpc UpdateWordList(UpdateWordListRequest) returns (WordList);
+  rpc ListWordLists(ListWordListsRequest) returns (ListWordListsResponses);
+  rpc DeleteWordList(DeleteWordListRequest) returns (google.protobuf.Empty);
+
+  // rpc CreateAudioClip()
+  // DeleteAudioClip()
+  // UpdateAudioClip()
+  // ListAudioClips()
+  // TODO: import, export
 }
 
 // Zingzeu Word
 // Could represent other entities in the future.
 message Word {
   option (google.api.resource) = {
-    type: "adminapi.ydict.net/Word",
+    type: "adminapi.ydict.net/Word"
     pattern: "words/{word}"
   };
 
-  // The resource name of the book.
+  // The resource name of the word.
   // Format: words/{word}
+  string name = 1;
+
+  string hanzi = 2;
+
+  repeated string hanzi_alternatives = 3;
+
+  repeated string mandarin_words = 4;
+
+  string gloss = 5;
+
+  // Resource names of the Prons.
+  repeated string prons = 6;
+
+  repeated string extensions = 7;
+}
+
+message Pron {
+  option (google.api.resource) = {
+    type: "adminapi.ydict.net/Pron"
+    pattern: "words/{word}/prons/{pron}"
+  };
+
+  // The resource name of the Pron.
+  // Format: words/{word}/prons/{pron}
+  string name = 1;
+
+  string pronunciation = 2;
+
+  int64 weight = 3;
+
+  Variant variant = 4;
+
+  SandhiCategory sandhi_category = 5;
+}
+
+message AudioClip {
+  option (google.api.resource) = {
+    type: "adminapi.ydict.net/AudioClip"
+    pattern: "audioClips/{audioClip}"
+  };
+
+  string name = 1;
+
+  // Resource name of the speaker
+  string speaker = 2;
+
+  string pronunciation = 3;
+
+  AudioResource audio = 4;
+}
+
+enum Variant {
+  // Default. Do not use.
+  VARIANT_UNSPECIFIED = 0;
+
+  VARIANT_FUZHOU_CITY = 1;
+
+  VARIANT_LIANJIANG = 2;
+
+  VARIANT_CIKLING = 3;
+}
+
+enum SandhiCategory {
+  // Default.
+  SANDHI_CATEGORY_UNSPECIFIED = 0;
+
+  SANDHI_CATEGORY_SANDHI = 1;
+
+  SANDHI_CATEGORY_BENGZI = 2;
+}
+
+message WordList {
+  option (google.api.resource) = {
+    type: "adminapi.ydict.net/WordList",
+    pattern: "wordLists/{wordList}"
+  };
+
+  // The resource name of the WordList.
+  // Format: wordLists/{wordList}
   string name = 1;
 }
 
@@ -61,6 +162,12 @@ message CreateWordRequest {
 
 message GetWordRequest {
   string name = 1;
+}
+
+message UpdateWordRequest {
+  Word word = 1;
+
+  google.protobuf.FieldMask update_mask = 2;
 }
 
 message ListWordsRequest {
@@ -78,4 +185,11 @@ message ListWordsResponse {
   string next_page_token = 2;
 
   int32 total_size = 3;
+}
+
+message AudioResource {
+  oneof resource {
+    string remote_file = 1;
+    string upload_token = 2;
+  }
 }
