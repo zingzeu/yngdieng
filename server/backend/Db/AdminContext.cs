@@ -109,6 +109,9 @@ namespace Yngdieng.Backend.Db
     {
         public int WordId { get; set; }
         public int ContribId { get; set; }
+        public string Explanation { get; set; }
+        public string[] Contributors { get; set; }
+        public string Source { get; set; }
 
         public ContribScope Scope { get; set; }
 

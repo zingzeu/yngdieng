@@ -1,0 +1,4 @@
+syntax = "proto3";
+
+package yngdieng.admin.v1;
+option csharp_namespace = "Yngdieng.Admin.V1.Protos";

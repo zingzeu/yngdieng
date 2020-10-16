@@ -1,0 +1,83 @@
+syntax = "proto3";
+
+package yngdieng.frontend.v1;
+option csharp_namespace = "Yngdieng.Frontend.V1.Protos";
+import "google/api/annotations.proto";
+service FrontendService {
+}
+message Word {
+  option (google.api.resource) = {
+    type: "api.ydict.net/Word",
+    pattern: "words/{word}"
+  };
+
+  string hanzi = 1;
+
+  message Pronuniciation {
+    string display_name = 1;
+    string pronunciation = 2;
+    AudioResource audio = 3;
+  }
+
+  // Recommended pronunciations.
+  repeated Pronunciation pronunciations = 2;
+
+  repeated RichTextNode explanation = 3;
+
+  message AudioCard {
+    string pronunciation = 1;
+    string hint_primary = 2;
+    string hint_secondary = 3;
+    AudioResource audio = 4;
+  }
+
+  repeated WordList word_lists = 5;
+}
+
+message WordList {
+  option (google.api.resource) = {
+    type: "api.ydict.net/WordList",
+    pattern: "wordLists/{wordList}"
+  };
+
+  string name = 1;
+
+  string title = 2;
+
+  string description = 3;
+
+  int32 upvotes = 4;
+}
+
+message AudioResource {
+  oneof resource {
+    repeated string remote_file = 1;
+  }
+}
+
+message RichTextNode {
+  message VerticalContainerNode {
+    repeated RichTextNode children = 1;
+  }
+  message InlineNode {
+    oneof node {
+      TextNode text = 1;
+    }
+  }
+  message InlineContainerNode {
+    repeated InlineNode children = 1;
+  }
+  message ListNode {
+    bool ordered = 1;
+    repeated RichTextNode children = 2;
+  }
+  message TextNode {
+    string text = 1;
+    repeated string styles = 2;
+  }
+  oneof node {
+    VerticalContainerNode vertical_container = 1;
+    InlineContainerNode inline_container = 3;
+    ListNode list = 2;
+  }
+}

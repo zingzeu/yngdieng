@@ -1,0 +1,81 @@
+syntax = "proto3";
+
+package yngdieng.admin.v1;
+option csharp_namespace = "Yngdieng.Admin.V1.Protos";
+import "google/api/annotations.proto";
+
+service AdminService {
+  rpc CreateWord(CreateWordRequest) returns (Word) {
+    option (google.api.http) {
+    post:
+      "v1/words" body: "word"
+    };
+  };
+  rpc GetWord(GetWordRequest) returns (Word) {
+    option (google.api.http) {
+    get:
+      "/v1/{name=words/*}"
+    };
+  };
+  rpc ListWords(ListWordsRequest) return (ListWordsResponse) {
+    option (google.api.http) {
+    get:
+      "/v1/words"
+    };
+  };
+  rpc DeleteWord(DeleteWordRequest) return (Word) {
+    option (google.api.http) = {
+      delete: "/v1/{name=words/*}"
+    };
+  };
+  // TODO: MergeWord();
+
+  CreateWordList();
+  GetWordList();
+  ListWordLists();
+  DeleteWordList();
+  AddWordListWord();
+}
+
+// Zingzeu Word
+// Could represent other entities in the future.
+message Word {
+  option (google.api.resource) = {
+    type: "adminapi.ydict.net/Word",
+    pattern: "words/{word}"
+  };
+
+  // The resource name of the book.
+  // Format: words/{word}
+  string name = 1;
+}
+
+message CreateWordRequest {
+
+  // The word to create
+  Word word = 1 [(google.api.field_behaviour) = REQUIRED];
+
+  // Must be a hexidecimal number.
+  string word_id = 2;
+}
+
+message GetWordRequest {
+  string name = 1;
+}
+
+message ListWordsRequest {
+
+  // TODO: filter, order_by
+
+  int32 page_size = 1;
+
+  string page_token = 2;
+}
+
+message ListWordsResponse {
+  repeated Word words = 1;
+
+  string next_page_token = 2;
+
+  int32 total_size = 3;
+}
