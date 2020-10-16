@@ -10,8 +10,8 @@ using Yngdieng.Backend.Db;
 
 namespace Yngdieng.Backend.Migrations
 {
-    [DbContext(typeof(YngdiengContext))]
-    partial class YngdiengContextModelSnapshot : ModelSnapshot
+    [DbContext(typeof(AdminContext))]
+    partial class AdminContextModelSnapshot : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {

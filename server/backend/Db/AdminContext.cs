@@ -2,13 +2,12 @@
 using Microsoft.EntityFrameworkCore;
 using NodaTime;
 using Npgsql;
-using Npgsql.NodaTime;
 namespace Yngdieng.Backend.Db
 {
-    public sealed class YngdiengContext : DbContext
+    public sealed class AdminContext : DbContext
     {
 
-        static YngdiengContext()
+        static AdminContext()
             => NpgsqlConnection.GlobalTypeMapper
                 .MapEnum<ExtensionScope>()
                 .MapEnum<Variant>()
@@ -69,7 +68,6 @@ namespace Yngdieng.Backend.Db
 
         // G=
         public string? Gloss { get; set; }
-
 
     }
 

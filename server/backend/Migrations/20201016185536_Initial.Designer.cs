@@ -11,7 +11,7 @@ using Yngdieng.Backend.Db;
 
 namespace Yngdieng.Backend.Migrations
 {
-    [DbContext(typeof(YngdiengContext))]
+    [DbContext(typeof(AdminContext))]
     [Migration("20201016185536_Initial")]
     partial class Initial
     {
