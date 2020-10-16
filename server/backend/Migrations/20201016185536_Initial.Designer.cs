@@ -12,7 +12,7 @@ using Yngdieng.Backend.Db;
 namespace Yngdieng.Backend.Migrations
 {
     [DbContext(typeof(YngdiengContext))]
-    [Migration("20201016184331_Initial")]
+    [Migration("20201016185536_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -59,6 +59,9 @@ namespace Yngdieng.Backend.Migrations
 
                     b.HasKey("AudioClipId")
                         .HasName("pk_audio_clips");
+
+                    b.HasIndex("SpeakerId")
+                        .HasName("ix_audio_clips_speaker_id");
 
                     b.ToTable("audio_clips");
                 });
@@ -151,6 +154,9 @@ namespace Yngdieng.Backend.Migrations
 
                     b.HasKey("WordId", "PronId", "AudioClipId")
                         .HasName("pk_pron_audio_clips");
+
+                    b.HasIndex("WordId", "AudioClipId")
+                        .HasName("ix_pron_audio_clips_word_id_audio_clip_id");
 
                     b.ToTable("pron_audio_clips");
                 });
@@ -260,7 +266,65 @@ namespace Yngdieng.Backend.Migrations
                     b.HasKey("WordListId", "WordId")
                         .HasName("pk_word_list_words");
 
+                    b.HasIndex("WordId")
+                        .HasName("ix_word_list_words_word_id");
+
                     b.ToTable("word_list_words");
+                });
+
+            modelBuilder.Entity("Yngdieng.Backend.Db.AudioClip", b =>
+                {
+                    b.HasOne("Yngdieng.Backend.Db.Speaker", null)
+                        .WithMany()
+                        .HasForeignKey("SpeakerId")
+                        .HasConstraintName("fk_audio_clips_speakers_speaker_id");
+                });
+
+            modelBuilder.Entity("Yngdieng.Backend.Db.Extension", b =>
+                {
+                    b.HasOne("Yngdieng.Backend.Db.Word", null)
+                        .WithMany()
+                        .HasForeignKey("WordId")
+                        .HasConstraintName("fk_extensions_words_word_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Yngdieng.Backend.Db.Pron", b =>
+                {
+                    b.HasOne("Yngdieng.Backend.Db.Word", null)
+                        .WithMany()
+                        .HasForeignKey("WordId")
+                        .HasConstraintName("fk_prons_words_word_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Yngdieng.Backend.Db.PronAudioClip", b =>
+                {
+                    b.HasOne("Yngdieng.Backend.Db.Pron", null)
+                        .WithMany()
+                        .HasForeignKey("WordId", "AudioClipId")
+                        .HasConstraintName("fk_pron_audio_clips_prons_word_id_pron_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Yngdieng.Backend.Db.WordListWord", b =>
+                {
+                    b.HasOne("Yngdieng.Backend.Db.Word", null)
+                        .WithMany()
+                        .HasForeignKey("WordId")
+                        .HasConstraintName("fk_word_list_words_words_word_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Yngdieng.Backend.Db.WordList", null)
+                        .WithMany()
+                        .HasForeignKey("WordListId")
+                        .HasConstraintName("fk_word_list_words_word_lists_word_list_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

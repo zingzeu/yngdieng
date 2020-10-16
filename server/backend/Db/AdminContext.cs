@@ -33,16 +33,21 @@ namespace Yngdieng.Backend.Db
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder
-                .HasPostgresEnum<ExtensionScope
-    >()
+                .HasPostgresEnum<ExtensionScope>()
                 .HasPostgresEnum<Variant>()
                 .HasPostgresEnum<SandhiCategory>();
             builder.Entity<Pron>().HasKey(p => new { p.WordId, p.PronId });
             builder.Entity<Pron>().Property(b => b.PronId).UseIdentityByDefaultColumn();
+            builder.Entity<Pron>().HasOne<Word>().WithMany().HasForeignKey(p => p.WordId);
             builder.Entity<PronAudioClip>().HasKey(p => new { p.WordId, p.PronId, p.AudioClipId });
+            builder.Entity<PronAudioClip>().HasOne<Pron>().WithMany().HasForeignKey(p => new { p.WordId, p.AudioClipId });
             builder.Entity<Extension>().HasKey(p => new { p.WordId, p.ExtensionId });
             builder.Entity<Extension>().Property(b => b.ExtensionId).UseIdentityByDefaultColumn();
+            builder.Entity<Extension>().HasOne<Word>().WithMany().HasForeignKey(e => e.WordId);
+            builder.Entity<AudioClip>().HasOne<Speaker>().WithMany().HasForeignKey(a => a.SpeakerId);
             builder.Entity<WordListWord>().HasKey(p => new { p.WordListId, p.WordId });
+            builder.Entity<WordListWord>().HasOne<WordList>().WithMany().HasForeignKey(wlw => wlw.WordListId);
+            builder.Entity<WordListWord>().HasOne<Word>().WithMany().HasForeignKey(wlw => wlw.WordId);
         }
 
     }
