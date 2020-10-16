@@ -3,6 +3,8 @@ syntax = "proto3";
 package yngdieng.frontend.v1;
 option csharp_namespace = "Yngdieng.Frontend.V1.Protos";
 import "google/api/annotations.proto";
+import "google/api/field_behavior.proto";
+import "google/api/resource.proto";
 service FrontendService {
 }
 message Word {
@@ -13,7 +15,7 @@ message Word {
 
   string hanzi = 1;
 
-  message Pronuniciation {
+  message Pronunciation {
     string display_name = 1;
     string pronunciation = 2;
     AudioResource audio = 3;
@@ -50,8 +52,12 @@ message WordList {
 }
 
 message AudioResource {
+  message RemoteUrls {
+    // A list of fallback Audio URLs.
+    repeated string remote_urls = 1;
+  }
   oneof resource {
-    repeated string remote_file = 1;
+    RemoteUrls remote_urls = 1;
   }
 }
 
