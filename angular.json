@@ -10,7 +10,7 @@
           "style": "scss"
         }
       },
-      "root": "",
+      "root": "web/src",
       "sourceRoot": "web/src",
       "prefix": "app",
       "architect": {
@@ -84,7 +84,7 @@
           "style": "scss"
         }
       },
-      "root": "",
+      "root": "web/admin",
       "sourceRoot": "web/admin",
       "prefix": "app",
       "architect": {
