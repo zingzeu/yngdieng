@@ -68,6 +68,9 @@ message YngdiengDocument {
     // All searchable explanation text.
     // Should contain both zh-hans and zh-hant versions.
     repeated string explanation_text = 3;
+
+    // 普通话直译. Expected to be in zh-hant.
+    repeated string mandarin_words = 4;
   }
 }
 
