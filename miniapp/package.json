@@ -54,7 +54,7 @@
     "taro-ui": "3.0.0-alpha.3"
   },
   "devDependencies": {
-    "@babel/core": "7.12.1",
+    "@babel/core": "7.12.3",
     "@tarojs/mini-runner": "3.0.14",
     "@tarojs/webpack-runner": "3.0.14",
     "@types/react": "16.9.52",
