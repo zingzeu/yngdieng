@@ -17,6 +17,7 @@ ng_module(
     visibility = ["//web:__subpackages__"],
     deps = [
         "//web/shared/material",
+        "//yngdieng/admin/v1:resources_ts_proto",
         "//yngdieng/admin/v1:service_ts_proto",
         "@npm//@angular/cdk",
         "@npm//@angular/common",

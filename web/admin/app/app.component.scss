@@ -9,6 +9,9 @@
   grid-template-rows: 50px auto;
   .content {
     grid-row: 2;
+    padding: 8px;
+    overflow-x: hidden;
+    overflow-y: scroll;
   }
 }
 

@@ -13,7 +13,7 @@ proto_library(
 
 ts_proto_library(
     name = "resources_ts_proto",
-    proto = ":resources_ts_proto",
+    proto = ":resources_proto",
 )
 
 proto_library(

@@ -11,21 +11,28 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {WordsOverviewComponent} from './words-overview/words-overview.component';
 import {MatTableModule} from '@angular/material/table';
 import {MatSortModule} from '@angular/material/sort';
+import {WordDetailsComponent} from './word-details/word-details.component';
+import {ReactiveFormsModule, FormsModule} from '@angular/forms';
+import {PronsEditorComponent} from './word-details/prons-editor/prons-editor.component';
 @NgModule({
   declarations: [
     HomeComponent,
     AppComponent,
     SidenavContentComponent,
     WordsOverviewComponent,
+    WordDetailsComponent,
+    PronsEditorComponent,
   ],
   imports: [
     AppRoutingModule,
+    BrowserAnimationsModule,
     BrowserModule,
     CommonModule,
-    MaterialModule,
+    FormsModule,
     MatSortModule,
-    BrowserAnimationsModule,
     MatTableModule,
+    MaterialModule,
+    ReactiveFormsModule,
   ],
   exports: [AppComponent],
   bootstrap: [AppComponent],
