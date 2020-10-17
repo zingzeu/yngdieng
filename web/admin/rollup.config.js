@@ -3,7 +3,9 @@ const {nodeResolve} = require('@rollup/plugin-node-resolve');
 
 module.exports = {
   plugins: [
-    ignoreImport('./../google/api/annotations_pb'),
+    ignoreImport('./../../../google/api/annotations_pb'),
+    ignoreImport('./../../../google/api/field_behavior_pb'),
+    ignoreImport('./../../../google/api/resource_pb'),
     nodeResolve(),
     commonjs(),
   ],

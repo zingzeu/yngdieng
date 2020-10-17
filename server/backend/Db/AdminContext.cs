@@ -25,9 +25,12 @@ namespace Yngdieng.Backend.Db
         public DbSet<WordList> WordLists { get; set; }
         public DbSet<WordListWord> WordListWords { get; set; }
 
+        public AdminContext(DbContextOptions<AdminContext> contextOptions) : base(contextOptions)
+        {
+
+        }
         protected override void OnConfiguring(DbContextOptionsBuilder options)
-           => options.UseNpgsql("Host=localhost;Database=yngdieng;Username=postgres;Password=postgres", o => o.UseNodaTime())
-           .UseSnakeCaseNamingConvention()
+           => options.UseSnakeCaseNamingConvention()
         ;
 
         protected override void OnModelCreating(ModelBuilder builder)

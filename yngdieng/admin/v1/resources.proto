@@ -1,0 +1,33 @@
+syntax = "proto3";
+
+package yngdieng.admin.v1;
+option csharp_namespace = "Yngdieng.Admin.V1.Protos";
+
+// TODO: file a bug for rules_nodejs where merging this file with service.proto doesn't work
+// in dev_server. (Failed with 'proto is not defined'.)
+
+// Zingzeu Word
+// Could represent other entities in the future.
+message Word {
+  /* option (google.api.resource) = {
+     type: "adminapi.ydict.net/Word"
+     pattern: "words/{word}"
+   };*/
+
+  // The resource name of the word.
+  // Format: words/{word}
+  string name = 1;
+
+  string hanzi = 2;
+
+  repeated string hanzi_alternatives = 3;
+
+  repeated string mandarin_words = 4;
+
+  string gloss = 5;
+
+  // Resource names of the Prons.
+  repeated string prons = 6;
+
+  repeated string extensions = 7;
+}

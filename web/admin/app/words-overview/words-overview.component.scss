@@ -16,8 +16,15 @@
   }
 }
 
-.table {
+.table,
+.loading-shade {
   grid-row: 2;
   grid-column-start: 1;
   grid-column-end: span 3;
 }
+
+.table > table {
+  width: 100%;
+}
+
+// TODO: styles

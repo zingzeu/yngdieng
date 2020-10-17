@@ -7,6 +7,7 @@ import "google/api/field_behavior.proto";
 import "google/api/resource.proto";
 import "google/protobuf/field_mask.proto";
 import "google/protobuf/empty.proto";
+import "yngdieng/admin/v1/resources.proto";
 
 service AdminService {
   rpc CreateWord(CreateWordRequest) returns (Word) {
@@ -63,7 +64,7 @@ service AdminService {
   rpc GetWordList(GetWordListRequest) returns (WordList);
   rpc UpdateWordList(UpdateWordListRequest) returns (WordList);
   rpc ListWordLists(ListWordListsRequest) returns (ListWordListsResponse);
-  rpc DeleteWordList(DeleteWordListRequest) returns (google.protobuf.Empty);
+  rpc DeleteWordList(DeleteWordListRequest) returns (MyEmpty);
 
   // rpc CreateAudioClip()
   // DeleteAudioClip()
@@ -72,30 +73,10 @@ service AdminService {
   // TODO: import, export
 }
 
-// Zingzeu Word
-// Could represent other entities in the future.
-message Word {
-  option (google.api.resource) = {
-    type: "adminapi.ydict.net/Word"
-    pattern: "words/{word}"
-  };
-
-  // The resource name of the word.
-  // Format: words/{word}
-  string name = 1;
-
-  string hanzi = 2;
-
-  repeated string hanzi_alternatives = 3;
-
-  repeated string mandarin_words = 4;
-
-  string gloss = 5;
-
-  // Resource names of the Prons.
-  repeated string prons = 6;
-
-  repeated string extensions = 7;
+// TODO: file a bug for rules_nodejs where
+// @npm/@bazel/labs/grpc_web/google-protobuf/google/protobuf/empty_pb.umd.js
+// Does not contain the google_protobuf_empty_pb.Empty required
+message MyEmpty {
 }
 
 message Pron {
@@ -189,7 +170,7 @@ message ListWordsRequest {
 
   int32 page_size = 1;
 
-  string offset = 2;
+  int32 offset = 2;
 }
 
 message ListWordsResponse {

@@ -169,10 +169,10 @@ ts_devserver(
     # These scripts will be included in the JS bundle after require.js
     # They should have only named UMD modules, or require.js will throw.
     scripts = [
+        "@npm//@bazel/labs/grpc_web:bootstrap_scripts",
         "@npm//:node_modules/tslib/tslib.js",
         "//web/shared:rxjs_umd_modules",
         "@npm//howler:howler__umd",
-        "@npm//@bazel/labs/grpc_web:bootstrap_scripts",
     ],
     static_files = _ASSETS + [
         ":inject_scripts_for_dev",

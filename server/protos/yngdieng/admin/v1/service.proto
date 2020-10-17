@@ -189,7 +189,7 @@ message ListWordsRequest {
 
   int32 page_size = 1;
 
-  string offset = 2;
+  int32 offset = 2;
 }
 
 message ListWordsResponse {
