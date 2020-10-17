@@ -1,15 +1,23 @@
 .container {
   display: grid;
   grid-template-rows: 3em auto;
-  grid-template-columns: auto auto;
+  grid-template-columns: auto auto auto;
   h2 {
     grid-row: 1;
     grid-column: 1;
+  }
+  .searchbox {
+    grid-row: 1;
+    grid-column: 2;
+  }
+  .actions {
+    grid-row: 1;
+    grid-column: 3;
   }
 }
 
 .table {
   grid-row: 2;
   grid-column-start: 1;
-  grid-column-end: span 2;
+  grid-column-end: span 3;
 }

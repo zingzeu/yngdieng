@@ -11,7 +11,7 @@ import "google/protobuf/empty.proto";
 service AdminService {
   rpc CreateWord(CreateWordRequest) returns (Word) {
     option (google.api.http) = {
-      post: "v1/words"
+      post: "/v1/words"
       body: "word"
     };
   };
@@ -38,10 +38,19 @@ service AdminService {
   };
   // TODO: MergeWord();
 
-  // CreatePron
+  rpc CreatePron(CreatePronRequest) returns (Pron) {
+    option (google.api.http) = {
+      post: "/v1/{parent=words/*}/prons"
+      body: "pron"
+    };
+  };
   // DeletePron
   // UpdatePron
-  // BatchGetPron
+  rpc BatchGetProns(BatchGetPronsRequest) returns (BatchGetPronsResponse) {
+    option (google.api.http) = {
+      get: "/v1/{parent=words/*}/prons:batchGet"
+    };
+  }
   // AttachPronAudioClip
   // DetachPronAudioClip
 
@@ -180,19 +189,32 @@ message ListWordsRequest {
 
   int32 page_size = 1;
 
-  string page_token = 2;
+  string offset = 2;
 }
 
 message ListWordsResponse {
   repeated Word words = 1;
-
-  string next_page_token = 2;
 
   int32 total_size = 3;
 }
 
 message DeleteWordRequest {
   string name = 1;
+}
+
+message CreatePronRequest {
+  string parent = 1;
+
+  Pron pron = 2;
+}
+
+message BatchGetPronsRequest {
+  string parent = 1;
+  repeated string names = 2;
+}
+
+message BatchGetPronsResponse {
+  repeated Pron prons = 1;
 }
 
 message CreateWordListRequest {

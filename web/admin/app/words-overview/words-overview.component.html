@@ -1,5 +1,11 @@
 <div class="container">
     <h2 class="title">词库管理</h2>
+    <mat-form-field class="searchbox">
+        <input matInput placeholder="Ex. Pizza" value="Sushi">
+      </mat-form-field>
+    <div class="actions">
+        <button mat-raised-button>Create</button>
+    </div>
     <div class="mat-elevation-z8 table">
         <table mat-table [dataSource]="dataSource" matSort>
       
