@@ -4,6 +4,8 @@ import {
   GetWordRequest,
   ListWordsRequest,
   ListWordsResponse,
+  BatchGetPronsRequest,
+  BatchGetPronsResponse,
 } from '../../../yngdieng/admin/v1/service_pb';
 import {AdminServiceClient} from '../../../yngdieng/admin/v1/service_grpc_web_pb';
 import {from, Observable} from 'rxjs';
@@ -45,5 +47,23 @@ export class YngdiengAdminService {
 
   listWords$(offset, pageSize = 10): Observable<ListWordsResponse> {
     return from(this.listWords(offset, pageSize));
+  }
+
+  batchGetProns(parent, names: string[]): Promise<BatchGetPronsResponse> {
+    let request = new BatchGetPronsRequest();
+    request.setParent(parent);
+    request.setNamesList(names);
+    return new Promise((resolve, reject) => {
+      this.grpcClient.batchGetProns(request, undefined, (err, response) => {
+        if (err) {
+          reject(err);
+        }
+        resolve(response);
+      });
+    });
+  }
+
+  batchGetProns$(parent, names: string[]): Observable<BatchGetPronsResponse> {
+    return from(this.batchGetProns(parent, names));
   }
 }

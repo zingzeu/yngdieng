@@ -14,6 +14,8 @@ import {MatSortModule} from '@angular/material/sort';
 import {WordDetailsComponent} from './word-details/word-details.component';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import {PronsEditorComponent} from './word-details/prons-editor/prons-editor.component';
+import {SelectSandhiComponent} from './word-details/prons-editor/select-sandhi/select-sandhi.component';
+import {SelectVariantComponent} from './word-details/prons-editor/select-variant/select-variant.component';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -22,6 +24,8 @@ import {PronsEditorComponent} from './word-details/prons-editor/prons-editor.com
     WordsOverviewComponent,
     WordDetailsComponent,
     PronsEditorComponent,
+    SelectSandhiComponent,
+    SelectVariantComponent,
   ],
   imports: [
     AppRoutingModule,

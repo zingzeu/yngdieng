@@ -7,7 +7,26 @@
 
         <ng-container matColumnDef="pronunciation">
             <th mat-header-cell *matHeaderCellDef> 榕拼 </th>
-            <td mat-cell *matCellDef="let pron"> {{pron.pronunciation}} </td>
+            <td mat-cell *matCellDef="let pron"> 
+                <input type="text" [formControl]="pron.pronunciation" /> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="weight">
+            <th mat-header-cell *matHeaderCellDef> 输入法权重 </th>
+            <td mat-cell *matCellDef="let pron"> 
+                <input type="number" [formControl]="pron.weight"/>  </td>
+        </ng-container>
+
+        <ng-container matColumnDef="sc">
+            <th mat-header-cell *matHeaderCellDef> 读音类型 </th>
+            <td mat-cell *matCellDef="let pron"> 
+                <app-select-sandhi [formControl]="pron.sandhiCategory"></app-select-sandhi> </td>
+        </ng-container>
+
+        <ng-container matColumnDef="variant">
+            <th mat-header-cell *matHeaderCellDef> 口音/地区/变体 </th>
+            <td mat-cell *matCellDef="let pron"> 
+                <app-select-variant [formControl]="pron.variant"></app-select-variant> </td>
         </ng-container>
 
         <ng-container matColumnDef="actions">
