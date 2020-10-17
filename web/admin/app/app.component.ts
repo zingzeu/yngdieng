@@ -8,7 +8,7 @@ import {Subscription} from 'rxjs';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  sideNavOpened = true;
+  sideNavOpened = false;
   sideNavStateSubscription: Subscription;
 
   constructor(private sideNavState: SidenavStateService) {}

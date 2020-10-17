@@ -20,8 +20,8 @@ export class PronsEditorComponent implements OnInit {
   displayedColumns: string[] = [
     'pronunciation',
     'variant',
-    'weight',
     'sc',
+    'weight',
     'actions',
   ];
   data: PronEditorModel[] = [];

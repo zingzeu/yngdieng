@@ -3,7 +3,7 @@ import {Observable, Subject} from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class SidenavStateService {
-  private _sideNavOpened = true;
+  private _sideNavOpened = false;
   private sideNavOpened = new Subject<boolean>();
 
   sideNavOpened$: Observable<boolean> = this.sideNavOpened.asObservable();
