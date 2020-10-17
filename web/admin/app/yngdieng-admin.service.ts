@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Word} from '../../../yngdieng/admin/v1/resources_pb';
 import {
   GetWordRequest,
+  DeletePronRequest,
   ListWordsRequest,
   ListWordsResponse,
   BatchGetPronsRequest,
@@ -65,5 +66,18 @@ export class YngdiengAdminService {
 
   batchGetProns$(parent, names: string[]): Observable<BatchGetPronsResponse> {
     return from(this.batchGetProns(parent, names));
+  }
+
+  deletePron(name: string): Promise<void> {
+    let request = new DeletePronRequest();
+    request.setName(name);
+    return new Promise((resolve, reject) => {
+      this.grpcClient.deletePron(request, undefined, (err, _response) => {
+        if (err) {
+          reject(err);
+        }
+        resolve();
+      });
+    });
   }
 }

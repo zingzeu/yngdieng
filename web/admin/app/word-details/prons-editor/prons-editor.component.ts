@@ -1,8 +1,8 @@
 import {Component, OnInit, Input} from '@angular/core';
 import {FormControl} from '@angular/forms';
 import {YngdiengAdminService} from '../../yngdieng-admin.service';
-import {catchError, map} from 'rxjs/operators';
-import {merge, of as observableOf} from 'rxjs';
+import {catchError, map, switchMap} from 'rxjs/operators';
+import {merge, of as observableOf, Subject, BehaviorSubject} from 'rxjs';
 interface PronEditorModel {
   name: string;
   pronunciation: FormControl;
@@ -26,16 +26,21 @@ export class PronsEditorComponent implements OnInit {
   ];
   data: PronEditorModel[] = [];
   isLoadingResults = false;
+  remoteDataChanged = new BehaviorSubject({});
   @Input() word: string;
   @Input() prons: string[];
 
   constructor(private adminService: YngdiengAdminService) {}
 
   ngOnInit(): void {
-    this.adminService
-      .batchGetProns$(this.word, this.prons)
+    merge(this.remoteDataChanged)
       .pipe(
+        switchMap(() => {
+          this.isLoadingResults = true;
+          return this.adminService.batchGetProns$(this.word, this.prons);
+        }),
         map(data => {
+          this.isLoadingResults = false;
           return data.getPronsList().map(pron => ({
             name: pron.getName(),
             pronunciation: new FormControl(pron.getPronunciation()),
@@ -52,5 +57,12 @@ export class PronsEditorComponent implements OnInit {
       .subscribe(data => {
         this.data = data;
       });
+  }
+
+  delete(name) {
+    this.adminService
+      .deletePron(name)
+      .then(() => this.remoteDataChanged.next({}))
+      .catch(() => this.remoteDataChanged.next({}));
   }
 }

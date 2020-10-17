@@ -52,6 +52,8 @@ service AdminService {
       get: "/v1/{parent=words/*}/prons:batchGet"
     };
   }
+  rpc DeletePron(DeletePronRequest) returns (MyEmpty);
+
   // AttachPronAudioClip
   // DetachPronAudioClip
 
@@ -198,6 +200,9 @@ message BatchGetPronsResponse {
   repeated Pron prons = 1;
 }
 
+message DeletePronRequest {
+  string name = 1;
+}
 message CreateWordListRequest {
 
   WordList word_list = 1 [(google.api.field_behavior) = REQUIRED];
