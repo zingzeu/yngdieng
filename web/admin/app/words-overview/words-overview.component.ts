@@ -9,6 +9,7 @@ export interface Word {
   name: string;
   hanzi: string;
   mandarinWords: string;
+  gloss: string;
 }
 
 @Component({
@@ -17,7 +18,13 @@ export interface Word {
   styleUrls: ['./words-overview.component.scss'],
 })
 export class WordsOverviewComponent implements AfterViewInit {
-  displayedColumns: string[] = ['name', 'hanzi', 'mandarinWords'];
+  displayedColumns: string[] = [
+    'name',
+    'hanzi',
+    'gloss',
+    'mandarinWords',
+    'actions',
+  ];
   data: Word[] = [];
   isLoadingResults = false;
   resultsLength = 0;
@@ -48,6 +55,7 @@ export class WordsOverviewComponent implements AfterViewInit {
               name: removeWordPrefix(w.getName()),
               hanzi: w.getHanzi(),
               mandarinWords: w.getMandarinWordsList().join(', '),
+              gloss: w.getGloss(),
             };
           });
         }),
