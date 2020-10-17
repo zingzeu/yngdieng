@@ -14,6 +14,7 @@ namespace Yngdieng.Backend.Db
                 .MapEnum<SandhiCategory>();
 
         public DbSet<Word> Words { get; set; }
+        public DbSet<WordWithPronIds> WordsWithPronIds { get; set; }
         public DbSet<Pron> Prons { get; set; }
 
         public DbSet<PronAudioClip> PronAudioClips { get; set; }
@@ -35,6 +36,11 @@ namespace Yngdieng.Backend.Db
                 .HasPostgresEnum<ExtensionScope>()
                 .HasPostgresEnum<Variant>()
                 .HasPostgresEnum<SandhiCategory>();
+            builder.Entity<WordWithPronIds>(eb =>
+            {
+                eb.HasNoKey();
+                eb.ToView("SomeView");
+            });
             builder.Entity<Pron>().HasKey(p => new { p.WordId, p.PronId });
             builder.Entity<Pron>().Property(b => b.PronId).UseIdentityByDefaultColumn();
             builder.Entity<Pron>().HasOne<Word>().WithMany().HasForeignKey(p => p.WordId);
@@ -68,6 +74,28 @@ namespace Yngdieng.Backend.Db
 
         // G=
         public string? Gloss { get; set; }
+
+    }
+
+    //[Keyless]
+    public sealed class WordWithPronIds
+    {
+
+        public int WordId { get; set; }
+
+        // Hanzi. Used for IME and Yngdieng hero.
+        public string Hanzi { get; set; }
+
+        // A=
+        public List<string> HanziAlternatives { get; set; }
+
+        // M=
+        public List<string> MandarinWords { get; set; }
+
+        // G=
+        public string? Gloss { get; set; }
+
+        public List<int> PronIds { get; set; }
 
     }
 

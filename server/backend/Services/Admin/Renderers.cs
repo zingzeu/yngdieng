@@ -14,6 +14,17 @@ namespace Yngdieng.Backend.Services.Admin
             return ToWord(word, new PronRef[] { });
         }
 
+        public static Word ToWord(Db.WordWithPronIds word)
+        {
+            return ToWord(new Db.Word
+            {
+                WordId = word.WordId,
+                Hanzi = word.Hanzi,
+                HanziAlternatives = word.HanziAlternatives,
+                MandarinWords = word.MandarinWords,
+                Gloss = word.Gloss,
+            }, word.PronIds.Select(x => new PronRef { WordId = word.WordId, PronId = x }));
+        }
         public static Word ToWord(Db.Word word, IEnumerable<PronRef> pronRefs)
         {
             return new Word
