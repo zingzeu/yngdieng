@@ -92,4 +92,18 @@ CREATE INDEX ix_word_list_words_word_id ON word_list_words (word_id);
 INSERT INTO "__EFMigrationsHistory" (migration_id, product_version)
 VALUES ('20201016185536_Initial', '3.1.9');
 
+INSERT INTO "__EFMigrationsHistory" (migration_id, product_version)
+VALUES ('20201017121917_Keyless', '3.1.9');
+
+CREATE TYPE gender AS ENUM ('unspecified', 'male', 'female');
+
+ALTER TABLE speakers ADD accent text NULL;
+
+ALTER TABLE speakers ADD gender gender NOT NULL DEFAULT 'unspecified'::gender;
+
+ALTER TABLE speakers ADD year_of_birth integer NULL;
+
+INSERT INTO "__EFMigrationsHistory" (migration_id, product_version)
+VALUES ('20201018163503_SpeakersColumns', '3.1.9');
+
 

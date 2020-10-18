@@ -11,7 +11,8 @@ namespace Yngdieng.Backend.Db
             => NpgsqlConnection.GlobalTypeMapper
                 .MapEnum<ExtensionScope>()
                 .MapEnum<Variant>()
-                .MapEnum<SandhiCategory>();
+                .MapEnum<SandhiCategory>()
+                .MapEnum<Gender>();
 
         public DbSet<Word> Words { get; set; }
         public DbSet<WordWithPronIds> WordsWithPronIds { get; set; }
@@ -38,7 +39,8 @@ namespace Yngdieng.Backend.Db
             builder
                 .HasPostgresEnum<ExtensionScope>()
                 .HasPostgresEnum<Variant>()
-                .HasPostgresEnum<SandhiCategory>();
+                .HasPostgresEnum<SandhiCategory>()
+                .HasPostgresEnum<Gender>();
             builder.Entity<WordWithPronIds>(eb =>
             {
                 eb.HasNoKey();
@@ -164,7 +166,23 @@ namespace Yngdieng.Backend.Db
 
         public string DisplayName { get; set; }
 
+        // ISO 639-6
+        public string? Accent { get; set; }
+
+        // Detailed location
         public string? Location { get; set; }
+
+        public int? YearOfBirth { get; set; }
+
+        public Gender Gender { get; set; }
+
+    }
+
+    public enum Gender
+    {
+        UNSPECIFIED = 0,
+        MALE = 1,
+        FEMALE = 2
     }
 
     public sealed class AudioClip
