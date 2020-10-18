@@ -37,6 +37,8 @@ import {UserProfileComponent} from './auth/user-profile.component';
     AuthModule.forRoot({
       domain: 'ydict-admin.us.auth0.com',
       clientId: '7HgI20L6GnxdeAhiVY4KOGC2iDhpXiVD',
+      audience: 'https://api.ydict.net',
+      scope: 'yngdieng:admin',
     }),
     BrowserAnimationsModule,
     BrowserModule,

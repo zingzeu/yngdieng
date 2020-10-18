@@ -14,21 +14,37 @@ import {
 } from '../../../yngdieng/admin/v1/service_pb';
 import {AdminServiceClient} from '../../../yngdieng/admin/v1/service_grpc_web_pb';
 import {from, Observable} from 'rxjs';
+import {AuthService} from '@auth0/auth0-angular';
 //import {FieldMask} from 'google-protobuf/google/protobuf/field_mask_pb';
 @Injectable({
   providedIn: 'root',
 })
 export class YngdiengAdminService {
   private grpcClient: AdminServiceClient;
-  constructor() {
+  private token: string;
+
+  constructor(private auth: AuthService) {
     this.grpcClient = new AdminServiceClient('http://localhost:5000');
+    this.auth
+      .getAccessTokenSilently({})
+      .subscribe(token => (this.token = token));
+  }
+
+  private getHeaders() {
+    if (this.token?.length > 0) {
+      return {
+        Authorization: 'Bearer ' + this.token,
+      };
+    } else {
+      return undefined;
+    }
   }
 
   getWord(name): Promise<Word> {
     let request = new GetWordRequest();
     request.setName(name);
     return new Promise((resolve, reject) => {
-      this.grpcClient.getWord(request, undefined, (err, response) => {
+      this.grpcClient.getWord(request, this.getHeaders(), (err, response) => {
         if (err) {
           reject(err);
         }
@@ -42,7 +58,7 @@ export class YngdiengAdminService {
     request.setOffset(offset);
     request.setPageSize(pageSize);
     return new Promise((resolve, reject) => {
-      this.grpcClient.listWords(request, undefined, (err, response) => {
+      this.grpcClient.listWords(request, this.getHeaders(), (err, response) => {
         if (err) {
           reject(err);
         }
@@ -60,12 +76,16 @@ export class YngdiengAdminService {
     request.setParent(parent);
     request.setNamesList(names);
     return new Promise((resolve, reject) => {
-      this.grpcClient.batchGetProns(request, undefined, (err, response) => {
-        if (err) {
-          reject(err);
+      this.grpcClient.batchGetProns(
+        request,
+        this.getHeaders(),
+        (err, response) => {
+          if (err) {
+            reject(err);
+          }
+          resolve(response);
         }
-        resolve(response);
-      });
+      );
     });
   }
 
@@ -80,12 +100,16 @@ export class YngdiengAdminService {
     pron.setPronunciation(pronuciation);
     request.setPron(pron);
     return new Promise((resolve, reject) => {
-      this.grpcClient.createPron(request, undefined, (err, response) => {
-        if (err) {
-          reject(err);
+      this.grpcClient.createPron(
+        request,
+        this.getHeaders(),
+        (err, response) => {
+          if (err) {
+            reject(err);
+          }
+          resolve(response);
         }
-        resolve(response);
-      });
+      );
     });
   }
 
@@ -100,12 +124,16 @@ export class YngdiengAdminService {
     fieldMask.setPathsList(paths);
     request.setUpdateMask(fieldMask);
     return new Promise((resolve, reject) => {
-      this.grpcClient.updatePron(request, undefined, (err, response) => {
-        if (err) {
-          reject(err);
+      this.grpcClient.updatePron(
+        request,
+        this.getHeaders(),
+        (err, response) => {
+          if (err) {
+            reject(err);
+          }
+          resolve(response);
         }
-        resolve(response);
-      });
+      );
     });
   }
 
@@ -117,12 +145,16 @@ export class YngdiengAdminService {
     let request = new DeletePronRequest();
     request.setName(name);
     return new Promise((resolve, reject) => {
-      this.grpcClient.deletePron(request, undefined, (err, _response) => {
-        if (err) {
-          reject(err);
+      this.grpcClient.deletePron(
+        request,
+        this.getHeaders(),
+        (err, _response) => {
+          if (err) {
+            reject(err);
+          }
+          resolve();
         }
-        resolve();
-      });
+      );
     });
   }
 }
