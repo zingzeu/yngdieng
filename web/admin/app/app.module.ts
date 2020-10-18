@@ -15,6 +15,7 @@ import {WordDetailsComponent} from './word-details/word-details.component';
 import {ReactiveFormsModule, FormsModule} from '@angular/forms';
 import {PronsEditorComponent} from './word-details/prons-editor/prons-editor.component';
 import {SelectSandhiComponent} from './word-details/prons-editor/select-sandhi/select-sandhi.component';
+import {AuthModule} from '@auth0/auth0-angular';
 import {SelectVariantComponent} from './word-details/prons-editor/select-variant/select-variant.component';
 @NgModule({
   declarations: [
@@ -29,6 +30,10 @@ import {SelectVariantComponent} from './word-details/prons-editor/select-variant
   ],
   imports: [
     AppRoutingModule,
+    AuthModule.forRoot({
+      domain: 'ydict-admin.us.auth0.com',
+      clientId: '7HgI20L6GnxdeAhiVY4KOGC2iDhpXiVD',
+    }),
     BrowserAnimationsModule,
     BrowserModule,
     CommonModule,
