@@ -45,8 +45,8 @@ service AdminService {
       body: "pron"
     };
   };
-  // DeletePron
-  // UpdatePron
+  rpc UpdatePron(UpdatePronRequest) returns (Pron) {
+  }
   rpc BatchGetProns(BatchGetPronsRequest) returns (BatchGetPronsResponse) {
     option (google.api.http) = {
       get: "/v1/{parent=words/*}/prons:batchGet"
@@ -79,6 +79,11 @@ service AdminService {
 // @npm/@bazel/labs/grpc_web/google-protobuf/google/protobuf/empty_pb.umd.js
 // Does not contain the google_protobuf_empty_pb.Empty required
 message MyEmpty {
+}
+
+message MyFieldMask {
+  // The set of field mask paths.
+  repeated string paths = 1;
 }
 
 message Pron {
@@ -163,7 +168,7 @@ message GetWordRequest {
 message UpdateWordRequest {
   Word word = 1;
 
-  google.protobuf.FieldMask update_mask = 2;
+  MyFieldMask update_mask = 2;
 }
 
 message ListWordsRequest {
@@ -198,6 +203,12 @@ message BatchGetPronsRequest {
 
 message BatchGetPronsResponse {
   repeated Pron prons = 1;
+}
+
+message UpdatePronRequest {
+  Pron pron = 1;
+
+  MyFieldMask update_mask = 2;
 }
 
 message DeletePronRequest {
