@@ -40,7 +40,7 @@
     "@babel/cli": "7.12.1",
     "@babel/core": "7.12.3",
     "@babel/preset-env": "7.12.1",
-    "@bazel/angular": "^2.2.1",
+    "@bazel/angular": "2.2.2",
     "@bazel/bazelisk": "1.7.2",
     "@bazel/benchmark-runner": "0.1.0",
     "@bazel/buildifier": "3.5.0",
