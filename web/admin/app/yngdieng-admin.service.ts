@@ -1,6 +1,10 @@
 import {Injectable} from '@angular/core';
 import {Word} from '../../../yngdieng/admin/v1/resources_pb';
 import {
+  Pron,
+  MyFieldMask,
+  CreatePronRequest,
+  UpdatePronRequest,
   GetWordRequest,
   DeletePronRequest,
   ListWordsRequest,
@@ -10,7 +14,7 @@ import {
 } from '../../../yngdieng/admin/v1/service_pb';
 import {AdminServiceClient} from '../../../yngdieng/admin/v1/service_grpc_web_pb';
 import {from, Observable} from 'rxjs';
-
+//import {FieldMask} from 'google-protobuf/google/protobuf/field_mask_pb';
 @Injectable({
   providedIn: 'root',
 })
@@ -32,6 +36,7 @@ export class YngdiengAdminService {
       });
     });
   }
+
   listWords(offset, pageSize = 10): Promise<ListWordsResponse> {
     let request = new ListWordsRequest();
     request.setOffset(offset);
@@ -66,6 +71,46 @@ export class YngdiengAdminService {
 
   batchGetProns$(parent, names: string[]): Observable<BatchGetPronsResponse> {
     return from(this.batchGetProns(parent, names));
+  }
+
+  createPron(parent: string, pronuciation: string): Promise<Pron> {
+    let request = new CreatePronRequest();
+    request.setParent(parent);
+    let pron = new Pron();
+    pron.setPronunciation(pronuciation);
+    request.setPron(pron);
+    return new Promise((resolve, reject) => {
+      this.grpcClient.createPron(request, undefined, (err, response) => {
+        if (err) {
+          reject(err);
+        }
+        resolve(response);
+      });
+    });
+  }
+
+  createPron$(parent: string, pronuciation: string): Observable<Pron> {
+    return from(this.createPron(parent, pronuciation));
+  }
+
+  updatePron(pron: Pron, paths: string[]): Promise<Pron> {
+    let request = new UpdatePronRequest();
+    request.setPron(pron);
+    let fieldMask = new MyFieldMask();
+    fieldMask.setPathsList(paths);
+    request.setUpdateMask(fieldMask);
+    return new Promise((resolve, reject) => {
+      this.grpcClient.updatePron(request, undefined, (err, response) => {
+        if (err) {
+          reject(err);
+        }
+        resolve(response);
+      });
+    });
+  }
+
+  updatePron$(pron: Pron, paths: string[]): Observable<Pron> {
+    return from(this.updatePron(pron, paths));
   }
 
   deletePron(name: string): Promise<void> {

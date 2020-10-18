@@ -7,7 +7,7 @@ import {FormControl} from '@angular/forms';
   styleUrls: ['./select-sandhi.component.scss'],
 })
 export class SelectSandhiComponent implements OnInit {
-  @Input() formControl: FormControl;
+  @Input() control: FormControl;
   options = [
     {
       value: SandhiCategory.SANDHI_CATEGORY_UNSPECIFIED,

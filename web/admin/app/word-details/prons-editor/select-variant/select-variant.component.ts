@@ -8,7 +8,7 @@ import {Variant} from '../../../../../../yngdieng/admin/v1/service_pb';
   styleUrls: ['./select-variant.component.scss'],
 })
 export class SelectVariantComponent implements OnInit {
-  @Input() formControl: FormControl;
+  @Input() control: FormControl;
   options = [
     {
       value: Variant.VARIANT_UNSPECIFIED,
