@@ -162,15 +162,6 @@ history_server(
     ],
 )
 
-# The auto-generated @npm//@auth0/auth0-angular:auth0-angular__umd doesn't compile.
-npm_umd_bundle(
-    name = "auth0-angular__umd",
-    package_name = "@auth0/auth0-angular",
-    entry_point = "@npm//:node_modules/@auth0/auth0-angular/fesm2015/auth0-auth0-angular.js",
-    excluded = ["@angular/router"],
-    package = "@npm//@auth0/auth0-angular:auth0-angular",
-)
-
 ts_devserver(
     name = "devserver",
     # serve web/admin/index.html at /index.html
@@ -183,11 +174,19 @@ ts_devserver(
         "@npm//:node_modules/tslib/tslib.js",
         "//web/shared:rxjs_umd_modules",
         "@npm//howler:howler__umd",
-        ":auth0-angular__umd",
+        ":auth0_umd_modules",
     ],
     static_files = _ASSETS + [
         ":inject_scripts_for_dev",
         "//web/admin/assets",
     ],
     deps = [":src"],
+)
+
+filegroup(
+    name = "auth0_umd_modules",
+    srcs = [
+        "@npm//:node_modules/@auth0/auth0-angular/bundles/auth0-auth0-angular.umd.js",
+        "@npm//@auth0/auth0-spa-js:auth0-spa-js__umd",
+    ],
 )
