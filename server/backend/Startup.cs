@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Builder;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
@@ -30,6 +32,17 @@ namespace Yngdieng.Backend
                 builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().WithExposedHeaders(
                     "Grpc-Status", "Grpc-Message", "Grpc-Encoding", "Grpc-Accept-Encoding");
             }));
+            services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
+            .AddJwtBearer(options =>
+        {
+            options.Authority = "https://ydict-admin.us.auth0.com/";
+            options.Audience = "https://api.ydict.net";
+        });
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("YngdiengAdminAccess", policy =>
+                    policy.RequireClaim("permissions", "yngdieng:admin"));
+            });
             services.AddDbContext<AdminContext>(options =>
                 options
                     .UseNpgsql("Host=localhost;Database=yngdieng;Username=postgres;Password=postgres", o => o.UseNodaTime())
@@ -47,9 +60,12 @@ namespace Yngdieng.Backend
             }
 
             app.UseRouting();
+            app.UseCors();
+
+            app.UseAuthentication();
+            app.UseAuthorization();
 
             app.UseGrpcWeb(); // Must be between UseRouting and UseEndpoints.
-            app.UseCors();
 
             app.UseEndpoints(endpoints =>
             {

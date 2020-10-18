@@ -7,6 +7,7 @@ load("@npm//@bazel/typescript:index.bzl", "ts_devserver", "ts_library")
 load("@io_bazel_rules_sass//:defs.bzl", "sass_binary", "sass_library")
 load("@npm//html-insert-assets:index.bzl", "html_insert_assets")
 load("@npm//@bazel/terser:index.bzl", "terser_minified")
+load("@build_bazel_rules_nodejs//internal/npm_install:npm_umd_bundle.bzl", "npm_umd_bundle")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -173,10 +174,19 @@ ts_devserver(
         "@npm//:node_modules/tslib/tslib.js",
         "//web/shared:rxjs_umd_modules",
         "@npm//howler:howler__umd",
+        ":auth0_umd_modules",
     ],
     static_files = _ASSETS + [
         ":inject_scripts_for_dev",
         "//web/admin/assets",
     ],
     deps = [":src"],
+)
+
+filegroup(
+    name = "auth0_umd_modules",
+    srcs = [
+        "@npm//:node_modules/@auth0/auth0-angular/bundles/auth0-auth0-angular.umd.js",
+        "@npm//@auth0/auth0-spa-js:auth0-spa-js__umd",
+    ],
 )
