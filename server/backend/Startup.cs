@@ -60,12 +60,12 @@ namespace Yngdieng.Backend
             }
 
             app.UseRouting();
+            app.UseCors();
 
             app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseGrpcWeb(); // Must be between UseRouting and UseEndpoints.
-            app.UseCors();
 
             app.UseEndpoints(endpoints =>
             {
