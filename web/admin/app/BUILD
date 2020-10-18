@@ -26,6 +26,7 @@ ng_module(
         "@npm//@angular/material",
         "@npm//@angular/platform-browser",
         "@npm//@angular/router",
+        "@npm//@auth0/auth0-angular",
         "@npm//@types",
         "@npm//howler",
         "@npm//rxjs",

@@ -5,6 +5,7 @@
     "postinstall": "ngcc",
     "serve": "ibazel run //web/src:devserver -- -port=4200",
     "admin:serve": "ibazel run //web/admin:devserver -- -port=4200",
+    "admin:serve:prod": "ibazel run --config=release //web/admin:prodserver -- --port 4200",
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",

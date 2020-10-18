@@ -17,6 +17,7 @@ import {PronsEditorComponent} from './word-details/prons-editor/prons-editor.com
 import {SelectSandhiComponent} from './word-details/prons-editor/select-sandhi/select-sandhi.component';
 import {AuthModule} from '@auth0/auth0-angular';
 import {SelectVariantComponent} from './word-details/prons-editor/select-variant/select-variant.component';
+import {AuthButtonComponent} from './auth/auth-button.component';
 @NgModule({
   declarations: [
     HomeComponent,
@@ -27,6 +28,7 @@ import {SelectVariantComponent} from './word-details/prons-editor/select-variant
     PronsEditorComponent,
     SelectSandhiComponent,
     SelectVariantComponent,
+    AuthButtonComponent,
   ],
   imports: [
     AppRoutingModule,

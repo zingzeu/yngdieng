@@ -7,6 +7,7 @@ load("@npm//@bazel/typescript:index.bzl", "ts_devserver", "ts_library")
 load("@io_bazel_rules_sass//:defs.bzl", "sass_binary", "sass_library")
 load("@npm//html-insert-assets:index.bzl", "html_insert_assets")
 load("@npm//@bazel/terser:index.bzl", "terser_minified")
+load("@build_bazel_rules_nodejs//internal/npm_install:npm_umd_bundle.bzl", "npm_umd_bundle")
 
 package(default_visibility = ["//visibility:public"])
 
@@ -161,6 +162,15 @@ history_server(
     ],
 )
 
+# The auto-generated @npm//@auth0/auth0-angular:auth0-angular__umd doesn't compile.
+npm_umd_bundle(
+    name = "auth0-angular__umd",
+    package_name = "@auth0/auth0-angular",
+    entry_point = "@npm//:node_modules/@auth0/auth0-angular/fesm2015/auth0-auth0-angular.js",
+    excluded = ["@angular/router"],
+    package = "@npm//@auth0/auth0-angular:auth0-angular",
+)
+
 ts_devserver(
     name = "devserver",
     # serve web/admin/index.html at /index.html
@@ -173,6 +183,7 @@ ts_devserver(
         "@npm//:node_modules/tslib/tslib.js",
         "//web/shared:rxjs_umd_modules",
         "@npm//howler:howler__umd",
+        ":auth0-angular__umd",
     ],
     static_files = _ASSETS + [
         ":inject_scripts_for_dev",
