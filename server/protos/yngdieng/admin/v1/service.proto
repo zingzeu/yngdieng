@@ -1,0 +1,244 @@
+syntax = "proto3";
+
+package yngdieng.admin.v1;
+option csharp_namespace = "Yngdieng.Admin.V1.Protos";
+import "google/api/annotations.proto";
+import "google/api/field_behavior.proto";
+import "google/api/resource.proto";
+import "google/protobuf/field_mask.proto";
+import "google/protobuf/empty.proto";
+import "yngdieng/admin/v1/resources.proto";
+
+service AdminService {
+  rpc CreateWord(CreateWordRequest) returns (Word) {
+    option (google.api.http) = {
+      post: "/v1/words"
+      body: "word"
+    };
+  };
+  rpc GetWord(GetWordRequest) returns (Word) {
+    option (google.api.http) = {
+      get: "/v1/{name=words/*}"
+    };
+  };
+  rpc UpdateWord(UpdateWordRequest) returns (Word) {
+    option (google.api.http) = {
+      patch: "/v1/{word.name=words/*}"
+      body: "word"
+    };
+  };
+  rpc ListWords(ListWordsRequest) returns (ListWordsResponse) {
+    option (google.api.http) = {
+      get: "/v1/words"
+    };
+  };
+  rpc DeleteWord(DeleteWordRequest) returns (Word) {
+    option (google.api.http) = {
+      delete: "/v1/{name=words/*}"
+    };
+  };
+  // TODO: MergeWord();
+
+  rpc CreatePron(CreatePronRequest) returns (Pron) {
+    option (google.api.http) = {
+      post: "/v1/{parent=words/*}/prons"
+      body: "pron"
+    };
+  };
+  // DeletePron
+  // UpdatePron
+  rpc BatchGetProns(BatchGetPronsRequest) returns (BatchGetPronsResponse) {
+    option (google.api.http) = {
+      get: "/v1/{parent=words/*}/prons:batchGet"
+    };
+  }
+  rpc DeletePron(DeletePronRequest) returns (MyEmpty);
+
+  // AttachPronAudioClip
+  // DetachPronAudioClip
+
+  // CreateExtension
+  // UpdateExtension
+  // DeleteExtension
+  // GetExtension
+
+  rpc CreateWordList(CreateWordListRequest) returns (WordList);
+  rpc GetWordList(GetWordListRequest) returns (WordList);
+  rpc UpdateWordList(UpdateWordListRequest) returns (WordList);
+  rpc ListWordLists(ListWordListsRequest) returns (ListWordListsResponse);
+  rpc DeleteWordList(DeleteWordListRequest) returns (MyEmpty);
+
+  // rpc CreateAudioClip()
+  // DeleteAudioClip()
+  // UpdateAudioClip()
+  // ListAudioClips()
+  // TODO: import, export
+}
+
+// TODO: file a bug for rules_nodejs where
+// @npm/@bazel/labs/grpc_web/google-protobuf/google/protobuf/empty_pb.umd.js
+// Does not contain the google_protobuf_empty_pb.Empty required
+message MyEmpty {
+}
+
+message Pron {
+  option (google.api.resource) = {
+    type: "adminapi.ydict.net/Pron"
+    pattern: "words/{word}/prons/{pron}"
+  };
+
+  // The resource name of the Pron.
+  // Format: words/{word}/prons/{pron}
+  string name = 1;
+
+  string pronunciation = 2;
+
+  int64 weight = 3;
+
+  Variant variant = 4;
+
+  SandhiCategory sandhi_category = 5;
+}
+
+message AudioClip {
+  option (google.api.resource) = {
+    type: "adminapi.ydict.net/AudioClip"
+    pattern: "audioClips/{audioClip}"
+  };
+
+  string name = 1;
+
+  // Resource name of the speaker
+  string speaker = 2;
+
+  string pronunciation = 3;
+
+  AudioResource audio = 4;
+}
+
+enum Variant {
+  // Default. Do not use.
+  VARIANT_UNSPECIFIED = 0;
+
+  VARIANT_FUZHOU_CITY = 1;
+
+  VARIANT_LIANJIANG = 2;
+
+  VARIANT_CIKLING = 3;
+}
+
+enum SandhiCategory {
+  // Default.
+  SANDHI_CATEGORY_UNSPECIFIED = 0;
+
+  SANDHI_CATEGORY_SANDHI = 1;
+
+  SANDHI_CATEGORY_BENGZI = 2;
+}
+
+message WordList {
+  option (google.api.resource) = {
+    type: "adminapi.ydict.net/WordList",
+    pattern: "wordLists/{wordList}"
+  };
+
+  // The resource name of the WordList.
+  // Format: wordLists/{wordList}
+  string name = 1;
+}
+
+message CreateWordRequest {
+
+  // The word to create
+  Word word = 1 [(google.api.field_behavior) = REQUIRED];
+
+  // Must be a hexidecimal number.
+  string word_id = 2;
+}
+
+message GetWordRequest {
+  string name = 1;
+}
+
+message UpdateWordRequest {
+  Word word = 1;
+
+  google.protobuf.FieldMask update_mask = 2;
+}
+
+message ListWordsRequest {
+
+  // TODO: filter, order_by
+
+  int32 page_size = 1;
+
+  int32 offset = 2;
+}
+
+message ListWordsResponse {
+  repeated Word words = 1;
+
+  int32 total_size = 3;
+}
+
+message DeleteWordRequest {
+  string name = 1;
+}
+
+message CreatePronRequest {
+  string parent = 1;
+
+  Pron pron = 2;
+}
+
+message BatchGetPronsRequest {
+  string parent = 1;
+  repeated string names = 2;
+}
+
+message BatchGetPronsResponse {
+  repeated Pron prons = 1;
+}
+
+message DeletePronRequest {
+  string name = 1;
+}
+message CreateWordListRequest {
+
+  WordList word_list = 1 [(google.api.field_behavior) = REQUIRED];
+}
+
+message GetWordListRequest {
+  string name = 1;
+}
+
+message UpdateWordListRequest {
+  WordList word_list = 1;
+
+  google.protobuf.FieldMask update_mask = 2;
+}
+
+message ListWordListsRequest {
+  // TODO: filter, order_by
+
+  int32 page_size = 1;
+
+  string page_token = 2;
+}
+
+message ListWordListsResponse {
+  repeated WordList word_lists = 1;
+
+  string next_page_token = 2;
+}
+
+message DeleteWordListRequest {
+  string name = 1;
+}
+
+message AudioResource {
+  oneof resource {
+    string remote_file = 1;
+    string upload_token = 2;
+  }
+}

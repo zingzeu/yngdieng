@@ -1,0 +1,5 @@
+<mat-select [formControl]="formControl">
+    <mat-option *ngFor="let opt of options" [value]="opt.value">
+        {{opt.viewValue}}
+    </mat-option>
+</mat-select>

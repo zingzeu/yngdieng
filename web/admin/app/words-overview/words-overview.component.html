@@ -1,0 +1,49 @@
+<div class="container">
+    <h2 class="title">词库管理</h2>
+    <!--<mat-form-field class="searchbox">
+        <input matInput placeholder="Ex. Pizza" value="Sushi">
+    </mat-form-field>-->
+    <div class="actions">
+        <button mat-raised-button>新建词条</button>
+    </div>
+    <div class="loading-shade" *ngIf="isLoadingResults">
+        <mat-spinner></mat-spinner>
+    </div>
+    <div class="mat-elevation-z8 table">
+        <table mat-table [dataSource]="data" matSort matSortActive="name" matSortDisableClear matSortDirection="asc">
+
+            <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header> Zingzeu ID </th>
+                <td mat-cell *matCellDef="let word"> {{word.name}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="hanzi">
+                <th mat-header-cell *matHeaderCellDef> 汉字 </th>
+                <td mat-cell *matCellDef="let word"> {{word.hanzi}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="mandarinWords">
+                <th mat-header-cell *matHeaderCellDef> 普通话直译词 </th>
+                <td mat-cell *matCellDef="let word"> {{word.mandarinWords}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="gloss">
+                <th mat-header-cell *matHeaderCellDef> 简单释义 </th>
+                <td mat-cell *matCellDef="let word"> {{word.gloss}} </td>
+            </ng-container>
+
+            <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef> </th>
+                <td mat-cell *matCellDef="let word" class="column-actions">
+                    <a mat-button [routerLink]="['/words',word.name]">编辑</a> </td>
+            </ng-container>
+
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+        <mat-paginator [length]="resultsLength" [pageSizeOptions]="[5, 10, 20]" showFirstLastButtons>
+        </mat-paginator>
+    </div>
+
+</div>

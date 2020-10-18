@@ -1,0 +1,22 @@
+.fullscreen-container {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: grid;
+
+  grid-template-rows: 50px auto;
+  .content {
+    grid-row: 2;
+    padding: 8px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+}
+
+.mat-toolbar-row,
+.mat-toolbar-single-row {
+  min-height: 50px !important;
+  height: 50px !important;
+}

@@ -19,6 +19,7 @@ import {
   UserPreference,
 } from '../../../shared/services_pb';
 import {YngdiengServiceClient} from '../../../shared/services_grpc_web_pb';
+import {AdminServiceClient as XAdminServiceClient} from '../../../yngdieng/admin/v1/service_grpc_web_pb';
 
 import {
   IYngdiengEnvironment,
@@ -34,6 +35,7 @@ export class YngdiengBackendService {
     @Inject(YNGDIENG_ENVIRONMENT) private environment: IYngdiengEnvironment,
     private userSettings: UserSettingsService
   ) {
+    console.log(new XAdminServiceClient(''));
     this.grpcClient = new YngdiengServiceClient(this.environment.serverUrl);
   }
 

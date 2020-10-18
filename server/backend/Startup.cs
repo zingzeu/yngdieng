@@ -1,12 +1,15 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Npgsql;
+using Yngdieng.Backend.Db;
 using Yngdieng.Backend.HealthChecks;
 using Yngdieng.Backend.Services;
+using Yngdieng.Backend.Services.Admin;
 using Yngdieng.Backend.TextToSpeech;
-
 namespace Yngdieng.Backend
 {
     public class Startup
@@ -27,6 +30,11 @@ namespace Yngdieng.Backend
                 builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader().WithExposedHeaders(
                     "Grpc-Status", "Grpc-Message", "Grpc-Encoding", "Grpc-Accept-Encoding");
             }));
+            services.AddDbContext<AdminContext>(options =>
+                options
+                    .UseNpgsql("Host=localhost;Database=yngdieng;Username=postgres;Password=postgres", o => o.UseNodaTime())
+                    .EnableSensitiveDataLogging()
+            );
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request
@@ -48,6 +56,7 @@ namespace Yngdieng.Backend
                 endpoints.MapHealthChecks("/health");
 
                 endpoints.MapGrpcService<YngdiengService>().EnableGrpcWeb().RequireCors("AllowAll");
+                endpoints.MapGrpcService<AdminService>().EnableGrpcWeb().RequireCors("AllowAll");
                 if (env.IsDevelopment())
                 {
                     endpoints.MapGrpcReflectionService();

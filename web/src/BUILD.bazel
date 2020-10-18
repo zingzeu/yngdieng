@@ -44,15 +44,6 @@ ng_module(
     ],
 )
 
-filegroup(
-    name = "rxjs_umd_modules",
-    srcs = [
-        # do not sort
-        "@npm//:node_modules/rxjs/bundles/rxjs.umd.js",
-        ":rxjs_shims.js",
-    ],
-)
-
 # Files that we serve in both development and production
 _ASSETS = [
     # This label references an output of the "styles" sass_binary above.
@@ -230,7 +221,7 @@ ts_devserver(
     # They should have only named UMD modules, or require.js will throw.
     scripts = [
         "@npm//:node_modules/tslib/tslib.js",
-        ":rxjs_umd_modules",
+        "//web/shared:rxjs_umd_modules",
         "@npm//howler:howler__umd",
         "@npm//@bazel/labs/grpc_web:bootstrap_scripts",
     ],
