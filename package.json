@@ -47,7 +47,7 @@
     "@bazel/karma": "2.2.2",
     "@bazel/labs": "2.2.1",
     "@bazel/protractor": "2.2.1",
-    "@bazel/rollup": "2.2.1",
+    "@bazel/rollup": "2.2.2",
     "@bazel/terser": "2.2.2",
     "@bazel/typescript": "2.2.1",
     "@grpc/proto-loader": "0.5.5",
