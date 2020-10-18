@@ -22,7 +22,6 @@ ng_module(
         "//web/src/environments",
         "//web/src/lib",
         "//web/src/protos:settings_ts_proto",
-        "//yngdieng/admin/v1:service_ts_proto",
         "@npm//@angular/cdk",
         "@npm//@angular/common",
         "@npm//@angular/core",
