@@ -102,13 +102,13 @@ namespace Yngdieng.Backend.TextToSpeech
 
                         startPos = startBytes - startBytes % reader.WaveFormat.BlockAlign;
                         endPos = (int)reader.Length - (endBytes - endBytes % reader.WaveFormat.BlockAlign);
-                        if (endPos - startPos < minLen)
+                        if (endPos - startPos < minLenMs)
                         {
-                            endPos = startPos + minLen;
+                            endPos = startPos + minLenMs;
                         }
-                        else if (endPos - startPos > maxLen)
+                        else if (endPos - startPos > maxLenMs)
                         {
-                            endPos = startPos + maxLen;
+                            endPos = startPos + maxLenMs;
                         }
                         TrimWavFile(reader, writer, startPos, endPos);
                     }
