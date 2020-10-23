@@ -1,7 +1,9 @@
 ﻿using System;
 using Microsoft.AspNetCore.Routing;
 using Microsoft.AspNetCore.Routing.Template;
-using Yngdieng.Admin.V1.Protos;
+using Yngdieng.Common;
+using Yngdieng.Frontend.V3.Protos;
+using Yngdieng.Protos;
 
 namespace Yngdieng.Backend.Services.Frontend
 {
@@ -18,6 +20,11 @@ namespace Yngdieng.Backend.Services.Frontend
                 throw new ArgumentException($"{name} is not a Word resource name.");
             }
             return (string)outs["word"];
+        }
+
+        public static string ToWordName(DocRef docRef)
+        {
+            return string.Format("words/{0}", DocRefs.Encode(docRef));
         }
 
         public static int ToWordListId(string name)
