@@ -72,7 +72,8 @@ namespace Yngdieng.Backend.Services.Frontend
             return new Yngdieng.Frontend.V1.Protos.Word
             {
                 Name = docId,
-                Pronunciations = { GetRecommendedPronunciations(maybeYngdiengDocument, prons) }
+                Pronunciations = { GetRecommendedPronunciations(maybeYngdiengDocument, prons) },
+                Explanation = { GetExplanations(maybeYngdiengDocument, extensions) }
             };
         }
 
@@ -135,6 +136,22 @@ namespace Yngdieng.Backend.Services.Frontend
                     Pronunciation_ = sandhiFromDb.Pronunciation,
                     Audio = AudioResourceWithTtsUrls(sandhiFromDb.Pronunciation)
                 });
+            }
+            return output.ToArray();
+        }
+
+        private static Yngdieng.Frontend.V1.Protos.RichTextNode[] GetExplanations(
+              YngdiengDocument? maybeYngdiengDocument,
+            IEnumerable<Db.Extension> extensions
+
+        )
+        {
+            var output = new List<Yngdieng.Frontend.V1.Protos.RichTextNode>() { };
+            var hDoc = maybeYngdiengDocument.Sources
+                .FirstOrDefault(s => s.SourceCase == YngdiengDocument.Types.Source.SourceOneofCase.CiklinDfd).CiklinDfd ?? null;
+            if (hDoc != null)
+            {
+                output.Add(Renderers.ToRichTextNode(hDoc));
             }
             return output.ToArray();
         }
