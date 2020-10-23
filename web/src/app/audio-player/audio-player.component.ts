@@ -6,6 +6,7 @@ import {
 } from '../../environments/environment';
 
 import {AudioAckDialogComponent} from '../audio-ack-dialog/audio-ack-dialog.component';
+import {LocalStorageService} from '../local-storage.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {MatDialog} from '@angular/material/dialog';
 import {Platform} from '@angular/cdk/platform';
@@ -28,6 +29,7 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
 
   constructor(
     @Inject(YNGDIENG_ENVIRONMENT) private environment: IYngdiengEnvironment,
+    private localStorageService: LocalStorageService,
     private snackBar: MatSnackBar,
     private platform: Platform,
     private ackDialog: MatDialog
@@ -70,6 +72,9 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
         this.state = PlayerState.Playing;
       },
       onend: () => {
+        this.state = PlayerState.Idle;
+      },
+      onstop: () => {
         this.state = PlayerState.Idle;
       },
       onloaderror: (_, errorCode) => {
@@ -143,24 +148,20 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
   }
 
   private shouldShowAckDialog() {
-    // TODO: separate localstorage availability from here
-    if (localStorage) {
-      let ackShown = localStorage.getItem('tts-acknowledgement-shown');
-      if (ackShown == null) {
-        console.log(
-          '[Audio Player] Play button is clicked for the first time.'
-        );
-        localStorage.setItem('tts-acknowledgement-shown', 'yes');
-        return true;
-      } else {
-        return false;
-      }
+    let ackShown = this.localStorageService.get('tts-acknowledgement-shown');
+    if (ackShown == null) {
+      console.log('[Audio Player] Play button is clicked for the first time.');
+      this.localStorageService.set('tts-acknowledgement-shown', 'yes');
+      return true;
+    } else {
+      return false;
     }
   }
 
   private showTtsAcknowledgement() {
     let ackDialogRef = this.ackDialog.open(AudioAckDialogComponent, {
       width: '80vw',
+      maxWidth: '500px',
     });
     ackDialogRef.afterClosed().subscribe(() => this.currentAudio.play());
   }

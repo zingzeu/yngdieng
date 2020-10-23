@@ -1,0 +1,37 @@
+<h2>编辑 {{word.getName()}} - {{hanziControl.value}}</h2>
+<button mat-raised-button>保存修改</button>
+<form>
+    <div>
+        <mat-form-field class="full-width">
+            <mat-label>榕典推荐汉字（请用繁体）</mat-label>
+            <input matInput type="text" [formControl]="hanziControl" />
+        </mat-form-field>
+    </div>
+
+    <div>
+        <mat-form-field class="full-width">
+            <mat-label>其他汉字（异体字；用半角逗号分割）</mat-label>
+            <textarea matInput [formControl]="hanziAltControl"></textarea>
+        </mat-form-field>
+    </div>
+
+    <div>
+        <mat-form-field class="full-width">
+            <mat-label>普通话直译词（请用繁体；用半角逗号分割）</mat-label>
+            <textarea matInput [formControl]="mandarinWordsControl"></textarea>
+        </mat-form-field>
+    </div>
+
+    <div>
+        <mat-form-field class="full-width">
+            <mat-label>简单释义（仅备注用途；榕典用户不可见）</mat-label>
+            <textarea matInput [formControl]="glossControl"></textarea>
+        </mat-form-field>
+    </div>
+
+    <app-prons-editor [word]="word.getName()" [prons]="word.getPronsList()"></app-prons-editor>
+
+    <h3>释义</h3>
+    <div>目前仅 contrib 可见。feng, li请到 Github 编辑。</div>
+
+</form>

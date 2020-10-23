@@ -54,11 +54,11 @@ rules_proto_toolchains()
 ##############
 http_archive(
     name = "io_bazel_rules_go",
-    sha256 = "b725e6497741d7fc2d55fcc29a276627d10e43fa5d0bb692692890ae30d98d00",
+    sha256 = "ac03931e56c3b229c145f1a8b2a2ad3e8d8f1af57e43ef28a26123362a1e3c7e",
     urls = [
-        "https://mirror.bazel.build/github.com/bazelbuild/rules_go/releases/download/v0.24.3/rules_go-v0.24.3.tar.gz",
-        "https://github.com/bazelbuild/rules_go/releases/download/v0.24.3/rules_go-v0.24.3.tar.gz",
-        "https://github.wuyanzheshui.workers.dev/bazelbuild/rules_go/releases/download/v0.24.3/rules_go-v0.24.3.tar.gz",
+        "https://mirror.bazel.build/github.com/bazelbuild/rules_go/releases/download/v0.24.4/rules_go-v0.24.4.tar.gz",
+        "https://github.com/bazelbuild/rules_go/releases/download/v0.24.4/rules_go-v0.24.4.tar.gz",
+        "https://github.wuyanzheshui.workers.dev/bazelbuild/rules_go/releases/download/v0.24.4/rules_go-v0.24.4.tar.gz",
     ],
 )
 
@@ -209,11 +209,11 @@ _go_image_repos()
 
 http_archive(
     name = "com_github_grpc_ecosystem_grpc_gateway",
-    sha256 = "0630c364e47aa7f813dd92f1874c778e496251304719c65e959675b15f7c7f15",
-    strip_prefix = "grpc-gateway-1.15.0",
+    sha256 = "f03e3554d1547f7b57009beab88922612abf2d8fc7c2db9fece998cb625c530e",
+    strip_prefix = "grpc-gateway-1.15.2",
     urls = [
-        "https://github.wuyanzheshui.workers.dev/grpc-ecosystem/grpc-gateway/archive/v1.15.0.tar.gz",
-        "https://github.com/grpc-ecosystem/grpc-gateway/archive/v1.15.0.tar.gz",
+        "https://github.wuyanzheshui.workers.dev/grpc-ecosystem/grpc-gateway/archive/v1.15.2.tar.gz",
+        "https://github.com/grpc-ecosystem/grpc-gateway/archive/v1.15.2.tar.gz",
     ],
 )
 

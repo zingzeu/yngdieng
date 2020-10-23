@@ -1,0 +1,16 @@
+<div class="fullscreen-container" >
+    <mat-toolbar class="topbar mat-elevation-z4 no-select" color="primary">
+        <mat-icon (click)="onMenuClicked()">menu</mat-icon>
+        <a>榕典后台</a>
+        <span class="spacer"></span>
+        <app-user-profile style="float:right"></app-user-profile>
+        <app-auth-button style="float:right"></app-auth-button>
+    </mat-toolbar>
+   
+    <mat-sidenav-container class="content" hasBackdrop="false">
+        <mat-sidenav mode="side" [(opened)]="sideNavOpened" class="no-select"><app-sidenav-content></app-sidenav-content></mat-sidenav>
+        <mat-sidenav-content>
+            <router-outlet></router-outlet>
+        </mat-sidenav-content>
+    </mat-sidenav-container>
+</div>

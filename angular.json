@@ -3,33 +3,33 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "web2": {
+    "yngdieng": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
           "style": "scss"
         }
       },
-      "root": "",
+      "root": "web/src",
       "sourceRoot": "web/src",
       "prefix": "app",
       "architect": {
         "build": {
-          "builder": "@angular/bazel:build",
+          "builder": "@bazel/angular:build",
           "options": {
-            "targetLabel": "//src:prodapp",
+            "targetLabel": "//web/src:prodapp",
             "bazelCommand": "build"
           },
           "configurations": {
             "production": {
-              "targetLabel": "//src:prodapp"
+              "targetLabel": "//web/src:prodapp"
             }
           }
         },
         "serve": {
-          "builder": "@angular/bazel:build",
+          "builder": "@bazel/angular:build",
           "options": {
-            "targetLabel": "//src:devserver",
+            "targetLabel": "//web/src:devserver",
             "bazelCommand": "run",
             "watch": true
           },
@@ -42,14 +42,14 @@
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "web2:build"
+            "browserTarget": "yngdieng:build"
           }
         },
         "test": {
-          "builder": "@angular/bazel:build",
+          "builder": "@bazel/angular:build",
           "options": {
             "bazelCommand": "test",
-            "targetLabel": "//src:test"
+            "targetLabel": "//web/src:test"
           }
         },
         "lint": {
@@ -64,7 +64,7 @@
           }
         },
         "e2e": {
-          "builder": "@angular/bazel:build",
+          "builder": "@bazel/angular:build",
           "options": {
             "bazelCommand": "test",
             "targetLabel": "//e2e:devserver_test"
@@ -76,7 +76,69 @@
           }
         }
       }
+    },
+    "admin": {
+      "projectType": "application",
+      "schematics": {
+        "@schematics/angular:component": {
+          "style": "scss"
+        }
+      },
+      "root": "web/admin",
+      "sourceRoot": "web/admin",
+      "prefix": "app",
+      "architect": {
+        "build": {
+          "builder": "@bazel/angular:build",
+          "options": {
+            "targetLabel": "//web/src:prodapp",
+            "bazelCommand": "build"
+          },
+          "configurations": {
+            "production": {
+              "targetLabel": "//web/src:prodapp"
+            }
+          }
+        },
+        "serve": {
+          "builder": "@bazel/angular:build",
+          "options": {
+            "targetLabel": "//web/src:devserver",
+            "bazelCommand": "run",
+            "watch": true
+          },
+          "configurations": {
+            "production": {
+              "targetLabel": "//web/src:prodserver"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "yngdieng:build"
+          }
+        },
+        "test": {
+          "builder": "@bazel/angular:build",
+          "options": {
+            "bazelCommand": "test",
+            "targetLabel": "//web/src:test"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "tsconfig.app.json",
+              "tsconfig.spec.json",
+              "e2e/tsconfig.json"
+            ],
+            "exclude": ["**/node_modules/**"]
+          }
+        }
+      }
     }
   },
-  "defaultProject": "web2"
+  "defaultProject": "yngdieng"
 }

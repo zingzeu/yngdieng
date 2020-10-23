@@ -18,9 +18,9 @@ ng_module(
     deps = [
         "//shared:documents_ts_proto",
         "//shared:services_ts_proto",
+        "//web/shared/material",
         "//web/src/environments",
         "//web/src/lib",
-        "//web/src/material",
         "//web/src/protos:settings_ts_proto",
         "@npm//@angular/cdk",
         "@npm//@angular/common",

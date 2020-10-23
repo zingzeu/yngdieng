@@ -1,0 +1,13 @@
+syntax = "proto3";
+
+package yngdieng.admin.v1;
+option csharp_namespace = "Yngdieng.Admin.V1.Protos";
+
+message WordRef {
+  int32 word_id = 1;
+}
+
+message PronRef {
+  int32 word_id = 1;
+  int32 pron_id = 2;
+}

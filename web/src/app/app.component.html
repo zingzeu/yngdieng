@@ -1,5 +1,5 @@
 <mat-sidenav-container class="fullscreen-container">
-  <mat-sidenav mode="over" hasBackdrop="true" [(opened)]="sideNavOpened"><app-sidenav-content></app-sidenav-content></mat-sidenav>
+  <mat-sidenav mode="over" hasBackdrop="true" [(opened)]="sideNavOpened" class="no-select"><app-sidenav-content></app-sidenav-content></mat-sidenav>
   <mat-sidenav-content><router-outlet></router-outlet></mat-sidenav-content>
 </mat-sidenav-container>
 <div class="env-tag" *ngIf="showEnvTag">{{envName}}</div>

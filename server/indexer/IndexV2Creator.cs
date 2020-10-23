@@ -62,6 +62,8 @@ namespace Yngdieng.Indexer
                            .Run();
             Console.WriteLine($"Loading Contrib...");
             var contrib = new ContribLoader(Path.Combine(inputFolder, "contrib.tsv")).Run();
+            Console.WriteLine($"Loading Redirects...");
+            var redirects = new RedirectsLoader(Path.Combine(inputFolder, "redirects.txt")).Run();
 
             index.Version = versionTag;
             index.FengDocuments.Add(feng);
@@ -77,6 +79,8 @@ namespace Yngdieng.Indexer
 
             index.YngdiengDocuments.AddRange(YngdiengDocumentUtil.Combine(
                 zingzeuWords, index.HistoricalDocuments, feng, contrib));
+
+            index.DocIdRedirections.Add(redirects);
 
             var debugJsonOutput = index.ToString();
             File.WriteAllText(Path.Combine(outputFolder, "index_debug.json"), debugJsonOutput);
@@ -110,6 +114,15 @@ namespace Yngdieng.Indexer
                             new TextField(LuceneUtils.Fields.Hanzi, yDoc.HanziCanonical.Regular, Field.Store.NO),
                             new StringField(LuceneUtils.Fields.YngpingSandhiTonePattern, GetTonePattern(yDoc.YngpingSandhi), Field.Store.NO)
                         };
+                        foreach (var m in yDoc.IndexingExtension.MandarinWords)
+                        {
+                            doc.Add(new TextField(LuceneUtils.Fields.Mandarin, m, Field.Store.NO));
+                            doc.Add(new TextField(LuceneUtils.Fields.Mandarin, openCcClient.SimplifyMandarinText(m), Field.Store.NO));
+                        }
+                        foreach (var a in yDoc.HanziAlternatives)
+                        {
+                            doc.Add(new TextField(LuceneUtils.Fields.HanziAlternative, a.Regular, Field.Store.NO));
+                        }
                         // Simplify Hanzi for search
                         doc.Add(new TextField(LuceneUtils.Fields.Hanzi, openCcClient.SimplifyHukziuText(yDoc.HanziCanonical.Regular), Field.Store.NO));
                         foreach (var e in yDoc.IndexingExtension.ExplanationText)

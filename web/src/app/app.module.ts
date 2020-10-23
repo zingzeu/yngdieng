@@ -7,7 +7,7 @@ import {YNGDIENG_ENVIRONMENT} from '../environments/environment';
 import {YngdiengDevEnvironment} from '../environments/environment.dev';
 import {YngdiengProdEnvironment} from '../environments/environment.prod';
 import {YngdiengStagingEnvironment} from '../environments/environment.staging';
-import {MaterialModule} from '../material/material.module';
+import {MaterialModule} from '../../shared/material/material.module';
 
 import {AdvancedSearchLandingComponent} from './advanced-search-landing/advanced-search-landing.component';
 import {AppRoutingModule} from './app-routing.module';
@@ -45,53 +45,56 @@ import {LoadingCardComponent} from './loading-card/loading-card.component';
 import {AboutComponent} from './about/about.component';
 import {PlatformModule} from '@angular/cdk/platform';
 import {SettingsComponent} from './settings/settings.component';
+import {AudioAckDialogComponent} from './audio-ack-dialog/audio-ack-dialog.component';
 
 @NgModule({
   declarations: [
+    // keep sorted
+    AboutComponent,
+    AdvancedSearchLandingComponent,
     AppComponent,
-    SearchResultComponent,
+    AudioAckDialogComponent,
+    AudioPlayerComponent,
+    CommonToolbarComponent,
+    ContribExplanationComponent,
+    DebugInfoComponent,
+    DetailsFengComponent,
+    DetailsMonoHanziComponent,
+    EndOfResultsCardComponent,
+    FengExplanationComponent,
+    FengResultComponent,
+    GenericMessageCardComponent,
+    HelpComponent,
+    HistoricalDetailsComponent,
+    HomeComponent,
+    LoadingCardComponent,
+    MonoHanziResultComponent,
+    NoResultsCardComponent,
     PhonologyComposerComponent,
     PhonologyQueryRendererComponent,
-    HomeComponent,
-    MonoHanziResultComponent,
-    FengResultComponent,
-    DetailsFengComponent,
+    RichtextFlattenPipe,
+    SearchResultComponent,
     SearchToolbarComponent,
-    AdvancedSearchLandingComponent,
-    DetailsMonoHanziComponent,
+    SearchV2ResultComponent,
+    SettingsComponent,
     SidenavContentComponent,
-    HelpComponent,
-    CommonToolbarComponent,
-    DebugInfoComponent,
-    YngpingHelpDialogComponent,
     SimplificationToolComponent,
-    AudioPlayerComponent,
+    WordCardComponent,
     WordDetailsComponent,
     WordDetailsHeroComponent,
-    FengExplanationComponent,
-    ContribExplanationComponent,
-    HistoricalDetailsComponent,
-    SearchV2ResultComponent,
-    WordCardComponent,
-    RichtextFlattenPipe,
-    NoResultsCardComponent,
-    EndOfResultsCardComponent,
-    GenericMessageCardComponent,
-    LoadingCardComponent,
-    AboutComponent,
-    SettingsComponent,
+    YngpingHelpDialogComponent,
   ],
   imports: [
     AppRoutingModule,
+    BrowserAnimationsModule,
     BrowserModule,
     FormsModule,
     HttpClientModule,
     MaterialModule,
-    ReactiveFormsModule,
-    BrowserAnimationsModule,
     PlatformModule,
+    ReactiveFormsModule,
   ],
-  entryComponents: [YngpingHelpDialogComponent],
+  entryComponents: [AudioAckDialogComponent, YngpingHelpDialogComponent],
   providers: [
     {provide: YNGDIENG_ENVIRONMENT, useValue: getYngdiengEnvironment()},
     YngdiengBackendService,

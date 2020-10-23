@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <Protobuf Include="shared/**/*.proto" AdditionalImportDirs="google" GrpcServices="Server" />
+    <Protobuf Include="yngdieng/**/*.proto" AdditionalImportDirs="google" GrpcServices="Server" />
   </ItemGroup>
 
   <ItemGroup>

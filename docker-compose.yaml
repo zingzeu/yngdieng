@@ -1,12 +1,12 @@
 version: '3'
 
 services: 
-  # GrpcWeb proxy, running at port :8080
-  # Uses host network
-  # Assumes the Grpc backend is running at localhost:5001
-  envoy:
-    build:
-      context: ./server/envoy
-      dockerfile: Dockerfile
-    image: ztl8702/yngdieng-api-frontend:dev
-    network_mode: "host"
+  postgres:
+    image: postgres:13-alpine
+    environment:
+    - POSTGRES_PASSWORD=postgres
+    - POSTGRES_DB=yngdieng
+    ports:
+    - 5432:5432
+    volumes:
+    - ./pg_data:/var/lib/postgresql/data

@@ -418,3 +418,5 @@ Thumbs.db
 data/
 
 .ionide
+
+pg_data/

@@ -68,6 +68,9 @@ message YngdiengDocument {
     // All searchable explanation text.
     // Should contain both zh-hans and zh-hant versions.
     repeated string explanation_text = 3;
+
+    // 普通话直译. Expected to be in zh-hant.
+    repeated string mandarin_words = 4;
   }
 }
 
@@ -235,6 +238,8 @@ message YngdiengIndex {
   repeated FengDocument feng_documents = 3;
 
   repeated YngdiengDocument yngdieng_documents = 5;
+
+  map<string, string> doc_id_redirections = 6;
 }
 
 message Hanzi {
