@@ -116,4 +116,25 @@ CREATE TABLE word_audio_clips (
 INSERT INTO "__EFMigrationsHistory" (migration_id, product_version)
 VALUES ('20201023002148_WordAudioClip', '3.1.9');
 
+ALTER TABLE pron_audio_clips DROP CONSTRAINT fk_pron_audio_clips_prons_word_id_pron_id;
+
+ALTER TABLE word_audio_clips DROP CONSTRAINT fk_word_audio_clips_prons_pron_word_id_pron_id;
+
+DROP INDEX ix_pron_audio_clips_word_id_audio_clip_id;
+
+CREATE INDEX ix_word_audio_clips_audio_clip_id ON word_audio_clips (audio_clip_id);
+
+CREATE INDEX ix_pron_audio_clips_audio_clip_id ON pron_audio_clips (audio_clip_id);
+
+ALTER TABLE pron_audio_clips ADD CONSTRAINT fk_pron_audio_clips_audio_clips_audio_clip_id FOREIGN KEY (audio_clip_id) REFERENCES audio_clips (audio_clip_id) ON DELETE CASCADE;
+
+ALTER TABLE pron_audio_clips ADD CONSTRAINT fk_pron_audio_clips_prons_word_id_pron_id FOREIGN KEY (word_id, pron_id) REFERENCES prons (word_id, pron_id) ON DELETE CASCADE;
+
+ALTER TABLE word_audio_clips ADD CONSTRAINT fk_word_audio_clips_audio_clips_audio_clip_id FOREIGN KEY (audio_clip_id) REFERENCES audio_clips (audio_clip_id) ON DELETE CASCADE;
+
+ALTER TABLE word_audio_clips ADD CONSTRAINT fk_word_audio_clips_words_word_id FOREIGN KEY (word_id) REFERENCES words (word_id) ON DELETE CASCADE;
+
+INSERT INTO "__EFMigrationsHistory" (migration_id, product_version)
+VALUES ('20201023115513_FixForeignKeys', '3.1.9');
+
 

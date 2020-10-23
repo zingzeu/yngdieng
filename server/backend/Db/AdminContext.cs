@@ -51,9 +51,11 @@ namespace Yngdieng.Backend.Db
             builder.Entity<Pron>().Property(b => b.PronId).UseIdentityByDefaultColumn();
             builder.Entity<Pron>().HasOne<Word>().WithMany().HasForeignKey(p => p.WordId);
             builder.Entity<PronAudioClip>().HasKey(p => new { p.WordId, p.PronId, p.AudioClipId });
-            builder.Entity<PronAudioClip>().HasOne<Pron>().WithMany().HasForeignKey(p => new { p.WordId, p.AudioClipId });
+            builder.Entity<PronAudioClip>().HasOne<Pron>().WithMany().HasForeignKey(p => new { p.WordId, p.PronId });
+            builder.Entity<PronAudioClip>().HasOne<AudioClip>().WithMany().HasForeignKey(p => p.AudioClipId);
             builder.Entity<WordAudioClip>().HasKey(p => new { p.WordId, p.AudioClipId });
-            builder.Entity<WordAudioClip>().HasOne<Pron>().WithMany().HasForeignKey(p => new { p.WordId, p.AudioClipId });
+            builder.Entity<WordAudioClip>().HasOne<Word>().WithMany().HasForeignKey(p => p.WordId);
+            builder.Entity<WordAudioClip>().HasOne<AudioClip>().WithMany().HasForeignKey(p => p.AudioClipId);
             builder.Entity<Extension>().HasKey(p => new { p.WordId, p.ExtensionId });
             builder.Entity<Extension>().Property(b => b.ExtensionId).UseIdentityByDefaultColumn();
             builder.Entity<Extension>().HasOne<Word>().WithMany().HasForeignKey(e => e.WordId);
