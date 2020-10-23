@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Npgsql;
@@ -17,6 +18,14 @@ namespace Yngdieng.Backend
 {
     public class Startup
     {
+
+        private readonly IConfiguration Configuration;
+
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<IndexHealthCheck>();
@@ -46,7 +55,8 @@ namespace Yngdieng.Backend
             });
             services.AddDbContext<AdminContext>(options =>
                 options
-                    .UseNpgsql("Host=localhost;Database=yngdieng;Username=postgres;Password=postgres", o => o.UseNodaTime())
+                    .UseNpgsql(
+                        Configuration.GetConnectionString("Postgres"), o => o.UseNodaTime())
                     .EnableSensitiveDataLogging()
             );
         }

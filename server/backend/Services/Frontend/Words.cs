@@ -56,7 +56,28 @@ namespace Yngdieng.Backend.Services.Frontend
                 Name = ResourceNames.ToWordName(docRef),
                 Pronunciations = { GetRecommendedPronunciations(maybeYngdiengDocument, prons) },
                 Explanation = { explanations },
-                Snippet = GetSnippet(maybeYngdiengDocument, extensions)
+                Snippet = GetSnippet(maybeYngdiengDocument, extensions),
+                AudioCards = {
+                    new Yngdieng.Frontend.V3.Protos.Word.Types.AudioCard {
+                        Audio = new AudioResource {
+                             RemoteUrls = new AudioResource.Types.RemoteUrls()
+                            {
+                                RemoteUrls_ = {
+                                                "https://yngdieng-media.oss-cn-hangzhou.aliyuncs.com/010b3fea-4891-48ed-9868-769fbee91bb6.mp3"
+                                                }
+                            }
+                        }
+                    }
+                },
+                WordLists = {
+                     new Yngdieng.Frontend.V3.Protos.WordList()
+                    {
+                        Name = "wordLists/1",
+                        Title ="WordList 1",
+                        Description = "Descrption 1",
+                        Upvotes = 123,
+                    }
+                }
             };
         }
 
