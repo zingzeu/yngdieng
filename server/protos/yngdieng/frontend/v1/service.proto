@@ -5,15 +5,26 @@ option csharp_namespace = "Yngdieng.Frontend.V1.Protos";
 import "google/api/annotations.proto";
 import "google/api/field_behavior.proto";
 import "google/api/resource.proto";
+
+import "yngdieng/frontend/v1/resources.proto";
+
 service FrontendService {
+  rpc GetWord(GetWordRequest) returns (Word) {
+    option (google.api.http) = {
+      get: "/v1/{name=words/*}"
+    };
+  };
 }
+
 message Word {
   option (google.api.resource) = {
     type: "api.ydict.net/Word",
     pattern: "words/{word}"
   };
 
-  string hanzi = 1;
+  string name = 1;
+
+  string hanzi = 2;
 
   message Pronunciation {
     string display_name = 1;
@@ -22,9 +33,9 @@ message Word {
   }
 
   // Recommended pronunciations.
-  repeated Pronunciation pronunciations = 2;
+  repeated Pronunciation pronunciations = 3;
 
-  repeated RichTextNode explanation = 3;
+  repeated RichTextNode explanation = 4;
 
   message AudioCard {
     string pronunciation = 1;
@@ -33,22 +44,9 @@ message Word {
     AudioResource audio = 4;
   }
 
-  repeated WordList word_lists = 5;
-}
+  repeated AudioCard audio_cards = 5;
 
-message WordList {
-  option (google.api.resource) = {
-    type: "api.ydict.net/WordList",
-    pattern: "wordLists/{wordList}"
-  };
-
-  string name = 1;
-
-  string title = 2;
-
-  string description = 3;
-
-  int32 upvotes = 4;
+  repeated WordList word_lists = 6;
 }
 
 message AudioResource {
@@ -86,4 +84,8 @@ message RichTextNode {
     InlineContainerNode inline_container = 3;
     ListNode list = 2;
   }
+}
+
+message GetWordRequest {
+  string name = 1;
 }

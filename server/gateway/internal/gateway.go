@@ -8,7 +8,8 @@ import (
 	"time"
 
 	gwruntime "github.com/grpc-ecosystem/grpc-gateway/runtime"
-	services "github.com/mindonglab/yngdieng/shared/services"
+	frontendservice "github.com/mindonglab/yngdieng/yngdieng/frontend/v1/service"
+	yngdiengservice "github.com/mindonglab/yngdieng/shared/services"
 	"google.golang.org/grpc"
 )
 
@@ -18,7 +19,8 @@ func newGateway(ctx context.Context, conn *grpc.ClientConn, opts []gwruntime.Ser
 	mux := gwruntime.NewServeMux(opts...)
 
 	for _, f := range []func(context.Context, *gwruntime.ServeMux, *grpc.ClientConn) error{
-		services.RegisterYngdiengServiceHandler,
+		yngdiengservice.RegisterYngdiengServiceHandler,
+		frontendservice.RegisterFrontendServiceHandler,
 	} {
 		if err := f(ctx, mux, conn); err != nil {
 			return nil, err

@@ -19,6 +19,7 @@ namespace Yngdieng.Backend.Db
         public DbSet<Pron> Prons { get; set; }
 
         public DbSet<PronAudioClip> PronAudioClips { get; set; }
+        public DbSet<WordAudioClip> WordAudioClips { get; set; }
 
         public DbSet<Extension> Extensions { get; set; }
         public DbSet<Speaker> Speakers { get; set; }
@@ -51,6 +52,8 @@ namespace Yngdieng.Backend.Db
             builder.Entity<Pron>().HasOne<Word>().WithMany().HasForeignKey(p => p.WordId);
             builder.Entity<PronAudioClip>().HasKey(p => new { p.WordId, p.PronId, p.AudioClipId });
             builder.Entity<PronAudioClip>().HasOne<Pron>().WithMany().HasForeignKey(p => new { p.WordId, p.AudioClipId });
+            builder.Entity<WordAudioClip>().HasKey(p => new { p.WordId, p.AudioClipId });
+            builder.Entity<WordAudioClip>().HasOne<Pron>().WithMany().HasForeignKey(p => new { p.WordId, p.AudioClipId });
             builder.Entity<Extension>().HasKey(p => new { p.WordId, p.ExtensionId });
             builder.Entity<Extension>().Property(b => b.ExtensionId).UseIdentityByDefaultColumn();
             builder.Entity<Extension>().HasOne<Word>().WithMany().HasForeignKey(e => e.WordId);
@@ -136,9 +139,14 @@ namespace Yngdieng.Backend.Db
 
     public sealed class PronAudioClip
     {
-
         public int WordId { get; set; }
         public int PronId { get; set; }
+        public int AudioClipId { get; set; }
+    }
+
+    public sealed class WordAudioClip
+    {
+        public int WordId { get; set; }
         public int AudioClipId { get; set; }
     }
 

@@ -11,6 +11,7 @@ using Yngdieng.Backend.Db;
 using Yngdieng.Backend.HealthChecks;
 using Yngdieng.Backend.Services;
 using Yngdieng.Backend.Services.Admin;
+using Yngdieng.Backend.Services.Frontend;
 using Yngdieng.Backend.TextToSpeech;
 namespace Yngdieng.Backend
 {
@@ -73,6 +74,7 @@ namespace Yngdieng.Backend
 
                 endpoints.MapGrpcService<YngdiengService>().EnableGrpcWeb().RequireCors("AllowAll");
                 endpoints.MapGrpcService<AdminService>().EnableGrpcWeb().RequireCors("AllowAll");
+                endpoints.MapGrpcService<FrontendService>().EnableGrpcWeb().RequireCors("AllowAll");
                 if (env.IsDevelopment())
                 {
                     endpoints.MapGrpcReflectionService();

@@ -106,4 +106,14 @@ ALTER TABLE speakers ADD year_of_birth integer NULL;
 INSERT INTO "__EFMigrationsHistory" (migration_id, product_version)
 VALUES ('20201018163503_SpeakersColumns', '3.1.9');
 
+CREATE TABLE word_audio_clips (
+    word_id integer NOT NULL,
+    audio_clip_id integer NOT NULL,
+    CONSTRAINT pk_word_audio_clips PRIMARY KEY (word_id, audio_clip_id),
+    CONSTRAINT fk_word_audio_clips_prons_pron_word_id_pron_id FOREIGN KEY (word_id, audio_clip_id) REFERENCES prons (word_id, pron_id) ON DELETE CASCADE
+);
+
+INSERT INTO "__EFMigrationsHistory" (migration_id, product_version)
+VALUES ('20201023002148_WordAudioClip', '3.1.9');
+
 
