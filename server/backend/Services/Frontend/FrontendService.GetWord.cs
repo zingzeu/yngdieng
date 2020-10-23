@@ -5,7 +5,9 @@ using Grpc.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Yngdieng.Backend.Db;
+using Yngdieng.Common;
 using Yngdieng.Frontend.V1.Protos;
+using Yngdieng.Protos;
 
 namespace Yngdieng.Backend.Services.Frontend
 {
@@ -27,11 +29,18 @@ namespace Yngdieng.Backend.Services.Frontend
                 _logger.LogInformation($"DocId Redirection: {docId} -> {redirectionTarget}");
                 docId = redirectionTarget;
             }
+            var docRef = DocRefs.Decode(docId);
+            var maybeYngdiengDocument = _indexHolder.GetIndex().YngdiengDocuments.Where(yDoc => yDoc.DocId == docId).SingleOrDefault();
 
             return new Yngdieng.Frontend.V1.Protos.Word
             {
                 Name = docId
             };
+        }
+
+        private static Yngdieng.Frontend.V1.Protos.Word.Types.Pronunciation[] GetPronunciations(YngdiengDocument maybeYngdiengDocument)
+        {
+            return null;
         }
     }
 }
