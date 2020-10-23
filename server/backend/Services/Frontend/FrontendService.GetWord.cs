@@ -31,6 +31,18 @@ namespace Yngdieng.Backend.Services.Frontend
             }
             var docRef = DocRefs.Decode(docId);
             var maybeYngdiengDocument = _indexHolder.GetIndex().YngdiengDocuments.Where(yDoc => yDoc.DocId == docId).SingleOrDefault();
+            int? maybeWordId = string.IsNullOrEmpty(docRef.ZingzeuId)
+                ? (int?)null : int.Parse(docRef.ZingzeuId, System.Globalization.NumberStyles.HexNumber);
+            var maybeWord = maybeWordId == null ? null : await _dbContext.Words.Where(w => w.WordId == maybeWordId).SingleOrDefaultAsync();
+            if (maybeYngdiengDocument == null && maybeWord == null)
+            {
+                _logger.LogWarning($"{docId} is not present in YngdiengIndex nor DB.");
+                throw new RpcException(new Status(StatusCode.NotFound, $"{request.Name} is not found."));
+            }
+
+            var extensions = await _dbContext.Extensions.Where(e => e.WordId == maybeWordId).ToListAsync();
+            var prons = await _dbContext.Prons.Where(p => p.WordId == maybeWordId).ToListAsync();
+            var audioClips = await _dbContext.WordAudioClips.Where(a => a.WordId == maybeWordId).ToListAsync();
 
             return new Yngdieng.Frontend.V1.Protos.Word
             {
@@ -38,7 +50,10 @@ namespace Yngdieng.Backend.Services.Frontend
             };
         }
 
-        private static Yngdieng.Frontend.V1.Protos.Word.Types.Pronunciation[] GetPronunciations(YngdiengDocument maybeYngdiengDocument)
+        private static Yngdieng.Frontend.V1.Protos.Word.Types.Pronunciation[] GetPronunciations(
+            YngdiengDocument maybeYngdiengDocument
+
+            )
         {
             return null;
         }

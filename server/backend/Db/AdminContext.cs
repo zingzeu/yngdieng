@@ -47,6 +47,11 @@ namespace Yngdieng.Backend.Db
                 eb.HasNoKey();
                 eb.ToView("SomeView");
             });
+            builder.Entity<AudioClipsByWordId>(eb =>
+            {
+                eb.HasNoKey();
+                eb.ToView("SomeView2");
+            });
             builder.Entity<Pron>().HasKey(p => new { p.WordId, p.PronId });
             builder.Entity<Pron>().Property(b => b.PronId).UseIdentityByDefaultColumn();
             builder.Entity<Pron>().HasOne<Word>().WithMany().HasForeignKey(p => p.WordId);
@@ -106,6 +111,26 @@ namespace Yngdieng.Backend.Db
         public string? Gloss { get; set; }
 
         public List<int> PronIds { get; set; }
+
+    }
+
+    //[Keyless]
+    public sealed class AudioClipsByWordId
+    {
+
+        public int WordId { get; set; }
+
+        public int AudioClipId { get; set; }
+
+        public string Pronunciation { get; set; }
+
+        public string BlobLocation { get; set; }
+        public string MimeType { get; set; }
+        public string SpeakerDisplayName { get; set; }
+        public string? SpeakerLocation { get; set; }
+        public int? SpeakerAge { get; set; }
+        public Gender SpeakerGender { get; set; }
+
 
     }
 
