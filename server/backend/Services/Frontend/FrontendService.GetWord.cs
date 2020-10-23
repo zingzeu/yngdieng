@@ -159,6 +159,7 @@ namespace Yngdieng.Backend.Services.Frontend
             {
                 output.Add(Renderers.ToRichTextNode(hDoc));
             }
+            output.AddRange(extensions.Select(e => Renderers.ToRichTextNode("", e)));//TODO word hanzi; remove dups
             return output.ToArray();
         }
 

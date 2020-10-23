@@ -17,13 +17,13 @@ namespace Yngdieng.Backend.Services.Frontend
         public static RichTextNode ToRichTextNode(string hanzi, Db.Extension extension)
         {
             var parsed = SafeParseExplanation(extension.Explanation);
-            explanation = parsed == null ? JustText(extension.Explanation) : ToRichTextNode(parsed, hanzi);
+            var explanation = parsed == null ? JustText(extension.Explanation) : ToRichTextNode(parsed, hanzi);
             return new RichTextNode()
             {
                 VerticalContainer = new RichTextNode.Types.VerticalContainerNode()
                 {
                     Children = {
-                            SectionHeader(doc.HanziCanonical),
+                            SectionHeader(hanzi),
                             explanation,
                             Source(extension.Source+"cONTRIBUTORS: "+string.Join(",",extension.Contributors)) // TODO
                         }
@@ -48,7 +48,7 @@ namespace Yngdieng.Backend.Services.Frontend
             }
             else
             {
-                output.VerticalContainer.Children.Add(JustText(doc.ExplanationRaw));
+                output.VerticalContainer.Children.Add(JustText(doc.Explanation));
 
             }
             return output;
