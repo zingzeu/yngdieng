@@ -35,7 +35,7 @@ namespace Yngdieng.Backend.TextToSpeech
             var audioFiles =
                 audioCodes.Select(code => Path.Combine(this.ttsAudioFolder, code + ".wav"))
                     .ToArray();
-            return TrimSilence(audioFiles);
+            return TrimAudio(audioFiles);
         }
 
         private static byte[] TrimSilence(string[] inputList, int msReserved = 0)
