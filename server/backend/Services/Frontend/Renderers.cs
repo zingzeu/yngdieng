@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using Yngdieng.Backend.Db;
 using Yngdieng.Common;
 using Yngdieng.Frontend.V1.Protos;
 using Yngdieng.Protos;
@@ -12,6 +13,23 @@ namespace Yngdieng.Backend.Services.Frontend
     {
 
         public static IEnumerable<string> EmptyStringArray = new string[] { };
+
+        public static RichTextNode ToRichTextNode(string hanzi, Db.Extension extension)
+        {
+            var parsed = SafeParseExplanation(extension.Explanation);
+            explanation = parsed == null ? JustText(extension.Explanation) : ToRichTextNode(parsed, hanzi);
+            return new RichTextNode()
+            {
+                VerticalContainer = new RichTextNode.Types.VerticalContainerNode()
+                {
+                    Children = {
+                            SectionHeader(doc.HanziCanonical),
+                            explanation,
+                            Source(extension.Source+"cONTRIBUTORS: "+string.Join(",",extension.Contributors)) // TODO
+                        }
+                }
+            };
+        }
 
         public static RichTextNode ToRichTextNode(FengDocument doc)
         {
@@ -27,6 +45,11 @@ namespace Yngdieng.Backend.Services.Frontend
             if (doc.ExplanationStructured != null)
             {
                 output.VerticalContainer.Children.Add(ToRichTextNode(doc.ExplanationStructured, doc.HanziCanonical));
+            }
+            else
+            {
+                output.VerticalContainer.Children.Add(JustText(doc.ExplanationRaw));
+
             }
             return output;
         }
