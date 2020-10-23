@@ -14,6 +14,18 @@ service FrontendService {
       get: "/v3/{name=words/*}"
     };
   };
+
+  rpc GetWordList(GetWordListRequest) returns (WordList) {
+    option (google.api.http) = {
+      get: "/v3/{name=wordLists/*}"
+    };
+  };
+
+  rpc ListWordListWords(ListWordListWordsRequest) returns (ListWordListWordsResponse) {
+    option (google.api.http) = {
+      get: "/v3/{parent=wordLists/*}/words"
+    };
+  }
 }
 
 message Word {
@@ -88,4 +100,23 @@ message RichTextNode {
 
 message GetWordRequest {
   string name = 1;
+}
+
+message GetWordListRequest {
+  string name = 1;
+}
+
+message ListWordListWordsRequest {
+  string parent = 1;
+
+  int32 page_size = 2;
+
+  string page_token = 3;
+}
+
+message ListWordListWordsResponse {
+
+  repeated Word books = 1;
+
+  string next_page_token = 2;
 }

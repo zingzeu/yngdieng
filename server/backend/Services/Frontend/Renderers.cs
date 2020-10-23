@@ -14,6 +14,17 @@ namespace Yngdieng.Backend.Services.Frontend
 
         public static IEnumerable<string> EmptyStringArray = new string[] { };
 
+        public static Yngdieng.Frontend.V3.Protos.WordList ToWordList(Db.WordList wordList)
+        {
+            return new Yngdieng.Frontend.V3.Protos.WordList()
+            {
+                Name = ResourceNames.ToWordListName(wordList.WordListId),
+                Title = wordList.Title,
+                Description = wordList.Description,
+                Upvotes = 123,
+            };
+        }
+
         public static RichTextNode ToRichTextNode(string hanzi, Db.Extension extension)
         {
             var parsed = SafeParseExplanation(extension.Explanation);
