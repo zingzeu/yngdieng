@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Npgsql;
@@ -11,11 +12,20 @@ using Yngdieng.Backend.Db;
 using Yngdieng.Backend.HealthChecks;
 using Yngdieng.Backend.Services;
 using Yngdieng.Backend.Services.Admin;
+using Yngdieng.Backend.Services.Frontend;
 using Yngdieng.Backend.TextToSpeech;
 namespace Yngdieng.Backend
 {
     public class Startup
     {
+
+        private readonly IConfiguration Configuration;
+
+        public Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<IndexHealthCheck>();
@@ -45,7 +55,8 @@ namespace Yngdieng.Backend
             });
             services.AddDbContext<AdminContext>(options =>
                 options
-                    .UseNpgsql("Host=localhost;Database=yngdieng;Username=postgres;Password=postgres", o => o.UseNodaTime())
+                    .UseNpgsql(
+                        Configuration.GetConnectionString("Postgres"), o => o.UseNodaTime())
                     .EnableSensitiveDataLogging()
             );
         }
@@ -73,6 +84,7 @@ namespace Yngdieng.Backend
 
                 endpoints.MapGrpcService<YngdiengService>().EnableGrpcWeb().RequireCors("AllowAll");
                 endpoints.MapGrpcService<AdminService>().EnableGrpcWeb().RequireCors("AllowAll");
+                endpoints.MapGrpcService<FrontendService>().EnableGrpcWeb().RequireCors("AllowAll");
                 if (env.IsDevelopment())
                 {
                     endpoints.MapGrpcReflectionService();

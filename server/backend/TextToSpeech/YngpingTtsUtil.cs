@@ -1,7 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using ZingzeuData.Yngping;
+﻿extern alias zingzeudata;
 
+using System;
+using System.Collections.Generic;
+using zingzeudata.ZingzeuData.Yngping;
 namespace Yngdieng.Backend.TextToSpeech
 {
     /// <summary>

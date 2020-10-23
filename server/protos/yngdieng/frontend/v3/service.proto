@@ -1,19 +1,42 @@
 syntax = "proto3";
 
-package yngdieng.frontend.v1;
-option csharp_namespace = "Yngdieng.Frontend.V1.Protos";
+package yngdieng.frontend.v3;
+option csharp_namespace = "Yngdieng.Frontend.V3.Protos";
 import "google/api/annotations.proto";
 import "google/api/field_behavior.proto";
 import "google/api/resource.proto";
+
+import "yngdieng/frontend/v3/resources.proto";
+
 service FrontendService {
+  rpc GetWord(GetWordRequest) returns (Word) {
+    option (google.api.http) = {
+      get: "/v3/{name=words/*}"
+    };
+  };
+
+  rpc GetWordList(GetWordListRequest) returns (WordList) {
+    option (google.api.http) = {
+      get: "/v3/{name=wordLists/*}"
+    };
+  };
+
+  rpc ListWordListWords(ListWordListWordsRequest) returns (ListWordListWordsResponse) {
+    option (google.api.http) = {
+      get: "/v3/{parent=wordLists/*}/words"
+    };
+  }
 }
+
 message Word {
   option (google.api.resource) = {
     type: "api.ydict.net/Word",
     pattern: "words/{word}"
   };
 
-  string hanzi = 1;
+  string name = 1;
+
+  string hanzi = 2;
 
   message Pronunciation {
     string display_name = 1;
@@ -22,9 +45,11 @@ message Word {
   }
 
   // Recommended pronunciations.
-  repeated Pronunciation pronunciations = 2;
+  repeated Pronunciation pronunciations = 3;
 
-  repeated RichTextNode explanation = 3;
+  string snippet = 7;
+
+  repeated RichTextNode explanation = 4;
 
   message AudioCard {
     string pronunciation = 1;
@@ -33,22 +58,9 @@ message Word {
     AudioResource audio = 4;
   }
 
-  repeated WordList word_lists = 5;
-}
+  repeated AudioCard audio_cards = 5;
 
-message WordList {
-  option (google.api.resource) = {
-    type: "api.ydict.net/WordList",
-    pattern: "wordLists/{wordList}"
-  };
-
-  string name = 1;
-
-  string title = 2;
-
-  string description = 3;
-
-  int32 upvotes = 4;
+  repeated WordList word_lists = 6;
 }
 
 message AudioResource {
@@ -86,4 +98,27 @@ message RichTextNode {
     InlineContainerNode inline_container = 3;
     ListNode list = 2;
   }
+}
+
+message GetWordRequest {
+  string name = 1;
+}
+
+message GetWordListRequest {
+  string name = 1;
+}
+
+message ListWordListWordsRequest {
+  string parent = 1;
+
+  int32 page_size = 2;
+
+  string page_token = 3;
+}
+
+message ListWordListWordsResponse {
+
+  repeated Word words = 1;
+
+  string next_page_token = 2;
 }

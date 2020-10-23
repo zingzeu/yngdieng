@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using NodaTime;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
@@ -11,9 +12,10 @@ using Yngdieng.Backend.Db;
 namespace Yngdieng.Backend.Migrations
 {
     [DbContext(typeof(AdminContext))]
-    partial class AdminContextModelSnapshot : ModelSnapshot
+    [Migration("20201018163503_SpeakersColumns")]
+    partial class SpeakersColumns
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -154,8 +156,8 @@ namespace Yngdieng.Backend.Migrations
                     b.HasKey("WordId", "PronId", "AudioClipId")
                         .HasName("pk_pron_audio_clips");
 
-                    b.HasIndex("AudioClipId")
-                        .HasName("ix_pron_audio_clips_audio_clip_id");
+                    b.HasIndex("WordId", "AudioClipId")
+                        .HasName("ix_pron_audio_clips_word_id_audio_clip_id");
 
                     b.ToTable("pron_audio_clips");
                 });
@@ -226,25 +228,6 @@ namespace Yngdieng.Backend.Migrations
                         .HasName("pk_words");
 
                     b.ToTable("words");
-                });
-
-            modelBuilder.Entity("Yngdieng.Backend.Db.WordAudioClip", b =>
-                {
-                    b.Property<int>("WordId")
-                        .HasColumnName("word_id")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("AudioClipId")
-                        .HasColumnName("audio_clip_id")
-                        .HasColumnType("integer");
-
-                    b.HasKey("WordId", "AudioClipId")
-                        .HasName("pk_word_audio_clips");
-
-                    b.HasIndex("AudioClipId")
-                        .HasName("ix_word_audio_clips_audio_clip_id");
-
-                    b.ToTable("word_audio_clips");
                 });
 
             modelBuilder.Entity("Yngdieng.Backend.Db.WordList", b =>
@@ -332,34 +315,10 @@ namespace Yngdieng.Backend.Migrations
 
             modelBuilder.Entity("Yngdieng.Backend.Db.PronAudioClip", b =>
                 {
-                    b.HasOne("Yngdieng.Backend.Db.AudioClip", null)
-                        .WithMany()
-                        .HasForeignKey("AudioClipId")
-                        .HasConstraintName("fk_pron_audio_clips_audio_clips_audio_clip_id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.HasOne("Yngdieng.Backend.Db.Pron", null)
                         .WithMany()
-                        .HasForeignKey("WordId", "PronId")
+                        .HasForeignKey("WordId", "AudioClipId")
                         .HasConstraintName("fk_pron_audio_clips_prons_word_id_pron_id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Yngdieng.Backend.Db.WordAudioClip", b =>
-                {
-                    b.HasOne("Yngdieng.Backend.Db.AudioClip", null)
-                        .WithMany()
-                        .HasForeignKey("AudioClipId")
-                        .HasConstraintName("fk_word_audio_clips_audio_clips_audio_clip_id")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Yngdieng.Backend.Db.Word", null)
-                        .WithMany()
-                        .HasForeignKey("WordId")
-                        .HasConstraintName("fk_word_audio_clips_words_word_id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

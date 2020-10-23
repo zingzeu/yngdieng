@@ -5,7 +5,28 @@
   </ItemGroup>
 
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFramework>netcoreapp3.0</TargetFramework>
   </PropertyGroup>
 
+   <ItemGroup>
+    <FrameworkReference Include="Microsoft.AspNetCore.App" />
+  </ItemGroup>
+
+  <ItemGroup>
+  <PackageReference Include="ZingzeuData.Shared" Version="1.2.0" />
+  </ItemGroup>
+  <!--
+    Workaround for conflicting types ZingzeuData.Models.Explanation in both
+    Yngdieng.Protos.dll and ZingzeuData.Shared.dll.
+    See: https://github.com/NuGet/Samples/issues/39
+
+    The real solution is to have ZingzeuData.Shared reference Yngdieng.Protos.
+  -->
+  <Target Name="AddCustomAliases" BeforeTargets="FindReferenceAssembliesForReferences;ResolveReferences">
+    <ItemGroup>
+      <ReferencePath Condition="'%(FileName)' == 'ZingzeuData.Shared' AND '%(ReferencePath.NuGetPackageId)' == 'ZingzeuData.Shared'">
+        <Aliases>zingzeudata</Aliases>
+      </ReferencePath>
+    </ItemGroup>
+  </Target>
 </Project>

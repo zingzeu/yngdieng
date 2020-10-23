@@ -93,10 +93,9 @@ namespace Yngdieng.Indexer.Processing
                     Sources = { new YngdiengDocument.Types.Source { Contrib = c } }
                 });
             }
-            // Generated base64 encoded doc id
             foreach (var doc in results)
             {
-                doc.DocId = Base64UrlTextEncoder.Encode(doc.DocRef.ToByteArray());
+                doc.DocId = DocRefs.Encode(doc.DocRef);
                 doc.HanziCanonical = FindHanziCanonical(doc.Sources, doc.HanziCanonical);
                 doc.YngpingUnderlying = FindYngpingUnderlying(doc.Sources, doc.YngpingUnderlying);
                 doc.YngpingSandhi = FindYngpingSandhi(doc.Sources, doc.YngpingSandhi);
