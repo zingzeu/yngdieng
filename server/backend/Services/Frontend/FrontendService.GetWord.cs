@@ -7,14 +7,14 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Yngdieng.Backend.Db;
 using Yngdieng.Common;
-using Yngdieng.Frontend.V1.Protos;
+using Yngdieng.Frontend.V3.Protos;
 using Yngdieng.Protos;
 
 namespace Yngdieng.Backend.Services.Frontend
 {
-    public partial class FrontendService : Yngdieng.Frontend.V1.Protos.FrontendService.FrontendServiceBase
+    public partial class FrontendService : Yngdieng.Frontend.V3.Protos.FrontendService.FrontendServiceBase
     {
-        public async override Task<Yngdieng.Frontend.V1.Protos.Word> GetWord(GetWordRequest request,
+        public async override Task<Yngdieng.Frontend.V3.Protos.Word> GetWord(GetWordRequest request,
                                                    ServerCallContext context)
         {
 
@@ -69,7 +69,7 @@ namespace Yngdieng.Backend.Services.Frontend
                 join speakers on speakers.speaker_id = audio_clips.speaker_id
                 where word_id ={0};
                 ", maybeWordId).ToListAsync();
-            return new Yngdieng.Frontend.V1.Protos.Word
+            return new Yngdieng.Frontend.V3.Protos.Word
             {
                 Name = docId,
                 Pronunciations = { GetRecommendedPronunciations(maybeYngdiengDocument, prons) },
@@ -77,7 +77,7 @@ namespace Yngdieng.Backend.Services.Frontend
             };
         }
 
-        private static Yngdieng.Frontend.V1.Protos.Word.Types.Pronunciation[] GetRecommendedPronunciations(
+        private static Yngdieng.Frontend.V3.Protos.Word.Types.Pronunciation[] GetRecommendedPronunciations(
             YngdiengDocument? maybeYngdiengDocument,
             IEnumerable<Db.Pron> pronsFromDb
             )
@@ -90,13 +90,13 @@ namespace Yngdieng.Backend.Services.Frontend
                 && maybeYngdiengDocument.YngpingSandhi.Split().Count() > 1)
                 {
 
-                    return new Yngdieng.Frontend.V1.Protos.Word.Types.Pronunciation[] {
-                        new Yngdieng.Frontend.V1.Protos.Word.Types.Pronunciation() {
+                    return new Yngdieng.Frontend.V3.Protos.Word.Types.Pronunciation[] {
+                        new Yngdieng.Frontend.V3.Protos.Word.Types.Pronunciation() {
                             DisplayName = "市区单字",
                             Pronunciation_ = maybeYngdiengDocument.YngpingUnderlying,
                             Audio =  AudioResourceWithTtsUrls(maybeYngdiengDocument.YngpingUnderlying)
                         },
-                        new Yngdieng.Frontend.V1.Protos.Word.Types.Pronunciation() {
+                        new Yngdieng.Frontend.V3.Protos.Word.Types.Pronunciation() {
                            DisplayName = "市区连读",
                             Pronunciation_ = maybeYngdiengDocument.YngpingSandhi,
                             Audio = AudioResourceWithTtsUrls(maybeYngdiengDocument.YngpingSandhi)
@@ -106,8 +106,8 @@ namespace Yngdieng.Backend.Services.Frontend
                 var onlyPron = string.IsNullOrWhiteSpace(maybeYngdiengDocument.YngpingUnderlying)
                     ? maybeYngdiengDocument.YngpingSandhi
                     : maybeYngdiengDocument.YngpingUnderlying;
-                return new Yngdieng.Frontend.V1.Protos.Word.Types.Pronunciation[] {
-                        new Yngdieng.Frontend.V1.Protos.Word.Types.Pronunciation() {
+                return new Yngdieng.Frontend.V3.Protos.Word.Types.Pronunciation[] {
+                        new Yngdieng.Frontend.V3.Protos.Word.Types.Pronunciation() {
                             DisplayName = "福州市区",
                             Pronunciation_ = onlyPron,
                             Audio =  AudioResourceWithTtsUrls(onlyPron)
@@ -118,10 +118,10 @@ namespace Yngdieng.Backend.Services.Frontend
 
             var bengziFromDb = pronsFromDb.Where(p => p.SandhiCategory == SandhiCategory.BENGZI).SingleOrDefault();
             var sandhiFromDb = pronsFromDb.Where(p => p.SandhiCategory == SandhiCategory.SANDHI).SingleOrDefault();
-            var output = new List<Yngdieng.Frontend.V1.Protos.Word.Types.Pronunciation>();
+            var output = new List<Yngdieng.Frontend.V3.Protos.Word.Types.Pronunciation>();
             if (bengziFromDb != null)
             {
-                output.Add(new Yngdieng.Frontend.V1.Protos.Word.Types.Pronunciation()
+                output.Add(new Yngdieng.Frontend.V3.Protos.Word.Types.Pronunciation()
                 {
                     DisplayName = "市区单字",
                     Pronunciation_ = bengziFromDb.Pronunciation,
@@ -130,7 +130,7 @@ namespace Yngdieng.Backend.Services.Frontend
             }
             if (sandhiFromDb != null)
             {
-                output.Add(new Yngdieng.Frontend.V1.Protos.Word.Types.Pronunciation()
+                output.Add(new Yngdieng.Frontend.V3.Protos.Word.Types.Pronunciation()
                 {
                     DisplayName = "市区连读",
                     Pronunciation_ = sandhiFromDb.Pronunciation,
@@ -140,13 +140,13 @@ namespace Yngdieng.Backend.Services.Frontend
             return output.ToArray();
         }
 
-        private static Yngdieng.Frontend.V1.Protos.RichTextNode[] GetExplanations(
+        private static Yngdieng.Frontend.V3.Protos.RichTextNode[] GetExplanations(
               YngdiengDocument? maybeYngdiengDocument,
             IEnumerable<Db.Extension> extensions
 
         )
         {
-            var output = new List<Yngdieng.Frontend.V1.Protos.RichTextNode>() { };
+            var output = new List<Yngdieng.Frontend.V3.Protos.RichTextNode>() { };
             var fengDoc = maybeYngdiengDocument?.Sources
                 .FirstOrDefault(s => s.SourceCase == YngdiengDocument.Types.Source.SourceOneofCase.Feng)?.Feng ?? null;
             if (fengDoc != null)

@@ -1,7 +1,7 @@
 syntax = "proto3";
 
-package yngdieng.frontend.v1;
-option csharp_namespace = "Yngdieng.Frontend.V1.Protos";
+package yngdieng.frontend.v3;
+option csharp_namespace = "Yngdieng.Frontend.V3.Protos";
 
 message WordList {
   /*option (google.api.resource) = {

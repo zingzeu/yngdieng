@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package yngdieng.Frontend.V3;
+package yngdieng.frontend.v3;
 option csharp_namespace = "Yngdieng.Frontend.V3.Protos";
 import "google/api/annotations.proto";
 import "google/api/field_behavior.proto";
@@ -11,7 +11,7 @@ import "yngdieng/frontend/v3/resources.proto";
 service FrontendService {
   rpc GetWord(GetWordRequest) returns (Word) {
     option (google.api.http) = {
-      get: "/v1/{name=words/*}"
+      get: "/v3/{name=words/*}"
     };
   };
 }

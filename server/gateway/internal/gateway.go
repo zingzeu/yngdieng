@@ -8,7 +8,7 @@ import (
 	"time"
 
 	gwruntime "github.com/grpc-ecosystem/grpc-gateway/runtime"
-	frontendservice "github.com/mindonglab/yngdieng/yngdieng/frontend/v1/service"
+	frontendservice "github.com/mindonglab/yngdieng/yngdieng/frontend/v3/service"
 	yngdiengservice "github.com/mindonglab/yngdieng/shared/services"
 	"google.golang.org/grpc"
 )

@@ -18,7 +18,7 @@ ts_proto_library(
 
 go_proto_library(
     name = "resources_go_proto",
-    importpath = "github.com/mindonglab/yngdieng/yngdieng/frontend/v1/resources",
+    importpath = "github.com/mindonglab/yngdieng/yngdieng/frontend/v3/resources",
     proto = ":resources_proto",
 )
 
@@ -46,7 +46,7 @@ go_proto_library(
         "@io_bazel_rules_go//proto:go_grpc",
         "@com_github_grpc_ecosystem_grpc_gateway//protoc-gen-grpc-gateway:go_gen_grpc_gateway",
     ],
-    importpath = "github.com/mindonglab/yngdieng/yngdieng/frontend/v1/service",
+    importpath = "github.com/mindonglab/yngdieng/yngdieng/frontend/v3/service",
     proto = ":service_proto",
     deps = [
         ":resources_go_proto",

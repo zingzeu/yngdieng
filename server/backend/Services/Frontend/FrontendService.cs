@@ -4,7 +4,7 @@ using Yngdieng.Backend.Db;
 namespace Yngdieng.Backend.Services.Frontend
 {
 
-    public partial class FrontendService : Yngdieng.Frontend.V1.Protos.FrontendService.FrontendServiceBase
+    public partial class FrontendService : Yngdieng.Frontend.V3.Protos.FrontendService.FrontendServiceBase
     {
         private readonly ILogger<FrontendService> _logger;
         private readonly IIndexHolder _indexHolder;

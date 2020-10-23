@@ -1,6 +1,6 @@
 syntax = "proto3";
 
-package yngdieng.Frontend.V3;
+package yngdieng.frontend.v3;
 option csharp_namespace = "Yngdieng.Frontend.V3.Protos";
 
 message WordList {
