@@ -16,6 +16,7 @@ namespace Yngdieng.Backend.Db
 
         public DbSet<Word> Words { get; set; }
         public DbSet<WordWithPronIds> WordsWithPronIds { get; set; }
+        public DbSet<AudioClipsByWordId> AudioClipsByWordId { get; set; }
         public DbSet<Pron> Prons { get; set; }
 
         public DbSet<PronAudioClip> PronAudioClips { get; set; }
