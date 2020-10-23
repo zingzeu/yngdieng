@@ -58,7 +58,7 @@
     "@rollup/plugin-commonjs": "15.1.0",
     "@rollup/plugin-node-resolve": "9.0.0",
     "@types/google-protobuf": "3.7.3",
-    "@types/jasmine": "3.5.14",
+    "@types/jasmine": "3.6.0",
     "@types/node": "6.14.12",
     "clang-format": "1.4.0",
     "core-js": "2.6.11",
