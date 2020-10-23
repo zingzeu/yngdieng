@@ -36,7 +36,7 @@
     "zone.js": "0.11.2"
   },
   "devDependencies": {
-    "@angular/cli": "10.1.7",
+    "@angular/cli": "10.2.0",
     "@angular/compiler": "10.1.6",
     "@angular/compiler-cli": "10.1.6",
     "@babel/cli": "7.12.1",
