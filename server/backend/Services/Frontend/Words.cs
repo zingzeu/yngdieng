@@ -14,7 +14,13 @@ namespace Yngdieng.Backend.Services.Frontend
 {
     public static class Words
     {
-        public static async Task<Yngdieng.Frontend.V3.Protos.Word> GetWord(IIndexHolder _indexHolder, AdminContext _dbContext, DocRef docRef)
+        public enum Mode
+        {
+            Full,
+            Snippet
+        }
+
+        public static async Task<Yngdieng.Frontend.V3.Protos.Word> GetWord(IIndexHolder _indexHolder, AdminContext _dbContext, DocRef docRef, Mode mode = Mode.Full)
         {
             var maybeYngdiengDocument = _indexHolder.GetIndex().YngdiengDocuments.Where(yDoc => yDoc.DocId == DocRefs.Encode(docRef)).SingleOrDefault();
             int? maybeWordId = string.IsNullOrEmpty(docRef.ZingzeuId)
@@ -44,11 +50,13 @@ namespace Yngdieng.Backend.Services.Frontend
                 join speakers on speakers.speaker_id = audio_clips.speaker_id
                 where word_id ={0};
                 ", maybeWordId).ToListAsync();
+            var explanations = mode == Mode.Snippet ? new Yngdieng.Frontend.V3.Protos.RichTextNode[] { } : GetExplanations(maybeYngdiengDocument, extensions);
             return new Yngdieng.Frontend.V3.Protos.Word
             {
                 Name = ResourceNames.ToWordName(docRef),
                 Pronunciations = { GetRecommendedPronunciations(maybeYngdiengDocument, prons) },
-                Explanation = { GetExplanations(maybeYngdiengDocument, extensions) }
+                Explanation = { explanations },
+                Snippet = GetSnippet(maybeYngdiengDocument, extensions)
             };
         }
 
@@ -136,6 +144,33 @@ namespace Yngdieng.Backend.Services.Frontend
             }
             output.AddRange(extensions.Select(e => Renderers.ToRichTextNode("", e)));//TODO word hanzi; remove dups
             return output.ToArray();
+        }
+
+        private static string GetSnippet(
+             YngdiengDocument? maybeYngdiengDocument,
+           IEnumerable<Db.Extension> extensions
+
+       )
+        {
+            var fengExplation = maybeYngdiengDocument?.Sources
+               .FirstOrDefault(s => s.SourceCase == YngdiengDocument.Types.Source.SourceOneofCase.Feng)?.Feng.ExplanationTrad;
+            if (fengExplation != null)
+            {
+                return fengExplation.Truncate(100);
+            }
+            var contribExplanation = maybeYngdiengDocument?.Sources
+                        .FirstOrDefault(s => s.SourceCase == YngdiengDocument.Types.Source.SourceOneofCase.Contrib)
+                        ?.Contrib.ExplanationRaw; //TODO:fix. explanation flattened.
+            if (contribExplanation != null)
+            {
+                return contribExplanation.Truncate(100);
+            }
+            var extensionExplanation = extensions.FirstOrDefault();
+            if (extensionExplanation != null)
+            {
+                return extensionExplanation.Explanation.Truncate(100); // todo
+            }
+            return string.Empty;
         }
 
         private static AudioResource AudioResourceWithTtsUrls(string yngping)

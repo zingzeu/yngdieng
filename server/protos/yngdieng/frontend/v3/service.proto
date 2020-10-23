@@ -47,6 +47,8 @@ message Word {
   // Recommended pronunciations.
   repeated Pronunciation pronunciations = 3;
 
+  string snippet = 7;
+
   repeated RichTextNode explanation = 4;
 
   message AudioCard {
@@ -116,7 +118,7 @@ message ListWordListWordsRequest {
 
 message ListWordListWordsResponse {
 
-  repeated Word books = 1;
+  repeated Word words = 1;
 
   string next_page_token = 2;
 }

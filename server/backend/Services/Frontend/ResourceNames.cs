@@ -22,6 +22,14 @@ namespace Yngdieng.Backend.Services.Frontend
             return (string)outs["word"];
         }
 
+        public static DocRef ToDocRef(int wordId)
+        {
+            return new DocRef
+            {
+                ZingzeuId = string.Format("{0:X}", wordId)
+            };
+        }
+
         public static string ToWordName(DocRef docRef)
         {
             return string.Format("words/{0}", DocRefs.Encode(docRef));
