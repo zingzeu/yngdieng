@@ -31,5 +31,18 @@
       <ProjectReference Include="..\Yngdieng.Search.Common\Yngdieng.Search.Common.csproj" />
       <ProjectReference Include="..\common\Yngdieng.Common.csproj" />
     </ItemGroup>
+<!--
+    Workaround for conflicting types ZingzeuData.Models.Explanation in both
+    Yngdieng.Protos.dll and ZingzeuData.Shared.dll.
+    See: https://github.com/NuGet/Samples/issues/39
 
+    The real solution is to have ZingzeuData.Shared reference Yngdieng.Protos.
+  -->
+  <Target Name="AddCustomAliases" BeforeTargets="FindReferenceAssembliesForReferences;ResolveReferences">
+    <ItemGroup>
+      <ReferencePath Condition="'%(FileName)' == 'ZingzeuData.Shared' AND '%(ReferencePath.NuGetPackageId)' == 'ZingzeuData.Shared'">
+        <Aliases>zingzeudata</Aliases>
+      </ReferencePath>
+    </ItemGroup>
+  </Target>
 </Project>

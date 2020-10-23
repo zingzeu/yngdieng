@@ -1,9 +1,8 @@
-extern alias zingzeudata;
-using System.Collections.Generic;
-using System.Linq;
-using System.IO;
-using static Yngdieng.Indexer.ExplanationUtil;
+﻿extern alias zingzeudata;
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 
 namespace Yngdieng.Indexer.Loading
 {
@@ -22,11 +21,12 @@ namespace Yngdieng.Indexer.Loading
             return File.ReadAllLines(redirectsPath)
                 .Select(x => RemoveComment(x).Trim().Split(' '))
                 .Where(tokens => tokens.Length == 2)
-                .Select(tokens => new {
+                .Select(tokens => new
+                {
                     FromDocId = tokens[0],
-                    ToDocId = tokens[1] 
+                    ToDocId = tokens[1]
                 })
-                .ToDictionary(x => x.FromDocId,x => x.ToDocId);
+                .ToDictionary(x => x.FromDocId, x => x.ToDocId);
         }
 
         private static string RemoveComment(string x)

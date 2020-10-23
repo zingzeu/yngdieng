@@ -3,12 +3,129 @@ using System.Linq;
 using Yngdieng.Common;
 using Yngdieng.Frontend.V1.Protos;
 using Yngdieng.Protos;
+using ZingzeuData.Models;
+using static Yngdieng.Common.ExplanationUtil;
+
 namespace Yngdieng.Backend.Services.Frontend
 {
     public static class Renderers
     {
 
         public static IEnumerable<string> EmptyStringArray = new string[] { };
+
+        public static RichTextNode ToRichTextNode(FengDocument doc)
+        {
+            var output = new RichTextNode()
+            {
+                VerticalContainer = new RichTextNode.Types.VerticalContainerNode()
+                {
+                    Children = {
+                            SectionHeader(doc.HanziCanonical,$"{doc.YngpingUnderlying} -> {doc.YngpingCanonical}"),
+                        }
+                }
+            };
+            if (doc.ExplanationStructured != null)
+            {
+                output.VerticalContainer.Children.Add(ToRichTextNode(doc.ExplanationStructured, doc.HanziCanonical));
+            }
+            return output;
+        }
+
+        private static RichTextNode ToRichTextNode(Explanation e, string currentWord = "～")
+        {
+            var output = new RichTextNode()
+            {
+                VerticalContainer = new RichTextNode.Types.VerticalContainerNode()
+                {
+                    Children ={
+                    Label("释义"),
+                        new RichTextNode {
+                            List = new RichTextNode.Types.ListNode {
+                                Ordered = true,
+                                Children = {e.Senses.Select(s =>
+                                    ToRichTextNode(s,currentWord)
+                                )}
+                            }
+                }
+
+                }
+                }
+            };
+            //todo: notes
+            return output;
+        }
+
+        private static RichTextNode ToRichTextNode(Explanation.Types.Sense sense, string currentWord = "～")
+
+        {
+            var output = new RichTextNode()
+            {
+                VerticalContainer = new RichTextNode.Types.VerticalContainerNode()
+                {
+
+                }
+            };
+            if (!string.IsNullOrWhiteSpace(sense.Text))
+            {
+                output.VerticalContainer.Children.Add(JustText(MaybeAddPeriod(sense.Text)));
+            }
+            if (sense.Examples.Count() > 0)
+            {
+                output.VerticalContainer.Children.Add(
+                new RichTextNode()
+                {
+                    List = new RichTextNode.Types.ListNode()
+                    {
+                        Children = {sense.Examples.Select(ex =>
+                                                    ToRichTextNode(ex, currentWord)
+                                                )}
+                    }
+                }
+                );
+            }
+            if (sense.ChildSenses.Count() > 0)
+            {
+                output.VerticalContainer.Children.Add(
+                new RichTextNode()
+                {
+                    List = new RichTextNode.Types.ListNode()
+                    {
+                        Ordered = true,
+                        Children = {sense.ChildSenses.Select(c =>
+                                                    ToRichTextNode(c, currentWord)
+                                                )}
+                    }
+                }
+                );
+            }
+            return output;
+        }
+
+        private static RichTextNode ToRichTextNode(string example, string currentWord)
+        {
+            return JustText(MaybeAddPeriod(example.Replace("～", currentWord)));
+        }
+
+        private static string MaybeAddPeriod(string text)
+        {
+            if (string.IsNullOrWhiteSpace(text))
+            {
+                return text;
+            }
+            var trimmed = text.Trim();
+            var lastChar = trimmed.Substring(trimmed.Length - 1);
+            if (
+              lastChar == "。" ||
+              lastChar == "，" ||
+              lastChar == "！" ||
+              lastChar == "？"
+            )
+            {
+                return trimmed;
+            }
+            return trimmed + '。';
+        }
+
         public static RichTextNode ToRichTextNode(HistoricalDocument doc)
         {
             return new RichTextNode()
@@ -29,10 +146,15 @@ namespace Yngdieng.Backend.Services.Frontend
             };
         }
 
+        private static RichTextNode SectionHeader(string hanzi, string pron)
+        {
+            return SingleLineTextWithStyles(hanzi, new string[] { "section-header" });
+        }
+
+
         private static RichTextNode SectionHeader(string header)
         {
             return SingleLineTextWithStyles(header, new string[] { "section-header" });
-
         }
 
         private static RichTextNode Label(string label)
@@ -43,6 +165,11 @@ namespace Yngdieng.Backend.Services.Frontend
         private static RichTextNode Source(string source)
         {
             return SingleLineTextWithStyles(source, new string[] { "source" });
+        }
+
+        private static RichTextNode JustText(string text)
+        {
+            return SingleLineTextWithStyles(text, EmptyStringArray);
         }
 
         private static RichTextNode SingleLineTextWithStyles(string text, IEnumerable<string> styles)

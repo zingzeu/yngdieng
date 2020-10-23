@@ -5,7 +5,7 @@ using Google.Protobuf;
 using ZingzeuData.Models;
 using ZingzeuData.Parser;
 
-namespace Yngdieng.Indexer
+namespace Yngdieng.Common
 {
     public static class ExplanationUtil
     {

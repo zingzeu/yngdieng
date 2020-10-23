@@ -147,8 +147,14 @@ namespace Yngdieng.Backend.Services.Frontend
         )
         {
             var output = new List<Yngdieng.Frontend.V1.Protos.RichTextNode>() { };
-            var hDoc = maybeYngdiengDocument.Sources
-                .FirstOrDefault(s => s.SourceCase == YngdiengDocument.Types.Source.SourceOneofCase.CiklinDfd).CiklinDfd ?? null;
+            var fengDoc = maybeYngdiengDocument?.Sources
+                .FirstOrDefault(s => s.SourceCase == YngdiengDocument.Types.Source.SourceOneofCase.Feng)?.Feng ?? null;
+            if (fengDoc != null)
+            {
+                output.Add(Renderers.ToRichTextNode(fengDoc));
+            }
+            var hDoc = maybeYngdiengDocument?.Sources
+                .FirstOrDefault(s => s.SourceCase == YngdiengDocument.Types.Source.SourceOneofCase.CiklinDfd)?.CiklinDfd ?? null;
             if (hDoc != null)
             {
                 output.Add(Renderers.ToRichTextNode(hDoc));
