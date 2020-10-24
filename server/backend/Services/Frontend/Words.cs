@@ -1,14 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using System.Collections.Immutable;
+using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Grpc.Core;
+using Microsoft.AspNetCore.Components.RenderTree;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
 using Yngdieng.Backend.Db;
 using Yngdieng.Common;
 using Yngdieng.Frontend.V3.Protos;
 using Yngdieng.Protos;
+using Word = Yngdieng.Frontend.V3.Protos.Word;
+using WordList = Yngdieng.Frontend.V3.Protos.WordList;
 
 namespace Yngdieng.Backend.Services.Frontend
 {
@@ -20,158 +23,139 @@ namespace Yngdieng.Backend.Services.Frontend
             Snippet
         }
 
-        public static async Task<Yngdieng.Frontend.V3.Protos.Word> GetWord(IIndexHolder _indexHolder, AdminContext _dbContext, DocRef docRef, Mode mode = Mode.Full)
+        public static async Task<Word>
+            GetWord(IIndexHolder _indexHolder, AdminContext _dbContext, DocRef docRef, Mode mode = Mode.Full)
         {
-            var maybeYngdiengDocument = _indexHolder.GetIndex().YngdiengDocuments.Where(yDoc => yDoc.DocId == DocRefs.Encode(docRef)).SingleOrDefault();
-            int? maybeWordId = string.IsNullOrEmpty(docRef.ZingzeuId)
-                ? (int?)null : int.Parse(docRef.ZingzeuId, System.Globalization.NumberStyles.HexNumber);
+            var maybeYngdiengDocument = _indexHolder.GetIndex().YngdiengDocuments
+                .SingleOrDefault(yDoc => yDoc.DocId == DocRefs.Encode(docRef));
+            var maybeWordId = string.IsNullOrEmpty(docRef.ZingzeuId)
+                ? (int?)null : int.Parse(docRef.ZingzeuId, NumberStyles.HexNumber);
             var maybeWord = maybeWordId == null ? null : await _dbContext.Words.Where(w => w.WordId == maybeWordId).SingleOrDefaultAsync();
             if (maybeYngdiengDocument == null && maybeWord == null)
             {
-                throw new RpcException(new Status(StatusCode.NotFound, $"Not found."));
+                throw new RpcException(new Status(StatusCode.NotFound, "Not found."));
             }
-
             var extensions = await _dbContext.Extensions.Where(e => e.WordId == maybeWordId).ToListAsync();
             var prons = await _dbContext.Prons.Where(p => p.WordId == maybeWordId).ToListAsync();
-            var audioClips = maybeWordId == null ? new List<Db.AudioClipsByWordId>() : await _dbContext.AudioClipsByWordId
-                .FromSqlRaw(@"
-                                select 
-                                word_audio_clips.word_id,
-                                word_audio_clips.audio_clip_id,
-                                audio_clips.pronunciation,
-                                audio_clips.blob_location,
-                                audio_clips.mime_type,
-                                speakers.display_name as speaker_display_name,
-                                speakers.location as speaker_location,
-                                CAST(date_part('year', CURRENT_DATE) - speakers.year_of_birth as integer) as speaker_age,
-                                speakers.gender as speaker_gender
-                from word_audio_clips 
-                join audio_clips on audio_clips.audio_clip_id = word_audio_clips.audio_clip_id
-                join speakers on speakers.speaker_id = audio_clips.speaker_id
-                where word_id ={0};
-                ", maybeWordId).ToListAsync();
-            var explanations = mode == Mode.Snippet ? new Yngdieng.Frontend.V3.Protos.RichTextNode[] { } : GetExplanations(maybeYngdiengDocument, extensions);
-            return new Yngdieng.Frontend.V3.Protos.Word
+            var recommendedProns = GetRecommendedPronunciations(maybeYngdiengDocument, prons);
+            var explanations = mode == Mode.Snippet
+                ? Enumerable.Empty<RichTextNode>()
+                : GetExplanations(maybeYngdiengDocument, extensions);
+            var audioCards = mode == Mode.Snippet ? Enumerable.Empty<Word.Types.AudioCard>()
+                : await GetAudioCards(_dbContext, recommendedProns, maybeWordId);
+            var wordLists = mode == Mode.Full && maybeWordId.HasValue
+                ? await Queries.QueryWordListsByWordId(_dbContext, maybeWordId.Value).Select(wl => Renderers.ToWordList(wl)).ToListAsync()
+                : Enumerable.Empty<WordList>();
+            return new Word
             {
                 Name = ResourceNames.ToWordName(docRef),
-                Pronunciations = { GetRecommendedPronunciations(maybeYngdiengDocument, prons) },
+                Hanzi = await GetHanzi(_dbContext, maybeYngdiengDocument, maybeWordId),
+                Pronunciations = { recommendedProns },
                 Explanation = { explanations },
                 Snippet = GetSnippet(maybeYngdiengDocument, extensions),
-                AudioCards = {
-                    new Yngdieng.Frontend.V3.Protos.Word.Types.AudioCard {
-                        Audio = new AudioResource {
-                             RemoteUrls = new AudioResource.Types.RemoteUrls()
-                            {
-                                RemoteUrls_ = {
-                                                "https://yngdieng-media.oss-cn-hangzhou.aliyuncs.com/010b3fea-4891-48ed-9868-769fbee91bb6.mp3"
-                                                }
-                            }
-                        }
-                    }
-                },
+                AudioCards = { audioCards },
                 WordLists = {
-                     new Yngdieng.Frontend.V3.Protos.WordList()
-                    {
-                        Name = "wordLists/1",
-                        Title ="WordList 1",
-                        Description = "Descrption 1",
-                        Upvotes = 123,
-                    }
+                    wordLists
                 }
             };
         }
 
-        private static Yngdieng.Frontend.V3.Protos.Word.Types.Pronunciation[] GetRecommendedPronunciations(
-            YngdiengDocument? maybeYngdiengDocument,
-            IEnumerable<Db.Pron> pronsFromDb
-            )
+        private static async Task<string> GetHanzi(AdminContext dbContext, YngdiengDocument? maybeYngdiengDocument, int? wordId)
         {
-            if (maybeYngdiengDocument != null)
+            var hanziFromIndex = maybeYngdiengDocument == null ? null : HanziUtils.HanziToString(maybeYngdiengDocument.HanziCanonical);
+            if (!string.IsNullOrEmpty(hanziFromIndex))
             {
-                if (!string.IsNullOrWhiteSpace(maybeYngdiengDocument.YngpingUnderlying)
-                && !string.IsNullOrWhiteSpace(maybeYngdiengDocument.YngpingSandhi)
-                && maybeYngdiengDocument.YngpingSandhi != maybeYngdiengDocument.YngpingUnderlying
-                && maybeYngdiengDocument.YngpingSandhi.Split().Count() > 1)
-                {
-
-                    return new Yngdieng.Frontend.V3.Protos.Word.Types.Pronunciation[] {
-                        new Yngdieng.Frontend.V3.Protos.Word.Types.Pronunciation() {
-                            DisplayName = "市区单字",
-                            Pronunciation_ = maybeYngdiengDocument.YngpingUnderlying,
-                            Audio =  AudioResourceWithTtsUrls(maybeYngdiengDocument.YngpingUnderlying)
-                        },
-                        new Yngdieng.Frontend.V3.Protos.Word.Types.Pronunciation() {
-                           DisplayName = "市区连读",
-                            Pronunciation_ = maybeYngdiengDocument.YngpingSandhi,
-                            Audio = AudioResourceWithTtsUrls(maybeYngdiengDocument.YngpingSandhi)
-                        },
-                    };
-                }
-                var onlyPron = string.IsNullOrWhiteSpace(maybeYngdiengDocument.YngpingUnderlying)
-                    ? maybeYngdiengDocument.YngpingSandhi
-                    : maybeYngdiengDocument.YngpingUnderlying;
-                return new Yngdieng.Frontend.V3.Protos.Word.Types.Pronunciation[] {
-                        new Yngdieng.Frontend.V3.Protos.Word.Types.Pronunciation() {
-                            DisplayName = "福州市区",
-                            Pronunciation_ = onlyPron,
-                            Audio =  AudioResourceWithTtsUrls(onlyPron)
-                        },
-
-                    };
+                return hanziFromIndex;
             }
-
-            var bengziFromDb = pronsFromDb.Where(p => p.SandhiCategory == SandhiCategory.BENGZI).FirstOrDefault();
-            var sandhiFromDb = pronsFromDb.Where(p => p.SandhiCategory == SandhiCategory.SANDHI).FirstOrDefault();
-            var output = new List<Yngdieng.Frontend.V3.Protos.Word.Types.Pronunciation>();
-            if (bengziFromDb != null)
-            {
-                output.Add(new Yngdieng.Frontend.V3.Protos.Word.Types.Pronunciation()
-                {
-                    DisplayName = "市区单字",
-                    Pronunciation_ = bengziFromDb.Pronunciation,
-                    Audio = AudioResourceWithTtsUrls(bengziFromDb.Pronunciation)
-                });
-            }
-            if (sandhiFromDb != null)
-            {
-                output.Add(new Yngdieng.Frontend.V3.Protos.Word.Types.Pronunciation()
-                {
-                    DisplayName = "市区连读",
-                    Pronunciation_ = sandhiFromDb.Pronunciation,
-                    Audio = AudioResourceWithTtsUrls(sandhiFromDb.Pronunciation)
-                });
-            }
-            return output.ToArray();
+            var maybeWordFromDb = await dbContext.Words.SingleOrDefaultAsync(w => w.WordId == wordId);
+            return maybeWordFromDb != null ? maybeWordFromDb.Hanzi : string.Empty;
         }
 
-        private static Yngdieng.Frontend.V3.Protos.RichTextNode[] GetExplanations(
-              YngdiengDocument? maybeYngdiengDocument,
-            IEnumerable<Db.Extension> extensions
+        private static Word.Types.Pronunciation[] GetRecommendedPronunciations(
+            YngdiengDocument? maybeYngdiengDocument,
+            IEnumerable<Pron> pronsFromDb
+            )
+        {
+            var bengziFromIndex = maybeYngdiengDocument?.YngpingUnderlying;
+            var sandhiFromIndex = maybeYngdiengDocument?.YngpingSandhi;
+            var bengziFromDb = pronsFromDb.FirstOrDefault(p => p.SandhiCategory == SandhiCategory.BENGZI)?.Pronunciation;
+            var sandhiFromDb = pronsFromDb.FirstOrDefault(p => p.SandhiCategory == SandhiCategory.SANDHI)?.Pronunciation;
+            var bengzi = bengziFromIndex?.OrElse(bengziFromDb) ?? bengziFromDb;
+            var sandhi = sandhiFromIndex?.OrElse(sandhiFromDb) ?? sandhiFromDb;
 
+            var differentSandhiAndUnderlying = !string.IsNullOrWhiteSpace(bengzi)
+                                               && !string.IsNullOrWhiteSpace(sandhi)
+                                               && bengzi != sandhi
+                                               && bengzi.Split().Count() > 1;
+            if (differentSandhiAndUnderlying)
+            {
+                return new[] {
+                        AudioResources.PronunciationWithTts("市区单字", bengzi),
+                        AudioResources.PronunciationWithTts("市区连读", sandhi)
+                    };
+            }
+            var onlyPron = string.IsNullOrEmpty(sandhi) ? bengzi : sandhi;
+            return new[] {AudioResources.PronunciationWithTts("福州市区", onlyPron)
+                    };
+        }
+
+        private static async Task<IEnumerable<Word.Types.AudioCard>> GetAudioCards(
+            AdminContext dbContext, IEnumerable<Word.Types.Pronunciation> prons,
+            int? maybeWordId)
+        {
+            var output = new List<Word.Types.AudioCard>();
+            output.AddRange(prons.Select(p =>
+                new Word.Types.AudioCard()
+                {
+                    Pronunciation = p.Pronunciation_,
+                    HintPrimary = p.DisplayName,
+                    Audio = p.Audio
+                }));
+
+            if (!maybeWordId.HasValue)
+            {
+                return output.ToImmutableArray();
+            }
+
+            var audioClips = await Queries.QueryAudioClipsByWordId(dbContext, maybeWordId.Value).ToListAsync();
+            output.AddRange(audioClips.Select(Renderers.ToAudioCard));
+
+            return output.ToImmutableArray();
+        }
+
+        private static RichTextNode[] GetExplanations(
+              YngdiengDocument? maybeYngdiengDocument,
+            IEnumerable<Extension> extensions
         )
         {
-            var output = new List<Yngdieng.Frontend.V3.Protos.RichTextNode>() { };
-            var fengDoc = maybeYngdiengDocument?.Sources
-                .FirstOrDefault(s => s.SourceCase == YngdiengDocument.Types.Source.SourceOneofCase.Feng)?.Feng ?? null;
-            if (fengDoc != null)
-            {
-                output.Add(Renderers.ToRichTextNode(fengDoc));
-            }
+            var output = new List<RichTextNode>();
+            var fengDocs = maybeYngdiengDocument?.Sources
+                .Where(s => s.SourceCase == YngdiengDocument.Types.Source.SourceOneofCase.Feng).Select(s => s.Feng)
+                           ?? Enumerable.Empty<FengDocument>();
+            output.AddRange(fengDocs.Select(Renderers.ToRichTextNode));
             var hDoc = maybeYngdiengDocument?.Sources
                 .FirstOrDefault(s => s.SourceCase == YngdiengDocument.Types.Source.SourceOneofCase.CiklinDfd)?.CiklinDfd ?? null;
             if (hDoc != null)
             {
                 output.Add(Renderers.ToRichTextNode(hDoc));
             }
-            output.AddRange(extensions.Select(e => Renderers.ToRichTextNode("", e)));//TODO word hanzi; remove dups
+            // TODO: add word hanzi to extensions section header
+            output.AddRange(extensions.Select(e => Renderers.ToRichTextNode("", e)));
+            if (extensions.Count() == 0)
+            {
+                var contribFromIndex = maybeYngdiengDocument?.Sources
+                    .Where(s => s.SourceCase == YngdiengDocument.Types.Source.SourceOneofCase.Contrib)
+                    .Select(s => s.Contrib) ?? Enumerable.Empty<ContribDocument>(); ;
+                output.AddRange(contribFromIndex.Select(Renderers.ToRichTextNode));
+            }
+
             return output.ToArray();
         }
 
         private static string GetSnippet(
              YngdiengDocument? maybeYngdiengDocument,
-           IEnumerable<Db.Extension> extensions
-
-       )
+           IEnumerable<Extension> extensions
+        )
         {
             var fengExplation = maybeYngdiengDocument?.Sources
                .FirstOrDefault(s => s.SourceCase == YngdiengDocument.Types.Source.SourceOneofCase.Feng)?.Feng.ExplanationTrad;
@@ -187,24 +171,8 @@ namespace Yngdieng.Backend.Services.Frontend
                 return contribExplanation.Truncate(100);
             }
             var extensionExplanation = extensions.FirstOrDefault();
-            if (extensionExplanation != null)
-            {
-                return extensionExplanation.Explanation.Truncate(100); // todo
-            }
-            return string.Empty;
+            return extensionExplanation != null ? extensionExplanation.Explanation.Truncate(100) : string.Empty;
         }
 
-        private static AudioResource AudioResourceWithTtsUrls(string yngping)
-        {
-            return new AudioResource()
-            {
-                RemoteUrls = new AudioResource.Types.RemoteUrls()
-                {
-                    RemoteUrls_ = {
-                                        "tts "+yngping
-                                    }
-                }
-            };
-        }
     }
 }
