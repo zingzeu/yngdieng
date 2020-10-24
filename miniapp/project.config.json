@@ -76,9 +76,10 @@
           "scene": null
         },
         {
-          "id": -1,
+          "id": 2,
           "name": "pages/collectionDetail/collectionDetail",
           "pathName": "pages/collectionDetail/collectionDetail",
+          "query": "id=lung-nung-dieng",
           "scene": null
         }
       ]
