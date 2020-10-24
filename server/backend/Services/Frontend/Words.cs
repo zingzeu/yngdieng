@@ -79,9 +79,9 @@ namespace Yngdieng.Backend.Services.Frontend
             var bengziFromIndex = maybeYngdiengDocument?.YngpingUnderlying;
             var sandhiFromIndex = maybeYngdiengDocument?.YngpingSandhi;
             var bengziFromDb = pronsFromDb.FirstOrDefault(p => p.SandhiCategory == SandhiCategory.BENGZI)?.Pronunciation;
-            var sandhiFromDb = pronsFromDb.FirstOrDefault(p => p.SandhiCategory == SandhiCategory.SANDHI).Pronunciation;
-            var bengzi = bengziFromIndex?.OrElse(bengziFromDb);
-            var sandhi = sandhiFromIndex?.OrElse(sandhiFromDb);
+            var sandhiFromDb = pronsFromDb.FirstOrDefault(p => p.SandhiCategory == SandhiCategory.SANDHI)?.Pronunciation;
+            var bengzi = bengziFromIndex?.OrElse(bengziFromDb) ?? bengziFromDb;
+            var sandhi = sandhiFromIndex?.OrElse(sandhiFromDb) ?? sandhiFromDb;
 
             var differentSandhiAndUnderlying = !string.IsNullOrWhiteSpace(bengzi)
                                                && !string.IsNullOrWhiteSpace(sandhi)
@@ -94,7 +94,7 @@ namespace Yngdieng.Backend.Services.Frontend
                         AudioResources.PronunciationWithTts("市区连读", sandhi)
                     };
             }
-            var onlyPron = sandhi?.OrElse(bengzi) ?? "";
+            var onlyPron = string.IsNullOrEmpty(sandhi) ? bengzi : sandhi;
             return new[] {AudioResources.PronunciationWithTts("福州市区", onlyPron)
                     };
         }
@@ -139,7 +139,7 @@ namespace Yngdieng.Backend.Services.Frontend
             {
                 output.Add(Renderers.ToRichTextNode(hDoc));
             }
-            // TODO: add word hanzi to extensions
+            // TODO: add word hanzi to extensions section header
             output.AddRange(extensions.Select(e => Renderers.ToRichTextNode("", e)));
             if (extensions.Count() == 0)
             {

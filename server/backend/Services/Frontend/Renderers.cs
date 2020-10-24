@@ -61,6 +61,33 @@ namespace Yngdieng.Backend.Services.Frontend
             };
         }
 
+        public static RichTextNode ToRichTextNode(ContribDocument doc)
+        {
+            var output = new RichTextNode()
+            {
+                VerticalContainer = new RichTextNode.Types.VerticalContainerNode()
+                {
+                    Children =
+                    {
+                        SectionHeader(doc.Hanzi, $"{doc.YngpingUnderlying} -> {doc.YngpingSandhi}"),
+                        ToRichTextNode(doc.ExplanationStructured)
+                    }
+                }
+            };
+            if (doc.ExplanationStructured != null)
+            {
+                output.VerticalContainer.Children.Add(ToRichTextNode(doc.ExplanationStructured, doc.Hanzi));
+            }
+            else
+            {
+                output.VerticalContainer.Children.Add(SimpleText(doc.ExplanationRaw));
+            }
+            output.VerticalContainer.Children.Add(
+                Source("此释义来自网友贡献。 贡献者: " + string.Join(",", doc.Contributors))
+            );
+            return output;
+        }
+
         public static RichTextNode ToRichTextNode(FengDocument doc)
         {
             var output = new RichTextNode()
@@ -79,8 +106,8 @@ namespace Yngdieng.Backend.Services.Frontend
             else
             {
                 output.VerticalContainer.Children.Add(SimpleText(doc.Explanation));
-
             }
+            output.VerticalContainer.Children.Add(Source($"出处：冯爱珍. 1998. 福州方言词典. 南京: 江苏教育出版社. 第 {doc.Source.PageNumber} 页. 用字可能经过编辑修订."));
             return output;
         }
 
@@ -100,7 +127,6 @@ namespace Yngdieng.Backend.Services.Frontend
                                 )}
                             }
                 }
-
                 }
                 }
             };
@@ -124,7 +150,6 @@ namespace Yngdieng.Backend.Services.Frontend
             {
                 VerticalContainer = new RichTextNode.Types.VerticalContainerNode()
                 {
-
                 }
             };
             if (!string.IsNullOrWhiteSpace(sense.Text))
@@ -217,11 +242,14 @@ namespace Yngdieng.Backend.Services.Frontend
             };
         }
 
-        private static RichTextNode SectionHeader(string hanzi, string pron)
+        private static RichTextNode[] SectionHeader(string hanzi, string pron)
         {
-            return SingleLineTextWithStyles(hanzi, new string[] { "section-header" });
+            return new RichTextNode[]
+            {
+                SingleLineTextWithStyles(hanzi, new string[] {"section-header"}),
+                SingleLineTextWithStyles(pron, new string[] {"section-header-small"})
+            };
         }
-
 
         private static RichTextNode SectionHeader(string header)
         {

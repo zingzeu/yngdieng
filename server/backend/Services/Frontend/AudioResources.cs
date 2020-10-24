@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using System;
+using System.Web;
 using Yngdieng.Frontend.V3.Protos;
 
 namespace Yngdieng.Backend.Services.Frontend
@@ -9,7 +10,7 @@ namespace Yngdieng.Backend.Services.Frontend
         {
             return new Word.Types.Pronunciation
             {
-                DisplayName = "市区单字",
+                DisplayName = displayName,
                 Pronunciation_ = yngping,
                 // TODO: only include TTS audio if pronounceable
                 Audio = AudioResourceWithTtsUrls(yngping)
@@ -23,7 +24,7 @@ namespace Yngdieng.Backend.Services.Frontend
                 RemoteUrls = new AudioResource.Types.RemoteUrls
                 {
                     RemoteUrls_ = {
-                        "https://api.ydict.net/tts/"+HttpUtility.UrlEncode(yngping)
+                        "https://api.ydict.net/tts/"+Uri.EscapeDataString(yngping)+".mp3"
                     }
                 }
             };
