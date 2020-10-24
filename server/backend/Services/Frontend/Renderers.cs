@@ -242,12 +242,29 @@ namespace Yngdieng.Backend.Services.Frontend
             };
         }
 
-        private static RichTextNode[] SectionHeader(string hanzi, string pron)
+        private static RichTextNode SectionHeader(string hanzi, string pron)
         {
-            return new RichTextNode[]
+            return new RichTextNode()
             {
-                SingleLineTextWithStyles(hanzi, new string[] {"section-header"}),
-                SingleLineTextWithStyles(pron, new string[] {"section-header-small"})
+                InlineContainer = new RichTextNode.Types.InlineContainerNode()
+                {
+                    Children = {
+                            new RichTextNode.Types.InlineNode() {
+                                Text =
+                                    new RichTextNode.Types.TextNode() {
+                                        Text = hanzi,
+                                        Styles= {"section-header"}
+                                    }
+                            },
+                            new RichTextNode.Types.InlineNode() {
+                                Text =
+                                    new RichTextNode.Types.TextNode() {
+                                        Text = pron,
+                                        Styles= {"section-header-small"}
+                                    }
+                            }
+                        }
+                }
             };
         }
 
