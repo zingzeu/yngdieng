@@ -1,9 +1,11 @@
 .rich-text {
   font-size: $font-size-body;
   .section-header {
-    display: block;
     font-size: $font-size-h6;
-    margin-bottom: 16px;
+  }
+  .section-header-small {
+    font-size: $font-size-body;
+    color: $color-brownish-400;
   }
 
   .source {

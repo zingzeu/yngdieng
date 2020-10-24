@@ -6,7 +6,6 @@ import AudioPlay from '@/components/audioPlay/audioPlay';
 import styles from './phonology-tab.module.scss';
 
 const PhonologyTab = ({audioCards}) => {
-  console.log(audioCards);
   return (
     <View className={clsx(styles.pronounce, 'at-row')}>
       {audioCards.map(pronounce => {

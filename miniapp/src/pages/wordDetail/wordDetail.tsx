@@ -28,7 +28,7 @@ interface Source {
 
 const initialState: {
   wordDetail: {
-    word?: string;
+    hanzi?: string;
     image?: string;
     pronounces?: {
       typeName: string;
@@ -63,7 +63,7 @@ const initialState: {
   };
 } = {
   wordDetail: {
-    word: '',
+    hanzi: '',
     pronounces: [],
     sources: [],
     collections: [],
@@ -102,7 +102,7 @@ const WordDetail = () => {
       <Header />
       <View className={styles.topBar}>
         <View className="at-row at-row__justify--between">
-          <View className={styles.word}>{wordDetail.word}</View>
+          <View className={styles.word}>{wordDetail.hanzi}</View>
           <View className={styles.actionPanel}>
             <AtIcon value="help"></AtIcon>
             <AtIcon value="bookmark"></AtIcon>

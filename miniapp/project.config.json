@@ -81,6 +81,13 @@
           "pathName": "pages/collectionDetail/collectionDetail",
           "query": "id=wordLists/1",
           "scene": null
+        },
+        {
+          "id": 3,
+          "name": "pages/wordDetail/wordDetail",
+          "pathName": "pages/wordDetail/wordDetail",
+          "query": "id=words/CgNEQjc",
+          "scene": null
         }
       ]
     }

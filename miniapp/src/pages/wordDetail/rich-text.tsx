@@ -20,7 +20,10 @@ interface InlineNode {
 
 export function renderRichTextNode(r: RichTextNode, outermost = true): string {
   if (outermost) {
-    return '<div class="rich-text">' + renderRichTextNode(r, false) + '</div>';
+    let output =
+      '<div class="rich-text">' + renderRichTextNode(r, false) + '</div>';
+    console.debug(output);
+    return output;
   }
   if (r.vertical_container) {
     return (
@@ -50,7 +53,6 @@ export function renderRichTextNode(r: RichTextNode, outermost = true): string {
 export function renderInlineNode(i: InlineNode): string {
   if (i.text) {
     if (i.text?.styles) {
-      console.log(i);
       return `<span class="${i.text!.styles!.join(' ')}">${
         i.text.text || ''
       }</span>`;
