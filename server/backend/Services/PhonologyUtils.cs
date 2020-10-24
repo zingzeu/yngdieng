@@ -100,6 +100,11 @@ namespace Yngdieng.Backend.Services
             return result;
         }
 
+        public static string ToHanzi(Initial initial, Final final, Tone tone)
+        {
+            return InitialToHanzi[initial] + FinalToHanzi[final] + " " + ToneToHanzi[tone];
+        }
+
 #pragma warning disable CS8714 // The type cannot be used as type parameter in the generic type or method. Nullability of type argument doesn't match 'notnull' constraint.
         private static Dictionary<TValue, TKey> Reverse<TKey, TValue>(this IDictionary<TKey, TValue> source)
         {

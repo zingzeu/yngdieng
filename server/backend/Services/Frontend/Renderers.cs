@@ -6,13 +6,32 @@ using Yngdieng.Frontend.V3.Protos;
 using Yngdieng.Protos;
 using ZingzeuData.Models;
 using static Yngdieng.Common.ExplanationUtil;
+using Word = Yngdieng.Frontend.V3.Protos.Word;
 
 namespace Yngdieng.Backend.Services.Frontend
 {
     public static class Renderers
     {
 
-        public static IEnumerable<string> EmptyStringArray = new string[] { };
+        public static Word.Types.AudioCard ToAudioCard(Db.AudioClipsByWordId a)
+        {
+            var gender = a.SpeakerGender == Gender.MALE ? "男" : "女";
+            var hintPrimary = a.SpeakerAge.HasValue ? $"{a.SpeakerDisplayName} | {a.SpeakerAge} | {gender}"
+                : $"{a.SpeakerDisplayName} | {gender}";
+            return new Word.Types.AudioCard()
+            {
+                Pronunciation = a.Pronunciation,
+                HintPrimary = hintPrimary,
+                HintSecondary = a.SpeakerLocation ?? string.Empty,
+                Audio = new AudioResource()
+                {
+                    RemoteUrls = new AudioResource.Types.RemoteUrls()
+                    {
+                        RemoteUrls_ = { "https://yngdieng-media.oss-cn-hangzhou.aliyuncs.com/" + a.BlobLocation }
+                    }
+                }
+            };
+        }
 
         public static Yngdieng.Frontend.V3.Protos.WordList ToWordList(Db.WordList wordList)
         {
@@ -25,10 +44,10 @@ namespace Yngdieng.Backend.Services.Frontend
             };
         }
 
-        public static RichTextNode ToRichTextNode(string hanzi, Db.Extension extension)
+        public static RichTextNode ToRichTextNode(string hanzi, Extension extension)
         {
             var parsed = SafeParseExplanation(extension.Explanation);
-            var explanation = parsed == null ? JustText(extension.Explanation) : ToRichTextNode(parsed, hanzi);
+            var explanation = parsed == null ? SimpleText(extension.Explanation) : ToRichTextNode(parsed, hanzi);
             return new RichTextNode()
             {
                 VerticalContainer = new RichTextNode.Types.VerticalContainerNode()
@@ -36,7 +55,7 @@ namespace Yngdieng.Backend.Services.Frontend
                     Children = {
                             SectionHeader(hanzi),
                             explanation,
-                            Source(extension.Source+"cONTRIBUTORS: "+string.Join(",",extension.Contributors)) // TODO
+                            Source(extension.Source.OrElse("此释义来自网友贡献。")+" 贡献者: "+string.Join(",",extension.Contributors))
                         }
                 }
             };
@@ -59,7 +78,7 @@ namespace Yngdieng.Backend.Services.Frontend
             }
             else
             {
-                output.VerticalContainer.Children.Add(JustText(doc.Explanation));
+                output.VerticalContainer.Children.Add(SimpleText(doc.Explanation));
 
             }
             return output;
@@ -85,7 +104,16 @@ namespace Yngdieng.Backend.Services.Frontend
                 }
                 }
             };
-            //todo: notes
+            if (!string.IsNullOrEmpty(e.NotesOriginal))
+            {
+                output.VerticalContainer.Children.Add(Label("注"));
+                output.VerticalContainer.Children.Add(SimpleText(MaybeAddPeriod(e.NotesOriginal)));
+            }
+            if (!string.IsNullOrEmpty(e.NotesOurs))
+            {
+                output.VerticalContainer.Children.Add(Label("榕典注"));
+                output.VerticalContainer.Children.Add(SimpleText(MaybeAddPeriod(e.NotesOurs)));
+            }
             return output;
         }
 
@@ -101,7 +129,7 @@ namespace Yngdieng.Backend.Services.Frontend
             };
             if (!string.IsNullOrWhiteSpace(sense.Text))
             {
-                output.VerticalContainer.Children.Add(JustText(MaybeAddPeriod(sense.Text)));
+                output.VerticalContainer.Children.Add(SimpleText(MaybeAddPeriod(sense.Text)));
             }
             if (sense.Examples.Count() > 0)
             {
@@ -137,7 +165,7 @@ namespace Yngdieng.Backend.Services.Frontend
 
         private static RichTextNode ToRichTextNode(string example, string currentWord)
         {
-            return JustText(MaybeAddPeriod(example.Replace("～", currentWord)));
+            return SimpleText(MaybeAddPeriod(example.Replace("～", currentWord)));
         }
 
         private static string MaybeAddPeriod(string text)
@@ -162,6 +190,15 @@ namespace Yngdieng.Backend.Services.Frontend
 
         public static RichTextNode ToRichTextNode(HistoricalDocument doc)
         {
+            var sources = new List<string>();
+            if (doc.CiklinSource != null)
+            {
+                sources.Add("戚林八音校注");
+            }
+            if (doc.DfdSource != null)
+            {
+                sources.Add("Dictionary of the Foochow Dialect");
+            }
             return new RichTextNode()
             {
                 VerticalContainer = new RichTextNode.Types.VerticalContainerNode()
@@ -169,12 +206,12 @@ namespace Yngdieng.Backend.Services.Frontend
                     Children = {
                             SectionHeader(HanziUtils.HanziToString(doc.HanziCanonical)),
                             Label("音韵地位（戚林八音）"),
-                            SingleLineTextWithStyles("ok",EmptyStringArray),//TODO
+                            SimpleText(PhonologyUtils.ToHanzi(doc.Initial,doc.Final,doc.Tone) ),
                             Label("榕拼（八音）"),
-                            SingleLineTextWithStyles(doc.Yngping,EmptyStringArray),
+                            SimpleText(doc.Yngping),
                              Label("教会罗马字"),
-                            SingleLineTextWithStyles(doc.Buc,EmptyStringArray),
-                            Source("来源：戚林八音校注, Dictionary of Foochow Dialect。"),//todo
+                            SimpleText(doc.Buc),
+                            Source("来源："+string.Join(", ",sources)),
                         }
                 }
             };
@@ -201,9 +238,9 @@ namespace Yngdieng.Backend.Services.Frontend
             return SingleLineTextWithStyles(source, new string[] { "source" });
         }
 
-        private static RichTextNode JustText(string text)
+        private static RichTextNode SimpleText(string text)
         {
-            return SingleLineTextWithStyles(text, EmptyStringArray);
+            return SingleLineTextWithStyles(text, Enumerable.Empty<string>());
         }
 
         private static RichTextNode SingleLineTextWithStyles(string text, IEnumerable<string> styles)
