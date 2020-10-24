@@ -37,7 +37,9 @@ namespace Yngdieng.Backend.Services.Frontend
             }
             var extensions = await _dbContext.Extensions.Where(e => e.WordId == maybeWordId).ToListAsync();
             var prons = await _dbContext.Prons.Where(p => p.WordId == maybeWordId).ToListAsync();
-            var recommendedProns = GetRecommendedPronunciations(maybeYngdiengDocument, prons);
+            var recommendedProns = mode == Mode.Snippet
+                ? GetSnippetPronunciations(maybeYngdiengDocument, prons)
+                : GetRecommendedPronunciations(maybeYngdiengDocument, prons);
             var explanations = mode == Mode.Snippet
                 ? Enumerable.Empty<RichTextNode>()
                 : GetExplanations(maybeYngdiengDocument, extensions);
@@ -96,6 +98,23 @@ namespace Yngdieng.Backend.Services.Frontend
             }
             var onlyPron = string.IsNullOrEmpty(sandhi) ? bengzi : sandhi;
             return new[] {AudioResources.PronunciationWithTts("福州市区", onlyPron)
+                    };
+        }
+
+        private static Word.Types.Pronunciation[] GetSnippetPronunciations(
+            YngdiengDocument? maybeYngdiengDocument,
+            IEnumerable<Pron> pronsFromDb
+            )
+        {
+            var bengziFromIndex = maybeYngdiengDocument?.YngpingUnderlying;
+            var sandhiFromIndex = maybeYngdiengDocument?.YngpingSandhi;
+            var bengziFromDb = pronsFromDb.FirstOrDefault(p => p.SandhiCategory == SandhiCategory.BENGZI)?.Pronunciation;
+            var sandhiFromDb = pronsFromDb.FirstOrDefault(p => p.SandhiCategory == SandhiCategory.SANDHI)?.Pronunciation;
+            var bengzi = bengziFromIndex?.OrElse(bengziFromDb) ?? bengziFromDb;
+            var sandhi = sandhiFromIndex?.OrElse(sandhiFromDb) ?? sandhiFromDb;
+
+            var surfacedPron = string.IsNullOrEmpty(sandhi) ? bengzi : sandhi;
+            return new[] {AudioResources.PronunciationWithTts("福州市区", surfacedPron)
                     };
         }
 
