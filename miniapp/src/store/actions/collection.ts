@@ -1,22 +1,14 @@
 import Taro from '@tarojs/taro';
 
-const HOMELAND_WORD_LISTS = {
-  'lung-nung-dieng': 'wordLists/1',
-  'lung-nung-dieng-2': 'wordLists/2',
-};
+const HOMELAND_WORD_LISTS = ['wordLists/1', 'wordLists/2'];
 
-export const getCollectionById = async collectionId => {
-  var isHomeland = false;
-  if (HOMELAND_WORD_LISTS[collectionId] !== undefined) {
-    collectionId = HOMELAND_WORD_LISTS[collectionId];
-    isHomeland = true;
-  }
-  console.log('Start', collectionId);
+export const getWordList = async wordListName => {
+  var isHomeland = HOMELAND_WORD_LISTS.includes(wordListName);
   const wordList = await Taro.request({
-    url: `https://api-rest.ydict.net/v3/${collectionId}`,
+    url: `https://api-rest.ydict.net/v3/${wordListName}`,
   });
   const wordListWords = await Taro.request({
-    url: `https://api-rest.ydict.net/v3/${collectionId}/words`,
+    url: `https://api-rest.ydict.net/v3/${wordListName}/words`,
   });
   return {
     ...wordList.data,

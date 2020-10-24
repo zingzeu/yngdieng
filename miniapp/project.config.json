@@ -79,7 +79,7 @@
           "id": 2,
           "name": "pages/collectionDetail/collectionDetail",
           "pathName": "pages/collectionDetail/collectionDetail",
-          "query": "id=lung-nung-dieng",
+          "query": "id=wordLists/1",
           "scene": null
         }
       ]

@@ -7,7 +7,7 @@ import Header from '@/pages/header/header';
 import WordCard from '@/components/wordCard/wordCard';
 import routes from '@/routes';
 import {
-  getCollectionById,
+  getWordList,
   getWordListByCollectionId,
 } from '@/store/actions/collection';
 import styles from './collectionDetail.module.scss';
@@ -70,7 +70,7 @@ const CollectionDetail = () => {
   useEffect(() => {
     const collectionId = router.params.id;
     Taro.showNavigationBarLoading();
-    getCollectionById(collectionId)
+    getWordList(collectionId)
       .then(result => {
         setCollectionDetail(result);
         Taro.hideNavigationBarLoading();
