@@ -2,41 +2,4 @@ page {
   background-color: #f7efed;
   font-family: 'Noto Sans SC', 'Noto Sans TC', 'Ext-0', 'Ext-1', sans-serif;
 }
-
-.rich-text {
-  font-size: $font-size-body;
-  .section-header {
-    display: block;
-    font-size: $font-size-h6;
-    margin-bottom: 16px;
-  }
-
-  .source {
-    font-size: $font-size-secondary;
-    color: $color-brownish-400;
-  }
-
-  .label {
-    background-color: $color-brownish-300;
-    color: $color-text-light;
-    padding: 8px;
-    border-radius: 8px;
-  }
-
-  .ol {
-    margin: 0.1rem 1rem 0 0.5rem;
-    counter-reset: item;
-    padding-left: 1rem;
-  }
-
-  .ul {
-    margin: 0.1rem 1rem 0 0.5rem;
-    padding-left: 0.5rem;
-    color: #371a01;
-  }
-
-  .li {
-    display: block;
-    padding-bottom: 4px;
-  }
-}
+@import './styles/common.scss';
