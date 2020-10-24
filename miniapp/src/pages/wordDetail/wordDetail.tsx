@@ -10,7 +10,6 @@ import AudioPlay from '@/components/audioPlay/audioPlay';
 import {fetchWord} from '@/store/actions/dictionary';
 import PhonologyTab from './phonology-tab/phonology-tab';
 import styles from './wordDetail.module.scss';
-import {renderExplanation} from './explanations';
 import {renderRichTextNode} from './rich-text';
 interface Feng {
   explanation: string;
@@ -142,11 +141,7 @@ const WordDetail = () => {
               {
                 <RichText
                   nodes={wordDetail.explanation
-                    ?.map(e => {
-                      let x = renderRichTextNode(e);
-                      console.log(x);
-                      return x;
-                    })
+                    ?.map(e => renderRichTextNode(e))
                     .join('')}
                 />
               }

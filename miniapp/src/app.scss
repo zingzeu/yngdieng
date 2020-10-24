@@ -6,10 +6,16 @@ page {
 .rich-text {
   font-size: $font-size-body;
   .section-header {
+    display: block;
     font-size: $font-size-h6;
-    margin-top: 16px;
     margin-bottom: 16px;
   }
+
+  .source {
+    font-size: $font-size-secondary;
+    color: $color-brownish-400;
+  }
+
   .label {
     background-color: $color-brownish-300;
     color: $color-text-light;

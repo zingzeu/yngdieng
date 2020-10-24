@@ -51,7 +51,9 @@ export function renderInlineNode(i: InlineNode): string {
   if (i.text) {
     if (i.text?.styles) {
       console.log(i);
-      return `<span class="${i.text!.styles!.join(' ')}">${i.text.text}</span>`;
+      return `<span class="${i.text!.styles!.join(' ')}">${
+        i.text.text || ''
+      }</span>`;
     }
     return i.text.text || '';
   }
