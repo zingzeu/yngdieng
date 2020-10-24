@@ -7,10 +7,10 @@ import routes from '@/routes';
 import Header from '@/pages/header/header';
 import WordCard from '@/components/wordCard/wordCard';
 import AudioPlay from '@/components/audioPlay/audioPlay';
-import {fetchWordDetail} from '@/store/actions/dictionary';
-import Phonology from './phonology/phonology';
+import {fetchWord} from '@/store/actions/dictionary';
+import PhonologyTab from './phonology-tab/phonology-tab';
 import styles from './wordDetail.module.scss';
-import {renderExplanation} from './explanations';
+import {renderRichTextNode} from './rich-text';
 interface Feng {
   explanation: string;
   hanzi_canonical: string;
@@ -28,7 +28,7 @@ interface Source {
 
 const initialState: {
   wordDetail: {
-    word?: string;
+    hanzi?: string;
     image?: string;
     pronounces?: {
       typeName: string;
@@ -41,7 +41,7 @@ const initialState: {
       name: string;
       description: string;
     }[];
-    pronouncesFromDifferentSpeakers?: {
+    audio_cards?: {
       name: string;
       likes: number;
       speaker: {
@@ -63,13 +63,12 @@ const initialState: {
   };
 } = {
   wordDetail: {
-    word: '',
-    image: '',
+    hanzi: '',
     pronounces: [],
     sources: [],
     collections: [],
     stories: [],
-    pronouncesFromDifferentSpeakers: [],
+    audio_cards: [],
     transcriptions: [],
     wordSplited: [],
   },
@@ -85,9 +84,10 @@ const WordDetail = () => {
     title: wordDetail.word,
   }));
   useEffect(() => {
-    const wordId = decodeURIComponent(router.params.id || '');
+    const wordName = toWordName(decodeURIComponent(router.params.id || ''));
+    console.log(wordName);
     Taro.showNavigationBarLoading();
-    fetchWordDetail(wordId)
+    fetchWord(wordName)
       .then(result => {
         console.log(result);
         setWordDetail(result);
@@ -102,19 +102,19 @@ const WordDetail = () => {
       <Header />
       <View className={styles.topBar}>
         <View className="at-row at-row__justify--between">
-          <View className={styles.word}>{wordDetail.word}</View>
+          <View className={styles.word}>{wordDetail.hanzi}</View>
           <View className={styles.actionPanel}>
             <AtIcon value="help"></AtIcon>
             <AtIcon value="bookmark"></AtIcon>
           </View>
         </View>
         <View>
-          {wordDetail.pronounces?.map(pronounce => (
+          {wordDetail.pronunciations?.map(p => (
             <View className={styles.rimeContainer}>
-              <View className={styles.rimePosition}>{pronounce.typeName}</View>
-              <View>{pronounce.symbol}</View>
-              {pronounce.audioFileId && (
-                <AudioPlay audioFileId={pronounce.audioFileId} />
+              <View className={styles.rimePosition}>{p.display_name}</View>
+              <View>{p.pronunciation}</View>
+              {p.audio && (
+                <AudioPlay audioFileId={p.audio.remote_urls.remote_urls[0]} />
               )}
             </View>
           ))}
@@ -135,14 +135,16 @@ const WordDetail = () => {
         >
           <AtTabsPane current={currentTab} index={0}>
             <View className={clsx(styles.tabPane, styles.explanation)}>
-              {!(wordDetail.sources?.length !== 0) && <View>暂无解释</View>}
-              {wordDetail.sources?.map(
-                source =>
-                  (source.generic && renderGeneric(source.generic)) ||
-                  (source.feng && renderFeng(source.feng)) ||
-                  (source.contrib && renderContrib(source.contrib))
+              {!(wordDetail?.explanation?.length !== 0) && (
+                <View>暂无解释</View>
               )}
-              {wordDetail.image && <Image src={wordDetail.image} />}
+              {
+                <RichText
+                  nodes={wordDetail.explanation
+                    ?.map(e => renderRichTextNode(e))
+                    .join('')}
+                />
+              }
             </View>
           </AtTabsPane>
           <AtTabsPane current={currentTab} index={1}>
@@ -150,21 +152,19 @@ const WordDetail = () => {
           </AtTabsPane>
           <AtTabsPane current={currentTab} index={2}>
             <View className={styles.tabPane}>
-              <Phonology wordDetail={wordDetail} />
+              <PhonologyTab audioCards={wordDetail.audio_cards} />
             </View>
           </AtTabsPane>
           <AtTabsPane current={currentTab} index={3}>
             <View className={clsx(styles.tabPane, styles.collection)}>
-              {wordDetail.collections.map(collection => (
+              {wordDetail.word_lists?.map(wordList => (
                 <WordCard
-                  title={
-                    <View className={styles.title}>{collection.name}</View>
-                  }
-                  description={collection.description}
+                  title={<View className={styles.title}>{wordList.title}</View>}
+                  description={wordList.description}
                   actions={<AtIcon value="heart"></AtIcon>}
                   onClick={() =>
                     Taro.navigateTo({
-                      url: `${routes.COLLECTION_DETAIL}?id=${collection.id}`,
+                      url: `${routes.COLLECTION_DETAIL}?id=${wordList.name}`,
                     })
                   }
                 />
@@ -194,64 +194,11 @@ const WordDetail = () => {
   );
 };
 
-function renderGeneric(generic) {
-  return (
-    <Block>
-      <View>
-        <View>
-          <View>{generic.text}</View>
-        </View>
-      </View>
-      <View className={styles.source}>来源：{generic.source}</View>
-    </Block>
-  );
-}
-
-function renderFeng(feng: Feng) {
-  return (
-    <Block>
-      <View>
-        <View>
-          <View>
-            {feng.explanation_structured && (
-              <RichText
-                nodes={renderExplanation(
-                  feng.explanation_structured,
-                  feng.hanzi_canonical
-                )}
-              ></RichText>
-            )}
-          </View>
-        </View>
-      </View>
-      <View className={styles.source}>
-        出处：冯爱珍. 1998. 福州方言词典. 南京: 江苏教育出版社. 第{' '}
-        {feng.source.page_number} 页. 用字可能经过编辑修订.
-      </View>
-    </Block>
-  );
-}
-
-function renderContrib(doc: Contrib) {
-  return (
-    <Block>
-      <View>
-        <View>
-          <View>
-            {doc.explanation_structured && (
-              <RichText
-                nodes={renderExplanation(doc.explanation_structured, doc.hanzi)}
-              ></RichText>
-            )}
-          </View>
-        </View>
-      </View>
-      <View className={styles.source}>
-        此条目来自网友贡献。贡献者：
-        {doc.contributors.join(',')} 。
-      </View>
-    </Block>
-  );
+function toWordName(docIdOrWordName: string) {
+  if (docIdOrWordName.startsWith('words/')) {
+    return docIdOrWordName;
+  }
+  return `words/${docIdOrWordName}`;
 }
 
 export default WordDetail;

@@ -7,35 +7,31 @@ import Header from '@/pages/header/header';
 import WordCard from '@/components/wordCard/wordCard';
 import routes from '@/routes';
 import {
-  getCollectionById,
+  getWordList,
   getWordListByCollectionId,
 } from '@/store/actions/collection';
 import styles from './collectionDetail.module.scss';
 
 const initialState: {
   collectionDetail: {
-    name: string;
+    title: string;
     description: string;
-    likes: number;
-    publisher: {
-      name: string;
-    };
+    upvotes: number;
+    publisherName: string;
     wordList: {
-      id: string;
-      title: string;
-      description: string;
+      name: string;
+      hanzi: string;
+      snippet: string;
       pinyinRong: string;
       rimePosition: string;
     }[];
   };
 } = {
   collectionDetail: {
-    name: '',
+    title: '',
     description: '',
-    likes: 0,
-    publisher: {
-      name: '',
-    },
+    upvotes: 0,
+    publisherName: '',
     wordList: [],
   },
 };
@@ -69,12 +65,12 @@ const CollectionDetail = () => {
   };
 
   useShareAppMessage(() => ({
-    title: collectionDetail.name,
+    title: collectionDetail.title,
   }));
   useEffect(() => {
     const collectionId = router.params.id;
     Taro.showNavigationBarLoading();
-    getCollectionById(collectionId)
+    getWordList(collectionId)
       .then(result => {
         setCollectionDetail(result);
         Taro.hideNavigationBarLoading();
@@ -89,7 +85,7 @@ const CollectionDetail = () => {
       <View className={styles.content}>
         <View className={styles.topBar}>
           <View className="at-row at-row__justify--between">
-            <View className={styles.title}>{collectionDetail.name}</View>
+            <View className={styles.title}>{collectionDetail.title}</View>
             <View className={styles.actionPanel}>
               <AtIcon value="file-generic"></AtIcon>
               <AtIcon value="bookmark"></AtIcon>
@@ -100,10 +96,10 @@ const CollectionDetail = () => {
           </View>
           <View className="at-row at-row__justify--between">
             <View className={styles.publisher}>
-              <View>{collectionDetail.publisher.name}</View>
+              <View>{collectionDetail.publisherName}</View>
             </View>
             <View onClick={() => toggleLiked(!liked)}>
-              {collectionDetail.likes + (liked ? 1 : 0)}{' '}
+              {collectionDetail.upvotes + (liked ? 1 : 0)}{' '}
               {liked ? (
                 <AtIcon value="heart-2"></AtIcon>
               ) : (
@@ -124,15 +120,15 @@ const CollectionDetail = () => {
             upperThreshold={20}
           >
             {collectionDetail.wordList.map(word => (
-              <View className={styles.listItem} key={word.id}>
+              <View className={styles.listItem} key={word.name}>
                 <WordCard
                   onClick={() =>
                     Taro.navigateTo({
-                      url: `${routes.WORD_DETAIL}?id=${word.id}`,
+                      url: `${routes.WORD_DETAIL}?id=${word.name}`,
                     })
                   }
-                  title={<View className={styles.title}>{word.title}</View>}
-                  description={word.description}
+                  title={<View className={styles.title}>{word.hanzi}</View>}
+                  description={word.snippet}
                   extraList={[{title: '榕拼', content: word.pinyinRong}]}
                 />
               </View>
