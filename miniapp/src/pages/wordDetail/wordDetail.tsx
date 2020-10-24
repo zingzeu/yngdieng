@@ -11,6 +11,7 @@ import {fetchWord} from '@/store/actions/dictionary';
 import PhonologyTab from './phonology-tab/phonology-tab';
 import styles from './wordDetail.module.scss';
 import {renderExplanation} from './explanations';
+import {renderRichTextNode} from './rich-text';
 interface Feng {
   explanation: string;
   hanzi_canonical: string;
@@ -135,14 +136,20 @@ const WordDetail = () => {
         >
           <AtTabsPane current={currentTab} index={0}>
             <View className={clsx(styles.tabPane, styles.explanation)}>
-              {!(wordDetail.sources?.length !== 0) && <View>暂无解释</View>}
-              {wordDetail.sources?.map(
-                source =>
-                  (source.generic && renderGeneric(source.generic)) ||
-                  (source.feng && renderFeng(source.feng)) ||
-                  (source.contrib && renderContrib(source.contrib))
+              {!(wordDetail?.explanation?.length !== 0) && (
+                <View>暂无解释</View>
               )}
-              {wordDetail.image && <Image src={wordDetail.image} />}
+              {
+                <RichText
+                  nodes={wordDetail.explanation
+                    ?.map(e => {
+                      let x = renderRichTextNode(e);
+                      console.log(x);
+                      return x;
+                    })
+                    .join('')}
+                />
+              }
             </View>
           </AtTabsPane>
           <AtTabsPane current={currentTab} index={1}>
@@ -191,66 +198,6 @@ const WordDetail = () => {
     </View>
   );
 };
-
-function renderGeneric(generic) {
-  return (
-    <Block>
-      <View>
-        <View>
-          <View>{generic.text}</View>
-        </View>
-      </View>
-      <View className={styles.source}>来源：{generic.source}</View>
-    </Block>
-  );
-}
-
-function renderFeng(feng: Feng) {
-  return (
-    <Block>
-      <View>
-        <View>
-          <View>
-            {feng.explanation_structured && (
-              <RichText
-                nodes={renderExplanation(
-                  feng.explanation_structured,
-                  feng.hanzi_canonical
-                )}
-              ></RichText>
-            )}
-          </View>
-        </View>
-      </View>
-      <View className={styles.source}>
-        出处：冯爱珍. 1998. 福州方言词典. 南京: 江苏教育出版社. 第{' '}
-        {feng.source.page_number} 页. 用字可能经过编辑修订.
-      </View>
-    </Block>
-  );
-}
-
-function renderContrib(doc: Contrib) {
-  return (
-    <Block>
-      <View>
-        <View>
-          <View>
-            {doc.explanation_structured && (
-              <RichText
-                nodes={renderExplanation(doc.explanation_structured, doc.hanzi)}
-              ></RichText>
-            )}
-          </View>
-        </View>
-      </View>
-      <View className={styles.source}>
-        此条目来自网友贡献。贡献者：
-        {doc.contributors.join(',')} 。
-      </View>
-    </Block>
-  );
-}
 
 function toWordName(docIdOrWordName: string) {
   if (docIdOrWordName.startsWith('words/')) {

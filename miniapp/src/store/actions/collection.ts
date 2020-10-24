@@ -29,5 +29,6 @@ export const getWordListByCollectionId = async (
   collectionId,
   nextPageToken
 ) => {
+  // TODO: pagination
   return [];
 };
