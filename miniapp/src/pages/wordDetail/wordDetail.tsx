@@ -7,8 +7,8 @@ import routes from '@/routes';
 import Header from '@/pages/header/header';
 import WordCard from '@/components/wordCard/wordCard';
 import AudioPlay from '@/components/audioPlay/audioPlay';
-import {fetchWordDetail} from '@/store/actions/dictionary';
-import Phonology from './phonology/phonology';
+import {fetchWord} from '@/store/actions/dictionary';
+import PhonologyTab from './phonology-tab/phonology-tab';
 import styles from './wordDetail.module.scss';
 import {renderExplanation} from './explanations';
 interface Feng {
@@ -41,7 +41,7 @@ const initialState: {
       name: string;
       description: string;
     }[];
-    pronouncesFromDifferentSpeakers?: {
+    audio_cards?: {
       name: string;
       likes: number;
       speaker: {
@@ -64,12 +64,11 @@ const initialState: {
 } = {
   wordDetail: {
     word: '',
-    image: '',
     pronounces: [],
     sources: [],
     collections: [],
     stories: [],
-    pronouncesFromDifferentSpeakers: [],
+    audio_cards: [],
     transcriptions: [],
     wordSplited: [],
   },
@@ -85,9 +84,10 @@ const WordDetail = () => {
     title: wordDetail.word,
   }));
   useEffect(() => {
-    const wordId = decodeURIComponent(router.params.id || '');
+    const wordName = toWordName(decodeURIComponent(router.params.id || ''));
+    console.log(wordName);
     Taro.showNavigationBarLoading();
-    fetchWordDetail(wordId)
+    fetchWord(wordName)
       .then(result => {
         console.log(result);
         setWordDetail(result);
@@ -109,12 +109,12 @@ const WordDetail = () => {
           </View>
         </View>
         <View>
-          {wordDetail.pronounces?.map(pronounce => (
+          {wordDetail.pronunciations?.map(p => (
             <View className={styles.rimeContainer}>
-              <View className={styles.rimePosition}>{pronounce.typeName}</View>
-              <View>{pronounce.symbol}</View>
-              {pronounce.audioFileId && (
-                <AudioPlay audioFileId={pronounce.audioFileId} />
+              <View className={styles.rimePosition}>{p.display_name}</View>
+              <View>{p.pronunciation}</View>
+              {p.audio && (
+                <AudioPlay audioFileId={p.audio.remote_urls.remote_urls[0]} />
               )}
             </View>
           ))}
@@ -150,21 +150,19 @@ const WordDetail = () => {
           </AtTabsPane>
           <AtTabsPane current={currentTab} index={2}>
             <View className={styles.tabPane}>
-              <Phonology wordDetail={wordDetail} />
+              <PhonologyTab audioCards={wordDetail.audio_cards} />
             </View>
           </AtTabsPane>
           <AtTabsPane current={currentTab} index={3}>
             <View className={clsx(styles.tabPane, styles.collection)}>
-              {wordDetail.collections.map(collection => (
+              {wordDetail.word_lists?.map(wordList => (
                 <WordCard
-                  title={
-                    <View className={styles.title}>{collection.name}</View>
-                  }
-                  description={collection.description}
+                  title={<View className={styles.title}>{wordList.title}</View>}
+                  description={wordList.description}
                   actions={<AtIcon value="heart"></AtIcon>}
                   onClick={() =>
                     Taro.navigateTo({
-                      url: `${routes.COLLECTION_DETAIL}?id=${collection.id}`,
+                      url: `${routes.COLLECTION_DETAIL}?id=${wordList.name}`,
                     })
                   }
                 />
@@ -252,6 +250,13 @@ function renderContrib(doc: Contrib) {
       </View>
     </Block>
   );
+}
+
+function toWordName(docIdOrWordName: string) {
+  if (docIdOrWordName.startsWith('words/')) {
+    return docIdOrWordName;
+  }
+  return `words/${docIdOrWordName}`;
 }
 
 export default WordDetail;

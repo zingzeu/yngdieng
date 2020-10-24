@@ -19,7 +19,7 @@ const initialState: {
     upvotes: number;
     publisherName: string;
     wordList: {
-      id: string;
+      name: string;
       hanzi: string;
       snippet: string;
       pinyinRong: string;
@@ -29,7 +29,7 @@ const initialState: {
 } = {
   collectionDetail: {
     title: '',
-    snippet: '',
+    description: '',
     upvotes: 0,
     publisherName: '',
     wordList: [],
@@ -120,11 +120,11 @@ const CollectionDetail = () => {
             upperThreshold={20}
           >
             {collectionDetail.wordList.map(word => (
-              <View className={styles.listItem} key={word.id}>
+              <View className={styles.listItem} key={word.name}>
                 <WordCard
                   onClick={() =>
                     Taro.navigateTo({
-                      url: `${routes.WORD_DETAIL}?id=${word.id}`,
+                      url: `${routes.WORD_DETAIL}?id=${word.name}`,
                     })
                   }
                   title={<View className={styles.title}>{word.hanzi}</View>}

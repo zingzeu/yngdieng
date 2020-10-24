@@ -18,7 +18,6 @@ export const getCollectionById = async collectionId => {
   const wordListWords = await Taro.request({
     url: `https://api-rest.ydict.net/v3/${collectionId}/words`,
   });
-  console.log(wordList.data);
   return {
     ...wordList.data,
     publisherName: isHomeland ? 'HOMELAND家园官方账号' : '真鸟囝天团',
