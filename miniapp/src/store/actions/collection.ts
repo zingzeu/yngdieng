@@ -13,7 +13,14 @@ export const getWordList = async wordListName => {
   return {
     ...wordList.data,
     publisherName: isHomeland ? 'HOMELAND家园官方账号' : '真鸟囝天团',
-    wordList: wordListWords.data.words || [],
+    words:
+      wordListWords.data.words?.map(w => ({
+        ...w,
+        firstPron:
+          w.pronunciations?.length !== 0
+            ? w.pronunciations[0].pronunciation
+            : undefined,
+      })) || [],
   };
 };
 

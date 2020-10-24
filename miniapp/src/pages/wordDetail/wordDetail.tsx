@@ -81,7 +81,7 @@ const WordDetail = () => {
   const [storyToShow, setStoryToShow] = useState('');
 
   useShareAppMessage(() => ({
-    title: wordDetail.word,
+    title: wordDetail.hanzi,
   }));
   useEffect(() => {
     const wordName = toWordName(decodeURIComponent(router.params.id || ''));

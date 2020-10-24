@@ -18,11 +18,11 @@ const initialState: {
     description: string;
     upvotes: number;
     publisherName: string;
-    wordList: {
+    words: {
       name: string;
       hanzi: string;
       snippet: string;
-      pinyinRong: string;
+      firstPron: string;
       rimePosition: string;
     }[];
   };
@@ -32,7 +32,7 @@ const initialState: {
     description: '',
     upvotes: 0,
     publisherName: '',
-    wordList: [],
+    words: [],
   },
 };
 
@@ -46,16 +46,12 @@ const CollectionDetail = () => {
   const handleLoadMore = () => {
     const collectionId = decodeURIComponent(router.params.id || '');
     Taro.showNavigationBarLoading();
-    getWordListByCollectionId(collectionId, collectionDetail.wordList.length)
+    getWordListByCollectionId(collectionId, collectionDetail.words.length)
       .then(result => {
         Taro.hideNavigationBarLoading();
         setCollectionDetail(
           produce(collectionDetail, draft => {
-            draft.wordList.splice(
-              collectionDetail.wordList.length,
-              0,
-              ...result
-            );
+            draft.words.splice(collectionDetail.words.length, 0, ...result);
           })
         );
       })
@@ -119,7 +115,7 @@ const CollectionDetail = () => {
             lowerThreshold={20}
             upperThreshold={20}
           >
-            {collectionDetail.wordList.map(word => (
+            {collectionDetail.words.map(word => (
               <View className={styles.listItem} key={word.name}>
                 <WordCard
                   onClick={() =>
@@ -129,7 +125,7 @@ const CollectionDetail = () => {
                   }
                   title={<View className={styles.title}>{word.hanzi}</View>}
                   description={word.snippet}
-                  extraList={[{title: '榕拼', content: word.pinyinRong}]}
+                  extraList={[{title: '榕拼', content: word.firstPron}]}
                 />
               </View>
             ))}
