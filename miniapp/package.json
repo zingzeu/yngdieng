@@ -43,7 +43,7 @@
     "@tarojs/runtime": "3.0.15",
     "@tarojs/taro": "3.0.14",
     "clsx": "1.1.1",
-    "immer": "7.0.9",
+    "immer": "7.0.14",
     "lodash": "4.17.20",
     "react": "16.14.0",
     "react-dom": "16.14.0",
