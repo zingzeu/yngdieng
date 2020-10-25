@@ -29,7 +29,7 @@
     "@auth0/auth0-angular": "1.2.0",
     "google-protobuf": "3.13.0",
     "grpc-web": "1.2.1",
-    "howler": "2.2.0",
+    "howler": "2.2.1",
     "rxjs": "6.6.3",
     "systemjs": "6.7.1",
     "tslib": "2.0.3",
