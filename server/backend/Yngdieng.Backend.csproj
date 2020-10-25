@@ -20,7 +20,7 @@
     </PackageReference>
     <PackageReference Include="FSharp.Core" Version="4.7.2" />
     <PackageReference Include="NAudio" Version="1.10.0" />
-    <PackageReference Include="NodaTime" Version="3.0.2" />
+    <PackageReference Include="NodaTime" Version="3.0.3" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.4" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.NodaTime" Version="3.1.4" />
     <PackageReference Include="Xabe.FFmpeg" Version="4.3.1" />
