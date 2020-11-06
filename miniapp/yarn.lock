@@ -3571,10 +3571,10 @@ babel-plugin-transform-strict-mode@^6.24.1:
     babel-runtime "^6.22.0"
     babel-types "^6.24.1"
 
-babel-plugin-transform-taroapi@3.0.15:
-  version "3.0.15"
-  resolved "https://registry.yarnpkg.com/babel-plugin-transform-taroapi/-/babel-plugin-transform-taroapi-3.0.15.tgz#8c0f1b6cf9494036e70d346b76606dafd448e455"
-  integrity sha512-Mda/dlZD6RXh11RS5PO0Vq1RZOe6GZdaz0F82pN4CQfc2RD1MfMBzDRb8JiOw72JfGRG972K/W6SkRWxXOEnvg==
+babel-plugin-transform-taroapi@3.0.16:
+  version "3.0.16"
+  resolved "https://registry.yarnpkg.com/babel-plugin-transform-taroapi/-/babel-plugin-transform-taroapi-3.0.16.tgz#d1d622e8aad44c3145d097528bf28061e09a5d3d"
+  integrity sha512-A0lkU+rbrqqzKcp+QPZVoBXqcM9BOSRPNddi5YG1lOeVYQHgZLLgviPeVddN8+FK5tHsLfp6u0Atjj7Q8i4E0A==
 
 babel-preset-es2015@6.24.1:
   version "6.24.1"
@@ -3645,10 +3645,10 @@ babel-preset-stage-3@^6.24.1:
     babel-plugin-transform-exponentiation-operator "^6.24.1"
     babel-plugin-transform-object-rest-spread "^6.22.0"
 
-babel-preset-taro@3.0.15:
-  version "3.0.15"
-  resolved "https://registry.yarnpkg.com/babel-preset-taro/-/babel-preset-taro-3.0.15.tgz#39b245adc2de13f266d4e5f3a0498fc68f6271c0"
-  integrity sha512-RaI8q8TJuMZ0CjD8hvJodounM1Bavun4VkSI2a56ZckuJYs/HWB+nWlePVKxwUz21HjmJYPFtnQCl8zdDnKdFA==
+babel-preset-taro@3.0.16:
+  version "3.0.16"
+  resolved "https://registry.yarnpkg.com/babel-preset-taro/-/babel-preset-taro-3.0.16.tgz#d85c8861ff8af5718acfdcec85fb4416591a5e41"
+  integrity sha512-twMreThRC0Kplu6bLUQmZVzSVnEQbRkF/mFvZUvM1w+oKOfaDGXja6rl/QvRA2V8VW93xjiCq1281MBXPDfEWw==
   dependencies:
     "@babel/core" "7.11.1"
     "@babel/plugin-proposal-class-properties" "7.10.4"
@@ -3659,9 +3659,9 @@ babel-preset-taro@3.0.15:
     "@babel/preset-react" "7.10.4"
     "@babel/preset-typescript" "7.10.4"
     "@babel/runtime" "^7.11.2"
-    "@tarojs/taro-h5" "3.0.15"
+    "@tarojs/taro-h5" "3.0.16"
     babel-plugin-dynamic-import-node "^2.3.3"
-    babel-plugin-transform-taroapi "3.0.15"
+    babel-plugin-transform-taroapi "3.0.16"
     core-js "^3.6.5"
 
 babel-register@^6.26.0:
