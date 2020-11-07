@@ -33,6 +33,6 @@ RUN curl -fSsL -o /tmp/bazel-installer.sh https://github.com/bazelbuild/bazel/re
 
 RUN bazel version
 
-RUN curl -sL https://deb.nodesource.com/setup_14.x | bash - \
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - \
     && apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install --no-install-recommends nodejs build-essential
+    && apt-get -y install --no-install-recommends nodejs build-essential inetutils-ping vim
