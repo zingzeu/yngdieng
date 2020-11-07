@@ -11,8 +11,6 @@ RUN if [ "${INSTALL_DOCKER}" = "true" ]; then \
     fi \
     && rm -rf /var/lib/apt/lists/* /tmp/library-scripts/
 
-USER codespace
-
 # Options for setup script
 ARG INSTALL_ZSH="true"
 ARG UPGRADE_PACKAGES="false"
