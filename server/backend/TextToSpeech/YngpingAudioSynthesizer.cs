@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using Microsoft.Extensions.Configuration;
@@ -26,9 +25,8 @@ namespace Yngdieng.Backend.TextToSpeech
 
         public byte[]? YngpingToAudio(string yngping)
         {
-            var syllables = yngping.Split().Select(s => s.Trim().ToLowerInvariant());
-            var audioCodes = syllables.Select(YngpingTtsUtil.SyllableToAudio);
-            if (audioCodes.Any(a => string.IsNullOrEmpty(a)))
+            var audioCodes = YngpingTtsUtil.YngpingToAudioCodes(yngping);
+            if (audioCodes == null)
             {
                 return null;
             }

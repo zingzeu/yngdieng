@@ -29,7 +29,9 @@ namespace Yngdieng.Backend
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddSingleton<IndexHealthCheck>();
+            services.AddSingleton<TtsHealthCheck>();
             services.AddHealthChecks().AddCheck<IndexHealthCheck>("index_file_loading");
+            services.AddHealthChecks().AddCheck<TtsHealthCheck>("tts_pronounceable");
             services.AddGrpc();
             services.AddGrpcReflection();
             services.AddSingleton<IIndexHolder, IndexHolder>();
@@ -80,7 +82,7 @@ namespace Yngdieng.Backend
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapHealthChecks("/health");
+                endpoints.MapHealthChecks("/healthz");
 
                 endpoints.MapGrpcService<YngdiengService>().EnableGrpcWeb().RequireCors("AllowAll");
                 endpoints.MapGrpcService<AdminService>().EnableGrpcWeb().RequireCors("AllowAll");

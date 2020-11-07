@@ -19,6 +19,9 @@ namespace Yngdieng.Backend.TextToSpeech.Tests
         [InlineData("buh5", "010108")]
         [InlineData("nguai55", "143401")]
         [InlineData("nguai33", "143402")]
+        [InlineData("pak21","020703")]
+        [InlineData("pak33","020702")]
+        [InlineData("ng55","150801")]
         public void TestSyllableToAudio(string yngping, string expectedFileName)
         {
             Assert.Equal(expectedFileName, YngpingTtsUtil.SyllableToAudio(yngping));
@@ -34,6 +37,13 @@ namespace Yngdieng.Backend.TextToSpeech.Tests
         public void TestSyllableToAudio_UnsupportedSyllable_ReturnsEmpty(string yngping)
         {
             Assert.Equal(string.Empty, YngpingTtsUtil.SyllableToAudio(yngping));
+        }
+
+        [Theory]
+        [InlineData("pak21 pak33 tiu213")]
+        public void TestIsPronounceable_True(string yngping)
+        {
+            Assert.True(YngpingTtsUtil.IsPronounceable(yngping));
         }
     }
 }
