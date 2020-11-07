@@ -1,27 +1,24 @@
-# You can pick any Debian/Ubuntu-based image. 😊
-FROM mcr.microsoft.com/vscode/devcontainers/dotnetcore:3.1
+# https://github.com/microsoft/vscode-dev-containers/blob/master/containers/codespaces-linux/.devcontainer/Dockerfile
+FROM mcr.microsoft.com/vscode/devcontainers/universal:linux
+
+USER root
+# [Option] Install Docker CLI
+ARG INSTALL_DOCKER="true"
+COPY library-scripts/docker-debian.sh /tmp/library-scripts/
+RUN if [ "${INSTALL_DOCKER}" = "true" ]; then \
+        rm -f /usr/local/share/docker-init.sh \
+        && bash /tmp/library-scripts/docker-debian.sh "true" "/var/run/docker-host.sock" "/var/run/docker.sock" "codespace"; \
+    fi \
+    && rm -rf /var/lib/apt/lists/* /tmp/library-scripts/
+
+USER codespace
 
 # Options for setup script
 ARG INSTALL_ZSH="true"
 ARG UPGRADE_PACKAGES="false"
-ARG USERNAME=vscode
+ARG USERNAME=codespace
 ARG USER_UID=1000
 ARG USER_GID=$USER_UID
-ENV NVM_DIR=/usr/local/share/nvm
-ENV NVM_SYMLINK_CURRENT=true \ 
-    PATH=${NVM_DIR}/current/bin:${PATH}
-
-# Install needed packages and setup non-root user. Use a separate RUN statement to add your own dependencies.
-COPY library-scripts/*.sh /tmp/library-scripts/
-RUN apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    # Remove imagemagick due to https://security-tracker.debian.org/tracker/CVE-2019-10131
-    && apt-get purge -y imagemagick imagemagick-6-common \
-    && /bin/bash /tmp/library-scripts/common-debian.sh "${INSTALL_ZSH}" "${USERNAME}" "${USER_UID}" "${USER_GID}" "${UPGRADE_PACKAGES}" \
-    && apt-get install -y pkg-config zip g++ zlib1g-dev unzip python \
-    # Install yarn, nvm
-    && rm -rf /opt/yarn-* /usr/local/bin/yarn /usr/local/bin/yarnpkg \
-    && bash /tmp/library-scripts/node-debian.sh "${NVM_DIR}" "none" "${USERNAME}" \
-    && apt-get autoremove -y && apt-get clean -y && rm -rf /var/lib/apt/lists/* /tmp/library-scripts
 
 # Install Bazel
 ARG BAZEL_VERSION=3.4.1
@@ -35,4 +32,4 @@ RUN bazel version
 
 RUN curl -sL https://deb.nodesource.com/setup_12.x | bash - \
     && apt-get update && export DEBIAN_FRONTEND=noninteractive \
-    && apt-get -y install --no-install-recommends nodejs build-essential inetutils-ping vim
+    && apt-get -y install --no-install-recommends nodejs build-essential inetutils-ping vim ffmpeg

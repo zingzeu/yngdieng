@@ -1,39 +1,44 @@
-// Update the VARIANT arg in docker-compose.yml to pick a Node.js version: 10, 12, 14 
+// Update the VARIANT arg in docker-compose.yml to pick a Node.js version: 10, 12, 14
 {
-	"name": "Yngdieng dev container",
-	"dockerComposeFile": "docker-compose.yml",
-	"service": "app",
-	"workspaceFolder": "/workspace",
+  "name": "Yngdieng dev container",
+  "dockerComposeFile": "docker-compose.yml",
+  "service": "app",
+  "workspaceFolder": "/home/codespace/workspace",
+  "mounts": [
+    "source=/var/run/docker.sock,target=/var/run/docker-host.sock,type=bind"
+  ],
+  "runArgs": ["--cap-add=SYS_PTRACE", "--security-opt", "seccomp=unconfined"],
 
-	// Set *default* container specific settings.json values on container create.
-	"settings": { 
-		"terminal.integrated.shell.linux": "/bin/bash",
-		"sqltools.connections": [{
-			"name": "Container database",
-			"driver": "PostgreSQL",
-			"previewLimit": 50,
-			"server": "localhost",
-			"port": 5432,
-			"database": "yngdieng",
-			"username": "postgres",
-			"password": "postgres"
-		}]
-	},
+  // Set *default* container specific settings.json values on container create.
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash",
+    "sqltools.connections": [
+      {
+        "name": "Container database",
+        "driver": "PostgreSQL",
+        "previewLimit": 50,
+        "server": "localhost",
+        "port": 5432,
+        "database": "yngdieng",
+        "username": "postgres",
+        "password": "postgres"
+      }
+    ]
+  },
 
-	// Add the IDs of extensions you want installed when the container is created.
-	"extensions": [
-		"dbaeumer.vscode-eslint",
-		"mtxr.sqltools",
-		"mtxr.sqltools-driver-pg",
-		"ms-dotnettools.csharp",
-		"BazelBuild.vscode-bazel"
-	],
+  // Add the IDs of extensions you want installed when the container is created.
+  "extensions": [
+    "dbaeumer.vscode-eslint",
+    "mtxr.sqltools",
+    "mtxr.sqltools-driver-pg",
+    "ms-dotnettools.csharp",
+    "BazelBuild.vscode-bazel"
+  ],
 
-	// Use 'forwardPorts' to make a list of ports inside the container available locally.
-	"forwardPorts": [4200, 5432, 5001, 5000, 8080],
+  // Use 'forwardPorts' to make a list of ports inside the container available locally.
+  "forwardPorts": [4200, 5432, 5001, 5000, 8080],
 
-	"postCreateCommand": "yarn install",
+  "postCreateCommand": "yarn install",
 
-	// Comment out connect as root instead. More info: https://aka.ms/vscode-remote/containers/non-root.
-	"remoteUser": "vscode"
+  "remoteUser": "codespace"
 }
