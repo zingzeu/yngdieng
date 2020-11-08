@@ -22,20 +22,13 @@ namespace Yngdieng.Indexer
             var inputFolder = args[0];
             var outputFolder = args[1];
             var versionTag = args.Length > 2 ? args[2] : "notag";
-            var useV2 = args.Length > 3 ? args[3]
-                                                  .ToLowerInvariant() == "v2"
-                                        : false;
-            if (useV2)
-            {
-                Console.WriteLine("Using V2 index");
-                return new IndexV2Creator(inputFolder, outputFolder, versionTag).Run();
-            }
-            return new IndexV1Creator(inputFolder, outputFolder, versionTag).Run();
+            Console.WriteLine("Using V2 index");
+            return new IndexV2Creator(inputFolder, outputFolder, versionTag).Run();
         }
 
         private static void PrintHelp()
         {
-            Console.WriteLine("Usage: indexer <data path> <output path> [v2]");
+            Console.WriteLine("Usage: indexer <data path> <output path>");
         }
     }
 }

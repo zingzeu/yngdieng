@@ -9,7 +9,7 @@ You need to install the following:
 
 ## Running the server locally
 
-Launch Envoy:
+Launch Postgres:
 
 ```
 docker-compose up -d
@@ -58,10 +58,5 @@ The backend server will refuse to run without an index file.
    ```
    dotnet run -p server/indexer/Yngdieng.Indexer.csproj -- ../../data ../../output
    ```
-
-   > For V2 Index, use:
-   > ```
-   > dotnet run -p server/indexer/Yngdieng.Indexer.csproj -- ../../data ../../output notag v2
-   > ```
 
 You should see the generated index file in the `output` directory.
