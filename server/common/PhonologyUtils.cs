@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Yngdieng.Protos;
-namespace Yngdieng.Backend.Services
+
+namespace Yngdieng.Common
 {
     public static class PhonologyUtils
     {

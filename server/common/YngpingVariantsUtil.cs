@@ -79,7 +79,7 @@ namespace Yngdieng.Common
             // 泥來混
             word.Derive(@"^[ln](.*)$", match => $"l{match.Groups[1]}");
             word.Derive(@"^[nl](.*)$", match => $"n{match.Groups[1]}");
-            //  新老派 城乡 口音差异
+            // 新老派 城乡 口音差异
             word.Derive(@"ooy", match => $"uai");
             word.Derive(@"yo", match => $"yoe");
             word.Derive(@"za", match => $"zia");

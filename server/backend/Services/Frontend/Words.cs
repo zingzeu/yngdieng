@@ -4,12 +4,13 @@ using System.Globalization;
 using System.Linq;
 using System.Threading.Tasks;
 using Grpc.Core;
-using Microsoft.AspNetCore.Components.RenderTree;
 using Microsoft.EntityFrameworkCore;
 using Yngdieng.Backend.Db;
 using Yngdieng.Common;
+using Yngdieng.Common.RichText;
 using Yngdieng.Frontend.V3.Protos;
 using Yngdieng.Protos;
+using static Yngdieng.Common.StringExt;
 using Word = Yngdieng.Frontend.V3.Protos.Word;
 using WordList = Yngdieng.Frontend.V3.Protos.WordList;
 
@@ -23,8 +24,12 @@ namespace Yngdieng.Backend.Services.Frontend
             Snippet
         }
 
-        public static async Task<Word>
-            GetWord(IIndexHolder _indexHolder, AdminContext _dbContext, DocRef docRef, Mode mode = Mode.Full)
+        public static async Task<Word> GetWord(
+            IIndexHolder _indexHolder,
+            AdminContext _dbContext,
+            ZhConverter zhConverter,
+            DocRef docRef,
+            Mode mode = Mode.Full)
         {
             var maybeYngdiengDocument = _indexHolder.GetIndex().YngdiengDocuments
                 .SingleOrDefault(yDoc => yDoc.DocId == DocRefs.Encode(docRef));
@@ -37,12 +42,13 @@ namespace Yngdieng.Backend.Services.Frontend
             }
             var extensions = await _dbContext.Extensions.Where(e => e.WordId == maybeWordId).ToListAsync();
             var prons = await _dbContext.Prons.Where(p => p.WordId == maybeWordId).ToListAsync();
+            var hanzi = zhConverter.tH(await GetHanzi(_dbContext, maybeYngdiengDocument, maybeWordId));
             var recommendedProns = mode == Mode.Snippet
                 ? GetSnippetPronunciations(maybeYngdiengDocument, prons)
                 : GetRecommendedPronunciations(maybeYngdiengDocument, prons);
             var explanations = mode == Mode.Snippet
                 ? Enumerable.Empty<RichTextNode>()
-                : GetExplanations(maybeYngdiengDocument, extensions);
+                : GetExplanations(zhConverter, hanzi, maybeYngdiengDocument, extensions);
             var audioCards = mode == Mode.Snippet ? Enumerable.Empty<Word.Types.AudioCard>()
                 : await GetAudioCards(_dbContext, recommendedProns, maybeWordId);
             var wordLists = mode == Mode.Full && maybeWordId.HasValue
@@ -51,10 +57,10 @@ namespace Yngdieng.Backend.Services.Frontend
             return new Word
             {
                 Name = ResourceNames.ToWordName(docRef),
-                Hanzi = await GetHanzi(_dbContext, maybeYngdiengDocument, maybeWordId),
+                Hanzi = hanzi,
                 Pronunciations = { recommendedProns },
                 Explanation = { explanations },
-                Snippet = GetSnippet(maybeYngdiengDocument, extensions),
+                Snippet = zhConverter.tH(GetSnippet(maybeYngdiengDocument, extensions)),
                 AudioCards = { audioCards },
                 WordLists = {
                     wordLists
@@ -143,7 +149,9 @@ namespace Yngdieng.Backend.Services.Frontend
         }
 
         private static RichTextNode[] GetExplanations(
-              YngdiengDocument? maybeYngdiengDocument,
+            ZhConverter zhConverter,
+            string hanzi,
+            YngdiengDocument? maybeYngdiengDocument,
             IEnumerable<Extension> extensions
         )
         {
@@ -151,29 +159,35 @@ namespace Yngdieng.Backend.Services.Frontend
             var fengDocs = maybeYngdiengDocument?.Sources
                 .Where(s => s.SourceCase == YngdiengDocument.Types.Source.SourceOneofCase.Feng).Select(s => s.Feng)
                            ?? Enumerable.Empty<FengDocument>();
-            output.AddRange(fengDocs.Select(Renderers.ToRichTextNode));
+
+            var fengRenderer = new FengRichTextRenderer(zhConverter);
+            output.AddRange(fengDocs.Select(f => fengRenderer.ToRichTextNode(f)));
             var hDoc = maybeYngdiengDocument?.Sources
                 .FirstOrDefault(s => s.SourceCase == YngdiengDocument.Types.Source.SourceOneofCase.CiklinDfd)?.CiklinDfd ?? null;
+
+            var histRenderer = new HistoricalRichTextRenderer(zhConverter);
             if (hDoc != null)
             {
-                output.Add(Renderers.ToRichTextNode(hDoc));
+                output.Add(histRenderer.ToRichTextNode(hDoc));
             }
-            // TODO: add word hanzi to extensions section header
-            output.AddRange(extensions.Select(e => Renderers.ToRichTextNode("", e)));
+
+            var extRenderer = new ExtensionRichTextRenderer(zhConverter);
+            output.AddRange(extensions.Select(e => extRenderer.ToRichTextNode(hanzi, e.Explanation, e.Source, e.Contributors)));
             if (extensions.Count() == 0)
             {
                 var contribFromIndex = maybeYngdiengDocument?.Sources
                     .Where(s => s.SourceCase == YngdiengDocument.Types.Source.SourceOneofCase.Contrib)
-                    .Select(s => s.Contrib) ?? Enumerable.Empty<ContribDocument>(); ;
-                output.AddRange(contribFromIndex.Select(Renderers.ToRichTextNode));
+                    .Select(s => s.Contrib) ?? Enumerable.Empty<ContribDocument>();
+                var contribRenderer = new ContribRichTextRenderer(zhConverter);
+                output.AddRange(contribFromIndex.Select(c => contribRenderer.ToRichTextNode(c)));
             }
 
             return output.ToArray();
         }
 
         private static string GetSnippet(
-             YngdiengDocument? maybeYngdiengDocument,
-           IEnumerable<Extension> extensions
+            YngdiengDocument? maybeYngdiengDocument,
+            IEnumerable<Extension> extensions
         )
         {
             var fengExplation = maybeYngdiengDocument?.Sources

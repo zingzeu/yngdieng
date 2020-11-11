@@ -5,6 +5,7 @@ using Grpc.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Yngdieng.Backend.Db;
+using Yngdieng.Common;
 using Yngdieng.Frontend.V3.Protos;
 
 namespace Yngdieng.Backend.Services.Frontend
@@ -27,9 +28,11 @@ namespace Yngdieng.Backend.Services.Frontend
                 .Select(w => w.WordId)
                 .ToListAsync();
             var words = new List<Yngdieng.Frontend.V3.Protos.Word>();
+            var userPreference = UserPreferences.FromContext(context);
+            var zhConverter = new ZhConverter(_openCc, userPreference.ZhConversionPreference);
             foreach (var wordId in wordIds)
             {
-                words.Add(await Words.GetWord(_indexHolder, _dbContext, ResourceNames.ToDocRef(wordId), Words.Mode.Snippet));
+                words.Add(await Words.GetWord(_indexHolder, _dbContext, zhConverter, ResourceNames.ToDocRef(wordId), Words.Mode.Snippet));
             }
             return new ListWordListWordsResponse
             {

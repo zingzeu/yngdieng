@@ -24,7 +24,6 @@ namespace Yngdieng.Backend.Services.Frontend
             }
             var docId = ResourceNames.ToDocId(request.Name);
 
-
             if (_indexHolder.GetIndex().DocIdRedirections.ContainsKey(docId))
             {
                 var redirectionTarget = _indexHolder.GetIndex().DocIdRedirections[docId];
@@ -40,7 +39,9 @@ namespace Yngdieng.Backend.Services.Frontend
             {
                 throw new RpcException(new Status(StatusCode.InvalidArgument, $"{request.Name} is not a valid name.", e));
             }
-            return await Words.GetWord(_indexHolder, _dbContext, docRef);
+            var userPreference = UserPreferences.FromContext(context);
+            var zhConverter = new ZhConverter(_openCc, userPreference.ZhConversionPreference);
+            return await Words.GetWord(_indexHolder, _dbContext, zhConverter, docRef);
         }
 
     }
