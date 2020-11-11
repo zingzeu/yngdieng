@@ -23,7 +23,10 @@ namespace Yngdieng.Indexer
             var outputFolder = args[1];
             var versionTag = args.Length > 2 ? args[2] : "notag";
             Console.WriteLine("Using V2 index");
-            return new IndexV2Creator(inputFolder, outputFolder, versionTag).Run();
+            using (var indexCreator = new IndexV2Creator(inputFolder, outputFolder, versionTag))
+            {
+                return indexCreator.Run();
+            }
         }
 
         private static void PrintHelp()

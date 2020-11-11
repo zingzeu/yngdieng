@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-
 using System.Text;
 using Yngdieng.Common;
+using Yngdieng.OpenCC;
 using Yngdieng.Protos;
 using static Yngdieng.Common.ExplanationUtil;
 
@@ -17,9 +17,9 @@ namespace Yngdieng.Indexer.Loading
         private readonly string fengZeuMappingPath;
         private readonly string outputFolder;
 
-        private readonly OpenCcClient openCc;
+        private readonly YngdiengOpenCcClient openCc;
 
-        public FengLoader(string fengPath, string fengZeuMappingPath, string outputFolder, OpenCcClient openCcClient)
+        public FengLoader(string fengPath, string fengZeuMappingPath, string outputFolder, YngdiengOpenCcClient openCcClient)
         {
             this.fengPath = fengPath;
             this.fengZeuMappingPath = fengZeuMappingPath;

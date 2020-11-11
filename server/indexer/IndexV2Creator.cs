@@ -9,19 +9,20 @@ using Lucene.Net.Store;
 using Yngdieng.Common;
 using Yngdieng.Indexer.Loading;
 using Yngdieng.Indexer.Processing;
+using Yngdieng.OpenCC;
 using Yngdieng.Protos;
 using Yngdieng.Search.Common;
 
 namespace Yngdieng.Indexer
 {
-    internal sealed class IndexV2Creator
+    internal sealed class IndexV2Creator : IDisposable
     {
 
         private readonly string inputFolder;
         private readonly string outputFolder;
         private readonly string versionTag;
 
-        private readonly OpenCcClient openCcClient = new OpenCcClient();
+        private readonly YngdiengOpenCcClient openCcClient = new YngdiengOpenCcClient();
 
         public IndexV2Creator(string inputFolder, string outputFolder, string versionTag)
         {
@@ -147,6 +148,11 @@ namespace Yngdieng.Indexer
               yngping.Split(" ").Select(s => zingzeudata.ZingzeuData.Yngping.Yngping0_4_0Validator.ParseHukziuSyllable(s)?.Item3)
               .Where(x => !string.IsNullOrEmpty(x))
             );
+        }
+
+        public void Dispose()
+        {
+            openCcClient.Dispose();
         }
     }
 }

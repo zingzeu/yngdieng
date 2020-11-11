@@ -9,6 +9,7 @@
     <ProjectReference Include="..\protos\Yngdieng.Protos.csproj" />
     <ProjectReference Include="..\common\Yngdieng.Common.csproj" />
     <ProjectReference Include="..\Yngdieng.Search.Common\Yngdieng.Search.Common.csproj" />
+    <ProjectReference Include="..\Yngdieng.OpenCC\src\Yngdieng.OpenCC.csproj" />
   </ItemGroup>
 
   <ItemGroup>

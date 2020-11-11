@@ -364,8 +364,6 @@ MigrationBackup/
 
 # End of https://www.gitignore.io/api/csharp
 
-output
-
 .idea
 
 # See http://help.github.com/ignore-files/ for more about ignoring files.
@@ -415,8 +413,8 @@ testem.log
 .DS_Store
 Thumbs.db
 
-data/
-
+/data/
+/output/
 .ionide
 
-pg_data/
+/pg_data/

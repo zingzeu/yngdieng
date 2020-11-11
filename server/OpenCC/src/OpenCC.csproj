@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+  <ItemGroup>
+    <Content Include="libopencc.so.1.1.1">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>  
+    <Content Include="opencc_data/**/*">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>  
+  </ItemGroup>
+</Project>
