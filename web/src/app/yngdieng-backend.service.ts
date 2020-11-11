@@ -15,6 +15,7 @@ import {
   SearchResponse,
   SearchV2Request,
   SearchV2Response,
+  SimplifyTextRequest,
   ZhConversionPreference,
   UserPreference,
 } from '../../../shared/services_pb';
@@ -151,6 +152,21 @@ export class YngdiengBackendService {
         subject.next(response);
       }
     );
+
+    return subject.asObservable();
+  }
+
+  simplifyText(text: string): Observable<string> {
+    let subject = new Subject<string>();
+    let request = new SimplifyTextRequest();
+    request.setText(text);
+    this.grpcClient.simplifyText(request, undefined, (err, response) => {
+      if (err != null) {
+        subject.error(err);
+        return;
+      }
+      subject.next(response.getConvertedText());
+    });
 
     return subject.asObservable();
   }

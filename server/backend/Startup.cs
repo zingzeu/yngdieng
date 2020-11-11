@@ -14,6 +14,8 @@ using Yngdieng.Backend.Services;
 using Yngdieng.Backend.Services.Admin;
 using Yngdieng.Backend.Services.Frontend;
 using Yngdieng.Backend.TextToSpeech;
+using Yngdieng.OpenCC;
+
 namespace Yngdieng.Backend
 {
     public class Startup
@@ -38,6 +40,7 @@ namespace Yngdieng.Backend
             services.AddSingleton<YngpingAudioSynthesizer>();
             services.AddHostedService<IndexLoaderBackgroundService>();
             services.AddSingleton<ISearchCache, InMemorySearchCache>();
+            services.AddSingleton<YngdiengOpenCcClient>();
             services.AddControllers();
             services.AddCors(o => o.AddPolicy("AllowAll", builder =>
             {

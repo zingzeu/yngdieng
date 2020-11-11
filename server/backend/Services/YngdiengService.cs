@@ -1,5 +1,6 @@
 ﻿using System;
 using Microsoft.Extensions.Logging;
+using Yngdieng.OpenCC;
 using Yngdieng.Protos;
 
 namespace Yngdieng.Backend.Services
@@ -9,11 +10,18 @@ namespace Yngdieng.Backend.Services
         private readonly ILogger<YngdiengService> _logger;
         private readonly IIndexHolder _indexHolder;
         private readonly ISearchCache _cache;
-        public YngdiengService(ILogger<YngdiengService> logger, IIndexHolder indexHolder, ISearchCache cache)
+        private readonly YngdiengOpenCcClient _openCc;
+
+        public YngdiengService(
+            ILogger<YngdiengService> logger,
+            IIndexHolder indexHolder,
+            ISearchCache cache,
+            YngdiengOpenCcClient openCc)
         {
             _logger = logger;
             _indexHolder = indexHolder;
             _cache = cache;
+            _openCc = openCc;
         }
 
         public static string GetHanzi(Hanzi h)

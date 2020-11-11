@@ -28,6 +28,8 @@ service YngdiengService {
       get: "/v2/debugz"
     };
   }
+
+  rpc SimplifyText(SimplifyTextRequest) returns (SimplifyTextResponse);
 }
 
 // Next ID: 3
@@ -210,4 +212,12 @@ message UserPreference {
 
   // If true, includes zingzeu_words-only entries in the search result.
   bool show_sourceless_search_results = 2;
+}
+
+message SimplifyTextRequest {
+  string text = 1;
+}
+
+message SimplifyTextResponse {
+  string converted_text = 1;
 }
