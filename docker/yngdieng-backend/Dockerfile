@@ -4,7 +4,7 @@ RUN mkdir /build
 RUN mkdir /out
 WORKDIR /build
 COPY . /build/
-RUN dotnet publish -o /out backend/Yngdieng.Backend.csproj
+RUN dotnet publish -o /out server/backend/Yngdieng.Backend.csproj
 
 # This image does not exist in Docker Hub. It needs to be loaded into the
 # local Docker daemon with:

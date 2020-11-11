@@ -415,6 +415,7 @@ Thumbs.db
 
 /data/
 /output/
+/serverbuild/
 .ionide
 
 /pg_data/
