@@ -1178,10 +1178,10 @@
     lodash "^4.17.13"
     to-fast-properties "^2.0.0"
 
-"@bazel/angular@2.2.2":
-  version "2.2.2"
-  resolved "https://registry.yarnpkg.com/@bazel/angular/-/angular-2.2.2.tgz#3a8b9196016aa289b732f534390ec7746c0e2c70"
-  integrity sha512-31m+KEyHXbWDKM1h14gt6h5J1nQPcZw+DvhibH/fGg9Cd1FsRkm3YSt10DneCcJ299FL+dWONUBjfH9+dxoVGA==
+"@bazel/angular@2.3.0":
+  version "2.3.0"
+  resolved "https://registry.yarnpkg.com/@bazel/angular/-/angular-2.3.0.tgz#ac23c2ed2048e63ec9dce3efe39939878aa3d9f2"
+  integrity sha512-tUd1gCRbi7EVnfZE/x686Y/YayE23M4Z2oXbFF8e3ZjM43Fw4BiSYRAJUgKZjRYUIbCuc+SqKO47CQoE1brNGw==
   dependencies:
     "@angular-devkit/architect" "^0.901.7"
     "@bazel/bazelisk" "^1.4.0"
