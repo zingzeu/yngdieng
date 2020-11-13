@@ -52,7 +52,7 @@
     "@bazel/labs": "2.2.2",
     "@bazel/protractor": "2.2.2",
     "@bazel/rollup": "2.2.2",
-    "@bazel/terser": "2.2.2",
+    "@bazel/terser": "2.3.0",
     "@bazel/typescript": "2.2.2",
     "@grpc/proto-loader": "0.5.5",
     "@rollup/plugin-commonjs": "16.0.0",
