@@ -9,7 +9,7 @@ You need to install the following:
 
 ## Running the server locally
 
-Launch Envoy:
+Launch Postgres:
 
 ```
 docker-compose up -d
@@ -49,19 +49,9 @@ The backend server will refuse to run without an index file.
   * contrib.tsv -- from the [zingzeu-data](https://github.com/ztl8702/zingzeu-data) repo
   * zingzeu_words.txt -- from the [zingzeu-data](https://github.com/ztl8702/zingzeu-data) repo
 
-1. Start opencc_daemon in one of your terminal windows (词典索引中的简繁模糊查询用)
-   ```
-   bazel run //server/opencc_daemon
-   ```
-
 1. Now run the Indexer in another terminal.
    ```
    dotnet run -p server/indexer/Yngdieng.Indexer.csproj -- ../../data ../../output
    ```
-
-   > For V2 Index, use:
-   > ```
-   > dotnet run -p server/indexer/Yngdieng.Indexer.csproj -- ../../data ../../output notag v2
-   > ```
 
 You should see the generated index file in the `output` directory.

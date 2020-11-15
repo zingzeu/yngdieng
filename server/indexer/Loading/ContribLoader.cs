@@ -1,7 +1,7 @@
 ﻿extern alias zingzeudata;
 using System.Collections.Generic;
 using Yngdieng.Protos;
-using static Yngdieng.Indexer.ExplanationUtil;
+using static Yngdieng.Common.ExplanationUtil;
 
 namespace Yngdieng.Indexer.Loading
 {

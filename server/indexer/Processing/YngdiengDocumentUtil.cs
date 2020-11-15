@@ -36,8 +36,10 @@ namespace Yngdieng.Indexer.Processing
                 {
                     DocRef = new DocRef { ZingzeuId = zingzeuId },
                     HanziCanonical = new Hanzi { Regular = zingzeuWordsEntry.Hanzi },
-                    YngpingSandhi =
-                        zingzeuWordsEntry.Prons.FirstOrDefault()?.Pron() ?? string.Empty,
+                    YngpingSandhi = FindZingzeuWordsPron(zingzeuWordsEntry) ?? string.Empty,
+                    YngpingUnderlying =
+                        FindZingzeuWordsPron(zingzeuWordsEntry,
+                            ZingzeuEntry.Types.ZingzeuPron.Types.SandhiCategory.Bengzi) ?? string.Empty,
                     HanziAlternatives = { zingzeuWordsEntry.HanziAlt.Select(a => new Hanzi { Regular = a }) },
                     IndexingExtension = new YngdiengDocument.Types.IndexingExtension
                     {
@@ -54,7 +56,7 @@ namespace Yngdieng.Indexer.Processing
                 }
 
                 var contribMatch =
-                    pendingContrib.Where(c => c.ZingzeuId == zingzeuId).SingleOrDefault();
+                    pendingContrib.SingleOrDefault(c => c.ZingzeuId == zingzeuId);
                 if (contribMatch != null)
                 {
                     pendingContrib.Remove(contribMatch);
@@ -93,19 +95,31 @@ namespace Yngdieng.Indexer.Processing
                     Sources = { new YngdiengDocument.Types.Source { Contrib = c } }
                 });
             }
-            // Generated base64 encoded doc id
             foreach (var doc in results)
             {
-                doc.DocId = Base64UrlTextEncoder.Encode(doc.DocRef.ToByteArray());
+                doc.DocId = DocRefs.Encode(doc.DocRef);
                 doc.HanziCanonical = FindHanziCanonical(doc.Sources, doc.HanziCanonical);
                 doc.YngpingUnderlying = FindYngpingUnderlying(doc.Sources, doc.YngpingUnderlying);
                 doc.YngpingSandhi = FindYngpingSandhi(doc.Sources, doc.YngpingSandhi);
-                doc.IndexingExtension = doc.IndexingExtension ?? new YngdiengDocument.Types.IndexingExtension { };
+                doc.IndexingExtension ??= new YngdiengDocument.Types.IndexingExtension { };
                 doc.IndexingExtension.YngpingPermutations.AddRange(CollectYngpingPermutations(doc.Sources));
                 doc.IndexingExtension.HanziMatchable.AddRange(CollectHanziMatchable(doc.Sources));
                 doc.IndexingExtension.ExplanationText.AddRange(CollectExplanationTexts(doc.Sources));
             }
             return results;
+        }
+
+        private static string? FindZingzeuWordsPron(ZingzeuEntry zingzeuWordsEntry,
+            ZingzeuEntry.Types.ZingzeuPron.Types.SandhiCategory sc =
+                ZingzeuEntry.Types.ZingzeuPron.Types.SandhiCategory.Sandhi)
+        {
+            return zingzeuWordsEntry.Prons.FirstOrDefault(x =>
+                x.SandhiCategory == sc
+                && x.IsYngdieng
+                && (x.Variant == ZingzeuEntry.Types.ZingzeuPron.Types.Variant.FuzhouCity
+                    || x.Variant == ZingzeuEntry.Types.ZingzeuPron.Types.Variant.FuzhouCityOthers
+                    || x.Variant == ZingzeuEntry.Types.ZingzeuPron.Types.Variant.Minhou)
+            )?.Pron();
         }
 
         private static Hanzi FindHanziCanonical(
@@ -248,7 +262,8 @@ namespace Yngdieng.Indexer.Processing
                         case SourceOneofCase.Feng:
                             return new string[] { s.Feng.ExplanationTrad, s.Feng.ExplanationHans };
                         case SourceOneofCase.Contrib:
-                            return new string[]{s.Contrib.ExplanationRaw,
+                            return new string[]{
+                                s.Contrib.ExplanationRaw,
                                 /* TODO: simplified variant */
                                                                           };
                         case SourceOneofCase.CiklinDfd:

@@ -1,7 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using ZingzeuData.Yngping;
+﻿extern alias zingzeudata;
 
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using zingzeudata.ZingzeuData.Yngping;
 namespace Yngdieng.Backend.TextToSpeech
 {
     /// <summary>
@@ -11,37 +13,32 @@ namespace Yngdieng.Backend.TextToSpeech
     {
         private static Dictionary<string, string> ConsonantAudioMapping =
             new Dictionary<string, string>{
-                {"b", "01"},
-                {"p", "02"},
-                {"m", "03"},
-                {"d", "04"},
-                {"t", "05"},
-                {"n", "07"},
-                {"l", "06"},
-                {"z", "08"},
-                {"c", "09"},
-                {"s", "10"},
-                {"g", "11"},
-                {"k", "12"},
-                {"ng", "14"},
-                {"", "15"},
-                {"h", "13"},
-                {"w", "03"}, // as m
-                {"j", "08"}, // as z
-                {"nj", "07"} // as n
+                {"01", "b"},
+                {"02", "p"},
+                {"03", "m"},
+                {"04", "d"},
+                {"05", "t"},
+                {"07", "n"},
+                {"06", "l"},
+                {"08", "z"},
+                {"09", "c"},
+                {"10", "s"},
+                {"11", "g"},
+                {"12", "k"},
+                {"13", "h"},
+                {"14", "ng"},
+                {"15", ""},
             };
 
         private static Dictionary<string, string> ToneAudioMapping =
             new Dictionary<string, string>(){
-                {"55", "01"},  // 陰平
-                {"33", "02"},  // 上聲
-                {"213", "03"}, // 陰去
-                {"24", "04"},  // 陰入
-                {"53", "05"},  // 陽平
-                {"242", "07"}, // 陽去
-                {"5", "08"},   // 陽入
-                {"21", "03"},  // 半陰去
-                // {"24","07"}    // 半陽去
+                {"01", "55"},  // 陰平
+                {"02", "33"},  // 上聲
+                {"03", "213"}, // 陰去
+                {"04", "24"},  // 陰入
+                {"05", "53"},  // 陽平
+                {"07", "242"}, // 陽去
+                {"08", "5"},   // 陽入
             };
 
         private static Dictionary<string, string[]> FinalAudioMapping =
@@ -77,23 +74,35 @@ namespace Yngdieng.Backend.TextToSpeech
                                              {"34", new string[]{"uai"}},
                                              {"36", new string[]{"eu"}}};
 
+        private static readonly int MaxFallbackCount = 100;
+        private static readonly IReplacementRule[] ReplacementRules = new IReplacementRule[] {
+            new NgReplacementRule(),
+            new SandhiSpecialToneAsNormalRule(),
+            new SandhiToneReplacementRule(),
+            new SandhiInitialReplacementRule()
+        };
+
+        private static Dictionary<string, string> AudioMappingCache = new Dictionary<string, string>();
+
         private static Dictionary<string, string> SyllableMappings =
             new Dictionary<string, string>();
 
         // 松韵调 (会发生变韵的声调)
         private static HashSet<string> AltTones = new HashSet<string> { "03", "04", "07" };
+        // 入声调
         private static HashSet<string> AbruptTones = new HashSet<string> { "04", "08" };
 
         /// <summary>
-        /// 生成所有{音节, 音频名}的字典
+        /// 生成所有 (音节, 音频名) 的字典
         /// </summary>
         public static void GenerateMappings()
         {
-            foreach (var (consonant, consonantCode) in ConsonantAudioMapping)
+            // 林圜音频
+            foreach (var (consonantCode, consonant) in ConsonantAudioMapping)
             {
                 foreach (var (finalCode, finals) in FinalAudioMapping)
                 {
-                    foreach (var (tone, toneCode) in ToneAudioMapping)
+                    foreach (var (toneCode, tone) in ToneAudioMapping)
                     {
                         string final = (finals.Length == 2 && AltTones.Contains(toneCode)) ? finals[1] : finals[0];
                         string syllableCode = consonantCode + finalCode + toneCode;
@@ -113,7 +122,26 @@ namespace Yngdieng.Backend.TextToSpeech
                     }
                 }
             }
+            // TODO: 补充音频
             return;
+        }
+
+        public static bool IsPronounceable(string yngping)
+        {
+            var syllables = yngping.Split().Select(s => s.Trim().ToLowerInvariant());
+            var audioCodes = syllables.Select(SyllableToAudio);
+            return !audioCodes.Any(a => string.IsNullOrEmpty(a));
+        }
+
+        public static string[]? YngpingToAudioCodes(string yngping)
+        {
+            var syllables = yngping.Split().Select(s => s.Trim().ToLowerInvariant());
+            var audioCodes = syllables.Select(SyllableToAudio);
+            if (audioCodes.Any(a => string.IsNullOrEmpty(a)))
+            {
+                return null;
+            }
+            return audioCodes.ToArray();
         }
 
         /// <summary>
@@ -122,16 +150,141 @@ namespace Yngdieng.Backend.TextToSpeech
         /// <returns>Empty string if none is matched</returns>
         public static string SyllableToAudio(string yngpingSyllable)
         {
+            if (AudioMappingCache.ContainsKey(yngpingSyllable))
+            {
+                return AudioMappingCache[yngpingSyllable];
+            }
+
             if (SyllableMappings.Count == 0)
             {
                 GenerateMappings();
             }
+
             if (SyllableMappings.ContainsKey(yngpingSyllable))
             {
+                AudioMappingCache[yngpingSyllable] = SyllableMappings[yngpingSyllable];
                 return SyllableMappings[yngpingSyllable];
             }
-            // TODO: add extra rules
+
+            var result = FindAudioWithFallback(yngpingSyllable);
+            AudioMappingCache[yngpingSyllable] = result;
+            return result;
+        }
+
+        private static string FindAudioWithFallback(string yngpingSyllable)
+        {
+            var fallbacks = new HashSet<string>();
+            fallbacks.Add(yngpingSyllable);
+            while (fallbacks.Count < MaxFallbackCount)
+            {
+                var foundNew = false;
+                foreach (var rule in ReplacementRules)
+                {
+                    var newSyllables = new List<string>();
+                    foreach (var syllable in fallbacks)
+                    {
+                        var parseResult = Yngping0_4_0Validator.ParseHukziuSyllable(syllable);
+                        if (parseResult == null)
+                        {
+                            continue;
+                        }
+                        var (initial, final, tone) = parseResult.Value;
+
+                        var output = rule.GenerateFallbacks(initial, final, tone);
+                        foreach (var newSyllable in output)
+                        {
+                            if (!fallbacks.Contains(newSyllable))
+                            {
+                                if (SyllableMappings.ContainsKey(newSyllable))
+                                {
+                                    return SyllableMappings[newSyllable];
+                                }
+                                foundNew = true;
+                                newSyllables.Add(newSyllable);
+                            }
+                        }
+                    }
+                    foreach (var newSyllable in newSyllables)
+                    {
+                        fallbacks.Add(newSyllable);
+                    }
+                    if (fallbacks.Count >= MaxFallbackCount) { break; }
+                }
+                if (!foundNew)
+                {
+                    break;
+                }
+            }
             return string.Empty;
+        }
+    }
+
+    interface IReplacementRule
+    {
+        IEnumerable<string> GenerateFallbacks(string initial, string final, string tone);
+    }
+
+    internal sealed class NgReplacementRule : IReplacementRule
+    {
+        public IEnumerable<string> GenerateFallbacks(string initial, string final, string tone)
+        {
+            if (initial == "ng" && final == "")
+            {
+                return new string[] { "ing" + tone };
+            }
+            return Enumerable.Empty<string>();
+        }
+    }
+
+    internal sealed class SandhiToneReplacementRule : IReplacementRule
+    {
+        public IEnumerable<string> GenerateFallbacks(string initial, string final, string tone)
+        {
+            if (final.EndsWith("h") || final.EndsWith("k"))
+            {
+                var finalWithoutHK = final.Substring(0, final.Length - 1);
+                return new string[] { initial + finalWithoutHK + tone };
+            }
+            return Enumerable.Empty<string>();
+        }
+    }
+
+    internal sealed class SandhiSpecialToneAsNormalRule : IReplacementRule
+    {
+        public IEnumerable<string> GenerateFallbacks(string initial, string final, string tone)
+        {
+            if (tone == "24" && !(final.EndsWith("h") || final.EndsWith("k")) && !(final.EndsWith("ng")))
+            {
+                return new string[] { initial + final + "k" + "24" };
+            }
+            if (tone == "21")
+            {
+                return new string[] { initial + final + "213" };
+            }
+            return Enumerable.Empty<string>();
+        }
+    }
+
+    internal sealed class SandhiInitialReplacementRule : IReplacementRule
+    {
+        public IEnumerable<string> GenerateFallbacks(string initial, string final, string tone)
+        {
+            // w -> m
+            if (initial == "w")
+            {
+                return new string[] { "m" + final + tone };
+            }
+            // j -> z
+            if (initial == "j")
+            {
+                return new string[] { "z" + final + tone };
+            }
+            // nj -> n
+            if (initial == "nj")
+            {
+                return new string[] { "n" + final + tone };
+            }
+            return Enumerable.Empty<string>();
         }
     }
 }

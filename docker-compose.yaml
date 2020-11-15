@@ -2,7 +2,7 @@ version: '3'
 
 services: 
   postgres:
-    image: postgres:13-alpine
+    image: postgres:12-alpine
     environment:
     - POSTGRES_PASSWORD=postgres
     - POSTGRES_DB=yngdieng
@@ -10,3 +10,4 @@ services:
     - 5432:5432
     volumes:
     - ./pg_data:/var/lib/postgresql/data
+    - /tmp/pg_share:/pg_share/

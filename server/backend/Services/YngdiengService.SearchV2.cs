@@ -10,6 +10,7 @@ using Microsoft.Extensions.Logging;
 using Yngdieng.Common;
 using Yngdieng.Protos;
 using Yngdieng.Search.Common;
+using static Yngdieng.Common.StringExt;
 using LuceneQuery = Lucene.Net.Search.Query;
 
 namespace Yngdieng.Backend.Services
@@ -20,29 +21,10 @@ namespace Yngdieng.Backend.Services
         private static readonly int DefaultPageSize = 10;
         private static readonly Filter FilterSourcelessDocs = NumericRangeFilter.NewInt32Range(LuceneUtils.Fields.IsSourceless, 4, 0, 0, true, true);
 
-        private UserPreference GetUserPreference(ServerCallContext context)
-        {
-            var base64Value = context.RequestHeaders.GetValue("x-ydict-options");
-            if (base64Value == null)
-            {
-                return new UserPreference();
-            }
-            try
-            {
-                return UserPreference.Parser.ParseFrom(Convert.FromBase64String(base64Value));
-            }
-            catch
-            {
-                _logger.LogError($"Error parsing user preference: {base64Value}");
-                return new UserPreference();
-            }
-        }
-
-
         public override Task<SearchV2Response> SearchV2(SearchV2Request request,
                                                         ServerCallContext context)
         {
-            var userPreference = GetUserPreference(context);
+            var userPreference = UserPreferences.FromContext(context);
             var query = GetLuceneQuery(QueryParser.Parse(request.Query));
             var desiredPageSize = request.PageSize > 0 ? request.PageSize : DefaultPageSize;
             var searcher = this._indexHolder.LuceneIndexSearcher;

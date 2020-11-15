@@ -72,13 +72,21 @@
           "id": 1,
           "name": "pages/wordDetail/wordDetail",
           "pathName": "pages/wordDetail/wordDetail",
-          "query": "id=1",
+          "query": "id=words/CgNEQjc",
           "scene": null
         },
         {
-          "id": -1,
+          "id": 2,
           "name": "pages/collectionDetail/collectionDetail",
           "pathName": "pages/collectionDetail/collectionDetail",
+          "query": "id=wordLists/1",
+          "scene": null
+        },
+        {
+          "id": 3,
+          "name": "pages/wordDetail/wordDetail",
+          "pathName": "pages/wordDetail/wordDetail",
+          "query": "id=words/CgNEQjc",
           "scene": null
         }
       ]

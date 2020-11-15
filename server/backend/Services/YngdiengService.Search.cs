@@ -5,7 +5,9 @@ using System.Threading.Tasks;
 using Grpc.Core;
 using Microsoft.Extensions.Logging;
 using Yngdieng.Protos;
+using static Yngdieng.Common.StringExt;
 using static Yngdieng.Protos.Query.Types;
+
 namespace Yngdieng.Backend.Services
 {
     public partial class YngdiengService : Yngdieng.Protos.YngdiengService.YngdiengServiceBase

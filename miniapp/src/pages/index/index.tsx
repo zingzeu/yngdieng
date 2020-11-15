@@ -18,15 +18,14 @@ const handleRouterParams = () => {
   if (type === 'campaign') {
     switch (id) {
       case 'lung-nung-dieng': {
-        // TODO: 词表 ID 确定下来之后替换掉下方的 mockId
         Taro.reLaunch({
-          url: '/pages/collectionDetail/collectionDetail?id=mockId',
+          url: '/pages/collectionDetail/collectionDetail?id=wordLists/1',
         });
         break;
       }
       case 'lung-nung-dieng-2': {
         Taro.reLaunch({
-          url: '/pages/collectionDetail/collectionDetail?id=lung-nung-dieng-2',
+          url: '/pages/collectionDetail/collectionDetail?id=wordLists/2',
         });
         break;
       }

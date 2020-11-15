@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  app:
+    build: 
+      context: .
+      dockerfile: Dockerfile
+
+    volumes:
+      - ..:/workspace:cached
+      - "/var/run/docker.sock:/var/run/docker-host.sock"
+      
+    # Overrides default command so things don't shut down after the process ends.
+    command: sleep infinity
+
+    # workaround
+    # https://github.community/t/codespace-does-start-with-docker-compose-extra-container/139116
+    network_mode: host
+
+    user: codespace
+
+    # Use "forwardPorts" in **devcontainer.json** to forward an app port locally. 
+    # (Adding the "ports" property to this file will not forward from a Codespace.)
+
+  db:
+    image: postgres:12-alpine
+    restart: unless-stopped
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USER: postgres
+      POSTGRES_DB: yngdieng
+
+    # Add "forwardPorts": ["5432"] to **devcontainer.json** to forward MongoDB locally.
+    # (Adding the "ports" property to this file will not forward from a Codespace.)
+    network_mode: host
+
+volumes:
+  postgres-data:

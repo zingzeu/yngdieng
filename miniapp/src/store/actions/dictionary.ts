@@ -1,6 +1,7 @@
 import _get from 'lodash/get';
 import mockWordData from '../mock/mockWordData.json';
 import Taro from '@tarojs/taro';
+import wordCard from '@/components/wordCard/wordCard';
 
 const API_PREFIX = 'https://api-rest.ydict.net/v2/';
 const MOCK_COLLECTION = {
@@ -26,76 +27,15 @@ export const realSearch = async (
   return response.data;
 };
 
-export const fetchWordDetail = async wordId => {
-  return (
-    (await fetchMockWordDetail(wordId)) || (await fetchYngdiengDocument(wordId))
-  );
-};
-
-const fetchYngdiengDocument = async docId => {
-  const yDoc = (
+export const fetchWord = async wordName => {
+  if (!wordName.startsWith('words/')) {
+    throw new Error(`${wordName} is not a valid Word resource name`);
+  }
+  const word = (
     await Taro.request({
-      url: API_PREFIX + 'yngdieng_document/' + encodeURIComponent(docId),
+      url: 'https://api-rest.ydict.net/v3/' + wordName,
     })
   ).data;
-  const shouldShowSandhi =
-    yDoc.yngping_sandhi !== '' &&
-    yDoc.yngping_underlying !== '' &&
-    yDoc.yngping_sandhi !== yDoc.yngping_underlying;
-  return {
-    word: hanziToString(yDoc.hanzi_canonical),
-    pronounces: shouldShowSandhi
-      ? [
-          {
-            typeName: '市区单字',
-            symbol: yDoc.yngping_underlying,
-            audioFileId: getTtsAudioUrl(yDoc.yngping_underlying),
-          },
-          {
-            typeName: '市区连读',
-            symbol: yDoc.yngping_sandhi,
-            audioFileId: getTtsAudioUrl(yDoc.yngping_sandhi),
-          },
-        ]
-      : [
-          {
-            typeName: '福州市区',
-            symbol: yDoc.yngping_sandhi,
-            audioFileId: getTtsAudioUrl(yDoc.yngping_sandhi),
-          },
-        ],
-    transcriptions: shouldShowSandhi
-      ? [
-          {name: '市区连读', value: yDoc.yngping_underlying},
-          {name: '市区单字', value: yDoc.yngping_sandhi},
-        ]
-      : [{name: '福州市区', value: yDoc.yngping_sandhi}],
-    pronouncesFromDifferentSpeakers: [],
-    collections: [MOCK_COLLECTION],
-    wordSplited: [],
-    sources: yDoc.sources,
-  };
+  console.log(word);
+  return word;
 };
-
-const getTtsAudioUrl = yngping =>
-  'https://api.ydict.net/tts/' + encodeURIComponent(yngping) + '.mp3';
-
-const fetchMockWordDetail = async wordId => {
-  const wordDetail = mockWordData.find(word => word.simplifiedWord === wordId);
-  if (wordDetail === undefined) return undefined;
-  return {
-    ...wordDetail,
-    sources:
-      wordDetail.explainations?.map(x => ({
-        generic: x,
-      })) || [],
-    word: wordDetail?.traditionalWord,
-    stories: wordDetail?.stories || [],
-    wordSplited: wordDetail?.wordSplited || [],
-    collections: [MOCK_COLLECTION],
-  };
-};
-
-function hanziToString(x) {
-  return x.regular || '';
-}

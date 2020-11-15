@@ -4,7 +4,7 @@ RUN mkdir /build
 RUN mkdir /out
 WORKDIR /build
 COPY . /build/
-RUN dotnet publish -o /out backend/Yngdieng.Backend.csproj
+RUN dotnet publish -o /out server/backend/Yngdieng.Backend.csproj
 
 # This image does not exist in Docker Hub. It needs to be loaded into the
 # local Docker daemon with:
@@ -33,4 +33,4 @@ ENTRYPOINT ["dotnet", "Yngdieng.Backend.dll", \
 HEALTHCHECK --start-period=10s \
     --interval=30s \
     --timeout=10s \
-    CMD curl --http2-prior-knowledge --fail http://localhost:5001/health || exit 1
+    CMD curl --http2-prior-knowledge --fail http://localhost:5001/healthz || exit 1

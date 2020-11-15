@@ -1,36 +1,33 @@
-import mockWordData from '../mock/mockWordData.json';
-import {processWordList} from '../mock/utils';
+import Taro from '@tarojs/taro';
 
-export const getCollectionById = async collectionId => {
-  if (collectionId === 'lung-nung-dieng-2')
-    return {
-      id: 'long-zhou',
-      name: '--',
-      description: '--',
-      publisher: {
-        name: '--',
-      },
-      likes: 0,
-      wordList: [],
-    };
-  const mockCollectionData = {
-    id: '诸神的游戏',
-    name: '《诸神的游戏》官方词表',
-    description:
-      '福州龙船文化词汇全搜罗，一起来做龙癫吧！本书京宝热销中https://tao...',
-    publisher: {
-      name: 'HOMELAND家园官方账号',
-    },
-    likes: 334,
-    wordList: processWordList(mockWordData.slice(0, 10)),
+const HOMELAND_WORD_LISTS = ['wordLists/1', 'wordLists/2'];
+
+export const getWordList = async wordListName => {
+  var isHomeland = HOMELAND_WORD_LISTS.includes(wordListName);
+  const wordList = await Taro.request({
+    url: `https://api-rest.ydict.net/v3/${wordListName}`,
+  });
+  const wordListWords = await Taro.request({
+    url: `https://api-rest.ydict.net/v3/${wordListName}/words`,
+  });
+  return {
+    ...wordList.data,
+    publisherName: isHomeland ? 'HOMELAND家园官方账号' : '真鸟囝天团',
+    words:
+      wordListWords.data.words?.map(w => ({
+        ...w,
+        firstPron:
+          w.pronunciations?.length !== 0
+            ? w.pronunciations[0].pronunciation
+            : undefined,
+      })) || [],
   };
-  return mockCollectionData;
 };
 
-export const getWordListByCollectionId = async (collectionId, fromIndex) => {
-  if (collectionId === 'lung-nung-dieng-2') return [];
-  const proccessedData = processWordList(
-    mockWordData.slice(fromIndex, fromIndex + 10)
-  );
-  return proccessedData;
+export const getWordListByCollectionId = async (
+  collectionId,
+  nextPageToken
+) => {
+  // TODO: pagination
+  return [];
 };

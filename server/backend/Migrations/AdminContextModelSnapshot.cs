@@ -18,6 +18,7 @@ namespace Yngdieng.Backend.Migrations
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("Npgsql:Enum:extension_scope", "contrib,dragon_boat")
+                .HasAnnotation("Npgsql:Enum:gender", "unspecified,male,female")
                 .HasAnnotation("Npgsql:Enum:sandhi_category", "unspecified,sandhi,bengzi")
                 .HasAnnotation("Npgsql:Enum:variant", "unspecified,fuzhou_city,lianjiang,cikling")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn)
@@ -153,8 +154,8 @@ namespace Yngdieng.Backend.Migrations
                     b.HasKey("WordId", "PronId", "AudioClipId")
                         .HasName("pk_pron_audio_clips");
 
-                    b.HasIndex("WordId", "AudioClipId")
-                        .HasName("ix_pron_audio_clips_word_id_audio_clip_id");
+                    b.HasIndex("AudioClipId")
+                        .HasName("ix_pron_audio_clips_audio_clip_id");
 
                     b.ToTable("pron_audio_clips");
                 });
@@ -167,14 +168,26 @@ namespace Yngdieng.Backend.Migrations
                         .HasColumnType("integer")
                         .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
 
+                    b.Property<string>("Accent")
+                        .HasColumnName("accent")
+                        .HasColumnType("text");
+
                     b.Property<string>("DisplayName")
                         .IsRequired()
                         .HasColumnName("display_name")
                         .HasColumnType("text");
 
+                    b.Property<Gender>("Gender")
+                        .HasColumnName("gender")
+                        .HasColumnType("gender");
+
                     b.Property<string>("Location")
                         .HasColumnName("location")
                         .HasColumnType("text");
+
+                    b.Property<int?>("YearOfBirth")
+                        .HasColumnName("year_of_birth")
+                        .HasColumnType("integer");
 
                     b.HasKey("SpeakerId")
                         .HasName("pk_speakers");
@@ -213,6 +226,25 @@ namespace Yngdieng.Backend.Migrations
                         .HasName("pk_words");
 
                     b.ToTable("words");
+                });
+
+            modelBuilder.Entity("Yngdieng.Backend.Db.WordAudioClip", b =>
+                {
+                    b.Property<int>("WordId")
+                        .HasColumnName("word_id")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("AudioClipId")
+                        .HasColumnName("audio_clip_id")
+                        .HasColumnType("integer");
+
+                    b.HasKey("WordId", "AudioClipId")
+                        .HasName("pk_word_audio_clips");
+
+                    b.HasIndex("AudioClipId")
+                        .HasName("ix_word_audio_clips_audio_clip_id");
+
+                    b.ToTable("word_audio_clips");
                 });
 
             modelBuilder.Entity("Yngdieng.Backend.Db.WordList", b =>
@@ -300,10 +332,34 @@ namespace Yngdieng.Backend.Migrations
 
             modelBuilder.Entity("Yngdieng.Backend.Db.PronAudioClip", b =>
                 {
+                    b.HasOne("Yngdieng.Backend.Db.AudioClip", null)
+                        .WithMany()
+                        .HasForeignKey("AudioClipId")
+                        .HasConstraintName("fk_pron_audio_clips_audio_clips_audio_clip_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("Yngdieng.Backend.Db.Pron", null)
                         .WithMany()
-                        .HasForeignKey("WordId", "AudioClipId")
+                        .HasForeignKey("WordId", "PronId")
                         .HasConstraintName("fk_pron_audio_clips_prons_word_id_pron_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Yngdieng.Backend.Db.WordAudioClip", b =>
+                {
+                    b.HasOne("Yngdieng.Backend.Db.AudioClip", null)
+                        .WithMany()
+                        .HasForeignKey("AudioClipId")
+                        .HasConstraintName("fk_word_audio_clips_audio_clips_audio_clip_id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Yngdieng.Backend.Db.Word", null)
+                        .WithMany()
+                        .HasForeignKey("WordId")
+                        .HasConstraintName("fk_word_audio_clips_words_word_id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
