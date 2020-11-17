@@ -1975,15 +1975,15 @@
     lodash "^4.17.15"
     scss-bundle "^3.0.2"
 
-"@tarojs/runtime@3.0.15":
-  version "3.0.15"
-  resolved "https://registry.yarnpkg.com/@tarojs/runtime/-/runtime-3.0.15.tgz#fabf08e0cda86d22fefe2279ce6843521c4babcb"
-  integrity sha512-omDAX7ltr+9y30DHPF3dXutUr/Oh56YedrA7PqMNz1L+VyF5q4csZiWXZGAmhrTSyDL3jrPVpN45Neu13KBBqQ==
-
 "@tarojs/runtime@3.0.16":
   version "3.0.16"
   resolved "https://registry.yarnpkg.com/@tarojs/runtime/-/runtime-3.0.16.tgz#3bb31fe4317ebc0e920c1aa48759fc35715e93ae"
   integrity sha512-iksPOzFwctdQC/BvOAlS6APUpNFY4iUbZ98ZC6rhl91QIWjJKX21tzBQ5mP09V3qo7HpkdSwtpsGPkehUcHqSw==
+
+"@tarojs/runtime@3.0.17":
+  version "3.0.17"
+  resolved "https://registry.yarnpkg.com/@tarojs/runtime/-/runtime-3.0.17.tgz#972a11235f1b21259e142f22191656037898e00a"
+  integrity sha512-Jv18GnxxDMGlx1+AoenUqwZr7A/1U9ip3e8g9NkAqD7fo71M2+D7X51Px0HUERvtC4Sdzi8v4aS9aWwz+D98kA==
 
 "@tarojs/shared@3.0.16":
   version "3.0.16"
