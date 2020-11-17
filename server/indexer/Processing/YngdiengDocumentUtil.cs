@@ -217,7 +217,7 @@ namespace Yngdieng.Indexer.Processing
                     switch (s.SourceCase)
                     {
                         case SourceOneofCase.CiklinDfd:
-                            return new string[] { s.CiklinDfd.Yngping };
+                            return new string[] { s.CiklinDfd.YngpingModern };
                         case SourceOneofCase.Feng:
                             return s.Feng.YngpingPermutations.ToArray();
                         case SourceOneofCase.Contrib:
