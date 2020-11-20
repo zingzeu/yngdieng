@@ -1871,32 +1871,6 @@
     swiper "4.4.2"
     weui "^1.1.2"
 
-"@tarojs/helper@3.0.16":
-  version "3.0.16"
-  resolved "https://registry.yarnpkg.com/@tarojs/helper/-/helper-3.0.16.tgz#11483cc515166d45127cd3d84d3f095f31736c63"
-  integrity sha512-bzfgL007k7HzOQa0CcOS9QGxWJbcn0j1G2VDAsiIUiu+ExPMcpB/d9O4UQJQifUPyJuUYqn53cqFapJRbg3ryQ==
-  dependencies:
-    "@babel/core" "7.11.1"
-    "@babel/plugin-proposal-class-properties" "7.10.4"
-    "@babel/plugin-proposal-decorators" "7.10.5"
-    "@babel/plugin-proposal-object-rest-spread" "7.11.0"
-    "@babel/plugin-transform-runtime" "7.11.0"
-    "@babel/preset-env" "7.11.0"
-    "@babel/preset-typescript" "7.10.4"
-    "@babel/register" "7.9.0"
-    "@babel/runtime" "7.9.2"
-    "@tarojs/taro" "3.0.16"
-    babel-plugin-transform-react-jsx "^6.24.1"
-    chalk "3.0.0"
-    chokidar "3.3.1"
-    cross-spawn "7.0.3"
-    debug "4.1.1"
-    find-yarn-workspace-root "1.2.1"
-    fs-extra "8.1.0"
-    lodash "4.17.20"
-    resolve "1.15.1"
-    yauzl "2.10.0"
-
 "@tarojs/helper@3.0.17":
   version "3.0.17"
   resolved "https://registry.yarnpkg.com/@tarojs/helper/-/helper-3.0.17.tgz#4019762e1f21bd2d289e1295271df7dcbe57658f"
@@ -2006,18 +1980,6 @@
     universal-router "^8.3.0"
     url-parse "^1.4.7"
 
-"@tarojs/runner-utils@3.0.16":
-  version "3.0.16"
-  resolved "https://registry.yarnpkg.com/@tarojs/runner-utils/-/runner-utils-3.0.16.tgz#71f430235135106df86a3fc29188cc6ed20d6b2e"
-  integrity sha512-RzezoRGX2Ndx0YOSZ+tMBnqTnHqbNzCGc7oFL4gVo5MYvjpHPji4FLD7qAVf2jLJ7F4FHpMEzbW/zuPUVebVCg==
-  dependencies:
-    "@babel/core" "7.11.1"
-    "@tarojs/helper" "3.0.16"
-    chalk "^3.0.0"
-    fs-extra "^8.1.0"
-    lodash "^4.17.15"
-    scss-bundle "^3.0.2"
-
 "@tarojs/runner-utils@3.0.17":
   version "3.0.17"
   resolved "https://registry.yarnpkg.com/@tarojs/runner-utils/-/runner-utils-3.0.17.tgz#5b79b30760656c5f5958c5420aa7e0395b11ea12"
@@ -2039,11 +2001,6 @@
   version "3.0.17"
   resolved "https://registry.yarnpkg.com/@tarojs/runtime/-/runtime-3.0.17.tgz#972a11235f1b21259e142f22191656037898e00a"
   integrity sha512-Jv18GnxxDMGlx1+AoenUqwZr7A/1U9ip3e8g9NkAqD7fo71M2+D7X51Px0HUERvtC4Sdzi8v4aS9aWwz+D98kA==
-
-"@tarojs/shared@3.0.16":
-  version "3.0.16"
-  resolved "https://registry.yarnpkg.com/@tarojs/shared/-/shared-3.0.16.tgz#dd23faea833af81bdd84bd46db4f4dfce80131c5"
-  integrity sha512-/y3yqu39W+5FoHdW9DPPQrgm1DKWnmjVlguECbUH9tvHDhWZ2P2XX96rkqh1/HZiYK4q6Fn5XTuBrM0Gz4XddQ==
 
 "@tarojs/shared@3.0.17":
   version "3.0.17"
@@ -2078,13 +2035,6 @@
     raf "^3.4.1"
     whatwg-fetch "^3.4.0"
 
-"@tarojs/taro-loader@3.0.16":
-  version "3.0.16"
-  resolved "https://registry.yarnpkg.com/@tarojs/taro-loader/-/taro-loader-3.0.16.tgz#59fe28240c1f42887abfd7d0da5d4992d90d31c6"
-  integrity sha512-uT48Chb5+DN1iKkytR8KMMHOHucy5vsqg7mXFCo3g6TZxHB4Z5iDeX/9WclYBWqV+zTPVC9YUiXNUCGCagmVkw==
-  dependencies:
-    loader-utils "^1.2.3"
-
 "@tarojs/taro-loader@3.0.17":
   version "3.0.17"
   resolved "https://registry.yarnpkg.com/@tarojs/taro-loader/-/taro-loader-3.0.17.tgz#5bb67c025a051a28b660f4202201af47130aec79"
@@ -2108,17 +2058,17 @@
     "@tarojs/api" "3.0.17"
     "@tarojs/taro-h5" "3.0.17"
 
-"@tarojs/webpack-runner@3.0.16":
-  version "3.0.16"
-  resolved "https://registry.yarnpkg.com/@tarojs/webpack-runner/-/webpack-runner-3.0.16.tgz#48a0c8e5bc2cda9958a2d4e9f48f19b3ec9a5fe3"
-  integrity sha512-dOGvcu//GPtjQ4CvHu8hHTPDDNkvna8CNyAtmBa7RLh0lNb8s8XOKPXyaa6cWt7Jl4MZL/ZmXkwS20Hh26gMlA==
+"@tarojs/webpack-runner@3.0.17":
+  version "3.0.17"
+  resolved "https://registry.yarnpkg.com/@tarojs/webpack-runner/-/webpack-runner-3.0.17.tgz#c8dbff8104b774caed2f5f9ad8778b9e63b38b52"
+  integrity sha512-GEMts4+IQN62LwK7JH8mTXz6c1cBRIz1SPj0EiiOK1j0cUFA15YxTFmbJNn2divdxj9l8mvCCUh2MDQJhcRWdA==
   dependencies:
     "@babel/core" "7.11.1"
-    "@tarojs/helper" "3.0.16"
-    "@tarojs/runner-utils" "3.0.16"
-    "@tarojs/runtime" "3.0.16"
-    "@tarojs/shared" "3.0.16"
-    "@tarojs/taro-loader" "3.0.16"
+    "@tarojs/helper" "3.0.17"
+    "@tarojs/runner-utils" "3.0.17"
+    "@tarojs/runtime" "3.0.17"
+    "@tarojs/shared" "3.0.17"
+    "@tarojs/taro-loader" "3.0.17"
     autoprefixer "9.7.4"
     babel-loader "8.0.6"
     copy-webpack-plugin "5.1.1"
@@ -2136,8 +2086,8 @@
     open "7.0.2"
     ora "4.0.3"
     postcss-loader "3.0.0"
-    postcss-plugin-constparse "3.0.16"
-    postcss-pxtransform "3.0.16"
+    postcss-plugin-constparse "3.0.17"
+    postcss-pxtransform "3.0.17"
     resolve "1.15.1"
     resolve-url-loader "3.1.1"
     sass "^1.25.0"
@@ -9818,10 +9768,10 @@ postcss-ordered-values@^4.1.2:
     postcss "^7.0.0"
     postcss-value-parser "^3.0.0"
 
-postcss-plugin-constparse@3.0.16:
-  version "3.0.16"
-  resolved "https://registry.yarnpkg.com/postcss-plugin-constparse/-/postcss-plugin-constparse-3.0.16.tgz#e9685e92a0c4fc7fe6a716bc68159bf08ae709a5"
-  integrity sha512-cG7U0D1GCIAKpsJZP0+GBQ4aVjj4a7BTR4ou96XNUsXrHHFdhSsCI8nsfZVyaDv6S4yprcVvBQ6tHO8nsD1RVQ==
+postcss-plugin-constparse@3.0.17:
+  version "3.0.17"
+  resolved "https://registry.yarnpkg.com/postcss-plugin-constparse/-/postcss-plugin-constparse-3.0.17.tgz#5c5ed080463972f43df99d170e79b03f250710f8"
+  integrity sha512-EZQB2LXiwc8a4xLpbWRAAiSFJhDl1vYE7cyk6ZlnKlaV5alRG3RQnFtNgsaHozS5A898eQ9pquPe+p48bGKjyQ==
   dependencies:
     postcss "^6.0.22"
 
@@ -9833,10 +9783,10 @@ postcss-pxtorem@^4.0.1:
     object-assign "^4.1.0"
     postcss "^5.2.10"
 
-postcss-pxtransform@3.0.16:
-  version "3.0.16"
-  resolved "https://registry.yarnpkg.com/postcss-pxtransform/-/postcss-pxtransform-3.0.16.tgz#97224deb020f560586b6964d66c2eb244a4f9ed6"
-  integrity sha512-HhtSwQIgA99pz64KQ4F705vcNi6j2O3ShQem0VxZkWZze1aLVbg5Gffsk6AI14iYEiAoD5s8Gh+QHpO6A77pHg==
+postcss-pxtransform@3.0.17:
+  version "3.0.17"
+  resolved "https://registry.yarnpkg.com/postcss-pxtransform/-/postcss-pxtransform-3.0.17.tgz#cd8ad8d6d52a1a60a7a64ed1f46bba5e4cd91d04"
+  integrity sha512-cR4o2eSygkC0EA+zaukQU7kxIMEroMdDAthAkDgMW5sU+o4TJ+vjOxr88q9bMhdWjgUqhBWZI0OQo4HfLpWqjQ==
   dependencies:
     postcss "^6.0.16"
     postcss-pxtorem "^4.0.1"
