@@ -40,14 +40,15 @@ export class DetailsFengComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private titleService: YngdiengTitleService,
     private backendService: YngdiengBackendService
-  ) {}
+  ) {
+    console.log('const');
+  }
 
   ngOnInit() {
     this.isBusy = true;
 
-    let currentDocument$: Observable<FengDocument> = this.route.paramMap.pipe(
-      map(paramMap => paramMap.get('id')),
-      switchMap(docId => this.backendService.getFengDocument(docId))
+    let currentDocument$: Observable<FengDocument> = this.route.data.pipe(
+      map(data => data.fengDoc)
     );
     this.subscription = currentDocument$.subscribe(
       response => {

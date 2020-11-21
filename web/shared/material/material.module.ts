@@ -15,7 +15,7 @@ import {MatProgressSpinnerModule} from '@angular/material/progress-spinner';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatSelectModule} from '@angular/material/select';
-
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 const matModules = [
   // keep sorted
   MatButtonModule,
@@ -28,6 +28,7 @@ const matModules = [
   MatInputModule,
   MatListModule,
   MatPaginatorModule,
+  MatProgressBarModule,
   MatProgressSpinnerModule,
   MatSelectModule,
   MatSidenavModule,

@@ -13,6 +13,7 @@ import {WordDetailsComponent} from './word-details/word-details.component';
 import {SearchV2ResultComponent} from './search-v2-result/search-v2-result.component';
 import {AboutComponent} from './about/about.component';
 import {SettingsComponent} from './settings/settings.component';
+import {FengResolverService} from './details-feng/feng-resolver.service';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -25,7 +26,11 @@ const routes: Routes = [
   {path: 'settings', component: SettingsComponent},
   {path: 'w/:id', component: WordDetailsComponent},
   // (Deprecated) 冯版条目
-  {path: 'feng/:id', component: DetailsFengComponent},
+  {
+    path: 'feng/:id',
+    component: DetailsFengComponent,
+    resolve: {fengDoc: FengResolverService},
+  },
   // (Deprecated) 历史音韵条目(DFD、戚林)
   {path: 'char/:id', component: DetailsMonoHanziComponent},
   {path: 'tools/simplify', component: SimplificationToolComponent},

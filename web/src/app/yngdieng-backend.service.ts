@@ -49,8 +49,8 @@ export class YngdiengBackendService {
         subject.error(err);
         return;
       }
-
       subject.next(response);
+      subject.complete();
     });
 
     return subject.asObservable();
@@ -72,8 +72,8 @@ export class YngdiengBackendService {
           subject.error(err);
           return;
         }
-
         subject.next(response);
+        subject.complete();
       }
     );
 
@@ -101,6 +101,7 @@ export class YngdiengBackendService {
         return;
       }
       subject.next(response);
+      subject.complete();
     });
     return subject.asObservable();
   }
@@ -115,6 +116,7 @@ export class YngdiengBackendService {
         return;
       }
       subject.next(response);
+      subject.complete();
     });
     return subject.asObservable();
   }
@@ -133,6 +135,7 @@ export class YngdiengBackendService {
         }
 
         subject.next(response);
+        subject.complete();
       }
     );
 
@@ -150,6 +153,7 @@ export class YngdiengBackendService {
           return;
         }
         subject.next(response);
+        subject.complete();
       }
     );
 
@@ -166,6 +170,7 @@ export class YngdiengBackendService {
         return;
       }
       subject.next(response.getConvertedText());
+      subject.complete();
     });
 
     return subject.asObservable();
