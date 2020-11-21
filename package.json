@@ -79,7 +79,7 @@
     "protractor": "7.0.0",
     "requirejs": "2.3.6",
     "rollup": "2.33.3",
-    "terser": "5.3.8",
+    "terser": "5.5.0",
     "tslint": "6.1.3",
     "typescript": "4.0.5",
     "webpack": "5.4.0"
