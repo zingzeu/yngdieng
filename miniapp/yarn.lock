@@ -1993,12 +1993,12 @@
     webpack-format-messages "^2.0.5"
     yauzl "2.10.0"
 
-"@tarojs/react@3.0.16":
-  version "3.0.16"
-  resolved "https://registry.yarnpkg.com/@tarojs/react/-/react-3.0.16.tgz#5f4d30a58607769badacc2db11bd5f9c14f4fc18"
-  integrity sha512-2+1MD/jGnbrT+8DSNe1Zt9h74jfTF2cM29QWJN6Te83YlvKzFveuzuXBMrd3mSrvgpo/vL/IU2EqUj9sz/qK5A==
+"@tarojs/react@3.0.17":
+  version "3.0.17"
+  resolved "https://registry.yarnpkg.com/@tarojs/react/-/react-3.0.17.tgz#b7a7d70402869ee5a6c5665a007a5ff0a8527dc9"
+  integrity sha512-29khwWnfQlWUkJ+n3u9pLgGzP8LRdq+a5MOgJPMZhgTD5mx1FnQbF+LMLkz/PdIHnGVf6hgwGW5q+Cf5FQ1h1g==
   dependencies:
-    "@tarojs/runtime" "3.0.16"
+    "@tarojs/runtime" "3.0.17"
     react-reconciler "^0.23.0"
     scheduler "^0.17.0"
 
