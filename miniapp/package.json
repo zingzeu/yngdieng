@@ -61,7 +61,7 @@
     "@types/webpack-env": "1.15.3",
     "@typescript-eslint/eslint-plugin": "4.7.0",
     "@typescript-eslint/parser": "4.7.0",
-    "babel-preset-taro": "3.0.16",
+    "babel-preset-taro": "3.0.17",
     "eslint": "7.14.0",
     "eslint-config-taro": "3.0.16",
     "eslint-plugin-import": "2.22.1",
