@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {Observable, Subscription} from 'rxjs';
+import {Subscription} from 'rxjs';
 import {map, switchMap} from 'rxjs/operators';
 import {YngdiengDocument} from '../../../../shared/documents_pb';
 
@@ -9,7 +9,6 @@ import {
   WordDetailsHeroModel,
   WordPronunication,
 } from '../word-details-hero/word-details-hero.component';
-import {YngdiengBackendService} from '../yngdieng-backend.service';
 import {YngdiengTitleService} from '../yngdieng-title.service';
 
 @Component({
@@ -27,16 +26,12 @@ export class WordDetailsComponent implements OnInit, OnDestroy {
 
   constructor(
     private titleService: YngdiengTitleService,
-    private backendService: YngdiengBackendService,
     private route: ActivatedRoute
   ) {}
 
   ngOnInit(): void {
     this.isBusy = true;
-    let currentDocument$ = this.route.paramMap.pipe(
-      map(paramMap => paramMap.get('id')),
-      switchMap(docId => this.backendService.getYngdiengDocument(docId))
-    );
+    let currentDocument$ = this.route.data.pipe(map(data => data.word));
     this.subscription = currentDocument$.subscribe(
       d => {
         this.isBusy = false;

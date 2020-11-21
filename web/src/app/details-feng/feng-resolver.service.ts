@@ -22,19 +22,14 @@ export class FengResolverService implements Resolve<FengResolveResult> {
     return this.backendService.getFengDocument(route.paramMap.get('id')).pipe(
       catchError(e => {
         console.log('Error in FengResolverService: ', e);
-        return of({error: ErrorType.NetworkError} as FengResolveResult);
+        return of({error: true} as FengResolveResult);
       }),
-      map(fengDoc => ({fengDoc: fengDoc} as FengResolveResult))
+      map(fengDoc => ({fengDoc: fengDoc, error: false} as FengResolveResult))
     );
   }
 }
 
 export interface FengResolveResult {
   fengDoc?: FengDocument;
-  error?: ErrorType;
-}
-
-export enum ErrorType {
-  NotFound,
-  NetworkError,
+  error: boolean;
 }

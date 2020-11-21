@@ -47,7 +47,7 @@ export class DetailsFengComponent implements OnInit, OnDestroy {
       map(data => data.fengResolveResult)
     );
     this.subscription = resolveResult$.subscribe(result => {
-      if (result.error !== null) {
+      if (result.error) {
         this.hasError = true;
       } else {
         this.hasError = false;
@@ -59,7 +59,7 @@ export class DetailsFengComponent implements OnInit, OnDestroy {
     });
     this.historicalSubscription = resolveResult$
       .pipe(
-        filter(r => r.error === undefined),
+        filter(r => !r.error),
         map(r => r.fengDoc),
         switchMap(d => {
           if (d.getHanziCanonical().length > 1) {
