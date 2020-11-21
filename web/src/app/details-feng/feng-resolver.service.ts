@@ -20,11 +20,11 @@ export class FengResolverService implements Resolve<FengResolveResult> {
     state: RouterStateSnapshot
   ): Observable<FengResolveResult> {
     return this.backendService.getFengDocument(route.paramMap.get('id')).pipe(
+      map(fengDoc => ({fengDoc: fengDoc, error: false} as FengResolveResult)),
       catchError(e => {
         console.log('Error in FengResolverService: ', e);
         return of({error: true} as FengResolveResult);
-      }),
-      map(fengDoc => ({fengDoc: fengDoc, error: false} as FengResolveResult))
+      })
     );
   }
 }

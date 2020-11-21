@@ -47,6 +47,7 @@ export class DetailsFengComponent implements OnInit, OnDestroy {
       map(data => data.fengResolveResult)
     );
     this.subscription = resolveResult$.subscribe(result => {
+      console.log(result);
       if (result.error) {
         this.hasError = true;
       } else {

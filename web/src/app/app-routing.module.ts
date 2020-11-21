@@ -14,6 +14,7 @@ import {SearchV2ResultComponent} from './search-v2-result/search-v2-result.compo
 import {AboutComponent} from './about/about.component';
 import {SettingsComponent} from './settings/settings.component';
 import {FengResolverService} from './details-feng/feng-resolver.service';
+import {WordDetailsResolverService} from './word-details/word-details-resolver.service';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -24,7 +25,11 @@ const routes: Routes = [
   {path: 'about', component: AboutComponent},
   {path: 'help', component: HelpComponent},
   {path: 'settings', component: SettingsComponent},
-  {path: 'w/:id', component: WordDetailsComponent},
+  {
+    path: 'w/:id',
+    component: WordDetailsComponent,
+    resolve: {wordResolveResult: WordDetailsResolverService},
+  },
   // (Deprecated) 冯版条目
   {
     path: 'feng/:id',

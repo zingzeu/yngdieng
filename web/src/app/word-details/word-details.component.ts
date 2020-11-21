@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs';
-import {map, switchMap} from 'rxjs/operators';
+import {map} from 'rxjs/operators';
 import {YngdiengDocument} from '../../../../shared/documents_pb';
 
 import {hanziToString} from '../common/hanzi-util';
@@ -18,7 +18,6 @@ import {YngdiengTitleService} from '../yngdieng-title.service';
 })
 export class WordDetailsComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
-  isBusy: boolean = false;
   hasError: boolean = false;
   document: YngdiengDocument;
   heroModel = new WordDetailsHeroModel('', new WordPronunication('', ''));
@@ -30,28 +29,29 @@ export class WordDetailsComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit(): void {
-    this.isBusy = true;
-    let currentDocument$ = this.route.data.pipe(map(data => data.word));
-    this.subscription = currentDocument$.subscribe(
-      d => {
-        this.isBusy = false;
+    let resolveResult$ = this.route.data.pipe(
+      map(data => data.wordResolveResult)
+    );
+    this.subscription = resolveResult$.subscribe(d => {
+      if (d.error) {
+        this.hasError = true;
+      } else {
         this.hasError = false;
-        this.document = d;
+        this.document = d.word;
         let hanzi =
-          d.getHanziCanonical() !== undefined
-            ? hanziToString(d.getHanziCanonical())
+          this.document.getHanziCanonical() !== undefined
+            ? hanziToString(this.document.getHanziCanonical())
             : '';
         this.titleService.setTitleForDetailsPage(hanzi);
         this.heroModel = new WordDetailsHeroModel(
           hanzi,
-          new WordPronunication(d.getYngpingUnderlying(), d.getYngpingSandhi())
+          new WordPronunication(
+            this.document.getYngpingUnderlying(),
+            this.document.getYngpingSandhi()
+          )
         );
-      },
-      _err => {
-        this.isBusy = false;
-        this.hasError = true;
       }
-    );
+    });
   }
 
   ngOnDestroy(): void {

@@ -23,14 +23,14 @@ export class WordDetailsResolverService
     return this.backendService
       .getYngdiengDocument(route.paramMap.get('id'))
       .pipe(
-        catchError(e => {
-          console.log('Error in WordDetailsResolverService: ', e);
-          return of({error: true} as WordDetailsResolveResult);
-        }),
         map(
           yngdiengDocument =>
             ({word: yngdiengDocument, error: false} as WordDetailsResolveResult)
-        )
+        ),
+        catchError(e => {
+          console.log('Error in WordDetailsResolverService: ', e);
+          return of({error: true} as WordDetailsResolveResult);
+        })
       );
   }
 }
