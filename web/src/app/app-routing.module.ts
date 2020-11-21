@@ -29,7 +29,7 @@ const routes: Routes = [
   {
     path: 'feng/:id',
     component: DetailsFengComponent,
-    resolve: {fengDoc: FengResolverService},
+    resolve: {fengResolveResult: FengResolverService},
   },
   // (Deprecated) 历史音韵条目(DFD、戚林)
   {path: 'char/:id', component: DetailsMonoHanziComponent},
