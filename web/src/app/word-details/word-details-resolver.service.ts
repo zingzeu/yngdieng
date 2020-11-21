@@ -5,7 +5,7 @@ import {
   RouterStateSnapshot,
 } from '@angular/router';
 import {Observable, of} from 'rxjs';
-import {map, switchMap, catchError} from 'rxjs/operators';
+import {map, catchError} from 'rxjs/operators';
 import {YngdiengBackendService} from '../yngdieng-backend.service';
 import {YngdiengDocument} from '../../../../shared/documents_pb';
 
