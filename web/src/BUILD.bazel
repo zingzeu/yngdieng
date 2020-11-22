@@ -264,19 +264,6 @@ genrule(
     exec_tools = ["@npm//@compodoc/compodoc/bin:compodoc"],
 )
 
-# run_node(
-#     name = "build-storybook",
-#    # data=["@npm//@compodoc"],
-#     # compodoc has a lot of runtime deps
-#     # TODO: use finer gained deps in `data`
-#     node_modules = "@npm//:node_modules",
-#     entry_point = "@npm//:node_modules/.bin/build-storybook",
-# )
-sh_binary(
-    name = "foo",
-    srcs = ["foo.sh"],
-)
-
 filegroup(
     name = "storybook",
     srcs = glob([".storybook/*"]),
@@ -289,8 +276,11 @@ nodejs_binary(
         ":storybook",
         ":tsconfig.json",
         "//web/src/app:source",
+        "//web/src/stories",
         "@npm//@storybook/angular",
-    ],
+        "@npm//@angular-devkit/build-angular",
+        "//:package.json",
+    ] + glob(["stories/**/*"]),
     entry_point = "@npm//:node_modules/@storybook/angular/bin/index.js",
     templated_args = [
         "--nobazel_patch_module_resolver",
