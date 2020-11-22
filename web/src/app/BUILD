@@ -1,6 +1,12 @@
 load("//web/tools:ng_ts_library.bzl", ng_module = "ng_ts_library")
 load("@io_bazel_rules_sass//:defs.bzl", "multi_sass_binary")
 
+filegroup(
+    name = "source",
+    srcs = glob(["**/*"]),
+    visibility = ["//web/src:__subpackages__"],
+)
+
 ng_module(
     name = "app",
     srcs = glob(

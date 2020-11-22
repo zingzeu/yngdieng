@@ -1,4 +1,4 @@
-load("@build_bazel_rules_nodejs//:index.bzl", "pkg_web")
+load("@build_bazel_rules_nodejs//:index.bzl", "nodejs_binary", "pkg_web")
 load("@npm//@babel/cli:index.bzl", "babel")
 load("//web/tools:ng_ts_library.bzl", ng_module = "ng_ts_library")
 load("@npm//@bazel/rollup:index.bzl", "rollup_bundle")
@@ -248,3 +248,53 @@ ts_library(
 )
 
 # TODO: tests
+
+########################################
+# Storybook
+########################################
+
+genrule(
+    name = "docs",
+    srcs = [
+        "//web/src/app:source",
+        ":tsconfig.json",
+    ],
+    outs = ["documentation.json"],
+    cmd = "$(location @npm//@compodoc/compodoc/bin:compodoc) -p $(location :tsconfig.json) -e json -d $(@D)",
+    exec_tools = ["@npm//@compodoc/compodoc/bin:compodoc"],
+)
+
+# run_node(
+#     name = "build-storybook",
+#    # data=["@npm//@compodoc"],
+#     # compodoc has a lot of runtime deps
+#     # TODO: use finer gained deps in `data`
+#     node_modules = "@npm//:node_modules",
+#     entry_point = "@npm//:node_modules/.bin/build-storybook",
+# )
+sh_binary(
+    name = "foo",
+    srcs = ["foo.sh"],
+)
+
+filegroup(
+    name = "storybook",
+    srcs = glob([".storybook/*"]),
+)
+
+nodejs_binary(
+    name = "start-storybook",
+    data = [
+        ":docs",
+        ":storybook",
+        ":tsconfig.json",
+        "//web/src/app:source",
+        "@npm//@storybook/angular",
+    ],
+    entry_point = "@npm//:node_modules/@storybook/angular/bin/index.js",
+    templated_args = [
+        "--nobazel_patch_module_resolver",
+        "-p 6006",
+        "-c ./web/src/.storybook",
+    ],
+)
