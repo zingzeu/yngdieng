@@ -1,7 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Observable, Subscription} from 'rxjs';
-import {map, switchMap} from 'rxjs/operators';
+import {filter, map, switchMap} from 'rxjs/operators';
 import {FengDocument} from '../../../../shared/documents_pb';
 
 import {toMonoHanziResultViewModel} from '../common/converters';
@@ -11,6 +11,7 @@ import {
 } from '../word-details-hero/word-details-hero.component';
 import {YngdiengBackendService} from '../yngdieng-backend.service';
 import {YngdiengTitleService} from '../yngdieng-title.service';
+import {FengResolveResult} from './feng-resolver.service';
 
 @Component({
   selector: 'app-details-feng',
@@ -18,7 +19,6 @@ import {YngdiengTitleService} from '../yngdieng-title.service';
   styleUrls: ['./details-feng.component.scss'],
 })
 export class DetailsFengComponent implements OnInit, OnDestroy {
-  isBusy: boolean = false;
   hasError: boolean = false;
   fengDoc: FengDocument;
   singleCharResults = [];
@@ -43,26 +43,25 @@ export class DetailsFengComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.isBusy = true;
-
-    let currentDocument$: Observable<FengDocument> = this.route.paramMap.pipe(
-      map(paramMap => paramMap.get('id')),
-      switchMap(docId => this.backendService.getFengDocument(docId))
+    let resolveResult$: Observable<FengResolveResult> = this.route.data.pipe(
+      map(data => data.fengResolveResult)
     );
-    this.subscription = currentDocument$.subscribe(
-      response => {
-        this.isBusy = false;
-        this.hasError = false;
-        this.fengDoc = response;
-        this.titleService.setTitleForDetailsPage(response.getHanziCanonical());
-      },
-      _err => {
-        this.isBusy = false;
+    this.subscription = resolveResult$.subscribe(result => {
+      console.log(result);
+      if (result.error) {
         this.hasError = true;
+      } else {
+        this.hasError = false;
+        this.fengDoc = result.fengDoc;
+        this.titleService.setTitleForDetailsPage(
+          this.fengDoc.getHanziCanonical()
+        );
       }
-    );
-    this.historicalSubscription = currentDocument$
+    });
+    this.historicalSubscription = resolveResult$
       .pipe(
+        filter(r => !r.error),
+        map(r => r.fengDoc),
         switchMap(d => {
           if (d.getHanziCanonical().length > 1) {
             return [];
