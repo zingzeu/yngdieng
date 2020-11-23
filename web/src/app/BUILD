@@ -19,6 +19,7 @@ ng_module(
         "**/*.css",
         "**/*.html",
     ]) + [":styles"],
+    module_name = "@yngdieng-web-app",
     tsconfig = "//web/src:tsconfig.json",
     visibility = ["//web:__subpackages__"],
     deps = [
@@ -35,6 +36,7 @@ ng_module(
         "@npm//@angular/material",
         "@npm//@angular/platform-browser",
         "@npm//@angular/router",
+        "@npm//@storybook/angular",
         "@npm//@types",
         "@npm//howler",
         "@npm//rxjs",
