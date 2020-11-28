@@ -1,5 +1,5 @@
 import {Component, OnInit, Input} from '@angular/core';
-import {ContribDocument} from '../../../../shared/documents_pb';
+import {ContribDocument} from 'yngdieng/shared/documents_pb';
 import {renderExplanation} from '@yngdieng-shared-lib/explanations';
 
 @Component({

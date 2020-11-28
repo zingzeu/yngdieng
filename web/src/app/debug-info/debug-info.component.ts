@@ -1,6 +1,6 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
-import {DebugInfo} from '../../../../shared/services_pb';
+import {DebugInfo} from 'yngdieng/shared/services_pb';
 
 import {YngdiengBackendService} from '../yngdieng-backend.service';
 import {LocalStorageService} from '../local-storage.service';

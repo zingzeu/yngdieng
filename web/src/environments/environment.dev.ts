@@ -7,7 +7,6 @@ export const YngdiengDevEnvironment: IYngdiengEnvironment = {
   isProduction: false,
   // serverUrl: 'https://api.ydict.net',
   serverUrl: 'http://localhost:5000',
-  //serverUrl: 'https://localhost:5001',
   structuredExplanations: {
     enabled: true,
     showDebugToggle: true,

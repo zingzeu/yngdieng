@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {UserSettingsService} from '../user-settings.service';
-import {ZhConversionPreference} from '../../../../shared/services_pb';
+import {ZhConversionPreference} from 'yngdieng/shared/services_pb';
 
 @Component({
   selector: 'app-settings',

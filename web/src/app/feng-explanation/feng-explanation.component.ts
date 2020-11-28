@@ -5,7 +5,7 @@ import {
   OnInit,
   ViewEncapsulation,
 } from '@angular/core';
-import {FengDocument} from '../../../../shared/documents_pb';
+import {FengDocument} from 'yngdieng/shared/documents_pb';
 
 import {
   IYngdiengEnvironment,

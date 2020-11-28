@@ -3,7 +3,7 @@ import {switchMap} from 'rxjs/operators';
 import {YngdiengBackendService} from '../yngdieng-backend.service';
 import {Subscription, BehaviorSubject, Observable} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
-import {SearchV2Response} from '../../../../shared/services_pb';
+import {SearchV2Response} from 'yngdieng/shared/services_pb';
 import {YngdiengTitleService} from '../yngdieng-title.service';
 
 @Component({
