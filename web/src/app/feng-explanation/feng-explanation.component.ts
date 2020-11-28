@@ -11,7 +11,7 @@ import {
   IYngdiengEnvironment,
   YNGDIENG_ENVIRONMENT,
 } from '../../environments/environment';
-import {renderExplanation} from '../../lib/explanations';
+import {renderExplanation} from '@yngdieng-shared-lib/explanations';
 
 @Component({
   selector: 'app-feng-explanation',

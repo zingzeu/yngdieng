@@ -1,6 +1,6 @@
 import {Tone} from '../../../shared/phonology_pb';
 
-import {getToneFromString} from './utils';
+import {getToneFromString} from '@yngdieng-shared-lib/utils';
 
 describe('yngdieng utils smoke tests', () => {
   it('getToneFromString should return correct value', () => {
