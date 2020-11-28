@@ -19,7 +19,6 @@ ng_module(
         "**/*.css",
         "**/*.html",
     ]) + [":styles"],
-    module_name = "@yngdieng-web-app",
     tsconfig = "//web/src:tsconfig.json",
     visibility = ["//web:__subpackages__"],
     deps = [
