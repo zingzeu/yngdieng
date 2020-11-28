@@ -273,6 +273,7 @@ nodejs_binary(
     name = "start-storybook",
     data = [
         "@npm//@storybook/angular",
+        "@npm//umd-compat-loader",
         "@npm//@angular-devkit/build-angular",
         ":docs",
         ":storybook",

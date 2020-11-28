@@ -1,5 +1,3 @@
-const path = require('path');
-
 module.exports = {
   stories: ['../stories/**/*.stories.mdx', '@yngdieng-web-app/**/*.stories.js'],
   addons: ['@storybook/addon-links', '@storybook/addon-essentials'],
@@ -12,7 +10,11 @@ module.exports = {
     // global: true,
     //__dirname: false
     //};
-    console.log(config);
+    config.module.rules.push({
+      test: /@yngdieng-web-app\/.*\.js$/,
+      use: ['umd-compat-loader'], //umdCompatLoader
+    });
+    console.log(config.module);
     return config;
   },
 };
