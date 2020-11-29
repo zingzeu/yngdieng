@@ -19,12 +19,6 @@ module.exports = {
       test: /@yngdieng-web\/shared\/material\/.*\.js$/,
       use: ['umd-compat-loader'],
     });
-    // config.module.rules.push({
-    //   test: /yngdieng\/shared\/.*\.js$/,
-    //   use: ['umd-compat-loader'],
-    // });
-    console.log(config);
-    //exit(-1);
     return config;
   },
 };
