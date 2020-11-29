@@ -276,7 +276,7 @@ nodejs_binary(
                "@npm//@angular-devkit/build-angular",
                ":docs",
                ":storybook",
-               ":tsconfig.json",
+               "//:tsconfig.json",
                "//web/src/app",
                "//:package.json",
            ] + glob(["stories/**/*"]) +
