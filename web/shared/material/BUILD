@@ -6,7 +6,7 @@ ng_module(
     name = "material",
     srcs = ["material.module.ts"],
     module_name = "@yngdieng-web/shared/material",
-    tsconfig = "//web/src:tsconfig.json",
+    tsconfig = "//:tsconfig.json",
     deps = [
         "@npm//@angular/core",
         "@npm//@angular/material",
