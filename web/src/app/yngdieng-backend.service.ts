@@ -4,7 +4,7 @@ import {
   FengDocument,
   HistoricalDocument,
   YngdiengDocument,
-} from '../../../shared/documents_pb';
+} from 'yngdieng/shared/documents_pb';
 import {
   DebugInfo,
   GetAggregatedDocumentRequest,
@@ -16,10 +16,9 @@ import {
   SearchV2Request,
   SearchV2Response,
   SimplifyTextRequest,
-  ZhConversionPreference,
   UserPreference,
-} from '../../../shared/services_pb';
-import {YngdiengServiceClient} from '../../../shared/services_grpc_web_pb';
+} from 'yngdieng/shared/services_pb';
+import {YngdiengServiceClient} from 'yngdieng/shared/services_grpc_web_pb';
 
 import {
   IYngdiengEnvironment,

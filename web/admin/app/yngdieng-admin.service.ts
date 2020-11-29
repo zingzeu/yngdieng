@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Word} from '../../../yngdieng/admin/v1/resources_pb';
+import {Word} from 'yngdieng/yngdieng/admin/v1/resources_pb';
 import {
   Pron,
   MyFieldMask,
@@ -11,11 +11,10 @@ import {
   ListWordsResponse,
   BatchGetPronsRequest,
   BatchGetPronsResponse,
-} from '../../../yngdieng/admin/v1/service_pb';
-import {AdminServiceClient} from '../../../yngdieng/admin/v1/service_grpc_web_pb';
+} from 'yngdieng/yngdieng/admin/v1/service_pb';
+import {AdminServiceClient} from 'yngdieng/yngdieng/admin/v1/service_grpc_web_pb';
 import {from, Observable} from 'rxjs';
 import {AuthService} from '@auth0/auth0-angular';
-//import {FieldMask} from 'google-protobuf/google/protobuf/field_mask_pb';
 @Injectable({
   providedIn: 'root',
 })

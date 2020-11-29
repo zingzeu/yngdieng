@@ -1,0 +1,13 @@
+{
+  "compilerOptions": {
+    "types": ["node"]
+  },
+  "exclude": [
+    "../src/test.ts",
+    "../src/**/*.spec.ts",
+    "../projects/**/*.spec.ts",
+    "../app/**/*.spec.ts"
+  ],
+  "include": [],
+  "files": ["./typings.d.ts"]
+}

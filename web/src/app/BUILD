@@ -1,6 +1,12 @@
 load("//web/tools:ng_ts_library.bzl", ng_module = "ng_ts_library")
 load("@io_bazel_rules_sass//:defs.bzl", "multi_sass_binary")
 
+filegroup(
+    name = "source",
+    srcs = glob(["**/*"]),
+    visibility = ["//web/src:__subpackages__"],
+)
+
 ng_module(
     name = "app",
     srcs = glob(
@@ -13,7 +19,8 @@ ng_module(
         "**/*.css",
         "**/*.html",
     ]) + [":styles"],
-    tsconfig = "//web/src:tsconfig.json",
+    module_name = "@yngdieng-web-app",
+    tsconfig = "//:tsconfig.json",
     visibility = ["//web:__subpackages__"],
     deps = [
         "//shared:documents_ts_proto",
@@ -29,6 +36,7 @@ ng_module(
         "@npm//@angular/material",
         "@npm//@angular/platform-browser",
         "@npm//@angular/router",
+        "@npm//@storybook/angular",
         "@npm//@types",
         "@npm//howler",
         "@npm//rxjs",

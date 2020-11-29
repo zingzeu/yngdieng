@@ -7,7 +7,7 @@ import {YNGDIENG_ENVIRONMENT} from '../environments/environment';
 import {YngdiengDevEnvironment} from '../environments/environment.dev';
 import {YngdiengProdEnvironment} from '../environments/environment.prod';
 import {YngdiengStagingEnvironment} from '../environments/environment.staging';
-import {MaterialModule} from '../../shared/material/material.module';
+import {MaterialModule} from '@yngdieng-web/shared/material/material.module';
 
 import {AdvancedSearchLandingComponent} from './advanced-search-landing/advanced-search-landing.component';
 import {AppRoutingModule} from './app-routing.module';

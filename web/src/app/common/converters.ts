@@ -1,4 +1,4 @@
-import {HistoricalDocument} from '../../../../shared/documents_pb';
+import {HistoricalDocument} from 'yngdieng/shared/documents_pb';
 import {getFinalString, getInitialString, getToneString} from '../../lib/utils';
 
 import {hanziToString} from '../common/hanzi-util';
