@@ -6,7 +6,7 @@ ts_library(
     testonly = 1,
     srcs = glob(["src/**/*.ts"]),
     data = [
-        "//web/src:tsconfig.json",
+        "//:tsconfig.json",
     ],
     tsconfig = ":tsconfig.json",
     deps = [

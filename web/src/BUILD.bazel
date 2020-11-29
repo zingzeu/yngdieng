@@ -10,8 +10,6 @@ load("@npm//@bazel/terser:index.bzl", "terser_minified")
 
 package(default_visibility = ["//visibility:public"])
 
-exports_files(["tsconfig.json"])
-
 sass_binary(
     name = "global_stylesheet",
     src = "styles.scss",
@@ -36,7 +34,7 @@ ng_module(
         "main.dev.ts",
         "main.prod.ts",
     ],
-    tsconfig = ":tsconfig.json",
+    tsconfig = "//:tsconfig.json",
     deps = [
         "//web/src/app",
         "@npm//@angular/core",
