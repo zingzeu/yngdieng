@@ -1,5 +1,5 @@
 <app-common-toolbar></app-common-toolbar>
-<ng-container *ngIf="!hasError && !isBusy">
+<ng-container *ngIf="!hasError">
     <app-word-details-hero [model]="heroModel"></app-word-details-hero>
     <div class="content">
         <ng-container *ngFor="let source of document.getSourcesList()"> 
@@ -15,7 +15,5 @@
         </ng-container>
     </div>
 </ng-container>
-
-<p *ngIf="isBusy">加载中...</p>
 
 <p *ngIf="hasError">加载错误</p>
