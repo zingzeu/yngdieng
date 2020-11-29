@@ -5,7 +5,7 @@ import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
 
 export default {
-  title: 'Example/CommonToolbar',
+  title: 'YngdiengUiLib/CommonToolbar',
   component: CommonToolbarComponent,
   argTypes: {
     backgroundColor: {control: 'color'},

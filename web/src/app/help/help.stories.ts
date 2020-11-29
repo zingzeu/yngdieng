@@ -3,7 +3,7 @@ import {Story, Meta} from '@storybook/angular/types-6-0';
 import {HelpComponent} from './help.component';
 
 export default {
-  title: 'Example/Help',
+  title: 'YngdiengUiLib/Help',
   component: HelpComponent,
   argTypes: {
     backgroundColor: {control: 'color'},

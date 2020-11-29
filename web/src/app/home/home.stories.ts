@@ -4,7 +4,7 @@ import {MaterialModule} from '@yngdieng-web/shared/material/material.module';
 import {HomeComponent} from './home.component';
 
 export default {
-  title: 'Example/Home',
+  title: 'YngdiengUiLib/Home',
   component: HomeComponent,
   argTypes: {
     backgroundColor: {control: 'color'},

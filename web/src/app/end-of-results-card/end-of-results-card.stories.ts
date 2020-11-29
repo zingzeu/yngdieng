@@ -4,7 +4,7 @@ import {MaterialModule} from '@yngdieng-web/shared/material/material.module';
 import {CommonModule} from '@angular/common';
 
 export default {
-  title: 'Example/EndOfResultsCard',
+  title: 'YngdiengUiLib/EndOfResultsCard',
   component: EndOfResultsCardComponent,
   argTypes: {
     backgroundColor: {control: 'color'},
