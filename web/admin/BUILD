@@ -91,6 +91,7 @@ rollup_bundle(
     entry_points = {
         ":main.prod.ts": "index",
     },
+    link_workspace_root = True,
     output_dir = True,
     deps = [
         ":src",

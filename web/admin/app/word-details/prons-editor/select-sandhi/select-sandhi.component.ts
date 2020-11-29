@@ -1,5 +1,5 @@
 import {Component, OnInit, Input} from '@angular/core';
-import {SandhiCategory} from '../../../../../../yngdieng/admin/v1/service_pb';
+import {SandhiCategory} from 'yngdieng/yngdieng/admin/v1/service_pb';
 import {FormControl} from '@angular/forms';
 @Component({
   selector: 'app-select-sandhi',
