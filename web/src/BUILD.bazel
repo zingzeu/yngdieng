@@ -256,10 +256,10 @@ genrule(
     name = "docs",
     srcs = [
         "//web/src/app:source",
-        ":tsconfig.json",
+        "//:tsconfig.json",
     ],
     outs = ["documentation.json"],
-    cmd = "$(location @npm//@compodoc/compodoc/bin:compodoc) -p $(location :tsconfig.json) -e json -d $(@D)",
+    cmd = "$(location @npm//@compodoc/compodoc/bin:compodoc) -p $(location //:tsconfig.json) -e json -d $(@D)",
     exec_tools = ["@npm//@compodoc/compodoc/bin:compodoc"],
 )
 
