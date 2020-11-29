@@ -13,7 +13,7 @@ ng_module(
         "**/*.css",
         "**/*.html",
     ]) + [":styles"],
-    tsconfig = "//web/src:tsconfig.json",
+    tsconfig = "//:tsconfig.json",
     visibility = ["//web:__subpackages__"],
     deps = [
         "//web/shared/material",
