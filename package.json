@@ -4,7 +4,7 @@
   "scripts": {
     "postinstall": "ngcc",
     "serve": "ibazel run //web/src:devserver -- -port=4200",
-    "storybook": "bazel run //web/src:start-storybook",
+    "storybook": "ibazel run //web/src:start-storybook",
     "admin:serve": "ibazel run //web/admin:devserver -- -port=4200",
     "admin:serve:prod": "ibazel run --config=release //web/admin:prodserver -- --port 4200",
     "build": "ng build",

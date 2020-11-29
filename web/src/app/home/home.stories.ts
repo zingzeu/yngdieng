@@ -1,5 +1,6 @@
-// also exported from '@storybook/angular' if you can deal with breaking changes in 6.1
-import {Story, Meta} from '@storybook/angular/types-6-0';
+import {CommonModule} from '@angular/common';
+import {Story, Meta, moduleMetadata} from '@storybook/angular';
+import {MaterialModule} from '@yngdieng-web/shared/material/material.module';
 import {HomeComponent} from './home.component';
 
 export default {
@@ -8,6 +9,11 @@ export default {
   argTypes: {
     backgroundColor: {control: 'color'},
   },
+  decorators: [
+    moduleMetadata({
+      imports: [MaterialModule, CommonModule],
+    }),
+  ],
 } as Meta;
 
 const Template: Story<HomeComponent> = (args: HomeComponent) => ({

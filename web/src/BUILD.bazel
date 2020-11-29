@@ -273,21 +273,21 @@ filegroup(
 nodejs_binary(
     name = "start-storybook",
     data = [
-        "@npm//@storybook/angular",
-        "@npm//umd-compat-loader",
-        "@npm//@angular-devkit/build-angular",
-        ":docs",
-        ":storybook",
-        ":tsconfig.json",
-        "//web/src/app",
-        #"//web/src/stories",
-        "//:package.json",
-    ] + glob(["stories/**/*"]),
+               "@npm//@storybook/angular",
+               "@npm//umd-compat-loader",
+               "@npm//@angular-devkit/build-angular",
+               ":docs",
+               ":storybook",
+               ":tsconfig.json",
+               "//web/src/app",
+               "//:package.json",
+           ] + glob(["stories/**/*"]) +
+           _ASSETS,
     entry_point = "@npm//:node_modules/@storybook/angular/bin/index.js",
     templated_args = [
         "--nobazel_patch_module_resolver",
         "-p 6006",
         "-c ./web/src/.storybook",
-        # "--debug-webpack"
+        "-s ./web/src/",
     ],
 )

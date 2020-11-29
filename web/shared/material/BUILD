@@ -5,6 +5,7 @@ package(default_visibility = ["//web:__subpackages__"])
 ng_module(
     name = "material",
     srcs = ["material.module.ts"],
+    module_name = "@yngdieng-web/shared/material",
     tsconfig = "//web/src:tsconfig.json",
     deps = [
         "@npm//@angular/core",
