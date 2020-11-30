@@ -9,7 +9,7 @@ import {Subscription} from 'rxjs';
 import {Final, Initial, Tone} from 'yngdieng/shared/phonology_pb';
 import {getFinalString, getInitialString, getToneString} from '../../lib/utils';
 
-import {AdvancedSearchQueryBuilderService} from '../advanced-search-query-builder.service';
+import {AdvancedSearchQueryBuilderService} from '../searchbox/advanced-search-query-builder.service';
 
 @Component({
   selector: 'app-phonology-composer',

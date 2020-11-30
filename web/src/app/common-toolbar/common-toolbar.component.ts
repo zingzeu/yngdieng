@@ -7,6 +7,7 @@ import {SidenavStateService} from '../sidenav-state.service';
   styleUrls: ['./common-toolbar.component.scss'],
 })
 export class CommonToolbarComponent implements OnInit {
+  @Input() queryText;
   @Input() mode: DisplayMode = DisplayMode.Default;
 
   get isHomePage() {

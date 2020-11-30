@@ -278,6 +278,7 @@ nodejs_binary(
                ":storybook",
                "//:tsconfig.json",
                "//web/src/app",
+               "//web/src/assets",
                "//:package.json",
            ] + glob(["stories/**/*"]) +
            _ASSETS,

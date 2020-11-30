@@ -1,3 +1,8 @@
+.searchbox {
+  display: flex;
+  flex-direction: row;
+}
+
 .text-query-input {
   width: 95%;
   input {
@@ -21,15 +26,23 @@ mat-icon {
   }
 }
 
+.search-button {
+  background-color: #dcd3d0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .search-icon {
-  padding-left: 20px;
+  padding-left: 8px;
+  padding-right: 8px;
+  color: rgb(102, 68, 69);
 }
 
 .fill-remaining-space {
   /* This fills the remaining space, by using flexbox. 
      Every toolbar row uses a flexbox row layout. */
   flex: 1 1 auto;
-  border: 2px red sold;
 }
 
 .mat-toolbar-row,

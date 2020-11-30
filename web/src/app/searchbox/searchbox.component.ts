@@ -9,7 +9,7 @@ import {
 import {FormBuilder} from '@angular/forms';
 import {Subscription} from 'rxjs';
 
-import {AdvancedSearchQueryBuilderService} from '../advanced-search-query-builder.service';
+import {AdvancedSearchQueryBuilderService} from './advanced-search-query-builder.service';
 
 @Component({
   selector: 'app-searchbox',
