@@ -1,5 +1,5 @@
 import {Story, Meta, moduleMetadata} from '@storybook/angular';
-import {CommonToolbarComponent} from './common-toolbar.component';
+import {CommonToolbarComponent, DisplayMode} from './common-toolbar.component';
 import {MaterialModule} from '@yngdieng-web/shared/material/material.module';
 import {CommonModule} from '@angular/common';
 import {RouterModule} from '@angular/router';
@@ -24,8 +24,14 @@ const Template: Story<CommonToolbarComponent> = (
   props: args,
 });
 
-export const Primary = Template.bind({});
-Primary.args = {
-  primary: true,
+export const Default = Template.bind({});
+Default.args = {
+  mode: DisplayMode.Default,
+  label: 'Button',
+};
+
+export const HomePage = Template.bind({});
+HomePage.args = {
+  mode: DisplayMode.HomePage,
   label: 'Button',
 };

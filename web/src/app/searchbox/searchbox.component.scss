@@ -1,22 +1,22 @@
 .text-query-input {
-    width: 95%;
-    input {
-        width: 100%;
-        border: none;
-        line-height:32px;
-        padding: 4px;
-        font-size: 20px;
-        background-color: #DCD3D0;
-    }
+  width: 95%;
+  input {
+    width: 100%;
+    border: none;
+    line-height: 32px;
+    padding: 4px;
+    font-size: 20px;
+    background-color: #dcd3d0;
+  }
 }
 
 .phonology-query-input {
-    background-color: #DCD3D0;
-    padding: 4px;
+  background-color: #dcd3d0;
+  padding: 4px;
 }
 
 mat-icon {
-  &:hover { 
+  &:hover {
     cursor: pointer;
   }
 }
@@ -32,7 +32,8 @@ mat-icon {
   border: 2px red sold;
 }
 
-.mat-toolbar-row, .mat-toolbar-single-row {
-  min-height: 50px !important; 
+.mat-toolbar-row,
+.mat-toolbar-single-row {
+  min-height: 50px !important;
   height: 50px !important;
 }

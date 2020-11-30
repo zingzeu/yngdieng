@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder} from '@angular/forms';
 import {Router} from '@angular/router';
-import {SidenavStateService} from '../sidenav-state.service';
 
 @Component({
   selector: 'app-home',

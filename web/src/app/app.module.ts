@@ -25,7 +25,7 @@ import {MonoHanziResultComponent} from './mono-hanzi-result/mono-hanzi-result.co
 import {PhonologyComposerComponent} from './phonology-composer/phonology-composer.component';
 import {PhonologyQueryRendererComponent} from './phonology-query-renderer/phonology-query-renderer.component';
 import {SearchResultComponent} from './search-result/search-result.component';
-import {SearchToolbarComponent} from './search-toolbar/search-toolbar.component';
+import {SearchboxComponent} from './searchbox/searchbox.component';
 import {SidenavContentComponent} from './sidenav-content/sidenav-content.component';
 import {SimplificationToolComponent} from './simplification-tool/simplification-tool.component';
 import {WordDetailsHeroComponent} from './word-details-hero/word-details-hero.component';
@@ -74,8 +74,8 @@ import {AudioAckDialogComponent} from './audio-ack-dialog/audio-ack-dialog.compo
     PhonologyQueryRendererComponent,
     RichtextFlattenPipe,
     SearchResultComponent,
-    SearchToolbarComponent,
     SearchV2ResultComponent,
+    SearchboxComponent,
     SettingsComponent,
     SidenavContentComponent,
     SimplificationToolComponent,

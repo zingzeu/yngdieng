@@ -1,38 +1,51 @@
-import {Component, EventEmitter, Input, OnDestroy, OnInit, Output} from '@angular/core';
+import {
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+} from '@angular/core';
 import {FormBuilder} from '@angular/forms';
-import {Router} from '@angular/router';
 import {Subscription} from 'rxjs';
 
 import {AdvancedSearchQueryBuilderService} from '../advanced-search-query-builder.service';
 
 @Component({
-  selector: 'app-search-toolbar',
-  templateUrl: './search-toolbar.component.html',
-  styleUrls: ['./search-toolbar.component.scss']
+  selector: 'app-searchbox',
+  templateUrl: './searchbox.component.html',
+  styleUrls: ['./searchbox.component.scss'],
 })
-export class SearchToolbarComponent implements OnInit, OnDestroy {
+export class SearchboxComponent implements OnInit, OnDestroy {
   @Output() performSearch = new EventEmitter<string>();
-  @Output() navigateBack = new EventEmitter<string>();
 
   searchForm;
 
-  initial: string|null;
-  final: string|null;
-  tone: string|null;
+  initial: string | null;
+  final: string | null;
+  tone: string | null;
 
   private initialSubscription: Subscription;
   private finalSubscription: Subscription;
   private toneSubscription: Subscription;
 
   constructor(
-      private formBuilder: FormBuilder, private asqbService: AdvancedSearchQueryBuilderService) {
+    private formBuilder: FormBuilder,
+    private asqbService: AdvancedSearchQueryBuilderService
+  ) {
     this.searchForm = this.formBuilder.group({
       textQuery: '',
     });
 
-    this.initialSubscription = asqbService.selectedInitial$.subscribe(i => this.initial = i);
-    this.finalSubscription = asqbService.selectedFinal$.subscribe(f => this.final = f);
-    this.toneSubscription = asqbService.selectedTone$.subscribe(t => this.tone = t)
+    this.initialSubscription = asqbService.selectedInitial$.subscribe(
+      i => (this.initial = i)
+    );
+    this.finalSubscription = asqbService.selectedFinal$.subscribe(
+      f => (this.final = f)
+    );
+    this.toneSubscription = asqbService.selectedTone$.subscribe(
+      t => (this.tone = t)
+    );
   }
 
   ngOnInit() {}
@@ -44,8 +57,8 @@ export class SearchToolbarComponent implements OnInit, OnDestroy {
   }
 
   @Input()
-  set queryFromUrl(queryFromUrl: string) {
-    this.searchForm.controls.textQuery.setValue(queryFromUrl);
+  set queryText(queryText: string) {
+    this.searchForm.controls.textQuery.setValue(queryText);
   }
 
   get showingPhonologyQuery(): boolean {
@@ -68,10 +81,6 @@ export class SearchToolbarComponent implements OnInit, OnDestroy {
     this.textSearch();
   }
 
-  onBackClicked() {
-    this.navigateBack.emit();
-  }
-
   onSearch() {
     if (this.showingPhonologyQuery) {
       this.phonologySearch();
@@ -86,8 +95,10 @@ export class SearchToolbarComponent implements OnInit, OnDestroy {
   }
 
   private phonologySearch() {
-    let queryString = (this.initial ? 'i:' + this.initial : '') +
-        (this.final ? ' f:' + this.final : '') + (this.tone ? ' t:' + this.tone : '');
+    let queryString =
+      (this.initial ? 'i:' + this.initial : '') +
+      (this.final ? ' f:' + this.final : '') +
+      (this.tone ? ' t:' + this.tone : '');
     this.performSearch.emit(queryString);
   }
 }

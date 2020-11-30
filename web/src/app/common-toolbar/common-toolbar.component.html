@@ -1,3 +1,5 @@
-<mat-toolbar class="topbar mat-elevation-z4 no-select" color="primary">
-    <mat-icon (click)="onMenuClicked()">menu</mat-icon>
+<mat-toolbar class="topbar mat-elevation-z4 no-select" color="primary" [class.homepage]='isHomePage'>
+    <img src="/assets/logo-header.png" class="logo" *ngIf='isHomePage'/>
+    <span class="spacer"></span>
+    <mat-icon [class.homepage]='isHomePage' (click)="onMenuClicked()">menu</mat-icon>
 </mat-toolbar>

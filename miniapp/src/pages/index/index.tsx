@@ -43,7 +43,7 @@ const Index = () => {
   };
 
   useShareAppMessage(() => ({
-    title: '平话电子词典',
+    title: '福州话电子词典',
   }));
   useEffect(() => {
     handleRouterParams();

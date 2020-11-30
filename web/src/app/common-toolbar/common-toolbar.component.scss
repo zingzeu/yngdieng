@@ -1,10 +1,29 @@
-.mat-toolbar-row, .mat-toolbar-single-row {
-    min-height: 50px !important; 
-    height: 50px !important;
+.topbar.homepage {
+  background-color: rgba(220, 210, 208, 1);
+}
+
+.mat-toolbar-row,
+.mat-toolbar-single-row {
+  min-height: 50px !important;
+  height: 50px !important;
 }
 
 mat-icon {
-    &:hover { 
-        cursor: pointer;
-    }
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+mat-icon.homepage {
+  color: rgb(102, 68, 69);
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.logo {
+  height: 36px;
+  width: 74px;
+  filter: brightness(0) invert(1);
 }
