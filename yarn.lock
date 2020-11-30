@@ -14283,10 +14283,10 @@ symbol.prototype.description@^1.0.0:
     has-symbols "^1.0.1"
     object.getownpropertydescriptors "^2.1.0"
 
-systemjs@6.7.1:
-  version "6.7.1"
-  resolved "https://registry.yarnpkg.com/systemjs/-/systemjs-6.7.1.tgz#3db5036f450180a0701e078fbb5b434a690026f0"
-  integrity sha512-Q78H/SYy9ErC8PH8r9vA/FcQ3X+Hf33dOpx2JKP/Ma6f2gHuSScPFuCKZH+6CIj7EsIJlzODxSG4mMIpjOh5oA==
+systemjs@6.8.1:
+  version "6.8.1"
+  resolved "https://registry.yarnpkg.com/systemjs/-/systemjs-6.8.1.tgz#556f9254b3867568d6b3e43c4732aca8c29bc981"
+  integrity sha512-HjxELHbx2LpfHfrsrYFMvkK1Hfh3IpUxPUNUzClxThW0POUlv53qb8N0FZ48+hlfIC4OANFwzxwRp4fTXSfYKw==
 
 tapable@^1.0.0, tapable@^1.1.3:
   version "1.1.3"
