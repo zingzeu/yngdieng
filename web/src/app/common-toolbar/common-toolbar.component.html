@@ -1,5 +1,5 @@
 <mat-toolbar class="topbar mat-elevation-z4 no-select" color="primary" [class.homepage]='isHomePage'>
-    <img src="/assets/logo-header.png" class="logo" *ngIf='!isHomePage' />
+    <img src="/assets/logo-header.png" class="logo" [routerLink]="'/'" *ngIf='!isHomePage' />
     <app-searchbox [queryText]="queryText" *ngIf='!isHomePage'></app-searchbox>
     <span class="spacer"></span>
     <mat-icon [class.homepage]='isHomePage' (click)="onMenuClicked()">menu</mat-icon>
