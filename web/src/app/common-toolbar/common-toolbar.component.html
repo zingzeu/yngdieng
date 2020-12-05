@@ -1,7 +1,7 @@
 <mat-toolbar class="topbar mat-elevation-z4 no-select" color="primary" [class.homepage]='isHomePage'>
     <a mat-button [routerLink]="'/'" class="logo" *ngIf='!isHomePage'>
     </a>
-    <app-searchbox [queryText]="queryText" *ngIf='!isHomePage' (performSearch)="onPerformSearch($event)">
+    <app-searchbox (queryText)="queryText" *ngIf='!isHomePage' (performSearch)="onPerformSearch($event)">
     </app-searchbox>
     <span class="spacer"></span>
     <button mat-icon-button aria-label="菜单" (click)="onMenuClicked()" class="menu-button">
