@@ -12,15 +12,17 @@ import {
 @Injectable({providedIn: 'root'})
 export class YngdiengTitleService {
   private readonly appName: string;
+  private readonly slogan: string;
   constructor(
     @Inject(YNGDIENG_ENVIRONMENT) environment: IYngdiengEnvironment,
     private titleService: Title
   ) {
     this.appName = environment.appName;
+    this.slogan = environment.slogan;
   }
 
   resetTitle() {
-    this.titleService.setTitle(this.appName);
+    this.titleService.setTitle(this.appName + ' | ' + this.slogan);
   }
 
   setTitleForSearchResultPage(query: string) {

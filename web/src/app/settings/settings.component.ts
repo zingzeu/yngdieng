@@ -44,7 +44,6 @@ export class SettingsComponent implements OnInit {
   }
 
   onZhConversionPreferenceChanged() {
-    console.log(this.zhConversionPreference);
     this.userSettings.setZhConversionPreference(this.zhConversionPreference);
   }
 }

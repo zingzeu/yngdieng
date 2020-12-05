@@ -1,0 +1,47 @@
+.searchbox {
+  display: flex;
+  flex-direction: row;
+}
+
+.text-query-input {
+  input {
+    width: 100%;
+    border: none;
+    line-height: 32px;
+    padding: 4px;
+    font-size: 20px;
+    background-color: #dcd3d0;
+  }
+  flex: 1 1 auto;
+}
+
+.phonology-query-input {
+  background-color: #dcd3d0;
+  padding: 4px;
+  flex: 1 1 auto;
+}
+
+mat-icon {
+  &:hover {
+    cursor: pointer;
+  }
+}
+
+.search-button {
+  background-color: #dcd3d0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-icon {
+  padding-left: 8px;
+  padding-right: 8px;
+  color: rgb(102, 68, 69);
+}
+
+.mat-toolbar-row,
+.mat-toolbar-single-row {
+  min-height: 50px !important;
+  height: 50px !important;
+}
