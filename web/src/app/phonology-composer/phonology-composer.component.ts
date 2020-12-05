@@ -1,10 +1,4 @@
-import {
-  Component,
-  EventEmitter,
-  OnDestroy,
-  OnInit,
-  Output,
-} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {Subscription} from 'rxjs';
 import {Final, Initial, Tone} from 'yngdieng/shared/phonology_pb';
 import {getFinalString, getInitialString, getToneString} from '../../lib/utils';

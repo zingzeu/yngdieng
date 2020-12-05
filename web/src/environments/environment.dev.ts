@@ -6,8 +6,8 @@ export const YngdiengDevEnvironment: IYngdiengEnvironment = {
   slogan: '福州话电子词典',
   envName: 'dev',
   isProduction: false,
-  // serverUrl: 'https://api.ydict.net',
-  serverUrl: 'http://localhost:5000',
+  serverUrl: 'https://api.ydict.net',
+  // serverUrl: 'http://localhost:5000',
   structuredExplanations: {
     enabled: true,
     showDebugToggle: true,

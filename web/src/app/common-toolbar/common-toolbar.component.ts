@@ -1,8 +1,9 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
+import {ActivatedRoute, Router, NavigationEnd} from '@angular/router';
 import {Location} from '@angular/common';
 import {SidenavStateService} from '../sidenav-state.service';
 import {Subscription} from 'rxjs';
+import {filter} from 'rxjs/operators';
 
 @Component({
   selector: 'app-common-toolbar',
@@ -27,9 +28,14 @@ export class CommonToolbarComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.subscription = this.route.paramMap.subscribe(paramMap => {
-      this.queryText = paramMap.get('query');
-    });
+    this.subscription = this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe(_event => {
+        const url = (_event as NavigationEnd).urlAfterRedirects;
+        console.log(_event);
+        console.log(this.route.snapshot);
+        this.mode = url == '/' ? DisplayMode.HomePage : DisplayMode.Default;
+      });
   }
 
   ngOnDestroy(): void {

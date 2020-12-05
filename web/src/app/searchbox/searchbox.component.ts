@@ -36,24 +36,24 @@ export class SearchboxComponent implements OnInit, OnDestroy {
     this.searchForm = this.formBuilder.group({
       textQuery: '',
     });
+  }
 
-    this.initialSubscription = asqbService.selectedInitial$.subscribe(
+  ngOnInit() {
+    this.initialSubscription = this.asqbService.selectedInitial$.subscribe(
       i => (this.initial = i)
     );
-    this.finalSubscription = asqbService.selectedFinal$.subscribe(
+    this.finalSubscription = this.asqbService.selectedFinal$.subscribe(
       f => (this.final = f)
     );
-    this.toneSubscription = asqbService.selectedTone$.subscribe(
+    this.toneSubscription = this.asqbService.selectedTone$.subscribe(
       t => (this.tone = t)
     );
   }
 
-  ngOnInit() {}
-
   ngOnDestroy() {
-    this.initialSubscription.unsubscribe();
-    this.finalSubscription.unsubscribe();
-    this.toneSubscription.unsubscribe();
+    this.initialSubscription?.unsubscribe();
+    this.finalSubscription?.unsubscribe();
+    this.toneSubscription?.unsubscribe();
   }
 
   @Input()
