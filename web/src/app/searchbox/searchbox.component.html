@@ -1,6 +1,6 @@
 <div class="no-select searchbox">
     <app-phonology-query-renderer
-    class="phonology-query-input fill-remaining-space"
+    class="phonology-query-input"
       *ngIf="showingPhonologyQuery"
       [initial]="initial"
       [final]="final"
@@ -11,7 +11,7 @@
     ></app-phonology-query-renderer>
     <form
       *ngIf="!showingPhonologyQuery"
-      class="text-query-input fill-remaining-space"
+      class="text-query-input"
       [formGroup]="searchForm"
       (ngSubmit)="onSubmit()">
       <input class="unihan-text" placeholder="查" formControlName="textQuery"/>

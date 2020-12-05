@@ -12,11 +12,13 @@
     font-size: 20px;
     background-color: #dcd3d0;
   }
+  flex: 1 1 auto;
 }
 
 .phonology-query-input {
   background-color: #dcd3d0;
   padding: 4px;
+  flex: 1 1 auto;
 }
 
 mat-icon {
@@ -36,12 +38,6 @@ mat-icon {
   padding-left: 8px;
   padding-right: 8px;
   color: rgb(102, 68, 69);
-}
-
-.fill-remaining-space {
-  /* This fills the remaining space, by using flexbox. 
-     Every toolbar row uses a flexbox row layout. */
-  flex: 1 1 auto;
 }
 
 .mat-toolbar-row,
