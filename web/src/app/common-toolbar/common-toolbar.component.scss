@@ -18,14 +18,30 @@ mat-icon.homepage {
   color: rgb(102, 68, 69);
 }
 
+.menu-button {
+  margin-right: -8px;
+}
+
 .spacer {
   flex: 1 1 auto;
 }
 
 .logo {
+  height: 50px;
+  min-width: 80px;
+  margin-right: 16px;
+  padding: 4px;
+  align-content: center;
+}
+
+.logo::before {
+  content: '';
+  display: inline-block;
   height: 36px;
   width: 74px;
   min-width: 74px;
+  background-image: url(/assets/logo-header.png);
+  background-size: cover;
   filter: brightness(0) invert(1);
-  padding-right: 16px;
+  vertical-align: middle;
 }
