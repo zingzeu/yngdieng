@@ -39,7 +39,8 @@ export class CommonToolbarComponent implements OnInit, OnDestroy {
             firstPathComponent == 'search2'
           ) {
             this.queryText = _event.snapshot.paramMap.get('query');
-            console.log(this.queryText);
+          } else {
+            this.queryText = '';
           }
         }
       });
