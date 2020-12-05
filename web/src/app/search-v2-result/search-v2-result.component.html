@@ -1,5 +1,3 @@
-<app-common-toolbar [queryText]="queryText" 
-    (performSearch)="onPerformSearch($event)"></app-common-toolbar>
 <br />
 <div *ngIf="isInvalidQuery">搜索格式不正确: {{ queryText }}</div>
 <div *ngIf="!isInvalidQuery && results.length > 0" class="search-results-list">
