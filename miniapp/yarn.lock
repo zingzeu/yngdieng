@@ -5701,10 +5701,10 @@ escodegen@^1.11.1:
   optionalDependencies:
     source-map "~0.6.1"
 
-eslint-config-taro@3.0.17:
-  version "3.0.17"
-  resolved "https://registry.yarnpkg.com/eslint-config-taro/-/eslint-config-taro-3.0.17.tgz#feacb9d4fb802ebc77a2d27772104dc096518871"
-  integrity sha512-CdlKH+g9rWcU5vItU6/8MvS3TxVfRLcWS/hxTe4MFEtv2VTAqbzsB0/3rHuGfjzCW5i2xpinnS+xHP1iyn7urw==
+eslint-config-taro@3.0.18:
+  version "3.0.18"
+  resolved "https://registry.yarnpkg.com/eslint-config-taro/-/eslint-config-taro-3.0.18.tgz#ece81de571baf07cbd97e05c05fad66c29f1e203"
+  integrity sha512-cHxrSbqfORdBAyMZAgz4I3SrokjGkN7M2RIOb2lJbdIN6eFvAcdAQ/YCNMYkeo67CewTSj5PjVwRnta48cJvRA==
   dependencies:
     "@typescript-eslint/parser" "^2.x"
     babel-eslint "^10.0.0"
