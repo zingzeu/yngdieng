@@ -51,6 +51,7 @@ export class AppComponent implements OnInit, OnDestroy {
       .pipe(filter(event => event instanceof NavigationStart))
       .subscribe(_event => {
         this.titleService.resetTitle();
+        this.sideNavState.closeSideNav();
         this.isBusy = true;
       });
     this.navigationEndSubscription = this.router.events
