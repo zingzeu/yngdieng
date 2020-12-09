@@ -32,7 +32,7 @@ export class HistoricalDetailsComponent implements OnInit {
       tmp.push('戚林八音校注');
     }
     if (this.doc.hasDfdSource()) {
-      tmp.push('Dictionary of Foochow Dialect');
+      tmp.push('榕腔注音词典·目录');
     }
     return tmp.join(', ');
   }

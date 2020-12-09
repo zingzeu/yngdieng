@@ -23,7 +23,7 @@ namespace Yngdieng.Common.RichText
             }
             if (doc.DfdSource != null)
             {
-                sources.Add("Dictionary of the Foochow Dialect");
+                sources.Add("榕腔注音辞典·目录");
             }
             return new RichTextNode()
             {
