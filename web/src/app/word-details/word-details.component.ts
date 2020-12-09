@@ -1,3 +1,4 @@
+import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs';
@@ -22,10 +23,12 @@ export class WordDetailsComponent implements OnInit, OnDestroy {
   document: YngdiengDocument;
   heroModel = new WordDetailsHeroModel('', new WordPronunication('', ''));
   text: string;
+  largeScreen$: any;
 
   constructor(
     private titleService: YngdiengTitleService,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private breakpointObserver: BreakpointObserver
   ) {}
 
   ngOnInit(): void {
@@ -52,6 +55,9 @@ export class WordDetailsComponent implements OnInit, OnDestroy {
         );
       }
     });
+    this.largeScreen$ = this.breakpointObserver
+      .observe([Breakpoints.Medium, Breakpoints.Large, Breakpoints.XLarge])
+      .pipe(map(state => state.matches));
   }
 
   ngOnDestroy(): void {

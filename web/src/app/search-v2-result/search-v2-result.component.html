@@ -1,6 +1,6 @@
 <br />
 <div *ngIf="isInvalidQuery">搜索格式不正确: {{ queryText }}</div>
-<div *ngIf="!isInvalidQuery && results.length > 0" class="search-results-list">
+<div *ngIf="!isInvalidQuery && results.length > 0" class="search-results-list" [class.large-screen]="largeScreen$ | async">
     <ng-container *ngFor="let card of results">
         <app-word-card [card]="card.getWord()" *ngIf="card.hasWord()">
         </app-word-card>

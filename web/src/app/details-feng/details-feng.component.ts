@@ -1,3 +1,4 @@
+import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Observable, Subscription} from 'rxjs';
@@ -24,6 +25,14 @@ export class DetailsFengComponent implements OnInit, OnDestroy {
 
   private subscription: Subscription;
   private historicalSubscription: Subscription;
+  largeScreen$: any;
+
+  constructor(
+    private route: ActivatedRoute,
+    private titleService: YngdiengTitleService,
+    private backendService: YngdiengBackendService,
+    private breakpointObserver: BreakpointObserver
+  ) {}
 
   get heroModel() {
     return new WordDetailsHeroModel(
@@ -34,12 +43,6 @@ export class DetailsFengComponent implements OnInit, OnDestroy {
       )
     );
   }
-
-  constructor(
-    private route: ActivatedRoute,
-    private titleService: YngdiengTitleService,
-    private backendService: YngdiengBackendService
-  ) {}
 
   ngOnInit() {
     let resolveResult$: Observable<FengResolveResult> = this.route.data.pipe(
@@ -81,6 +84,9 @@ export class DetailsFengComponent implements OnInit, OnDestroy {
       .subscribe(x => {
         this.singleCharResults = x;
       });
+    this.largeScreen$ = this.breakpointObserver
+      .observe([Breakpoints.Medium, Breakpoints.Large, Breakpoints.XLarge])
+      .pipe(map(state => state.matches));
   }
 
   ngOnDestroy(): void {

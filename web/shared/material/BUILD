@@ -8,6 +8,7 @@ ng_module(
     module_name = "@yngdieng-web/shared/material",
     tsconfig = "//:tsconfig.json",
     deps = [
+        "@npm//@angular/cdk",
         "@npm//@angular/core",
         "@npm//@angular/material",
     ],

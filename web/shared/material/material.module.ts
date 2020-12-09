@@ -17,9 +17,11 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatSelectModule} from '@angular/material/select';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatRippleModule} from '@angular/material/core';
+import {LayoutModule} from '@angular/cdk/layout';
 
 const matModules = [
   // keep sorted
+  LayoutModule,
   MatButtonModule,
   MatCardModule,
   MatCheckboxModule,

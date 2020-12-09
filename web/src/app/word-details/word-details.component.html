@@ -1,6 +1,6 @@
 <ng-container *ngIf="!hasError">
     <app-word-details-hero [model]="heroModel"></app-word-details-hero>
-    <div class="content">
+    <div class="content" [class.large-screen]="largeScreen$ | async">
         <ng-container *ngFor="let source of document.getSourcesList()"> 
             <app-feng-explanation 
             *ngIf="source.hasFeng()"

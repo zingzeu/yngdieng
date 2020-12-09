@@ -1,10 +1,15 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
-import {switchMap} from 'rxjs/operators';
+import {map, switchMap} from 'rxjs/operators';
 import {YngdiengBackendService} from '../yngdieng-backend.service';
 import {Subscription, BehaviorSubject, Observable} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
 import {SearchV2Response} from 'yngdieng/shared/services_pb';
 import {YngdiengTitleService} from '../yngdieng-title.service';
+import {
+  BreakpointObserver,
+  Breakpoints,
+  BreakpointState,
+} from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-search-v2-result',
@@ -19,12 +24,14 @@ export class SearchV2ResultComponent implements OnInit, OnDestroy {
   isInvalidQuery: boolean;
   propertiesSubscription: Subscription;
   dataService: SearchDataService;
+  largeScreen$: Observable<boolean>;
 
   constructor(
     private route: ActivatedRoute,
     private router: Router,
     private titleService: YngdiengTitleService,
-    private backendService: YngdiengBackendService
+    private backendService: YngdiengBackendService,
+    private breakpointObserver: BreakpointObserver
   ) {}
 
   s(x: any) {
@@ -41,6 +48,9 @@ export class SearchV2ResultComponent implements OnInit, OnDestroy {
       this.queryText = query;
       this.titleService.setTitleForSearchResultPage(query);
     });
+    this.largeScreen$ = this.breakpointObserver
+      .observe([Breakpoints.Medium, Breakpoints.Large, Breakpoints.XLarge])
+      .pipe(map(state => state.matches));
   }
 
   onNavigateBack() {

@@ -1,5 +1,8 @@
+import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 import {Component, Inject, Input, OnInit} from '@angular/core';
 import {MatDialog} from '@angular/material/dialog';
+import {Observable} from 'rxjs';
+import {map} from 'rxjs/operators';
 
 import {
   IYngdiengEnvironment,
@@ -18,10 +21,12 @@ import {YngpingHelpDialogComponent} from '../yngping-help-dialog/yngping-help-di
 })
 export class WordDetailsHeroComponent implements OnInit {
   @Input('model') model: WordDetailsHeroModel;
+  largeScreen$: Observable<boolean>;
 
   constructor(
     @Inject(YNGDIENG_ENVIRONMENT) private environment: IYngdiengEnvironment,
-    private dialog: MatDialog
+    private dialog: MatDialog,
+    private breakpointObserver: BreakpointObserver
   ) {}
 
   get shouldShowSandhi() {
@@ -43,7 +48,11 @@ export class WordDetailsHeroComponent implements OnInit {
     this.dialog.open(YngpingHelpDialogComponent, {width: '80vw'});
   }
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.largeScreen$ = this.breakpointObserver
+      .observe([Breakpoints.Medium, Breakpoints.Large, Breakpoints.XLarge])
+      .pipe(map(state => state.matches));
+  }
 }
 
 export class WordDetailsHeroModel {
