@@ -8,10 +8,9 @@ if [ ! -d "./zingzeu-data" ]
 then
   git clone git@github.com:ztl8702/zingzeu-data.git
 else
-  # cd zingzeu-data
-  # git pull
-  # cd ..
-  rm -rf zingzeu-data
+  cd zingzeu-data
+  git pull
+  cd ..
 fi
 cp ./zingzeu-data/cikling/CikLinBekIn.csv CikLinBekIn.csv 2>/dev/null \
   && echo "√ CikLinBekIn.csv is updated." || echo "[!] CikLinBekIn.csv is missing."
