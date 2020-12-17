@@ -85,7 +85,7 @@ const Search = () => {
     };
   });
   useEffect(() => {
-    const wordFromParams = router.params.word;
+    const wordFromParams = decodeURIComponent(router.params.word || '');
     if (wordFromParams) {
       handleConfirm(wordFromParams);
     } else {
