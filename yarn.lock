@@ -1873,10 +1873,10 @@
     c8 "~7.1.0"
     jasmine-reporters "~2.3.2"
 
-"@bazel/karma@2.3.1":
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/@bazel/karma/-/karma-2.3.1.tgz#9a52128cefc4e061fc4e934c4918d7a3e17b1007"
-  integrity sha512-4w1aS3qaKY8eekyDujAFD7xsM+z0rCsEofs8QliEmZaF+RCKw+QsxWEMrxIXkdoftcQS+MBatAoSDhHbl47VpQ==
+"@bazel/karma@2.3.2":
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/@bazel/karma/-/karma-2.3.2.tgz#4120618f7edd141b155f6f830fd0f04dc748a37c"
+  integrity sha512-+FFpem1Ul/BtqNrom8y1xPIa1cPEZeBvpao8BRLfQt46r7Nk9u11KI8ylNFk+yIQVhFqAD3JBaL3sbLAU7BJ5Q==
 
 "@bazel/labs@2.3.1":
   version "2.3.1"
