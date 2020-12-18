@@ -1883,10 +1883,10 @@
   resolved "https://registry.yarnpkg.com/@bazel/labs/-/labs-2.3.2.tgz#f70d2c850b2c6fce35cfcf74d0e8c92fa1de8ee0"
   integrity sha512-go9Nir1WByWP4GNR+ThvKEyM59kRiUb/njOchDeDkQRqDzTFXRjksQ3/I1bdhFLE2lXfKNcbTcmdTT0M6vyYkg==
 
-"@bazel/protractor@2.3.1":
-  version "2.3.1"
-  resolved "https://registry.yarnpkg.com/@bazel/protractor/-/protractor-2.3.1.tgz#470c280841f5ec91b0a80d2ffb692841a125e240"
-  integrity sha512-1MF3JlGE6HyYzPFXJBFnv5eEOuTuXhsJT70g66+lMgPZ9g0uUPh6CPu/iUkT6/92sw+pHGUsaptxwNu89Z7Dag==
+"@bazel/protractor@2.3.2":
+  version "2.3.2"
+  resolved "https://registry.yarnpkg.com/@bazel/protractor/-/protractor-2.3.2.tgz#a57daa9488c40fa30843947f26474891db130229"
+  integrity sha512-VOKjJjvcO5RSoQX4nNeI41grgFc3j5xirxF26nF+MU0ePg+7giKVZWDtegLO2QRfMfFKjvzpT6HMlzd2GvxI+A==
 
 "@bazel/rollup@2.3.0":
   version "2.3.0"
