@@ -55,7 +55,7 @@
   },
   "devDependencies": {
     "@babel/core": "7.12.10",
-    "@tarojs/mini-runner": "3.0.18",
+    "@tarojs/mini-runner": "3.0.20",
     "@tarojs/webpack-runner": "3.0.18",
     "@types/react": "16.14.2",
     "@types/webpack-env": "1.16.0",
