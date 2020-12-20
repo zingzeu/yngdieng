@@ -40,7 +40,7 @@
     "@babel/runtime": "7.12.5",
     "@tarojs/components": "3.0.21",
     "@tarojs/react": "3.0.17",
-    "@tarojs/runtime": "3.0.17",
+    "@tarojs/runtime": "3.0.21",
     "@tarojs/taro": "3.0.21",
     "clsx": "1.1.1",
     "immer": "7.0.15",
