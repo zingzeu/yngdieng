@@ -2028,12 +2028,12 @@
     webpack-format-messages "^2.0.5"
     yauzl "2.10.0"
 
-"@tarojs/react@3.0.17":
-  version "3.0.17"
-  resolved "https://registry.yarnpkg.com/@tarojs/react/-/react-3.0.17.tgz#b7a7d70402869ee5a6c5665a007a5ff0a8527dc9"
-  integrity sha512-29khwWnfQlWUkJ+n3u9pLgGzP8LRdq+a5MOgJPMZhgTD5mx1FnQbF+LMLkz/PdIHnGVf6hgwGW5q+Cf5FQ1h1g==
+"@tarojs/react@3.0.21":
+  version "3.0.21"
+  resolved "https://registry.yarnpkg.com/@tarojs/react/-/react-3.0.21.tgz#ca24b453d80e430afe4b4ed64ca844635d159d38"
+  integrity sha512-+7zrGUZDbHOzy2+tj1UfKiqx66lkm+YzwCM0UK3oqij6az7JVURw93SRABjFW2G0M32+JHobrQdcmzsotNB2KQ==
   dependencies:
-    "@tarojs/runtime" "3.0.17"
+    "@tarojs/runtime" "3.0.21"
     react-reconciler "^0.23.0"
     scheduler "^0.17.0"
 
@@ -2058,11 +2058,6 @@
     fs-extra "^8.1.0"
     lodash "^4.17.15"
     scss-bundle "^3.0.2"
-
-"@tarojs/runtime@3.0.17":
-  version "3.0.17"
-  resolved "https://registry.yarnpkg.com/@tarojs/runtime/-/runtime-3.0.17.tgz#972a11235f1b21259e142f22191656037898e00a"
-  integrity sha512-Jv18GnxxDMGlx1+AoenUqwZr7A/1U9ip3e8g9NkAqD7fo71M2+D7X51Px0HUERvtC4Sdzi8v4aS9aWwz+D98kA==
 
 "@tarojs/runtime@3.0.21":
   version "3.0.21"
