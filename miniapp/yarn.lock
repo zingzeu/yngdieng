@@ -1933,13 +1933,6 @@
   dependencies:
     "@tarojs/runtime" "3.0.17"
 
-"@tarojs/api@3.0.18":
-  version "3.0.18"
-  resolved "https://registry.yarnpkg.com/@tarojs/api/-/api-3.0.18.tgz#e14c540a6e397429d520e2d8e7a37c3690fbdb8a"
-  integrity sha512-zDICfF8Bv+9PF7c7kI6PzifP9wAOWwaKxmTqja5AwzyMT15ehh9yUtQnKgAhOcLNF8hy2PhmPJ3Dlfa0UjxP0A==
-  dependencies:
-    "@tarojs/runtime" "3.0.18"
-
 "@tarojs/api@3.0.20":
   version "3.0.20"
   resolved "https://registry.yarnpkg.com/@tarojs/api/-/api-3.0.20.tgz#a855d108124af1a2fba3c2014ebc05422ea36317"
@@ -1954,13 +1947,13 @@
   dependencies:
     "@tarojs/runtime" "3.0.21"
 
-"@tarojs/components@3.0.18":
-  version "3.0.18"
-  resolved "https://registry.yarnpkg.com/@tarojs/components/-/components-3.0.18.tgz#a02fe5b1dfc3f3ce1cb00aba9f6cb6792b22d1a2"
-  integrity sha512-T7ddfDY7gxqbG55EeaAAerdE98eLkyCQPJVu0QJaIdo57vQ8QMYF2OiYLi71sux2AZ8qXfIqFWXYYwymoGS/kg==
+"@tarojs/components@3.0.21":
+  version "3.0.21"
+  resolved "https://registry.yarnpkg.com/@tarojs/components/-/components-3.0.21.tgz#375646c5c80eb68e44db72d6ddaaab75b5523c29"
+  integrity sha512-pFZc/FJuJYn+LvSeiGYV1xIZNdI1jxR/SUXJ8eQIkSRHrUtrsriJfPUG5p3Ni0rT0FISZmMGccLuqPddctmEkw==
   dependencies:
     "@stencil/core" "~1.8.1"
-    "@tarojs/taro" "3.0.18"
+    "@tarojs/taro" "3.0.21"
     better-scroll "^1.14.1"
     classnames "^2.2.5"
     intersection-observer "^0.7.0"
@@ -2068,16 +2061,6 @@
     universal-router "^8.3.0"
     url-parse "^1.4.7"
 
-"@tarojs/router@3.0.18":
-  version "3.0.18"
-  resolved "https://registry.yarnpkg.com/@tarojs/router/-/router-3.0.18.tgz#570f9b74b2d7588dbd2ae8a56690ee253f7c36a3"
-  integrity sha512-2k4bmT40bWrMEEx919DZ510UpjpXpnRKoLBtbaJJuo4/FHFjTk2JuiCHQHnWSFFsfPU5iFk34KwS09trk3LClA==
-  dependencies:
-    "@tarojs/runtime" "3.0.18"
-    history "^4.10.1"
-    universal-router "^8.3.0"
-    url-parse "^1.4.7"
-
 "@tarojs/router@3.0.20":
   version "3.0.20"
   resolved "https://registry.yarnpkg.com/@tarojs/router/-/router-3.0.20.tgz#c469ea2d91f03fb0962b0fd1de4947246ab2b35e"
@@ -2115,11 +2098,6 @@
   resolved "https://registry.yarnpkg.com/@tarojs/runtime/-/runtime-3.0.17.tgz#972a11235f1b21259e142f22191656037898e00a"
   integrity sha512-Jv18GnxxDMGlx1+AoenUqwZr7A/1U9ip3e8g9NkAqD7fo71M2+D7X51Px0HUERvtC4Sdzi8v4aS9aWwz+D98kA==
 
-"@tarojs/runtime@3.0.18":
-  version "3.0.18"
-  resolved "https://registry.yarnpkg.com/@tarojs/runtime/-/runtime-3.0.18.tgz#5786a81da06a1c57ecb795a335a5750542a96a57"
-  integrity sha512-amihFalyob+JT5tO2htqjSqNKWOHg22fWHbT40A+EYzYZONbTegG7jwoOFAsPgK/k4fOf4U0CFciz7rnbwjXRQ==
-
 "@tarojs/runtime@3.0.20":
   version "3.0.20"
   resolved "https://registry.yarnpkg.com/@tarojs/runtime/-/runtime-3.0.20.tgz#f5cf2019c98ce2bb369ce00a6b782cda4c3fc52c"
@@ -2147,20 +2125,6 @@
     "@tarojs/api" "3.0.17"
     "@tarojs/router" "3.0.17"
     "@tarojs/runtime" "3.0.17"
-    base64-js "^1.3.0"
-    jsonp-retry "^1.0.3"
-    mobile-detect "^1.4.2"
-    raf "^3.4.1"
-    whatwg-fetch "^3.4.0"
-
-"@tarojs/taro-h5@3.0.18":
-  version "3.0.18"
-  resolved "https://registry.yarnpkg.com/@tarojs/taro-h5/-/taro-h5-3.0.18.tgz#cd0b1ea788a4da41b1571c6067ccf3405a165af7"
-  integrity sha512-q0Zx66MNbN66PG91qDYlH3TwsRoAh6vcHWFtOkVE7+1ygcvOaRFGhCTd+Ty/d/EuT5yC28+RUrqlAQVvzbXrEQ==
-  dependencies:
-    "@tarojs/api" "3.0.18"
-    "@tarojs/router" "3.0.18"
-    "@tarojs/runtime" "3.0.18"
     base64-js "^1.3.0"
     jsonp-retry "^1.0.3"
     mobile-detect "^1.4.2"
@@ -2209,14 +2173,6 @@
   dependencies:
     "@tarojs/api" "3.0.17"
     "@tarojs/taro-h5" "3.0.17"
-
-"@tarojs/taro@3.0.18":
-  version "3.0.18"
-  resolved "https://registry.yarnpkg.com/@tarojs/taro/-/taro-3.0.18.tgz#add99083ea912ce23386618cf91a0fd462de8add"
-  integrity sha512-AuUfhH6fnU6gXZpl4cNjIcU1EW/PROGxdyfQLhu668mNo04LtTibnndPiEy/hW8TbAIf24H2ldGpsnJ31qGlxA==
-  dependencies:
-    "@tarojs/api" "3.0.18"
-    "@tarojs/taro-h5" "3.0.18"
 
 "@tarojs/taro@3.0.21":
   version "3.0.21"
