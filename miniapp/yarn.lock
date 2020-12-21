@@ -11922,10 +11922,10 @@ tar@^6.0.2:
     mkdirp "^1.0.3"
     yallist "^4.0.0"
 
-taro-ui@3.0.0-alpha.3:
-  version "3.0.0-alpha.3"
-  resolved "https://registry.yarnpkg.com/taro-ui/-/taro-ui-3.0.0-alpha.3.tgz#7ce26d71a47f7fbeed4aca6237696284787d3023"
-  integrity sha512-qLVP2/6zh01CbZFZUj2QuhbwtnOd7l1PSzd1Rjl1be1vyq819rFeHA1lApxYLXiw1zpM5v/Ywp7euB88LpQagg==
+taro-ui@3.0.0-alpha.7:
+  version "3.0.0-alpha.7"
+  resolved "https://registry.yarnpkg.com/taro-ui/-/taro-ui-3.0.0-alpha.7.tgz#3213990bf0c143e6bc0ab1f22331b5c7fe5a501d"
+  integrity sha512-zSHZcCX7rQK5YCBuhmHWB04s0ONdlvqmmGU+pemAX4yb5zNefiv0d1T2T4B5CrgNmAa5RyGksk2yn0+7qrfr2g==
   dependencies:
     classnames "^2.2.6"
     dayjs "^1.7.7"
