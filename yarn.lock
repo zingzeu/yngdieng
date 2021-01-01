@@ -8532,10 +8532,10 @@ html-escaper@^2.0.0:
   resolved "https://registry.yarnpkg.com/html-escaper/-/html-escaper-2.0.2.tgz#dfd60027da36a36dfcbe236262c00a5822681453"
   integrity sha512-H2iMtd0I4Mt5eYiapRdIDjp+XzelXQ0tFE4JS7YFwFevXXMmOp9myNrUvCg0D6ws8iqkRPBfKHgbwig1SmlLfg==
 
-html-insert-assets@0.13.0:
-  version "0.13.0"
-  resolved "https://registry.yarnpkg.com/html-insert-assets/-/html-insert-assets-0.13.0.tgz#52dbceaf45dd73ba858797cb9c639cb38014222a"
-  integrity sha512-8s7TOLu22+0c2k9WDbso/W+rHSP/NHfg+rbD1/836yP/5rS3jcSSN9xGVxHnmfwdKKx17ezeJDZyIdPvp1hL7g==
+html-insert-assets@0.14.1:
+  version "0.14.1"
+  resolved "https://registry.yarnpkg.com/html-insert-assets/-/html-insert-assets-0.14.1.tgz#262c0f0d0a9969ca9476657ae7819a89e3fc1089"
+  integrity sha512-bYvMvLkZrsdQKwq/fbHfL5STOA85iMzQ1BXyJcWsPDkEG/gH2z4KD0MLWAy5yvYAraNEZiRMcLu294nGOla38Q==
   dependencies:
     mkdirp "^1.0.3"
     parse5 "^6.0.0"
