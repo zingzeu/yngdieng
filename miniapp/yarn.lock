@@ -5699,10 +5699,10 @@ escodegen@^1.11.1:
   optionalDependencies:
     source-map "~0.6.1"
 
-eslint-config-taro@3.0.18:
-  version "3.0.18"
-  resolved "https://registry.yarnpkg.com/eslint-config-taro/-/eslint-config-taro-3.0.18.tgz#ece81de571baf07cbd97e05c05fad66c29f1e203"
-  integrity sha512-cHxrSbqfORdBAyMZAgz4I3SrokjGkN7M2RIOb2lJbdIN6eFvAcdAQ/YCNMYkeo67CewTSj5PjVwRnta48cJvRA==
+eslint-config-taro@3.0.22:
+  version "3.0.22"
+  resolved "https://registry.yarnpkg.com/eslint-config-taro/-/eslint-config-taro-3.0.22.tgz#616c7c6d3a7b458584ad01d04c49a116cc234fd1"
+  integrity sha512-pvBNyGoRnldKPjoVhpeZwo7DCnG4+VEI5C9zQnjVdBaRQp2mMJ2ShH/FGfcHY7Uy8obvL2IzWYCSGRMbsIYxsQ==
   dependencies:
     "@typescript-eslint/parser" "^2.x"
     babel-eslint "^10.0.0"
