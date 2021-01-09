@@ -51,7 +51,7 @@
     "redux": "4.0.5",
     "redux-logger": "3.0.6",
     "redux-thunk": "2.3.0",
-    "taro-ui": "3.0.0-alpha.7"
+    "taro-ui": "3.0.0-alpha.9"
   },
   "devDependencies": {
     "@babel/core": "7.12.10",
