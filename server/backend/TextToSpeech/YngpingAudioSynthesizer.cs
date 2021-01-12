@@ -44,10 +44,11 @@ namespace Yngdieng.Backend.TextToSpeech
                 inputFormat = reader.WaveFormat;
             }
 
-            MemoryStream outStream = new MemoryStream();
+
+            using (MemoryStream outStream = new MemoryStream())
             using (WaveFileWriter writer = new WaveFileWriter(outStream, inputFormat))
             {
-                byte[] buffer = new byte[1024];
+
                 byte[] sample = new byte[2];
 
                 ushort max = 0;
@@ -58,19 +59,23 @@ namespace Yngdieng.Backend.TextToSpeech
                     using (WaveFileReader reader = new WaveFileReader(inputPath))
                     {
                         // int bytesPerSample = reader.WaveFormat.BitsPerSample / 8;
-                        // Assuming bytesPerSample == 2
-                        int bytesPerMillisecond = reader.WaveFormat.AverageBytesPerSecond / 1000;
-                        int bytesRead = reader.Read(buffer, 0, bytesPerMillisecond);
-                        while (bytesRead > 0)
+                        if (reader.bytesPerSampe != 2)
                         {
-                            bool allZero = true;
-                            for (int i = 0; i + 2 <= bytesRead; i += 2)
-                            {
-                                sample[0] = buffer[i];
-                                sample[1] = buffer[i + 1];
-                                ushort val = BitConverter.ToUInt16(sample);
-                                if (val > 0) allZero = false;
-                            }
+                            throw new InvalidOperationException(
+                                String.Format("bytesPerSample is assumed to be 2 but in {0} it is {1}",
+                                inputPath, reader.bytesPerSampe));
+                        }
+                        int dataLength = reader.dataChunkLength;
+                        byte[] buffer = new byte[dataLength];
+                        // int bytesPerMillisecond = reader.WaveFormat.AverageBytesPerSecond / 1000;
+                        int bytesRead = reader.Read(buffer, 0, dataLength);
+                        bool allZero = true;
+                        for (int i = 0; i + 2 <= bytesRead; i += 2)
+                        {
+                            sample[0] = buffer[i];
+                            sample[1] = buffer[i + 1];
+                            ushort val = BitConverter.ToUInt16(sample);
+                            if (val > 0) allZero = false;
                             if (allZero && starting)
                             {
                                 startBytes += bytesRead;
@@ -95,8 +100,8 @@ namespace Yngdieng.Backend.TextToSpeech
                                 ending = false;
                                 endBytes = 0;
                             }
-                            bytesRead = reader.Read(buffer, 0, bytesPerMillisecond);
                         }
+
 
                         startPos = startBytes - startBytes % reader.WaveFormat.BlockAlign;
                         endPos = (int)reader.Length - (endBytes - endBytes % reader.WaveFormat.BlockAlign);
