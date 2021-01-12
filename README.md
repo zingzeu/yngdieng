@@ -3,8 +3,9 @@
 > ⚠️ 榕典尚处于开发早期阶段。你可以通过 [Issues 列表](https://github.com/MindongLab/yngdieng/issues)跟踪项目进度或参与讨论。
 
 福州话在线词典 Online Hokchew Dictionary
-
-[![Build Status](https://mindonglab.visualstudio.com/yngdieng/_apis/build/status/MindongLab.yngdieng?branchName=master)](https://mindonglab.visualstudio.com/yngdieng/_build/latest?definitionId=1&branchName=master)
+|server-releases|web-releases|miniapp|
+|--|--|--|
+|[![Build Status](https://dev.azure.com/mindonglab/yngdieng/_apis/build/status/server-releases?branchName=master)](https://dev.azure.com/mindonglab/yngdieng/_build/latest?definitionId=1&branchName=master)| [![Build Status](https://dev.azure.com/mindonglab/yngdieng/_apis/build/status/web-releases?branchName=master)](https://dev.azure.com/mindonglab/yngdieng/_build/latest?definitionId=7&branchName=master)|[![Build Status](https://dev.azure.com/mindonglab/yngdieng/_apis/build/status/miniapp?branchName=master)](https://dev.azure.com/mindonglab/yngdieng/_build/latest?definitionId=6&branchName=master)|
 
 [需求文档](https://shimo.im/docs/35c397ff76b647b1) | [UI 设计](https://www.figma.com/file/FoQGpsir7cH4GSYenYqObf/%E6%A6%95%E5%85%B8) | [开发看板](https://github.com/MindongLab/yngdieng/projects/1)
 

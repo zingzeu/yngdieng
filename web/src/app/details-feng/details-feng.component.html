@@ -1,9 +1,7 @@
-<app-common-toolbar></app-common-toolbar>
-
-<ng-container *ngIf="!hasError && !isBusy">
+<ng-container *ngIf="!hasError">
   <app-word-details-hero [model]="heroModel"></app-word-details-hero>
 
-  <div class="content">
+  <div class="content" [class.large-screen]="largeScreen$ | async">
     <app-feng-explanation [fengDoc]="fengDoc" [showTitle]="false"></app-feng-explanation>
 
     <mat-expansion-panel *ngIf="singleCharResults.length > 0">
@@ -20,7 +18,5 @@
     </mat-expansion-panel>
   </div>
 </ng-container>
-
-<p *ngIf="isBusy">加载中...</p>
 
 <p *ngIf="hasError">加载错误</p>

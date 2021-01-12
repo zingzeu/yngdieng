@@ -1,3 +1,8 @@
+.container.large-screen {
+  width: 600px;
+  margin: 0 auto;
+}
+
 .details-hero {
   background-color: #69656f;
   color: white;
@@ -16,4 +21,8 @@
     border: 1px white solid;
     padding: 2px 0.4em 2px 0.4em;
   }
+}
+
+.help-button {
+  float: right;
 }

@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
 import {LocalStorageService} from './local-storage.service';
-import {Settings} from '../protos/settings_pb';
+import {Settings} from 'yngdieng/web/src/protos/settings_pb';
 import * as jspb from 'google-protobuf';
-import {ZhConversionPreference} from '../../../shared/services_pb';
+import {ZhConversionPreference} from 'yngdieng/shared/services_pb';
 
 const SETTINGS_STORAGE_KEY = 'SETTINGS';
 

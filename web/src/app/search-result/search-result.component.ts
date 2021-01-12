@@ -2,9 +2,9 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {switchMap} from 'rxjs/operators';
-import {SearchResultRow} from '../../../../shared/services_pb';
+import {SearchResultRow} from 'yngdieng/shared/services_pb';
 
-import {AdvancedSearchQueryBuilderService} from '../advanced-search-query-builder.service';
+import {AdvancedSearchQueryBuilderService} from '../searchbox/advanced-search-query-builder.service';
 import {toMonoHanziResultViewModel} from '../common/converters';
 import {
   FengResultViewModel,

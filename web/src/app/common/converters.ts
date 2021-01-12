@@ -1,4 +1,4 @@
-import {HistoricalDocument} from '../../../../shared/documents_pb';
+import {HistoricalDocument} from 'yngdieng/shared/documents_pb';
 import {getFinalString, getInitialString, getToneString} from '../../lib/utils';
 
 import {hanziToString} from '../common/hanzi-util';
@@ -18,6 +18,6 @@ export function toMonoHanziResultViewModel(
     final: getFinalString(a.getFinal()),
     tone: getToneString(a.getTone()),
     ciklinSource: a.hasCiklinSource() ? '《戚林八音校注》' : null,
-    dfdSource: a.hasDfdSource() ? 'Dictionary of Foochow Dialect' : null,
+    dfdSource: a.hasDfdSource() ? '《榕腔注音辞典·目录》' : null,
   } as MonoHanziResultViewModel;
 }

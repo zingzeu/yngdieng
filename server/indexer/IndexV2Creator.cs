@@ -33,8 +33,6 @@ namespace Yngdieng.Indexer
 
         public int Run()
         {
-            YngpingVariantsUtil.GenerateYngpingVariants("tai33 uang55");
-            Console.WriteLine("tai33 uang55".Split(' ').Length);
             Console.WriteLine($"Input: {Path.GetFullPath(inputFolder)}");
             Console.WriteLine($"Output: {Path.GetFullPath(outputFolder)}");
             var index = new YngdiengIndex();

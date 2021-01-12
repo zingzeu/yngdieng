@@ -55,9 +55,9 @@ namespace Yngdieng.Indexer.Processing
                     tmp.Sources.Add(new YngdiengDocument.Types.Source { Feng = fengMatch });
                 }
 
-                var contribMatch =
-                    pendingContrib.SingleOrDefault(c => c.ZingzeuId == zingzeuId);
-                if (contribMatch != null)
+                var contribMatches =
+                    pendingContrib.Where(c => c.ZingzeuId == zingzeuId).ToList();
+                foreach (var contribMatch in contribMatches)
                 {
                     pendingContrib.Remove(contribMatch);
                     tmp.Sources.Add(new YngdiengDocument.Types.Source { Contrib = contribMatch });
@@ -217,7 +217,7 @@ namespace Yngdieng.Indexer.Processing
                     switch (s.SourceCase)
                     {
                         case SourceOneofCase.CiklinDfd:
-                            return new string[] { s.CiklinDfd.Yngping };
+                            return new string[] { s.CiklinDfd.YngpingModern };
                         case SourceOneofCase.Feng:
                             return s.Feng.YngpingPermutations.ToArray();
                         case SourceOneofCase.Contrib:

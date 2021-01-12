@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
-import {Word} from '../../../../yngdieng/admin/v1/resources_pb';
+import {Word} from 'yngdieng/yngdieng/admin/v1/resources_pb';
 import {FormControl} from '@angular/forms';
 
 @Component({

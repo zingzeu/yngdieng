@@ -3,9 +3,9 @@ import {Observable, Subject} from 'rxjs';
 
 @Injectable({providedIn: 'root'})
 export class AdvancedSearchQueryBuilderService {
-  private selectedInitialSource = new Subject<string|null>();
-  private selectedFinalSource = new Subject<string|null>();
-  private selectedToneSource = new Subject<string|null>();
+  private selectedInitialSource = new Subject<string | null>();
+  private selectedFinalSource = new Subject<string | null>();
+  private selectedToneSource = new Subject<string | null>();
 
   selectedInitial$ = this.selectedInitialSource.asObservable();
   selectedFinal$ = this.selectedFinalSource.asObservable();
@@ -14,7 +14,7 @@ export class AdvancedSearchQueryBuilderService {
   constructor() {}
 
   selectInitial(i: string) {
-    this.selectedInitialSource.next(i)
+    this.selectedInitialSource.next(i);
   }
 
   clearInitial() {

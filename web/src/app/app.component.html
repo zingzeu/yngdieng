@@ -1,5 +1,11 @@
 <mat-sidenav-container class="fullscreen-container">
-  <mat-sidenav mode="over" hasBackdrop="true" [(opened)]="sideNavOpened" class="no-select"><app-sidenav-content></app-sidenav-content></mat-sidenav>
-  <mat-sidenav-content><router-outlet></router-outlet></mat-sidenav-content>
+  <mat-sidenav mode="over" hasBackdrop="true" position="end" [(opened)]="sideNavOpened" class="no-select">
+    <app-sidenav-content></app-sidenav-content>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <mat-progress-bar mode="indeterminate" *ngIf="isBusy"></mat-progress-bar>
+    <app-common-toolbar></app-common-toolbar>
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
 </mat-sidenav-container>
 <div class="env-tag" *ngIf="showEnvTag">{{envName}}</div>

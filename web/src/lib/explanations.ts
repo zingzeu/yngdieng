@@ -1,4 +1,4 @@
-import {Explanation} from '../../../shared/zingzeudata/explanation_pb';
+import {Explanation} from 'yngdieng/shared/zingzeudata/explanation_pb';
 
 export function renderExplanation(
   e: Explanation,

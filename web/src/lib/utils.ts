@@ -1,4 +1,4 @@
-import {Final, Initial, Tone} from '../../../shared/phonology_pb';
+import {Final, Initial, Tone} from 'yngdieng/shared/phonology_pb';
 
 const INITIAL_TO_HANZI_MAPPING = {
   [Initial.L]: '柳',

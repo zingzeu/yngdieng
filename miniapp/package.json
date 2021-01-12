@@ -1,6 +1,6 @@
 {
   "name": "yngdieng",
-  "version": "1.5.0",
+  "version": "1.5.1",
   "private": true,
   "description": "",
   "templateInfo": {
@@ -38,12 +38,12 @@
   "license": "MIT",
   "dependencies": {
     "@babel/runtime": "7.12.5",
-    "@tarojs/components": "3.0.16",
-    "@tarojs/react": "3.0.16",
-    "@tarojs/runtime": "3.0.15",
-    "@tarojs/taro": "3.0.16",
+    "@tarojs/components": "3.0.23",
+    "@tarojs/react": "3.0.23",
+    "@tarojs/runtime": "3.0.23",
+    "@tarojs/taro": "3.0.23",
     "clsx": "1.1.1",
-    "immer": "7.0.14",
+    "immer": "7.0.15",
     "lodash": "4.17.20",
     "react": "17.0.1",
     "react-dom": "17.0.1",
@@ -51,24 +51,24 @@
     "redux": "4.0.5",
     "redux-logger": "3.0.6",
     "redux-thunk": "2.3.0",
-    "taro-ui": "3.0.0-alpha.3"
+    "taro-ui": "3.0.0-alpha.9"
   },
   "devDependencies": {
-    "@babel/core": "7.12.3",
-    "@tarojs/mini-runner": "3.0.16",
-    "@tarojs/webpack-runner": "3.0.16",
-    "@types/react": "16.9.56",
-    "@types/webpack-env": "1.15.3",
-    "@typescript-eslint/eslint-plugin": "4.7.0",
-    "@typescript-eslint/parser": "4.7.0",
-    "babel-preset-taro": "3.0.16",
-    "eslint": "7.13.0",
-    "eslint-config-taro": "3.0.16",
+    "@babel/core": "7.12.10",
+    "@tarojs/mini-runner": "3.0.23",
+    "@tarojs/webpack-runner": "3.0.23",
+    "@types/react": "16.14.2",
+    "@types/webpack-env": "1.16.0",
+    "@typescript-eslint/eslint-plugin": "4.12.0",
+    "@typescript-eslint/parser": "4.12.0",
+    "babel-preset-taro": "3.0.23",
+    "eslint": "7.17.0",
+    "eslint-config-taro": "3.0.23",
     "eslint-plugin-import": "2.22.1",
-    "eslint-plugin-react": "7.21.5",
+    "eslint-plugin-react": "7.22.0",
     "eslint-plugin-react-hooks": "4.2.0",
-    "miniprogram-ci": "1.0.93",
-    "stylelint": "13.7.2",
-    "typescript": "4.0.5"
+    "miniprogram-ci": "1.0.94",
+    "stylelint": "13.8.0",
+    "typescript": "4.1.3"
   }
 }

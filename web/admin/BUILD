@@ -35,7 +35,7 @@ ng_module(
         "main.dev.ts",
         "main.prod.ts",
     ],
-    tsconfig = "//web/src:tsconfig.json",
+    tsconfig = "//:tsconfig.json",
     deps = [
         "//web/admin/app",
         "@npm//@angular/core",
@@ -91,6 +91,7 @@ rollup_bundle(
     entry_points = {
         ":main.prod.ts": "index",
     },
+    link_workspace_root = True,
     output_dir = True,
     deps = [
         ":src",

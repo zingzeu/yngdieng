@@ -4,23 +4,23 @@
     <p class="version-code">0.0.0-PLACEHOLDER</p>
   </div>
   <mat-nav-list>
-    <mat-list-item (click)="onHomeClicked()">
+    <mat-list-item [routerLink]="'/'">
       <mat-icon matListIcon>home</mat-icon>
       <h3 matLine>首页</h3>
     </mat-list-item>
-    <mat-list-item (click)="onSearch2Clicked()" *ngIf="showSearchV2">
+    <mat-list-item [routerLink]="'/search2/huziu'" *ngIf="showSearchV2">
       <mat-icon matListIcon>search</mat-icon>
       <h3 matLine>搜索</h3>
     </mat-list-item>
-    <mat-list-item (click)="onSearchClicked()">
+    <mat-list-item [routerLink]="'/advancedSearch'">
       <mat-icon matListIcon>search</mat-icon>
       <h3 matLine>八音检索</h3>
     </mat-list-item>
-    <mat-list-item (click)="onSettingsClicked()" *ngIf="showSettings">
+    <mat-list-item [routerLink]="'/settings'" *ngIf="showSettings">
       <mat-icon matListIcon>settings</mat-icon>
       <h3 matLine>设置</h3>
     </mat-list-item>
-    <mat-list-item (click)="onHelpClicked()">
+    <mat-list-item [routerLink]="'/help'">
       <mat-icon matListIcon>help</mat-icon>
       <h3 matLine>帮助</h3>
     </mat-list-item>
@@ -28,7 +28,7 @@
       <mat-icon matListIcon>feedback </mat-icon>
       <h3 matLine>意见反馈</h3>
     </mat-list-item>
-    <mat-list-item (click)="onAboutClicked()">
+    <mat-list-item [routerLink]="'/about'">
       <mat-icon matListIcon>sentiment_satisfied_alt</mat-icon>
       <h3 matLine>关于</h3>
     </mat-list-item>

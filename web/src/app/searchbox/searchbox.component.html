@@ -1,7 +1,6 @@
-<mat-toolbar class="mat-elevation-z4 no-select" color="primary">
-    <mat-icon (click)="onBackClicked()">keyboard_arrow_left</mat-icon>
+<div class="no-select searchbox">
     <app-phonology-query-renderer
-    class="phonology-query-input fill-remaining-space"
+    class="phonology-query-input"
       *ngIf="showingPhonologyQuery"
       [initial]="initial"
       [final]="final"
@@ -12,10 +11,12 @@
     ></app-phonology-query-renderer>
     <form
       *ngIf="!showingPhonologyQuery"
-      class="text-query-input fill-remaining-space"
+      class="text-query-input"
       [formGroup]="searchForm"
       (ngSubmit)="onSubmit()">
       <input class="unihan-text" placeholder="查" formControlName="textQuery"/>
     </form>
-    <mat-icon class="search-icon" (click)="onSearch()">search</mat-icon>
-</mat-toolbar>
+    <span class="search-button" matRipple>
+      <mat-icon class="search-icon" (click)="onSearch()">search</mat-icon>
+    </span>
+</div>

@@ -1,5 +1,5 @@
 import {Component, OnInit, Input} from '@angular/core';
-import {HistoricalDocument} from '../../../../shared/documents_pb';
+import {HistoricalDocument} from 'yngdieng/shared/documents_pb';
 import {hanziToString} from '../common/hanzi-util';
 import {getInitialString, getToneString, getFinalString} from '../../lib/utils';
 
@@ -32,7 +32,7 @@ export class HistoricalDetailsComponent implements OnInit {
       tmp.push('戚林八音校注');
     }
     if (this.doc.hasDfdSource()) {
-      tmp.push('Dictionary of Foochow Dialect');
+      tmp.push('榕腔注音辞典·目录');
     }
     return tmp.join(', ');
   }

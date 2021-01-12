@@ -4,7 +4,7 @@ import {
   FengDocument,
   HistoricalDocument,
   YngdiengDocument,
-} from '../../../shared/documents_pb';
+} from 'yngdieng/shared/documents_pb';
 import {
   DebugInfo,
   GetAggregatedDocumentRequest,
@@ -16,10 +16,9 @@ import {
   SearchV2Request,
   SearchV2Response,
   SimplifyTextRequest,
-  ZhConversionPreference,
   UserPreference,
-} from '../../../shared/services_pb';
-import {YngdiengServiceClient} from '../../../shared/services_grpc_web_pb';
+} from 'yngdieng/shared/services_pb';
+import {YngdiengServiceClient} from 'yngdieng/shared/services_grpc_web_pb';
 
 import {
   IYngdiengEnvironment,
@@ -49,8 +48,8 @@ export class YngdiengBackendService {
         subject.error(err);
         return;
       }
-
       subject.next(response);
+      subject.complete();
     });
 
     return subject.asObservable();
@@ -72,8 +71,8 @@ export class YngdiengBackendService {
           subject.error(err);
           return;
         }
-
         subject.next(response);
+        subject.complete();
       }
     );
 
@@ -101,6 +100,7 @@ export class YngdiengBackendService {
         return;
       }
       subject.next(response);
+      subject.complete();
     });
     return subject.asObservable();
   }
@@ -115,6 +115,7 @@ export class YngdiengBackendService {
         return;
       }
       subject.next(response);
+      subject.complete();
     });
     return subject.asObservable();
   }
@@ -133,6 +134,7 @@ export class YngdiengBackendService {
         }
 
         subject.next(response);
+        subject.complete();
       }
     );
 
@@ -150,6 +152,7 @@ export class YngdiengBackendService {
           return;
         }
         subject.next(response);
+        subject.complete();
       }
     );
 
@@ -166,6 +169,7 @@ export class YngdiengBackendService {
         return;
       }
       subject.next(response.getConvertedText());
+      subject.complete();
     });
 
     return subject.asObservable();

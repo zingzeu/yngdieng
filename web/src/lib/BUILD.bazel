@@ -7,6 +7,7 @@ ts_library(
         "explanations.ts",
         "utils.ts",
     ],
+    module_name = "@yngdieng-shared-lib",
     visibility = ["//visibility:public"],
     deps = [
         "//shared:documents_ts_proto",
