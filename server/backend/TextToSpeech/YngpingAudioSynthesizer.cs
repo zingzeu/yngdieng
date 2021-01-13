@@ -50,9 +50,6 @@ namespace Yngdieng.Backend.TextToSpeech
             {
 
                 byte[] sample = new byte[2];
-
-                ushort max = 0;
-                bool starting = true, ending = false;
                 int startBytes = 0, endBytes = 0, startPos = 0, endPos = 0;
                 foreach (string inputPath in inputList)
                 {
@@ -65,43 +62,33 @@ namespace Yngdieng.Backend.TextToSpeech
                                 String.Format("bytesPerSample is assumed to be 2 but in {0} it is {1}",
                                 inputPath, reader.bytesPerSampe));
                         }
-                        int dataLength = reader.dataChunkLength;
+                        int dataLength = reader.Length;
                         byte[] buffer = new byte[dataLength];
                         int bytesRead = reader.Read(buffer, 0, dataLength);
                         bool allZero = true;
-                        for (int i = 0; i + 2 <= bytesRead; i += 2)
+                        int threshold = 0;
+                        for (int i = 0; i + 2 <= dataLength; i += 2)
                         {
                             sample[0] = buffer[i];
                             sample[1] = buffer[i + 1];
                             ushort val = BitConverter.ToUInt16(sample);
-                            if (val > 0) allZero = false;
-                            if (allZero && starting)
+                            if (val > threshold)
                             {
-                                startBytes += bytesRead;
-                            }
-                            else if (!allZero && starting)
-                            {
-                                starting = false;
-                            }
-                            else if (allZero && !starting)
-                            {
-                                if (!ending)
-                                {
-                                    ending = true;
-                                }
-                                else
-                                {
-                                    endBytes += bytesRead;
-                                }
-                            }
-                            else if (!allZero && ending)
-                            {
-                                ending = false;
-                                endBytes = 0;
+                                startBytes = i;
+                                break;
                             }
                         }
-
-
+                        for (int i = dataLength - 2; i >= 0; i -= 2)
+                        {
+                            sample[0] = buffer[i];
+                            sample[1] = buffer[i + 1];
+                            ushort val = BitConverter.ToUInt16(sample);
+                            if (val > threshold)
+                            {
+                                endBytes = i;
+                                break;
+                            }
+                        }
                         startPos = startBytes - startBytes % reader.WaveFormat.BlockAlign;
                         endPos = (int)reader.Length - (endBytes - endBytes % reader.WaveFormat.BlockAlign);
                         if (endPos - startPos < minLenMs)
@@ -128,7 +115,6 @@ namespace Yngdieng.Backend.TextToSpeech
             byte[] writeBuffer = new byte[1024];
             while (reader.Position < endPos)
             {
-
                 int bytesRequired = (int)(endPos - reader.Position);
                 if (bytesRequired > 0)
                 {
