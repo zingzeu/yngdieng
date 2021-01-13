@@ -58,8 +58,8 @@ namespace Yngdieng.Backend.TextToSpeech
                 {
                     using (WaveFileReader reader = new WaveFileReader(inputPath))
                     {
-                        // int bytesPerSample = reader.WaveFormat.BitsPerSample / 8;
-                        if (reader.bytesPerSampe != 2)
+                        int bytesPerSample = reader.WaveFormat.BitsPerSample / 8;
+                        if (reader.bytesPerSample != 2)
                         {
                             throw new InvalidOperationException(
                                 String.Format("bytesPerSample is assumed to be 2 but in {0} it is {1}",
@@ -67,7 +67,6 @@ namespace Yngdieng.Backend.TextToSpeech
                         }
                         int dataLength = reader.dataChunkLength;
                         byte[] buffer = new byte[dataLength];
-                        // int bytesPerMillisecond = reader.WaveFormat.AverageBytesPerSecond / 1000;
                         int bytesRead = reader.Read(buffer, 0, dataLength);
                         bool allZero = true;
                         for (int i = 0; i + 2 <= bytesRead; i += 2)
