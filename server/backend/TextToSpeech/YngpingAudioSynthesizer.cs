@@ -43,8 +43,6 @@ namespace Yngdieng.Backend.TextToSpeech
             {
                 inputFormat = reader.WaveFormat;
             }
-
-
             using (MemoryStream outStream = new MemoryStream())
             using (WaveFileWriter writer = new WaveFileWriter(outStream, inputFormat))
             {
@@ -55,7 +53,6 @@ namespace Yngdieng.Backend.TextToSpeech
                 {
                     using (WaveFileReader reader = new WaveFileReader(inputPath))
                     {
-                        // WaveFormat wf = reader.WaveFormat;
                         long bytesPerSample = reader.WaveFormat.BitsPerSample / 8;
                         int bytesPerMillisecond = reader.WaveFormat.AverageBytesPerSecond / 1000;
                         if (bytesPerSample != 2)
@@ -91,8 +88,6 @@ namespace Yngdieng.Backend.TextToSpeech
                                 break;
                             }
                         }
-                        // Console.WriteLine("[startBytes]:   " + startBytes);
-                        // Console.WriteLine("[endBytes]:   " + endBytes);
                         startPos = startBytes - startBytes % reader.WaveFormat.BlockAlign;
                         endPos = (int)reader.Length - (endBytes - endBytes % reader.WaveFormat.BlockAlign);
                         if (endPos - startPos < minLenMs * bytesPerMillisecond)
@@ -103,12 +98,9 @@ namespace Yngdieng.Backend.TextToSpeech
                         {
                             endPos = startPos + maxLenMs * bytesPerMillisecond;
                         }
-                        Console.WriteLine("[startPos]:   " + startPos);
-                        Console.WriteLine("[endPos]:   " + endPos);
                         TrimWavFile(reader, writer, startPos, endPos);
                     }
                 }
-                Console.WriteLine(outStream.ToArray().Length);
                 return outStream.ToArray();
             }
         }
