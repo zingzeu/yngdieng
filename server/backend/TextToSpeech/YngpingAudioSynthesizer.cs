@@ -33,93 +33,76 @@ namespace Yngdieng.Backend.TextToSpeech
             var audioFiles =
                 audioCodes.Select(code => Path.Combine(this.ttsAudioFolder, code + ".wav"))
                     .ToArray();
-            return TrimSilence(audioFiles);
+            return TrimAudio(audioFiles);
         }
 
-        private static byte[] TrimSilence(string[] inputList, int msReserved = 0)
+        private static byte[] TrimAudio(string[] inputList, int minLenMs = 700, int maxLenMs = 900)
         {
             WaveFormat inputFormat;
             using (WaveFileReader reader = new WaveFileReader(inputList[0]))
             {
                 inputFormat = reader.WaveFormat;
             }
-
-            MemoryStream outStream = new MemoryStream();
+            using (MemoryStream outStream = new MemoryStream())
             using (WaveFileWriter writer = new WaveFileWriter(outStream, inputFormat))
             {
-                byte[] buffer = new byte[1024];
-                byte[] sample = new byte[2];
 
-                ushort max = 0;
-                bool starting = true, ending = false;
+                byte[] sample = new byte[2];
                 int startBytes = 0, endBytes = 0, startPos = 0, endPos = 0;
                 foreach (string inputPath in inputList)
                 {
-
                     using (WaveFileReader reader = new WaveFileReader(inputPath))
                     {
-                        // int bytesPerSample = reader.WaveFormat.BitsPerSample / 8;
-                        // Assuming bytesPerSample == 2
+                        long bytesPerSample = reader.WaveFormat.BitsPerSample / 8;
                         int bytesPerMillisecond = reader.WaveFormat.AverageBytesPerSecond / 1000;
-
-                        int bytesRead = reader.Read(buffer, 0, bytesPerMillisecond);
-                        while (bytesRead > 0)
+                        if (bytesPerSample != 2)
                         {
-                            max = 0;
-                            for (int i = 0; i + 2 <= bytesRead; i += 2)
-                            {
-                                sample[0] = buffer[i];
-                                sample[1] = buffer[i + 1];
-                                ushort val = BitConverter.ToUInt16(sample);
-                                max = val > max ? val : max;
-                            }
-                            int threashold = 0;
-                            if (max <= threashold && starting)
-                            {
-                                startBytes += bytesRead;
-                            }
-                            else if (max > threashold && starting)
-                            {
-                                starting = false;
-                            }
-                            else if (max <= threashold && !starting)
-                            {
-                                if (!ending)
-                                {
-                                    ending = true;
-                                }
-                                else
-                                {
-                                    endBytes += bytesRead;
-                                }
-                            }
-                            else if (max > threashold && ending)
-                            {
-                                ending = false;
-                                endBytes = 0;
-                            }
-                            bytesRead = reader.Read(buffer, 0, bytesPerMillisecond);
+                            throw new InvalidOperationException(
+                                String.Format("bytesPerSample is assumed to be 2 but in {0} it is {1}",
+                                inputPath, bytesPerSample));
                         }
-                        startPos = 0;
-                        endPos = (int)reader.Length;
-                        if (startBytes > msReserved * bytesPerMillisecond)
+                        long dataLength = reader.Length;
+                        byte[] buffer = new byte[dataLength];
+                        int bytesRead = reader.Read(buffer, 0, (int)dataLength);
+                        bool allZero = true;
+                        int threshold = 0;
+                        for (int i = 0; i + 2 <= dataLength; i += 2)
                         {
-                            startPos = startBytes - msReserved * bytesPerMillisecond;
-                            startPos -= startPos % reader.WaveFormat.BlockAlign;
-                            ;
+                            sample[0] = buffer[i];
+                            sample[1] = buffer[i + 1];
+                            ushort val = BitConverter.ToUInt16(sample);
+                            if (val > threshold)
+                            {
+                                startBytes = i;
+                                break;
+                            }
                         }
-                        if (endBytes > msReserved * bytesPerMillisecond)
+                        for (int i = (int)dataLength - 2; i >= 0; i -= 2)
                         {
-                            endBytes = endBytes - msReserved * bytesPerMillisecond;
-                            endBytes -= endBytes % reader.WaveFormat.BlockAlign;
-                            endPos = (int)reader.Length - endBytes;
+                            sample[0] = buffer[i];
+                            sample[1] = buffer[i + 1];
+                            ushort val = BitConverter.ToUInt16(sample);
+                            if (val > threshold)
+                            {
+                                endBytes = i;
+                                break;
+                            }
                         }
-
+                        startPos = startBytes - startBytes % reader.WaveFormat.BlockAlign;
+                        endPos = (int)reader.Length - (endBytes - endBytes % reader.WaveFormat.BlockAlign);
+                        if (endPos - startPos < minLenMs * bytesPerMillisecond)
+                        {
+                            endPos = startPos + minLenMs * bytesPerMillisecond;
+                        }
+                        else if (endPos - startPos > maxLenMs * bytesPerMillisecond)
+                        {
+                            endPos = startPos + maxLenMs * bytesPerMillisecond;
+                        }
                         TrimWavFile(reader, writer, startPos, endPos);
                     }
                 }
+                return outStream.ToArray();
             }
-            return outStream.ToArray();
         }
 
         private static void TrimWavFile(WaveFileReader reader,
@@ -131,7 +114,6 @@ namespace Yngdieng.Backend.TextToSpeech
             byte[] writeBuffer = new byte[1024];
             while (reader.Position < endPos)
             {
-
                 int bytesRequired = (int)(endPos - reader.Position);
                 if (bytesRequired > 0)
                 {
