@@ -115,7 +115,9 @@ const WordDetail = () => {
           {wordDetail.pronunciations?.map(p => (
             <View className={styles.rimeContainer}>
               <View className={styles.rimePosition}>{p.display_name}</View>
-              <View>{p.pronunciation}</View>
+              <View>
+                <Text selectable>{p.pronunciation}</Text>
+              </View>
               {p.audio && (
                 <AudioPlay audioFileId={p.audio.remote_urls.remote_urls[0]} />
               )}
