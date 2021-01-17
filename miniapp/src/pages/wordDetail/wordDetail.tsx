@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import clsx from 'clsx';
 import Taro, {useRouter, useShareAppMessage} from '@tarojs/taro';
-import {View, Block, Image, RichText} from '@tarojs/components';
+import {View, Text, RichText} from '@tarojs/components';
 import {AtIcon, AtTabs, AtTabsPane, AtFloatLayout} from 'taro-ui';
 import routes from '@/routes';
 import Header from '@/pages/header/header';
@@ -11,6 +11,7 @@ import {fetchWord} from '@/store/actions/dictionary';
 import PhonologyTab from './phonology-tab/phonology-tab';
 import styles from './wordDetail.module.scss';
 import {renderRichTextNode} from './rich-text';
+
 interface Feng {
   explanation: string;
   hanzi_canonical: string;
@@ -102,7 +103,9 @@ const WordDetail = () => {
       <Header />
       <View className={styles.topBar}>
         <View className="at-row at-row__justify--between">
-          <View className={styles.word}>{wordDetail.hanzi}</View>
+          <View className={styles.word}>
+            <Text selectable>{wordDetail.hanzi}</Text>
+          </View>
           <View className={styles.actionPanel}>
             <AtIcon value="help"></AtIcon>
             <AtIcon value="bookmark"></AtIcon>
