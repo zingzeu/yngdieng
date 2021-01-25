@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import clsx from 'clsx';
 import Taro, {useRouter, useShareAppMessage} from '@tarojs/taro';
-import {View, Text, RichText} from '@tarojs/components';
+import {View, RichText} from '@tarojs/components';
 import {AtIcon, AtTabs, AtTabsPane, AtFloatLayout} from 'taro-ui';
 import routes from '@/routes';
 import Header from '@/pages/header/header';
@@ -104,7 +104,7 @@ const WordDetail = () => {
       <View className={styles.topBar}>
         <View className="at-row at-row__justify--between">
           <View className={styles.word}>
-            <Text selectable>{wordDetail.hanzi}</Text>
+            <selectable-text t={wordDetail.hanzi} />
           </View>
           <View className={styles.actionPanel}>
             <AtIcon value="help"></AtIcon>
@@ -116,7 +116,7 @@ const WordDetail = () => {
             <View className={styles.rimeContainer}>
               <View className={styles.rimePosition}>{p.display_name}</View>
               <View>
-                <Text selectable>{p.pronunciation}</Text>
+                <selectable-text t={p.pronunciation} />
               </View>
               {p.audio && (
                 <AudioPlay audioFileId={p.audio.remote_urls.remote_urls[0]} />
