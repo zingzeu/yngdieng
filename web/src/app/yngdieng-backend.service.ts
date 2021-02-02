@@ -35,6 +35,7 @@ export class YngdiengBackendService {
     private userSettings: UserSettingsService
   ) {
     this.grpcClient = new YngdiengServiceClient(this.environment.serverUrl);
+    this.frontendClient = new YngdiengServiceClient(this.environment.serverUrl);
   }
 
   search(queryText: string, offset: number = 0): Observable<SearchResponse> {
