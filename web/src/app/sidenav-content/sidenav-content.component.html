@@ -8,13 +8,13 @@
       <mat-icon matListIcon>home</mat-icon>
       <h3 matLine>首页</h3>
     </mat-list-item>
-    <mat-list-item [routerLink]="'/search2/huziu'" *ngIf="showSearchV2">
-      <mat-icon matListIcon>search</mat-icon>
-      <h3 matLine>搜索</h3>
-    </mat-list-item>
     <mat-list-item [routerLink]="'/advancedSearch'">
       <mat-icon matListIcon>search</mat-icon>
       <h3 matLine>八音检索</h3>
+    </mat-list-item>
+    <mat-list-item [routerLink]="'/search-legacy/huziu'">
+      <mat-icon matListIcon>search</mat-icon>
+      <h3 matLine>旧版搜索</h3>
     </mat-list-item>
     <mat-list-item [routerLink]="'/settings'" *ngIf="showSettings">
       <mat-icon matListIcon>settings</mat-icon>

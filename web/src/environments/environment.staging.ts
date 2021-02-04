@@ -12,6 +12,5 @@ export const YngdiengStagingEnvironment: IYngdiengEnvironment = {
     showDebugToggle: true,
   },
   showAudioPlayerButtons: true,
-  showSearchV2InMenu: true,
   showSettingsInMenu: true,
 };
