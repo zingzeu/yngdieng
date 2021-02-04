@@ -15,6 +15,7 @@ import {AboutComponent} from './about/about.component';
 import {SettingsComponent} from './settings/settings.component';
 import {FengResolverService} from './details-feng/feng-resolver.service';
 import {WordDetailsResolverService} from './word-details/word-details-resolver.service';
+import {WordlistDemoComponent} from './wordlist-demo/wordlist-demo.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -40,6 +41,7 @@ const routes: Routes = [
   {path: 'char/:id', component: DetailsMonoHanziComponent},
   {path: 'tools/simplify', component: SimplificationToolComponent},
   {path: '_debug', component: DebugInfoComponent},
+  {path: 'wordlist-demo', component: WordlistDemoComponent},
   {path: '**', component: HomeComponent},
 ];
 

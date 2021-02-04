@@ -46,6 +46,7 @@ import {AboutComponent} from './about/about.component';
 import {PlatformModule} from '@angular/cdk/platform';
 import {SettingsComponent} from './settings/settings.component';
 import {AudioAckDialogComponent} from './audio-ack-dialog/audio-ack-dialog.component';
+import {WordlistDemoComponent} from './wordlist-demo/wordlist-demo.component';
 
 @NgModule({
   declarations: [
@@ -82,6 +83,7 @@ import {AudioAckDialogComponent} from './audio-ack-dialog/audio-ack-dialog.compo
     WordCardComponent,
     WordDetailsComponent,
     WordDetailsHeroComponent,
+    WordlistDemoComponent,
     YngpingHelpDialogComponent,
   ],
   imports: [
