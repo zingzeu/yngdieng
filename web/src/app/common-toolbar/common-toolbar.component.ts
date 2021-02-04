@@ -36,7 +36,7 @@ export class CommonToolbarComponent implements OnInit, OnDestroy {
           const firstPathComponent = _event.snapshot.url[0].path;
           if (
             firstPathComponent == 'search' ||
-            firstPathComponent == 'search2'
+            firstPathComponent == 'search-legacy'
           ) {
             this.queryText = _event.snapshot.paramMap.get('query');
           } else {
@@ -56,8 +56,8 @@ export class CommonToolbarComponent implements OnInit, OnDestroy {
 
   onPerformSearch(queryText) {
     const currentPath = this.location.path();
-    if (currentPath.startsWith('/search2/')) {
-      this.redirectTo(['/search2/', queryText]);
+    if (currentPath.startsWith('/search-legacy/')) {
+      this.redirectTo(['/search-legacy/', queryText]);
     } else {
       this.redirectTo(['/search/', queryText]);
     }
