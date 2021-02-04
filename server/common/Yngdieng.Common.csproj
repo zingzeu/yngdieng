@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="ZingzeuData.Shared" Version="1.3.5" />
+    <PackageReference Include="ZingzeuData.Shared" Version="1.4.1" />
   </ItemGroup>
   <!--
     Workaround for conflicting types ZingzeuData.Models.Explanation in both
