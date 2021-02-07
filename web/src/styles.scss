@@ -174,3 +174,12 @@ body {
 }
 
 // END word details
+
+// trivial hack for the spacing
+// between hanzi and alphabetical letters
+span.space {
+  white-space: pre-wrap;
+  display: inline;
+  visibility: hidden;
+  font: 0.89em Arial;
+}
