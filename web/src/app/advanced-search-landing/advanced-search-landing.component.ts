@@ -16,7 +16,7 @@ export class AdvancedSearchLandingComponent implements OnInit {
   }
 
   onPerformSearch(searchText: string) {
-    this.redirectTo(['/search', searchText])
+    this.redirectTo(['/search-legacy', searchText])
   }
 
   private redirectTo(commands: any[]) {
