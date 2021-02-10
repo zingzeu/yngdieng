@@ -8,6 +8,7 @@ import {
 } from '@angular/core';
 import {FormBuilder} from '@angular/forms';
 import {Subscription} from 'rxjs';
+import {PerformSearchEvent} from '../common-toolbar/perform-search-event';
 
 import {AdvancedSearchQueryBuilderService} from './advanced-search-query-builder.service';
 
@@ -17,7 +18,7 @@ import {AdvancedSearchQueryBuilderService} from './advanced-search-query-builder
   styleUrls: ['./searchbox.component.scss'],
 })
 export class SearchboxComponent implements OnInit, OnDestroy {
-  @Output() performSearch = new EventEmitter<string>();
+  @Output() performSearch = new EventEmitter<PerformSearchEvent>();
 
   searchForm;
 
@@ -91,7 +92,7 @@ export class SearchboxComponent implements OnInit, OnDestroy {
 
   private textSearch() {
     let textQuery = this.searchForm.controls.textQuery.value;
-    this.performSearch.emit(textQuery);
+    this.performSearch.emit({queryText: textQuery, isBeikIn: false});
   }
 
   private phonologySearch() {
@@ -99,6 +100,6 @@ export class SearchboxComponent implements OnInit, OnDestroy {
       (this.initial ? 'i:' + this.initial : '') +
       (this.final ? ' f:' + this.final : '') +
       (this.tone ? ' t:' + this.tone : '');
-    this.performSearch.emit(queryString);
+    this.performSearch.emit({queryText: queryString, isBeikIn: true});
   }
 }
