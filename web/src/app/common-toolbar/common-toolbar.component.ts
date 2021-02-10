@@ -4,6 +4,7 @@ import {Location} from '@angular/common';
 import {SidenavStateService} from '../sidenav-state.service';
 import {Subscription} from 'rxjs';
 import {filter} from 'rxjs/operators';
+import {PerformSearchEvent} from './perform-search-event';
 
 @Component({
   selector: 'app-common-toolbar',
@@ -54,12 +55,12 @@ export class CommonToolbarComponent implements OnInit, OnDestroy {
     this.sideNav.openSideNav();
   }
 
-  onPerformSearch(queryText) {
+  onPerformSearch(event: PerformSearchEvent) {
     const currentPath = this.location.path();
-    if (currentPath.startsWith('/search-legacy/')) {
-      this.redirectTo(['/search-legacy/', queryText]);
+    if (currentPath.startsWith('/search-legacy/') || event.isBeikIn) {
+      this.redirectTo(['/search-legacy/', event.queryText]);
     } else {
-      this.redirectTo(['/search/', queryText]);
+      this.redirectTo(['/search/', event.queryText]);
     }
   }
 
