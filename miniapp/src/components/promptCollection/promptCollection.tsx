@@ -5,6 +5,8 @@ import {View, Image} from '@tarojs/components';
 
 import styles from './promptCollection.module.scss';
 
+let havePrompted = Taro.getStorageSync('haveCollectionPrompted');
+
 const PromptCollection = () => {
   const [shouldShow, toggleShow] = useState(false);
 
@@ -13,11 +15,10 @@ const PromptCollection = () => {
   };
 
   useDidShow(() => {
-    const havePrompted = Taro.getStorageSync('haveCollectionPrompted');
-    if (!havePrompted) {
-      Taro.setStorageSync('haveCollectionPrompted', true);
-      toggleShow(true);
-    }
+    if (havePrompted) return;
+    Taro.setStorageSync('haveCollectionPrompted', true);
+    toggleShow(true);
+    havePrompted = true;
   });
   return shouldShow ? (
     <View
