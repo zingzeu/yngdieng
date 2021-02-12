@@ -7,6 +7,7 @@ import routes from '@/routes';
 import Header from '@/pages/header/header';
 import WordCard from '@/components/wordCard/wordCard';
 import AudioPlay from '@/components/audioPlay/audioPlay';
+import PromptCollection from '@/components/promptCollection/promptCollection';
 import {fetchWord} from '@/store/actions/dictionary';
 import PhonologyTab from './phonology-tab/phonology-tab';
 import styles from './wordDetail.module.scss';
@@ -102,13 +103,13 @@ const WordDetail = () => {
     <View>
       <Header />
       <View className={styles.topBar}>
-        <View className="at-row at-row__justify--between">
+        <View className='at-row at-row__justify--between'>
           <View className={styles.word}>
             <selectable-text t={wordDetail.hanzi} />
           </View>
           <View className={styles.actionPanel}>
-            <AtIcon value="help"></AtIcon>
-            <AtIcon value="bookmark"></AtIcon>
+            <AtIcon value='help'></AtIcon>
+            <AtIcon value='bookmark'></AtIcon>
           </View>
         </View>
         <View>
@@ -166,7 +167,7 @@ const WordDetail = () => {
                 <WordCard
                   title={<View className={styles.title}>{wordList.title}</View>}
                   description={wordList.description}
-                  actions={<AtIcon value="heart"></AtIcon>}
+                  actions={<AtIcon value='heart'></AtIcon>}
                   onClick={() =>
                     Taro.navigateTo({
                       url: `${routes.COLLECTION_DETAIL}?id=${wordList.name}`,
@@ -190,11 +191,12 @@ const WordDetail = () => {
       </View>
       <AtFloatLayout
         isOpened={!!storyToShow}
-        title="故事全文"
+        title='故事全文'
         onClose={() => setStoryToShow('')}
       >
         {storyToShow}
       </AtFloatLayout>
+      <PromptCollection />
     </View>
   );
 };

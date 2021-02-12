@@ -5,6 +5,7 @@ import {AtIcon} from 'taro-ui';
 import Header from '@/pages/header/header';
 import routes from '@/routes';
 import logoURL from '@/assets/logo.png';
+import PromptCollection from '@/components/promptCollection/promptCollection';
 import styles from './index.module.scss';
 
 const handleRouterParams = () => {
@@ -54,24 +55,25 @@ const Index = () => {
       <View className={styles.banner}>
         <View />
         <View className={styles.imageContainer}>
-          <Image src={logoURL} mode="widthFix" />
+          <Image src={logoURL} mode='widthFix' />
         </View>
         <View className={styles.search}>
           <View className={styles.inputContainer}>
             <Input
               value={inputString}
-              confirmType="search"
-              placeholder="查字、词、读音..."
+              confirmType='search'
+              placeholder='查字、词、读音...'
               onInput={e => setInputString(e.detail.value)}
               onConfirm={handleConfirm}
             />
           </View>
           <View className={styles.confirmBtn} onClick={handleConfirm}>
-            <AtIcon value="search"></AtIcon>
+            <AtIcon value='search'></AtIcon>
           </View>
           <View className={styles.actions}></View>
         </View>
       </View>
+      <PromptCollection />
     </View>
   );
 };
