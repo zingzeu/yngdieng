@@ -26,16 +26,13 @@ namespace Yngdieng.Backend.TextToSpeech
         public byte[]? YngpingToAudio(string yngping)
         {
             var audioCodes = YngpingTtsUtil.YngpingToAudioCodes(yngping);
-            Console.WriteLine($"found files for {yngping}");
             if (audioCodes == null)
             {
                 return null;
             }
-            Console.WriteLine(string.Join(",", audioCodes));
             var audioFiles =
                 audioCodes.Select(code => Path.Combine(this.ttsAudioFolder, code + ".wav"))
                     .ToArray();
-            Console.WriteLine("trimming");
             return TrimAudio(audioFiles);
         }
 
@@ -95,10 +92,7 @@ namespace Yngdieng.Backend.TextToSpeech
                         endPos = (int)reader.Length - (endBytes - endBytes % reader.WaveFormat.BlockAlign);
                         endPos = Math.Min(endPos, maxLenMs * bytesPerMillisecond);
                         endPos = Math.Max(endPos, minLenMs * bytesPerMillisecond);
-                        Console.WriteLine($"s TrimWav {startPos} {endPos}");
                         TrimWavFile(reader, writer, startPos, endPos);
-                        Console.WriteLine("e TrimWav");
-
                     }
                 }
                 return outStream.ToArray();
@@ -115,7 +109,6 @@ namespace Yngdieng.Backend.TextToSpeech
             long position = reader.Position;
             while (position < endPos)
             {
-                Console.WriteLine($"reader Postion {reader.Position} {endPos}");
                 int bytesRequired = (int)(endPos - position);
                 if (bytesRequired > 0)
                 {

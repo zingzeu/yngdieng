@@ -237,7 +237,6 @@ namespace Yngdieng.Backend.TextToSpeech
                 {
                     break;
                 }
-                System.Console.WriteLine("Finding..");
             }
             return string.Empty;
         }
