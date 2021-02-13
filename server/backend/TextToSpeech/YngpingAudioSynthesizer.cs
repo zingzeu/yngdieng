@@ -26,13 +26,16 @@ namespace Yngdieng.Backend.TextToSpeech
         public byte[]? YngpingToAudio(string yngping)
         {
             var audioCodes = YngpingTtsUtil.YngpingToAudioCodes(yngping);
+            Console.WriteLine($"found files for {yngping}");
             if (audioCodes == null)
             {
                 return null;
             }
+            Console.WriteLine(string.Join(",", audioCodes));
             var audioFiles =
                 audioCodes.Select(code => Path.Combine(this.ttsAudioFolder, code + ".wav"))
                     .ToArray();
+            Console.WriteLine("trimming");
             return TrimAudio(audioFiles);
         }
 
@@ -55,6 +58,7 @@ namespace Yngdieng.Backend.TextToSpeech
                     {
                         long bytesPerSample = reader.WaveFormat.BitsPerSample / 8;
                         int bytesPerMillisecond = reader.WaveFormat.AverageBytesPerSecond / 1000;
+                        // 2 because we are dealing with 2-channel audio
                         if (bytesPerSample != 2)
                         {
                             throw new InvalidOperationException(
@@ -64,7 +68,6 @@ namespace Yngdieng.Backend.TextToSpeech
                         long dataLength = reader.Length;
                         byte[] buffer = new byte[dataLength];
                         int bytesRead = reader.Read(buffer, 0, (int)dataLength);
-                        bool allZero = true;
                         int threshold = 0;
                         for (int i = 0; i + 2 <= dataLength; i += 2)
                         {
@@ -90,15 +93,12 @@ namespace Yngdieng.Backend.TextToSpeech
                         }
                         startPos = startBytes - startBytes % reader.WaveFormat.BlockAlign;
                         endPos = (int)reader.Length - (endBytes - endBytes % reader.WaveFormat.BlockAlign);
-                        if (endPos - startPos < minLenMs * bytesPerMillisecond)
-                        {
-                            endPos = startPos + minLenMs * bytesPerMillisecond;
-                        }
-                        else if (endPos - startPos > maxLenMs * bytesPerMillisecond)
-                        {
-                            endPos = startPos + maxLenMs * bytesPerMillisecond;
-                        }
+                        endPos = Math.Min(endPos, maxLenMs * bytesPerMillisecond);
+                        endPos = Math.Max(endPos, minLenMs * bytesPerMillisecond);
+                        Console.WriteLine($"s TrimWav {startPos} {endPos}");
                         TrimWavFile(reader, writer, startPos, endPos);
+                        Console.WriteLine("e TrimWav");
+
                     }
                 }
                 return outStream.ToArray();
@@ -112,9 +112,11 @@ namespace Yngdieng.Backend.TextToSpeech
         {
             reader.Position = startPos;
             byte[] writeBuffer = new byte[1024];
-            while (reader.Position < endPos)
+            long position = reader.Position;
+            while (position < endPos)
             {
-                int bytesRequired = (int)(endPos - reader.Position);
+                Console.WriteLine($"reader Postion {reader.Position} {endPos}");
+                int bytesRequired = (int)(endPos - position);
                 if (bytesRequired > 0)
                 {
                     int bytesToRead = Math.Min(bytesRequired, writeBuffer.Length);
@@ -122,6 +124,13 @@ namespace Yngdieng.Backend.TextToSpeech
                     if (bytesRead > 0)
                     {
                         writer.Write(writeBuffer, 0, bytesRead);
+                        position = reader.Position;
+                    }
+                    else
+                    {
+                        // We have overrun the original audio. Fill remaining duration with silence.
+                        writer.Write(new byte[bytesToRead], 0, bytesToRead);
+                        position += bytesToRead;
                     }
                 }
             }
