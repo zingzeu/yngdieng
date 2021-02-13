@@ -10,5 +10,5 @@ batch_mp3_to_wav(
 
 container_image(
     name = "tts_audio_wav_image",
-    files = [":tts_audio_wav"],
+    files = [":tts_audio_wav"] + glob(["tts_audio/*.wav"]),
 )
