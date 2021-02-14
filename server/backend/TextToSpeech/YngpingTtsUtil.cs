@@ -121,7 +121,7 @@ namespace Yngdieng.Backend.TextToSpeech
                     }
                 }
             }
-            // 补充音频
+            /*补充音频
             SyllableMappings.Add("buk21", "buk21");
             SyllableMappings.Add("cing21", "cing21");
             SyllableMappings.Add("gi0", "gi0");
@@ -146,7 +146,7 @@ namespace Yngdieng.Backend.TextToSpeech
             SyllableMappings.Add("soh21", "soh21");
             SyllableMappings.Add("u21", "u21");
             SyllableMappings.Add("zi0", "zi0");
-            SyllableMappings.Add("zo21", "zo21");
+            SyllableMappings.Add("zo21", "zo21");*/
         }
 
         public static bool IsPronounceable(string yngping)
