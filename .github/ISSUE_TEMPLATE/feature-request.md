@@ -3,7 +3,6 @@ name: 提议新功能
 about: 为榕典提供新的 idea。
 title: ''
 labels: enhancement
-assignees: DDFShanyu
 
 ---
 

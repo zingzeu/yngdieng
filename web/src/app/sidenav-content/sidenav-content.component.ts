@@ -18,10 +18,6 @@ export class SidenavContentComponent implements OnInit {
 
   ngOnInit() {}
 
-  get showSearchV2() {
-    return this.environment.showSearchV2InMenu;
-  }
-
   get showSettings() {
     return this.environment.showSettingsInMenu;
   }

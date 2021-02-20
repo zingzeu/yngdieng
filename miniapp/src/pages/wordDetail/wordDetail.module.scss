@@ -29,6 +29,7 @@
 
 // TODO: 文本大小调整
 .explanation {
+  user-select: text;
   .sentence {
     text-indent: 1.5em;
   }

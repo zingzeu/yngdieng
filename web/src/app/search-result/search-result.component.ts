@@ -100,7 +100,7 @@ export class SearchResultComponent implements OnInit, OnDestroy {
   }
 
   onPerformSearch(searchText: string) {
-    this.redirectTo(['/search', searchText]);
+    this.redirectTo(['/search-legacy', searchText]);
   }
 
   toggleAdvancedOptions() {
@@ -110,7 +110,7 @@ export class SearchResultComponent implements OnInit, OnDestroy {
   onPageChanged(pageEvent) {
     let newPageIndex = pageEvent['pageIndex'];
     this.redirectTo([
-      '/search',
+      '/search-legacy',
       this.queryText,
       {offset: this.pageSize * newPageIndex},
     ]);

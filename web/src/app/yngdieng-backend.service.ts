@@ -19,6 +19,11 @@ import {
   UserPreference,
 } from 'yngdieng/shared/services_pb';
 import {YngdiengServiceClient} from 'yngdieng/shared/services_grpc_web_pb';
+import {
+  ListWordListWordsRequest,
+  ListWordListWordsResponse,
+} from 'yngdieng/yngdieng/frontend/v3/service_pb';
+import {FrontendServiceClient} from 'yngdieng/yngdieng/frontend/v3/service_grpc_web_pb';
 
 import {
   IYngdiengEnvironment,
@@ -28,14 +33,18 @@ import * as jspb from 'google-protobuf';
 import {UserSettingsService} from './user-settings.service';
 @Injectable({providedIn: 'root'})
 export class YngdiengBackendService {
+  // Deprecated
   private grpcClient: YngdiengServiceClient;
+  private frontendGrpcClient: FrontendServiceClient;
 
   constructor(
     @Inject(YNGDIENG_ENVIRONMENT) private environment: IYngdiengEnvironment,
     private userSettings: UserSettingsService
   ) {
     this.grpcClient = new YngdiengServiceClient(this.environment.serverUrl);
-    this.frontendClient = new YngdiengServiceClient(this.environment.serverUrl);
+    this.frontendGrpcClient = new FrontendServiceClient(
+      this.environment.serverUrl
+    );
   }
 
   search(queryText: string, offset: number = 0): Observable<SearchResponse> {
@@ -65,6 +74,32 @@ export class YngdiengBackendService {
     request.setPageSize(15);
 
     this.grpcClient.searchV2(
+      request,
+      {'x-ydict-options': this.getUserPreference()},
+      (err, response) => {
+        if (err != null) {
+          subject.error(err);
+          return;
+        }
+        subject.next(response);
+        subject.complete();
+      }
+    );
+
+    return subject.asObservable();
+  }
+
+  listWordListWords(
+    wordListName: string,
+    pageToken: string
+  ): Observable<ListWordListWordsResponse> {
+    let subject = new Subject<ListWordListWordsResponse>();
+    let request = new ListWordListWordsRequest();
+    request.setParent(wordListName);
+    request.setPageToken(pageToken);
+    request.setPageSize(15);
+
+    this.frontendGrpcClient.listWordListWords(
       request,
       {'x-ydict-options': this.getUserPreference()},
       (err, response) => {

@@ -1,6 +1,6 @@
 <div class="prelude no-select">
   <div class="results-info">
-    <div *ngIf="!isBusy && !isInvalidQuery">{{ totalLength }} 个搜索结果, 耗时 {{ computationTimeMs }}ms</div>
+    <div *ngIf="!isBusy && !isInvalidQuery"> 正在使用旧版搜索，{{ totalLength }} 个搜索结果 ({{ computationTimeMs }}ms)</div>
   </div>
   <div class="options"><button mat-button color="primary" [routerLink]="['/advancedSearch']">八音检索</button></div>
 </div>
