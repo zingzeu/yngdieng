@@ -37,6 +37,7 @@ export class DetailsFengComponent implements OnInit, OnDestroy {
   get heroModel() {
     return new WordDetailsHeroModel(
       this.fengDoc.getHanziCanonical(),
+      '',
       new WordPronunication(
         this.fengDoc.getYngpingUnderlying(),
         this.fengDoc.getYngpingCanonical()
