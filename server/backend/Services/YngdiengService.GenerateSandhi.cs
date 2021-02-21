@@ -33,7 +33,7 @@ namespace Yngdieng.Backend.Services
                     };
                     if (YngpingTtsUtil.IsPronounceable(output))
                     {
-                        result.AudioUrl = "https://api.ydict.net/tts/" + Uri.EscapeDataString(output) + ".mp3";
+                        result.AudioUrl = "https://api.ydict.net/tts/" + Uri.EscapeDataString(output);
                     };
                     results.Add(result);
                 }
