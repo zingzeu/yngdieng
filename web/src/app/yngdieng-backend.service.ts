@@ -16,6 +16,8 @@ import {
   SearchV2Request,
   SearchV2Response,
   SimplifyTextRequest,
+  GenerateSandhiRequest,
+  GenerateSandhiResponse,
   UserPreference,
 } from 'yngdieng/shared/services_pb';
 import {YngdiengServiceClient} from 'yngdieng/shared/services_grpc_web_pb';
@@ -205,6 +207,22 @@ export class YngdiengBackendService {
         return;
       }
       subject.next(response.getConvertedText());
+      subject.complete();
+    });
+
+    return subject.asObservable();
+  }
+
+  generateSandhi(inputs: string[]): Observable<GenerateSandhiResponse> {
+    let subject = new Subject<string>();
+    let request = new GenerateSandhiResponse();
+    request.addAllInputs(inputs);
+    this.grpcClient.generateSandhi(request, undefined, (err, response) => {
+      if (err != null) {
+        subject.error(err);
+        return;
+      }
+      subject.next(response);
       subject.complete();
     });
 
