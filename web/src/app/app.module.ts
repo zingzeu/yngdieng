@@ -24,6 +24,7 @@ import {HomeComponent} from './home/home.component';
 import {MonoHanziResultComponent} from './mono-hanzi-result/mono-hanzi-result.component';
 import {PhonologyComposerComponent} from './phonology-composer/phonology-composer.component';
 import {PhonologyQueryRendererComponent} from './phonology-query-renderer/phonology-query-renderer.component';
+import {SandhiToolComponent} from './sandhi-tool/sandhi-tool.component';
 import {SearchResultComponent} from './search-result/search-result.component';
 import {SearchboxComponent} from './searchbox/searchbox.component';
 import {SidenavContentComponent} from './sidenav-content/sidenav-content.component';
@@ -74,6 +75,7 @@ import {WordlistDemoComponent} from './wordlist-demo/wordlist-demo.component';
     PhonologyComposerComponent,
     PhonologyQueryRendererComponent,
     RichtextFlattenPipe,
+    SandhiToolComponent,
     SearchResultComponent,
     SearchV2ResultComponent,
     SearchboxComponent,

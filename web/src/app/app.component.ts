@@ -2,7 +2,6 @@ import {Component, OnDestroy, OnInit, Inject} from '@angular/core';
 import {NavigationEnd, NavigationStart, Router} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {filter} from 'rxjs/operators';
-import {Title} from '@angular/platform-browser';
 
 import {SidenavStateService} from './sidenav-state.service';
 import {YngdiengTitleService} from './yngdieng-title.service';

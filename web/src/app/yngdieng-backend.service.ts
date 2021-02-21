@@ -214,9 +214,9 @@ export class YngdiengBackendService {
   }
 
   generateSandhi(inputs: string[]): Observable<GenerateSandhiResponse> {
-    let subject = new Subject<string>();
-    let request = new GenerateSandhiResponse();
-    request.addAllInputs(inputs);
+    let subject = new Subject<GenerateSandhiResponse>();
+    let request = new GenerateSandhiRequest();
+    request.setInputsList(inputs);
     this.grpcClient.generateSandhi(request, undefined, (err, response) => {
       if (err != null) {
         subject.error(err);

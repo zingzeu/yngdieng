@@ -10,7 +10,7 @@ import {YngdiengBackendService} from '../yngdieng-backend.service';
 })
 export class SandhiToolComponent implements OnInit {
   inputTextControl = new FormControl('');
-  output: string = '';
+  output: any[];
   hasError = false;
 
   constructor(private backendService: YngdiengBackendService) {}
@@ -31,7 +31,7 @@ export class SandhiToolComponent implements OnInit {
         })
       )
       .subscribe(response => {
-        this.output = response.getResults();
+        this.output = response.getResultsList();
         this.hasError = false;
       });
   }
