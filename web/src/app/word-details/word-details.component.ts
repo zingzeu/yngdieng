@@ -21,7 +21,7 @@ export class WordDetailsComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   hasError: boolean = false;
   document: YngdiengDocument;
-  heroModel = new WordDetailsHeroModel('', new WordPronunication('', ''));
+  heroModel = new WordDetailsHeroModel('', '', new WordPronunication('', ''));
   text: string;
   largeScreen$: any;
 
@@ -48,6 +48,7 @@ export class WordDetailsComponent implements OnInit, OnDestroy {
         this.titleService.setTitleForDetailsPage(hanzi);
         this.heroModel = new WordDetailsHeroModel(
           hanzi,
+          this.document.getDocId(),
           new WordPronunication(
             this.document.getYngpingUnderlying(),
             this.document.getYngpingSandhi()

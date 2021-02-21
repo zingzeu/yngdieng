@@ -19,10 +19,12 @@ import {MatSelectModule} from '@angular/material/select';
 import {MatProgressBarModule} from '@angular/material/progress-bar';
 import {MatRippleModule} from '@angular/material/core';
 import {LayoutModule} from '@angular/cdk/layout';
+import {ClipboardModule} from '@angular/cdk/clipboard';
 
 const matModules = [
   // keep sorted
   LayoutModule,
+  ClipboardModule,
   MatButtonModule,
   MatCardModule,
   MatCheckboxModule,
