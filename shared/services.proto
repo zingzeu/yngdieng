@@ -30,6 +30,8 @@ service YngdiengService {
   }
 
   rpc SimplifyText(SimplifyTextRequest) returns (SimplifyTextResponse);
+
+  rpc GenerateSandhi(GenerateSandhiRequest) returns (GenerateSandhiResponse);
 }
 
 // Next ID: 3
@@ -220,4 +222,18 @@ message SimplifyTextRequest {
 
 message SimplifyTextResponse {
   string converted_text = 1;
+}
+
+message GenerateSandhiRequest {
+  repeated string inputs = 1;
+}
+
+message GenerateSandhiResponse {
+  repeated SandhiResult results = 1;
+
+  message SandhiResult {
+    bool has_error = 1;
+    string output = 2;
+    string audio_url = 3;
+  }
 }
