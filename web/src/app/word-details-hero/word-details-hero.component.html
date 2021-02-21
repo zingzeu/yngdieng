@@ -1,8 +1,14 @@
 <div class="details-hero mat-elevation-z4">
     <div class="container" [class.large-screen]="largeScreen$ | async"> 
-        <button mat-icon-button color="secondary" class="help-button" aria-label="这是什么？" (click)="onShowYngpingHelp()">
+        <button mat-icon-button color="secondary" class="action-button" aria-label="这是什么？" (click)="onShowYngpingHelp()">
             <mat-icon>help</mat-icon>
         </button>
+        <button mat-icon-button color="secondary" class="action-button" aria-label="更多"" [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+            <button mat-menu-item>复制小程序路径</button>
+          </mat-menu>
         <div class="hanzi unihan-text">{{ model.hanzi }}</div>
         <div class="text-yngping">
             <span class="label">{{ shouldShowSandhi ? "市区单字": "福州市区"}}</span>
