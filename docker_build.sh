@@ -7,6 +7,7 @@ echo $TAG
 mkdir -p serverbuild
 cp -rf ./server serverbuild/
 cp -rf ./thirdparty serverbuild/
+cp -rf ./docker/yngdieng-mono/etc serverbuild/
 
 # All-in-one image (for Functions)
 docker build -f docker/yngdieng-mono/Dockerfile -t ztl8702/yngdieng-mono:$TAG ./serverbuild 

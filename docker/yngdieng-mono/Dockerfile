@@ -33,7 +33,9 @@ COPY --from=gateway /app/server/gateway /app/server/gateway
 # Copy backend binary
 COPY --from=builder /out /app/server/backend
 
-WORKDIR /app/server/backend
-ENTRYPOINT ["dotnet", "Yngdieng.Backend.dll", \
-    "--IndexPath=/data/hotswap/", \
-    "--TtsAudioFolder=/data/tts_audio_wav/"]
+ADD https://github.com/just-containers/s6-overlay/releases/download/v2.2.0.1/s6-overlay-amd64-installer /tmp/
+RUN chmod +x /tmp/s6-overlay-amd64-installer && /tmp/s6-overlay-amd64-installer /
+
+COPY ./etc /etc
+
+ENTRYPOINT ["/init"]

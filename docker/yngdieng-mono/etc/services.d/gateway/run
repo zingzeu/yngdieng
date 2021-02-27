@@ -1,0 +1,2 @@
+#!/usr/bin/execlineb -P
+/app/server/gateway/gateway_image.binary --port=8081 --endpoint=localhost:5002 --network=tcp
