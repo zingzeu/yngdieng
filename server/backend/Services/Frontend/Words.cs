@@ -204,7 +204,25 @@ namespace Yngdieng.Backend.Services.Frontend
                 return contribExplanation.Truncate(100);
             }
             var extensionExplanation = extensions.FirstOrDefault();
-            return extensionExplanation != null ? extensionExplanation.Explanation.Truncate(100) : string.Empty;
+            if (extensionExplanation != null)
+            {
+                return extensionExplanation.Explanation.Truncate(100);
+            }
+            var cikExplanation = maybeYngdiengDocument?.Sources
+                        .FirstOrDefault(s => s.SourceCase == YngdiengDocument.Types.Source.SourceOneofCase.CiklinDfd)
+                        ?.CiklinDfd?.CiklinSource.ExplanationCik;
+            if (!string.IsNullOrEmpty(cikExplanation))
+            {
+                return cikExplanation.Truncate(100);
+            }
+            var lingExplanation = maybeYngdiengDocument?.Sources
+                        .FirstOrDefault(s => s.SourceCase == YngdiengDocument.Types.Source.SourceOneofCase.CiklinDfd)
+                        ?.CiklinDfd?.CiklinSource.ExplanationLing;
+            if (!string.IsNullOrEmpty(lingExplanation))
+            {
+                return lingExplanation.Truncate(100);
+            }
+            return string.Empty;
         }
 
     }

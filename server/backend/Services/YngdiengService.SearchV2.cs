@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Grpc.Core;
 using Lucene.Net.QueryParsers.Classic;
 using Lucene.Net.Search;
-using Microsoft.Extensions.Logging;
 using Yngdieng.Common;
 using Yngdieng.Protos;
 using Yngdieng.Search.Common;

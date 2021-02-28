@@ -42,12 +42,13 @@ The backend server will refuse to run without an index file.
 1. To build the index, you first need to collect the following files into the "data" directory
 
   * opencc_data_dictionary -- the `data/dictionary` directory of the [OpenCC](https://github.com/BYVoid/OpenCC) repo
-  * `CikLinBekIn.csv` from the [only3km/ciklinbekin](https://github.com/only3km/ciklinbekin/blob/gh-pages/CikLinBekIn.csv) repo
-  * `DFDCharacters.csv` from the [only3km/ciklinbekin](https://github.com/only3km/ciklinbekin/blob/gh-pages/DFDCharacters.csv) repo
+  * `CikLinBekIn.csv` from the [only3km/ciklinbekin](https://github.com/MindongLab/ciklinbekin/blob/gh-pages/CikLinBekIn.csv) repo
+  * `DFDCharacters.csv` from the [only3km/ciklinbekin](https://github.com/MindongLab/ciklinbekin/blob/gh-pages/DFDCharacters.csv) repo
   * feng.txt -- from the [zingzeu-data](https://github.com/ztl8702/zingzeu-data) repo
   * feng_zeu_mapping.txt -- from the [zingzeu-data](https://github.com/ztl8702/zingzeu-data) repo
   * contrib.tsv -- from the [zingzeu-data](https://github.com/ztl8702/zingzeu-data) repo
   * zingzeu_words.txt -- from the [zingzeu-data](https://github.com/ztl8702/zingzeu-data) repo
+  * cikling.csv -- from the [zingzeu-data](https://github.com/ztl8702/zingzeu-data) repo
 
 1. Now run the Indexer in another terminal.
    ```
