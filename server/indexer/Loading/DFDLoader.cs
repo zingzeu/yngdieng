@@ -44,7 +44,6 @@ namespace Yngdieng.Indexer.Loading
                             (var sInitial, var sFinal, var sTone) = Parse(r.Buc);
                             var document = new Document
                             {
-                                DfdId = ++id,
                                 HanziCanonical = StringToHanziProto(r.Hanzi),
                                 Initial = sInitial,
                                 Final = sFinal,
