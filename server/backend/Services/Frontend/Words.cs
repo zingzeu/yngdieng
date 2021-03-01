@@ -210,14 +210,14 @@ namespace Yngdieng.Backend.Services.Frontend
             }
             var cikExplanation = maybeYngdiengDocument?.Sources
                         .FirstOrDefault(s => s.SourceCase == YngdiengDocument.Types.Source.SourceOneofCase.CiklinDfd)
-                        ?.CiklinDfd?.CiklinSource.ExplanationCik;
+                        ?.CiklinDfd?.CiklinSource?.ExplanationCik;
             if (!string.IsNullOrEmpty(cikExplanation))
             {
                 return cikExplanation.Truncate(100);
             }
             var lingExplanation = maybeYngdiengDocument?.Sources
                         .FirstOrDefault(s => s.SourceCase == YngdiengDocument.Types.Source.SourceOneofCase.CiklinDfd)
-                        ?.CiklinDfd?.CiklinSource.ExplanationLing;
+                        ?.CiklinDfd?.CiklinSource?.ExplanationLing;
             if (!string.IsNullOrEmpty(lingExplanation))
             {
                 return lingExplanation.Truncate(100);
