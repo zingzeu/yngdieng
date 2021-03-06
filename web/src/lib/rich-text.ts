@@ -4,7 +4,6 @@ export function renderRichTextNode(r: RichTextNode, outermost = true): string {
   if (outermost) {
     let output =
       '<div class="rich-text">' + renderRichTextNode(r, false) + '</div>';
-    console.debug(output);
     return output;
   }
   if (r.hasVerticalContainer()) {
@@ -12,7 +11,12 @@ export function renderRichTextNode(r: RichTextNode, outermost = true): string {
       r
         .getVerticalContainer()
         .getChildrenList()
-        .map(c => '<div>' + renderRichTextNode(c, false) + '</div>')
+        .map(
+          c =>
+            `<div class="${r.getStylesList().join(' ')}">` +
+            renderRichTextNode(c, false) +
+            '</div>'
+        )
         .join('') || ''
     );
   }
@@ -28,11 +32,16 @@ export function renderRichTextNode(r: RichTextNode, outermost = true): string {
   if (r.hasList()) {
     let tag = r.getList().getOrdered() ? 'ol' : 'ul';
     return (
-      `<${tag} class="${tag}">` +
+      `<${tag} class="${r.getStylesList().join(' ')}">` +
       r
         .getList()
         .getChildrenList()
-        .map(c => '<li>' + renderRichTextNode(c, false) + '</li>')
+        .map(
+          c =>
+            `<li class="${c.getStylesList().join(' ')}">` +
+            renderRichTextNode(c, false) +
+            '</li>'
+        )
         .join('') +
       `</${tag}>`
     );

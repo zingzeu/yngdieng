@@ -91,6 +91,7 @@ message RichTextNode {
   }
   message TextNode {
     string text = 1;
+    // deprecated
     repeated string styles = 2;
   }
   oneof node {
@@ -98,6 +99,8 @@ message RichTextNode {
     InlineContainerNode inline_container = 3;
     ListNode list = 2;
   }
+
+  repeated string styles = 4;
 }
 
 message GetWordRequest {

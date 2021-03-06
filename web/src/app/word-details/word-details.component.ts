@@ -60,7 +60,7 @@ export class WordDetailsComponent implements OnInit, OnDestroy {
                 new WordPronunciation(
                   p.getDisplayName(),
                   p.getPronunciation(),
-                  p.getAudio().hasRemoteUrls()
+                  p.hasAudio() && p.getAudio().hasRemoteUrls()
                     ? p.getAudio().getRemoteUrls().getRemoteUrlsList()[0]
                     : null
                 )

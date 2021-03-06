@@ -81,22 +81,22 @@ body {
   font-size: 14px;
 }
 
-// BEGIN word details
-.section-title {
+// BEGIN Rich text forma
+.section-header {
   margin-block-end: 4px;
-  .hanzi {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-right: 0.2em;
-  }
-
-  .yngping {
-    font-size: 1rem;
-    color: #8f7b7b;
-  }
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-right: 0.2em;
 }
 
-.explanation {
+.section-header-small,
+.section-header > .yngping {
+  font-size: 1rem;
+  color: #8f7b7b;
+}
+
+.explanation,
+.rich-text {
   ol {
     counter-reset: item;
     padding-left: 1rem;
@@ -119,6 +119,10 @@ body {
     counter-increment: item;
     font-family: 'Roboto', sans-serif;
     font-size: 0.9rem;
+  }
+
+  div.sense {
+    display: inline;
   }
 
   .sense {
@@ -148,7 +152,7 @@ body {
   }
 }
 
-.details-source {
+.rich-text .source {
   font-family: sans-serif;
   font-size: 12px;
   color: #69656f;
@@ -159,12 +163,14 @@ body {
 }
 
 // Top-level points
-.explanation > ol > li {
+.explanation div > ol > li,
+.rich-text div > ol > li {
   // All child points
   padding-top: 4px;
 }
 
-.explanation > ol {
+.explanation > ol,
+.rich-text div > ol {
   padding-left: 10px;
 }
 
@@ -173,7 +179,7 @@ body {
   font-size: 12px;
 }
 
-// END word details
+// END Rich text
 
 // trivial hack for the spacing
 // between hanzi and alphabetical letters

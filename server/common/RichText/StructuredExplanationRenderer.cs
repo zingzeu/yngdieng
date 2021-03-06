@@ -60,7 +60,8 @@ namespace Yngdieng.Common.RichText
             {
                 VerticalContainer = new RichTextNode.Types.VerticalContainerNode()
                 {
-                }
+                },
+                Styles = { "sense" }
             };
             if (!string.IsNullOrWhiteSpace(sense.Text))
             {
@@ -76,7 +77,8 @@ namespace Yngdieng.Common.RichText
                         Children = {sense.Examples.Select(ex =>
                                                     ToRichTextNode(ex, currentWord)
                                                 )}
-                    }
+                    },
+                    Styles = { "examples-list" }
                 }
                 );
             }
@@ -100,7 +102,8 @@ namespace Yngdieng.Common.RichText
 
         private RichTextNode ToRichTextNode(string example, string currentWord)
         {
-            return SimpleText(zc.tH(MaybeAddPeriod(example.Replace("～", currentWord))));
+            return SingleLineTextWithStyles(zc.tH(MaybeAddPeriod(example.Replace("～", currentWord))),
+            new string[] { "example" });
         }
 
         private static string MaybeAddPeriod(string text)
