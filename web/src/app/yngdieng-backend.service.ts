@@ -22,6 +22,8 @@ import {
 } from 'yngdieng/shared/services_pb';
 import {YngdiengServiceClient} from 'yngdieng/shared/services_grpc_web_pb';
 import {
+  Word,
+  GetWordRequest,
   ListWordListWordsRequest,
   ListWordListWordsResponse,
 } from 'yngdieng/yngdieng/frontend/v3/service_pb';
@@ -143,11 +145,27 @@ export class YngdiengBackendService {
     return subject.asObservable();
   }
 
+  // deprecate
   getYngdiengDocument(docId: string): Observable<YngdiengDocument> {
     let subject = new Subject<YngdiengDocument>();
     let request = new GetYngdiengDocumentRequest();
     request.setId(docId);
     this.grpcClient.getYngdiengDocument(request, undefined, (err, response) => {
+      if (err != null) {
+        subject.error(err);
+        return;
+      }
+      subject.next(response);
+      subject.complete();
+    });
+    return subject.asObservable();
+  }
+
+  getWord(docId: string): Observable<Word> {
+    let subject = new Subject<Word>();
+    let request = new GetWordRequest();
+    request.setName(`words/${docId}`);
+    this.frontendGrpcClient.getWord(request, undefined, (err, response) => {
       if (err != null) {
         subject.error(err);
         return;

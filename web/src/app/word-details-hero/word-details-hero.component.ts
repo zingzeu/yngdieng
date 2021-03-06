@@ -4,7 +4,6 @@ import {Clipboard} from '@angular/cdk/clipboard';
 import {MatDialog} from '@angular/material/dialog';
 import {Observable} from 'rxjs';
 import {map} from 'rxjs/operators';
-
 import {
   IYngdiengEnvironment,
   YNGDIENG_ENVIRONMENT,
@@ -33,21 +32,6 @@ export class WordDetailsHeroComponent implements OnInit {
     private snackBar: MatSnackBar
   ) {}
 
-  get shouldShowSandhi() {
-    return (
-      this.model.pron.sandhi !== '' &&
-      this.model.pron.sandhi !== this.model.pron.underlying
-    );
-  }
-
-  get audioUrlUnderlying() {
-    return this.environment.serverUrl + '/tts/' + this.model.pron.underlying;
-  }
-
-  get audioUrlSandhi() {
-    return this.environment.serverUrl + '/tts/' + this.model.pron.sandhi;
-  }
-
   onShowYngpingHelp() {
     this.dialog.open(YngpingHelpDialogComponent, {width: '80vw'});
   }
@@ -73,10 +57,14 @@ export class WordDetailsHeroModel {
   constructor(
     public hanzi: string,
     public docId: string,
-    public pron: WordPronunication
+    public prons: WordPronunication[]
   ) {}
 }
 
 export class WordPronunication {
-  constructor(public underlying: string, public sandhi: string) {}
+  constructor(
+    public displayName: string,
+    public pronunciation: string,
+    public audioUrl?: string
+  ) {}
 }
