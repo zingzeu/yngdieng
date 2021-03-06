@@ -150,6 +150,11 @@ body {
   p.notes {
     margin-block-start: 0.2em;
   }
+
+  div.notes {
+    margin-block-start: 0.2em;
+    margin-block-end: 1em;
+  }
 }
 
 .rich-text .source {

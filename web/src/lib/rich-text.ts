@@ -13,7 +13,7 @@ export function renderRichTextNode(r: RichTextNode, outermost = true): string {
         .getChildrenList()
         .map(
           c =>
-            `<div class="${r.getStylesList().join(' ')}">` +
+            `<div class="${c.getStylesList().join(' ')}">` +
             renderRichTextNode(c, false) +
             '</div>'
         )
