@@ -1,7 +1,7 @@
 <ng-container *ngIf="!hasError">
     <app-word-details-hero [model]="heroModel"></app-word-details-hero>
     <div class="content" [class.large-screen]="largeScreen$ | async">
-        {{document}}
+        <div class="unihan-text explanation" [innerHTML]="explanation"></div>
     </div>
 </ng-container>
 

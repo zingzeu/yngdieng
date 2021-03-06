@@ -10,6 +10,7 @@ import {
   WordPronunciation,
 } from '../word-details-hero/word-details-hero.component';
 import {YngdiengTitleService} from '../yngdieng-title.service';
+import {renderRichTextNode} from '@yngdieng-shared-lib/rich-text';
 
 @Component({
   selector: 'app-word-details',
@@ -29,6 +30,13 @@ export class WordDetailsComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private breakpointObserver: BreakpointObserver
   ) {}
+
+  get explanation() {
+    return this.document
+      .getExplanationList()
+      .map(richText => renderRichTextNode(richText))
+      .join('');
+  }
 
   ngOnInit(): void {
     let resolveResult$ = this.route.data.pipe(
