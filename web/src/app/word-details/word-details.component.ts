@@ -52,7 +52,9 @@ export class WordDetailsComponent implements OnInit, OnDestroy {
                 new WordPronunication(
                   p.getDisplayName(),
                   p.getPronunciation(),
-                  'tts'
+                  p.getAudio().hasRemoteUrls()
+                    ? p.getAudio().getRemoteUrls().getRemoteUrlsList()[0]
+                    : null
                 )
             )
         );
