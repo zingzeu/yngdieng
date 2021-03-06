@@ -55,7 +55,6 @@ namespace Yngdieng.Common.RichText
         }
 
         public RichTextNode ToRichTextNode(Explanation.Types.Sense sense, string currentWord = "～")
-
         {
             var output = new RichTextNode()
             {
@@ -105,8 +104,52 @@ namespace Yngdieng.Common.RichText
 
         private RichTextNode ToRichTextNode(string example, string currentWord)
         {
-            return SingleLineTextWithStyles(zc.tH(MaybeAddPeriod(example.Replace("～", currentWord))),
-            new string[] { "example" });
+            var segments = zc.tH(MaybeAddPeriod(example)).Split("～");
+            foreach (var s in segments)
+            {
+                Console.WriteLine(s);
+            }
+            var normalTextNodes = segments.Select(s => new RichTextNode.Types.TextNode()
+            {
+                Text = s,
+            });
+            var currentWordNode = new RichTextNode.Types.TextNode()
+            {
+                Text = currentWord,
+                Styles = { "current-word" }
+            };
+            var inlineNodes = Join(normalTextNodes, currentWordNode)
+                .Select(t =>
+                    new RichTextNode.Types.InlineNode()
+                    {
+                        Text = t
+                    });
+            Console.WriteLine(inlineNodes.Count());
+            return new RichTextNode()
+            {
+                InlineContainer = new RichTextNode.Types.InlineContainerNode()
+                {
+                    Children = {
+                            inlineNodes
+                        }
+                },
+                Styles = { "example" }
+            };
+        }
+
+        private static IEnumerable<RichTextNode.Types.TextNode> Join(IEnumerable<RichTextNode.Types.TextNode> list, RichTextNode.Types.TextNode separator)
+        {
+            Console.WriteLine(list.Count());
+            return list.Aggregate(new List<RichTextNode.Types.TextNode>(),
+            (list, next) =>
+            {
+                if (list.Count > 0)
+                {
+                    list.Add(separator);
+                }
+                list.Add(next);
+                return list;
+            }, list => list.AsReadOnly());
         }
 
         private static string MaybeAddPeriod(string text)
