@@ -57,11 +57,11 @@ export class WordDetailsHeroModel {
   constructor(
     public hanzi: string,
     public docId: string,
-    public prons: WordPronunication[]
+    public prons: WordPronunciation[]
   ) {}
 }
 
-export class WordPronunication {
+export class WordPronunciation {
   constructor(
     public displayName: string,
     public pronunciation: string,

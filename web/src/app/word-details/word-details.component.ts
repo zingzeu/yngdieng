@@ -7,7 +7,7 @@ import {Word} from 'yngdieng/yngdieng/frontend/v3/service_pb';
 import {wordNameToDocId} from '../common/resource-names';
 import {
   WordDetailsHeroModel,
-  WordPronunication,
+  WordPronunciation,
 } from '../word-details-hero/word-details-hero.component';
 import {YngdiengTitleService} from '../yngdieng-title.service';
 
@@ -49,7 +49,7 @@ export class WordDetailsComponent implements OnInit, OnDestroy {
             .getPronunciationsList()
             .map(
               p =>
-                new WordPronunication(
+                new WordPronunciation(
                   p.getDisplayName(),
                   p.getPronunciation(),
                   p.getAudio().hasRemoteUrls()

@@ -11,7 +11,7 @@ import {
 import {toMonoHanziResultViewModel} from '../common/converters';
 import {
   WordDetailsHeroModel,
-  WordPronunication,
+  WordPronunciation,
 } from '../word-details-hero/word-details-hero.component';
 import {YngdiengBackendService} from '../yngdieng-backend.service';
 import {YngdiengTitleService} from '../yngdieng-title.service';
@@ -25,6 +25,7 @@ import {FengResolveResult} from './feng-resolver.service';
 export class DetailsFengComponent implements OnInit, OnDestroy {
   hasError: boolean = false;
   fengDoc: FengDocument;
+  heroModel: WordDetailsHeroModel;
   singleCharResults = [];
 
   private subscription: Subscription;
@@ -39,36 +40,31 @@ export class DetailsFengComponent implements OnInit, OnDestroy {
     private breakpointObserver: BreakpointObserver
   ) {}
 
-  get heroModel() {
+  private getHeroModel(fengDoc: FengDocument): WordDetailsHeroModel {
     let shouldShowSandhi =
-      this.fengDoc.getYngpingCanonical() !== '' &&
-      this.fengDoc.getYngpingCanonical() !==
-        this.fengDoc.getYngpingUnderlying();
+      fengDoc.getYngpingCanonical() !== '' &&
+      fengDoc.getYngpingCanonical() !== fengDoc.getYngpingUnderlying();
     let prons = shouldShowSandhi
       ? [
-          new WordPronunication(
+          new WordPronunciation(
             '市区单字',
-            this.fengDoc.getYngpingUnderlying(),
-            this.getTtsUrl(this.fengDoc.getYngpingUnderlying())
+            fengDoc.getYngpingUnderlying(),
+            this.getTtsUrl(fengDoc.getYngpingUnderlying())
           ),
-          new WordPronunication(
+          new WordPronunciation(
             '市区连读',
-            this.fengDoc.getYngpingCanonical(),
-            this.getTtsUrl(this.fengDoc.getYngpingCanonical())
+            fengDoc.getYngpingCanonical(),
+            this.getTtsUrl(fengDoc.getYngpingCanonical())
           ),
         ]
       : [
-          new WordPronunication(
+          new WordPronunciation(
             '福州市区',
-            this.fengDoc.getYngpingUnderlying(),
-            this.getTtsUrl(this.fengDoc.getYngpingUnderlying())
+            fengDoc.getYngpingUnderlying(),
+            this.getTtsUrl(fengDoc.getYngpingUnderlying())
           ),
         ];
-    return new WordDetailsHeroModel(
-      this.fengDoc.getHanziCanonical(),
-      '',
-      prons
-    );
+    return new WordDetailsHeroModel(fengDoc.getHanziCanonical(), '', prons);
   }
 
   private getTtsUrl(yngping: string): string {
@@ -80,12 +76,12 @@ export class DetailsFengComponent implements OnInit, OnDestroy {
       map(data => data.fengResolveResult)
     );
     this.subscription = resolveResult$.subscribe(result => {
-      console.log(result);
       if (result.error) {
         this.hasError = true;
       } else {
         this.hasError = false;
         this.fengDoc = result.fengDoc;
+        this.heroModel = this.getHeroModel(result.fengDoc);
         this.titleService.setTitleForDetailsPage(
           this.fengDoc.getHanziCanonical()
         );
