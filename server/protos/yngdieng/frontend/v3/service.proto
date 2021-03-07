@@ -91,7 +91,6 @@ message RichTextNode {
   }
   message TextNode {
     string text = 1;
-    // deprecated
     repeated string styles = 2;
   }
   oneof node {

@@ -105,10 +105,6 @@ namespace Yngdieng.Common.RichText
         private RichTextNode ToRichTextNode(string example, string currentWord)
         {
             var segments = zc.tH(MaybeAddPeriod(example)).Split("～");
-            foreach (var s in segments)
-            {
-                Console.WriteLine(s);
-            }
             var normalTextNodes = segments.Select(s => new RichTextNode.Types.TextNode()
             {
                 Text = s,
@@ -124,7 +120,6 @@ namespace Yngdieng.Common.RichText
                     {
                         Text = t
                     });
-            Console.WriteLine(inlineNodes.Count());
             return new RichTextNode()
             {
                 InlineContainer = new RichTextNode.Types.InlineContainerNode()
@@ -139,7 +134,6 @@ namespace Yngdieng.Common.RichText
 
         private static IEnumerable<RichTextNode.Types.TextNode> Join(IEnumerable<RichTextNode.Types.TextNode> list, RichTextNode.Types.TextNode separator)
         {
-            Console.WriteLine(list.Count());
             return list.Aggregate(new List<RichTextNode.Types.TextNode>(),
             (list, next) =>
             {
