@@ -10,15 +10,10 @@
             <button mat-menu-item (click)="onCopyMiniAppPath()">复制小程序路径</button>
         </mat-menu>
         <div class="hanzi unihan-text">{{ model.hanzi }}</div>
-        <div class="text-yngping">
-            <span class="label">{{ shouldShowSandhi ? "市区单字": "福州市区"}}</span>
-            {{ model.pron.underlying }}
-            <app-audio-player [audioUrl]="audioUrlUnderlying" [preload]="true"></app-audio-player>
-        </div>
-        <div class="text-yngping" *ngIf="shouldShowSandhi">
-            <span class="label">市区连读</span>
-            {{ model.pron.sandhi }}
-            <app-audio-player [audioUrl]="audioUrlSandhi" [preload]="true"></app-audio-player>
+        <div *ngFor="let p of model.prons" class="text-yngping">
+            <span class="label">{{ p.displayName }}</span>
+            {{ p.pronunciation }}
+            <app-audio-player *ngIf="p.audioUrl" [audioUrl]="p.audioUrl" [preload]="true"></app-audio-player>
         </div>
     </div>
 </div>

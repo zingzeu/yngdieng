@@ -1,17 +1,7 @@
 <ng-container *ngIf="!hasError">
     <app-word-details-hero [model]="heroModel"></app-word-details-hero>
     <div class="content" [class.large-screen]="largeScreen$ | async">
-        <ng-container *ngFor="let source of document.getSourcesList()"> 
-            <app-feng-explanation 
-            *ngIf="source.hasFeng()"
-            [fengDoc]="source.getFeng()"></app-feng-explanation>
-            <app-contrib-explanation 
-            *ngIf="source.hasContrib()"
-            [doc]="source.getContrib()"></app-contrib-explanation>
-            <app-historical-details 
-            *ngIf="source.hasCiklinDfd()"
-            [doc]="source.getCiklinDfd()"></app-historical-details>
-        </ng-container>
+        <div class="unihan-text" [innerHTML]="explanation"></div>
     </div>
 </ng-container>
 

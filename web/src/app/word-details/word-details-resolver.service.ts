@@ -7,7 +7,7 @@ import {
 import {Observable, of} from 'rxjs';
 import {map, catchError} from 'rxjs/operators';
 import {YngdiengBackendService} from '../yngdieng-backend.service';
-import {YngdiengDocument} from '../../../../shared/documents_pb';
+import {Word} from 'yngdieng/yngdieng/frontend/v3/service_pb';
 
 @Injectable({
   providedIn: 'root',
@@ -20,22 +20,17 @@ export class WordDetailsResolverService
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<WordDetailsResolveResult> {
-    return this.backendService
-      .getYngdiengDocument(route.paramMap.get('id'))
-      .pipe(
-        map(
-          yngdiengDocument =>
-            ({word: yngdiengDocument, error: false} as WordDetailsResolveResult)
-        ),
-        catchError(e => {
-          console.log('Error in WordDetailsResolverService: ', e);
-          return of({error: true} as WordDetailsResolveResult);
-        })
-      );
+    return this.backendService.getWord(route.paramMap.get('id')).pipe(
+      map(word => ({word, error: false} as WordDetailsResolveResult)),
+      catchError(e => {
+        console.log('Error in WordDetailsResolverService: ', e);
+        return of({error: true} as WordDetailsResolveResult);
+      })
+    );
   }
 }
 
 export interface WordDetailsResolveResult {
-  word?: YngdiengDocument;
+  word?: Word;
   error: boolean;
 }
