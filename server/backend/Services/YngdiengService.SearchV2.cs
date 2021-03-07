@@ -52,11 +52,12 @@ namespace Yngdieng.Backend.Services
                 results = searcher.SearchAfter(lastScoreDoc, query, userPreference.ShowSourcelessSearchResults ? null : FilterSourcelessDocs, desiredPageSize + 1);
             }
 
+            var zhConverter = new ZhConverter(_openCc, userPreference.ZhConversionPreference);
             var response = new SearchV2Response();
             var isEndOfResults = results.ScoreDocs.Length < desiredPageSize + 1;
             if (isEndOfResults)
             {
-                resultCards.AddRange(RenderDocs(results.ScoreDocs));
+                resultCards.AddRange(RenderDocs(results.ScoreDocs, zhConverter));
                 resultCards.Add(EndOfResultsCard());
             }
             else
@@ -64,7 +65,7 @@ namespace Yngdieng.Backend.Services
                 var visibleRange = results.ScoreDocs.Take(desiredPageSize);
                 var nextPageToken = PaginationTokens.FromScoreDoc(visibleRange.Last());
                 response.NextPageToken = nextPageToken;
-                resultCards.AddRange(RenderDocs(visibleRange));
+                resultCards.AddRange(RenderDocs(visibleRange, zhConverter));
             }
 
             response.ResultCards.AddRange(resultCards);
@@ -122,7 +123,7 @@ namespace Yngdieng.Backend.Services
             return queryParser.Parse(queryText);
         }
 
-        private IEnumerable<SearchV2Response.Types.SearchCard> RenderDocs(IEnumerable<ScoreDoc> scoreDocs)
+        private IEnumerable<SearchV2Response.Types.SearchCard> RenderDocs(IEnumerable<ScoreDoc> scoreDocs, ZhConverter zhConverter)
         {
             var searcher = this._indexHolder.LuceneIndexSearcher;
 
@@ -137,9 +138,9 @@ namespace Yngdieng.Backend.Services
                    {
                        Id = docId,
                        Yngping = RichTextUtil.FromString(ydDoc.YngpingSandhi.OrElse(ydDoc.YngpingUnderlying)),
-                       Hanzi = RichTextUtil.FromString(HanziUtils.HanziToString(ydDoc.HanziCanonical)),
-                       Details = RichTextUtil.FromString(Yngdieng.Backend.Services.Frontend.Words.GetSnippet
-                            (ydDoc, new Extension[] { })),
+                       Hanzi = RichTextUtil.FromString(zhConverter.tH(HanziUtils.HanziToString(ydDoc.HanziCanonical))),
+                       Details = RichTextUtil.FromString(zhConverter.tM(Yngdieng.Backend.Services.Frontend.Words.GetSnippet
+                            (ydDoc, new Extension[] { }))),
                        Score = sd.Score
                    }
                };
