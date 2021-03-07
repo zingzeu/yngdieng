@@ -95,7 +95,6 @@ body {
   color: #8f7b7b;
 }
 
-.explanation,
 .rich-text {
   ol {
     counter-reset: item;
@@ -168,13 +167,12 @@ body {
 }
 
 // Top-level points
-.explanation div > ol > li,
 .rich-text div > ol > li {
   // All child points
   padding-top: 4px;
 }
 
-.explanation > ol,
+.rich-text > ol,
 .rich-text div > ol {
   padding-left: 10px;
 }
