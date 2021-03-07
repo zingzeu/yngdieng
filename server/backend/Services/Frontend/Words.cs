@@ -185,7 +185,7 @@ namespace Yngdieng.Backend.Services.Frontend
             return output.ToArray();
         }
 
-        private static string GetSnippet(
+        public static string GetSnippet(
             YngdiengDocument? maybeYngdiengDocument,
             IEnumerable<Extension> extensions
         )
