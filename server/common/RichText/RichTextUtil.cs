@@ -97,7 +97,7 @@ namespace Yngdieng.Common.RichText
                 && maybeBenzi != maybeSandhi;
             if (differentBenziAndSandhi)
             {
-                return $"{maybeBenzi} -> {maybeSandhi}";
+                return $"{maybeBenzi} → {maybeSandhi}";
             }
             var onlyPron = string.IsNullOrEmpty(maybeBenzi) ? maybeSandhi : maybeBenzi;
             return onlyPron;
