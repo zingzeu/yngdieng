@@ -148,14 +148,18 @@ export class YngdiengBackendService {
     let subject = new Subject<Word>();
     let request = new GetWordRequest();
     request.setName(`words/${docId}`);
-    this.frontendGrpcClient.getWord(request, undefined, (err, response) => {
-      if (err != null) {
-        subject.error(err);
-        return;
+    this.frontendGrpcClient.getWord(
+      request,
+      {'x-ydict-options': this.getUserPreference()},
+      (err, response) => {
+        if (err != null) {
+          subject.error(err);
+          return;
+        }
+        subject.next(response);
+        subject.complete();
       }
-      subject.next(response);
-      subject.complete();
-    });
+    );
     return subject.asObservable();
   }
 
