@@ -10,7 +10,6 @@ import {
   GetAggregatedDocumentRequest,
   GetDebugInfoRequest,
   GetFengDocumentRequest,
-  GetYngdiengDocumentRequest,
   SearchRequest,
   SearchResponse,
   SearchV2Request,
@@ -135,22 +134,6 @@ export class YngdiengBackendService {
     let request = new GetFengDocumentRequest();
     request.setId(fengDocId);
     this.grpcClient.getFengDocument(request, undefined, (err, response) => {
-      if (err != null) {
-        subject.error(err);
-        return;
-      }
-      subject.next(response);
-      subject.complete();
-    });
-    return subject.asObservable();
-  }
-
-  // deprecate
-  getYngdiengDocument(docId: string): Observable<YngdiengDocument> {
-    let subject = new Subject<YngdiengDocument>();
-    let request = new GetYngdiengDocumentRequest();
-    request.setId(docId);
-    this.grpcClient.getYngdiengDocument(request, undefined, (err, response) => {
       if (err != null) {
         subject.error(err);
         return;
