@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Grpc.Core;
 using Lucene.Net.QueryParsers.Classic;
 using Lucene.Net.Search;
+using Yngdieng.Backend.Db;
 using Yngdieng.Common;
 using Yngdieng.Protos;
 using Yngdieng.Search.Common;
@@ -121,25 +122,6 @@ namespace Yngdieng.Backend.Services
             return queryParser.Parse(queryText);
         }
 
-        private static string FindBestExplanation(YngdiengDocument ydDoc)
-        {
-            var fengExplation = ydDoc.Sources
-                .FirstOrDefault(s => s.SourceCase == YngdiengDocument.Types.Source.SourceOneofCase.Feng)
-                ?.Feng.ExplanationTrad;
-            if (fengExplation != null)
-            {
-                return fengExplation.Truncate(100);
-            }
-            var contribExplanation = ydDoc.Sources
-                        .FirstOrDefault(s => s.SourceCase == YngdiengDocument.Types.Source.SourceOneofCase.Contrib)
-                        ?.Contrib.ExplanationRaw; //TODO:fix. explanation flattened.
-            if (contribExplanation != null)
-            {
-                return contribExplanation.Truncate(100);
-            }
-            return string.Empty;
-        }
-
         private IEnumerable<SearchV2Response.Types.SearchCard> RenderDocs(IEnumerable<ScoreDoc> scoreDocs)
         {
             var searcher = this._indexHolder.LuceneIndexSearcher;
@@ -156,7 +138,8 @@ namespace Yngdieng.Backend.Services
                        Id = docId,
                        Yngping = RichTextUtil.FromString(ydDoc.YngpingSandhi.OrElse(ydDoc.YngpingUnderlying)),
                        Hanzi = RichTextUtil.FromString(HanziUtils.HanziToString(ydDoc.HanziCanonical)),
-                       Details = RichTextUtil.FromString(FindBestExplanation(ydDoc)),
+                       Details = RichTextUtil.FromString(Yngdieng.Backend.Services.Frontend.Words.GetSnippet
+                            (ydDoc, new Extension[] { })),
                        Score = sd.Score
                    }
                };
