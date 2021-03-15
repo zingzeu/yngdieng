@@ -77,10 +77,7 @@ message YngdiengDocument {
 // Next ID: 14
 // Deprecated.
 message Document {
-  oneof id {
-    int32 ciklin_id = 1;
-    int32 dfd_id = 12;
-  }
+  reserved 1, 12;
 
   Hanzi hanzi_canonical = 2;
 
@@ -212,6 +209,10 @@ message ContribDocument {
 }
 
 message CikLinSourceInfo {
+
+  string explanation_cik = 1;
+
+  string explanation_ling = 2;
 }
 
 message DFDSourceInfo {

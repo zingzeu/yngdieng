@@ -36,11 +36,13 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
   ) {}
 
   private getHowlSrc() {
+    if (this.audioUrl.endsWith('.mp3') || this.audioUrl.endsWith('.wav')) {
+      return [this.audioUrl];
+    }
     if (this.platform.IOS) {
       return [`${this.audioUrl}.mp3`];
-    } else {
-      return [`${this.audioUrl}.wav`, `${this.audioUrl}.mp3`];
     }
+    return [`${this.audioUrl}.wav`, `${this.audioUrl}.mp3`];
   }
 
   private getHowlProps() {

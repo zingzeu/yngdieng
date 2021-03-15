@@ -1,0 +1,21 @@
+<div id="container">
+    <h1>福州话连读计算器</h1>
+    <div class="panel">
+        <div class="left">单字音（榕拼，每行一词）</div>
+        <div class="right">市区连读音
+            <div *ngIf="hasError">⚠️ 发生错误</div>
+        </div>
+    </div>
+    <div class="panel">
+        <textarea class="left unihan-text" [formControl]="inputTextControl"></textarea>
+        <div readonly class="right unihan-text">
+            <div *ngFor="let result of output">
+                <span *ngIf="result.getHasError()">错误</span>
+                <span *ngIf="!result.getHasError()">{{result.getOutput()}}</span>
+                <app-audio-player *ngIf="result.getAudioUrl()" [audioUrl]="result.getAudioUrl()" [preload]="true"></app-audio-player>
+            </div>
+        </div>
+    </div>
+   
+    <div class="hint">注意：单字音中的oo总是解析为“歌”韵（即oo还原紧韵始终是o，而非“初”的eo），au总是解析为“郊”韵（即au不还原紧韵，有别于“沟”的eu）。</div>
+</div>

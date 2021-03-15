@@ -54,6 +54,25 @@ namespace Yngdieng.Common.RichText
             return SingleLineTextWithStyles(text, Enumerable.Empty<string>());
         }
 
+        public static RichTextNode SimpleTextWithOuterStyles(string text, IEnumerable<string> styles)
+        {
+            return new RichTextNode()
+            {
+                InlineContainer = new RichTextNode.Types.InlineContainerNode()
+                {
+                    Children = {
+                            new RichTextNode.Types.InlineNode() {
+                                Text =
+                                    new RichTextNode.Types.TextNode() {
+                                        Text = text,
+                                    }
+                            }
+                        }
+                },
+                Styles = { styles }
+            };
+        }
+
         public static RichTextNode SingleLineTextWithStyles(string text, IEnumerable<string> styles)
         {
             return new RichTextNode()
@@ -78,7 +97,7 @@ namespace Yngdieng.Common.RichText
                 && maybeBenzi != maybeSandhi;
             if (differentBenziAndSandhi)
             {
-                return $"{maybeBenzi} -> {maybeSandhi}";
+                return $"{maybeBenzi} → {maybeSandhi}";
             }
             var onlyPron = string.IsNullOrEmpty(maybeBenzi) ? maybeSandhi : maybeBenzi;
             return onlyPron;

@@ -3,14 +3,14 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {Subscription} from 'rxjs';
 import {map} from 'rxjs/operators';
-import {YngdiengDocument} from 'yngdieng/shared/documents_pb';
-
-import {hanziToString} from '../common/hanzi-util';
+import {Word} from 'yngdieng/yngdieng/frontend/v3/service_pb';
+import {wordNameToDocId} from '../common/resource-names';
 import {
   WordDetailsHeroModel,
-  WordPronunication,
+  WordPronunciation,
 } from '../word-details-hero/word-details-hero.component';
 import {YngdiengTitleService} from '../yngdieng-title.service';
+import {renderRichTextNode} from '@yngdieng-shared-lib/rich-text';
 
 @Component({
   selector: 'app-word-details',
@@ -20,8 +20,8 @@ import {YngdiengTitleService} from '../yngdieng-title.service';
 export class WordDetailsComponent implements OnInit, OnDestroy {
   private subscription: Subscription;
   hasError: boolean = false;
-  document: YngdiengDocument;
-  heroModel = new WordDetailsHeroModel('', new WordPronunication('', ''));
+  document: Word;
+  heroModel = new WordDetailsHeroModel('', '', []);
   text: string;
   largeScreen$: any;
 
@@ -30,6 +30,13 @@ export class WordDetailsComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     private breakpointObserver: BreakpointObserver
   ) {}
+
+  get explanation() {
+    return this.document
+      .getExplanationList()
+      .map(richText => renderRichTextNode(richText))
+      .join('');
+  }
 
   ngOnInit(): void {
     let resolveResult$ = this.route.data.pipe(
@@ -41,17 +48,23 @@ export class WordDetailsComponent implements OnInit, OnDestroy {
       } else {
         this.hasError = false;
         this.document = d.word;
-        let hanzi =
-          this.document.getHanziCanonical() !== undefined
-            ? hanziToString(this.document.getHanziCanonical())
-            : '';
+        let hanzi = this.document.getHanzi();
         this.titleService.setTitleForDetailsPage(hanzi);
         this.heroModel = new WordDetailsHeroModel(
           hanzi,
-          new WordPronunication(
-            this.document.getYngpingUnderlying(),
-            this.document.getYngpingSandhi()
-          )
+          wordNameToDocId(this.document.getName()),
+          this.document
+            .getPronunciationsList()
+            .map(
+              p =>
+                new WordPronunciation(
+                  p.getDisplayName(),
+                  p.getPronunciation(),
+                  p.hasAudio() && p.getAudio().hasRemoteUrls()
+                    ? p.getAudio().getRemoteUrls().getRemoteUrlsList()[0]
+                    : null
+                )
+            )
         );
       }
     });

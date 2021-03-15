@@ -1,6 +1,5 @@
 ﻿extern alias zingzeudata;
 
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using zingzeudata.ZingzeuData.Yngping;
@@ -122,8 +121,32 @@ namespace Yngdieng.Backend.TextToSpeech
                     }
                 }
             }
-            // TODO: 补充音频
-            return;
+            /*补充音频
+            SyllableMappings.Add("buk21", "buk21");
+            SyllableMappings.Add("cing21", "cing21");
+            SyllableMappings.Add("gi0", "gi0");
+            SyllableMappings.Add("go0", "go0");
+            SyllableMappings.Add("gu21", "gu21");
+            SyllableMappings.Add("hu21", "hu21");
+            SyllableMappings.Add("i0", "i0");
+            SyllableMappings.Add("i21", "i21");
+            SyllableMappings.Add("ko0", "ko0");
+            SyllableMappings.Add("le0", "le0");
+            SyllableMappings.Add("ling21", "ling21");
+            SyllableMappings.Add("lo21", "lo21");
+            SyllableMappings.Add("mi21", "mi21");
+            SyllableMappings.Add("mo21", "mo21");
+            SyllableMappings.Add("ng242", "ng242");
+            SyllableMappings.Add("ngi0", "ngi0");
+            SyllableMappings.Add("ngo0", "ngo0");
+            SyllableMappings.Add("ngu21", "ngu21");
+            SyllableMappings.Add("o0", "o0");
+            SyllableMappings.Add("si21", "si21");
+            SyllableMappings.Add("sing21", "sing21");
+            SyllableMappings.Add("soh21", "soh21");
+            SyllableMappings.Add("u21", "u21");
+            SyllableMappings.Add("zi0", "zi0");
+            SyllableMappings.Add("zo21", "zo21");*/
         }
 
         public static bool IsPronounceable(string yngping)

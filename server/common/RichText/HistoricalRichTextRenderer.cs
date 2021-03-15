@@ -25,19 +25,31 @@ namespace Yngdieng.Common.RichText
             {
                 sources.Add("榕腔注音辞典·目录");
             }
+            var children = new List<RichTextNode>();
+            children.Add(SectionHeader(zc.tH(HanziUtils.HanziToString(doc.HanziCanonical))));
+            children.Add(Label(zc.tM("音韵地位（戚林八音）")));
+            children.Add(SimpleText(PhonologyUtils.ToHanzi(doc.Initial, doc.Final, doc.Tone)));
+            children.Add(Label(zc.tM("榕拼（八音）")));
+            children.Add(SimpleText(doc.Yngping));
+            children.Add(Label(zc.tM("教会罗马字")));
+            children.Add(SimpleText(doc.Buc));
+            if (!string.IsNullOrEmpty(doc.CiklinSource?.ExplanationCik))
+            {
+                children.Add(Label(zc.tM("戚书释义")));
+                children.Add(SimpleText(zc.tM(doc.CiklinSource.ExplanationCik)));
+            }
+            if (!string.IsNullOrEmpty(doc.CiklinSource?.ExplanationLing))
+            {
+                children.Add(Label(zc.tM("林书释义")));
+                children.Add(SimpleText(zc.tM(doc.CiklinSource.ExplanationLing)));
+            }
+            children.Add(Source(zc.tM("来源：" + string.Join(", ", sources))));
             return new RichTextNode()
             {
                 VerticalContainer = new RichTextNode.Types.VerticalContainerNode()
                 {
                     Children = {
-                            SectionHeader(zc.tH(HanziUtils.HanziToString(doc.HanziCanonical))),
-                            Label(zc.tM("音韵地位（戚林八音）")),
-                            SimpleText(PhonologyUtils.ToHanzi(doc.Initial,doc.Final,doc.Tone) ),
-                            Label(zc.tM("榕拼（八音）")),
-                            SimpleText(doc.Yngping),
-                             Label(zc.tM("教会罗马字")),
-                            SimpleText(doc.Buc),
-                            Source(zc.tM("来源："+string.Join(", ",sources))),
+                           children
                         }
                 }
             };

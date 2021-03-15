@@ -267,7 +267,20 @@ namespace Yngdieng.Indexer.Processing
                                 /* TODO: simplified variant */
                                                                           };
                         case SourceOneofCase.CiklinDfd:
-                            return new string[] { };
+                            if (s.CiklinDfd.CiklinSource == null)
+                            {
+                                return new string[] { };
+                            }
+                            var explanations = new List<string>();
+                            if (!string.IsNullOrEmpty(s.CiklinDfd.CiklinSource.ExplanationCik))
+                            {
+                                explanations.Add(s.CiklinDfd.CiklinSource.ExplanationCik);
+                            }
+                            if (!string.IsNullOrEmpty(s.CiklinDfd.CiklinSource.ExplanationLing))
+                            {
+                                explanations.Add(s.CiklinDfd.CiklinSource.ExplanationLing);
+                            }
+                            return explanations.ToArray();
                     }
                     return new string[] { };
                 })

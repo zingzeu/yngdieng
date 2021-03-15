@@ -24,6 +24,7 @@ import {HomeComponent} from './home/home.component';
 import {MonoHanziResultComponent} from './mono-hanzi-result/mono-hanzi-result.component';
 import {PhonologyComposerComponent} from './phonology-composer/phonology-composer.component';
 import {PhonologyQueryRendererComponent} from './phonology-query-renderer/phonology-query-renderer.component';
+import {SandhiToolComponent} from './sandhi-tool/sandhi-tool.component';
 import {SearchResultComponent} from './search-result/search-result.component';
 import {SearchboxComponent} from './searchbox/searchbox.component';
 import {SidenavContentComponent} from './sidenav-content/sidenav-content.component';
@@ -33,8 +34,6 @@ import {WordDetailsComponent} from './word-details/word-details.component';
 import {YngdiengBackendService} from './yngdieng-backend.service';
 import {YngdiengTitleService} from './yngdieng-title.service';
 import {YngpingHelpDialogComponent} from './yngping-help-dialog/yngping-help-dialog.component';
-import {ContribExplanationComponent} from './contrib-explanation/contrib-explanation.component';
-import {HistoricalDetailsComponent} from './historical-details/historical-details.component';
 import {SearchV2ResultComponent} from './search-v2-result/search-v2-result.component';
 import {WordCardComponent} from './word-card/word-card.component';
 import {RichtextFlattenPipe} from './richtext-flatten.pipe';
@@ -57,7 +56,6 @@ import {WordlistDemoComponent} from './wordlist-demo/wordlist-demo.component';
     AudioAckDialogComponent,
     AudioPlayerComponent,
     CommonToolbarComponent,
-    ContribExplanationComponent,
     DebugInfoComponent,
     DetailsFengComponent,
     DetailsMonoHanziComponent,
@@ -66,7 +64,6 @@ import {WordlistDemoComponent} from './wordlist-demo/wordlist-demo.component';
     FengResultComponent,
     GenericMessageCardComponent,
     HelpComponent,
-    HistoricalDetailsComponent,
     HomeComponent,
     LoadingCardComponent,
     MonoHanziResultComponent,
@@ -74,6 +71,7 @@ import {WordlistDemoComponent} from './wordlist-demo/wordlist-demo.component';
     PhonologyComposerComponent,
     PhonologyQueryRendererComponent,
     RichtextFlattenPipe,
+    SandhiToolComponent,
     SearchResultComponent,
     SearchV2ResultComponent,
     SearchboxComponent,

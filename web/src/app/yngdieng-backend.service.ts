@@ -10,16 +10,19 @@ import {
   GetAggregatedDocumentRequest,
   GetDebugInfoRequest,
   GetFengDocumentRequest,
-  GetYngdiengDocumentRequest,
   SearchRequest,
   SearchResponse,
   SearchV2Request,
   SearchV2Response,
   SimplifyTextRequest,
+  GenerateSandhiRequest,
+  GenerateSandhiResponse,
   UserPreference,
 } from 'yngdieng/shared/services_pb';
 import {YngdiengServiceClient} from 'yngdieng/shared/services_grpc_web_pb';
 import {
+  Word,
+  GetWordRequest,
   ListWordListWordsRequest,
   ListWordListWordsResponse,
 } from 'yngdieng/yngdieng/frontend/v3/service_pb';
@@ -141,18 +144,22 @@ export class YngdiengBackendService {
     return subject.asObservable();
   }
 
-  getYngdiengDocument(docId: string): Observable<YngdiengDocument> {
-    let subject = new Subject<YngdiengDocument>();
-    let request = new GetYngdiengDocumentRequest();
-    request.setId(docId);
-    this.grpcClient.getYngdiengDocument(request, undefined, (err, response) => {
-      if (err != null) {
-        subject.error(err);
-        return;
+  getWord(docId: string): Observable<Word> {
+    let subject = new Subject<Word>();
+    let request = new GetWordRequest();
+    request.setName(`words/${docId}`);
+    this.frontendGrpcClient.getWord(
+      request,
+      {'x-ydict-options': this.getUserPreference()},
+      (err, response) => {
+        if (err != null) {
+          subject.error(err);
+          return;
+        }
+        subject.next(response);
+        subject.complete();
       }
-      subject.next(response);
-      subject.complete();
-    });
+    );
     return subject.asObservable();
   }
 
@@ -205,6 +212,22 @@ export class YngdiengBackendService {
         return;
       }
       subject.next(response.getConvertedText());
+      subject.complete();
+    });
+
+    return subject.asObservable();
+  }
+
+  generateSandhi(inputs: string[]): Observable<GenerateSandhiResponse> {
+    let subject = new Subject<GenerateSandhiResponse>();
+    let request = new GenerateSandhiRequest();
+    request.setInputsList(inputs);
+    this.grpcClient.generateSandhi(request, undefined, (err, response) => {
+      if (err != null) {
+        subject.error(err);
+        return;
+      }
+      subject.next(response);
       subject.complete();
     });
 

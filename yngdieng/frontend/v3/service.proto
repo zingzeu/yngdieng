@@ -98,6 +98,8 @@ message RichTextNode {
     InlineContainerNode inline_container = 3;
     ListNode list = 2;
   }
+
+  repeated string styles = 4;
 }
 
 message GetWordRequest {
