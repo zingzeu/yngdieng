@@ -202,6 +202,9 @@ namespace Yngdieng.Backend.Db
 
         public string DisplayName { get; set; }
 
+        // 昵称来源 (e.g. QQ, WeChat)
+        public string DisplayNameSource { get; set; }
+
         // ISO 639-6
         public string? Accent { get; set; }
 
@@ -211,6 +214,9 @@ namespace Yngdieng.Backend.Db
         public int? YearOfBirth { get; set; }
 
         public Gender Gender { get; set; }
+
+        // 祖籍地
+        public string? AncestralHome { get; set; }
 
     }
 
