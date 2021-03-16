@@ -203,7 +203,7 @@ namespace Yngdieng.Backend.Db
         public string DisplayName { get; set; }
 
         // 昵称来源 (e.g. QQ, WeChat)
-        public string DisplayNameSource { get; set; }
+        public string? DisplayNameSource { get; set; }
 
         // ISO 639-6
         public string? Accent { get; set; }

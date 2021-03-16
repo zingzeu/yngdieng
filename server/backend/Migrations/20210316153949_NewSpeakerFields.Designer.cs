@@ -12,7 +12,7 @@ using Yngdieng.Backend.Db;
 namespace Yngdieng.Backend.Migrations
 {
     [DbContext(typeof(AdminContext))]
-    [Migration("20210316153140_NewSpeakerFields")]
+    [Migration("20210316153949_NewSpeakerFields")]
     partial class NewSpeakerFields
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -184,7 +184,6 @@ namespace Yngdieng.Backend.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("DisplayNameSource")
-                        .IsRequired()
                         .HasColumnName("display_name_source")
                         .HasColumnType("text");
 

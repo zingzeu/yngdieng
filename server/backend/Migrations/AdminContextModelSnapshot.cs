@@ -182,7 +182,6 @@ namespace Yngdieng.Backend.Migrations
                         .HasColumnType("text");
 
                     b.Property<string>("DisplayNameSource")
-                        .IsRequired()
                         .HasColumnName("display_name_source")
                         .HasColumnType("text");
 

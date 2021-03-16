@@ -145,8 +145,8 @@ VALUES ('20201023182635_AudioClipsByWordId2', '3.1.11');
 
 ALTER TABLE speakers ADD ancestral_home text NULL;
 
-ALTER TABLE speakers ADD display_name_source text NOT NULL DEFAULT '';
+ALTER TABLE speakers ADD display_name_source text NULL;
 
 INSERT INTO "__EFMigrationsHistory" (migration_id, product_version)
-VALUES ('20210316153140_NewSpeakerFields', '3.1.11');
+VALUES ('20210316153949_NewSpeakerFields', '3.1.11');
 

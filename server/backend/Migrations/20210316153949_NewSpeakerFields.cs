@@ -14,8 +14,7 @@ namespace Yngdieng.Backend.Migrations
             migrationBuilder.AddColumn<string>(
                 name: "display_name_source",
                 table: "speakers",
-                nullable: false,
-                defaultValue: "");
+                nullable: true);
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
