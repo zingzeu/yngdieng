@@ -36,7 +36,6 @@ namespace Yngdieng.Common.RichText
                     Children =
                     {
                         SectionHeader(doc.Hanzi,  RenderSourcePronunciations(doc.YngpingUnderlying, doc.YngpingSandhi)),
-                        explanationRenderer.ToRichTextNode(doc.ExplanationStructured)
                     }
                 }
             };
