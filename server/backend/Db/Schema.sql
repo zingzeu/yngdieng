@@ -150,3 +150,10 @@ ALTER TABLE speakers ADD display_name_source text NULL;
 INSERT INTO "__EFMigrationsHistory" (migration_id, product_version)
 VALUES ('20210316153949_NewSpeakerFields', '3.1.11');
 
+ALTER TABLE extensions ALTER COLUMN source TYPE text;
+ALTER TABLE extensions ALTER COLUMN source DROP NOT NULL;
+ALTER TABLE extensions ALTER COLUMN source DROP DEFAULT;
+
+INSERT INTO "__EFMigrationsHistory" (migration_id, product_version)
+VALUES ('20210316172153_NullableSource', '3.1.11');
+

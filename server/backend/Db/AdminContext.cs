@@ -184,7 +184,7 @@ namespace Yngdieng.Backend.Db
         public int ExtensionId { get; set; }
         public string Explanation { get; set; }
         public string[] Contributors { get; set; }
-        public string Source { get; set; }
+        public string? Source { get; set; }
 
         public ExtensionScope Scope { get; set; }
 
