@@ -24,7 +24,7 @@ parser.add_argument('--db_password', default='postgres',
                     help="Postgres password")
 parser.add_argument('--database', default='yngdieng',
                     help="Name of the database")
-parser.add_argument('--yes', default=True,
+parser.add_argument('--yes', action='store_true',
                     help="Skip confirmation")
 
 args = parser.parse_args()
@@ -38,7 +38,7 @@ def copyCsv(cur, tableName, filePath):
 
 def confirm():
     if args.yes:
-        pass
+        return
 
     print()
     print(f"WARNING: all existing data will be wiped")
