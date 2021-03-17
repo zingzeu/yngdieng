@@ -17,12 +17,7 @@ service YngdiengService {
   }
   rpc GetAggregatedDocument(GetAggregatedDocumentRequest) returns (HistoricalDocument);
   rpc GetFengDocument(GetFengDocumentRequest) returns (FengDocument);
-  // TODO: we need a better API resource for a "Word".
-  rpc GetYngdiengDocument(GetYngdiengDocumentRequest) returns (YngdiengDocument) {
-    option (google.api.http) = {
-      get: "/v2/yngdieng_document/{id}"
-    };
-  }
+
   rpc GetDebugInfo(GetDebugInfoRequest) returns (DebugInfo) {
     option (google.api.http) = {
       get: "/v2/debugz"
@@ -138,10 +133,6 @@ message SearchResultRow {
 }
 
 message GetFengDocumentRequest {
-  string id = 1;
-}
-
-message GetYngdiengDocumentRequest {
   string id = 1;
 }
 
