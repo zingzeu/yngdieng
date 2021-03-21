@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Grpc.Core;
@@ -13,6 +14,10 @@ namespace Yngdieng.Backend.Services.Frontend
 
     public partial class FrontendService : Yngdieng.Frontend.V3.Protos.FrontendService.FrontendServiceBase
     {
+
+        private const int MaxPageSize = 50;
+        private const int DefaultPageSize = 15;
+
         public async override Task<ListWordListWordsResponse> ListWordListWords(ListWordListWordsRequest request,
                                                    ServerCallContext context)
         {
@@ -22,10 +27,14 @@ namespace Yngdieng.Backend.Services.Frontend
             }
             var wordListId = ResourceNames.ToWordListId(request.Parent);
 
+            var pageSize = Math.Min(MaxPageSize, request.PageSize > 0 ? request.PageSize : DefaultPageSize);
+            var offset = ParsePageToken(request.PageToken);
             var wordIds = await _dbContext.WordListWords
                 .Where(w => w.WordListId == wordListId)
                 .OrderBy(w => w.Ordering)
                 .Select(w => w.WordId)
+                .Skip(offset)
+                .Take(pageSize)
                 .ToListAsync();
             var words = new List<Yngdieng.Frontend.V3.Protos.Word>();
             var userPreference = UserPreferences.FromContext(context);
@@ -36,8 +45,16 @@ namespace Yngdieng.Backend.Services.Frontend
             }
             return new ListWordListWordsResponse
             {
-                Words = { words }
+                Words = { words },
+                NextPageToken = (offset + words.Count).ToString()
             };
+        }
+
+        private static int ParsePageToken(string pageToken)
+        {
+            int offset = 0;
+            int.TryParse(pageToken, out offset);
+            return offset;
         }
     }
 }
