@@ -6,10 +6,7 @@ import {AtIcon} from 'taro-ui';
 import Header from '@/pages/header/header';
 import WordCard from '@/components/wordCard/wordCard';
 import routes from '@/routes';
-import {
-  getWordList,
-  getWordListByCollectionId,
-} from '@/store/actions/collection';
+import {getWordList, getWordListWords} from '@/store/actions/collection';
 import styles from './collectionDetail.module.scss';
 
 const initialState: {
@@ -26,6 +23,7 @@ const initialState: {
       rimePosition: string;
     }[];
   };
+  nextPageToken?: string;
 } = {
   collectionDetail: {
     title: '',
@@ -34,6 +32,7 @@ const initialState: {
     publisherName: '',
     words: [],
   },
+  nextPageToken: undefined,
 };
 
 const CollectionDetail = () => {
@@ -42,18 +41,26 @@ const CollectionDetail = () => {
   const [collectionDetail, setCollectionDetail] = useState(
     initialState.collectionDetail
   );
+  const [nextPageToken, setNextPageToken] = useState(
+    initialState.nextPageToken
+  );
 
   const handleLoadMore = () => {
-    const collectionId = decodeURIComponent(router.params.id || '');
+    const wordListName = decodeURIComponent(router.params.id || '');
     Taro.showNavigationBarLoading();
-    getWordListByCollectionId(collectionId, collectionDetail.words.length)
+    getWordListWords(wordListName, nextPageToken)
       .then(result => {
         Taro.hideNavigationBarLoading();
         setCollectionDetail(
           produce(collectionDetail, draft => {
-            draft.words.splice(collectionDetail.words.length, 0, ...result);
+            draft.words.splice(
+              collectionDetail.words.length,
+              0,
+              ...result.data.words
+            );
           })
         );
+        setNextPageToken(result.data.next_page_token);
       })
       .catch(() => {
         Taro.hideNavigationBarLoading();
@@ -64,11 +71,13 @@ const CollectionDetail = () => {
     title: collectionDetail.title,
   }));
   useEffect(() => {
-    const collectionId = router.params.id;
+    const wordListName = router.params.id;
     Taro.showNavigationBarLoading();
-    getWordList(collectionId)
+    getWordList(wordListName)
       .then(result => {
         setCollectionDetail(result);
+        console.log(result);
+        setNextPageToken(result.nextPageToken);
         Taro.hideNavigationBarLoading();
       })
       .catch(() => {
