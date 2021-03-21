@@ -2117,7 +2117,7 @@
   dependencies:
     "@tarojs/runtime" "3.1.4"
 
-"@tarojs/cli@^3.1.4":
+"@tarojs/cli@3.1.4":
   version "3.1.4"
   resolved "https://registry.yarnpkg.com/@tarojs/cli/-/cli-3.1.4.tgz#089b70e065d6c7e0cabea19d9aeeff730d923cba"
   integrity sha512-4G11js52XU8eJqOKheZF/yg6EaykgdPw1AZPF70bL4rv/eh74l+2N9Ev3Ue7Mw0zVPyIkkI1ueJ1Df1veOGAPQ==
