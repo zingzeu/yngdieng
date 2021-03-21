@@ -111,7 +111,7 @@ namespace Yngdieng.Common.RichText
             });
             var currentWordNode = new RichTextNode.Types.TextNode()
             {
-                Text = zc.toH(currentWord),
+                Text = zc.tH(currentWord),
                 Styles = { "current-word" }
             };
             var inlineNodes = Join(normalTextNodes, currentWordNode)
