@@ -108,7 +108,6 @@ namespace Yngdieng.Backend.Services.Frontend
             return output.ToImmutableArray();
         }
 
-
         private static RichTextNode[] GetExplanations(
             ZhConverter zhConverter,
             string hanzi,
