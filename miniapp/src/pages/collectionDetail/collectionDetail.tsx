@@ -124,20 +124,7 @@ const CollectionDetail = () => {
             lowerThreshold={20}
             upperThreshold={20}
           >
-            {collectionDetail.words.map(word => (
-              <View className={styles.listItem} key={word.name}>
-                <WordCard
-                  onClick={() =>
-                    Taro.navigateTo({
-                      url: `${routes.WORD_DETAIL}?id=${word.name}`,
-                    })
-                  }
-                  title={<View className={styles.title}>{word.hanzi}</View>}
-                  description={word.snippet}
-                  extraList={[{title: '榕拼', content: word.firstPron}]}
-                />
-              </View>
-            ))}
+            {collectionDetail.words.map(wordToWordCard)}
           </ScrollView>
         </View>
       </View>
@@ -146,3 +133,33 @@ const CollectionDetail = () => {
 };
 
 export default CollectionDetail;
+
+function wordToWordCard(word) {
+  var p = getPronunciation(word);
+  let extraList = p ? [{title: p.displayName, content: p.pronunciation}] : [];
+  return (
+    <View className={styles.listItem} key={word.name}>
+      <WordCard
+        onClick={() =>
+          Taro.navigateTo({
+            url: `${routes.WORD_DETAIL}?id=${word.name}`,
+          })
+        }
+        title={<View className={styles.title}>{word.hanzi}</View>}
+        description={word.snippet}
+        extraList={extraList}
+      />
+    </View>
+  );
+}
+
+function getPronunciation(w) {
+  if (w.pronunciations?.length === 0) {
+    return undefined;
+  }
+  let firstPron = w.pronunciations[0];
+  return {
+    pronunciation: firstPron.pronunciation,
+    displayName: firstPron.display_name,
+  };
+}

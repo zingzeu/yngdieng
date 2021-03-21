@@ -131,7 +131,7 @@ const WordDetail = () => {
           tabList={[
             {title: '释义'},
             {title: '更多例句'},
-            {title: '音韵'},
+            {title: '发音'},
             {title: '词表'},
             {title: '故事'},
           ]}

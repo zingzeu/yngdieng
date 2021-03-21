@@ -15,14 +15,7 @@ export const getWordList = async (wordListName, initialPageSize = 10) => {
   return {
     ...wordList.data,
     publisherName: isHomeland ? 'HOMELAND家园官方账号' : '真鸟囝天团',
-    words:
-      wordListWords.data.words?.map(w => ({
-        ...w,
-        firstPron:
-          w.pronunciations?.length !== 0
-            ? w.pronunciations[0].pronunciation
-            : undefined,
-      })) || [],
+    words: wordListWords.data.words || [],
     nextPageToken: wordListWords.data.next_page_token,
   };
 };
