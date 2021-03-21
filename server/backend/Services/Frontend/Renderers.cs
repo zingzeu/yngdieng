@@ -19,13 +19,7 @@ namespace Yngdieng.Backend.Services.Frontend
                 Pronunciation = a.Pronunciation,
                 HintPrimary = hintPrimary,
                 HintSecondary = a.SpeakerLocation ?? string.Empty,
-                Audio = new AudioResource()
-                {
-                    RemoteUrls = new AudioResource.Types.RemoteUrls()
-                    {
-                        RemoteUrls_ = { "https://yngdieng-media.oss-cn-hangzhou.aliyuncs.com/" + a.BlobLocation }
-                    }
-                }
+                Audio = AudioResources.WithAudioClip(a.BlobLocation)
             };
         }
 
