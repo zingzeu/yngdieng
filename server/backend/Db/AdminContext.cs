@@ -91,6 +91,10 @@ namespace Yngdieng.Backend.Db
         // G=
         public string? Gloss { get; set; }
 
+        // TODO: remove this. And migrate to Pron-level PreferredAudioClip.
+        // Preferred Sandhi Audio (real-human audio). This is preferred over TTS audio.
+        public AudioClip? PreferredSandhiAudio { get; set; }
+
     }
 
     //[Keyless]

@@ -157,3 +157,12 @@ ALTER TABLE extensions ALTER COLUMN source DROP DEFAULT;
 INSERT INTO "__EFMigrationsHistory" (migration_id, product_version)
 VALUES ('20210316172153_NullableSource', '3.1.11');
 
+ALTER TABLE words ADD preferred_sandhi_audio_audio_clip_id integer NULL;
+
+CREATE INDEX ix_words_preferred_sandhi_audio_audio_clip_id ON words (preferred_sandhi_audio_audio_clip_id);
+
+ALTER TABLE words ADD CONSTRAINT fk_words_audio_clips_preferred_sandhi_audio_audio_clip_id FOREIGN KEY (preferred_sandhi_audio_audio_clip_id) REFERENCES audio_clips (audio_clip_id) ON DELETE RESTRICT;
+
+INSERT INTO "__EFMigrationsHistory" (migration_id, product_version)
+VALUES ('20210321143639_PreferredAudioClip', '3.1.11');
+

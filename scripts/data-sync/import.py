@@ -66,16 +66,16 @@ with psycopg2.connect(
             delete from word_audio_clips where true;
             delete from word_list_words where true;
             delete from word_lists where true;
-            delete from audio_clips where true;
-            delete from speakers where true;
             delete from extensions where true;
             delete from prons where true;
-            delete from words where true;""")
+            delete from words where true;
+            delete from audio_clips where true;
+            delete from speakers where true;""")
+        copyCsv(cur, 'speakers', 'speakers.csv')
+        copyCsv(cur, 'audio_clips', 'generated/audio_clips.csv')
         copyCsv(cur, 'words', 'generated/words.csv')
         copyCsv(cur, 'prons', 'generated/prons.csv')
         copyCsv(cur, 'extensions', 'generated/extensions.csv')
-        copyCsv(cur, 'speakers', 'speakers.csv')
-        copyCsv(cur, 'audio_clips', 'generated/audio_clips.csv')
         copyCsv(cur, 'word_lists', 'word_lists.csv')
         copyCsv(cur, 'word_list_words', 'word_list_words.csv')
         copyCsv(cur, 'word_audio_clips', 'generated/word_audio_clips.csv')
