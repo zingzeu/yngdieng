@@ -37,7 +37,7 @@ namespace Yngdieng.Backend.Services
                     };
                     results.Add(result);
                 }
-                catch (Exception e)
+                catch (Exception)
                 {
                     results.Add(new GenerateSandhiResponse.Types.SandhiResult
                     {

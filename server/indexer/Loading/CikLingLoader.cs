@@ -182,7 +182,6 @@ namespace Yngdieng.Indexer.Loading
                             Console.WriteLine($"Skipping {r.Id}, unknown Final: {r.FinalCik}{r.FinalLing}");
                             continue;
                         }
-                        var initial = GetInitial(r);
                         var document = new Document
                         {
                             HanziCanonical = StringToHanziProto(r.Hanzi),

@@ -4,10 +4,8 @@
 #
 # WARNING: this wipes all existing data.
 
-from jinja2 import Template
 import argparse
 import pathlib
-import subprocess
 import psycopg2
 
 parser = argparse.ArgumentParser(

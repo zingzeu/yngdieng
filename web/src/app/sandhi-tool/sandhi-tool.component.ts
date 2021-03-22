@@ -1,6 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {FormControl} from '@angular/forms';
-import {catchError, debounceTime, map, switchMap} from 'rxjs/operators';
+import {catchError, debounceTime, switchMap} from 'rxjs/operators';
 import {YngdiengBackendService} from '../yngdieng-backend.service';
 
 @Component({

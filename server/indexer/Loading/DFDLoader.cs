@@ -31,7 +31,6 @@ namespace Yngdieng.Indexer.Loading
         {
             var jsonOutput = new List<string>();
             var documents = new List<Document>();
-            int id = 0;
             using (var reader = new StreamReader(_dfdCharactersFile))
             {
                 using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))

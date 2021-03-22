@@ -21,8 +21,7 @@ namespace Yngdieng.Backend.TextToSpeech
                 audioCodec: AudioCodec.mp3,
                 subtitleCodec: SubtitleCodec.copy,
                 keepSubtitles: false);
-            IConversionResult result = await conversion
-                .Start();
+            await conversion.Start();
             var mp3Bytes = await File.ReadAllBytesAsync(mp3Path);
             File.Delete(wavPath);
             File.Delete(mp3Path);

@@ -1,4 +1,3 @@
-const {request} = require('http');
 const ci = require('miniprogram-ci');
 const projectConfig = require('./project.config.json');
 const package = require('./package.json');

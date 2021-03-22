@@ -64,7 +64,7 @@ namespace Yngdieng.Backend.TextToSpeech
                         }
                         long dataLength = reader.Length;
                         byte[] buffer = new byte[dataLength];
-                        int bytesRead = reader.Read(buffer, 0, (int)dataLength);
+                        reader.Read(buffer, 0, (int)dataLength);
                         int threshold = 0;
                         for (int i = 0; i + 2 <= dataLength; i += 2)
                         {

@@ -1,10 +1,6 @@
 import {Inject, Injectable} from '@angular/core';
 import {Observable, Subject} from 'rxjs';
-import {
-  FengDocument,
-  HistoricalDocument,
-  YngdiengDocument,
-} from 'yngdieng/shared/documents_pb';
+import {FengDocument, HistoricalDocument} from 'yngdieng/shared/documents_pb';
 import {
   DebugInfo,
   GetAggregatedDocumentRequest,
