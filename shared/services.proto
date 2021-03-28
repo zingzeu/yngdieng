@@ -205,6 +205,8 @@ message UserPreference {
 
   // If true, includes zingzeu_words-only entries in the search result.
   bool show_sourceless_search_results = 2;
+
+  bool show_original_hanzi_in_examples = 3;
 }
 
 message SimplifyTextRequest {

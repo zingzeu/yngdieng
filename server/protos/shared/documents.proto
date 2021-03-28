@@ -141,7 +141,7 @@ message HistoricalDocument {
 }
 
 // 冯 / 李文档.
-// Next ID: 14
+// Next ID: 15
 message FengDocument {
   string id = 1;
 
@@ -149,6 +149,8 @@ message FengDocument {
 
   // 正字写法.
   string hanzi_canonical = 2;
+
+  string hanzi_original = 14;
 
   repeated string hanzi_matchable = 9;
 

@@ -44,6 +44,7 @@ namespace Yngdieng.Indexer.Loading
                     {
                         Id = $"p{f.PageNumber}_{f.LineNumber}",
                         HanziCanonical = f.HanziClean,
+                        HanziOriginal = f.HanziOriginal,
                         YngpingCanonical = f.Pron,
                         YngpingUnderlying = f.PronUnderlying,
                         Explanation = cleanExplanation,

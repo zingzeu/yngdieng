@@ -4,8 +4,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using Grpc.Core;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Logging;
-using Yngdieng.Backend.Db;
 using Yngdieng.Common;
 using Yngdieng.Frontend.V3.Protos;
 
