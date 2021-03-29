@@ -43,12 +43,6 @@
   "simulatorPluginLibVersion": {},
   "cloudfunctionTemplateRoot": "cloudfunctionTemplate",
   "condition": {
-    "search": {
-      "list": []
-    },
-    "conversation": {
-      "list": []
-    },
     "plugin": {
       "list": []
     },
@@ -68,10 +62,9 @@
           "scene": null
         },
         {
-          "id": 1,
           "name": "pages/wordDetail/wordDetail",
           "pathName": "pages/wordDetail/wordDetail",
-          "query": "id=words/CgNEQjc",
+          "query": "id=words/CgQzQzBG",
           "scene": null
         },
         {
