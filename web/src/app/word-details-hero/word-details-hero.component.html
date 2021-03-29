@@ -9,10 +9,13 @@
         <mat-menu #menu="matMenu">
             <button mat-menu-item (click)="onCopyMiniAppPath()">复制小程序路径</button>
         </mat-menu>
-        <div class="hanzi unihan-text">{{ model.hanzi }}</div>
-        <div *ngFor="let p of model.prons" class="text-yngping">
+        <div class="hanzi-section">
+            <span class="label">推荐用字</span>
+            <div class="hanzi unihan-text">{{ model.hanzi }}</div>
+        </div>
+        <div *ngFor="let p of model.prons" class="pron-section">
             <span class="label">{{ p.displayName }}</span>
-            {{ p.pronunciation }}
+            <span class="text-yngping">{{ p.pronunciation }}</span>
             <app-audio-player *ngIf="p.audioUrl" [audioUrl]="p.audioUrl" [preload]="true"></app-audio-player>
         </div>
     </div>

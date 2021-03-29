@@ -6,10 +6,9 @@
 .details-hero {
   background-color: #69656f;
   color: white;
-  padding: 16px 24px 16px 24px;
+  padding: 16px;
   .hanzi {
-    font-size: 2.5em;
-    margin-bottom: 10px;
+    font-size: 2.2em;
   }
   .text-yngping {
     font-size: 1em;
@@ -20,7 +19,16 @@
     border-radius: 3px;
     border: 1px white solid;
     padding: 2px 0.4em 2px 0.4em;
+    margin-right: 8px;
   }
+}
+
+.hanzi-section {
+  padding-top: 8px;
+}
+
+.pron-section {
+  height: 32px;
 }
 
 .action-button {

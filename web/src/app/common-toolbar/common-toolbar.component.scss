@@ -2,6 +2,10 @@
   background-color: rgba(220, 210, 208, 1);
 }
 
+.topbar {
+  padding: 0 12px;
+}
+
 .mat-toolbar-row,
 .mat-toolbar-single-row {
   min-height: 50px !important;
@@ -28,21 +32,20 @@ app-searchbox,
 }
 
 .logo {
-  height: 50px;
-  min-width: 80px;
   margin-right: 16px;
-  padding: 4px;
+  padding: 4px 4px 4px 0;
   align-content: center;
 }
 
 .logo::before {
   content: '';
   display: inline-block;
-  height: 36px;
-  width: 74px;
+  height: 30px;
   min-width: 74px;
   background-image: url(/assets/logo-header.png);
-  background-size: cover;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
   filter: brightness(0) invert(1);
   vertical-align: middle;
 }
