@@ -34,7 +34,6 @@ namespace Yngdieng.Backend.Services
             if (string.IsNullOrEmpty(request.PageToken))
             {
                 // Is first page 
-                resultCards.Add(GenericMessageCard("你正在试用榕典搜索V2。如遇问题，请将截图和网址发送到 radium@mindong.asia。"));
                 results = searcher.Search(query, userPreference.ShowSourcelessSearchResults ? null : FilterSourcelessDocs, desiredPageSize + 1);
                 // first page && no results
                 if (results.ScoreDocs.Length == 0)
