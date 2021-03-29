@@ -103,7 +103,7 @@ const WordDetail = () => {
       <View className={styles.hero}>
         <View className="at-row at-row__justify--between">
           <View className={styles.word}>
-            <View className={styles.label}>推荐汉字</View>
+            <View className={styles.label}>推荐用字</View>
             <selectable-text t={wordDetail.hanzi} />
           </View>
           <View className={styles.actionPanel}>
