@@ -100,9 +100,10 @@ const WordDetail = () => {
   return (
     <View>
       <Header />
-      <View className={styles.topBar}>
+      <View className={styles.hero}>
         <View className="at-row at-row__justify--between">
           <View className={styles.word}>
+            <View className={styles.label}>推荐汉字</View>
             <selectable-text t={wordDetail.hanzi} />
           </View>
           <View className={styles.actionPanel}>
@@ -113,7 +114,7 @@ const WordDetail = () => {
         <View>
           {wordDetail.pronunciations?.map(p => (
             <View className={styles.rimeContainer}>
-              <View className={styles.rimePosition}>{p.display_name}</View>
+              <View className={styles.label}>{p.display_name}</View>
               <View>
                 <selectable-text t={p.pronunciation} />
               </View>
