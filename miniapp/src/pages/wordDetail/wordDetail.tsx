@@ -102,6 +102,7 @@ const WordDetail = () => {
       <Header />
       <View className={styles.topBar}>
         <View className="at-row at-row__justify--between">
+          <View className={styles.rimePosition}>推荐汉字</View>
           <View className={styles.word}>
             <selectable-text t={wordDetail.hanzi} />
           </View>
