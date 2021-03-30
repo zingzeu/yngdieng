@@ -32,7 +32,7 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
     private localStorageService: LocalStorageService,
     private snackBar: MatSnackBar,
     private platform: Platform,
-    private ackDialog: MatDialog
+    private matDialog: MatDialog
   ) {}
 
   private getHowlSrc() {
@@ -161,7 +161,7 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
   }
 
   private showTtsAcknowledgement() {
-    let ackDialogRef = this.ackDialog.open(AudioAckDialogComponent, {
+    let ackDialogRef = this.matDialog.open(AudioAckDialogComponent, {
       width: '80vw',
       maxWidth: '500px',
     });

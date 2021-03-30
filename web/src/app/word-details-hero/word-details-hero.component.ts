@@ -10,6 +10,7 @@ import {
 } from '../../environments/environment';
 import {YngpingHelpDialogComponent} from '../yngping-help-dialog/yngping-help-dialog.component';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import {HanziCanvasDialogComponent} from '../hanzi-canvas-dialog/hanzi-canvas-dialog.component';
 
 /**
  * The hero component that's at the top of each word details page, containing summary information
@@ -29,7 +30,8 @@ export class WordDetailsHeroComponent implements OnInit {
     private dialog: MatDialog,
     private breakpointObserver: BreakpointObserver,
     private clipboard: Clipboard,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private matDialog: MatDialog
   ) {}
 
   onShowYngpingHelp() {
@@ -44,6 +46,13 @@ export class WordDetailsHeroComponent implements OnInit {
     let textToCopy = `${this.model.hanzi}: pages/wordDetail/wordDetail?id=${this.model.docId}`;
     this.clipboard.copy(textToCopy);
     this.snackBar.open('已复制: ' + textToCopy);
+  }
+
+  onShowHanziCanvasDialog() {
+    this.matDialog.open(HanziCanvasDialogComponent, {
+      data: {hanziSequence: this.model.hanzi},
+      width: '80vw',
+    });
   }
 
   ngOnInit(): void {

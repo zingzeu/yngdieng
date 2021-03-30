@@ -46,6 +46,8 @@ import {PlatformModule} from '@angular/cdk/platform';
 import {SettingsComponent} from './settings/settings.component';
 import {AudioAckDialogComponent} from './audio-ack-dialog/audio-ack-dialog.component';
 import {WordlistDemoComponent} from './wordlist-demo/wordlist-demo.component';
+import {HanziCanvasDialogComponent} from './hanzi-canvas-dialog/hanzi-canvas-dialog.component';
+import {HanziCanvasComponent} from './hanzi-canvas-dialog/hanzi-canvas/hanzi-canvas.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +65,8 @@ import {WordlistDemoComponent} from './wordlist-demo/wordlist-demo.component';
     FengExplanationComponent,
     FengResultComponent,
     GenericMessageCardComponent,
+    HanziCanvasComponent,
+    HanziCanvasDialogComponent,
     HelpComponent,
     HomeComponent,
     LoadingCardComponent,

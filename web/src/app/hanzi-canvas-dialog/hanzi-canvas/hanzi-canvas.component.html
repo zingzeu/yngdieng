@@ -1,0 +1,3 @@
+<canvas width="48" height="48" [ngClass]="{'display-none': isPending}" #hanziCanvas></canvas>
+<mat-spinner diameter="40" *ngIf="isPending"></mat-spinner>
+<span class="unihan-text" style="font-size: 1px">{{hanzi}}</span>
