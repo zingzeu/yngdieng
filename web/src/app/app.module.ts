@@ -48,6 +48,7 @@ import {AudioAckDialogComponent} from './audio-ack-dialog/audio-ack-dialog.compo
 import {WordlistDemoComponent} from './wordlist-demo/wordlist-demo.component';
 import {HanziCanvasDialogComponent} from './hanzi-canvas-dialog/hanzi-canvas-dialog.component';
 import {HanziCanvasComponent} from './hanzi-canvas-dialog/hanzi-canvas/hanzi-canvas.component';
+import {ContributorsComponent} from './help/contributors/contributors.component';
 
 @NgModule({
   declarations: [
@@ -87,6 +88,7 @@ import {HanziCanvasComponent} from './hanzi-canvas-dialog/hanzi-canvas/hanzi-can
     WordDetailsHeroComponent,
     WordlistDemoComponent,
     YngpingHelpDialogComponent,
+    ContributorsComponent,
   ],
   imports: [
     AppRoutingModule,

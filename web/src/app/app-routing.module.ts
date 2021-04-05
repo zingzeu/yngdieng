@@ -17,6 +17,7 @@ import {FengResolverService} from './details-feng/feng-resolver.service';
 import {WordDetailsResolverService} from './word-details/word-details-resolver.service';
 import {WordlistDemoComponent} from './wordlist-demo/wordlist-demo.component';
 import {SandhiToolComponent} from './sandhi-tool/sandhi-tool.component';
+import {ContributorsComponent} from './help/contributors/contributors.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -25,6 +26,7 @@ const routes: Routes = [
   {path: 'search/:query', component: SearchV2ResultComponent},
   {path: 'advancedSearch', component: AdvancedSearchLandingComponent},
   {path: 'about', component: AboutComponent},
+  {path: 'help/contributors', component: ContributorsComponent},
   {path: 'help', component: HelpComponent},
   {path: 'settings', component: SettingsComponent},
   {
