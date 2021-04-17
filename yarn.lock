@@ -2857,13 +2857,16 @@
   resolved "https://registry.yarnpkg.com/@emotion/weak-memoize/-/weak-memoize-0.2.5.tgz#8eed982e2ee6f7f4e44c253e12962980791efd46"
   integrity sha512-6U71C2Wp7r5XtFtQzYrW5iKFT67OixrSxjI4MptCHzdSVlgabczzqLe0ZSgnub/5Kp4hSbpDB1tMytZY9pwxxA==
 
-"@grpc/proto-loader@0.5.5":
-  version "0.5.5"
-  resolved "https://registry.yarnpkg.com/@grpc/proto-loader/-/proto-loader-0.5.5.tgz#6725e7a1827bdf8e92e29fbf4e9ef0203c0906a9"
-  integrity sha512-WwN9jVNdHRQoOBo9FDH7qU+mgfjPc8GygPYms3M+y3fbQLfnCe/Kv/E01t7JRgnrsOHH8euvSbed3mIalXhwqQ==
+"@grpc/proto-loader@0.6.1":
+  version "0.6.1"
+  resolved "https://registry.yarnpkg.com/@grpc/proto-loader/-/proto-loader-0.6.1.tgz#ad63e8c7d2a23b0175c78eebc26dedf6b0af0b0b"
+  integrity sha512-4DIvEOZhw5nGj3RQngIoiMXRsre3InEH136krZTcirs/G2em3WMXdtx4Lqlnb4E2ertbWGs5gPeVDKU5BHffXw==
   dependencies:
+    "@types/long" "^4.0.1"
     lodash.camelcase "^4.3.0"
-    protobufjs "^6.8.6"
+    long "^4.0.0"
+    protobufjs "^6.10.0"
+    yargs "^16.1.1"
 
 "@icons/material@^0.2.4":
   version "0.2.4"
@@ -13351,7 +13354,7 @@ property-information@^5.0.0, property-information@^5.3.0:
   dependencies:
     xtend "^4.0.0"
 
-protobufjs@6.10.2:
+protobufjs@6.10.2, protobufjs@^6.10.0:
   version "6.10.2"
   resolved "https://registry.yarnpkg.com/protobufjs/-/protobufjs-6.10.2.tgz#b9cb6bd8ec8f87514592ba3fdfd28e93f33a469b"
   integrity sha512-27yj+04uF6ya9l+qfpH187aqEzfCF4+Uit0I9ZBQVqK09hk/SQzKa2MUqUpXaVa7LOFRg1TSSr3lVxGOk6c0SQ==
@@ -13370,7 +13373,7 @@ protobufjs@6.10.2:
     "@types/node" "^13.7.0"
     long "^4.0.0"
 
-protobufjs@6.8.8, protobufjs@^6.8.6:
+protobufjs@6.8.8:
   version "6.8.8"
   resolved "https://registry.yarnpkg.com/protobufjs/-/protobufjs-6.8.8.tgz#c8b4f1282fd7a90e6f5b109ed11c84af82908e7c"
   integrity sha512-AAmHtD5pXgZfi7GMpllpO3q1Xw1OYldr+dMUlAnffGTAhqkg72WdmSY71uKBF/JuyiKs8psYbtKrhi0ASCD8qw==
