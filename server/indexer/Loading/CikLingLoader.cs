@@ -38,6 +38,7 @@ namespace Yngdieng.Indexer.Loading
                                             {'語', Initial.Ng},
                                             {'鳥', Initial.Ng},
                                             {'出', Initial.C},
+                                            {'喜', Initial.H},
                                             {'非', Initial.H},
                                             {'風', Initial.H}};
         // TODO: use libhokchew

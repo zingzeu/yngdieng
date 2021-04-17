@@ -22,6 +22,7 @@ namespace Yngdieng.Common
           { Initial.Ng, "語" },
           { Initial.C, "出" },
           { Initial.H, "非" },
+          { Initial.H, "喜" },
         };
 
 
