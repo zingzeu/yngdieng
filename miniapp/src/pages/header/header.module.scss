@@ -31,6 +31,10 @@
   width: 100%;
 }
 
+.headerIcons {
+  display: flex;
+}
+
 .sidebarContainer {
   .header {
     height: $header-height;

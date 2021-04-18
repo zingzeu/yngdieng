@@ -47,7 +47,12 @@ const Search = () => {
   );
 
   const handleConfirm = (word = inputString) => {
-    if (inputString !== word) setInputString(word);
+    if (word.trim() == '') {
+      return;
+    }
+    if (inputString !== word) {
+      setInputString(word);
+    }
     setNextPageToken(undefined);
     toggleAdvanced(false);
     fetchOnePage(word);
@@ -130,7 +135,7 @@ const Search = () => {
                 lowerThreshold={100}
                 upperThreshold={20}
               >
-                {resultList.map(resultItem => renderResultItem(resultItem))}
+                {resultList?.map(resultItem => renderResultItem(resultItem))}
               </ScrollView>
             </View>
           </View>

@@ -5,6 +5,7 @@ export default {
     'pages/wordDetail/wordDetail',
     'pages/collectionDetail/collectionDetail',
     'pages/about/about',
+    'pages/help/help',
   ],
   window: {
     backgroundTextStyle: 'light',
