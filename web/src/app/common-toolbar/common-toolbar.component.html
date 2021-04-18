@@ -1,4 +1,4 @@
-<mat-toolbar class="topbar mat-elevation-z4 no-select" color="primary" [class.homepage]='isHomePage'>
+<mat-toolbar *ngIf="!isMiniApp" class="topbar mat-elevation-z4 no-select" color="primary" [class.homepage]='isHomePage'>
     <a mat-button [routerLink]="'/'" class="logo" *ngIf='!isHomePage'>
     </a>
     <app-searchbox [queryText]="queryText" *ngIf='!isHomePage' (performSearch)="onPerformSearch($event)">
