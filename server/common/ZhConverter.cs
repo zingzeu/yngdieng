@@ -18,7 +18,13 @@ namespace Yngdieng.Common
 
         public string tH(string hukziuText)
         {
-            return hukziuText;
+            switch (_zhConversionPreference)
+            {
+                case ZhConversionPreference.LangaugePreferenceHans:
+                    return _openCc.SimplifyHukziuText(hukziuText);
+                default:
+                    return hukziuText;
+            }
         }
 
         public string tM(string mandarinText)
