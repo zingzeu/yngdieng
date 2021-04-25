@@ -8269,14 +8269,6 @@ escodegen@^1.11.1:
   optionalDependencies:
     source-map "~0.6.1"
 
-eslint-config-taro@3.2.1:
-  version "3.2.1"
-  resolved "https://registry.yarnpkg.com/eslint-config-taro/-/eslint-config-taro-3.2.1.tgz#c663533080a7206005e5b04ff2a093644afa465f"
-  integrity sha512-1AVDNOq5mv93hPyO6PJAdd+Q3I2sK5G8jEaYBVjHylqTcMhF3OkcG3qcrSz7DQnPNdYMJ+t5p/bPYvYtV6zJlw==
-  dependencies:
-    "@typescript-eslint/parser" "^4.15.1"
-    babel-eslint "^10.0.0"
-
 eslint-config-taro@3.2.5:
   version "3.2.5"
   resolved "https://registry.yarnpkg.com/eslint-config-taro/-/eslint-config-taro-3.2.5.tgz#87769e25cb2a2afaa12c4e01c692f52cfcd9b9f6"
