@@ -84,7 +84,7 @@
     "karma-sourcemap-loader": "0.3.8",
     "lint-staged": "10.5.4",
     "prettier": "2.2.1",
-    "protobufjs": "6.10.2",
+    "protobufjs": "6.11.2",
     "protractor": "7.0.0",
     "requirejs": "2.3.6",
     "rollup": "2.36.1",
