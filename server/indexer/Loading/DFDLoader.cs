@@ -27,10 +27,10 @@ namespace Yngdieng.Indexer.Loading
             _hanziVariantsUtil = hanziVariantsUtil;
         }
 
-        public IEnumerable<Document> Run()
+        public IEnumerable<DfdDto> Run()
         {
             var jsonOutput = new List<string>();
-            var documents = new List<Document>();
+            var documents = new List<DfdDto>();
             using (var reader = new StreamReader(_dfdCharactersFile))
             {
                 using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
@@ -41,14 +41,14 @@ namespace Yngdieng.Indexer.Loading
                         try
                         {
                             (var sInitial, var sFinal, var sTone) = Parse(r.Buc);
-                            var document = new Document
+                            var document = new DfdDto
                             {
                                 HanziCanonical = StringToHanziProto(r.Hanzi),
                                 Initial = sInitial,
                                 Final = sFinal,
                                 Tone = sTone,
                                 Buc = r.Buc,
-                                Dfd = new DFDSourceInfo()
+                                DFDSourceInfo = new DFDSourceInfo()
                                 {
                                     PageNumber = r.PageNumber,
                                     ColumnNumber = r.ColumnNumber,
@@ -77,13 +77,13 @@ namespace Yngdieng.Indexer.Loading
             return documents;
         }
 
-        private void AddFanoutHanzi(Document d)
+        private void AddFanoutHanzi(DfdDto d)
         {
             var allHanziList = new List<string>();
             allHanziList.Add(HanziToString(d.HanziCanonical));
             allHanziList.AddRange(d.HanziAlternatives.Select(h => HanziToString(h)).ToList());
             var fanOutHanziList = _hanziVariantsUtil.GetFanoutVariants(allHanziList.ToArray());
-            d.HanziMatchable.Add(fanOutHanziList);
+            d.HanziMatchable.AddRange(fanOutHanziList);
         }
     }
 

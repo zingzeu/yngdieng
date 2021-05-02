@@ -21,7 +21,7 @@ namespace Yngdieng.Indexer.Processing
         private readonly IDictionary<string, HistoricalDocument> documents =
             new Dictionary<string, HistoricalDocument>();
 
-        public void Add(Document d)
+        public void Add(HistoricalDocDto d)
         {
             var key = Base64UrlTextEncoder.Encode(
                 new DocumentAggregateKey
@@ -58,14 +58,14 @@ namespace Yngdieng.Indexer.Processing
             documents[key].HanziMatchable.Clear();
             documents[key].HanziMatchable.AddRange(mMerged);
 
-            if (d.SourceInfoCase == Document.SourceInfoOneofCase.Ciklin)
+            if (d is CikLingDto)
             {
-                documents[key].CiklinSource = d.Ciklin;
+                documents[key].CiklinSource = (d as CikLingDto).CikLinSourceInfo;
             }
 
-            if (d.SourceInfoCase == Document.SourceInfoOneofCase.Dfd)
+            if (d is DfdDto)
             {
-                documents[key].DfdSource = d.Dfd;
+                documents[key].DfdSource = (d as DfdDto).DFDSourceInfo;
             }
         }
 

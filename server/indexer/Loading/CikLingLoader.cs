@@ -157,10 +157,10 @@ namespace Yngdieng.Indexer.Loading
             _hanziVariantsUtil = hanziVariantsUtil;
         }
 
-        public IEnumerable<Document> Run()
+        public IEnumerable<CikLingDto> Run()
         {
             var jsonOutput = new List<string>();
-            var documents = new List<Document>();
+            var documents = new List<CikLingDto>();
 
             IEnumerable<CikLinRow> cikLinRows;
             // load only3km's CikLinBekin
@@ -183,13 +183,13 @@ namespace Yngdieng.Indexer.Loading
                             Console.WriteLine($"Skipping {r.Id}, unknown Final: {r.FinalCik}{r.FinalLing}");
                             continue;
                         }
-                        var document = new Document
+                        var document = new CikLingDto
                         {
                             HanziCanonical = StringToHanziProto(r.Hanzi),
                             Initial = GetInitial(r),
                             Final = final.Value,
                             Tone = StringToTone[r.Tone],
-                            Ciklin = new CikLinSourceInfo()
+                            CikLinSourceInfo = new CikLinSourceInfo()
                             {
                                 ExplanationCik = CleanExplanation(r.ExplanationCik),
                                 ExplanationLing = CleanExplanation(r.ExplanationLing)
@@ -243,13 +243,13 @@ namespace Yngdieng.Indexer.Loading
             return Regex.Replace(ex.Trim(), @"\d+", "");
         }
 
-        private void AddFanoutHanzi(Document d)
+        private void AddFanoutHanzi(CikLingDto d)
         {
             var allHanziList = new List<string>();
             allHanziList.Add(HanziToString(d.HanziCanonical));
             allHanziList.AddRange(d.HanziAlternatives.Select(h => HanziToString(h)).ToList());
             var fanOutHanziList = _hanziVariantsUtil.GetFanoutVariants(allHanziList.ToArray());
-            d.HanziMatchable.Add(fanOutHanziList);
+            d.HanziMatchable.AddRange(fanOutHanziList);
         }
 
     }
