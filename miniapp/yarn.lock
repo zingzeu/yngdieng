@@ -3130,21 +3130,6 @@
     react-native-webview "^10.10.2"
     unimodules-permissions-interface "~5.3.0"
 
-"@tarojs/components@3.1.4":
-  version "3.1.4"
-  resolved "https://registry.yarnpkg.com/@tarojs/components/-/components-3.1.4.tgz#e3cb48d777f8a2585918e1789a36a6ffec8b73b0"
-  integrity sha512-Moxh+x+bCSwEqv5of+bR1VbafBs7PCX3skpFss8FkErzgtldkZRL68z89KAMtj48aVhepWrVNMo1wUKSTwia5g==
-  dependencies:
-    "@stencil/core" "2.4.0"
-    "@tarojs/taro" "3.1.4"
-    better-scroll "^1.14.1"
-    classnames "^2.2.5"
-    intersection-observer "^0.7.0"
-    omit.js "^1.0.0"
-    resolve-pathname "^3.0.0"
-    swiper "4.4.2"
-    weui "^1.1.2"
-
 "@tarojs/components@3.2.7":
   version "3.2.7"
   resolved "https://registry.yarnpkg.com/@tarojs/components/-/components-3.2.7.tgz#ba88e6a3e6cb22e014976541c9adfcf77224814d"
