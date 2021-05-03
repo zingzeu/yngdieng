@@ -75,10 +75,12 @@ message YngdiengDocument {
 }
 
 // 历史音韵单字条目文档(戚林、榕注合并).
-// Next ID: 13
+// Next ID: 14
 message HistoricalDocument {
   // Base64 (URL safe) encoded DocumentAggregateKey
   string id = 10;
+
+  string zingzeu_id = 13;
 
   Hanzi hanzi_canonical = 1;
 

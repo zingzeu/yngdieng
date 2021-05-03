@@ -47,7 +47,13 @@ namespace Yngdieng.Indexer.Processing
                     }
                 };
 
-                // TODO: Match Historical Docs
+                var historicalMatches = pendingHistorical.Where(h => h.ZingzeuId == zingzeuId).ToArray();
+                foreach (var historicalMatch in historicalMatches)
+                {
+                    pendingHistorical.Remove(historicalMatch);
+                    tmp.Sources.Add(new YngdiengDocument.Types.Source { CiklinDfd = historicalMatch });
+                }
+
                 var fengMatches = pendingFeng.Where(f => f.ZingzeuId == zingzeuId).ToArray();
                 foreach (var fengMatch in fengMatches)
                 {

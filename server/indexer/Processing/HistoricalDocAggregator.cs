@@ -61,6 +61,7 @@ namespace Yngdieng.Indexer.Processing
             if (d is CikLingDto)
             {
                 documents[key].CiklinSource = (d as CikLingDto).CikLinSourceInfo;
+                documents[key].ZingzeuId = (d as CikLingDto).ZingzeuId;
             }
 
             if (d is DfdDto)

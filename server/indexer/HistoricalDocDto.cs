@@ -32,6 +32,8 @@ namespace Yngdieng.Indexer
     public sealed class CikLingDto : HistoricalDocDto
     {
         public CikLinSourceInfo CikLinSourceInfo { get; set; }
+
+        public string ZingzeuId { get; set; }
     }
 
     public sealed class DfdDto : HistoricalDocDto

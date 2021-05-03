@@ -144,15 +144,18 @@ namespace Yngdieng.Indexer.Loading
         private readonly string _outputFolder;
         private readonly string _cikLinCsvFile;
         private readonly string _newCikLingCsvFile;
+        private readonly string _cikLingMappingFile;
         private readonly HanziVariantsUtil _hanziVariantsUtil;
 
         public CikLingLoader(string cikLinCsvFile,
                              string newCikLingCsvFile,
+                             string cikLingMappingFile,
                              string outputFolder,
                              HanziVariantsUtil hanziVariantsUtil)
         {
             _cikLinCsvFile = cikLinCsvFile;
             _newCikLingCsvFile = newCikLingCsvFile;
+            _cikLingMappingFile = cikLingMappingFile;
             _outputFolder = outputFolder;
             _hanziVariantsUtil = hanziVariantsUtil;
         }
@@ -163,11 +166,18 @@ namespace Yngdieng.Indexer.Loading
             var documents = new List<CikLingDto>();
 
             IEnumerable<CikLinRow> cikLinRows;
+            IDictionary<string, string> ciklingMapping;
             // load only3km's CikLinBekin
             using (var reader = new StreamReader(_cikLinCsvFile))
             using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
             {
                 cikLinRows = csv.GetRecords<CikLinRow>().ToList();
+            }
+
+            using (var reader = new StreamReader(_cikLingMappingFile))
+            using (var csv = new CsvReader(reader, CultureInfo.InvariantCulture))
+            {
+                ciklingMapping = csv.GetRecords<CikLingMappingRow>().ToDictionary(r => r.CikLingId, r => r.ZingzeuId);
             }
 
             // Load new cikling.csv
@@ -206,6 +216,11 @@ namespace Yngdieng.Indexer.Loading
                             document.HanziAlternatives.Add(StringToHanziProto(oldRow.HanziAlt));
                         }
                         AddFanoutHanzi(document);
+
+                        if (ciklingMapping.ContainsKey(r.Id))
+                        {
+                            document.ZingzeuId = ciklingMapping[r.Id];
+                        }
 
                         documents.Add(document);
                         jsonOutput.Add(document.ToString());
@@ -337,5 +352,12 @@ namespace Yngdieng.Indexer.Loading
             get;
             set;
         }
+    }
+
+    sealed class CikLingMappingRow
+    {
+        public string CikLingId { get; set; }
+
+        public string ZingzeuId { get; set; }
     }
 }
