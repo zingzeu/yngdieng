@@ -34,7 +34,7 @@
     "howler": "2.2.1",
     "rxjs": "6.6.7",
     "systemjs": "6.8.3",
-    "tslib": "2.1.0",
+    "tslib": "2.2.0",
     "zone.js": "0.11.4"
   },
   "devDependencies": {
