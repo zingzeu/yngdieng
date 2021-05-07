@@ -44,7 +44,7 @@
     "@angular/compiler-cli": "11.2.12",
     "@babel/cli": "7.13.16",
     "@babel/core": "7.14.0",
-    "@babel/preset-env": "7.14.0",
+    "@babel/preset-env": "7.14.1",
     "@bazel/angular": "2.3.3",
     "@bazel/bazelisk": "1.8.0",
     "@bazel/benchmark-runner": "0.1.0",
