@@ -3007,13 +3007,6 @@
   dependencies:
     defer-to-connect "^1.0.1"
 
-"@tarojs/api@3.2.7":
-  version "3.2.7"
-  resolved "https://registry.yarnpkg.com/@tarojs/api/-/api-3.2.7.tgz#56bfbc8c1d89d27b516a9226f59dc2b689b88e90"
-  integrity sha512-/exDIGlnt/IuDj44Pe2mlAwGzlx9h0Pl/pMIpiW8UvMXXM8m6uNh92scKQjHEntSisp/c8jIYWM/LomVnL52BQ==
-  dependencies:
-    "@tarojs/runtime" "3.2.7"
-
 "@tarojs/api@3.2.8":
   version "3.2.8"
   resolved "https://registry.yarnpkg.com/@tarojs/api/-/api-3.2.8.tgz#004cabcc3ba6097cddb55e34f2321c3db7d08fc9"
@@ -3307,17 +3300,6 @@
     react-native-safe-area-context "^3.1.8"
     react-native-screens "^2.11.0"
 
-"@tarojs/router@3.2.7":
-  version "3.2.7"
-  resolved "https://registry.yarnpkg.com/@tarojs/router/-/router-3.2.7.tgz#7b2ab3f52fcaaa1d8d961abb745c692a42c295b1"
-  integrity sha512-pqdcTjiYda1qVFjKjo5C0Z8WYlj0ukZHHZfvXJjMAEQ2cqMNHls4ESLmmWBnt+EdgfTombeJqwVZmc22pQODJg==
-  dependencies:
-    "@tarojs/runtime" "3.2.7"
-    history "^4.10.1"
-    query-string "^6.13.8"
-    universal-router "^8.3.0"
-    url-parse "^1.4.7"
-
 "@tarojs/router@3.2.8":
   version "3.2.8"
   resolved "https://registry.yarnpkg.com/@tarojs/router/-/router-3.2.8.tgz#a1c94c64e1f8f86b9d1f6d87ed30ba5d08f310e8"
@@ -3345,14 +3327,6 @@
     "@tarojs/components-rn" "3.2.8"
     "@tarojs/router-rn" "3.2.8"
 
-"@tarojs/runtime@3.2.7":
-  version "3.2.7"
-  resolved "https://registry.yarnpkg.com/@tarojs/runtime/-/runtime-3.2.7.tgz#479e474fcefecc368a16f45bef16a3257df2cc94"
-  integrity sha512-Bo51WMwm9cm45c8+7DNBpKFLP6Qtmy8iOAO5xCM0ceID2pSSsaip+v3auZKzBD37sb41u++y8LIjGL7dytXS+A==
-  dependencies:
-    "@tarojs/shared" "3.2.7"
-    lodash-es "4.17.15"
-
 "@tarojs/runtime@3.2.8":
   version "3.2.8"
   resolved "https://registry.yarnpkg.com/@tarojs/runtime/-/runtime-3.2.8.tgz#fc6d377a17deebea0c7963a76fcc128af12133f6"
@@ -3375,29 +3349,10 @@
     resolve "1.15.1"
     tapable "1.1.3"
 
-"@tarojs/shared@3.2.7":
-  version "3.2.7"
-  resolved "https://registry.yarnpkg.com/@tarojs/shared/-/shared-3.2.7.tgz#c491169005c3a9b468bd6062c897a1b3f3a27f9b"
-  integrity sha512-EMsyeOVIHMQi1ygGuNmifMWpDU287pzKfWtizGHpjmLaoVUFI015epRVWSvUrUESKBpC0Guo52Efnei1SVw5zA==
-
 "@tarojs/shared@3.2.8":
   version "3.2.8"
   resolved "https://registry.yarnpkg.com/@tarojs/shared/-/shared-3.2.8.tgz#9056d7819f19c4e973cb0f86e6c886ae795d94c1"
   integrity sha512-lW8CZ0KqxAcYJP3ivdbJ3f3UzvVWE3TX/Ct3EVnosCPl0HhpyUoNvdRUyYsKyTb1i1GUAZSWseiOuBCp4Jsdpg==
-
-"@tarojs/taro-h5@3.2.7":
-  version "3.2.7"
-  resolved "https://registry.yarnpkg.com/@tarojs/taro-h5/-/taro-h5-3.2.7.tgz#b89f9e0f8dc97ec5ba11607d29d5d2ad885044dc"
-  integrity sha512-FitoCPCyiJ9nEgSrWYWc9TVuh0WsenuDg9RSlHREcrYsPmDJE+EfEguXscVAB2qCj0Rmsj9tN3C0K0ytYMwe1g==
-  dependencies:
-    "@tarojs/api" "3.2.7"
-    "@tarojs/router" "3.2.7"
-    "@tarojs/runtime" "3.2.7"
-    base64-js "^1.3.0"
-    jsonp-retry "^1.0.3"
-    mobile-detect "^1.4.2"
-    raf "^3.4.1"
-    whatwg-fetch "^3.4.0"
 
 "@tarojs/taro-h5@3.2.8":
   version "3.2.8"
@@ -3455,15 +3410,6 @@
     react-native-stylekit "^1.0.0"
     react-native-syan-image-picker "0.4.10"
     react-native-unimodules "^0.11.0"
-
-"@tarojs/taro@3.2.7":
-  version "3.2.7"
-  resolved "https://registry.yarnpkg.com/@tarojs/taro/-/taro-3.2.7.tgz#433338c7f5b9352417e2894b71e66865becda4a5"
-  integrity sha512-PNk/ERq7jcWPzjjdPsI5bETFkqB8bcpcdYwoyzpJCYee67WC15WYEVl+XYzZfSv/wNTciHVn9cfETuvw5PiaLg==
-  dependencies:
-    "@tarojs/api" "3.2.7"
-    "@tarojs/runtime" "3.2.7"
-    "@tarojs/taro-h5" "3.2.7"
 
 "@tarojs/taro@3.2.8":
   version "3.2.8"

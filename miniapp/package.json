@@ -41,7 +41,7 @@
     "@tarojs/components": "3.2.8",
     "@tarojs/react": "3.2.8",
     "@tarojs/runtime": "3.2.8",
-    "@tarojs/taro": "3.2.7",
+    "@tarojs/taro": "3.2.8",
     "clsx": "1.1.1",
     "immer": "8.0.4",
     "lodash": "4.17.21",
