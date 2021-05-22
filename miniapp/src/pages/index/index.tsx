@@ -29,6 +29,13 @@ const handleRouterParams = () => {
         });
         break;
       }
+      // 福州客第3期
+      case 'foochowka-3': {
+        Taro.reLaunch({
+          url: '/pages/collectionDetail/collectionDetail?id=wordLists/11',
+        });
+        break;
+      }
     }
   }
 };
