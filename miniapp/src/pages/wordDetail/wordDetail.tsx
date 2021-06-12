@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import clsx from 'clsx';
-import Taro, {useRouter, useShareAppMessage} from '@tarojs/taro';
+import Taro, {useRouter, useShareAppMessage, useShareTimeline} from '@tarojs/taro';
 import {View, RichText} from '@tarojs/components';
 import {AtIcon, AtTabs, AtTabsPane, AtFloatLayout} from 'taro-ui';
 import routes from '@/routes';
@@ -81,6 +81,9 @@ const WordDetail = () => {
   const [currentTab, setCurrentTab] = useState(0);
   const [storyToShow, setStoryToShow] = useState('');
 
+  useShareTimeline(() => ({
+    title: wordDetail.hanzi,
+  }))
   useShareAppMessage(() => ({
     title: wordDetail.hanzi,
   }));

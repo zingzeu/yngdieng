@@ -1,6 +1,6 @@
 import React, {useState, useEffect} from 'react';
 import produce from 'immer';
-import Taro, {useRouter, useShareAppMessage} from '@tarojs/taro';
+import Taro, {useRouter, useShareAppMessage, useShareTimeline} from '@tarojs/taro';
 import {View, ScrollView} from '@tarojs/components';
 import {AtIcon} from 'taro-ui';
 import Header from '@/pages/header/header';
@@ -67,6 +67,9 @@ const CollectionDetail = () => {
       });
   };
 
+  useShareTimeline(() => ({
+    title: collectionDetail.title,
+  }))
   useShareAppMessage(() => ({
     title: collectionDetail.title,
   }));
