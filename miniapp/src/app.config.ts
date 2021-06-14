@@ -13,8 +13,5 @@ export default {
     navigationBarTitleText: 'WeChat',
     navigationBarTextStyle: 'white',
   },
-  navigateToMiniProgramAppIdList: [
-    // 兔小巢
-    'wx8abaf00ee8c3202e',
-  ],
+  sitemapLocation: 'sitemap.json',
 };
