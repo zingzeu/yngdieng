@@ -1,6 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import clsx from 'clsx';
-import Taro, {useRouter, useShareAppMessage, useShareTimeline} from '@tarojs/taro';
+import Taro, {
+  useRouter,
+  useShareAppMessage,
+  useShareTimeline,
+} from '@tarojs/taro';
 import {View, RichText} from '@tarojs/components';
 import {AtIcon, AtTabs, AtTabsPane, AtFloatLayout} from 'taro-ui';
 import routes from '@/routes';
@@ -11,6 +15,7 @@ import {fetchWord} from '@/store/actions/dictionary';
 import PhonologyTab from './phonology-tab/phonology-tab';
 import styles from './wordDetail.module.scss';
 import {renderRichTextNode} from './rich-text';
+import {getWordShareTimelineTitle} from '@/utils/sharing-util';
 
 interface Feng {
   explanation: string;
@@ -82,8 +87,8 @@ const WordDetail = () => {
   const [storyToShow, setStoryToShow] = useState('');
 
   useShareTimeline(() => ({
-    title: wordDetail.hanzi,
-  }))
+    title: getWordShareTimelineTitle(wordDetail.hanzi!),
+  }));
   useShareAppMessage(() => ({
     title: wordDetail.hanzi,
   }));
