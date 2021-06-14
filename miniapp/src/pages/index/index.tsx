@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import Taro, {getCurrentInstance, useShareAppMessage} from '@tarojs/taro';
+import Taro, {getCurrentInstance, useShareAppMessage, useShareTimeline} from '@tarojs/taro';
 import {View, Image, Input} from '@tarojs/components';
 import {AtIcon} from 'taro-ui';
 import Header from '@/pages/header/header';
@@ -49,6 +49,9 @@ const Index = () => {
     });
   };
 
+  useShareTimeline(() => ({
+    title: '榕典 | 福州话电子词典',
+  }))
   useShareAppMessage(() => ({
     title: '福州话电子词典',
   }));

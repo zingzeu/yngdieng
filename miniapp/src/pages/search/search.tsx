@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import Taro, {useRouter, useShareAppMessage} from '@tarojs/taro';
+import Taro, {useRouter, useShareAppMessage, useShareTimeline} from '@tarojs/taro';
 import {View, Input, Block, ScrollView} from '@tarojs/components';
 import {AtIcon} from 'taro-ui';
 import routes from '@/routes';
@@ -83,6 +83,10 @@ const Search = () => {
       });
   };
 
+  useShareTimeline(() => ({
+    title: inputString,
+    query: `word=${inputString}`
+  }))
   useShareAppMessage(() => {
     return {
       title: inputString,

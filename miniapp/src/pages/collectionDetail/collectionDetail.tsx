@@ -1,6 +1,10 @@
 import React, {useState, useEffect} from 'react';
 import produce from 'immer';
-import Taro, {useRouter, useShareAppMessage} from '@tarojs/taro';
+import Taro, {
+  useRouter,
+  useShareAppMessage,
+  useShareTimeline,
+} from '@tarojs/taro';
 import {View, ScrollView} from '@tarojs/components';
 import {AtIcon} from 'taro-ui';
 import Header from '@/pages/header/header';
@@ -8,6 +12,7 @@ import WordCard from '@/components/wordCard/wordCard';
 import routes from '@/routes';
 import {getWordList, getWordListWords} from '@/store/actions/collection';
 import styles from './collectionDetail.module.scss';
+import {getWordListShareTimelineTitle} from '@/utils/sharing-util';
 
 const initialState: {
   collectionDetail: {
@@ -67,6 +72,9 @@ const CollectionDetail = () => {
       });
   };
 
+  useShareTimeline(() => ({
+    title: getWordListShareTimelineTitle(collectionDetail.title),
+  }));
   useShareAppMessage(() => ({
     title: collectionDetail.title,
   }));

@@ -9,7 +9,14 @@ const config = {
   outputRoot: 'dist',
   plugins: [],
   defineConstants: {},
-  copy: {patterns: [], options: {}},
+  copy: {
+    patterns: [
+      {
+        from: 'src/sitemap.json',
+        to: 'dist/sitemap.json',
+      },
+    ],
+  },
   framework: 'react',
   alias: {
     '@': path.resolve(__dirname, '..', 'src'),
