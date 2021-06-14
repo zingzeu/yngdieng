@@ -7,9 +7,9 @@ export class AdvancedSearchQueryBuilderService {
   private selectedFinalSource = new Subject<string | null>();
   private selectedToneSource = new Subject<string | null>();
 
-  selectedInitial$ = this.selectedInitialSource.asObservable();
-  selectedFinal$ = this.selectedFinalSource.asObservable();
-  selectedTone$ = this.selectedToneSource.asObservable();
+  selectedInitial$: Observable<string> = this.selectedInitialSource.asObservable();
+  selectedFinal$: Observable<string> = this.selectedFinalSource.asObservable();
+  selectedTone$: Observable<string> = this.selectedToneSource.asObservable();
 
   constructor() {}
 

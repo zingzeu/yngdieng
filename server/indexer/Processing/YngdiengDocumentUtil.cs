@@ -47,7 +47,13 @@ namespace Yngdieng.Indexer.Processing
                     }
                 };
 
-                // TODO: Match Historical Docs
+                var historicalMatches = pendingHistorical.Where(h => h.ZingzeuId == zingzeuId).ToArray();
+                foreach (var historicalMatch in historicalMatches)
+                {
+                    pendingHistorical.Remove(historicalMatch);
+                    tmp.Sources.Add(new YngdiengDocument.Types.Source { CiklinDfd = historicalMatch });
+                }
+
                 var fengMatches = pendingFeng.Where(f => f.ZingzeuId == zingzeuId).ToArray();
                 foreach (var fengMatch in fengMatches)
                 {
@@ -267,7 +273,20 @@ namespace Yngdieng.Indexer.Processing
                                 /* TODO: simplified variant */
                                                                           };
                         case SourceOneofCase.CiklinDfd:
-                            return new string[] { };
+                            if (s.CiklinDfd.CiklinSource == null)
+                            {
+                                return new string[] { };
+                            }
+                            var explanations = new List<string>();
+                            if (!string.IsNullOrEmpty(s.CiklinDfd.CiklinSource.ExplanationCik))
+                            {
+                                explanations.Add(s.CiklinDfd.CiklinSource.ExplanationCik);
+                            }
+                            if (!string.IsNullOrEmpty(s.CiklinDfd.CiklinSource.ExplanationLing))
+                            {
+                                explanations.Add(s.CiklinDfd.CiklinSource.ExplanationLing);
+                            }
+                            return explanations.ToArray();
                     }
                     return new string[] { };
                 })

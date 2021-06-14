@@ -18,10 +18,6 @@ export class SidenavContentComponent implements OnInit {
 
   ngOnInit() {}
 
-  get showSettings() {
-    return this.environment.showSettingsInMenu;
-  }
-
   onFeedbackClicked() {
     this.sideNavState.closeSideNav();
     var win = window.open('https://support.qq.com/products/172407', '_blank');

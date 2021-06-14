@@ -1,14 +1,8 @@
 import {Component, OnInit, Input, ChangeDetectorRef} from '@angular/core';
-import {FormControl, FormBuilder, FormGroup} from '@angular/forms';
+import {FormBuilder, FormGroup} from '@angular/forms';
 import {YngdiengAdminService} from '../../yngdieng-admin.service';
 import {catchError, map, switchMap} from 'rxjs/operators';
-import {
-  merge,
-  of as observableOf,
-  Subject,
-  BehaviorSubject,
-  Subscription,
-} from 'rxjs';
+import {merge, of as observableOf, BehaviorSubject, Subscription} from 'rxjs';
 import {Pron} from '../../../../../yngdieng/admin/v1/service_pb';
 interface PronEditorModel {
   name: string;

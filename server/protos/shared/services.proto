@@ -17,12 +17,7 @@ service YngdiengService {
   }
   rpc GetAggregatedDocument(GetAggregatedDocumentRequest) returns (HistoricalDocument);
   rpc GetFengDocument(GetFengDocumentRequest) returns (FengDocument);
-  // TODO: we need a better API resource for a "Word".
-  rpc GetYngdiengDocument(GetYngdiengDocumentRequest) returns (YngdiengDocument) {
-    option (google.api.http) = {
-      get: "/v2/yngdieng_document/{id}"
-    };
-  }
+
   rpc GetDebugInfo(GetDebugInfoRequest) returns (DebugInfo) {
     option (google.api.http) = {
       get: "/v2/debugz"
@@ -30,6 +25,8 @@ service YngdiengService {
   }
 
   rpc SimplifyText(SimplifyTextRequest) returns (SimplifyTextResponse);
+
+  rpc GenerateSandhi(GenerateSandhiRequest) returns (GenerateSandhiResponse);
 }
 
 // Next ID: 3
@@ -139,10 +136,6 @@ message GetFengDocumentRequest {
   string id = 1;
 }
 
-message GetYngdiengDocumentRequest {
-  string id = 1;
-}
-
 message GetAggregatedDocumentRequest {
   string id = 1;
 }
@@ -212,6 +205,8 @@ message UserPreference {
 
   // If true, includes zingzeu_words-only entries in the search result.
   bool show_sourceless_search_results = 2;
+
+  bool show_original_hanzi_in_examples = 3;
 }
 
 message SimplifyTextRequest {
@@ -220,4 +215,18 @@ message SimplifyTextRequest {
 
 message SimplifyTextResponse {
   string converted_text = 1;
+}
+
+message GenerateSandhiRequest {
+  repeated string inputs = 1;
+}
+
+message GenerateSandhiResponse {
+  repeated SandhiResult results = 1;
+
+  message SandhiResult {
+    bool has_error = 1;
+    string output = 2;
+    string audio_url = 3;
+  }
 }

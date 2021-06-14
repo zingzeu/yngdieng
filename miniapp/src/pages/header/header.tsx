@@ -26,6 +26,11 @@ const menuItems: Array<MenuItem> = [
     navigateToRoute: routes.SEARCH,
   },
   {
+    title: '帮助',
+    iconType: 'help',
+    navigateToRoute: routes.HELP,
+  },
+  {
     title: '关于',
     iconType: 'alert-circle',
     navigateToRoute: routes.ABOUT,
@@ -61,48 +66,55 @@ const Header = ({injectedComponents = <Block />}) => {
     }
   };
 
+  const isHomePage = [routes.INDEX].includes(routePath);
+  const isDetailsPage = [routes.WORD_DETAIL, routes.COLLECTION_DETAIL].includes(
+    routePath
+  );
+
   return (
     <Block>
       <View className={styles.headerPlaceholder} />
       <View
-        id="header"
+        id='header'
         className={clsx(
           styles.header,
           routePath === routes.INDEX && styles.index
         )}
       >
-        {[routes.INDEX].includes(routePath) && (
+        {isDetailsPage && (
           <View>
-            <AtIcon
-              value="menu"
-              color="#664445"
-              onClick={() => toggleSidebar(true)}
-            ></AtIcon>
-          </View>
-        )}
-        {[routes.SEARCH, routes.WORD_DETAIL, routes.COLLECTION_DETAIL].includes(
-          routePath
-        ) && (
-          <View>
-            <AtIcon value="menu" onClick={() => toggleSidebar(true)}></AtIcon>
-          </View>
-        )}
-        {[routes.WORD_DETAIL, routes.COLLECTION_DETAIL].includes(routePath) && (
-          <View>
-            <Image className={styles.logo} mode="heightFix" src={logoURL} />
-          </View>
-        )}
-        {[routes.WORD_DETAIL, routes.COLLECTION_DETAIL].includes(routePath) && (
-          <View onClick={() => navigateTo(routes.SEARCH)}>
-            <AtIcon value="search"></AtIcon>
+            <Image className={styles.logo} mode='heightFix' src={logoURL} />
           </View>
         )}
         {injectedComponents}
+        {isHomePage && <View className={styles.headerPlaceholder} />}
+        <View className={styles.headerIcons}>
+          {isDetailsPage && (
+            <View>
+              <AtIcon
+                value='search'
+                onClick={() => navigateTo(routes.SEARCH)}
+              ></AtIcon>
+            </View>
+          )}
+          <View>
+            <AtIcon
+              value='menu'
+              color={isHomePage ? '#664445' : '#ffffff'}
+              onClick={() => toggleSidebar(true)}
+            ></AtIcon>
+          </View>
+        </View>
       </View>
-      <AtDrawer show={showSidebar} onClose={() => toggleSidebar(false)} mask>
-        <View id="sidebar_container" className={styles.sidebarContainer}>
+      <AtDrawer
+        right={true}
+        show={showSidebar}
+        onClose={() => toggleSidebar(false)}
+        mask
+      >
+        <View id='sidebar_container' className={styles.sidebarContainer}>
           <View className={styles.header}>
-            <AtIcon value="close" onClick={() => toggleSidebar(false)}></AtIcon>
+            <AtIcon value='close' onClick={() => toggleSidebar(false)}></AtIcon>
           </View>
           <View className={styles.content}>
             <View className={styles.title}>榕典</View>

@@ -1,6 +1,10 @@
 import React, {useEffect, useState} from 'react';
 import clsx from 'clsx';
-import Taro, {useRouter, useShareAppMessage} from '@tarojs/taro';
+import Taro, {
+  useRouter,
+  useShareAppMessage,
+  useShareTimeline,
+} from '@tarojs/taro';
 import {View, RichText} from '@tarojs/components';
 import {AtIcon, AtTabs, AtTabsPane, AtFloatLayout} from 'taro-ui';
 import routes from '@/routes';
@@ -12,6 +16,7 @@ import {fetchWord} from '@/store/actions/dictionary';
 import PhonologyTab from './phonology-tab/phonology-tab';
 import styles from './wordDetail.module.scss';
 import {renderRichTextNode} from './rich-text';
+import {getWordShareTimelineTitle} from '@/utils/sharing-util';
 
 interface Feng {
   explanation: string;
@@ -82,6 +87,9 @@ const WordDetail = () => {
   const [currentTab, setCurrentTab] = useState(0);
   const [storyToShow, setStoryToShow] = useState('');
 
+  useShareTimeline(() => ({
+    title: getWordShareTimelineTitle(wordDetail.hanzi!),
+  }));
   useShareAppMessage(() => ({
     title: wordDetail.hanzi,
   }));
@@ -91,7 +99,6 @@ const WordDetail = () => {
     Taro.showNavigationBarLoading();
     fetchWord(wordName)
       .then(result => {
-        console.log(result);
         setWordDetail(result);
         Taro.hideNavigationBarLoading();
       })
@@ -102,9 +109,10 @@ const WordDetail = () => {
   return (
     <View>
       <Header />
-      <View className={styles.topBar}>
+      <View className={styles.hero}>
         <View className='at-row at-row__justify--between'>
           <View className={styles.word}>
+            <View className={styles.label}>推荐用字</View>
             <selectable-text t={wordDetail.hanzi} />
           </View>
           <View className={styles.actionPanel}>
@@ -115,7 +123,7 @@ const WordDetail = () => {
         <View>
           {wordDetail.pronunciations?.map(p => (
             <View className={styles.rimeContainer}>
-              <View className={styles.rimePosition}>{p.display_name}</View>
+              <View className={styles.label}>{p.display_name}</View>
               <View>
                 <selectable-text t={p.pronunciation} />
               </View>
@@ -133,7 +141,7 @@ const WordDetail = () => {
           tabList={[
             {title: '释义'},
             {title: '更多例句'},
-            {title: '音韵'},
+            {title: '发音'},
             {title: '词表'},
             {title: '故事'},
           ]}

@@ -1,15 +1,11 @@
 import {Component, OnInit, OnDestroy} from '@angular/core';
-import {map, switchMap} from 'rxjs/operators';
+import {map} from 'rxjs/operators';
 import {YngdiengBackendService} from '../yngdieng-backend.service';
 import {Subscription, BehaviorSubject, Observable} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
 import {SearchV2Response} from 'yngdieng/shared/services_pb';
 import {YngdiengTitleService} from '../yngdieng-title.service';
-import {
-  BreakpointObserver,
-  Breakpoints,
-  BreakpointState,
-} from '@angular/cdk/layout';
+import {BreakpointObserver, Breakpoints} from '@angular/cdk/layout';
 
 @Component({
   selector: 'app-search-v2-result',

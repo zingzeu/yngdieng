@@ -5,6 +5,7 @@ export default {
     'pages/wordDetail/wordDetail',
     'pages/collectionDetail/collectionDetail',
     'pages/about/about',
+    'pages/help/help',
   ],
   window: {
     backgroundTextStyle: 'light',
@@ -12,8 +13,5 @@ export default {
     navigationBarTitleText: 'WeChat',
     navigationBarTextStyle: 'white',
   },
-  navigateToMiniProgramAppIdList: [
-    // 兔小巢
-    'wx8abaf00ee8c3202e',
-  ],
+  sitemapLocation: 'sitemap.json',
 };

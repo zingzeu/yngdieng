@@ -1,5 +1,5 @@
 import {Component, Input, OnDestroy, OnInit} from '@angular/core';
-import {Router, ActivationEnd} from '@angular/router';
+import {Router, ActivationEnd, ActivatedRoute} from '@angular/router';
 import {Location} from '@angular/common';
 import {SidenavStateService} from '../sidenav-state.service';
 import {Subscription} from 'rxjs';
@@ -15,6 +15,9 @@ export class CommonToolbarComponent implements OnInit, OnDestroy {
   queryText;
   @Input() mode: DisplayMode = DisplayMode.Default;
 
+  // Whether the page is opened from inside the mini app.
+  isMiniApp = false;
+
   subscription: Subscription;
 
   get isHomePage() {
@@ -24,6 +27,7 @@ export class CommonToolbarComponent implements OnInit, OnDestroy {
   constructor(
     private sideNav: SidenavStateService,
     private router: Router,
+    private activatedRoute: ActivatedRoute,
     private location: Location
   ) {}
 
@@ -33,6 +37,10 @@ export class CommonToolbarComponent implements OnInit, OnDestroy {
       .subscribe((_event: ActivationEnd) => {
         const isHomePage = _event.snapshot.url.length == 0;
         this.mode = isHomePage ? DisplayMode.HomePage : DisplayMode.Default;
+        this.isMiniApp = this.activatedRoute.snapshot.queryParamMap.has(
+          'miniapp'
+        );
+        console.log(this.activatedRoute.snapshot.queryParamMap);
         if (!isHomePage) {
           const firstPathComponent = _event.snapshot.url[0].path;
           if (

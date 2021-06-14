@@ -15,7 +15,7 @@ const INITIAL_TO_HANZI_MAPPING = {
   [Initial.M]: '蒙',
   [Initial.NG]: '語',
   [Initial.C]: '出',
-  [Initial.H]: '非',
+  [Initial.H]: '喜',
 };
 
 const HANZI_TO_INITIAL_MAPPING = reverseMap(INITIAL_TO_HANZI_MAPPING);

@@ -91,6 +91,10 @@ namespace Yngdieng.Backend.Db
         // G=
         public string? Gloss { get; set; }
 
+        // TODO: remove this. And migrate to Pron-level PreferredAudioClip.
+        // Preferred Sandhi Audio (real-human audio). This is preferred over TTS audio.
+        public AudioClip? PreferredSandhiAudio { get; set; }
+
     }
 
     //[Keyless]
@@ -184,7 +188,7 @@ namespace Yngdieng.Backend.Db
         public int ExtensionId { get; set; }
         public string Explanation { get; set; }
         public string[] Contributors { get; set; }
-        public string Source { get; set; }
+        public string? Source { get; set; }
 
         public ExtensionScope Scope { get; set; }
 
@@ -202,6 +206,9 @@ namespace Yngdieng.Backend.Db
 
         public string DisplayName { get; set; }
 
+        // 昵称来源 (e.g. QQ, WeChat)
+        public string? DisplayNameSource { get; set; }
+
         // ISO 639-6
         public string? Accent { get; set; }
 
@@ -211,6 +218,9 @@ namespace Yngdieng.Backend.Db
         public int? YearOfBirth { get; set; }
 
         public Gender Gender { get; set; }
+
+        // 祖籍地
+        public string? AncestralHome { get; set; }
 
     }
 

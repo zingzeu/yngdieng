@@ -45,6 +45,8 @@ namespace Yngdieng.Indexer
 
             Console.WriteLine($"Loading CikLinBekIn...");
             var ciklin = new CikLingLoader(Path.Combine(inputFolder, "CikLinBekIn.csv"),
+                                           Path.Combine(inputFolder, "cikling.csv"),
+                                           Path.Combine(inputFolder, "cikling_mapping.csv"),
                                            outputFolder,
                                            hanziVariantsUtil)
                              .Run();

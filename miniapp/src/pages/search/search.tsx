@@ -1,5 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import Taro, {useRouter, useShareAppMessage} from '@tarojs/taro';
+import Taro, {
+  useRouter,
+  useShareAppMessage,
+  useShareTimeline,
+} from '@tarojs/taro';
 import {View, Input, Block, ScrollView} from '@tarojs/components';
 import {AtIcon} from 'taro-ui';
 import routes from '@/routes';
@@ -47,7 +51,12 @@ const Search = () => {
   );
 
   const handleConfirm = (word = inputString) => {
-    if (inputString !== word) setInputString(word);
+    if (word.trim() == '') {
+      return;
+    }
+    if (inputString !== word) {
+      setInputString(word);
+    }
     setNextPageToken(undefined);
     toggleAdvanced(false);
     fetchOnePage(word);
@@ -78,6 +87,10 @@ const Search = () => {
       });
   };
 
+  useShareTimeline(() => ({
+    title: inputString,
+    query: `word=${inputString}`,
+  }));
   useShareAppMessage(() => {
     return {
       title: inputString,
@@ -100,14 +113,14 @@ const Search = () => {
             <View className={styles.inputInjected}>
               <Input
                 value={inputString}
-                confirmType="search"
-                placeholder="查字、词、读音..."
+                confirmType='search'
+                placeholder='查字、词、读音...'
                 onInput={e => setInputString(e.detail.value)}
                 onConfirm={() => handleConfirm()}
               />
             </View>
             <View onClick={() => handleConfirm()}>
-              <AtIcon value="search"></AtIcon>
+              <AtIcon value='search'></AtIcon>
             </View>
           </Block>
         }
@@ -130,7 +143,7 @@ const Search = () => {
                 lowerThreshold={100}
                 upperThreshold={20}
               >
-                {resultList.map(resultItem => renderResultItem(resultItem))}
+                {resultList?.map(resultItem => renderResultItem(resultItem))}
               </ScrollView>
             </View>
           </View>

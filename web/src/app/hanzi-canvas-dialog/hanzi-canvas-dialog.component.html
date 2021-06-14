@@ -1,0 +1,15 @@
+
+<table>
+    <thead>
+        <tr>
+            <th>字图(右键另存为)</th>
+            <th>汉字</th>        
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let h of hanziList">
+            <td><app-hanzi-canvas hanzi="{{h}}"></app-hanzi-canvas></td>
+            <td class="unihan-text">{{h}}</td>
+        </tr>
+    </tbody>
+</table>

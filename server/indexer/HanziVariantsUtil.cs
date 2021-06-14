@@ -55,7 +55,7 @@ namespace Yngdieng.Indexer
                     chars.Add(tokens[0]);
                     foreach (var other in tokens[1].Split(' '))
                     {
-                        chars.Add(tokens[1]);
+                        chars.Add(other);
                     }
                     for (int i = 0; i < chars.Count; ++i)
                     {

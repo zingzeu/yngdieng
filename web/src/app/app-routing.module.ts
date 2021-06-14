@@ -16,6 +16,8 @@ import {SettingsComponent} from './settings/settings.component';
 import {FengResolverService} from './details-feng/feng-resolver.service';
 import {WordDetailsResolverService} from './word-details/word-details-resolver.service';
 import {WordlistDemoComponent} from './wordlist-demo/wordlist-demo.component';
+import {SandhiToolComponent} from './sandhi-tool/sandhi-tool.component';
+import {ContributorsComponent} from './help/contributors/contributors.component';
 
 const routes: Routes = [
   {path: '', component: HomeComponent},
@@ -24,6 +26,7 @@ const routes: Routes = [
   {path: 'search/:query', component: SearchV2ResultComponent},
   {path: 'advancedSearch', component: AdvancedSearchLandingComponent},
   {path: 'about', component: AboutComponent},
+  {path: 'help/contributors', component: ContributorsComponent},
   {path: 'help', component: HelpComponent},
   {path: 'settings', component: SettingsComponent},
   {
@@ -40,6 +43,7 @@ const routes: Routes = [
   // (Deprecated) 历史音韵条目(DFD、戚林)
   {path: 'char/:id', component: DetailsMonoHanziComponent},
   {path: 'tools/simplify', component: SimplificationToolComponent},
+  {path: 'tools/sandhi', component: SandhiToolComponent},
   {path: '_debug', component: DebugInfoComponent},
   {path: 'wordlist-demo', component: WordlistDemoComponent},
   {path: '**', component: HomeComponent},

@@ -1,0 +1,2 @@
+argparse==1.4.0
+psycopg2 # apt install libpq-dev first

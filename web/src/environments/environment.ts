@@ -22,5 +22,4 @@ export interface IYngdiengEnvironment {
   };
   // TTS Audio player buttons
   showAudioPlayerButtons: boolean;
-  showSettingsInMenu: boolean;
 }

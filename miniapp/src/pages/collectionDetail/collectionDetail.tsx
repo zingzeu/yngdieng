@@ -1,16 +1,18 @@
 import React, {useState, useEffect} from 'react';
 import produce from 'immer';
-import Taro, {useRouter, useShareAppMessage} from '@tarojs/taro';
+import Taro, {
+  useRouter,
+  useShareAppMessage,
+  useShareTimeline,
+} from '@tarojs/taro';
 import {View, ScrollView} from '@tarojs/components';
 import {AtIcon} from 'taro-ui';
 import Header from '@/pages/header/header';
 import WordCard from '@/components/wordCard/wordCard';
 import routes from '@/routes';
-import {
-  getWordList,
-  getWordListByCollectionId,
-} from '@/store/actions/collection';
+import {getWordList, getWordListWords} from '@/store/actions/collection';
 import styles from './collectionDetail.module.scss';
+import {getWordListShareTimelineTitle} from '@/utils/sharing-util';
 
 const initialState: {
   collectionDetail: {
@@ -26,6 +28,7 @@ const initialState: {
       rimePosition: string;
     }[];
   };
+  nextPageToken?: string;
 } = {
   collectionDetail: {
     title: '',
@@ -34,6 +37,7 @@ const initialState: {
     publisherName: '',
     words: [],
   },
+  nextPageToken: undefined,
 };
 
 const CollectionDetail = () => {
@@ -42,33 +46,46 @@ const CollectionDetail = () => {
   const [collectionDetail, setCollectionDetail] = useState(
     initialState.collectionDetail
   );
+  const [nextPageToken, setNextPageToken] = useState(
+    initialState.nextPageToken
+  );
 
   const handleLoadMore = () => {
-    const collectionId = decodeURIComponent(router.params.id || '');
+    const wordListName = decodeURIComponent(router.params.id || '');
     Taro.showNavigationBarLoading();
-    getWordListByCollectionId(collectionId, collectionDetail.words.length)
+    getWordListWords(wordListName, nextPageToken)
       .then(result => {
         Taro.hideNavigationBarLoading();
         setCollectionDetail(
           produce(collectionDetail, draft => {
-            draft.words.splice(collectionDetail.words.length, 0, ...result);
+            draft.words.splice(
+              collectionDetail.words.length,
+              0,
+              ...result.data.words
+            );
           })
         );
+        setNextPageToken(result.data.next_page_token);
       })
       .catch(() => {
         Taro.hideNavigationBarLoading();
       });
   };
 
+  useShareTimeline(() => ({
+    title: getWordListShareTimelineTitle(collectionDetail.title),
+  }));
   useShareAppMessage(() => ({
     title: collectionDetail.title,
   }));
   useEffect(() => {
-    const collectionId = router.params.id;
+    const wordListName = router.params.id;
     Taro.showNavigationBarLoading();
-    getWordList(collectionId)
+    getWordList(wordListName)
       .then(result => {
         setCollectionDetail(result);
+        console.log(result);
+        setNextPageToken(result.nextPageToken);
         Taro.hideNavigationBarLoading();
       })
       .catch(() => {
@@ -80,26 +97,26 @@ const CollectionDetail = () => {
       <Header />
       <View className={styles.content}>
         <View className={styles.topBar}>
-          <View className="at-row at-row__justify--between">
+          <View className='at-row at-row__justify--between'>
             <View className={styles.title}>{collectionDetail.title}</View>
             <View className={styles.actionPanel}>
-              <AtIcon value="file-generic"></AtIcon>
-              <AtIcon value="bookmark"></AtIcon>
+              <AtIcon value='file-generic'></AtIcon>
+              <AtIcon value='bookmark'></AtIcon>
             </View>
           </View>
           <View className={styles.description}>
             {collectionDetail.description}
           </View>
-          <View className="at-row at-row__justify--between">
+          <View className='at-row at-row__justify--between'>
             <View className={styles.publisher}>
               <View>{collectionDetail.publisherName}</View>
             </View>
             <View onClick={() => toggleLiked(!liked)}>
               {collectionDetail.upvotes + (liked ? 1 : 0)}{' '}
               {liked ? (
-                <AtIcon value="heart-2"></AtIcon>
+                <AtIcon value='heart-2'></AtIcon>
               ) : (
-                <AtIcon value="heart"></AtIcon>
+                <AtIcon value='heart'></AtIcon>
               )}
             </View>
           </View>
@@ -115,20 +132,7 @@ const CollectionDetail = () => {
             lowerThreshold={20}
             upperThreshold={20}
           >
-            {collectionDetail.words.map(word => (
-              <View className={styles.listItem} key={word.name}>
-                <WordCard
-                  onClick={() =>
-                    Taro.navigateTo({
-                      url: `${routes.WORD_DETAIL}?id=${word.name}`,
-                    })
-                  }
-                  title={<View className={styles.title}>{word.hanzi}</View>}
-                  description={word.snippet}
-                  extraList={[{title: '榕拼', content: word.firstPron}]}
-                />
-              </View>
-            ))}
+            {collectionDetail.words.map(wordToWordCard)}
           </ScrollView>
         </View>
       </View>
@@ -137,3 +141,33 @@ const CollectionDetail = () => {
 };
 
 export default CollectionDetail;
+
+function wordToWordCard(word) {
+  var p = getPronunciation(word);
+  let extraList = p ? [{title: p.displayName, content: p.pronunciation}] : [];
+  return (
+    <View className={styles.listItem} key={word.name}>
+      <WordCard
+        onClick={() =>
+          Taro.navigateTo({
+            url: `${routes.WORD_DETAIL}?id=${word.name}`,
+          })
+        }
+        title={<View className={styles.title}>{word.hanzi}</View>}
+        description={word.snippet}
+        extraList={extraList}
+      />
+    </View>
+  );
+}
+
+function getPronunciation(w) {
+  if (w.pronunciations?.length === 0) {
+    return undefined;
+  }
+  let firstPron = w.pronunciations[0];
+  return {
+    pronunciation: firstPron.pronunciation,
+    displayName: firstPron.display_name,
+  };
+}

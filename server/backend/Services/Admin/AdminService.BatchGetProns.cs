@@ -20,7 +20,6 @@ namespace Yngdieng.Backend.Services.Admin
             {
                 throw new RpcException(new Status(StatusCode.InvalidArgument, "parent must not be empty"));
             }
-            var wordRef = ResourceNames.ToWordRef(request.Parent);
             return new BatchGetPronsResponse
             {
                 Prons = {

@@ -1,12 +1,14 @@
-<div class="section-title" *ngIf="showTitle">
+<div class="section-header" *ngIf="showTitle">
     <span class="unihan-text hanzi">{{ fengDoc.getHanziCanonical() }}</span>
     <span class="yngping">{{ fengDoc.getYngpingUnderlying() }}</span>
     <span class="yngping" *ngIf="fengDoc.getYngpingUnderlying() !== fengDoc.getYngpingCanonical()"> →
         {{ fengDoc.getYngpingCanonical() }}</span>
 </div>
 <p class="raw-explanation" *ngIf="!showStructuredExplanation">{{ fengDoc.getExplanation() }}</p>
-<div class="unihan-text explanation" *ngIf="showStructuredExplanation" [innerHTML]="structuredExplanation"></div>
+<div class="unihan-text rich-text" *ngIf="showStructuredExplanation" [innerHTML]="structuredExplanation"></div>
 <mat-checkbox class="toggle-structured" *ngIf="showToggleStructured" [(ngModel)]="toggleStructured">结构化 (DEBUG)
 </mat-checkbox>
-<p class="details-source">出处：冯爱珍. 1998. 福州方言词典. 南京: 江苏教育出版社. 第 {{ fengDoc.getSource().getPageNumber() }} 页.
-    用字可能经过<a class="mat-body" href="/help">编辑修订</a>.</p>
+<div class="rich-text">
+    <p class="source">出处：冯爱珍. 1998. 福州方言词典. 南京: 江苏教育出版社. 第 {{ fengDoc.getSource().getPageNumber() }} 页.
+        用字可能经过<a class="mat-body" href="/help">编辑修订</a>.</p>
+</div>

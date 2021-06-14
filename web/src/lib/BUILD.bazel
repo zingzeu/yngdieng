@@ -5,6 +5,7 @@ ts_library(
     name = "lib",
     srcs = [
         "explanations.ts",
+        "rich-text.ts",
         "utils.ts",
     ],
     module_name = "@yngdieng-shared-lib",
@@ -12,6 +13,7 @@ ts_library(
     deps = [
         "//shared:documents_ts_proto",
         "//shared/zingzeudata:explanation_ts_proto",
+        "//yngdieng/frontend/v3:service_ts_proto",
     ],
 )
 

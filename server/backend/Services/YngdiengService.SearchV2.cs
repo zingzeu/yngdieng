@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using Grpc.Core;
 using Lucene.Net.QueryParsers.Classic;
 using Lucene.Net.Search;
-using Microsoft.Extensions.Logging;
+using Yngdieng.Backend.Db;
 using Yngdieng.Common;
 using Yngdieng.Protos;
 using Yngdieng.Search.Common;
@@ -35,7 +34,6 @@ namespace Yngdieng.Backend.Services
             if (string.IsNullOrEmpty(request.PageToken))
             {
                 // Is first page 
-                resultCards.Add(GenericMessageCard("你正在试用榕典搜索V2。如遇问题，请将截图和网址发送到 radium@mindong.asia。"));
                 results = searcher.Search(query, userPreference.ShowSourcelessSearchResults ? null : FilterSourcelessDocs, desiredPageSize + 1);
                 // first page && no results
                 if (results.ScoreDocs.Length == 0)
@@ -53,11 +51,12 @@ namespace Yngdieng.Backend.Services
                 results = searcher.SearchAfter(lastScoreDoc, query, userPreference.ShowSourcelessSearchResults ? null : FilterSourcelessDocs, desiredPageSize + 1);
             }
 
+            var zhConverter = new ZhConverter(_openCc, userPreference.ZhConversionPreference);
             var response = new SearchV2Response();
             var isEndOfResults = results.ScoreDocs.Length < desiredPageSize + 1;
             if (isEndOfResults)
             {
-                resultCards.AddRange(RenderDocs(results.ScoreDocs));
+                resultCards.AddRange(RenderDocs(results.ScoreDocs, zhConverter));
                 resultCards.Add(EndOfResultsCard());
             }
             else
@@ -65,7 +64,7 @@ namespace Yngdieng.Backend.Services
                 var visibleRange = results.ScoreDocs.Take(desiredPageSize);
                 var nextPageToken = PaginationTokens.FromScoreDoc(visibleRange.Last());
                 response.NextPageToken = nextPageToken;
-                resultCards.AddRange(RenderDocs(visibleRange));
+                resultCards.AddRange(RenderDocs(visibleRange, zhConverter));
             }
 
             response.ResultCards.AddRange(resultCards);
@@ -123,26 +122,7 @@ namespace Yngdieng.Backend.Services
             return queryParser.Parse(queryText);
         }
 
-        private static string FindBestExplanation(YngdiengDocument ydDoc)
-        {
-            var fengExplation = ydDoc.Sources
-                .FirstOrDefault(s => s.SourceCase == YngdiengDocument.Types.Source.SourceOneofCase.Feng)
-                ?.Feng.ExplanationTrad;
-            if (fengExplation != null)
-            {
-                return fengExplation.Truncate(100);
-            }
-            var contribExplanation = ydDoc.Sources
-                        .FirstOrDefault(s => s.SourceCase == YngdiengDocument.Types.Source.SourceOneofCase.Contrib)
-                        ?.Contrib.ExplanationRaw; //TODO:fix. explanation flattened.
-            if (contribExplanation != null)
-            {
-                return contribExplanation.Truncate(100);
-            }
-            return string.Empty;
-        }
-
-        private IEnumerable<SearchV2Response.Types.SearchCard> RenderDocs(IEnumerable<ScoreDoc> scoreDocs)
+        private IEnumerable<SearchV2Response.Types.SearchCard> RenderDocs(IEnumerable<ScoreDoc> scoreDocs, ZhConverter zhConverter)
         {
             var searcher = this._indexHolder.LuceneIndexSearcher;
 
@@ -157,8 +137,9 @@ namespace Yngdieng.Backend.Services
                    {
                        Id = docId,
                        Yngping = RichTextUtil.FromString(ydDoc.YngpingSandhi.OrElse(ydDoc.YngpingUnderlying)),
-                       Hanzi = RichTextUtil.FromString(HanziUtils.HanziToString(ydDoc.HanziCanonical)),
-                       Details = RichTextUtil.FromString(FindBestExplanation(ydDoc)),
+                       Hanzi = RichTextUtil.FromString(zhConverter.tH(HanziUtils.HanziToString(ydDoc.HanziCanonical))),
+                       Details = RichTextUtil.FromString(zhConverter.tM(Yngdieng.Backend.Services.Frontend.Words.GetSnippet
+                            (ydDoc, new Extension[] { }))),
                        Score = sd.Score
                    }
                };

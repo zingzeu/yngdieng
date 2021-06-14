@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
+﻿CREATE TABLE IF NOT EXISTS "__EFMigrationsHistory" (
     migration_id character varying(150) NOT NULL,
     product_version character varying(32) NOT NULL,
     CONSTRAINT pk___ef_migrations_history PRIMARY KEY (migration_id)
@@ -90,10 +90,10 @@ CREATE INDEX ix_pron_audio_clips_word_id_audio_clip_id ON pron_audio_clips (word
 CREATE INDEX ix_word_list_words_word_id ON word_list_words (word_id);
 
 INSERT INTO "__EFMigrationsHistory" (migration_id, product_version)
-VALUES ('20201016185536_Initial', '3.1.9');
+VALUES ('20201016185536_Initial', '3.1.11');
 
 INSERT INTO "__EFMigrationsHistory" (migration_id, product_version)
-VALUES ('20201017121917_Keyless', '3.1.9');
+VALUES ('20201017121917_Keyless', '3.1.11');
 
 CREATE TYPE gender AS ENUM ('unspecified', 'male', 'female');
 
@@ -104,7 +104,7 @@ ALTER TABLE speakers ADD gender gender NOT NULL DEFAULT 'unspecified'::gender;
 ALTER TABLE speakers ADD year_of_birth integer NULL;
 
 INSERT INTO "__EFMigrationsHistory" (migration_id, product_version)
-VALUES ('20201018163503_SpeakersColumns', '3.1.9');
+VALUES ('20201018163503_SpeakersColumns', '3.1.11');
 
 CREATE TABLE word_audio_clips (
     word_id integer NOT NULL,
@@ -114,7 +114,7 @@ CREATE TABLE word_audio_clips (
 );
 
 INSERT INTO "__EFMigrationsHistory" (migration_id, product_version)
-VALUES ('20201023002148_WordAudioClip', '3.1.9');
+VALUES ('20201023002148_WordAudioClip', '3.1.11');
 
 ALTER TABLE pron_audio_clips DROP CONSTRAINT fk_pron_audio_clips_prons_word_id_pron_id;
 
@@ -135,6 +135,34 @@ ALTER TABLE word_audio_clips ADD CONSTRAINT fk_word_audio_clips_audio_clips_audi
 ALTER TABLE word_audio_clips ADD CONSTRAINT fk_word_audio_clips_words_word_id FOREIGN KEY (word_id) REFERENCES words (word_id) ON DELETE CASCADE;
 
 INSERT INTO "__EFMigrationsHistory" (migration_id, product_version)
-VALUES ('20201023115513_FixForeignKeys', '3.1.9');
+VALUES ('20201023115513_FixForeignKeys', '3.1.11');
 
+INSERT INTO "__EFMigrationsHistory" (migration_id, product_version)
+VALUES ('20201023182046_AudioClipsByWordId', '3.1.11');
+
+INSERT INTO "__EFMigrationsHistory" (migration_id, product_version)
+VALUES ('20201023182635_AudioClipsByWordId2', '3.1.11');
+
+ALTER TABLE speakers ADD ancestral_home text NULL;
+
+ALTER TABLE speakers ADD display_name_source text NULL;
+
+INSERT INTO "__EFMigrationsHistory" (migration_id, product_version)
+VALUES ('20210316153949_NewSpeakerFields', '3.1.11');
+
+ALTER TABLE extensions ALTER COLUMN source TYPE text;
+ALTER TABLE extensions ALTER COLUMN source DROP NOT NULL;
+ALTER TABLE extensions ALTER COLUMN source DROP DEFAULT;
+
+INSERT INTO "__EFMigrationsHistory" (migration_id, product_version)
+VALUES ('20210316172153_NullableSource', '3.1.11');
+
+ALTER TABLE words ADD preferred_sandhi_audio_audio_clip_id integer NULL;
+
+CREATE INDEX ix_words_preferred_sandhi_audio_audio_clip_id ON words (preferred_sandhi_audio_audio_clip_id);
+
+ALTER TABLE words ADD CONSTRAINT fk_words_audio_clips_preferred_sandhi_audio_audio_clip_id FOREIGN KEY (preferred_sandhi_audio_audio_clip_id) REFERENCES audio_clips (audio_clip_id) ON DELETE RESTRICT;
+
+INSERT INTO "__EFMigrationsHistory" (migration_id, product_version)
+VALUES ('20210321143639_PreferredAudioClip', '3.1.11');
 

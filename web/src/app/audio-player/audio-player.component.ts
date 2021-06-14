@@ -32,15 +32,17 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
     private localStorageService: LocalStorageService,
     private snackBar: MatSnackBar,
     private platform: Platform,
-    private ackDialog: MatDialog
+    private matDialog: MatDialog
   ) {}
 
   private getHowlSrc() {
+    if (this.audioUrl.endsWith('.mp3') || this.audioUrl.endsWith('.wav')) {
+      return [this.audioUrl];
+    }
     if (this.platform.IOS) {
       return [`${this.audioUrl}.mp3`];
-    } else {
-      return [`${this.audioUrl}.wav`, `${this.audioUrl}.mp3`];
     }
+    return [`${this.audioUrl}.wav`, `${this.audioUrl}.mp3`];
   }
 
   private getHowlProps() {
@@ -159,7 +161,7 @@ export class AudioPlayerComponent implements OnInit, OnDestroy {
   }
 
   private showTtsAcknowledgement() {
-    let ackDialogRef = this.ackDialog.open(AudioAckDialogComponent, {
+    let ackDialogRef = this.matDialog.open(AudioAckDialogComponent, {
       width: '80vw',
       maxWidth: '500px',
     });

@@ -22,7 +22,7 @@ namespace Yngdieng.Backend.Migrations
                 .HasAnnotation("Npgsql:Enum:sandhi_category", "unspecified,sandhi,bengzi")
                 .HasAnnotation("Npgsql:Enum:variant", "unspecified,fuzhou_city,lianjiang,cikling")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn)
-                .HasAnnotation("ProductVersion", "3.1.9")
+                .HasAnnotation("ProductVersion", "3.1.11")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             modelBuilder.Entity("Yngdieng.Backend.Db.AudioClip", b =>
@@ -92,7 +92,6 @@ namespace Yngdieng.Backend.Migrations
                         .HasColumnType("extension_scope");
 
                     b.Property<string>("Source")
-                        .IsRequired()
                         .HasColumnName("source")
                         .HasColumnType("text");
 
@@ -172,9 +171,17 @@ namespace Yngdieng.Backend.Migrations
                         .HasColumnName("accent")
                         .HasColumnType("text");
 
+                    b.Property<string>("AncestralHome")
+                        .HasColumnName("ancestral_home")
+                        .HasColumnType("text");
+
                     b.Property<string>("DisplayName")
                         .IsRequired()
                         .HasColumnName("display_name")
+                        .HasColumnType("text");
+
+                    b.Property<string>("DisplayNameSource")
+                        .HasColumnName("display_name_source")
                         .HasColumnType("text");
 
                     b.Property<Gender>("Gender")
@@ -222,8 +229,15 @@ namespace Yngdieng.Backend.Migrations
                         .HasColumnName("mandarin_words")
                         .HasColumnType("text[]");
 
+                    b.Property<int?>("PreferredSandhiAudioAudioClipId")
+                        .HasColumnName("preferred_sandhi_audio_audio_clip_id")
+                        .HasColumnType("integer");
+
                     b.HasKey("WordId")
                         .HasName("pk_words");
+
+                    b.HasIndex("PreferredSandhiAudioAudioClipId")
+                        .HasName("ix_words_preferred_sandhi_audio_audio_clip_id");
 
                     b.ToTable("words");
                 });
@@ -345,6 +359,14 @@ namespace Yngdieng.Backend.Migrations
                         .HasConstraintName("fk_pron_audio_clips_prons_word_id_pron_id")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("Yngdieng.Backend.Db.Word", b =>
+                {
+                    b.HasOne("Yngdieng.Backend.Db.AudioClip", "PreferredSandhiAudio")
+                        .WithMany()
+                        .HasForeignKey("PreferredSandhiAudioAudioClipId")
+                        .HasConstraintName("fk_words_audio_clips_preferred_sandhi_audio_audio_clip_id");
                 });
 
             modelBuilder.Entity("Yngdieng.Backend.Db.WordAudioClip", b =>

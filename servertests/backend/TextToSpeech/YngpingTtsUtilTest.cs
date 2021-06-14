@@ -17,11 +17,14 @@ namespace Yngdieng.Backend.TextToSpeech.Tests
         [InlineData("boung242", "010107")]
         [InlineData("buk5", "010108")]
         [InlineData("buh5", "010108")]
+        //[InlineData("buk21", "buk21")]
+        //[InlineData("u21", "u21")]
+        //[InlineData("uk21", "u21")]
         [InlineData("nguai55", "143401")]
         [InlineData("nguai33", "143402")]
-        [InlineData("pak21","020703")]
-        [InlineData("pak33","020702")]
-        [InlineData("ng55","150801")]
+        [InlineData("pak21", "020703")]
+        [InlineData("pak33", "020702")]
+        [InlineData("ng55", "150801")]
         public void TestSyllableToAudio(string yngping, string expectedFileName)
         {
             Assert.Equal(expectedFileName, YngpingTtsUtil.SyllableToAudio(yngping));
@@ -29,8 +32,6 @@ namespace Yngdieng.Backend.TextToSpeech.Tests
 
         [Theory]
         [InlineData("bung24")]
-        [InlineData("buk21")]
-        [InlineData("u21")]
         [InlineData("u213")]
         [InlineData("ding21")]
         [InlineData("ding213")]

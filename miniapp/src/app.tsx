@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import Taro, {getCurrentInstance} from '@tarojs/taro';
+import Taro from '@tarojs/taro';
 import {Provider} from 'react-redux';
 import configStore from './store';
 import './styles/custom-variables.scss';

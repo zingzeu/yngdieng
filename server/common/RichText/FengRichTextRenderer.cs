@@ -29,7 +29,7 @@ namespace Yngdieng.Common.RichText
                 VerticalContainer = new RichTextNode.Types.VerticalContainerNode()
                 {
                     Children = {
-                            SectionHeader(zc.tH(doc.HanziCanonical), RenderSourcePronunciations(doc.YngpingUnderlying, doc.YngpingCanonical)),
+                            SectionHeader(zc.tH(doc.HanziOriginal), RenderSourcePronunciations(doc.YngpingUnderlying, doc.YngpingCanonical)),
                         }
                 }
             };
