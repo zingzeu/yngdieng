@@ -50,7 +50,7 @@ const Index = () => {
   };
 
   useShareTimeline(() => ({
-    title: '福州话电子词典',
+    title: '榕典 | 福州话电子词典',
   }))
   useShareAppMessage(() => ({
     title: '福州话电子词典',
