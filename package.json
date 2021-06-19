@@ -28,7 +28,7 @@
     "@angular/platform-browser": "11.2.13",
     "@angular/platform-browser-dynamic": "11.2.13",
     "@angular/router": "11.2.13",
-    "@auth0/auth0-angular": "1.4.1",
+    "@auth0/auth0-angular": "1.5.1",
     "google-protobuf": "3.16.0",
     "grpc-web": "1.2.1",
     "howler": "2.2.1",

@@ -274,10 +274,10 @@
   dependencies:
     tslib "^2.0.0"
 
-"@auth0/auth0-angular@1.4.1":
-  version "1.4.1"
-  resolved "https://registry.yarnpkg.com/@auth0/auth0-angular/-/auth0-angular-1.4.1.tgz#a58a35bbffaa1a2510becce607bd5d5d66bd77e4"
-  integrity sha512-3DA3nbD7ilaYJokvAuk+LQ9zud1OT5+pB8B6C7A2mJigGCs+1ko3DtoAXTpV3cqxKIgmIScwawe9CmCSzR0E9Q==
+"@auth0/auth0-angular@1.5.1":
+  version "1.5.1"
+  resolved "https://registry.yarnpkg.com/@auth0/auth0-angular/-/auth0-angular-1.5.1.tgz#01fddcc57fd8f6faa1bb30037f107ec5584fc5bd"
+  integrity sha512-6EffxHEmUingeKJCel/PEpSFWEBnoJbX74wQlxn4LXy244a0ehYh9N1dgiOifM+Cj84rTPwuUCIjkCy7PPSyqQ==
   dependencies:
     "@auth0/auth0-spa-js" "^1.11.0"
     tslib "^2.0.0"
