@@ -2818,21 +2818,6 @@
     swiper "4.4.2"
     weui "^1.1.2"
 
-"@tarojs/components@3.2.8":
-  version "3.2.8"
-  resolved "https://registry.yarnpkg.com/@tarojs/components/-/components-3.2.8.tgz#871574568d5e0134d5b9a9e4d42f694ac3182ff7"
-  integrity sha512-NHnyXoGnJcD4OvUd4effY74gKZ7fpzqvFT/c9eaBly6wxNPateE1wbIS3ms1DTZXLmTyypOB0nrt+2sYVAwLcQ==
-  dependencies:
-    "@stencil/core" "2.4.0"
-    "@tarojs/taro" "3.2.8"
-    better-scroll "^1.14.1"
-    classnames "^2.2.5"
-    intersection-observer "^0.7.0"
-    omit.js "^1.0.0"
-    resolve-pathname "^3.0.0"
-    swiper "4.4.2"
-    weui "^1.1.2"
-
 "@tarojs/helper@3.2.13":
   version "3.2.13"
   resolved "https://registry.yarnpkg.com/@tarojs/helper/-/helper-3.2.13.tgz#3734455d3f521a9fa2b79dd3f41a886c3a9c564a"
