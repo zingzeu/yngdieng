@@ -114,10 +114,7 @@ const WordDetail = () => {
             <View className={styles.label}>推荐用字</View>
             <selectable-text t={wordDetail.hanzi} />
           </View>
-          <View className={styles.actionPanel}>
-            <AtIcon value="help"></AtIcon>
-            <AtIcon value="bookmark"></AtIcon>
-          </View>
+          <View className={styles.actionPanel}>{/* TODO: 收藏按钮 */}</View>
         </View>
         <View>
           {wordDetail.pronunciations?.map(p => (
@@ -137,13 +134,7 @@ const WordDetail = () => {
         <AtTabs
           current={currentTab}
           scroll
-          tabList={[
-            {title: '释义'},
-            {title: '更多例句'},
-            {title: '发音'},
-            {title: '词表'},
-            {title: '故事'},
-          ]}
+          tabList={[{title: '释义'}, {title: '发音'}, {title: '词表'}]}
           onClick={setCurrentTab}
         >
           <AtTabsPane current={currentTab} index={0}>
@@ -161,14 +152,11 @@ const WordDetail = () => {
             </View>
           </AtTabsPane>
           <AtTabsPane current={currentTab} index={1}>
-            <View className={styles.tabPane}>暂无例句</View>
-          </AtTabsPane>
-          <AtTabsPane current={currentTab} index={2}>
             <View className={styles.tabPane}>
               <PhonologyTab audioCards={wordDetail.audio_cards} />
             </View>
           </AtTabsPane>
-          <AtTabsPane current={currentTab} index={3}>
+          <AtTabsPane current={currentTab} index={2}>
             <View className={clsx(styles.tabPane, styles.collection)}>
               {wordDetail.word_lists?.map(wordList => (
                 <WordCard
@@ -180,16 +168,6 @@ const WordDetail = () => {
                       url: `${routes.COLLECTION_DETAIL}?id=${wordList.name}`,
                     })
                   }
-                />
-              ))}
-            </View>
-          </AtTabsPane>
-          <AtTabsPane current={currentTab} index={4}>
-            <View className={styles.tabPane}>
-              {wordDetail.stories?.map(story => (
-                <WordCard
-                  onClick={() => setStoryToShow(story)}
-                  description={story}
                 />
               ))}
             </View>
