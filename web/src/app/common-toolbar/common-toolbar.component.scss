@@ -1,3 +1,17 @@
+.survey {
+  font-family: sans-serif;
+  background-color: #ffee58;
+  padding: 4px;
+  text-align: center;
+  font-size: 14px;
+  line-height: 20px;
+  a {
+    line-height: 20px;
+    padding-left: 2px;
+    padding-right: 2px;
+  }
+}
+
 .topbar.homepage {
   background-color: rgba(220, 210, 208, 1);
 }
