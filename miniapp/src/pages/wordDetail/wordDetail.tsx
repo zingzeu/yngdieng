@@ -6,13 +6,14 @@ import Taro, {
   useShareTimeline,
 } from '@tarojs/taro';
 import {View, RichText} from '@tarojs/components';
-import {AtIcon, AtTabs, AtTabsPane, AtFloatLayout} from 'taro-ui';
+import {AtIcon, AtTabs, AtTabsPane} from 'taro-ui';
 import routes from '@/routes';
 import Header from '@/pages/header/header';
 import WordCard from '@/components/wordCard/wordCard';
 import AudioPlay from '@/components/audioPlay/audioPlay';
 import {fetchWord} from '@/store/actions/dictionary';
 import PhonologyTab from './phonology-tab/phonology-tab';
+import SurveyBanner from '@/components/survey-banner/survey-banner';
 import styles from './wordDetail.module.scss';
 import {renderRichTextNode} from './rich-text';
 import {getWordShareTimelineTitle} from '@/utils/sharing-util';
@@ -65,7 +66,6 @@ const initialState: {
       word: string;
       pinyin: string;
     }[];
-    stories?: string[];
   };
 } = {
   wordDetail: {
@@ -73,7 +73,6 @@ const initialState: {
     pronounces: [],
     sources: [],
     collections: [],
-    stories: [],
     audio_cards: [],
     transcriptions: [],
     wordSplited: [],
@@ -84,17 +83,17 @@ const WordDetail = () => {
   const router = useRouter();
   const [wordDetail, setWordDetail] = useState(initialState.wordDetail);
   const [currentTab, setCurrentTab] = useState(0);
-  const [storyToShow, setStoryToShow] = useState('');
 
   useShareTimeline(() => ({
     title: getWordShareTimelineTitle(wordDetail.hanzi!),
   }));
-  useShareAppMessage(() => ({
-    title: wordDetail.hanzi,
-  }));
+  useShareAppMessage(() => {
+    return {
+      title: wordDetail.hanzi,
+    };
+  });
   useEffect(() => {
     const wordName = toWordName(decodeURIComponent(router.params.id || ''));
-    console.log(wordName);
     Taro.showNavigationBarLoading();
     fetchWord(wordName)
       .then(result => {
@@ -108,6 +107,7 @@ const WordDetail = () => {
   return (
     <View>
       <Header />
+      <SurveyBanner />
       <View className={styles.hero}>
         <View className="at-row at-row__justify--between">
           <View className={styles.word}>
@@ -174,13 +174,6 @@ const WordDetail = () => {
           </AtTabsPane>
         </AtTabs>
       </View>
-      <AtFloatLayout
-        isOpened={!!storyToShow}
-        title="故事全文"
-        onClose={() => setStoryToShow('')}
-      >
-        {storyToShow}
-      </AtFloatLayout>
     </View>
   );
 };

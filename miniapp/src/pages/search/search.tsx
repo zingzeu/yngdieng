@@ -1,5 +1,9 @@
 import React, {useState, useEffect} from 'react';
-import Taro, {useRouter, useShareAppMessage, useShareTimeline} from '@tarojs/taro';
+import Taro, {
+  useRouter,
+  useShareAppMessage,
+  useShareTimeline,
+} from '@tarojs/taro';
 import {View, Input, Block, ScrollView} from '@tarojs/components';
 import {AtIcon} from 'taro-ui';
 import routes from '@/routes';
@@ -7,6 +11,7 @@ import Header from '@/pages/header/header';
 import WordCard from '@/components/wordCard/wordCard';
 import {realSearch} from '@/store/actions/dictionary';
 import styles from './search.module.scss';
+import SurveyBanner from '@/components/survey-banner/survey-banner';
 
 // Empty page token returned by the server indicates the end of pages.
 const FINAL_PAGE_TOKEN = '';
@@ -40,7 +45,6 @@ const InitialState: {
 const Search = () => {
   const router = useRouter();
   const [inputString, setInputString] = useState('');
-  const [showAdvanced, toggleAdvanced] = useState(false);
   const [resultList, setResultList] = useState(InitialState.resultList);
   const [nextPageToken, setNextPageToken] = useState(
     InitialState.nextPageToken
@@ -54,7 +58,6 @@ const Search = () => {
       setInputString(word);
     }
     setNextPageToken(undefined);
-    toggleAdvanced(false);
     fetchOnePage(word);
   };
   const handleLoadMore = () => {
@@ -85,8 +88,8 @@ const Search = () => {
 
   useShareTimeline(() => ({
     title: inputString,
-    query: `word=${inputString}`
-  }))
+    query: `word=${inputString}`,
+  }));
   useShareAppMessage(() => {
     return {
       title: inputString,
@@ -122,28 +125,26 @@ const Search = () => {
         }
       />
       <View className={styles.content}>
-        {showAdvanced && <Block></Block>}
-        {!showAdvanced && (
-          <View className={styles.result}>
-            <View
-              className={`${styles.resultTitle} at-row at-row__justify--between at-row__align--center`}
-            ></View>
-            <View className={styles.resultList}>
-              <ScrollView
-                enableBackToTop
-                enableFlex
-                scrollWithAnimation
-                scrollY
-                className={styles.scrollView}
-                onScrollToLower={handleLoadMore}
-                lowerThreshold={100}
-                upperThreshold={20}
-              >
-                {resultList?.map(resultItem => renderResultItem(resultItem))}
-              </ScrollView>
-            </View>
+        <View className={styles.result}>
+          <SurveyBanner />
+          <View
+            className={`${styles.resultTitle} at-row at-row__justify--between at-row__align--center`}
+          ></View>
+          <View className={styles.resultList}>
+            <ScrollView
+              enableBackToTop
+              enableFlex
+              scrollWithAnimation
+              scrollY
+              className={styles.scrollView}
+              onScrollToLower={handleLoadMore}
+              lowerThreshold={100}
+              upperThreshold={20}
+            >
+              {resultList?.map(resultItem => renderResultItem(resultItem))}
+            </ScrollView>
           </View>
-        )}
+        </View>
       </View>
     </View>
   );
