@@ -3614,10 +3614,10 @@
   resolved "https://registry.yarnpkg.com/@emotion/weak-memoize/-/weak-memoize-0.2.5.tgz#8eed982e2ee6f7f4e44c253e12962980791efd46"
   integrity sha512-6U71C2Wp7r5XtFtQzYrW5iKFT67OixrSxjI4MptCHzdSVlgabczzqLe0ZSgnub/5Kp4hSbpDB1tMytZY9pwxxA==
 
-"@grpc/proto-loader@0.6.2":
-  version "0.6.2"
-  resolved "https://registry.yarnpkg.com/@grpc/proto-loader/-/proto-loader-0.6.2.tgz#412575f3ff5ef0a9b79d4ea12c08cba5601041cb"
-  integrity sha512-q2Qle60Ht2OQBCp9S5hv1JbI4uBBq6/mqSevFNK3ZEgRDBCAkWqZPUhD/K9gXOHrHKluliHiVq2L9sw1mVyAIg==
+"@grpc/proto-loader@0.6.3":
+  version "0.6.3"
+  resolved "https://registry.yarnpkg.com/@grpc/proto-loader/-/proto-loader-0.6.3.tgz#9d3617e514295b2a6fe7e7ce28177af4783b6b12"
+  integrity sha512-AtMWwb7kY8DdtwIQh2hC4YFM1MzZ22lMA+gjbnCYDgICt14vX2tCa59bDrEjFyOI4LvORjpvT/UhHUdKvsX8og==
   dependencies:
     "@types/long" "^4.0.1"
     lodash.camelcase "^4.3.0"
