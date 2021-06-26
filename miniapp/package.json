@@ -70,6 +70,6 @@
     "eslint-plugin-react-hooks": "4.2.0",
     "miniprogram-ci": "1.2.3",
     "stylelint": "13.13.1",
-    "typescript": "4.2.4"
+    "typescript": "4.3.4"
   }
 }
