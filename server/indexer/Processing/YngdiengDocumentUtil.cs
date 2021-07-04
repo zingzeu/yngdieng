@@ -34,7 +34,7 @@ namespace Yngdieng.Indexer.Processing
                 var zingzeuId = zingzeuWordsEntry.Id;
                 var tmp = new YngdiengDocument
                 {
-                    DocRef = new DocRef { ZingzeuId = zingzeuId },
+                    DocRef = new Yngdieng.Protos.DocRef { ZingzeuId = zingzeuId },
                     HanziCanonical = new Hanzi { Regular = zingzeuWordsEntry.Hanzi },
                     YngpingSandhi = FindZingzeuWordsPron(zingzeuWordsEntry) ?? string.Empty,
                     YngpingUnderlying =
@@ -80,7 +80,7 @@ namespace Yngdieng.Indexer.Processing
             {
                 results.Add(new YngdiengDocument
                 {
-                    DocRef = new DocRef { HistoricalDocId = h.Id },
+                    DocRef = new Yngdieng.Protos.DocRef { HistoricalDocId = h.Id },
                     Sources = { new YngdiengDocument.Types.Source { CiklinDfd = h } }
                 });
             }
@@ -89,7 +89,7 @@ namespace Yngdieng.Indexer.Processing
                 results.Add(
                     new YngdiengDocument
                     {
-                        DocRef = new DocRef { FengId = f.Id },
+                        DocRef = new Yngdieng.Protos.DocRef { FengId = f.Id },
                         Sources = { new YngdiengDocument.Types.Source { Feng = f } }
                     });
             }
@@ -97,7 +97,7 @@ namespace Yngdieng.Indexer.Processing
             {
                 results.Add(new YngdiengDocument
                 {
-                    DocRef = new DocRef { ContribRowNumber = c.RowNumber },
+                    DocRef = new Yngdieng.Protos.DocRef { ContribRowNumber = c.RowNumber },
                     Sources = { new YngdiengDocument.Types.Source { Contrib = c } }
                 });
             }

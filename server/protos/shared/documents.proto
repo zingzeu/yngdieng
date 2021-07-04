@@ -110,7 +110,7 @@ message HistoricalDocument {
 }
 
 // 冯 / 李文档.
-// Next ID: 15
+// Next ID: 17
 message FengDocument {
   string id = 1;
 
@@ -126,11 +126,17 @@ message FengDocument {
   // Optional. 等价汉字写法. 如俗写。
   repeated string hanzi_alternatives = 3;
 
-  // 用于显示的榕拼(连读).
+  // 修订后的榕拼(连读).
   string yngping_canonical = 4;
 
-  // 用于显示的榕拼(单字).
+  // 修订前的榕拼(连读).
+  string yngping_canonical_original = 15;
+
+  // 修订后的榕拼(本字).
   string yngping_underlying = 11;
+
+  // 修订前的榕拼(本字).
+  string yngping_underlying_original = 16;
 
   // All searchable permuations
   repeated string yngping_permutations = 5;
