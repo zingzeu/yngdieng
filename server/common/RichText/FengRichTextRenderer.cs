@@ -1,4 +1,7 @@
 ﻿extern alias zingzeudata;
+
+using System.Linq;
+using LibHokchew.Shared.Yngping;
 using Yngdieng.Frontend.V3.Protos;
 using Yngdieng.Protos;
 using static Yngdieng.Common.RichText.RichTextUtil;
@@ -29,7 +32,10 @@ namespace Yngdieng.Common.RichText
                 VerticalContainer = new RichTextNode.Types.VerticalContainerNode()
                 {
                     Children = {
-                            SectionHeader(zc.tH(doc.HanziOriginal), RenderSourcePronunciations(doc.YngpingUnderlying, doc.YngpingCanonical)),
+                            SectionHeader(zc.tH(doc.HanziOriginal),
+                            RenderSourcePronunciations(
+                                ToFeng(doc.YngpingUnderlyingOriginal),
+                                ToFeng(doc.YngpingCanonicalOriginal))),
                         }
                 }
             };
@@ -43,6 +49,19 @@ namespace Yngdieng.Common.RichText
             }
             output.VerticalContainer.Children.Add(Source(zc.tM($"出处：冯爱珍. 1998. 福州方言词典. 南京: 江苏教育出版社. 第 {doc.Source.PageNumber} 页. 用字可能经过编辑修订.")));
             return output;
+        }
+
+        private static string ToFeng(string yngpingSyllables)
+        {
+            var converted = yngpingSyllables
+                .Split()
+                .Select(FengConverter.ToFeng)
+                .ToList();
+            if (converted.Any(syllable => syllable == null))
+            {
+                return yngpingSyllables;
+            }
+            return "/" + string.Join(" ", converted) + "/";
         }
     }
 }
