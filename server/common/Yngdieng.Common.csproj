@@ -14,7 +14,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="LibHokchew.Shared" Version="0.3.1" />
+    <PackageReference Include="LibHokchew.Shared" Version="0.3.2" />
     <PackageReference Include="ZingzeuData.Shared" Version="1.7.0" />
   </ItemGroup>
   <!--
