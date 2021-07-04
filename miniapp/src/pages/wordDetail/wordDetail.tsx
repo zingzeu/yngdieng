@@ -13,7 +13,6 @@ import WordCard from '@/components/wordCard/wordCard';
 import AudioPlay from '@/components/audioPlay/audioPlay';
 import {fetchWord} from '@/store/actions/dictionary';
 import PhonologyTab from './phonology-tab/phonology-tab';
-import SurveyBanner from '@/components/survey-banner/survey-banner';
 import styles from './wordDetail.module.scss';
 import {renderRichTextNode} from './rich-text';
 import {getWordShareTimelineTitle} from '@/utils/sharing-util';
@@ -107,7 +106,6 @@ const WordDetail = () => {
   return (
     <View>
       <Header />
-      <SurveyBanner />
       <View className={styles.hero}>
         <View className="at-row at-row__justify--between">
           <View className={styles.word}>

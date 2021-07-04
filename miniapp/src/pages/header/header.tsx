@@ -6,7 +6,6 @@ import {AtIcon, AtDrawer} from 'taro-ui';
 import routes from '@/routes';
 import logoURL from '@/assets/logo-header.png';
 import styles from './header.module.scss';
-import SurveyBanner from '@/components/survey-banner/survey-banner';
 
 interface MenuItem {
   title: string;

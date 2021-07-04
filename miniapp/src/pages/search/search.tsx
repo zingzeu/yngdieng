@@ -11,7 +11,6 @@ import Header from '@/pages/header/header';
 import WordCard from '@/components/wordCard/wordCard';
 import {realSearch} from '@/store/actions/dictionary';
 import styles from './search.module.scss';
-import SurveyBanner from '@/components/survey-banner/survey-banner';
 
 // Empty page token returned by the server indicates the end of pages.
 const FINAL_PAGE_TOKEN = '';
@@ -100,8 +99,6 @@ const Search = () => {
     const wordFromParams = decodeURIComponent(router.params.word || '');
     if (wordFromParams) {
       handleConfirm(wordFromParams);
-    } else {
-      toggleAdvanced(true);
     }
   }, []);
   return (
@@ -126,7 +123,6 @@ const Search = () => {
       />
       <View className={styles.content}>
         <View className={styles.result}>
-          <SurveyBanner />
           <View
             className={`${styles.resultTitle} at-row at-row__justify--between at-row__align--center`}
           ></View>

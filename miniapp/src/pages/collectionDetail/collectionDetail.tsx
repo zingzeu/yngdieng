@@ -13,7 +13,6 @@ import routes from '@/routes';
 import {getWordList, getWordListWords} from '@/store/actions/collection';
 import styles from './collectionDetail.module.scss';
 import {getWordListShareTimelineTitle} from '@/utils/sharing-util';
-import SurveyBanner from '@/components/survey-banner/survey-banner';
 
 const initialState: {
   collectionDetail: {
@@ -97,7 +96,6 @@ const CollectionDetail = () => {
     <View className={styles.collectionDetail}>
       <Header />
       <View className={styles.content}>
-        <SurveyBanner />
         <View className={styles.topBar}>
           <View className="at-row at-row__justify--between">
             <View className={styles.title}>{collectionDetail.title}</View>
