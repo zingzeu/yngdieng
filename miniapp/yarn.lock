@@ -3233,14 +3233,6 @@
     universal-router "^8.3.0"
     url-parse "^1.4.7"
 
-"@tarojs/runner-utils@3.2.13":
-  version "3.2.13"
-  resolved "https://registry.yarnpkg.com/@tarojs/runner-utils/-/runner-utils-3.2.13.tgz#804c95b06bc53001bf7425f1ac32ba54bca728a4"
-  integrity sha512-6JWduHZRb8lxT/faalEAzW4PAWfjfKanJHul+Ugaouxvsgb1RTnwOvboNFJgvXpZSd+Jb1Oir2CZGtgLPM7sBg==
-  dependencies:
-    "@tarojs/helper" "3.2.13"
-    scss-bundle "^3.0.2"
-
 "@tarojs/runner-utils@3.2.16":
   version "3.2.16"
   resolved "https://registry.yarnpkg.com/@tarojs/runner-utils/-/runner-utils-3.2.16.tgz#c6519262db499dd3e782da7ec4ae3dcead8a0338"
@@ -3316,16 +3308,6 @@
     mobile-detect "^1.4.2"
     raf "^3.4.1"
     whatwg-fetch "^3.4.0"
-
-"@tarojs/taro-loader@3.2.13":
-  version "3.2.13"
-  resolved "https://registry.yarnpkg.com/@tarojs/taro-loader/-/taro-loader-3.2.13.tgz#e7976adcb2a465e410bba537ffab203b3fc74ae3"
-  integrity sha512-XSt70DQbqLpE37Pjgp+PhQVDSpw1yV0uQBj0dI9pmaQUA9YysJLuySLFCLBKAFpO1zWT4exZCpSWuDTV5JQn2w==
-  dependencies:
-    "@tarojs/helper" "3.2.13"
-    acorn "^8.0.4"
-    acorn-walk "^8.0.0"
-    loader-utils "^1.2.3"
 
 "@tarojs/taro-loader@3.2.16":
   version "3.2.16"
@@ -3404,18 +3386,18 @@
     prettier "^1.14.2"
     typescript "^3.2.2"
 
-"@tarojs/webpack-runner@3.2.13":
-  version "3.2.13"
-  resolved "https://registry.yarnpkg.com/@tarojs/webpack-runner/-/webpack-runner-3.2.13.tgz#ff517669342727dc44269fc0e0efa7c83a197316"
-  integrity sha512-3NJbMeMpfU/AzIOwM36QOTyneasKn3PGrHZdT/O61vFB6t3+Jmt/7z0Lq0b8MwL1PbSJfuZnLwJ1L3Z25mOjNg==
+"@tarojs/webpack-runner@3.2.16":
+  version "3.2.16"
+  resolved "https://registry.yarnpkg.com/@tarojs/webpack-runner/-/webpack-runner-3.2.16.tgz#8eb15eaf5126b6e6530e47fe22a9984eb8d04577"
+  integrity sha512-GYsew3qMFXT2NtLUW+wckY7wpn5HwAMEDneQ1etil71AtR5IQgqUmyvl4yxvFfEvZP8umrjVk+bR/0yB95MhhQ==
   dependencies:
     "@babel/core" "^7.11.1"
     "@pmmmwh/react-refresh-webpack-plugin" "0.4.3"
-    "@tarojs/helper" "3.2.13"
-    "@tarojs/runner-utils" "3.2.13"
-    "@tarojs/runtime" "3.2.13"
-    "@tarojs/shared" "3.2.13"
-    "@tarojs/taro-loader" "3.2.13"
+    "@tarojs/helper" "3.2.16"
+    "@tarojs/runner-utils" "3.2.16"
+    "@tarojs/runtime" "3.2.16"
+    "@tarojs/shared" "3.2.16"
+    "@tarojs/taro-loader" "3.2.16"
     autoprefixer "9.7.4"
     babel-loader "8.2.1"
     copy-webpack-plugin "5.1.1"
@@ -3433,8 +3415,8 @@
     open "7.0.2"
     ora "4.0.3"
     postcss-loader "3.0.0"
-    postcss-plugin-constparse "3.2.13"
-    postcss-pxtransform "3.2.13"
+    postcss-plugin-constparse "3.2.16"
+    postcss-pxtransform "3.2.16"
     react-refresh "0.9.0"
     resolve "1.15.1"
     resolve-url-loader "3.1.1"
@@ -13864,10 +13846,10 @@ postcss-ordered-values@^4.1.2:
     postcss "^7.0.0"
     postcss-value-parser "^3.0.0"
 
-postcss-plugin-constparse@3.2.13:
-  version "3.2.13"
-  resolved "https://registry.yarnpkg.com/postcss-plugin-constparse/-/postcss-plugin-constparse-3.2.13.tgz#4b1f6213bfecdc4e056a548c544e6dfc62c5855a"
-  integrity sha512-92p1DbX1DjxpLOHC2ACPfPX/jwxq6FNrGGFPLhvLehqp16V31a0qweb3Uqo08RVmqfxnhjbtA8U9bpuRaN46/A==
+postcss-plugin-constparse@3.2.16:
+  version "3.2.16"
+  resolved "https://registry.yarnpkg.com/postcss-plugin-constparse/-/postcss-plugin-constparse-3.2.16.tgz#c7bfa4276f6d7ebd3aa9f188b95b03ac0ab7eb4a"
+  integrity sha512-vTTknghjWQE1ZSGWKBZkyAjF/H+sCoXfTQ2LN/atSY3jqUfwX/jpG11f+dk32hf/V6so7vniuZm2lWYuhTGiFA==
   dependencies:
     postcss "^6.0.22"
 
@@ -13878,14 +13860,6 @@ postcss-pxtorem@^4.0.1:
   dependencies:
     object-assign "^4.1.0"
     postcss "^5.2.10"
-
-postcss-pxtransform@3.2.13:
-  version "3.2.13"
-  resolved "https://registry.yarnpkg.com/postcss-pxtransform/-/postcss-pxtransform-3.2.13.tgz#e9eaa952ddb99c5a819dce9a4ad3ba1beedf77ed"
-  integrity sha512-OMGpd4E6phVwrnNIK5nNu4Z7JzD5/BIA153tNwfkdu8AfkajhBOgYLO1oYCVGcmumGBh9mgwzh3KEUP/ihvCnw==
-  dependencies:
-    postcss "^6.0.16"
-    postcss-pxtorem "^4.0.1"
 
 postcss-pxtransform@3.2.16:
   version "3.2.16"
