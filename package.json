@@ -59,7 +59,7 @@
     "@bazel/typescript": "2.3.3",
     "@compodoc/compodoc": "1.1.11",
     "@grpc/proto-loader": "0.6.4",
-    "@rollup/plugin-commonjs": "16.0.0",
+    "@rollup/plugin-commonjs": "19.0.2",
     "@rollup/plugin-node-resolve": "9.0.0",
     "@storybook/addon-actions": "6.3.2",
     "@storybook/addon-essentials": "6.3.2",
