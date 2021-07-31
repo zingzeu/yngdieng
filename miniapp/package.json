@@ -68,7 +68,7 @@
     "eslint-plugin-import": "2.23.4",
     "eslint-plugin-react": "7.24.0",
     "eslint-plugin-react-hooks": "4.2.0",
-    "miniprogram-ci": "1.2.3",
+    "miniprogram-ci": "1.4.13",
     "stylelint": "13.13.1",
     "typescript": "4.3.5"
   }
