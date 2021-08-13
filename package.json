@@ -53,7 +53,7 @@
     "@bazel/jasmine": "2.3.3",
     "@bazel/karma": "2.3.2",
     "@bazel/labs": "3.7.0",
-    "@bazel/protractor": "2.3.3",
+    "@bazel/protractor": "3.8.0",
     "@bazel/rollup": "2.3.3",
     "@bazel/terser": "2.3.3",
     "@bazel/typescript": "2.3.3",

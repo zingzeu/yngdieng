@@ -3488,10 +3488,10 @@
   resolved "https://registry.yarnpkg.com/@bazel/labs/-/labs-3.7.0.tgz#ff44a2406ed9d9cdfc757fda1e535c9608f85c0a"
   integrity sha512-ho9PcTbHvf9Pmg9Wh80p/UYE11mWTQG9PVnny2BI4/QATVTPqWwmhkHNM/W7wBcpDJkMQnTFssIoSwZYC/2/ZA==
 
-"@bazel/protractor@2.3.3":
-  version "2.3.3"
-  resolved "https://registry.yarnpkg.com/@bazel/protractor/-/protractor-2.3.3.tgz#44eca70d159d3e5a67654683f81266cc3594ce5a"
-  integrity sha512-06EFGstTshvofjiUd1ZJJepGeTgkLZNZB9Bfb7IhMC/ca1ZaeKB8SRWHhiPw7wN1QojHf4JJ+uhbqDt60m+Xrg==
+"@bazel/protractor@3.8.0":
+  version "3.8.0"
+  resolved "https://registry.yarnpkg.com/@bazel/protractor/-/protractor-3.8.0.tgz#b04999a6156bcc24f3819ee61b2b068cdbe0e309"
+  integrity sha512-NODXkhD3IWGM4MIBZ/0OQBRf8iIAZzUCRh62C0KFOsVAjhdyTChKVzIMjUn6vw6xcdk/TR1BxKfd/M/GYlStDA==
 
 "@bazel/rollup@2.3.3":
   version "2.3.3"
