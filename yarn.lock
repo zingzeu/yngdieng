@@ -3503,10 +3503,10 @@
   resolved "https://registry.yarnpkg.com/@bazel/terser/-/terser-2.3.3.tgz#680cedce0569291534ee832f76cae078948c4a7d"
   integrity sha512-0PytwAoKO4Yqbfgm3HKzkLF7mycj1O10jndg7Sz8Z20yWmU35087ssULFzFy3sXehKSypFeV+PVJ3eO824/0OQ==
 
-"@bazel/typescript@2.3.3":
-  version "2.3.3"
-  resolved "https://registry.yarnpkg.com/@bazel/typescript/-/typescript-2.3.3.tgz#8f238a6d395140cdc6ed6900f0861efb744ca91b"
-  integrity sha512-tkkrV1wrpMKj7gDlgloo/24lGmW5btHxzg9xqBZsXVvEfhr3HP9dU296bBxtdS1zZuORCxdIhh7D3iPonQDibg==
+"@bazel/typescript@3.8.0":
+  version "3.8.0"
+  resolved "https://registry.yarnpkg.com/@bazel/typescript/-/typescript-3.8.0.tgz#725d51a1c25e314a1d8cddb8b880ac05ba97acd4"
+  integrity sha512-4C1pLe4V7aidWqcPsWNqXFS7uHAB1nH5SUKG5uWoVv4JT9XhkNSvzzQIycMwXs2tZeCylX4KYNeNvfKrmkyFlw==
   dependencies:
     protobufjs "6.8.8"
     semver "5.6.0"
