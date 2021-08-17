@@ -230,3 +230,19 @@ message GenerateSandhiResponse {
     string audio_url = 3;
   }
 }
+
+message HomepageWordDisplay {
+  string word_entry = 1;
+  string explenation = 2;
+  string pronunciation = 3;
+  string example = 4;
+  string docid = 5;
+  string ref_url = 6;
+  enum Type {
+    WORDCARD = 0;
+    VIDEO = 1;
+    IMAGE = 2;
+    BLOGPOST = 3;
+  }
+  Type type = 7;
+}
