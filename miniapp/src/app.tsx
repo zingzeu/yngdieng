@@ -12,39 +12,22 @@ Taro.cloud.init();
 const loadFonts = async () => {
   const fonts = [
     {
-      fileId:
-        'cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/font/yngdieng-extended-0.ttf',
+      fontURL:
+        'https://www.ydict.net/assets/fonts/yngdieng-extended-0.woff',
       family: 'Ext-0',
     },
     {
-      fileId:
-        'cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/font/yngdieng-extended-0.woff',
-      family: 'Ext-0',
-    },
-    {
-      fileId:
-        'cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/font/yngdieng-extended-1.ttf',
-      family: 'Ext-1',
-    },
-    {
-      fileId:
-        'cloud://yngdieng-id6e0.796e-yngdieng-id6e0-1302960777/font/yngdieng-extended-1.woff',
+      fontURL:
+        'https://www.ydict.net/assets/fonts/yngdieng-extended-1.woff',
       family: 'Ext-1',
     },
   ];
-  const tempFileURLResult = await await Taro.cloud.getTempFileURL({
-    fileList: fonts.map(font => font.fileId),
-  });
   for (let font of fonts) {
     try {
-      const fontFromCloud = tempFileURLResult.fileList.find(
-        file => file.fileID === font.fileId
-      );
-      if (!fontFromCloud) continue;
-      Taro.loadFontFace({
+      await Taro.loadFontFace({
         global: true,
         family: font.family,
-        source: `url("${fontFromCloud.tempFileURL}")`,
+        source: `url("${font.fontURL}")`,
         success: console.log,
       });
     } catch (e) {
