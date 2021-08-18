@@ -1,4 +1,3 @@
-
 import sys
 
 def readfile(filename):
