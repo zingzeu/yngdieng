@@ -27,6 +27,9 @@ service YngdiengService {
   rpc SimplifyText(SimplifyTextRequest) returns (SimplifyTextResponse);
 
   rpc GenerateSandhi(GenerateSandhiRequest) returns (GenerateSandhiResponse);
+
+  // for
+  rpc GetDisplayCard(GetDisplayCardRequest) returns (GetDisplayCardResponse);
 }
 
 // Next ID: 3
@@ -231,18 +234,41 @@ message GenerateSandhiResponse {
   }
 }
 
-message HomepageWordDisplay {
-  string word_entry = 1;
-  string explenation = 2;
-  string pronunciation = 3;
-  string example = 4;
-  string docid = 5;
-  string ref_url = 6;
+message GetDisplayCardResponse {
+  message Wordcard {
+    string word_entry = 1;
+    // 释义（仅第一条释义)
+    string explenation = 2;
+    // 发音（连读读音优先）
+    string pronunciation = 3;
+    // 例句（如果有的话）
+    string example = 4;
+    // DocRef (zingzeu_id only)
+    string docid = 5;
+  }
+
+  message Media {
+    // 额外的文字内容，如标题/导语
+    string text = 1;
+    // 相关内容的链接
+    string src = 2;
+    enum MediaType {
+      VIDEO = 0;
+      IMAGE = 1;
+      BLOGPOST = 2;
+    }
+  }
+
+  oneof content {
+    Wordcard wordcard = 1;
+    Media media = 2;
+  }
+
+  // redirect target or reference
+  string ref_url = 3;
   enum Type {
     WORDCARD = 0;
-    VIDEO = 1;
-    IMAGE = 2;
-    BLOGPOST = 3;
+    MEDIA = 1;
   }
-  Type type = 7;
+  Type type = 4;
 }
