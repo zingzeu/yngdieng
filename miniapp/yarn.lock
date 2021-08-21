@@ -3100,14 +3100,6 @@
   dependencies:
     defer-to-connect "^1.0.1"
 
-"@tarojs/api@3.3.2":
-  version "3.3.2"
-  resolved "https://registry.nlark.com/@tarojs/api/download/@tarojs/api-3.3.2.tgz?cache=0&sync_timestamp=1628755556843&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40tarojs%2Fapi%2Fdownload%2F%40tarojs%2Fapi-3.3.2.tgz#b184ba9c5fff9d6f1843fa970231dc6b884492c6"
-  integrity sha1-sYS6nF//nW8YQ/qXAjHca4hEksY=
-  dependencies:
-    "@babel/runtime" "^7.11.2"
-    "@tarojs/runtime" "3.3.2"
-
 "@tarojs/api@3.3.3":
   version "3.3.3"
   resolved "https://registry.yarnpkg.com/@tarojs/api/-/api-3.3.3.tgz#8e1f96418f1b7252ebb0ce7afd66016ac1b50d56"
@@ -3366,17 +3358,6 @@
     react-reconciler "0.26.1"
     scheduler "^0.20.1"
 
-"@tarojs/router@3.3.2":
-  version "3.3.2"
-  resolved "https://registry.nlark.com/@tarojs/router/download/@tarojs/router-3.3.2.tgz?cache=0&sync_timestamp=1628755559236&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40tarojs%2Frouter%2Fdownload%2F%40tarojs%2Frouter-3.3.2.tgz#3b65ef4b74143e5a2f3d4358cdd910ca4b8ccfb1"
-  integrity sha1-O2XvS3QUPlovPUNYzdkQykuMz7E=
-  dependencies:
-    "@tarojs/runtime" "3.3.2"
-    history "^5.0.0"
-    query-string "^6.13.8"
-    universal-router "^8.3.0"
-    url-parse "^1.4.7"
-
 "@tarojs/router@3.3.3":
   version "3.3.3"
   resolved "https://registry.yarnpkg.com/@tarojs/router/-/router-3.3.3.tgz#f22c8bbc8f913b6cd7b01ed42fe55b99806ac7c2"
@@ -3395,16 +3376,6 @@
   dependencies:
     "@tarojs/helper" "3.3.3"
     scss-bundle "^3.0.2"
-
-"@tarojs/runtime@3.3.2":
-  version "3.3.2"
-  resolved "https://registry.nlark.com/@tarojs/runtime/download/@tarojs/runtime-3.3.2.tgz?cache=0&sync_timestamp=1628755557653&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40tarojs%2Fruntime%2Fdownload%2F%40tarojs%2Fruntime-3.3.2.tgz#6631fa8ef0b77e9ec16826367544dacba0e01ec3"
-  integrity sha1-ZjH6jvC3fp7BaCY2dUTay6DgHsM=
-  dependencies:
-    "@tarojs/shared" "3.3.2"
-    inversify "5.1.1"
-    lodash-es "4.17.15"
-    reflect-metadata "^0.1.13"
 
 "@tarojs/runtime@3.3.3":
   version "3.3.3"
@@ -3430,29 +3401,10 @@
     resolve "1.15.1"
     tapable "1.1.3"
 
-"@tarojs/shared@3.3.2":
-  version "3.3.2"
-  resolved "https://registry.nlark.com/@tarojs/shared/download/@tarojs/shared-3.3.2.tgz#23d0460ecc081b047ea397a269eb11c7555688d0"
-  integrity sha1-I9BGDswIGwR+o5eiaesRx1VWiNA=
-
 "@tarojs/shared@3.3.3":
   version "3.3.3"
   resolved "https://registry.yarnpkg.com/@tarojs/shared/-/shared-3.3.3.tgz#63448dd7d161e3bd42833b4666701450d451b1b3"
   integrity sha512-NfOG8VLFRu4fxGSHGizRw8UR29w2x06nggnFcqurn/kAZ7laeoCn0rhQ0/yrD7NlMNMPca+P9N3AgfLl4VT9tg==
-
-"@tarojs/taro-h5@3.3.2":
-  version "3.3.2"
-  resolved "https://registry.nlark.com/@tarojs/taro-h5/download/@tarojs/taro-h5-3.3.2.tgz?cache=0&sync_timestamp=1628755549393&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40tarojs%2Ftaro-h5%2Fdownload%2F%40tarojs%2Ftaro-h5-3.3.2.tgz#4f7c6e611155e54f0ad1e24f30c83cad59fd214d"
-  integrity sha1-T3xuYRFV5U8K0eJPMMg8rVn9IU0=
-  dependencies:
-    "@tarojs/api" "3.3.2"
-    "@tarojs/router" "3.3.2"
-    "@tarojs/runtime" "3.3.2"
-    base64-js "^1.3.0"
-    jsonp-retry "^1.0.3"
-    mobile-detect "^1.4.2"
-    raf "^3.4.1"
-    whatwg-fetch "^3.4.0"
 
 "@tarojs/taro-h5@3.3.3":
   version "3.3.3"
@@ -3477,15 +3429,6 @@
     acorn "^8.0.4"
     acorn-walk "^8.0.0"
     loader-utils "^1.2.3"
-
-"@tarojs/taro@3.3.2":
-  version "3.3.2"
-  resolved "https://registry.nlark.com/@tarojs/taro/download/@tarojs/taro-3.3.2.tgz?cache=0&sync_timestamp=1628755547729&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40tarojs%2Ftaro%2Fdownload%2F%40tarojs%2Ftaro-3.3.2.tgz#7451345221cc034f09e0e1029e3082aae50e2732"
-  integrity sha1-dFE0UiHMA08J4OECnjCCquUOJzI=
-  dependencies:
-    "@tarojs/api" "3.3.2"
-    "@tarojs/runtime" "3.3.2"
-    "@tarojs/taro-h5" "3.3.2"
 
 "@tarojs/taro@3.3.3":
   version "3.3.3"
