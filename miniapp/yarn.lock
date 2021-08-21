@@ -3356,13 +3356,13 @@
     "@tarojs/service" "3.3.3"
     "@tarojs/shared" "3.3.3"
 
-"@tarojs/react@3.3.2":
-  version "3.3.2"
-  resolved "https://registry.nlark.com/@tarojs/react/download/@tarojs/react-3.3.2.tgz?cache=0&sync_timestamp=1628755546023&other_urls=https%3A%2F%2Fregistry.nlark.com%2F%40tarojs%2Freact%2Fdownload%2F%40tarojs%2Freact-3.3.2.tgz#ecfc58314402da1387b5a3181a00e60b23c09095"
-  integrity sha1-7PxYMUQC2hOHtaMYGgDmCyPAkJU=
+"@tarojs/react@3.3.3":
+  version "3.3.3"
+  resolved "https://registry.yarnpkg.com/@tarojs/react/-/react-3.3.3.tgz#6a194cdd4c7968040f42496a29a12337e1f2000a"
+  integrity sha512-t1tIC7JQCbZRojEj7NDb2uBGHxBXeVCRObFPbt8cCHE80nQJAWHYvy18DEAAdVUhAW8LJRZgdJ7dfb9a8JLBnA==
   dependencies:
-    "@tarojs/runtime" "3.3.2"
-    "@tarojs/shared" "3.3.2"
+    "@tarojs/runtime" "3.3.3"
+    "@tarojs/shared" "3.3.3"
     react-reconciler "0.26.1"
     scheduler "^0.20.1"
 
