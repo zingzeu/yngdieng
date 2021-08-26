@@ -15,7 +15,7 @@
 
   <ItemGroup>
     <PackageReference Include="LibHokchew.Shared" Version="0.3.4" />
-    <PackageReference Include="ZingzeuData.Shared" Version="1.7.0" />
+    <PackageReference Include="ZingzeuData.Shared" Version="1.8.1" />
   </ItemGroup>
   <!--
     Workaround for conflicting types ZingzeuData.Models.Explanation in both
