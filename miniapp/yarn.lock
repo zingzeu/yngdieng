@@ -3100,14 +3100,6 @@
   dependencies:
     defer-to-connect "^1.0.1"
 
-"@tarojs/api@3.3.3":
-  version "3.3.3"
-  resolved "https://registry.yarnpkg.com/@tarojs/api/-/api-3.3.3.tgz#8e1f96418f1b7252ebb0ce7afd66016ac1b50d56"
-  integrity sha512-IpKLTjZA7FyPzLZuk7z+4XnMrQEpCcHoUnN7mD6P3Tjgd5JozDZUtRpA5KnFJVB95QMPljf1x91x2wMx1jppfQ==
-  dependencies:
-    "@babel/runtime" "^7.11.2"
-    "@tarojs/runtime" "3.3.3"
-
 "@tarojs/api@3.3.5":
   version "3.3.5"
   resolved "https://registry.yarnpkg.com/@tarojs/api/-/api-3.3.5.tgz#5a1f3eaa102ac4b02ba9a3a1f092b204d141ebc0"
@@ -3366,17 +3358,6 @@
     react-reconciler "0.26.1"
     scheduler "^0.20.1"
 
-"@tarojs/router@3.3.3":
-  version "3.3.3"
-  resolved "https://registry.yarnpkg.com/@tarojs/router/-/router-3.3.3.tgz#f22c8bbc8f913b6cd7b01ed42fe55b99806ac7c2"
-  integrity sha512-nqHJ5C3GISYr6Nk2P+IbwvqIryc0jiFc/WIfZSeBKCzk5S3W+7t1y6zZSiOY4XbHYmI5A4kldACXi0eeuzsizA==
-  dependencies:
-    "@tarojs/runtime" "3.3.3"
-    history "^5.0.0"
-    query-string "^6.13.8"
-    universal-router "^8.3.0"
-    url-parse "^1.4.7"
-
 "@tarojs/router@3.3.5":
   version "3.3.5"
   resolved "https://registry.yarnpkg.com/@tarojs/router/-/router-3.3.5.tgz#8ffcd5442d260db0bc414b0a7a4f5e8c48d3e57c"
@@ -3395,16 +3376,6 @@
   dependencies:
     "@tarojs/helper" "3.3.5"
     scss-bundle "^3.0.2"
-
-"@tarojs/runtime@3.3.3":
-  version "3.3.3"
-  resolved "https://registry.yarnpkg.com/@tarojs/runtime/-/runtime-3.3.3.tgz#f5ec81f2ba8a4de6fb5254a38439113d08d0b285"
-  integrity sha512-16mE53E82frpzMxVg2bXT8HFu1nvZPNRPVZ5wQ2sg0b401PExfuBwI6/7W21N1VE4F9iwMLnM/31TXYlWqD4ow==
-  dependencies:
-    "@tarojs/shared" "3.3.3"
-    inversify "5.1.1"
-    lodash-es "4.17.15"
-    reflect-metadata "^0.1.13"
 
 "@tarojs/runtime@3.3.5":
   version "3.3.5"
@@ -3430,29 +3401,10 @@
     resolve "1.15.1"
     tapable "1.1.3"
 
-"@tarojs/shared@3.3.3":
-  version "3.3.3"
-  resolved "https://registry.yarnpkg.com/@tarojs/shared/-/shared-3.3.3.tgz#63448dd7d161e3bd42833b4666701450d451b1b3"
-  integrity sha512-NfOG8VLFRu4fxGSHGizRw8UR29w2x06nggnFcqurn/kAZ7laeoCn0rhQ0/yrD7NlMNMPca+P9N3AgfLl4VT9tg==
-
 "@tarojs/shared@3.3.5":
   version "3.3.5"
   resolved "https://registry.yarnpkg.com/@tarojs/shared/-/shared-3.3.5.tgz#0b9084d5710238ce1f293492b3fb4b6c69a090ec"
   integrity sha512-ucMH8edkFExvQ1YHGGjCDuwUj31cAhmWxWIDKl/slADueL3Q2fDRXLeCu88hCMIy/uUGI1wVJNbVII+YxI6XrQ==
-
-"@tarojs/taro-h5@3.3.3":
-  version "3.3.3"
-  resolved "https://registry.yarnpkg.com/@tarojs/taro-h5/-/taro-h5-3.3.3.tgz#09305b0128771f6d59e8b1f21b644ecd42c1f2c0"
-  integrity sha512-GHYopoPW91yVEF63G0PhBl8nYsFQ/IT7OU1ADiiwqHfTFmAJnlwF/9uHIbhCQJTIorsggYGfMHKBjh5AEbFpwQ==
-  dependencies:
-    "@tarojs/api" "3.3.3"
-    "@tarojs/router" "3.3.3"
-    "@tarojs/runtime" "3.3.3"
-    base64-js "^1.3.0"
-    jsonp-retry "^1.0.3"
-    mobile-detect "^1.4.2"
-    raf "^3.4.1"
-    whatwg-fetch "^3.4.0"
 
 "@tarojs/taro-h5@3.3.5":
   version "3.3.5"
@@ -3477,15 +3429,6 @@
     acorn "^8.0.4"
     acorn-walk "^8.0.0"
     loader-utils "^1.2.3"
-
-"@tarojs/taro@3.3.3":
-  version "3.3.3"
-  resolved "https://registry.yarnpkg.com/@tarojs/taro/-/taro-3.3.3.tgz#b94f29090f35ce22b9bba149551e4d5fcf0fe525"
-  integrity sha512-1+JDEhjN9aFmfx+stGDCTwU1/tmYiDI1wNoCRX2QyOBUVXC4bzcj7qjU3xbn2mChNjVYzbCLSod7T0jOCs+eFw==
-  dependencies:
-    "@tarojs/api" "3.3.3"
-    "@tarojs/runtime" "3.3.3"
-    "@tarojs/taro-h5" "3.3.3"
 
 "@tarojs/taro@3.3.5":
   version "3.3.5"
