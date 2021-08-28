@@ -16,7 +16,7 @@
     <PackageReference Include="CsvHelper" Version="19.0.0" />
     <PackageReference Include="FSharp.Core" Version="5.0.2" />
     <PackageReference Include="LibHokchew.Shared" Version="0.3.4" />
-    <PackageReference Include="ZingzeuData.Shared" Version="1.8.1" />
+    <PackageReference Include="ZingzeuData.Shared" Version="1.8.2" />
   </ItemGroup>
 
   <!--

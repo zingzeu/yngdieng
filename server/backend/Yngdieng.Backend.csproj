@@ -25,7 +25,7 @@
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.18" />
     <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.NodaTime" Version="3.1.18" />
     <PackageReference Include="Xabe.FFmpeg" Version="4.4.1" />
-    <PackageReference Include="ZingzeuData.Shared" Version="1.8.1" />
+    <PackageReference Include="ZingzeuData.Shared" Version="1.8.2" />
   </ItemGroup>
 
     <ItemGroup>
