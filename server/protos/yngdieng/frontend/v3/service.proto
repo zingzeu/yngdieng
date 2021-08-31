@@ -28,7 +28,7 @@ service FrontendService {
   }
 
   // 首页每日一词
-  rpc GetHomeFeed(GetHomeFeedRequest) returns (GetHomeFeedResponse) {
+  rpc GetHomeFeed() returns (GetHomeFeedResponse) {
   }
 }
 
@@ -129,10 +129,6 @@ message ListWordListWordsResponse {
   string next_page_token = 2;
 }
 
-message GetHomeFeedRequest {
-  string empty = 1;
-}
-
 message GetHomeFeedResponse {
   message Wordcard {
     string hanzi = 1;
@@ -149,7 +145,7 @@ message GetHomeFeedResponse {
   message Media {
     // 额外的文字内容，如标题/导语
     string text = 1;
-    // 相关内容的链接
+    // src value for <img /> and <video /> tags
     string src = 2;
     enum MediaType {
       VIDEO = 0;
@@ -163,11 +159,6 @@ message GetHomeFeedResponse {
     Media media = 2;
   }
 
-  // redirect target or reference
+  // redirect target on click
   string ref_url = 3;
-  enum Type {
-    WORDCARD = 0;
-    MEDIA = 1;
-  }
-  Type type = 4;
 }

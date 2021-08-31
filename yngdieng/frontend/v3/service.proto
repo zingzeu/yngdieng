@@ -26,6 +26,10 @@ service FrontendService {
       get: "/v3/{parent=wordLists/*}/words"
     };
   }
+
+  // 首页每日一词
+  rpc GetHomeFeed() returns (GetHomeFeedResponse) {
+  }
 }
 
 message Word {
@@ -123,4 +127,38 @@ message ListWordListWordsResponse {
   repeated Word words = 1;
 
   string next_page_token = 2;
+}
+
+message GetHomeFeedResponse {
+  message Wordcard {
+    string hanzi = 1;
+    // 释义（仅第一条释义)
+    string explanation = 2;
+    // 发音（连读读音优先）
+    string pronunciation = 3;
+    // 例句（如果有的话）
+    string example = 4;
+    // DocRef (zingzeu_id only)
+    string word_name = 5;
+  }
+
+  message Media {
+    // 额外的文字内容，如标题/导语
+    string text = 1;
+    // src value for <img /> and <video /> tags
+    string src = 2;
+    enum MediaType {
+      VIDEO = 0;
+      IMAGE = 1;
+      BLOGPOST = 2;
+    }
+  }
+
+  oneof content {
+    Wordcard wordcard = 1;
+    Media media = 2;
+  }
+
+  // redirect target on click
+  string ref_url = 3;
 }
