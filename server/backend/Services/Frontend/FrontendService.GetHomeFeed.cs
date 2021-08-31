@@ -10,8 +10,8 @@ namespace Yngdieng.Backend.Services.Frontend
     public partial class FrontendService : Yngdieng.Frontend.V3.Protos.FrontendService.FrontendServiceBase
     {
 
-        public async override Task<Yngdieng.Frontend.V3.Protos.GetHomeFeedResponse> GetHomeFeed(Yngdieng.Frontend.V3.Protos.GetHomeFeedRequest request,
-                                                   ServerCallContext context)
+        public async override Task<Yngdieng.Frontend.V3.Protos.GetHomeFeedResponse> GetHomeFeed(Google.Protobuf.WellKnownTypes.Empty empty,
+            ServerCallContext context)
         {
             var docName = "GetRandomDocName()";
             var docId = ResourceNames.ToDocId(docName);
@@ -22,7 +22,7 @@ namespace Yngdieng.Backend.Services.Frontend
             }
             catch (Exception e)
             {
-                throw new RpcException(new Status(StatusCode.InvalidArgument, $"{request.Name} is not a valid name.", e));
+                throw new RpcException(new Status(StatusCode.InvalidArgument, $"{docId} is not a valid doc id.", e));
             }
             var userPreference = UserPreferences.FromContext(context);
             var zhConverter = new ZhConverter(_openCc, userPreference.ZhConversionPreference);

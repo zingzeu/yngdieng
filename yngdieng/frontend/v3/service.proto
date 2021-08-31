@@ -5,6 +5,7 @@ option csharp_namespace = "Yngdieng.Frontend.V3.Protos";
 import "google/api/annotations.proto";
 import "google/api/field_behavior.proto";
 import "google/api/resource.proto";
+import "google/protobuf/empty.proto";
 
 import "yngdieng/frontend/v3/resources.proto";
 
@@ -28,7 +29,7 @@ service FrontendService {
   }
 
   // 首页每日一词
-  rpc GetHomeFeed() returns (GetHomeFeedResponse) {
+  rpc GetHomeFeed(google.protobuf.Empty) returns (GetHomeFeedResponse) {
   }
 }
 
