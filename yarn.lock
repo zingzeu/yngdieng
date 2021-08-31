@@ -274,26 +274,26 @@
   dependencies:
     tslib "^2.0.0"
 
-"@auth0/auth0-angular@1.5.1":
-  version "1.5.1"
-  resolved "https://registry.yarnpkg.com/@auth0/auth0-angular/-/auth0-angular-1.5.1.tgz#01fddcc57fd8f6faa1bb30037f107ec5584fc5bd"
-  integrity sha512-6EffxHEmUingeKJCel/PEpSFWEBnoJbX74wQlxn4LXy244a0ehYh9N1dgiOifM+Cj84rTPwuUCIjkCy7PPSyqQ==
+"@auth0/auth0-angular@1.6.0":
+  version "1.6.0"
+  resolved "https://registry.yarnpkg.com/@auth0/auth0-angular/-/auth0-angular-1.6.0.tgz#5ea879e014be5d2f22da31d67a540888b62128a8"
+  integrity sha512-wPvB/yH+aVTYzOHnspdJDh3H1eJZMfUHKoXIfyEdZs+mFY2TpvbtDWFlB21M/c3SVid//9cAgq0zZERbYd9UPQ==
   dependencies:
-    "@auth0/auth0-spa-js" "^1.11.0"
+    "@auth0/auth0-spa-js" "^1.16.0"
     tslib "^2.0.0"
 
-"@auth0/auth0-spa-js@^1.11.0":
-  version "1.12.1"
-  resolved "https://registry.yarnpkg.com/@auth0/auth0-spa-js/-/auth0-spa-js-1.12.1.tgz#791cdda722afa25f4c8879b93b8d7ab54a26e4c1"
-  integrity sha512-YdXtA1T2wK4iNG79VlGS/CPfNNezS1nqZURerj71jKSf8ICVKmvJgUNXFEZEwNNU/KFdCCPCHd5wMeWLDyEILw==
+"@auth0/auth0-spa-js@^1.16.0":
+  version "1.17.0"
+  resolved "https://registry.yarnpkg.com/@auth0/auth0-spa-js/-/auth0-spa-js-1.17.0.tgz#e48057471a2a639b80c96969072f1eb9ac32dd5e"
+  integrity sha512-UqfulO/ycA9Lt3F7FKuwv3Xo+g+2bOs9kABPAz8uNvCjiwM891eRYARUKn8lLgeK30TNt2ot2DtpNHI3BVP0Jg==
   dependencies:
-    abortcontroller-polyfill "^1.5.0"
-    browser-tabs-lock "^1.2.9"
-    core-js "^3.6.5"
+    abortcontroller-polyfill "^1.7.3"
+    browser-tabs-lock "^1.2.14"
+    core-js "^3.15.2"
     es-cookie "^1.3.2"
     fast-text-encoding "^1.0.3"
-    promise-polyfill "^8.1.3"
-    unfetch "^4.1.0"
+    promise-polyfill "^8.2.0"
+    unfetch "^4.2.0"
 
 "@babel/cli@7.14.8":
   version "7.14.8"
@@ -5672,10 +5672,10 @@ abbrev@1:
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
   integrity sha512-nne9/IiQ/hzIhY6pdDnbBtz7DjPTKrY00P/zvPSm5pOFkl6xuGrGnXn/VtTNNfNtAfZ9/1RtehkszU9qcTii0Q==
 
-abortcontroller-polyfill@^1.5.0:
-  version "1.5.0"
-  resolved "https://registry.yarnpkg.com/abortcontroller-polyfill/-/abortcontroller-polyfill-1.5.0.tgz#2c562f530869abbcf88d949a2b60d1d402e87a7c"
-  integrity sha512-O6Xk757Jb4o0LMzMOMdWvxpHWrQzruYBaUruFaIOfAQRnWFxfdXYobw12jrVHGtoXk6WiiyYzc0QWN9aL62HQA==
+abortcontroller-polyfill@^1.7.3:
+  version "1.7.3"
+  resolved "https://registry.yarnpkg.com/abortcontroller-polyfill/-/abortcontroller-polyfill-1.7.3.tgz#1b5b487bd6436b5b764fd52a612509702c3144b5"
+  integrity sha512-zetDJxd89y3X99Kvo4qFx8GKlt6GsvN3UcRZHwU6iFA/0KiOmhkTVhe8oRoTBiTVPZu09x3vCra47+w8Yz1+2Q==
 
 accepts@~1.3.4, accepts@~1.3.5, accepts@~1.3.7:
   version "1.3.7"
@@ -6663,12 +6663,12 @@ browser-resolve@^1.8.1:
   dependencies:
     resolve "1.1.7"
 
-browser-tabs-lock@^1.2.9:
-  version "1.2.11"
-  resolved "https://registry.yarnpkg.com/browser-tabs-lock/-/browser-tabs-lock-1.2.11.tgz#59d72c6653b827685b54fca1c0e6eb4aee08ef52"
-  integrity sha512-R0xXMzQ8CU0v52zSFn3EDGIfsjteMFJ6oIhhZK6+Vhz5NYzSxCP2epLD9PN7e2HprQl2QTReFptwp6c9tdOF0g==
+browser-tabs-lock@^1.2.14:
+  version "1.2.15"
+  resolved "https://registry.yarnpkg.com/browser-tabs-lock/-/browser-tabs-lock-1.2.15.tgz#d5012e652e2a0cb4eba471b0a2300c2fa5d92788"
+  integrity sha512-J8K9vdivK0Di+b8SBdE7EZxDr88TnATing7XoLw6+nFkXMQ6sVBh92K3NQvZlZU91AIkFRi0w3sztk5Z+vsswA==
   dependencies:
-    lodash ">=4.17.19"
+    lodash ">=4.17.21"
 
 browserify-aes@^1.0.0, browserify-aes@^1.0.4:
   version "1.2.0"
@@ -7810,6 +7810,11 @@ core-js@^3.0.4:
   version "3.8.0"
   resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.8.0.tgz#0fc2d4941cadf80538b030648bb64d230b4da0ce"
   integrity sha512-W2VYNB0nwQQE7tKS7HzXd7r2y/y2SVJl4ga6oH/dnaLFzM0o2lB2P3zCkWj5Wc/zyMYjtgd5Hmhk0ObkQFZOIA==
+
+core-js@^3.15.2:
+  version "3.16.4"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.16.4.tgz#0fb1029a554fc2688c0963d7c900e188188a78e0"
+  integrity sha512-Tq4GVE6XCjE+hcyW6hPy0ofN3hwtLudz5ZRdrlCnsnD/xkm/PWQRudzYHiKgZKUcefV6Q57fhDHjZHJP5dpfSg==
 
 core-js@^3.6.5:
   version "3.6.5"
@@ -12214,7 +12219,12 @@ lodash.uniq@4.5.0, lodash.uniq@^4.5.0:
   resolved "https://registry.yarnpkg.com/lodash.uniq/-/lodash.uniq-4.5.0.tgz#d0225373aeb652adc1bc82e4945339a842754773"
   integrity sha1-0CJTc662Uq3BvILklFM5qEJ1R3M=
 
-lodash@>=4.17.19, lodash@^4.15.0, lodash@^4.17.11, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.20:
+lodash@>=4.17.21, lodash@^4.17.21:
+  version "4.17.21"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
+  integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
+
+lodash@^4.15.0, lodash@^4.17.11, lodash@^4.17.14, lodash@^4.17.15, lodash@^4.17.20:
   version "4.17.20"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.20.tgz#b44a9b6297bcb698f1c51a3545a2b3b368d59c52"
   integrity sha512-PlhdFcillOINfeV7Ni6oF1TAEayyZBoZ8bcshTHqOYJYlrqzRK5hagpagky5o4HfCzzd1TRkXPMFq6cKk9rGmA==
@@ -12223,11 +12233,6 @@ lodash@^4.17.13, lodash@^4.17.19:
   version "4.17.19"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.19.tgz#e48ddedbe30b3321783c5b4301fbd353bc1e4a4b"
   integrity sha512-JNvd8XER9GQX0v2qJgsaN/mzFCNA5BRe/j8JN9d+tWyGLSodKQHKFicdwNYzWwI3wjRnaKPsGj1XkBjx/F96DQ==
-
-lodash@^4.17.21:
-  version "4.17.21"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.21.tgz#679591c564c3bffaae8454cf0b3df370c3d6911c"
-  integrity sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==
 
 log-symbols@^4.0.0:
   version "4.0.0"
@@ -14397,10 +14402,10 @@ promise-inflight@^1.0.1:
   resolved "https://registry.yarnpkg.com/promise-inflight/-/promise-inflight-1.0.1.tgz#98472870bf228132fcbdd868129bad12c3c029e3"
   integrity sha1-mEcocL8igTL8vdhoEputEsPAKeM=
 
-promise-polyfill@^8.1.3:
-  version "8.1.3"
-  resolved "https://registry.yarnpkg.com/promise-polyfill/-/promise-polyfill-8.1.3.tgz#8c99b3cf53f3a91c68226ffde7bde81d7f904116"
-  integrity sha512-MG5r82wBzh7pSKDRa9y+vllNHz3e3d4CNj1PQE4BQYxLme0gKYYBm9YENq+UkEikyZ0XbiGWxYlVw3Rl9O/U8g==
+promise-polyfill@^8.2.0:
+  version "8.2.0"
+  resolved "https://registry.yarnpkg.com/promise-polyfill/-/promise-polyfill-8.2.0.tgz#367394726da7561457aba2133c9ceefbd6267da0"
+  integrity sha512-k/TC0mIcPVF6yHhUvwAp7cvL6I2fFV7TzF1DuGPI8mBh4QQazf36xCKEHKTZKRysEoTQoQdKyP25J8MPJp7j5g==
 
 promise-retry@^1.1.1:
   version "1.1.1"
@@ -17332,7 +17337,7 @@ underscore@~1.6.0:
   resolved "https://registry.yarnpkg.com/underscore/-/underscore-1.6.0.tgz#8b38b10cacdef63337b8b24e4ff86d45aea529a8"
   integrity sha1-izixDKze9jM3uLJOT/htRa6lKag=
 
-unfetch@^4.1.0, unfetch@^4.2.0:
+unfetch@^4.2.0:
   version "4.2.0"
   resolved "https://registry.yarnpkg.com/unfetch/-/unfetch-4.2.0.tgz#7e21b0ef7d363d8d9af0fb929a5555f6ef97a3be"
   integrity sha512-F9p7yYCn6cIW9El1zi0HI6vqpeIvBsr3dSuRO6Xuppb1u5rXpCPmMvLSyECLhybr9isec8Ohl0hPekMVrEinDA==
