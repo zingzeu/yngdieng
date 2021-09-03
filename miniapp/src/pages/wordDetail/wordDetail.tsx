@@ -6,7 +6,7 @@ import Taro, {
   useShareTimeline,
 } from '@tarojs/taro';
 import {View, RichText} from '@tarojs/components';
-import {AtIcon, AtTabs, AtTabsPane, AtFloatLayout} from 'taro-ui';
+import {AtIcon, AtTabs, AtTabsPane} from 'taro-ui';
 import routes from '@/routes';
 import Header from '@/pages/header/header';
 import WordCard from '@/components/wordCard/wordCard';
@@ -66,7 +66,6 @@ const initialState: {
       word: string;
       pinyin: string;
     }[];
-    stories?: string[];
   };
 } = {
   wordDetail: {
@@ -74,7 +73,6 @@ const initialState: {
     pronounces: [],
     sources: [],
     collections: [],
-    stories: [],
     audio_cards: [],
     transcriptions: [],
     wordSplited: [],
@@ -85,17 +83,17 @@ const WordDetail = () => {
   const router = useRouter();
   const [wordDetail, setWordDetail] = useState(initialState.wordDetail);
   const [currentTab, setCurrentTab] = useState(0);
-  const [storyToShow, setStoryToShow] = useState('');
 
   useShareTimeline(() => ({
     title: getWordShareTimelineTitle(wordDetail.hanzi!),
   }));
-  useShareAppMessage(() => ({
-    title: wordDetail.hanzi,
-  }));
+  useShareAppMessage(() => {
+    return {
+      title: wordDetail.hanzi,
+    };
+  });
   useEffect(() => {
     const wordName = toWordName(decodeURIComponent(router.params.id || ''));
-    console.log(wordName);
     Taro.showNavigationBarLoading();
     fetchWord(wordName)
       .then(result => {
@@ -115,10 +113,7 @@ const WordDetail = () => {
             <View className={styles.label}>推荐用字</View>
             <selectable-text t={wordDetail.hanzi} />
           </View>
-          <View className={styles.actionPanel}>
-            <AtIcon value='help'></AtIcon>
-            <AtIcon value='bookmark'></AtIcon>
-          </View>
+          <View className={styles.actionPanel}>{/* TODO: 收藏按钮 */}</View>
         </View>
         <View>
           {wordDetail.pronunciations?.map(p => (
@@ -138,13 +133,7 @@ const WordDetail = () => {
         <AtTabs
           current={currentTab}
           scroll
-          tabList={[
-            {title: '释义'},
-            {title: '更多例句'},
-            {title: '发音'},
-            {title: '词表'},
-            {title: '故事'},
-          ]}
+          tabList={[{title: '释义'}, {title: '发音'}, {title: '词表'}]}
           onClick={setCurrentTab}
         >
           <AtTabsPane current={currentTab} index={0}>
@@ -162,14 +151,11 @@ const WordDetail = () => {
             </View>
           </AtTabsPane>
           <AtTabsPane current={currentTab} index={1}>
-            <View className={styles.tabPane}>暂无例句</View>
-          </AtTabsPane>
-          <AtTabsPane current={currentTab} index={2}>
             <View className={styles.tabPane}>
               <PhonologyTab audioCards={wordDetail.audio_cards} />
             </View>
           </AtTabsPane>
-          <AtTabsPane current={currentTab} index={3}>
+          <AtTabsPane current={currentTab} index={2}>
             <View className={clsx(styles.tabPane, styles.collection)}>
               {wordDetail.word_lists?.map(wordList => (
                 <WordCard
@@ -185,26 +171,8 @@ const WordDetail = () => {
               ))}
             </View>
           </AtTabsPane>
-          <AtTabsPane current={currentTab} index={4}>
-            <View className={styles.tabPane}>
-              {wordDetail.stories?.map(story => (
-                <WordCard
-                  onClick={() => setStoryToShow(story)}
-                  description={story}
-                />
-              ))}
-            </View>
-          </AtTabsPane>
         </AtTabs>
       </View>
-      <AtFloatLayout
-        isOpened={!!storyToShow}
-        title='故事全文'
-        onClose={() => setStoryToShow('')}
-      >
-        {storyToShow}
-      </AtFloatLayout>
-      <PromptCollection />
     </View>
   );
 };

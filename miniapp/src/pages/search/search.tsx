@@ -44,7 +44,6 @@ const InitialState: {
 const Search = () => {
   const router = useRouter();
   const [inputString, setInputString] = useState('');
-  const [showAdvanced, toggleAdvanced] = useState(false);
   const [resultList, setResultList] = useState(InitialState.resultList);
   const [nextPageToken, setNextPageToken] = useState(
     InitialState.nextPageToken
@@ -58,7 +57,6 @@ const Search = () => {
       setInputString(word);
     }
     setNextPageToken(undefined);
-    toggleAdvanced(false);
     fetchOnePage(word);
   };
   const handleLoadMore = () => {
@@ -101,8 +99,6 @@ const Search = () => {
     const wordFromParams = decodeURIComponent(router.params.word || '');
     if (wordFromParams) {
       handleConfirm(wordFromParams);
-    } else {
-      toggleAdvanced(true);
     }
   }, []);
   return (
@@ -126,28 +122,25 @@ const Search = () => {
         }
       />
       <View className={styles.content}>
-        {showAdvanced && <Block></Block>}
-        {!showAdvanced && (
-          <View className={styles.result}>
-            <View
-              className={`${styles.resultTitle} at-row at-row__justify--between at-row__align--center`}
-            ></View>
-            <View className={styles.resultList}>
-              <ScrollView
-                enableBackToTop
-                enableFlex
-                scrollWithAnimation
-                scrollY
-                className={styles.scrollView}
-                onScrollToLower={handleLoadMore}
-                lowerThreshold={100}
-                upperThreshold={20}
-              >
-                {resultList?.map(resultItem => renderResultItem(resultItem))}
-              </ScrollView>
-            </View>
+        <View className={styles.result}>
+          <View
+            className={`${styles.resultTitle} at-row at-row__justify--between at-row__align--center`}
+          ></View>
+          <View className={styles.resultList}>
+            <ScrollView
+              enableBackToTop
+              enableFlex
+              scrollWithAnimation
+              scrollY
+              className={styles.scrollView}
+              onScrollToLower={handleLoadMore}
+              lowerThreshold={100}
+              upperThreshold={20}
+            >
+              {resultList?.map(resultItem => renderResultItem(resultItem))}
+            </ScrollView>
           </View>
-        )}
+        </View>
       </View>
     </View>
   );

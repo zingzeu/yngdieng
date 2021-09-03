@@ -122,14 +122,14 @@ namespace Yngdieng.Backend.Services.Frontend
 
             var fengRenderer = new FengRichTextRenderer(zhConverter);
             output.AddRange(fengDocs.Select(f => fengRenderer.ToRichTextNode(f)));
-            var hDoc = maybeYngdiengDocument?.Sources
-                .FirstOrDefault(s => s.SourceCase == YngdiengDocument.Types.Source.SourceOneofCase.CiklinDfd)?.CiklinDfd ?? null;
+            var hDocs = maybeYngdiengDocument?.Sources
+                .Where(s => s.SourceCase == YngdiengDocument.Types.Source.SourceOneofCase.CiklinDfd)
+                .Select(s => s.CiklinDfd)
+                .ToList()
+                ?? new List<HistoricalDocument>();
 
             var histRenderer = new HistoricalRichTextRenderer(zhConverter);
-            if (hDoc != null)
-            {
-                output.Add(histRenderer.ToRichTextNode(hDoc));
-            }
+            output.AddRange(hDocs.Select(hDoc => histRenderer.ToRichTextNode(hDoc)));
 
             var extRenderer = new ExtensionRichTextRenderer(zhConverter);
             output.AddRange(extensions.Select(e => extRenderer.ToRichTextNode(hanzi, e.Explanation, e.Source, e.Contributors)));
