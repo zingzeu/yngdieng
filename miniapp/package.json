@@ -64,7 +64,7 @@
 		"@typescript-eslint/parser": "4.29.3",
 		"babel-preset-taro": "3.3.6",
 		"eslint": "7.32.0",
-		"eslint-config-taro": "3.3.5",
+		"eslint-config-taro": "3.3.6",
 		"eslint-plugin-import": "2.24.2",
 		"eslint-plugin-react": "7.24.0",
 		"eslint-plugin-react-hooks": "4.2.0",
