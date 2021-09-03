@@ -3479,13 +3479,13 @@
     "@tarojs/service" "3.3.6"
     "@tarojs/shared" "3.3.6"
 
-"@tarojs/react@3.3.5":
-  version "3.3.5"
-  resolved "https://registry.yarnpkg.com/@tarojs/react/-/react-3.3.5.tgz#c7c80627fcc1ea91888a7b5fb5a4f42166eb0027"
-  integrity sha512-0fV8OqXPBR+RHNez2nVmoowAO2MSfBGSpLIdJjprs40OEr7D7dDT2/v8ZAKKvSuuGr1y4zBRk75oIobAjccZFQ==
+"@tarojs/react@3.3.6":
+  version "3.3.6"
+  resolved "https://registry.yarnpkg.com/@tarojs/react/-/react-3.3.6.tgz#eaf22eaed6f3901029943e370ea4889639360832"
+  integrity sha512-64dDB5IuTcy+QvQfvUaUYJgNsif2oe6T8ZCvppjcb1Njmr+Gf6RBck4HO+JHfXbJsrYbeyYCRBttledsn7GlUA==
   dependencies:
-    "@tarojs/runtime" "3.3.5"
-    "@tarojs/shared" "3.3.5"
+    "@tarojs/runtime" "3.3.6"
+    "@tarojs/shared" "3.3.6"
     react-reconciler "0.26.1"
     scheduler "^0.20.1"
 
