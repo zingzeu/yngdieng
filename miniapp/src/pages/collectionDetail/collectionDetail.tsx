@@ -11,8 +11,9 @@ import Header from '@/pages/header/header';
 import WordCard from '@/components/wordCard/wordCard';
 import routes from '@/routes';
 import {getWordList, getWordListWords} from '@/store/actions/collection';
-import styles from './collectionDetail.module.scss';
+import PromptCollection from '@/components/promptCollection/promptCollection';
 import {getWordListShareTimelineTitle} from '@/utils/sharing-util';
+import styles from './collectionDetail.module.scss';
 
 const initialState: {
   collectionDetail: {
@@ -136,6 +137,7 @@ const CollectionDetail = () => {
           </ScrollView>
         </View>
       </View>
+      <PromptCollection />
     </View>
   );
 };

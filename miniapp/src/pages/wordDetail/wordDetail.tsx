@@ -13,10 +13,10 @@ import WordCard from '@/components/wordCard/wordCard';
 import AudioPlay from '@/components/audioPlay/audioPlay';
 import PromptCollection from '@/components/promptCollection/promptCollection';
 import {fetchWord} from '@/store/actions/dictionary';
+import {getWordShareTimelineTitle} from '@/utils/sharing-util';
 import PhonologyTab from './phonology-tab/phonology-tab';
 import styles from './wordDetail.module.scss';
 import {renderRichTextNode} from './rich-text';
-import {getWordShareTimelineTitle} from '@/utils/sharing-util';
 
 interface Feng {
   explanation: string;
@@ -141,13 +141,11 @@ const WordDetail = () => {
               {!(wordDetail?.explanation?.length !== 0) && (
                 <View>暂无解释</View>
               )}
-              {
-                <RichText
-                  nodes={wordDetail.explanation
-                    ?.map(e => renderRichTextNode(e))
-                    .join('')}
-                />
-              }
+              <RichText
+                nodes={wordDetail.explanation
+                  ?.map(e => renderRichTextNode(e))
+                  .join('')}
+              />
             </View>
           </AtTabsPane>
           <AtTabsPane current={currentTab} index={1}>
@@ -173,6 +171,7 @@ const WordDetail = () => {
           </AtTabsPane>
         </AtTabs>
       </View>
+      <PromptCollection />
     </View>
   );
 };
