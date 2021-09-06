@@ -30,5 +30,8 @@ $gap: 20px;
     View:first-child {
       margin-right: $gap / 2;
     }
+    .smallText {
+      font-size: $font-size-body * 0.8;
+    }
   }
 }

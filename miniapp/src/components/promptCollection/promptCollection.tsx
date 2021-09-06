@@ -36,7 +36,10 @@ const PromptCollection = () => {
 
       </View>
       <View className={styles.card} style={{right: promptPostion.card.right}}>
-        <View>添加到我的小程序</View>
+        <View>
+          <View>添加到我的小程序</View>
+          <View class={styles.smallText}>福州话随手查</View>
+        </View>
         <AtIcon onClick={handleClosePrompt} value='close' size={18} />
       </View>
     </View>
