@@ -10,7 +10,6 @@ import routes from '@/routes';
 import Header from '@/pages/header/header';
 import WordCard from '@/components/wordCard/wordCard';
 import {realSearch} from '@/store/actions/dictionary';
-import AddToFavoritePrompt from '@/components/add-to-favorite-prompt/add-to-favorite-prompt';
 import styles from './search.module.scss';
 
 // Empty page token returned by the server indicates the end of pages.
@@ -143,7 +142,6 @@ const Search = () => {
           </View>
         </View>
       </View>
-      <AddToFavoritePrompt />
     </View>
   );
 };

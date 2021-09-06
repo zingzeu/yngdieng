@@ -4,37 +4,39 @@ import {AtIcon} from 'taro-ui';
 import {View} from '@tarojs/components';
 
 import styles from './add-to-favorite-prompt.module.scss';
+const STORAGE_KEY = 'addToFavoritePromptShown';
 
-let havePrompted = Taro.getStorageSync('addToFavoritePromptShown');
+let havePrompted = Taro.getStorageSync(STORAGE_KEY);
 const menuBoundingRect = Taro.getMenuButtonBoundingClientRect();
 const promptPostion = {
   top: menuBoundingRect.bottom,
   arrow: {
-    left: menuBoundingRect.left + menuBoundingRect.width / 4
+    left: menuBoundingRect.left + menuBoundingRect.width / 4,
   },
   card: {
-    right: Taro.getSystemInfoSync().windowWidth - menuBoundingRect.right
-  }
-}
+    right: Taro.getSystemInfoSync().windowWidth - menuBoundingRect.right,
+  },
+};
 
 const AddToFavoritePrompt = () => {
   const [shouldShow, toggleShow] = useState(false);
 
   const handleClosePrompt = () => {
     toggleShow(false);
-    Taro.setStorageSync('haveCollectionPrompted', true);
+    Taro.setStorageSync(STORAGE_KEY, true);
     havePrompted = true;
   };
 
   useDidShow(() => {
     if (havePrompted) return;
-    toggleShow(true);
+    window.setTimeout(() => toggleShow(true), 5000);
   });
   return shouldShow ? (
     <View className={styles.prompt}>
-      <View className={styles.arrow} style={{left: promptPostion.arrow.left}}>
-
-      </View>
+      <View
+        className={styles.arrow}
+        style={{left: promptPostion.arrow.left}}
+      ></View>
       <View className={styles.card} style={{right: promptPostion.card.right}}>
         <View>
           <View>添加到我的小程序</View>
