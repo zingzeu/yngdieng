@@ -109,14 +109,14 @@ const Search = () => {
             <View className={styles.inputInjected}>
               <Input
                 value={inputString}
-                confirmType="search"
-                placeholder="查字、词、读音..."
+                confirmType='search'
+                placeholder='查字、词、读音...'
                 onInput={e => setInputString(e.detail.value)}
                 onConfirm={() => handleConfirm()}
               />
             </View>
             <View onClick={() => handleConfirm()}>
-              <AtIcon value="search"></AtIcon>
+              <AtIcon value='search'></AtIcon>
             </View>
           </Block>
         }

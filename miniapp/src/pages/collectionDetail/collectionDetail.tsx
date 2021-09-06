@@ -11,8 +11,9 @@ import Header from '@/pages/header/header';
 import WordCard from '@/components/wordCard/wordCard';
 import routes from '@/routes';
 import {getWordList, getWordListWords} from '@/store/actions/collection';
-import styles from './collectionDetail.module.scss';
+import AddToFavoritePrompt from '@/components/add-to-favorite-prompt/add-to-favorite-prompt';
 import {getWordListShareTimelineTitle} from '@/utils/sharing-util';
+import styles from './collectionDetail.module.scss';
 
 const initialState: {
   collectionDetail: {
@@ -97,26 +98,26 @@ const CollectionDetail = () => {
       <Header />
       <View className={styles.content}>
         <View className={styles.topBar}>
-          <View className="at-row at-row__justify--between">
+          <View className='at-row at-row__justify--between'>
             <View className={styles.title}>{collectionDetail.title}</View>
             <View className={styles.actionPanel}>
-              <AtIcon value="file-generic"></AtIcon>
-              <AtIcon value="bookmark"></AtIcon>
+              <AtIcon value='file-generic'></AtIcon>
+              <AtIcon value='bookmark'></AtIcon>
             </View>
           </View>
           <View className={styles.description}>
             {collectionDetail.description}
           </View>
-          <View className="at-row at-row__justify--between">
+          <View className='at-row at-row__justify--between'>
             <View className={styles.publisher}>
               <View>{collectionDetail.publisherName}</View>
             </View>
             <View onClick={() => toggleLiked(!liked)}>
               {collectionDetail.upvotes + (liked ? 1 : 0)}{' '}
               {liked ? (
-                <AtIcon value="heart-2"></AtIcon>
+                <AtIcon value='heart-2'></AtIcon>
               ) : (
-                <AtIcon value="heart"></AtIcon>
+                <AtIcon value='heart'></AtIcon>
               )}
             </View>
           </View>
@@ -136,6 +137,7 @@ const CollectionDetail = () => {
           </ScrollView>
         </View>
       </View>
+      <AddToFavoritePrompt />
     </View>
   );
 };

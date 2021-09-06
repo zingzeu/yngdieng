@@ -11,11 +11,12 @@ import routes from '@/routes';
 import Header from '@/pages/header/header';
 import WordCard from '@/components/wordCard/wordCard';
 import AudioPlay from '@/components/audioPlay/audioPlay';
+import AddToFavoritePrompt from '@/components/add-to-favorite-prompt/add-to-favorite-prompt';
 import {fetchWord} from '@/store/actions/dictionary';
+import {getWordShareTimelineTitle} from '@/utils/sharing-util';
 import PhonologyTab from './phonology-tab/phonology-tab';
 import styles from './wordDetail.module.scss';
 import {renderRichTextNode} from './rich-text';
-import {getWordShareTimelineTitle} from '@/utils/sharing-util';
 
 interface Feng {
   explanation: string;
@@ -107,7 +108,7 @@ const WordDetail = () => {
     <View>
       <Header />
       <View className={styles.hero}>
-        <View className="at-row at-row__justify--between">
+        <View className='at-row at-row__justify--between'>
           <View className={styles.word}>
             <View className={styles.label}>推荐用字</View>
             <selectable-text t={wordDetail.hanzi} />
@@ -140,13 +141,11 @@ const WordDetail = () => {
               {!(wordDetail?.explanation?.length !== 0) && (
                 <View>暂无解释</View>
               )}
-              {
-                <RichText
-                  nodes={wordDetail.explanation
-                    ?.map(e => renderRichTextNode(e))
-                    .join('')}
-                />
-              }
+              <RichText
+                nodes={wordDetail.explanation
+                  ?.map(e => renderRichTextNode(e))
+                  .join('')}
+              />
             </View>
           </AtTabsPane>
           <AtTabsPane current={currentTab} index={1}>
@@ -160,7 +159,7 @@ const WordDetail = () => {
                 <WordCard
                   title={<View className={styles.title}>{wordList.title}</View>}
                   description={wordList.description}
-                  actions={<AtIcon value="heart"></AtIcon>}
+                  actions={<AtIcon value='heart'></AtIcon>}
                   onClick={() =>
                     Taro.navigateTo({
                       url: `${routes.COLLECTION_DETAIL}?id=${wordList.name}`,
@@ -172,6 +171,7 @@ const WordDetail = () => {
           </AtTabsPane>
         </AtTabs>
       </View>
+      <AddToFavoritePrompt />
     </View>
   );
 };

@@ -75,7 +75,7 @@ const Header = ({injectedComponents = <Block />}) => {
     <Block>
       <View className={styles.headerPlaceholder} />
       <View
-        id="header"
+        id='header'
         className={clsx(
           styles.header,
           routePath === routes.INDEX && styles.index
@@ -83,7 +83,7 @@ const Header = ({injectedComponents = <Block />}) => {
       >
         {isDetailsPage && (
           <View>
-            <Image className={styles.logo} mode="heightFix" src={logoURL} />
+            <Image className={styles.logo} mode='heightFix' src={logoURL} />
           </View>
         )}
         {injectedComponents}
@@ -92,14 +92,14 @@ const Header = ({injectedComponents = <Block />}) => {
           {isDetailsPage && (
             <View>
               <AtIcon
-                value="search"
+                value='search'
                 onClick={() => navigateTo(routes.SEARCH)}
               ></AtIcon>
             </View>
           )}
           <View>
             <AtIcon
-              value="menu"
+              value='menu'
               color={isHomePage ? '#664445' : '#ffffff'}
               onClick={() => toggleSidebar(true)}
             ></AtIcon>
@@ -112,9 +112,9 @@ const Header = ({injectedComponents = <Block />}) => {
         onClose={() => toggleSidebar(false)}
         mask
       >
-        <View id="sidebar_container" className={styles.sidebarContainer}>
+        <View id='sidebar_container' className={styles.sidebarContainer}>
           <View className={styles.header}>
-            <AtIcon value="close" onClick={() => toggleSidebar(false)}></AtIcon>
+            <AtIcon value='close' onClick={() => toggleSidebar(false)}></AtIcon>
           </View>
           <View className={styles.content}>
             <View className={styles.title}>榕典</View>

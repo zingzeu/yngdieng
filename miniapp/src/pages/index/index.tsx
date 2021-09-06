@@ -1,10 +1,15 @@
 import React, {useState, useEffect} from 'react';
-import Taro, {getCurrentInstance, useShareAppMessage, useShareTimeline} from '@tarojs/taro';
+import Taro, {
+  getCurrentInstance,
+  useShareAppMessage,
+  useShareTimeline,
+} from '@tarojs/taro';
 import {View, Image, Input} from '@tarojs/components';
 import {AtIcon} from 'taro-ui';
 import Header from '@/pages/header/header';
 import routes from '@/routes';
 import logoURL from '@/assets/logo.png';
+import AddToFavoritePrompt from '@/components/add-to-favorite-prompt/add-to-favorite-prompt';
 import styles from './index.module.scss';
 
 const handleRouterParams = () => {
@@ -51,7 +56,7 @@ const Index = () => {
 
   useShareTimeline(() => ({
     title: '榕典 | 福州话电子词典',
-  }))
+  }));
   useShareAppMessage(() => ({
     title: '福州话电子词典',
   }));
@@ -64,24 +69,25 @@ const Index = () => {
       <View className={styles.banner}>
         <View />
         <View className={styles.imageContainer}>
-          <Image src={logoURL} mode="widthFix" />
+          <Image src={logoURL} mode='widthFix' />
         </View>
         <View className={styles.search}>
           <View className={styles.inputContainer}>
             <Input
               value={inputString}
-              confirmType="search"
-              placeholder="查字、词、读音..."
+              confirmType='search'
+              placeholder='查字、词、读音...'
               onInput={e => setInputString(e.detail.value)}
               onConfirm={handleConfirm}
             />
           </View>
           <View className={styles.confirmBtn} onClick={handleConfirm}>
-            <AtIcon value="search"></AtIcon>
+            <AtIcon value='search'></AtIcon>
           </View>
           <View className={styles.actions}></View>
         </View>
       </View>
+      <AddToFavoritePrompt />
     </View>
   );
 };
