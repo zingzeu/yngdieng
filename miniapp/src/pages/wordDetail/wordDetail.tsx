@@ -11,7 +11,7 @@ import routes from '@/routes';
 import Header from '@/pages/header/header';
 import WordCard from '@/components/wordCard/wordCard';
 import AudioPlay from '@/components/audioPlay/audioPlay';
-import PromptCollection from '@/components/promptCollection/promptCollection';
+import AddToFavoritePrompt from '@/components/add-to-favorite-prompt/add-to-favorite-prompt';
 import {fetchWord} from '@/store/actions/dictionary';
 import {getWordShareTimelineTitle} from '@/utils/sharing-util';
 import PhonologyTab from './phonology-tab/phonology-tab';
@@ -171,7 +171,7 @@ const WordDetail = () => {
           </AtTabsPane>
         </AtTabs>
       </View>
-      <PromptCollection />
+      <AddToFavoritePrompt />
     </View>
   );
 };

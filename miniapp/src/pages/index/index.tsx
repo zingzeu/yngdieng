@@ -9,7 +9,7 @@ import {AtIcon} from 'taro-ui';
 import Header from '@/pages/header/header';
 import routes from '@/routes';
 import logoURL from '@/assets/logo.png';
-import PromptCollection from '@/components/promptCollection/promptCollection';
+import AddToFavoritePrompt from '@/components/add-to-favorite-prompt/add-to-favorite-prompt';
 import styles from './index.module.scss';
 
 const handleRouterParams = () => {
@@ -87,7 +87,7 @@ const Index = () => {
           <View className={styles.actions}></View>
         </View>
       </View>
-      <PromptCollection />
+      <AddToFavoritePrompt />
     </View>
   );
 };

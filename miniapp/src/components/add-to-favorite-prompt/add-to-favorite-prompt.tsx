@@ -3,9 +3,9 @@ import Taro, {useDidShow} from '@tarojs/taro';
 import {AtIcon} from 'taro-ui';
 import {View} from '@tarojs/components';
 
-import styles from './promptCollection.module.scss';
+import styles from './add-to-favorite-prompt.module.scss';
 
-let havePrompted = Taro.getStorageSync('haveCollectionPrompted');
+let havePrompted = Taro.getStorageSync('addToFavoritePromptShown');
 const menuBoundingRect = Taro.getMenuButtonBoundingClientRect();
 const promptPostion = {
   top: menuBoundingRect.bottom,
@@ -17,7 +17,7 @@ const promptPostion = {
   }
 }
 
-const PromptCollection = () => {
+const AddToFavoritePrompt = () => {
   const [shouldShow, toggleShow] = useState(false);
 
   const handleClosePrompt = () => {
@@ -38,7 +38,7 @@ const PromptCollection = () => {
       <View className={styles.card} style={{right: promptPostion.card.right}}>
         <View>
           <View>添加到我的小程序</View>
-          <View class={styles.smallText}>福州话随手查</View>
+          <View className={styles.smallText}>福州话随手查</View>
         </View>
         <AtIcon onClick={handleClosePrompt} value='close' size={18} />
       </View>
@@ -46,4 +46,4 @@ const PromptCollection = () => {
   ) : null;
 };
 
-export default PromptCollection;
+export default AddToFavoritePrompt;

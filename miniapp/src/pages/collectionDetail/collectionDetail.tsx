@@ -11,7 +11,7 @@ import Header from '@/pages/header/header';
 import WordCard from '@/components/wordCard/wordCard';
 import routes from '@/routes';
 import {getWordList, getWordListWords} from '@/store/actions/collection';
-import PromptCollection from '@/components/promptCollection/promptCollection';
+import AddToFavoritePrompt from '@/components/add-to-favorite-prompt/add-to-favorite-prompt';
 import {getWordListShareTimelineTitle} from '@/utils/sharing-util';
 import styles from './collectionDetail.module.scss';
 
@@ -137,7 +137,7 @@ const CollectionDetail = () => {
           </ScrollView>
         </View>
       </View>
-      <PromptCollection />
+      <AddToFavoritePrompt />
     </View>
   );
 };
