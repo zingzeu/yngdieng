@@ -38,7 +38,7 @@
     "@angular/cli": "11.2.14",
     "@angular/compiler": "11.2.14",
     "@angular/compiler-cli": "11.2.14",
-    "@babel/cli": "7.15.4",
+    "@babel/cli": "7.15.7",
     "@babel/core": "7.15.5",
     "@babel/preset-env": "7.15.6",
     "@bazel/angular": "2.3.3",
