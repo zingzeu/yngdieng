@@ -3479,31 +3479,6 @@
     swiper "6.8.0"
     weui "^1.1.2"
 
-"@tarojs/helper@3.3.6":
-  version "3.3.6"
-  resolved "https://registry.yarnpkg.com/@tarojs/helper/-/helper-3.3.6.tgz#17631861c8d11b2dca906f5f7884d057dff85d82"
-  integrity sha512-IP4oYa6XSl53lpj29rogwwhi1GDCSCxfpM2gCE04CMGscW/n8dwWiXN5CLezeyTQbCHg2wE/nV/Ul1YAdPolaA==
-  dependencies:
-    "@babel/core" "^7.11.1"
-    "@babel/plugin-proposal-class-properties" "7.10.4"
-    "@babel/plugin-proposal-decorators" "7.10.5"
-    "@babel/plugin-proposal-object-rest-spread" "7.14.7"
-    "@babel/plugin-transform-runtime" "7.11.0"
-    "@babel/preset-env" "^7.11.0"
-    "@babel/preset-typescript" "7.12.17"
-    "@babel/register" "7.14.5"
-    "@babel/runtime" "^7.9.2"
-    "@tarojs/taro" "3.3.6"
-    chalk "3.0.0"
-    chokidar "3.3.1"
-    cross-spawn "7.0.3"
-    debug "4.1.1"
-    find-yarn-workspace-root "2.0.0"
-    fs-extra "8.1.0"
-    lodash "4.17.21"
-    resolve "1.15.1"
-    yauzl "2.10.0"
-
 "@tarojs/helper@3.3.9":
   version "3.3.9"
   resolved "https://registry.yarnpkg.com/@tarojs/helper/-/helper-3.3.9.tgz#a9d8df1a66c8d67a91bfbf5315e8696703b44c6a"
@@ -5814,13 +5789,13 @@ babel-plugin-transform-object-rest-spread@^6.22.0:
     babel-plugin-syntax-object-rest-spread "^6.8.0"
     babel-runtime "^6.26.0"
 
-babel-plugin-transform-react-jsx-to-rn-stylesheet@3.3.6:
-  version "3.3.6"
-  resolved "https://registry.yarnpkg.com/babel-plugin-transform-react-jsx-to-rn-stylesheet/-/babel-plugin-transform-react-jsx-to-rn-stylesheet-3.3.6.tgz#d4f84da184ef1c061d4803d307cb400fdaaf4fac"
-  integrity sha512-BCuJy0YtZQFt1Wmto8YIFY/L/AiZ/iL8QqdR+O71d5iZRepQxC85DFg8R0zgdCtZyUZMVmc5TOSkB0zNAqevvw==
+babel-plugin-transform-react-jsx-to-rn-stylesheet@3.3.9:
+  version "3.3.9"
+  resolved "https://registry.yarnpkg.com/babel-plugin-transform-react-jsx-to-rn-stylesheet/-/babel-plugin-transform-react-jsx-to-rn-stylesheet-3.3.9.tgz#e5a3d58bf0e367c17f310add6193ccf94dd1bc01"
+  integrity sha512-78CgMoAHMjtoZ3oDLGPNuYnWMyH0BNAlcakwVLtYDTMt+EImtKZM7ptVDvZO+BETgBdb5rbKt/6tHUy3iNprzg==
   dependencies:
     camelize "^1.0.0"
-    taro-css-to-react-native "3.3.6"
+    taro-css-to-react-native "3.3.9"
 
 babel-plugin-transform-regenerator@^6.24.1:
   version "6.26.0"
@@ -5842,10 +5817,10 @@ babel-plugin-transform-taroapi@1.3.15:
   resolved "https://registry.yarnpkg.com/babel-plugin-transform-taroapi/-/babel-plugin-transform-taroapi-1.3.15.tgz#413de3cc47389387bbd36be292d8945d36caf52e"
   integrity sha512-H+l2A1Y5NW41xlCWlBBSj4RCosNI/vCyPfdfJs/PwbrfsTBogq62Vy7HEg3bSCCDOSpvuDLbUvuopm6FK53gbg==
 
-babel-plugin-transform-taroapi@3.3.6:
-  version "3.3.6"
-  resolved "https://registry.yarnpkg.com/babel-plugin-transform-taroapi/-/babel-plugin-transform-taroapi-3.3.6.tgz#4e70ab15b1b321bacd763166a888c7ddcfcb3e9f"
-  integrity sha512-bNBGpIp9RS4QhXACEVXPO/Hk5hnIurQNSxXcrs4KItuYDvuMD5PYJzH+LulJLlpxnzKz8hVet9P/ib8WoQJCqQ==
+babel-plugin-transform-taroapi@3.3.9:
+  version "3.3.9"
+  resolved "https://registry.yarnpkg.com/babel-plugin-transform-taroapi/-/babel-plugin-transform-taroapi-3.3.9.tgz#385f9149ced0765151abe61683b8c5f449682f19"
+  integrity sha512-jJ7AvtthlY7OrwgdXHg5Irh/djbHTFd0NM+uGRpplt6RUfM7YCdVu2/Fa/dbWZZac5e9jM5KqW2qgZfJSTziEg==
 
 babel-preset-es2015@6.24.1:
   version "6.24.1"
@@ -5916,10 +5891,10 @@ babel-preset-stage-3@^6.24.1:
     babel-plugin-transform-exponentiation-operator "^6.24.1"
     babel-plugin-transform-object-rest-spread "^6.22.0"
 
-babel-preset-taro@3.3.6:
-  version "3.3.6"
-  resolved "https://registry.yarnpkg.com/babel-preset-taro/-/babel-preset-taro-3.3.6.tgz#2da66a549add4952a622de4270ac11998a241e96"
-  integrity sha512-modkMlggO1gL8VLgDm6pLdYP2aKPCWfNWBcqI+OhzONQls8FvaGd77skIoNVyCJVjn4HG+wkXXTj/y5SXZQWWQ==
+babel-preset-taro@3.3.9:
+  version "3.3.9"
+  resolved "https://registry.yarnpkg.com/babel-preset-taro/-/babel-preset-taro-3.3.9.tgz#ed9718e6bcb706581cf60cffbcfb9015da9de7a3"
+  integrity sha512-Ypw80HZNhtqcIC6Msl+PACGciUM4U5XBcyOb8t1Tz0YdAujS311lU4D/MJ1jLeWSzmtqbk9laDbeujJD2GoFCQ==
   dependencies:
     "@babel/plugin-proposal-class-properties" "7.10.4"
     "@babel/plugin-proposal-decorators" "7.10.5"
@@ -5930,16 +5905,16 @@ babel-preset-taro@3.3.6:
     "@babel/preset-typescript" "7.12.17"
     "@babel/runtime" "^7.11.2"
     "@babel/runtime-corejs3" "^7.14.8"
-    "@tarojs/helper" "3.3.6"
-    "@tarojs/taro-h5" "3.3.6"
+    "@tarojs/helper" "3.3.9"
+    "@tarojs/taro-h5" "3.3.9"
     "@vue/babel-plugin-jsx" "^1.0.6"
     "@vue/babel-preset-jsx" "^1.2.4"
     babel-plugin-dynamic-import-node "^2.3.3"
     babel-plugin-global-define "^1.0.3"
     babel-plugin-jsx-attributes-array-to-object "^0.3.0"
     babel-plugin-transform-imports-api "^1.0.0"
-    babel-plugin-transform-react-jsx-to-rn-stylesheet "3.3.6"
-    babel-plugin-transform-taroapi "3.3.6"
+    babel-plugin-transform-react-jsx-to-rn-stylesheet "3.3.9"
+    babel-plugin-transform-taroapi "3.3.9"
     core-js "^3.6.5"
     metro-react-native-babel-preset "^0.64.0"
     react-refresh "0.9.0"
@@ -17005,10 +16980,10 @@ tar@^6.0.2:
     mkdirp "^1.0.3"
     yallist "^4.0.0"
 
-taro-css-to-react-native@3.3.6:
-  version "3.3.6"
-  resolved "https://registry.yarnpkg.com/taro-css-to-react-native/-/taro-css-to-react-native-3.3.6.tgz#eeb9636085057419e9215fddd612aeeaebfa8a4f"
-  integrity sha512-bSV3KuRsVY+L0LvvYp2bht50c05JghChmvO8MksOuldiQ2p94gGZyMeYu9YE7g0NMc9e9X4JRHTd1hOVsacHZQ==
+taro-css-to-react-native@3.3.9:
+  version "3.3.9"
+  resolved "https://registry.yarnpkg.com/taro-css-to-react-native/-/taro-css-to-react-native-3.3.9.tgz#dc22aa87f6d8c7329986ff58eb372f1bfbc16e15"
+  integrity sha512-st5ckqU70Uma8vQSawZfchsPltFchGzu3T5xPxD/hrJriKKUi/Ka6P5S81Vm9n/1NuZIPz4xQLBKXfmTylHq6Q==
   dependencies:
     camelize "^1.0.0"
     css "^2.2.4"
