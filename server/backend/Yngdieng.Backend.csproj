@@ -14,8 +14,8 @@
     <PackageReference Include="Grpc.AspNetCore.Server.Reflection" Version="2.39.0" />
     <PackageReference Include="Grpc.AspNetCore.Web" Version="2.39.0" />
     <PackageReference Include="LibHokchew.Shared" Version="0.3.4" />
-    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.18" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.18">
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.19" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.19">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
