@@ -3449,21 +3449,6 @@
     xml2js "^0.4.19"
     xxhashjs "^0.2.2"
 
-"@tarojs/components@3.3.6":
-  version "3.3.6"
-  resolved "https://registry.yarnpkg.com/@tarojs/components/-/components-3.3.6.tgz#aff6f0ac50519a50217abd33dee0027e0839e7ac"
-  integrity sha512-r4QmUHiwBK2t62XZ/wDzV+FHlsJNR8sa7Y81to8K3TVY2cXsJUK50m0TDIYeL0BVxU924IWRJFpSRBr18LJqLA==
-  dependencies:
-    "@stencil/core" "2.4.0"
-    "@tarojs/taro" "3.3.6"
-    better-scroll "^1.14.1"
-    classnames "^2.2.5"
-    intersection-observer "^0.7.0"
-    omit.js "^1.0.0"
-    resolve-pathname "^3.0.0"
-    swiper "6.8.0"
-    weui "^1.1.2"
-
 "@tarojs/components@3.3.9":
   version "3.3.9"
   resolved "https://registry.yarnpkg.com/@tarojs/components/-/components-3.3.9.tgz#0aaee9b61c1acd81911a7beb28650812ba73e0d7"
