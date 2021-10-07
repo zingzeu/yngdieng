@@ -15,6 +15,7 @@ namespace Yngdieng.Backend.Db
                 .MapEnum<Gender>();
 
         public DbSet<Word> Words { get; set; }
+        public DbSet<FengWord> FengWords { get; set; }
         public DbSet<WordWithPronIds> WordsWithPronIds { get; set; }
         public DbSet<AudioClipsByWordId> AudioClipsByWordId { get; set; }
         public DbSet<Pron> Prons { get; set; }
@@ -53,6 +54,8 @@ namespace Yngdieng.Backend.Db
                 eb.HasNoKey();
                 eb.ToView("SomeView2");
             });
+            builder.Entity<FengWord>().HasKey(f => new { f.PageNumber, f.LineNumber });
+            builder.Entity<FengWord>().HasOne(f => f.LinkedWord).WithMany().HasForeignKey(f => f.WordId);
             builder.Entity<Pron>().HasKey(p => new { p.WordId, p.PronId });
             builder.Entity<Pron>().Property(b => b.PronId).UseIdentityByDefaultColumn();
             builder.Entity<Pron>().HasOne<Word>().WithMany().HasForeignKey(p => p.WordId);
@@ -95,6 +98,29 @@ namespace Yngdieng.Backend.Db
         // Preferred Sandhi Audio (real-human audio). This is preferred over TTS audio.
         public AudioClip? PreferredSandhiAudio { get; set; }
 
+    }
+
+    // Everything is readonly.
+    public sealed class FengWord
+    {
+        public int PageNumber { get; set; }
+
+        public int LineNumber { get; set; }
+
+        public string HanziRaw { get; set; }
+        public string HanziOriginal { get; set; }
+        public string HanziClean { get; set; }
+
+        public string PronUnderlying { get; set; }
+
+        public string PronSandhi { get; set; }
+
+        public string ExplanationRaw { get; set; }
+        public string? ExplanationParsed { get; set; }
+
+        public Word? LinkedWord { get; set; }
+
+        public int? WordId { get; set; }
     }
 
     //[Keyless]
