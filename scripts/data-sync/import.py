@@ -31,7 +31,7 @@ args = parser.parse_args()
 def copyCsv(cur, tableName, filePath):
     with open(args.zingzeu_data_path.joinpath(filePath), 'r') as f:
         cur.copy_expert(
-            f"copy {tableName} from STDIN delimiter ',' csv header", f)
+            f"copy {tableName} from STDIN delimiter ',' null as '\\N' csv header", f)
 
 
 def confirm():
@@ -66,12 +66,14 @@ with psycopg2.connect(
             delete from word_lists where true;
             delete from extensions where true;
             delete from prons where true;
+            delete from feng_words where true;
             delete from words where true;
             delete from audio_clips where true;
             delete from speakers where true;""")
         copyCsv(cur, 'speakers', 'speakers.csv')
         copyCsv(cur, 'audio_clips', 'generated/audio_clips.csv')
         copyCsv(cur, 'words', 'generated/words.csv')
+        copyCsv(cur, 'feng_words', 'generated/feng_words.csv')
         copyCsv(cur, 'prons', 'generated/prons.csv')
         copyCsv(cur, 'extensions', 'generated/extensions.csv')
         copyCsv(cur, 'word_lists', 'word_lists.csv')
