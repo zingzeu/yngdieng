@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using Microsoft.EntityFrameworkCore;
 using NodaTime;
 using Npgsql;
@@ -16,6 +17,7 @@ namespace Yngdieng.Backend.Db
 
         public DbSet<Word> Words { get; set; }
         public DbSet<FengWord> FengWords { get; set; }
+        public DbSet<FengCategory> FengCategories { get; set; }
         public DbSet<WordWithPronIds> WordsWithPronIds { get; set; }
         public DbSet<AudioClipsByWordId> AudioClipsByWordId { get; set; }
         public DbSet<Pron> Prons { get; set; }
@@ -54,6 +56,7 @@ namespace Yngdieng.Backend.Db
                 eb.HasNoKey();
                 eb.ToView("SomeView2");
             });
+            builder.Entity<Word>().HasOne(w => w.FengCategory).WithMany().HasForeignKey(w => w.FengCategoryId);
             builder.Entity<FengWord>().HasKey(f => new { f.PageNumber, f.LineNumber });
             builder.Entity<FengWord>().HasOne(f => f.LinkedWord).WithMany().HasForeignKey(f => f.WordId);
             builder.Entity<Pron>().HasKey(p => new { p.WordId, p.PronId });
@@ -98,6 +101,10 @@ namespace Yngdieng.Backend.Db
         // Preferred Sandhi Audio (real-human audio). This is preferred over TTS audio.
         public AudioClip? PreferredSandhiAudio { get; set; }
 
+        public FengCategory? FengCategory { get; set; }
+
+        public string? FengCategoryId { get; set; }
+
     }
 
     // Everything is readonly.
@@ -121,6 +128,18 @@ namespace Yngdieng.Backend.Db
         public Word? LinkedWord { get; set; }
 
         public int? WordId { get; set; }
+    }
+
+    // Readonly
+    public sealed class FengCategory
+    {
+
+        [Key]
+        public string Id { get; set; }
+
+        public string LevelOneName { get; set; }
+
+        public string? LevelTwoName { get; set; }
     }
 
     //[Keyless]

@@ -68,10 +68,12 @@ with psycopg2.connect(
             delete from prons where true;
             delete from feng_words where true;
             delete from words where true;
+            delete from feng_categories where true;
             delete from audio_clips where true;
             delete from speakers where true;""")
         copyCsv(cur, 'speakers', 'speakers.csv')
         copyCsv(cur, 'audio_clips', 'generated/audio_clips.csv')
+        copyCsv(cur, 'feng_categories', 'categories/feng_categories.csv')
         copyCsv(cur, 'words', 'generated/words.csv')
         copyCsv(cur, 'feng_words', 'generated/feng_words.csv')
         copyCsv(cur, 'prons', 'generated/prons.csv')

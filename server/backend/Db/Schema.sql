@@ -186,3 +186,19 @@ CREATE INDEX ix_feng_words_word_id ON feng_words (word_id);
 INSERT INTO "__EFMigrationsHistory" (migration_id, product_version)
 VALUES ('20211007222541_Feng', '3.1.19');
 
+ALTER TABLE words ADD feng_category_id text NULL;
+
+CREATE TABLE feng_categories (
+    id text NOT NULL,
+    level_one_name text NOT NULL,
+    level_two_name text NULL,
+    CONSTRAINT pk_feng_categories PRIMARY KEY (id)
+);
+
+CREATE INDEX ix_words_feng_category_id ON words (feng_category_id);
+
+ALTER TABLE words ADD CONSTRAINT fk_words_feng_categories_feng_category_id FOREIGN KEY (feng_category_id) REFERENCES feng_categories (id) ON DELETE RESTRICT;
+
+INSERT INTO "__EFMigrationsHistory" (migration_id, product_version)
+VALUES ('20211009022239_FengCategories', '3.1.19');
+
