@@ -58,7 +58,7 @@
 		"@tarojs/cli": "3.3.10",
 		"@tarojs/mini-runner": "3.3.10",
 		"@tarojs/webpack-runner": "3.3.10",
-		"@types/react": "17.0.27",
+		"@types/react": "17.0.30",
 		"@types/webpack-env": "1.16.2",
 		"@typescript-eslint/eslint-plugin": "4.30.0",
 		"@typescript-eslint/parser": "4.30.0",
