@@ -8690,14 +8690,6 @@ eslint-config-taro@3.3.10:
     "@typescript-eslint/parser" "^4.15.1"
     babel-eslint "^10.0.0"
 
-eslint-config-taro@3.3.9:
-  version "3.3.9"
-  resolved "https://registry.yarnpkg.com/eslint-config-taro/-/eslint-config-taro-3.3.9.tgz#4b56e477fe992c729393cd4d001a6dcb696f46fa"
-  integrity sha512-gacXN7nacQe02tYHwz2eVS5HqsEiPFZaIqIzk6nR9CxYonfITiWElxLTsDLRWssKVYGJrJz4G9J/N0V9c7yWTA==
-  dependencies:
-    "@typescript-eslint/parser" "^4.15.1"
-    babel-eslint "^10.0.0"
-
 eslint-import-resolver-node@^0.3.4:
   version "0.3.4"
   resolved "https://registry.yarnpkg.com/eslint-import-resolver-node/-/eslint-import-resolver-node-0.3.4.tgz#85ffa81942c25012d8231096ddf679c03042c717"
