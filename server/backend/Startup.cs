@@ -32,8 +32,9 @@ namespace Yngdieng.Backend
         {
             services.AddSingleton<IndexHealthCheck>();
             services.AddSingleton<TtsHealthCheck>();
-            services.AddHealthChecks().AddCheck<IndexHealthCheck>("index_file_loading");
-            services.AddHealthChecks().AddCheck<TtsHealthCheck>("tts_pronounceable");
+            services.AddHealthChecks()
+                .AddCheck<IndexHealthCheck>("index_file_loading")
+                .AddCheck<TtsHealthCheck>("tts_pronounceable");
             services.AddGrpc();
             services.AddGrpcReflection();
             services.AddSingleton<IIndexHolder, IndexHolder>();
