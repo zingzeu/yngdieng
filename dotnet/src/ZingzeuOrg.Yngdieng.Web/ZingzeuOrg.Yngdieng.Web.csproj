@@ -1,0 +1,22 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Grpc.AspNetCore" Version="2.40.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\server\protos\Yngdieng.Protos.csproj" />
+    <ProjectReference Include="..\..\..\server\common\Yngdieng.Common.csproj" />
+    <ProjectReference Include="..\..\..\server\Yngdieng.Search.Common\Yngdieng.Search.Common.csproj" />
+    <ProjectReference Include="..\ZingzeuOrg.Yngdieng.Shared\ZingzeuOrg.Yngdieng.Shared.csproj" />
+    <ProjectReference Include="..\ZingzeuOrg.Yngdieng.AdminClient\ZingzeuOrg.Yngdieng.AdminClient.csproj" />
+  </ItemGroup>
+
+</Project>
