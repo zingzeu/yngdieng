@@ -54,7 +54,7 @@
     "@bazel/terser": "2.3.3",
     "@bazel/typescript": "2.3.3",
     "@compodoc/compodoc": "1.1.11",
-    "@grpc/proto-loader": "0.6.5",
+    "@grpc/proto-loader": "0.6.7",
     "@rollup/plugin-commonjs": "16.0.0",
     "@rollup/plugin-node-resolve": "9.0.0",
     "@storybook/addon-actions": "6.3.10",
