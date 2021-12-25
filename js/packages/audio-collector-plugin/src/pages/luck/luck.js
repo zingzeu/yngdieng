@@ -2,8 +2,7 @@ import { Block, View, Image, Text, Button } from '@tarojs/components'
 import React from 'react'
 import Taro from '@tarojs/taro'
 import withWeapp from '@tarojs/with-weapp'
-import LuckyGrid from '../../miniprogram_npm/@lucky-canvas/mini/lucky-grid/index'
-import LuckyWheel from '../../miniprogram_npm/@lucky-canvas/mini/lucky-wheel/index'
+import { LuckyGrid } from '@lucky-canvas/taro/react'
 import './luck.scss'
 const app = Taro.getApp()
 
@@ -185,7 +184,7 @@ const app = Taro.getApp()
       data: {
         WXid: app.globalData.WXid
       },
-      success: function(res) {
+      success: function (res) {
         console.log(res.data)
         if (res.data.session_state == 1) {
           that.setData({
@@ -206,7 +205,7 @@ const app = Taro.getApp()
           return
         }
       },
-      fail: function() {
+      fail: function () {
         console.log('失败')
         Taro.showToast({
           title: '提交失败',

@@ -54,10 +54,6 @@ import "./app.scss";
     //     console.log(p);
     // })();
     var that = this;
-    var logs = Taro.getStorageSync('logs') || [];
-    logs.unshift(Date.now());
-
-    Taro.setStorageSync('logs', logs);
     // wx.showToast({
     //   title: '加载必要组件中',
     //   icon: 'loading',

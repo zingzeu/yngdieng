@@ -12,8 +12,6 @@ import {
 import React from 'react'
 import Taro from '@tarojs/taro'
 import withWeapp from '@tarojs/with-weapp'
-import LuckyGrid from '../../../miniprogram_npm/@lucky-canvas/mini/lucky-grid/index'
-import LuckyWheel from '../../../miniprogram_npm/@lucky-canvas/mini/lucky-wheel/index'
 import PopUp from '../../../components/pop-up/index'
 import './modify.scss'
 const app = Taro.getApp()

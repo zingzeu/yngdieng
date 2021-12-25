@@ -6,7 +6,6 @@ export default {
     'pages/back/back',
     'pages/luck/luck',
     'pages/info/info',
-    'pages/info/log/log',
     'pages/info/about/about',
     'pages/info/modify/modify',
     'pages/info/feedback/feedback'

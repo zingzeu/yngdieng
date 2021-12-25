@@ -2,12 +2,10 @@ import { Block, View, Image, Text } from '@tarojs/components'
 import React from 'react'
 import Taro from '@tarojs/taro'
 import withWeapp from '@tarojs/with-weapp'
-import LuckyGrid from '../../miniprogram_npm/@lucky-canvas/mini/lucky-grid/index'
-import LuckyWheel from '../../miniprogram_npm/@lucky-canvas/mini/lucky-wheel/index'
 import './start.scss'
-//login.js
-//获取应用实例
-var app = Taro.getApp()
+
+
+const app = Taro.getApp()
 
 @withWeapp({
   data: {
@@ -23,7 +21,7 @@ var app = Taro.getApp()
   onLoad: function() {
     var that = this
     Taro.setNavigationBarTitle({
-      title: Taro.getStorageSync('mallName')
+      title: "标题"
     })
 
     var that = this
@@ -69,7 +67,7 @@ var app = Taro.getApp()
     })
   }
 })
-class _C extends React.Component {
+class StartPage extends React.Component {
   render() {
     const { remind, angle } = this.data
     return (
@@ -123,4 +121,4 @@ class _C extends React.Component {
   }
 }
 
-export default _C
+export default StartPage
