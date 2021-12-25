@@ -1,0 +1,37 @@
+$arrow-size: 20px;
+$gap: 20px;
+
+.prompt {
+  position: fixed;
+  overflow: visible;
+  color: white;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 101;
+  .arrow, .card {
+    position: absolute;
+    background-color: $color-brownish-300;
+  }
+
+  .arrow {
+    width: $arrow-size;
+    height: $arrow-size;
+    transform: rotate(45deg) translateY(80%);
+  }
+
+  .card {
+    font-size: $font-size-body;
+    border-radius: 16px;
+    top: $arrow-size;
+    padding: $gap;
+    display: flex;
+    align-items: center;
+    View:first-child {
+      margin-right: $gap / 2;
+    }
+    .smallText {
+      font-size: $font-size-body * 0.8;
+    }
+  }
+}

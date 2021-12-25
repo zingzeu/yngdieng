@@ -1,0 +1,18 @@
+.pronounce {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  .card {
+    padding: 10px;
+    border-radius: 10px;
+    background-color: $color-brownish-100;
+    margin: 10px;
+    .title {
+      flex-wrap: wrap;
+    }
+  }
+  .name {
+    word-wrap: normal;
+    overflow: scroll;
+  }
+}
