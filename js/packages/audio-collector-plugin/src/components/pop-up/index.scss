@@ -1,0 +1,37 @@
+.q-pp {
+  position: fixed;
+  width: 100%;
+  box-sizing: border-box;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: #f7f7f7;
+  transform: translate3d(0, 100%, 0);
+  transform-origin: center;
+  transition: all 0.2s ease-in-out;
+  z-index: 900;
+  visibility: hidden;
+}
+
+.q-pp-show {
+  transform: translate3d(0, 0, 0);
+  visibility: visible;
+}
+
+.q-pp-mask {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  z-index: 900;
+  transition: all 0.2s ease-in-out;
+  opacity: 0;
+  visibility: hidden;
+}
+
+.q-pp-mask-show {
+  opacity: 1;
+  visibility: visible;
+}

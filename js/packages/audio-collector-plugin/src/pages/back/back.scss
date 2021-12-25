@@ -1,0 +1,62 @@
+page {
+  background-color: #fbf9fe;
+  height: 100%;
+}
+.page__hd{
+    padding: 50px 50px 100px 50px;
+    text-align: center;
+}
+.page__title{
+    display: inline-block;
+    padding: 20px 40px;
+    font-size: 32px;
+    color: #AAAAAA;
+    border-bottom: 2px solid #CCCCCC;
+}
+.page__desc{
+    display: none;
+    margin-top: 20px;
+    font-size: 26px;
+    color: #BBBBBB;
+}
+.section{
+    margin-bottom: 80px;
+}
+.section__title{
+    margin-bottom: 16px;
+    padding-left: 30px;
+    padding-right: 30px;
+}
+.section1{  
+  display: flex;  
+  flex-direction: row;  
+  margin: 20px;  
+  }  
+  .section1 view{  
+  margin-right: 20px;  
+  }
+
+/**index.wxss**/
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.userinfo-avatar {
+  width: 128px;
+  height: 128px;
+  margin: 20px;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #aaa;
+}
+
+.usermotto {
+  margin-top: 400px;
+}
+.cu-form-group .title {
+  min-width: calc(4em + 30px);
+}
