@@ -37,24 +37,25 @@
   "dependencies": {
     "@babel/runtime": "^7.7.7",
     "@tarojs/components": "3.3.18",
+    "@tarojs/react": "3.3.18",
     "@tarojs/runtime": "3.3.18",
     "@tarojs/taro": "3.3.18",
-    "@tarojs/react": "3.3.18",
-    "react-dom": "^17.0.0",
+    "@tarojs/with-weapp": "^3.3.18",
+    "lucky-canvas": "^1.7.13",
     "react": "^17.0.0",
-    "@tarojs/with-weapp": "^3.3.18"
+    "react-dom": "^17.0.0"
   },
   "devDependencies": {
-    "@types/webpack-env": "^1.13.6",
-    "@types/react": "^17.0.2",
-    "@tarojs/mini-runner": "3.3.18",
     "@babel/core": "^7.8.0",
+    "@tarojs/mini-runner": "3.3.18",
     "@tarojs/webpack-runner": "3.3.18",
+    "@types/react": "^17.0.2",
+    "@types/webpack-env": "^1.13.6",
     "babel-preset-taro": "3.3.18",
-    "eslint-config-taro": "3.3.18",
     "eslint": "^6.8.0",
-    "eslint-plugin-react": "^7.8.2",
+    "eslint-config-taro": "3.3.18",
     "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-react": "^7.8.2",
     "eslint-plugin-react-hooks": "^4.2.0",
     "stylelint": "9.3.0"
   }

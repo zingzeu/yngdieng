@@ -960,7 +960,6 @@ class _C extends React.Component {
                 return (
                   <View
                     className={'cu-item ' + (index > num ? '' : 'text-blue')}
-                    key
                   >
                     <Text
                       className={'num ' + (index == 4 ? 'err' : '')}
