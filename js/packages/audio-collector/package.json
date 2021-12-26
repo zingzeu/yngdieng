@@ -1,0 +1,56 @@
+{
+  "name": "audio-colector-plugin",
+  "version": "1.0.0",
+  "private": true,
+  "description": "",
+  "templateInfo": {
+    "name": "default",
+    "typescript": false,
+    "css": "sass"
+  },
+  "scripts": {
+    "build:weapp": "taro build --type weapp",
+    "build:swan": "taro build --type swan",
+    "build:alipay": "taro build --type alipay",
+    "build:tt": "taro build --type tt",
+    "build:h5": "taro build --type h5",
+    "build:rn": "taro build --type rn",
+    "build:qq": "taro build --type qq",
+    "build:jd": "taro build --type jd",
+    "build:quickapp": "taro build --type quickapp",
+    "dev:weapp": "yarn build:weapp --watch",
+    "dev:swan": "yarn build:swan --watch",
+    "dev:alipay": "yarn build:alipay --watch",
+    "dev:tt": "yarn build:tt --watch",
+    "dev:h5": "yarn build:h5 --watch",
+    "dev:rn": "yarn build:rn --watch",
+    "dev:qq": "yarn build:qq --watch",
+    "dev:jd": "yarn build:jd --watch",
+    "dev:quickapp": "yarn build:quickapp --watch"
+  },
+  "browserslist": [
+    "last 3 versions",
+    "Android >= 4.1",
+    "ios >= 8"
+  ],
+  "author": "",
+  "dependencies": {
+    "@babel/runtime": "^7.7.7",
+    "@lucky-canvas/taro": "^0.0.6",
+    "lucky-canvas": "^1.7.13",
+    "react": "^17.0.0",
+    "react-dom": "^17.0.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.8.0",
+    "@types/react": "^17.0.2",
+    "@types/webpack-env": "^1.13.6",
+    "babel-preset-taro": "3.3.18",
+    "eslint": "^6.8.0",
+    "eslint-config-taro": "3.3.18",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-react": "^7.8.2",
+    "eslint-plugin-react-hooks": "^4.2.0",
+    "stylelint": "9.3.0"
+  }
+}

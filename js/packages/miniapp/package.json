@@ -38,10 +38,6 @@
 	"license": "MIT",
 	"dependencies": {
 		"@babel/runtime": "7.15.4",
-		"@tarojs/components": "3.3.9",
-		"@tarojs/react": "3.3.9",
-		"@tarojs/runtime": "3.3.9",
-		"@tarojs/taro": "3.3.9",
 		"clsx": "1.1.1",
 		"immer": "8.0.4",
 		"lodash": "4.17.21",
@@ -55,9 +51,6 @@
 	},
 	"devDependencies": {
 		"@babel/core": "7.15.8",
-		"@tarojs/cli": "3.3.10",
-		"@tarojs/mini-runner": "3.3.10",
-		"@tarojs/webpack-runner": "3.3.10",
 		"@types/react": "17.0.30",
 		"@types/webpack-env": "1.16.3",
 		"@typescript-eslint/eslint-plugin": "4.30.0",
