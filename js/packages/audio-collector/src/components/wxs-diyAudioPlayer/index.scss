@@ -1,0 +1,73 @@
+/* components/wxs-diyAudioPlayer/index.wxss */
+.my-audio {
+  padding: 0 30px;
+  margin: 60px 0;
+}
+.audio-box {
+  width: 100%;
+  display: flex;
+}
+.audio {
+  width: 100%;
+}
+.audio__status {
+  width: 80px;
+  flex-shrink: 0;
+  margin-right: 20px;
+}
+.audio__content {
+  flex: 1;
+  position: relative;
+}
+.audio__progress,
+.audio__progress-movable {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  z-index: 5;
+}
+.audio__progress_current,
+.audio__progress::before {
+  content: "";
+  position: absolute;
+  height: 4px;
+  border-radius: 20px;
+  background-color: #666;
+  top: 50%;
+  left: 0;
+  right: 0;
+  transform: translateY(-50%);
+}
+.audio__progress_loading {
+  opacity: 0;
+}
+.audio__progress_bar,
+.audio__progress_tips {
+  position: absolute;
+  left: 0;
+  height: 36px;
+  width: 160px;
+  color: #fff;
+  font-size: 24px;
+  line-height: 36px;
+  border-radius: 100px;
+  text-align: center;
+}
+.audio__progress_bar {
+  position: absolute;
+  top: 50%;
+  margin-top: -18px;
+  background-color: #333;
+}
+.audio__progress_tips {
+  position: absolute;
+  top: -60px;
+  background-color: #2c8ef6;
+  transform: scale(1.4);
+  z-index: 6;
+}
+.audio__progress_current {
+  width: 0;
+  background-color: #2c8ef6;
+  z-index: 99
+}
