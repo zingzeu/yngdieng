@@ -4,6 +4,7 @@
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
+    <StaticWebAssetBasePath>/admin/</StaticWebAssetBasePath>
   </PropertyGroup>
 
   <ItemGroup>
@@ -15,4 +16,12 @@
     <ProjectReference Include="..\ZingzeuOrg.Yngdieng.Shared\ZingzeuOrg.Yngdieng.Shared.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Content Remove="wwwroot\css\" />
+    <Content Remove="wwwroot\sample-data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="wwwroot\css\" />
+    <Folder Include="wwwroot\sample-data\" />
+  </ItemGroup>
 </Project>

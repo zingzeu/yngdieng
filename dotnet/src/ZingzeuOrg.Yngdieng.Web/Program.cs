@@ -18,8 +18,13 @@ class Startup
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
     {
-        app.UseBlazorFrameworkFiles();
-        app.UseBlazorFrameworkFiles("/admin/");
+        if (env.IsDevelopment())
+        {
+            app.UseDeveloperExceptionPage();
+            app.UseWebAssemblyDebugging();
+        }
+
+        app.UseBlazorFrameworkFiles("/admin");
         app.UseStaticFiles();
 
         app.UseRouting();
@@ -27,7 +32,8 @@ class Startup
         app.UseEndpoints(endpoints =>
         {
             endpoints.MapGrpcService<FrontendService>();
-            //endpoints.MapFallbackToFile("/admin/{*path:nonfile}", "admin/index.html");
+            //endpoints.MapFallbackToFile("/admin", "admin/index.html");
+            endpoints.MapFallbackToFile("/admin/{*path:nonfile}", "/admin/index.html");
         });
 
     }
