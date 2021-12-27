@@ -10,7 +10,8 @@
     <base href="/admin/" />
     <link href="css/bootstrap/bootstrap.min.css" rel="stylesheet" />
     <link href="css/app.css" rel="stylesheet" />
-    <link href="/ZingzeuOrg.Yngdieng.AdminClient.styles.css" rel="stylesheet" />
+    <link href="ZingzeuOrg.Yngdieng.AdminClient.styles.css" rel="stylesheet" />
+    <script type="module" src="https://cdn.jsdelivr.net/npm/@fluentui/web-components/dist/web-components.min.js"></script>
   </head>
 
   <body>
@@ -22,23 +23,5 @@
       <a class="dismiss">🗙</a>
     </div>
     <script src="_framework/blazor.webassembly.js"></script>
-    <!--<script>
-      Blazor.start({
-        loadBootResource: function (type, name, defaultUri, integrity) {
-          console.log(
-            `Loading: '${type}', '${name}', '${defaultUri}', '${integrity}'`
-          );
-          switch (type) {
-            case 'dotnetjs':
-              return '/_framework/dotnet.6.0.0.9nzstsqxdk.js';
-            default:
-              if (defaultUri.startsWith('_framework')) {
-                return '/' + defaultUri;
-              }
-              return defaultUri;
-          }
-        },
-      });
-    </script>-->
   </body>
 </html>

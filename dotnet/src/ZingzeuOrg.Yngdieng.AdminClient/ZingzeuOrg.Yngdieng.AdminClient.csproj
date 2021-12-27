@@ -10,6 +10,7 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly" Version="6.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.DevServer" Version="6.0.0" PrivateAssets="all" />
+    <PackageReference Include="Microsoft.Fast.Components.FluentUI" Version="1.1.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,10 +19,8 @@
 
   <ItemGroup>
     <Content Remove="wwwroot\css\" />
-    <Content Remove="wwwroot\sample-data\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="wwwroot\css\" />
-    <Folder Include="wwwroot\sample-data\" />
   </ItemGroup>
 </Project>

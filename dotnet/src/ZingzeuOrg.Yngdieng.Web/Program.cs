@@ -24,6 +24,21 @@ class Startup
             app.UseWebAssemblyDebugging();
         }
 
+        // Workaround for serving blazor component files from /admin/_content/
+        // FastUI does not follow the base href.
+        app.Use(async (context,next) =>
+        {
+            var url = context.Request.Path.Value;
+
+            if (url.StartsWith("/admin/_content/"))
+            {
+                context.Request.Path = url.Substring("/admin".Length);
+                Console.WriteLine($"new path: {context.Request.Path}");
+            }
+
+            await next();
+        });
+
         app.UseBlazorFrameworkFiles("/admin");
         app.UseStaticFiles();
 
@@ -34,6 +49,7 @@ class Startup
             endpoints.MapGrpcService<FrontendService>();
             //endpoints.MapFallbackToFile("/admin", "admin/index.html");
             endpoints.MapFallbackToFile("/admin/{*path:nonfile}", "/admin/index.html");
+           
         });
 
     }
