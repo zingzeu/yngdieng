@@ -28,12 +28,14 @@ class Startup
         // FastUI does not follow the base href.
         app.Use(async (context,next) =>
         {
-            var url = context.Request.Path.Value;
+            var path = context.Request.Path.Value;
 
-            if (url.StartsWith("/admin/_content/"))
+            if (path.StartsWith("/admin/_content/"))
             {
-                context.Request.Path = url.Substring("/admin".Length);
-                Console.WriteLine($"new path: {context.Request.Path}");
+                context.Request.Path = path.Substring("/admin".Length);
+            }
+            else if (path=="/admin/_framework/blazor-hotreload") {
+                context.Request.Path = "/_framework/blazor-hotreload";
             }
 
             await next();
