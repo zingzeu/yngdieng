@@ -36,8 +36,8 @@ jobs:
           file: ./dotnet/src/ZingzeuOrg.Yngdieng.Web/Dockerfile
           push: true
           tags: |
-            ghcr.io/${{ github.repository_owner | lowercase }}/yngdieng-mono:ci-${{ github.run_number }}
-            ghcr.io/${{ github.repository_owner | lowercase }}/yngdieng-mono:latest
+            ghcr.io/mindonglab/yngdieng-mono:ci-${{ github.run_number }}
+            ghcr.io/mindonglab/yngdieng-mono:latest
             registry.cn-hangzhou.aliyuncs.com/zingzeu/yngdieng-mono:ci-${{ github.run_number }}
   #deploy_qa:
   #  steps:
