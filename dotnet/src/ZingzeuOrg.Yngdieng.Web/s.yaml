@@ -18,7 +18,7 @@ services:
         runtime: custom-container
         caPort: 80
         customContainerConfig:
-          image: registry.cn-hangzhou.aliyuncs.com/zingzeu/yngdieng-mono:ci-6
+          image: registry.cn-hangzhou.aliyuncs.com/zingzeu/yngdieng-mono:ci-7
           accelerationType: Default
         instanceConcurrency: 50
       triggers:
@@ -32,10 +32,3 @@ services:
               - PUT
               - DELETE
               - HEAD
-      customDomains:
-        - domainName: qa.ydict.net
-          protocol: HTTP
-          routeConfigs:
-            - path: /*
-              serviceName: qa-yngdieng
-              functionName: web 
