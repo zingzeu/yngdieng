@@ -292,6 +292,7 @@ FakesAssemblies/
 # Node.js Tools for Visual Studio
 .ntvs_analysis.dat
 node_modules/
+!dotnet/src/ZingzeuOrg.Yngdieng.Web/wwwroot/npm/node_modules
 .yarn
 
 # Visual Studio 6 build log

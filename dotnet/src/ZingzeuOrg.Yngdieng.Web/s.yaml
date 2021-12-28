@@ -20,6 +20,7 @@ services:
         customContainerConfig:
           image: registry.cn-hangzhou.aliyuncs.com/zingzeu/yngdieng-mono:ci-6
           accelerationType: Default
+        instanceConcurrency: 50
       triggers:
         - name: httpTrigger
           type: http
@@ -35,6 +36,6 @@ services:
         - domainName: qa.ydict.net
           protocol: HTTP
           routeConfigs:
-            - path: /
+            - path: /*
               serviceName: qa-yngdieng
               functionName: web 
