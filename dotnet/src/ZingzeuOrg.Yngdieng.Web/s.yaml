@@ -1,0 +1,40 @@
+edition: 1.0.0
+name: yngdieng
+access: radium@zingzeu
+
+services:
+  qa-yngdieng: # 服务名称。
+    component: devsapp/fc  # 组件名称。
+    props: # 组件的属性值。
+      region: cn-hangzhou
+      service:
+        name: qa-yngdieng
+        description: QA environment for yngdieng
+        internetAccess: true
+        role: acs:ram::1410095056568555:role/aliyunfcdefaultrole
+        tracingConfig: Enable
+      function:
+        name: web
+        runtime: custom-container
+        caPort: 80
+        customContainerConfig:
+          image: registry.cn-hangzhou.aliyuncs.com/zingzeu/yngdieng-mono:ci-6
+          accelerationType: Default
+      triggers:
+        - name: httpTrigger
+          type: http
+          config:
+            authType: anonymous
+            methods:
+              - GET
+              - POST
+              - PUT
+              - DELETE
+              - HEAD
+      customDomains:
+        - domainName: qa.ydict.net
+          protocol: HTTP
+          routeConfigs:
+            - path: /
+              serviceName: qa-yngdieng
+              functionName: web 

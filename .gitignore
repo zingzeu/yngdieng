@@ -422,3 +422,5 @@ Thumbs.db
 .ionide
 
 /pg_data/
+
+.s
