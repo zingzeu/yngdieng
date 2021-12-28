@@ -1,0 +1,44 @@
+# 构建和部署用于阿里云函数计算的 image
+
+name: FunctionsBuildAndDeploy
+on: 
+  push:
+    branches:
+      - master
+  pull_request:
+    branches:
+      - master
+
+jobs:
+  # TODO: dotnet test
+  build_and_push:
+    name: BuildAndPushDockerImages
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v2
+      - name: Log in to Github Registry
+        uses: docker/login-action@v1
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Log in to Aliyun Registry
+        uses: docker/login-action@v1
+        with:
+          registry: registry.cn-hangzhou.aliyuncs.com
+          username: yngdieng-azdo@zingzeu
+          password: ${{ secrets.ALIYUN_REGISTRY_PASSWORD }}
+      - name: Build and push to registry
+        uses: docker/build-push-action@v2
+        with:
+          context: ./
+          file: ./dotnet/src/ZingzeuOrg.Yngdieng.Web/Dockerfile
+          push: true
+          tags: |
+            ghcr.io/${{ github.repository_owner }}/yngdieng-mono:ci-${{ github.run_number }}
+            ghcr.io/${{ github.repository_owner }}/yngdieng-mono:latest
+            registry.cn-hangzhou.aliyuncs.com/zingzeu/yngdieng-mono:ci-${{ github.run_number }}
+  #deploy_qa:
+  #  steps:
+  # TODO: deploy_prod
