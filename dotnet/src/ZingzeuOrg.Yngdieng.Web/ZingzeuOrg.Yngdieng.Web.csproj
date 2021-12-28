@@ -12,6 +12,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Content Include="wwwroot/**/node_modules/**" CopyToPublishDirectory="PreserveNewest" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\..\..\server\protos\Yngdieng.Protos.csproj" />
     <ProjectReference Include="..\..\..\server\common\Yngdieng.Common.csproj" />
     <ProjectReference Include="..\..\..\server\Yngdieng.Search.Common\Yngdieng.Search.Common.csproj" />

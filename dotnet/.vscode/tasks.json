@@ -1,0 +1,8 @@
+{
+    "tasks": [{
+        "label": "build",
+        "type": "shell",
+        "command": "dotnet build src/ZingzeuOrg.Yngdieng.Web",
+        "problemMatcher": []
+    }]
+}
