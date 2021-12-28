@@ -49,6 +49,7 @@ class Startup
         app.UseEndpoints(endpoints =>
         {
             endpoints.MapGrpcService<FrontendService>();
+            endpoints.MapFallbackToFile("/{*path:nonfile}", "/index.html");
             endpoints.MapFallbackToFile("/admin/{*path:nonfile}", "/admin/index.html");
         });
 
