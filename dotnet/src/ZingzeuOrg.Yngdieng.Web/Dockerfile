@@ -18,4 +18,5 @@ RUN mkdir /app
 COPY --from=builder /publish /app
 WORKDIR /app
 ENV ASPNETCORE_FORWARDEDHEADERS_ENABLED true
+ENV Logging__Console__FormatterName ''
 ENTRYPOINT ["dotnet", "ZingzeuOrg.Yngdieng.Web.dll"]
