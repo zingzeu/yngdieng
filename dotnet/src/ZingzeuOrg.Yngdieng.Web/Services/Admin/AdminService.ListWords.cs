@@ -7,10 +7,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Yngdieng.Admin.V1.Protos;
 using ZingzeuOrg.Yngdieng.Web.Db;
+using AdminProtos = Yngdieng.Admin.V1.Protos;
 
 namespace ZingzeuOrg.Yngdieng.Web.Services.Admin
 {
-    public partial class AdminService : Yngdieng.Admin.V1.Protos.AdminService.AdminServiceBase
+    public partial class AdminService : AdminProtos.AdminService.AdminServiceBase
     {
         private static int MaxPageSize = 100;
         private static int DefaultPageSize = 10;

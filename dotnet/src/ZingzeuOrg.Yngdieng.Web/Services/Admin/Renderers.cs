@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using Yngdieng.Admin.V1.Protos;
-using static Yngdieng.Backend.Services.Admin.EnumConversions;
+using static ZingzeuOrg.Yngdieng.Web.Services.Admin.EnumConversions;
 
 namespace ZingzeuOrg.Yngdieng.Web.Services.Admin
 {

@@ -1,7 +1,7 @@
 ﻿using System.Linq;
 using Yngdieng.Protos;
 
-namespace Yngdieng.Backend
+namespace ZingzeuOrg.Yngdieng.Web
 {
 
     public static class RichTextUtil

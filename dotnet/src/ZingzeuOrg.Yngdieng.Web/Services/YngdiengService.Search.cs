@@ -4,26 +4,26 @@ using System.Linq;
 using System.Threading.Tasks;
 using Grpc.Core;
 using Microsoft.Extensions.Logging;
-using Yngdieng.Protos;
+using YngdiengProtos = Yngdieng.Protos;
 using static Yngdieng.Common.StringExt;
 using static Yngdieng.Protos.Query.Types;
 
 namespace ZingzeuOrg.Yngdieng.Web.Services
 {
-    public partial class YngdiengService : Yngdieng.Protos.YngdiengService.YngdiengServiceBase
+    public partial class YngdiengService : YngdiengProtos.YngdiengService.YngdiengServiceBase
     {
         private static readonly int PageSize = 10;
 
-        public override Task<SearchResponse> Search(SearchRequest request,
+        public override Task<YngdiengProtos.SearchResponse> Search(YngdiengProtos.SearchRequest request,
                                                     ServerCallContext context)
         {
             _logger.LogInformation("Received SearchRequest" + request.ToString());
             var watch = System.Diagnostics.Stopwatch.StartNew();
-            var response = new SearchResponse();
+            var response = new YngdiengProtos.SearchResponse();
 
             // Check cache
             var maybeCacheResult = _cache.Get(request.Query);
-            IEnumerable<SearchResultRow> results;
+            IEnumerable<YngdiengProtos.SearchResultRow> results;
 
             if (maybeCacheResult == null)
             {
@@ -48,72 +48,72 @@ namespace ZingzeuOrg.Yngdieng.Web.Services
             return Task.FromResult(response);
         }
 
-        private IEnumerable<SearchResultRow> SearchInternal(Query query)
+        private IEnumerable<YngdiengProtos.SearchResultRow> SearchInternal(YngdiengProtos.Query query)
         {
             switch (query.QueryCase)
             {
-                case Query.QueryOneofCase.PhonologyQuery:
+                case YngdiengProtos.Query.QueryOneofCase.PhonologyQuery:
                     {
                         return QueryByPhonologyAggregated(query.PhonologyQuery, query.SortBy)
-                            .Select(a => new SearchResultRow { HistoricalDocument = a });
+                            .Select(a => new YngdiengProtos.SearchResultRow { HistoricalDocument = a });
                     }
-                case Query.QueryOneofCase.HanziQuery:
+                case YngdiengProtos.Query.QueryOneofCase.HanziQuery:
                     {
                         string hanziQuery = query.HanziQuery;
                         _logger.LogInformation(query.ToString());
-                        IEnumerable<SearchResultRow> monoHanziResults = new List<SearchResultRow>();
+                        IEnumerable<YngdiengProtos.SearchResultRow> monoHanziResults = new List<YngdiengProtos.SearchResultRow>();
                         if (query.AlwaysIncludeHistorical)
                         {
                             // 单字条目优先
                             monoHanziResults =
                                 QueryMonoHanziAggregated(query.HanziQuery, query.SortBy)
-                                    .Select(a => new SearchResultRow { HistoricalDocument = a });
+                                    .Select(a => new YngdiengProtos.SearchResultRow { HistoricalDocument = a });
                         }
 
                         // 之后是词汇（冯版），如有
                         var vocabResults =
-                            query.OnlyHistorical ? new List<SearchResultRow>()
-                            : QueryVocab(hanziQuery).Select(d => new SearchResultRow { FengDocument = d });
+                            query.OnlyHistorical ? new List<YngdiengProtos.SearchResultRow>()
+                            : QueryVocab(hanziQuery).Select(d => new YngdiengProtos.SearchResultRow { FengDocument = d });
                         return monoHanziResults.Concat(vocabResults);
                     }
-                case Query.QueryOneofCase.FuzzyPronQuery:
+                case YngdiengProtos.Query.QueryOneofCase.FuzzyPronQuery:
                     {
                         return QueryByFuzzyPron(query.FuzzyPronQuery)
-                            .Select(d => new SearchResultRow { FengDocument = d });
+                            .Select(d => new YngdiengProtos.SearchResultRow { FengDocument = d });
                     }
                 default:
                     throw new Exception("Not implemented");
             }
         }
 
-        private IEnumerable<HistoricalDocument> QueryByPhonologyAggregated(PhonologyQuery query,
+        private IEnumerable<YngdiengProtos.HistoricalDocument> QueryByPhonologyAggregated(PhonologyQuery query,
                                                                            SortByMethod sortBy)
         {
-            Initial initial = query.Initial;
-            Final final = query.Final;
-            Tone tone = query.Tone;
-            if (initial == Initial.Unspecified && final == Final.Unspecified &&
-                tone == Tone.Unspecified)
+            YngdiengProtos.Initial initial = query.Initial;
+            YngdiengProtos.Final final = query.Final;
+            YngdiengProtos.Tone tone = query.Tone;
+            if (initial == YngdiengProtos.Initial.Unspecified && final == YngdiengProtos.Final.Unspecified &&
+                tone == YngdiengProtos.Tone.Unspecified)
             {
                 throw new Exception("Cannot all be unspecified");
             }
             // Filter
             var documents = _indexHolder.GetIndex().HistoricalDocuments.Where(_ => true);
-            if (initial != Initial.Unspecified)
+            if (initial != YngdiengProtos.Initial.Unspecified)
             {
                 documents = documents.Where(d => d.Initial == initial);
             }
-            if (final != Final.Unspecified)
+            if (final != YngdiengProtos.Final.Unspecified)
             {
                 documents = documents.Where(d => d.Final == final);
             }
-            if (tone != Tone.Unspecified)
+            if (tone != YngdiengProtos.Tone.Unspecified)
             {
                 documents = documents.Where(d => d.Tone == tone);
             }
             var matchedDocuments = documents;
             // Sort
-            IEnumerable<HistoricalDocument> sorted;
+            IEnumerable<YngdiengProtos.HistoricalDocument> sorted;
             switch (sortBy)
             {
                 case SortByMethod.InitialFinalTone:
@@ -132,7 +132,7 @@ namespace ZingzeuOrg.Yngdieng.Web.Services
         /// <summary>
         /// 查询词汇 (冯版)
         /// </summary>
-        private IEnumerable<FengDocument> QueryVocab(string query)
+        private IEnumerable<YngdiengProtos.FengDocument> QueryVocab(string query)
         {
             var matchedDocuments =
                 _indexHolder.GetIndex()
@@ -144,7 +144,7 @@ namespace ZingzeuOrg.Yngdieng.Web.Services
             return matchedDocuments;
         }
 
-        private static int ScoreVocabQueryResult(string query, FengDocument matchedDocument)
+        private static int ScoreVocabQueryResult(string query, YngdiengProtos.FengDocument matchedDocument)
         {
             int score = 0;
             if (matchedDocument.HanziMatchable.Where(m => m.Contains(query)).Count() > 0)
@@ -165,7 +165,7 @@ namespace ZingzeuOrg.Yngdieng.Web.Services
         /// </summary>
         /// <param name="yngping"></param>
         /// <returns></returns>
-        private IEnumerable<FengDocument> QueryByFuzzyPron(string yngping)
+        private IEnumerable<YngdiengProtos.FengDocument> QueryByFuzzyPron(string yngping)
         {
             var matchedDocuments = _indexHolder.GetIndex().FengDocuments.Where(d =>
             {
@@ -187,14 +187,14 @@ namespace ZingzeuOrg.Yngdieng.Web.Services
         /// 查询历史音韵条目.
         /// </summary>
         /// <returns></returns>
-        private IEnumerable<HistoricalDocument> QueryMonoHanziAggregated(string query,
+        private IEnumerable<YngdiengProtos.HistoricalDocument> QueryMonoHanziAggregated(string query,
                                                                          SortByMethod sortBy)
         {
             var matchedDocuments = _indexHolder.GetIndex().HistoricalDocuments.Where(
                 d => GetHanzi(d.HanziCanonical) == query ||
                      d.HanziAlternatives.Where(r => GetHanzi(r) == query).Count() > 0 ||
                      d.HanziMatchable.IndexOf(query) >= 0);
-            IEnumerable<HistoricalDocument> sorted;
+            IEnumerable<YngdiengProtos.HistoricalDocument> sorted;
             switch (sortBy)
             {
                 case SortByMethod.InitialFinalTone:

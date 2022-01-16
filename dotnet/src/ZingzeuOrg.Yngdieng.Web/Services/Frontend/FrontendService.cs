@@ -1,11 +1,12 @@
 ﻿using Microsoft.Extensions.Logging;
 using ZingzeuOrg.Yngdieng.Web.Db;
 using Yngdieng.OpenCC;
+using FrontendProtos = Yngdieng.Frontend.V3.Protos;
 
 namespace ZingzeuOrg.Yngdieng.Web.Services.Frontend
 {
 
-    public partial class FrontendService : Yngdieng.Frontend.V3.Protos.FrontendService.FrontendServiceBase
+    public partial class FrontendService : FrontendProtos.FrontendService.FrontendServiceBase
     {
         private readonly ILogger<FrontendService> _logger;
         private readonly IIndexHolder _indexHolder;

@@ -6,14 +6,16 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using Yngdieng.Admin.V1.Protos;
 using ZingzeuOrg.Yngdieng.Web.Db;
-using static Yngdieng.Backend.Services.Admin.EnumConversions;
+using static ZingzeuOrg.Yngdieng.Web.Services.Admin.EnumConversions;
+using AdminProtos = Yngdieng.Admin.V1.Protos;
+
 namespace ZingzeuOrg.Yngdieng.Web.Services.Admin
 {
-    public partial class AdminService : Yngdieng.Admin.V1.Protos.AdminService.AdminServiceBase
+    public partial class AdminService : AdminProtos.AdminService.AdminServiceBase
     {
 
 
-        public async override Task<Yngdieng.Admin.V1.Protos.Pron> CreatePron(CreatePronRequest request,
+        public async override Task<AdminProtos.Pron> CreatePron(CreatePronRequest request,
                                                    ServerCallContext context)
         {
             if (request.Pron == null)

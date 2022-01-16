@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Components.Web;
 using Microsoft.AspNetCore.Components.WebAssembly.Hosting;
 using MudBlazor.Services;
 using ZingzeuOrg.Yngdieng.AdminClient;
-using Yngdieng.Protos;
+using Microsoft.AspNetCore.Components;
 
 var builder = WebAssemblyHostBuilder.CreateDefault(args);
 builder.RootComponents.Add<App>("#app");
@@ -14,8 +14,11 @@ builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.
 builder.Services.AddMudServices();
 builder.Services.AddScoped(services =>
 {
+    var navigationManager = services.GetService<NavigationManager>();
+    var blazorBaseUrl = new Uri(navigationManager.BaseUri);
+    var baseUri = $"{blazorBaseUrl.Scheme}://{blazorBaseUrl.Host}:{blazorBaseUrl.Port}";
+    Console.WriteLine($"grpc base url = {baseUri}");
     var httpClient = new HttpClient(new GrpcWebHandler(GrpcWebMode.GrpcWeb, new HttpClientHandler()));
-    var baseUri = "https://api.ydict.net/";
     var channel = GrpcChannel.ForAddress(baseUri, new GrpcChannelOptions { HttpClient = httpClient });
     return new Yngdieng.Protos.YngdiengService.YngdiengServiceClient(channel);
 });

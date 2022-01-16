@@ -4,14 +4,14 @@ using Grpc.Core;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using ZingzeuOrg.Yngdieng.Web.Db;
-using Yngdieng.Frontend.V3.Protos;
+using FrontendProtos = Yngdieng.Frontend.V3.Protos;
 
 namespace ZingzeuOrg.Yngdieng.Web.Services.Frontend
 {
 
-    public partial class FrontendService : Yngdieng.Frontend.V3.Protos.FrontendService.FrontendServiceBase
+    public partial class FrontendService : FrontendProtos.FrontendService.FrontendServiceBase
     {
-        public async override Task<Yngdieng.Frontend.V3.Protos.WordList> GetWordList(GetWordListRequest request,
+        public async override Task<FrontendProtos.WordList> GetWordList(FrontendProtos.GetWordListRequest request,
                                                    ServerCallContext context)
         {
             if (string.IsNullOrEmpty(request.Name))

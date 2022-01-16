@@ -1,13 +1,13 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using Grpc.Core;
-using Yngdieng.Protos;
+using YngdiengProtos = Yngdieng.Protos;
 namespace ZingzeuOrg.Yngdieng.Web.Services
 {
-    public partial class YngdiengService : Yngdieng.Protos.YngdiengService.YngdiengServiceBase
+    public partial class YngdiengService : YngdiengProtos.YngdiengService.YngdiengServiceBase
     {
 
-        public override Task<FengDocument> GetFengDocument(GetFengDocumentRequest request,
+        public override Task<YngdiengProtos.FengDocument> GetFengDocument(YngdiengProtos.GetFengDocumentRequest request,
                                                            ServerCallContext context)
         {
             return Task.FromResult(_indexHolder.GetIndex()

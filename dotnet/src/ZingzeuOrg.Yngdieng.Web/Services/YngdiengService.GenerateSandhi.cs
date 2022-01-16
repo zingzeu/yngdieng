@@ -5,16 +5,17 @@ using System.Threading.Tasks;
 using Grpc.Core;
 using LibHokchew.Shared.Yngping;
 using ZingzeuOrg.Yngdieng.Web.TextToSpeech;
-using Yngdieng.Protos;
+using YngdiengProtos=Yngdieng.Protos;
+
 namespace ZingzeuOrg.Yngdieng.Web.Services
 {
-    public partial class YngdiengService : Yngdieng.Protos.YngdiengService.YngdiengServiceBase
+    public partial class YngdiengService : YngdiengProtos.YngdiengService.YngdiengServiceBase
     {
 
-        public override Task<GenerateSandhiResponse> GenerateSandhi(GenerateSandhiRequest request,
+        public override Task<YngdiengProtos.GenerateSandhiResponse> GenerateSandhi(YngdiengProtos.GenerateSandhiRequest request,
                                                      ServerCallContext context)
         {
-            var results = new List<GenerateSandhiResponse.Types.SandhiResult>();
+            var results = new List<YngdiengProtos.GenerateSandhiResponse.Types.SandhiResult>();
 
             foreach (var input in request.Inputs)
             {
@@ -27,7 +28,7 @@ namespace ZingzeuOrg.Yngdieng.Web.Services
                     .ToArray();
                     var outputSyllables = SandhiGenerator.GenerateSandhiSyllables(inputSyllables);
                     var output = string.Join(" ", outputSyllables);
-                    var result = new GenerateSandhiResponse.Types.SandhiResult
+                    var result = new YngdiengProtos.GenerateSandhiResponse.Types.SandhiResult
                     {
                         Output = output
                     };
@@ -39,13 +40,13 @@ namespace ZingzeuOrg.Yngdieng.Web.Services
                 }
                 catch (Exception)
                 {
-                    results.Add(new GenerateSandhiResponse.Types.SandhiResult
+                    results.Add(new YngdiengProtos.GenerateSandhiResponse.Types.SandhiResult
                     {
                         HasError = true
                     });
                 }
             }
-            return Task.FromResult(new GenerateSandhiResponse
+            return Task.FromResult(new YngdiengProtos.GenerateSandhiResponse
             {
                 Results = { results }
             });

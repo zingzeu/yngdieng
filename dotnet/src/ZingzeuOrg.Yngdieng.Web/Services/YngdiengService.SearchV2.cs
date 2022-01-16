@@ -6,21 +6,22 @@ using Grpc.Core;
 using Lucene.Net.QueryParsers.Classic;
 using Lucene.Net.Search;
 using ZingzeuOrg.Yngdieng.Web.Db;
+using ZingzeuOrg.Yngdieng.Web.Services.Frontend;
 using Yngdieng.Common;
-using Yngdieng.Protos;
+using YngdiengProtos = Yngdieng.Protos;
 using Yngdieng.Search.Common;
 using static Yngdieng.Common.StringExt;
 using LuceneQuery = Lucene.Net.Search.Query;
 
 namespace ZingzeuOrg.Yngdieng.Web.Services
 {
-    public partial class YngdiengService : Yngdieng.Protos.YngdiengService.YngdiengServiceBase
+    public partial class YngdiengService : YngdiengProtos.YngdiengService.YngdiengServiceBase
     {
 
         private static readonly int DefaultPageSize = 10;
         private static readonly Filter FilterSourcelessDocs = NumericRangeFilter.NewInt32Range(LuceneUtils.Fields.IsSourceless, 4, 0, 0, true, true);
 
-        public override Task<SearchV2Response> SearchV2(SearchV2Request request,
+        public override Task<YngdiengProtos.SearchV2Response> SearchV2(YngdiengProtos.SearchV2Request request,
                                                         ServerCallContext context)
         {
             var userPreference = UserPreferences.FromContext(context);
@@ -28,7 +29,7 @@ namespace ZingzeuOrg.Yngdieng.Web.Services
             var desiredPageSize = request.PageSize > 0 ? request.PageSize : DefaultPageSize;
             var searcher = this._indexHolder.LuceneIndexSearcher;
 
-            var resultCards = new List<SearchV2Response.Types.SearchCard>();
+            var resultCards = new List<YngdiengProtos.SearchV2Response.Types.SearchCard>();
 
             TopDocs results;
             if (string.IsNullOrEmpty(request.PageToken))
@@ -38,7 +39,7 @@ namespace ZingzeuOrg.Yngdieng.Web.Services
                 // first page && no results
                 if (results.ScoreDocs.Length == 0)
                 {
-                    return Task.FromResult(new SearchV2Response
+                    return Task.FromResult(new YngdiengProtos.SearchV2Response
                     {
                         ResultCards = { NoResultsCard() }
                     });
@@ -52,7 +53,7 @@ namespace ZingzeuOrg.Yngdieng.Web.Services
             }
 
             var zhConverter = new ZhConverter(_openCc, userPreference.ZhConversionPreference);
-            var response = new SearchV2Response();
+            var response = new YngdiengProtos.SearchV2Response();
             var isEndOfResults = results.ScoreDocs.Length < desiredPageSize + 1;
             if (isEndOfResults)
             {
@@ -71,15 +72,15 @@ namespace ZingzeuOrg.Yngdieng.Web.Services
             return Task.FromResult(response);
         }
 
-        private LuceneQuery GetLuceneQuery(Yngdieng.Protos.Query query)
+        private LuceneQuery GetLuceneQuery(YngdiengProtos.Query query)
         {
             switch (query.QueryCase)
             {
-                case Yngdieng.Protos.Query.QueryOneofCase.HanziQuery:
+                case YngdiengProtos.Query.QueryOneofCase.HanziQuery:
                     return HandleHanziQuery(query.HanziQuery);
-                case Yngdieng.Protos.Query.QueryOneofCase.YngpingTonePatternQuery:
+                case YngdiengProtos.Query.QueryOneofCase.YngpingTonePatternQuery:
                     return HandleYngpingTonePatternQuery(query.YngpingTonePatternQuery);
-                case Yngdieng.Protos.Query.QueryOneofCase.FuzzyPronQuery:
+                case YngdiengProtos.Query.QueryOneofCase.FuzzyPronQuery:
                     return HandleFuzzyYngpingQuery(query.FuzzyPronQuery);
                 default:
                     throw new ArgumentException($"Unsupported query type: {query.QueryCase}");
@@ -122,7 +123,7 @@ namespace ZingzeuOrg.Yngdieng.Web.Services
             return queryParser.Parse(queryText);
         }
 
-        private IEnumerable<SearchV2Response.Types.SearchCard> RenderDocs(IEnumerable<ScoreDoc> scoreDocs, ZhConverter zhConverter)
+        private IEnumerable<YngdiengProtos.SearchV2Response.Types.SearchCard> RenderDocs(IEnumerable<ScoreDoc> scoreDocs, ZhConverter zhConverter)
         {
             var searcher = this._indexHolder.LuceneIndexSearcher;
 
@@ -131,14 +132,14 @@ namespace ZingzeuOrg.Yngdieng.Web.Services
                var docId = searcher.Doc(sd.Doc).GetField(LuceneUtils.Fields.DocId).GetStringValue();
                var ydDoc = _indexHolder.GetIndex().YngdiengDocuments.Single(y => y.DocId == docId);
 
-               return new SearchV2Response.Types.SearchCard
+               return new YngdiengProtos.SearchV2Response.Types.SearchCard
                {
-                   Word = new SearchV2Response.Types.SearchCard.Types.WordCard
+                   Word = new YngdiengProtos.SearchV2Response.Types.SearchCard.Types.WordCard
                    {
                        Id = docId,
                        Yngping = RichTextUtil.FromString(ydDoc.YngpingSandhi.OrElse(ydDoc.YngpingUnderlying)),
                        Hanzi = RichTextUtil.FromString(zhConverter.tH(HanziUtils.HanziToString(ydDoc.HanziCanonical))),
-                       Details = RichTextUtil.FromString(zhConverter.tM(Yngdieng.Backend.Services.Frontend.Words.GetSnippet
+                       Details = RichTextUtil.FromString(zhConverter.tM(Words.GetSnippet
                             (ydDoc, new Extension[] { }))),
                        Score = sd.Score
                    }
@@ -146,31 +147,31 @@ namespace ZingzeuOrg.Yngdieng.Web.Services
            });
         }
 
-        private static SearchV2Response.Types.SearchCard GenericMessageCard(string message)
+        private static YngdiengProtos.SearchV2Response.Types.SearchCard GenericMessageCard(string message)
         {
-            return new SearchV2Response.Types.SearchCard
+            return new YngdiengProtos.SearchV2Response.Types.SearchCard
             {
-                GenericMessage = new SearchV2Response.Types.SearchCard.Types
+                GenericMessage = new YngdiengProtos.SearchV2Response.Types.SearchCard.Types
                                                           .GenericMessageCard()
                 {
                     Message = RichTextUtil.FromString(message)
                 }
             };
         }
-        private static SearchV2Response.Types.SearchCard EndOfResultsCard()
+        private static YngdiengProtos.SearchV2Response.Types.SearchCard EndOfResultsCard()
         {
-            return new SearchV2Response.Types.SearchCard
+            return new YngdiengProtos.SearchV2Response.Types.SearchCard
             {
-                EndOfResults = new SearchV2Response.Types.SearchCard.Types
+                EndOfResults = new YngdiengProtos.SearchV2Response.Types.SearchCard.Types
                                                           .EndOfResultsCard()
             };
         }
 
-        private static SearchV2Response.Types.SearchCard NoResultsCard()
+        private static YngdiengProtos.SearchV2Response.Types.SearchCard NoResultsCard()
         {
-            return new SearchV2Response.Types.SearchCard
+            return new YngdiengProtos.SearchV2Response.Types.SearchCard
             {
-                NoResults = new SearchV2Response.Types.SearchCard.Types
+                NoResults = new YngdiengProtos.SearchV2Response.Types.SearchCard.Types
                                                           .NoResultsCard()
             };
         }

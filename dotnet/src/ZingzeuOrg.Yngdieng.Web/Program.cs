@@ -1,12 +1,12 @@
-using Yngdieng.Admin.V1.Protos;
-using Yngdieng.Backend;
-using Yngdieng.Frontend.V3.Protos;
 using Yngdieng.OpenCC;
 using ZingzeuOrg.Yngdieng.Web;
 using ZingzeuOrg.Yngdieng.Web.Db;
 using ZingzeuOrg.Yngdieng.Web.HealthChecks;
 using ZingzeuOrg.Yngdieng.Web.Services;
+using ZingzeuOrg.Yngdieng.Web.Services.Frontend;
+using ZingzeuOrg.Yngdieng.Web.Services.Admin;
 using ZingzeuOrg.Yngdieng.Web.TextToSpeech;
+using Microsoft.EntityFrameworkCore;
 
 CreateHostBuilder(args).Build().Run();
 
@@ -18,6 +18,12 @@ static IHostBuilder CreateHostBuilder(string[] args) =>
            });
 class Startup
 {
+    private readonly IConfiguration _configuration;
+
+    public Startup(IConfiguration configuration)
+    {
+        _configuration = configuration;
+    }
     public void ConfigureServices(IServiceCollection services)
     {
         services.AddGrpc();
@@ -48,7 +54,7 @@ class Startup
         services.AddDbContext<AdminContext>(options =>
             options
                 .UseNpgsql(
-                    Configuration.GetConnectionString("Postgres"), o => o.UseNodaTime())
+                    _configuration.GetConnectionString("Postgres"), o => o.UseNodaTime())
                 .EnableSensitiveDataLogging()
         );
     }
@@ -107,7 +113,6 @@ class Startup
             endpoints.MapFallbackToFile("/{*path:nonfile}", "/index.html");
             endpoints.MapFallbackToFile("/admin/{*path:nonfile}", "/admin/index.html");
         });
-
 
     }
 }

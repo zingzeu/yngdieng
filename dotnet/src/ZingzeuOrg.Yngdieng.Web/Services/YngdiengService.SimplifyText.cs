@@ -1,17 +1,17 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using Grpc.Core;
-using Yngdieng.Protos;
+using YngdiengProtos = Yngdieng.Protos;
 
 namespace ZingzeuOrg.Yngdieng.Web.Services
 {
-    public partial class YngdiengService : Yngdieng.Protos.YngdiengService.YngdiengServiceBase
+    public partial class YngdiengService : YngdiengProtos.YngdiengService.YngdiengServiceBase
     {
 
-        public override Task<SimplifyTextResponse> SimplifyText(SimplifyTextRequest request,
+        public override Task<YngdiengProtos.SimplifyTextResponse> SimplifyText(YngdiengProtos.SimplifyTextRequest request,
                                                      ServerCallContext context)
         {
-            return Task.FromResult(new SimplifyTextResponse { ConvertedText = _openCc.SimplifyHukziuText(request.Text) });
+            return Task.FromResult(new YngdiengProtos.SimplifyTextResponse { ConvertedText = _openCc.SimplifyHukziuText(request.Text) });
         }
     }
 }

@@ -1,11 +1,11 @@
 ﻿using System;
 using Microsoft.Extensions.Logging;
 using Yngdieng.OpenCC;
-using Yngdieng.Protos;
+using YngdiengProtos = Yngdieng.Protos;
 
 namespace ZingzeuOrg.Yngdieng.Web.Services
 {
-    public partial class YngdiengService : Yngdieng.Protos.YngdiengService.YngdiengServiceBase
+    public partial class YngdiengService : YngdiengProtos.YngdiengService.YngdiengServiceBase
     {
         private readonly ILogger<YngdiengService> _logger;
         private readonly IIndexHolder _indexHolder;
@@ -24,9 +24,9 @@ namespace ZingzeuOrg.Yngdieng.Web.Services
             _openCc = openCc;
         }
 
-        public static string GetHanzi(Hanzi h)
+        public static string GetHanzi(YngdiengProtos.Hanzi h)
         {
-            return h.HanziCase == Hanzi.HanziOneofCase.Regular
+            return h.HanziCase == YngdiengProtos.Hanzi.HanziOneofCase.Regular
                         ? h.Regular
                         : h.Ids;
         }

@@ -2,19 +2,19 @@
 using Yngdieng.Common;
 using Yngdieng.Frontend.V3.Protos;
 using Yngdieng.Protos;
-using Word = Yngdieng.Frontend.V3.Protos.Word;
+using FrontendProtos = Yngdieng.Frontend.V3.Protos;
 
 namespace ZingzeuOrg.Yngdieng.Web.Services.Frontend
 {
     public static class Renderers
     {
 
-        public static Word.Types.AudioCard ToAudioCard(Db.AudioClipsByWordId a)
+        public static FrontendProtos.Word.Types.AudioCard ToAudioCard(Db.AudioClipsByWordId a)
         {
             var gender = a.SpeakerGender == Gender.MALE ? "男" : "女";
             var hintPrimary = a.SpeakerAge.HasValue ? $"{a.SpeakerDisplayName} | {a.SpeakerAge} | {gender}"
                 : $"{a.SpeakerDisplayName} | {gender}";
-            return new Word.Types.AudioCard()
+            return new FrontendProtos.Word.Types.AudioCard()
             {
                 Pronunciation = a.Pronunciation,
                 HintPrimary = hintPrimary,
@@ -23,9 +23,9 @@ namespace ZingzeuOrg.Yngdieng.Web.Services.Frontend
             };
         }
 
-        public static Yngdieng.Frontend.V3.Protos.WordList ToWordList(Db.WordList wordList)
+        public static FrontendProtos.WordList ToWordList(Db.WordList wordList)
         {
-            return new Yngdieng.Frontend.V3.Protos.WordList()
+            return new FrontendProtos.WordList()
             {
                 Name = ResourceNames.ToWordListName(wordList.WordListId),
                 Title = wordList.Title,

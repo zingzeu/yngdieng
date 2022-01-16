@@ -5,19 +5,20 @@ using System.Threading.Tasks;
 using Grpc.Core;
 using Microsoft.EntityFrameworkCore;
 using Yngdieng.Common;
-using Yngdieng.Frontend.V3.Protos;
+using FrontendProtos = Yngdieng.Frontend.V3.Protos;
 
 namespace ZingzeuOrg.Yngdieng.Web.Services.Frontend
 {
 
-    public partial class FrontendService : Yngdieng.Frontend.V3.Protos.FrontendService.FrontendServiceBase
+    public partial class FrontendService : FrontendProtos.FrontendService.FrontendServiceBase
     {
 
         private const int MaxPageSize = 50;
         private const int DefaultPageSize = 15;
 
-        public async override Task<ListWordListWordsResponse> ListWordListWords(ListWordListWordsRequest request,
-                                                   ServerCallContext context)
+        public async override Task<FrontendProtos.ListWordListWordsResponse> ListWordListWords(
+            FrontendProtos.ListWordListWordsRequest request,
+            ServerCallContext context)
         {
             if (string.IsNullOrEmpty(request.Parent))
             {
@@ -34,14 +35,14 @@ namespace ZingzeuOrg.Yngdieng.Web.Services.Frontend
                 .Skip(offset)
                 .Take(pageSize)
                 .ToListAsync();
-            var words = new List<Yngdieng.Frontend.V3.Protos.Word>();
+            var words = new List<FrontendProtos.Word>();
             var userPreference = UserPreferences.FromContext(context);
             var zhConverter = new ZhConverter(_openCc, userPreference.ZhConversionPreference);
             foreach (var wordId in wordIds)
             {
                 words.Add(await Words.GetWord(_indexHolder, _dbContext, zhConverter, ResourceNames.ToDocRef(wordId), Words.Mode.Snippet));
             }
-            return new ListWordListWordsResponse
+            return new FrontendProtos.ListWordListWordsResponse
             {
                 Words = { words },
                 NextPageToken = (offset + words.Count).ToString()

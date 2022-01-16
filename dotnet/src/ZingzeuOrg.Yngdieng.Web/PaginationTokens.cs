@@ -3,7 +3,7 @@ using Lucene.Net.Search;
 using Microsoft.AspNetCore.WebUtilities;
 using Yngdieng.Protos;
 
-namespace Yngdieng.Backend
+namespace ZingzeuOrg.Yngdieng.Web
 {
 
     public static class PaginationTokens

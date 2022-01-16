@@ -11,7 +11,7 @@ using ZingzeuOrg.Yngdieng.Web.HealthChecks;
 using Yngdieng.Protos;
 using ZingzeuOrg.Yngdieng.Web;
 
-namespace Yngdieng.Backend
+namespace ZingzeuOrg.Yngdieng.Web
 {
 
     public sealed class IndexLoaderBackgroundService : BackgroundService
