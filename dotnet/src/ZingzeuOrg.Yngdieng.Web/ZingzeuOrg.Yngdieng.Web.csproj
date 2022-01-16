@@ -9,6 +9,24 @@
   <ItemGroup>
     <PackageReference Include="Grpc.AspNetCore" Version="2.40.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="6.0.0" />
+      <PackageReference Include="Aliyun.OSS.SDK.NetCore" Version="2.13.0" />
+    <PackageReference Include="EFCore.NamingConventions" Version="1.1.1" />
+    <PackageReference Include="Grpc.AspNetCore" Version="2.40.0" />
+    <PackageReference Include="Grpc.AspNetCore.Server.Reflection" Version="2.40.0" />
+    <PackageReference Include="Grpc.AspNetCore.Web" Version="2.39.0" />
+    <PackageReference Include="LibHokchew.Shared" Version="0.3.4" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.20" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.20">
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <PrivateAssets>all</PrivateAssets>
+    </PackageReference>
+    <PackageReference Include="FSharp.Core" Version="5.0.2" />
+    <PackageReference Include="NAudio" Version="1.10.0" />
+    <PackageReference Include="NodaTime" Version="3.0.7" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.18" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.NodaTime" Version="3.1.18" />
+    <PackageReference Include="Xabe.FFmpeg" Version="4.4.1" />
+    <PackageReference Include="ZingzeuData.Shared" Version="1.9.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -18,9 +36,24 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\server\protos\Yngdieng.Protos.csproj" />
     <ProjectReference Include="..\..\..\server\common\Yngdieng.Common.csproj" />
+    <ProjectReference Include="..\..\..\server\Yngdieng.OpenCC\src\Yngdieng.OpenCC.csproj" />
     <ProjectReference Include="..\..\..\server\Yngdieng.Search.Common\Yngdieng.Search.Common.csproj" />
     <ProjectReference Include="..\ZingzeuOrg.Yngdieng.Shared\ZingzeuOrg.Yngdieng.Shared.csproj" />
     <ProjectReference Include="..\ZingzeuOrg.Yngdieng.AdminClient\ZingzeuOrg.Yngdieng.AdminClient.csproj" />
   </ItemGroup>
 
+<!--
+    Workaround for conflicting types ZingzeuData.Models.Explanation in both
+    Yngdieng.Protos.dll and ZingzeuData.Shared.dll.
+    See: https://github.com/NuGet/Samples/issues/39
+
+    The real solution is to have ZingzeuData.Shared reference Yngdieng.Protos.
+  -->
+  <Target Name="AddCustomAliases" BeforeTargets="FindReferenceAssembliesForReferences;ResolveReferences">
+    <ItemGroup>
+      <ReferencePath Condition="'%(FileName)' == 'ZingzeuData.Shared' AND '%(ReferencePath.NuGetPackageId)' == 'ZingzeuData.Shared'">
+        <Aliases>zingzeudata</Aliases>
+      </ReferencePath>
+    </ItemGroup>
+  </Target>
 </Project>
