@@ -1,12 +1,13 @@
+using Aliyun.OSS;
+using Microsoft.EntityFrameworkCore;
 using Yngdieng.OpenCC;
 using ZingzeuOrg.Yngdieng.Web;
 using ZingzeuOrg.Yngdieng.Web.Db;
 using ZingzeuOrg.Yngdieng.Web.HealthChecks;
 using ZingzeuOrg.Yngdieng.Web.Services;
-using ZingzeuOrg.Yngdieng.Web.Services.Frontend;
 using ZingzeuOrg.Yngdieng.Web.Services.Admin;
+using ZingzeuOrg.Yngdieng.Web.Services.Frontend;
 using ZingzeuOrg.Yngdieng.Web.TextToSpeech;
-using Microsoft.EntityFrameworkCore;
 
 CreateHostBuilder(args).Build().Run();
 
@@ -57,6 +58,13 @@ class Startup
                     _configuration.GetConnectionString("Postgres"), o => o.UseNodaTime())
                 .EnableSensitiveDataLogging()
         );
+        services.AddSingleton<OssClient>(service => {
+            var ossConfig = _configuration.GetSection("OssConfig");
+            return new OssClient(
+                accessKeyId: ossConfig["AccessKeyId"],
+                accessKeySecret: ossConfig["AccessKeySecret"],
+                endpoint: ossConfig["Endpoint"]);
+        });
     }
 
     public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

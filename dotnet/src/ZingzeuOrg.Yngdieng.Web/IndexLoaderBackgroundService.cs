@@ -1,6 +1,7 @@
 ﻿using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
+using Aliyun.OSS;
 using Lucene.Net.Index;
 using Lucene.Net.Search;
 using Lucene.Net.Store;
@@ -20,16 +21,19 @@ namespace ZingzeuOrg.Yngdieng.Web
         private readonly ILogger<IndexLoaderBackgroundService> logger;
         private readonly IIndexHolder indexHolder;
         private readonly IndexHealthCheck indexHealthCheck;
+        private readonly OssClient ossClient;
 
         public IndexLoaderBackgroundService(IConfiguration config,
                                             ILogger<IndexLoaderBackgroundService> logger,
                                             IIndexHolder indexHolder,
-                                            IndexHealthCheck indexHealthCheck)
+                                            IndexHealthCheck indexHealthCheck,
+                                            OssClient ossClient)
         {
             this.config = config;
             this.logger = logger;
             this.indexHolder = indexHolder;
             this.indexHealthCheck = indexHealthCheck;
+            this.ossClient = ossClient;
         }
 
         protected override Task ExecuteAsync(CancellationToken stoppingToken)
@@ -37,24 +41,57 @@ namespace ZingzeuOrg.Yngdieng.Web
             return Task.WhenAll(LoadYngdiengIndex(), LoadLuceneIndex());
         }
 
-        private Task LoadYngdiengIndex()
+        private async Task LoadYngdiengIndex()
         {
-            var indexFilePath = Path.GetFullPath(Path.Join(config["IndexPath"], "yngdieng_index.bin"));
-            logger.LogInformation($"Loading index from {indexFilePath}");
+            var indexPath = config["IndexPath"];
+            YngdiengIndex index;
+            if (config.GetValue<bool>("LoadIndexFromOss"))
+            {
+                index = await LoadYngdiengIndexFromOss();
+            }
+            else
+            {
+                var indexFilePath = Path.GetFullPath(Path.Join(config["IndexPath"], "yngdieng_index.bin"));
+                index = await LoadYngdiengIndexFromDisk(indexFilePath);
+            }
 
+            indexHolder.StoreIndex(index);
+            indexHealthCheck.IndexLoaded = true;
+            logger.LogInformation(
+                $"{index.HistoricalDocuments.Count} + {index.FengDocuments.Count} documents loaded.");
+        }
+
+        private Task<YngdiengIndex> LoadYngdiengIndexFromDisk(string indexFilePath)
+        {
+            logger.LogInformation($"Loading index from file: {indexFilePath}");
             using (var input = File.OpenRead(indexFilePath))
             {
                 var index = YngdiengIndex.Parser.ParseFrom(input);
-                indexHolder.StoreIndex(index);
-                indexHealthCheck.IndexLoaded = true;
-                logger.LogInformation(
-                    $"{index.HistoricalDocuments.Count} + {index.FengDocuments.Count} documents loaded.");
+                return Task.FromResult<YngdiengIndex>(index);
             }
-            return Task.CompletedTask;
+        }
+
+        private Task<YngdiengIndex> LoadYngdiengIndexFromOss()
+        {
+            var ossConfig = config.GetSection("OssConfig");
+            var bucketName = ossConfig.GetValue<string>("BucketName");
+            var accessKey = ossConfig.GetValue<string>("AccessKeyId");
+            logger.LogInformation($"Loading index from oss bucket: {bucketName}");
+            logger.LogInformation($"Accesskey: {accessKey}");
+            var metadata = ossClient.GetObjectMetadata(bucketName, "yngdieng_index.bin");
+            var etag = metadata.ETag;
+            var request = new GeneratePresignedUriRequest(bucketName, "yngdieng_index.bin", SignHttpMethod.Get);
+            var downloadUri = ossClient.GeneratePresignedUri(request);
+            using (var objectContent = ossClient.GetObject(downloadUri).Content)
+            {
+                return Task.FromResult<YngdiengIndex>(YngdiengIndex.Parser.ParseFrom(objectContent));
+
+            }
         }
 
         private Task LoadLuceneIndex()
         {
+            // TODO: make it work with OSS.
             var luceneIndexPath = Path.GetFullPath(Path.Join(config["IndexPath"], "lucene"));
             logger.LogInformation($"Loading Lucene index from {luceneIndexPath}");
 
