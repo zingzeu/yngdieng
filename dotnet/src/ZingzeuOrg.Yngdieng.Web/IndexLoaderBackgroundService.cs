@@ -76,16 +76,18 @@ namespace ZingzeuOrg.Yngdieng.Web
             var ossConfig = config.GetSection("OssConfig");
             var bucketName = ossConfig.GetValue<string>("BucketName");
             var accessKey = ossConfig.GetValue<string>("AccessKeyId");
-            logger.LogInformation($"Loading index from oss bucket: {bucketName}");
-            logger.LogInformation($"Accesskey: {accessKey}");
             var metadata = ossClient.GetObjectMetadata(bucketName, "yngdieng_index.bin");
+            logger.LogInformation($"Loading index from oss bucket: {bucketName}; ContentLength: {metadata.ContentLength}; ETag: {metadata.ETag}; LastModified: {metadata.LastModified}");
             var etag = metadata.ETag;
             var request = new GeneratePresignedUriRequest(bucketName, "yngdieng_index.bin", SignHttpMethod.Get);
             var downloadUri = ossClient.GeneratePresignedUri(request);
+            var watch = System.Diagnostics.Stopwatch.StartNew();
             using (var objectContent = ossClient.GetObject(downloadUri).Content)
             {
-                return Task.FromResult<YngdiengIndex>(YngdiengIndex.Parser.ParseFrom(objectContent));
-
+                var index = YngdiengIndex.Parser.ParseFrom(objectContent);
+                watch.Stop();
+                logger.LogInformation($"Loading index from oss took {watch.ElapsedMilliseconds}ms");
+                return Task.FromResult<YngdiengIndex>(index);
             }
         }
 
