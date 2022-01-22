@@ -1,9 +1,9 @@
 using System;
 using Xunit;
 using Yngdieng.Protos;
-using Yngdieng.Backend.TextToSpeech;
+using ZingzeuOrg.Yngdieng.Web.TextToSpeech;
 
-namespace Yngdieng.Backend.TextToSpeech.Tests
+namespace ZingzeuOrg.Yngdieng.Web.TextToSpeech.Tests
 {
     public class YngpingTtsUtilTest
     {

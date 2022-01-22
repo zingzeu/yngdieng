@@ -1,9 +1,9 @@
 using System;
 using Xunit;
 using Yngdieng.Protos;
-using Yngdieng.Backend.Services;
+using ZingzeuOrg.Yngdieng.Web.Services;
 
-namespace Yngdieng.Backend.Tests
+namespace ZingzeuOrg.Yngdieng.Web.Tests
 {
   public class QueryParserTest
   {
