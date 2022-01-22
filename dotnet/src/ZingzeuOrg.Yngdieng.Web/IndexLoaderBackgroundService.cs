@@ -1,16 +1,10 @@
-﻿using System.IO;
-using System.Threading;
-using System.Threading.Tasks;
-using Aliyun.OSS;
+﻿using Aliyun.OSS;
 using Lucene.Net.Index;
 using Lucene.Net.Search;
 using Lucene.Net.Store;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
 using ZingzeuOrg.Yngdieng.Web.HealthChecks;
 using Yngdieng.Protos;
-using ZingzeuOrg.Yngdieng.Web;
+using Directory = System.IO.Directory;
 
 namespace ZingzeuOrg.Yngdieng.Web
 {
@@ -22,6 +16,10 @@ namespace ZingzeuOrg.Yngdieng.Web
         private readonly IIndexHolder indexHolder;
         private readonly IndexHealthCheck indexHealthCheck;
         private readonly OssClient ossClient;
+        private readonly bool loadIndexFromOss;
+        private readonly string ossBucketName;
+
+        public readonly string ossAccessKey;
 
         public IndexLoaderBackgroundService(IConfiguration config,
                                             ILogger<IndexLoaderBackgroundService> logger,
@@ -34,18 +32,23 @@ namespace ZingzeuOrg.Yngdieng.Web
             this.indexHolder = indexHolder;
             this.indexHealthCheck = indexHealthCheck;
             this.ossClient = ossClient;
+            this.loadIndexFromOss = config.GetValue<bool>("LoadIndexFromOss");
+            var ossConfig = config.GetSection("OssConfig");
+            this.ossBucketName = ossConfig.GetValue<string>("BucketName");
+            this.ossAccessKey = ossConfig.GetValue<string>("AccessKeyId");
         }
 
-        protected override Task ExecuteAsync(CancellationToken stoppingToken)
+        protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            return Task.WhenAll(LoadYngdiengIndex(), LoadLuceneIndex());
+            await Task.WhenAll(LoadYngdiengIndex(), LoadLuceneIndex());
+            indexHealthCheck.IndexLoaded = true;
         }
 
         private async Task LoadYngdiengIndex()
         {
             var indexPath = config["IndexPath"];
             YngdiengIndex index;
-            if (config.GetValue<bool>("LoadIndexFromOss"))
+            if (loadIndexFromOss)
             {
                 index = await LoadYngdiengIndexFromOss();
             }
@@ -54,9 +57,8 @@ namespace ZingzeuOrg.Yngdieng.Web
                 var indexFilePath = Path.GetFullPath(Path.Join(config["IndexPath"], "yngdieng_index.bin"));
                 index = await LoadYngdiengIndexFromDisk(indexFilePath);
             }
-
             indexHolder.StoreIndex(index);
-            indexHealthCheck.IndexLoaded = true;
+
             logger.LogInformation(
                 $"{index.HistoricalDocuments.Count} + {index.FengDocuments.Count} documents loaded.");
         }
@@ -73,13 +75,10 @@ namespace ZingzeuOrg.Yngdieng.Web
 
         private Task<YngdiengIndex> LoadYngdiengIndexFromOss()
         {
-            var ossConfig = config.GetSection("OssConfig");
-            var bucketName = ossConfig.GetValue<string>("BucketName");
-            var accessKey = ossConfig.GetValue<string>("AccessKeyId");
-            var metadata = ossClient.GetObjectMetadata(bucketName, "yngdieng_index.bin");
-            logger.LogInformation($"Loading index from oss bucket: {bucketName}; ContentLength: {metadata.ContentLength}; ETag: {metadata.ETag}; LastModified: {metadata.LastModified}");
+            var metadata = ossClient.GetObjectMetadata(ossBucketName, "yngdieng_index.bin");
+            logger.LogInformation($"Loading index from oss bucket: {ossBucketName}; ContentLength: {metadata.ContentLength}; ETag: {metadata.ETag}; LastModified: {metadata.LastModified}");
             var etag = metadata.ETag;
-            var request = new GeneratePresignedUriRequest(bucketName, "yngdieng_index.bin", SignHttpMethod.Get);
+            var request = new GeneratePresignedUriRequest(ossBucketName, "yngdieng_index.bin", SignHttpMethod.Get);
             var downloadUri = ossClient.GeneratePresignedUri(request);
             var watch = System.Diagnostics.Stopwatch.StartNew();
             using (var objectContent = ossClient.GetObject(downloadUri).Content)
@@ -91,13 +90,63 @@ namespace ZingzeuOrg.Yngdieng.Web
             }
         }
 
-        private Task LoadLuceneIndex()
+        private async Task LoadLuceneIndex()
         {
-            // TODO: make it work with OSS.
             var luceneIndexPath = Path.GetFullPath(Path.Join(config["IndexPath"], "lucene"));
-            logger.LogInformation($"Loading Lucene index from {luceneIndexPath}");
+            if (loadIndexFromOss)
+            {
+                var luceneTmpPath = Path.Join(Path.GetTempPath(), "yngdieng_lucene");
+                await DownloadLuceneIndex(luceneTmpPath);
+                luceneIndexPath = Path.Join(luceneTmpPath,"lucene");
+            }
+            await LoadLuceneIndexFromDisk(luceneIndexPath);
+        }
 
-            var reader = DirectoryReader.Open(FSDirectory.Open(new DirectoryInfo(luceneIndexPath)));
+        private async Task DownloadLuceneIndex(string destDir)
+        {
+            var objectListing = ossClient.ListObjects(new ListObjectsRequest(ossBucketName)
+            {
+                Prefix = "lucene/"
+            });
+            logger.LogInformation("Found {0} objects in {1}", objectListing.ObjectSummaries.Count(), $"{ossBucketName}/lucene");
+            foreach (var objectSummary in objectListing.ObjectSummaries)
+            {
+                if (objectSummary.Size == 0 && objectSummary.Key.EndsWith("/")) {
+                    logger.LogWarning($"Skipping directory object {objectSummary.Key}");
+                    continue;
+                }
+                await CopyObjectToLocal(objectSummary.Key, destDir);
+            }
+        }
+
+        private async Task CopyObjectToLocal(string objectKey, string destDir)
+        {
+            logger.LogInformation($"Downloading oss://{ossBucketName}/{objectKey}");
+            var request = new GeneratePresignedUriRequest(ossBucketName, objectKey, SignHttpMethod.Get);
+            var downloadUri = ossClient.GeneratePresignedUri(request);
+            var watch = System.Diagnostics.Stopwatch.StartNew();
+            var destFilePath = Path.Join(destDir, objectKey);
+            var parentDir = Path.GetDirectoryName(destFilePath);
+             if (!Directory.Exists(parentDir))
+            {
+                logger.LogInformation("Creating dir: {0}", parentDir);
+                Directory.CreateDirectory(parentDir);
+            }
+            Directory.CreateDirectory(parentDir);
+            using (var objectContent = ossClient.GetObject(downloadUri).Content)
+            using (var fileStream = new FileStream(destFilePath, FileMode.OpenOrCreate))
+            {
+                await objectContent.CopyToAsync(fileStream);
+                watch.Stop();
+                logger.LogInformation($"Downloading oss://{ossBucketName}/{objectKey} took {watch.ElapsedMilliseconds}ms");
+            }
+        }
+
+        private Task LoadLuceneIndexFromDisk(string localLucenePath)
+        {
+            logger.LogInformation($"Loading Lucene index from {localLucenePath}");
+
+            var reader = DirectoryReader.Open(FSDirectory.Open(new DirectoryInfo(localLucenePath)));
             var searcher = new IndexSearcher(reader);
             logger.LogInformation($"{reader.NumDocs} docs in lucene index");
             indexHolder.LuceneIndexSearcher = searcher;
