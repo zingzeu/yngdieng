@@ -64,6 +64,7 @@ class Startup
         );
         services.AddSingleton<OssClient>(service => {
             var ossConfig = _configuration.GetSection("OssConfig");
+            // TODO: get access key from HTTP context.
             return new OssClient(
                 accessKeyId: ossConfig["AccessKeyId"],
                 accessKeySecret: ossConfig["AccessKeySecret"],

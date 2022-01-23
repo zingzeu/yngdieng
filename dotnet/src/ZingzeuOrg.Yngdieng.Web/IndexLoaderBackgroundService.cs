@@ -19,8 +19,6 @@ namespace ZingzeuOrg.Yngdieng.Web
         private readonly bool loadIndexFromOss;
         private readonly string ossBucketName;
 
-        public readonly string ossAccessKey;
-
         public IndexLoaderBackgroundService(IConfiguration config,
                                             ILogger<IndexLoaderBackgroundService> logger,
                                             IIndexHolder indexHolder,
@@ -35,7 +33,6 @@ namespace ZingzeuOrg.Yngdieng.Web
             this.loadIndexFromOss = config.GetValue<bool>("LoadIndexFromOss");
             var ossConfig = config.GetSection("OssConfig");
             this.ossBucketName = ossConfig.GetValue<string>("BucketName");
-            this.ossAccessKey = ossConfig.GetValue<string>("AccessKeyId");
         }
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
@@ -75,7 +72,7 @@ namespace ZingzeuOrg.Yngdieng.Web
 
         private async Task<YngdiengIndex> LoadYngdiengIndexFromOss()
         {
-            var metadata = ossClient.GetObjectMetadata(ossBucketName, "yngdieng_index.bin");
+            var metadata = await Task.Run(()=>ossClient.GetObjectMetadata(ossBucketName, "yngdieng_index.bin"));
             logger.LogInformation($"Loading index from oss bucket: {ossBucketName}; ContentLength: {metadata.ContentLength}; ETag: {metadata.ETag}; LastModified: {metadata.LastModified}");
             var etag = metadata.ETag;
             var request = new GeneratePresignedUriRequest(ossBucketName, "yngdieng_index.bin", SignHttpMethod.Get);
