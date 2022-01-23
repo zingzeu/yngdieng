@@ -17,7 +17,7 @@ services:
         runtime: custom-container
         caPort: 80
         customContainerConfig:
-          image: registry.cn-hangzhou.aliyuncs.com/zingzeu/yngdieng-mono:ci-21
+          image: registry.cn-hangzhou.aliyuncs.com/zingzeu/yngdieng-mono:ci-28
           accelerationType: Default
         instanceConcurrency: 50
       triggers:
