@@ -1,5 +1,9 @@
+using System.Diagnostics;
+using System.Reflection;
 using Aliyun.OSS;
+using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.EntityFrameworkCore;
+using NodaTime;
 using Yngdieng.OpenCC;
 using ZingzeuOrg.Yngdieng.Web;
 using ZingzeuOrg.Yngdieng.Web.Db;
@@ -120,6 +124,30 @@ class Startup
             endpoints.MapControllers();
             endpoints.MapFallbackToFile("/{*path:nonfile}", "/index.html");
             endpoints.MapFallbackToFile("/admin/{*path:nonfile}", "/admin/index.html");
+
+            endpoints.MapGet("/debugz", async context =>
+                {
+                    var headers = context.Request.Headers.Select(kvPair => $"{kvPair.Key}: {kvPair.Value}");
+                    var headersStr = string.Join("\n", headers);
+                    var version = typeof(Startup)
+                        .Assembly
+                        .GetCustomAttributes<AssemblyInformationalVersionAttribute>()
+                        .FirstOrDefault()
+                        ?.InformationalVersion;
+
+                    context.Response.ContentType = "text/plain";
+                    var chinaTime = Instant.FromDateTimeOffset(System.DateTime.UtcNow).InZone(DateTimeZoneProviders.Tzdb["Asia/Shanghai"]);
+                    var uptime = DateTime.Now - Process.GetCurrentProcess().StartTime;
+                    await context.Response.WriteAsync(
+                        $"Version: {version}\n" +
+                        $"UpTime: {uptime.TotalSeconds}s\n" +
+                        $"UtcNow: {System.DateTime.UtcNow}\n" +
+                        $"ChinaTime: {chinaTime.Date} {chinaTime.Hour}:{chinaTime.Minute}\n" +
+                        $"Path: {context.Request.Path}\n" +
+                        $"IsHttps: {context.Request.IsHttps}\n" +
+                        $"Url: {context.Request.GetDisplayUrl()}\n\n" +
+                        $"Headers\n{headersStr}");
+                });
         });
 
     }

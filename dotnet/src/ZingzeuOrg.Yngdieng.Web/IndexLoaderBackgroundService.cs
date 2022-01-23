@@ -73,7 +73,7 @@ namespace ZingzeuOrg.Yngdieng.Web
             }
         }
 
-        private Task<YngdiengIndex> LoadYngdiengIndexFromOss()
+        private async Task<YngdiengIndex> LoadYngdiengIndexFromOss()
         {
             var metadata = ossClient.GetObjectMetadata(ossBucketName, "yngdieng_index.bin");
             logger.LogInformation($"Loading index from oss bucket: {ossBucketName}; ContentLength: {metadata.ContentLength}; ETag: {metadata.ETag}; LastModified: {metadata.LastModified}");
@@ -82,11 +82,13 @@ namespace ZingzeuOrg.Yngdieng.Web
             var downloadUri = ossClient.GeneratePresignedUri(request);
             var watch = System.Diagnostics.Stopwatch.StartNew();
             using (var objectContent = ossClient.GetObject(downloadUri).Content)
+            using (var stream = new MemoryStream())
             {
-                var index = YngdiengIndex.Parser.ParseFrom(objectContent);
+                await objectContent.CopyToAsync(stream);
+                var index = YngdiengIndex.Parser.ParseFrom(stream);
                 watch.Stop();
                 logger.LogInformation($"Loading index from oss took {watch.ElapsedMilliseconds}ms");
-                return Task.FromResult<YngdiengIndex>(index);
+                return index;
             }
         }
 
