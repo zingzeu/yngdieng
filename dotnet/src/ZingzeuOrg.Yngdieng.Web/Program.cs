@@ -1,4 +1,4 @@
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Reflection;
 using Aliyun.OSS;
 using Microsoft.AspNetCore.Http.Extensions;
@@ -15,6 +15,7 @@ using ZingzeuOrg.Yngdieng.Web.TextToSpeech;
 
 CreateHostBuilder(args).Build().Run();
 
+
 static IHostBuilder CreateHostBuilder(string[] args) =>
        Host.CreateDefaultBuilder(args)
            .ConfigureWebHostDefaults(webBuilder =>
@@ -23,6 +24,8 @@ static IHostBuilder CreateHostBuilder(string[] args) =>
            });
 class Startup
 {
+public static readonly List<String> ErrorLogs = new List<string>();
+
     private readonly IConfiguration _configuration;
 
     public Startup(IConfiguration configuration)
@@ -139,6 +142,7 @@ class Startup
                     context.Response.ContentType = "text/plain";
                     var chinaTime = Instant.FromDateTimeOffset(System.DateTime.UtcNow).InZone(DateTimeZoneProviders.Tzdb["Asia/Shanghai"]);
                     var uptime = DateTime.Now - Process.GetCurrentProcess().StartTime;
+                    var errors = string.Join("\n- ", ErrorLogs);
                     await context.Response.WriteAsync(
                         $"Version: {version}\n" +
                         $"UpTime: {uptime.TotalSeconds}s\n" +
@@ -147,7 +151,8 @@ class Startup
                         $"Path: {context.Request.Path}\n" +
                         $"IsHttps: {context.Request.IsHttps}\n" +
                         $"Url: {context.Request.GetDisplayUrl()}\n\n" +
-                        $"Headers\n{headersStr}");
+                        $"Headers\n{headersStr}"+
+                        $"Errors:\n{errors}");
                 });
         });
 

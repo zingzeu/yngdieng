@@ -42,6 +42,7 @@ namespace ZingzeuOrg.Yngdieng.Web
                 indexHealthCheck.IndexLoaded = true;
             } catch (Exception e) {
                 logger.LogCritical(e, "Error loading indexes");
+                Startup.ErrorLogs.Add($"{e.Message}\n\n{e.StackTrace}");
                 // TODO: retry
             } 
         }
