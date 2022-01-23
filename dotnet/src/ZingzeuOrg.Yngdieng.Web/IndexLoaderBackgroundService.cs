@@ -37,8 +37,13 @@ namespace ZingzeuOrg.Yngdieng.Web
 
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
-            await Task.WhenAll(LoadYngdiengIndex(), LoadLuceneIndex());
-            indexHealthCheck.IndexLoaded = true;
+            try {
+                await Task.WhenAll(LoadYngdiengIndex(), LoadLuceneIndex());
+                indexHealthCheck.IndexLoaded = true;
+            } catch (Exception e) {
+                logger.LogCritical(e, "Error loading indexes");
+                // TODO: retry
+            } 
         }
 
         private async Task LoadYngdiengIndex()
