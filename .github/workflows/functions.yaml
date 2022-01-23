@@ -55,4 +55,4 @@ jobs:
       - run: s config add --AccountID ${{secrets.ALIYUN_ORG_ACCOUNT_ID}} --AccessKeyID ${{secrets.ALIYUN_ACCESSKEY_ID}} --AccessKeySecret ${{secrets.ALIYUN_ACCESSKEY_SECRET}} -a default
       - run: |
           pushd dotnet/src/ZingzeuOrg.Yngdieng.Web && \
-          s deploy
+          s deploy --use-remote
