@@ -1,6 +1,5 @@
 edition: 1.0.0
 name: yngdieng
-access: radium@zingzeu
 
 services:
   qa-yngdieng: # 服务名称。
