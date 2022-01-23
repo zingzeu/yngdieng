@@ -35,6 +35,8 @@ jobs:
           context: ./
           file: ./dotnet/src/ZingzeuOrg.Yngdieng.Web/Dockerfile
           push: true
+          build-args: |
+            VERSION_TAG=ci-g$(Build.BuildNumber)+$(Build.SourceVersion)
           tags: |
             ghcr.io/mindonglab/yngdieng-mono:ci-${{ github.run_number }}
             ghcr.io/mindonglab/yngdieng-mono:latest
