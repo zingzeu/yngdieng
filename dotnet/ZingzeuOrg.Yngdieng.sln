@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZingzeuOrg.Yngdieng.AdminCl
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZingzeuOrg.Yngdieng.Shared", "src\ZingzeuOrg.Yngdieng.Shared\ZingzeuOrg.Yngdieng.Shared.csproj", "{E8DB5072-7395-45AB-BA12-73535323FC69}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{DCEDCACC-1A29-42F9-A8A4-B99C90765CC8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ZingzeuOrg.Yngdieng.Web.Tests", "tests\ZingzeuOrg.Yngdieng.Web.Tests\ZingzeuOrg.Yngdieng.Web.Tests.csproj", "{20E0B77B-F2A5-4A24-8575-9F53260A34A6}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -32,10 +36,15 @@ Global
 		{E8DB5072-7395-45AB-BA12-73535323FC69}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E8DB5072-7395-45AB-BA12-73535323FC69}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E8DB5072-7395-45AB-BA12-73535323FC69}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20E0B77B-F2A5-4A24-8575-9F53260A34A6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20E0B77B-F2A5-4A24-8575-9F53260A34A6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20E0B77B-F2A5-4A24-8575-9F53260A34A6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20E0B77B-F2A5-4A24-8575-9F53260A34A6}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{514B7449-F070-436E-B7CB-EA5829C8AF0A} = {BA33D31A-55D7-4700-B001-E1ABACACCAA9}
 		{93355B91-9913-4D6D-8B1F-2BB1D4488984} = {BA33D31A-55D7-4700-B001-E1ABACACCAA9}
 		{E8DB5072-7395-45AB-BA12-73535323FC69} = {BA33D31A-55D7-4700-B001-E1ABACACCAA9}
+		{20E0B77B-F2A5-4A24-8575-9F53260A34A6} = {DCEDCACC-1A29-42F9-A8A4-B99C90765CC8}
 	EndGlobalSection
 EndGlobal

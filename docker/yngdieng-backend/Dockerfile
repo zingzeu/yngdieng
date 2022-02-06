@@ -1,10 +1,18 @@
-# context: /<workspace>/server
-FROM mcr.microsoft.com/dotnet/core/sdk:3.1 as builder
-RUN mkdir /build
-RUN mkdir /out
-WORKDIR /build
-COPY . /build/
-RUN dotnet publish -o /out server/backend/Yngdieng.Backend.csproj
+# context: /<workspace>
+FROM mcr.microsoft.com/dotnet/sdk:6.0 as builder
+ARG VERSION_TAG=0.0.0-placeholder
+
+RUN mkdir /build && mkdir /publish
+
+# context REPO
+COPY . /build
+
+WORKDIR /build/server
+RUN dotnet restore
+WORKDIR /build/dotnet
+RUN dotnet restore
+WORKDIR /build/dotnet/src/ZingzeuOrg.Yngdieng.Web
+RUN dotnet publish /p:InformationalVersion="$VERSION_TAG" -c Release -o /publish
 
 # This image does not exist in Docker Hub. It needs to be loaded into the
 # local Docker daemon with:
@@ -12,25 +20,17 @@ RUN dotnet publish -o /out server/backend/Yngdieng.Backend.csproj
 FROM bazel/assets:tts_audio_wav_image AS audio_files
 # Do nothing
 
-# ztl8702/yngdieng-backend
-# Build runtime image
-FROM mcr.microsoft.com/dotnet/core/aspnet:3.1
-
+FROM mcr.microsoft.com/dotnet/aspnet:6.0-alpine
 # Install ffmpeg
-RUN apt-get update && apt-get install -y ffmpeg
-
+RUN apk add  --no-cache ffmpeg
 # Copy TTS source files
 RUN mkdir -p /data/tts_audio_wav
 COPY --from=audio_files /*.wav /data/tts_audio_wav/
-
 # Copy server binary
+RUN mkdir /app
+COPY --from=builder /publish /app
 WORKDIR /app
-COPY --from=builder /out .
-ENTRYPOINT ["dotnet", "Yngdieng.Backend.dll", \
-    "--IndexPath=/data/hotswap/", \
-    "--TtsAudioFolder=/data/tts_audio_wav/"]
+ENV ASPNETCORE_FORWARDEDHEADERS_ENABLED true
+ENV Logging__Console__FormatterName ''
+ENTRYPOINT ["dotnet", "ZingzeuOrg.Yngdieng.Web.dll"]
 
-HEALTHCHECK --start-period=10s \
-    --interval=30s \
-    --timeout=10s \
-    CMD curl --http2-prior-knowledge --fail http://localhost:5001/healthz || exit 1

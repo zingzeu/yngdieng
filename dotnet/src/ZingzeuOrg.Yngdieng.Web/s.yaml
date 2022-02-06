@@ -1,6 +1,5 @@
 edition: 1.0.0
 name: yngdieng
-access: radium@zingzeu
 
 services:
   qa-yngdieng: # 服务名称。
@@ -18,7 +17,7 @@ services:
         runtime: custom-container
         caPort: 80
         customContainerConfig:
-          image: registry.cn-hangzhou.aliyuncs.com/zingzeu/yngdieng-mono:ci-9
+          image: registry.cn-hangzhou.aliyuncs.com/zingzeu/yngdieng-mono:ci-32
           accelerationType: Default
         instanceConcurrency: 50
       triggers:

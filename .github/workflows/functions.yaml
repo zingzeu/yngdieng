@@ -35,10 +35,25 @@ jobs:
           context: ./
           file: ./dotnet/src/ZingzeuOrg.Yngdieng.Web/Dockerfile
           push: true
+          build-args: |
+            VERSION_TAG=ci-g$(Build.BuildNumber)+$(Build.SourceVersion)
           tags: |
             ghcr.io/mindonglab/yngdieng-mono:ci-${{ github.run_number }}
             ghcr.io/mindonglab/yngdieng-mono:latest
             registry.cn-hangzhou.aliyuncs.com/zingzeu/yngdieng-mono:ci-${{ github.run_number }}
-  #deploy_qa:
-  #  steps:
-  # TODO: deploy_prod
+  
+  deploy_qa:
+    name: DeployToQa
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 12
+          registry-url: https://registry.npmjs.org/
+      - run: npm install -g @serverless-devs/s
+      - run: s config add --AccountID ${{secrets.ALIYUN_ORG_ACCOUNT_ID}} --AccessKeyID ${{secrets.ALIYUN_ACCESSKEY_ID}} --AccessKeySecret ${{secrets.ALIYUN_ACCESSKEY_SECRET}} -a default
+      - run: |
+          pushd dotnet/src/ZingzeuOrg.Yngdieng.Web && \
+          s deploy --use-remote
