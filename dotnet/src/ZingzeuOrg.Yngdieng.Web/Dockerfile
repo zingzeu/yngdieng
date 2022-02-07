@@ -1,11 +1,18 @@
 FROM mcr.microsoft.com/dotnet/sdk:6.0 as builder
 ARG VERSION_TAG=0.0.0-placeholder
+ARG NUGET_REGISTRY_USERNAME=user
+ARG NUGET_REGISTRY_PASSWORD=password
 
 RUN mkdir /build && mkdir /publish
 
 # context REPO
 COPY . /build
-
+# Setup private registry. Some NuGet packages we use are not public.
+RUN dotnet nuget add source \
+    --username "$NUGET_REGISTRY_USERNAME" \
+    --password "$NUGET_REGISTRY_PASSWORD" \
+    --store-password-in-clear-text \
+    --name github "https://nuget.pkg.github.com/zingzeu/index.json"
 WORKDIR /build/server
 RUN dotnet restore
 WORKDIR /build/dotnet

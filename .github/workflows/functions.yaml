@@ -37,6 +37,8 @@ jobs:
           push: true
           build-args: |
             VERSION_TAG=ci-g$(Build.BuildNumber)+$(Build.SourceVersion)
+            NUGET_REGISTRY_USERNAME=${{ github.actor }}
+            NUGET_REGISTRY_PASSWORD=${{ secrets.GITHUB_TOKEN }}
           tags: |
             ghcr.io/mindonglab/yngdieng-mono:ci-${{ github.run_number }}
             ghcr.io/mindonglab/yngdieng-mono:latest
