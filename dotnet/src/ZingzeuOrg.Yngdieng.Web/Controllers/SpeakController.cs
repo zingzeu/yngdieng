@@ -6,6 +6,7 @@ using Yngdieng.Common;
 using Yngdieng.Protos;
 using ZingzeuOrg.Yngdieng.Web.Db;
 using ZingzeuOrg.Yngdieng.Web.Services.Frontend;
+using ZingzeuOrg.Corpus.Protos.Internal.V1;
 using static ZingzeuOrg.Corpus.Protos.Internal.V1.CorpusService;
 
 namespace ZingzeuOrg.Yngdieng.Web.Controllers;
@@ -33,17 +34,10 @@ public sealed class SpeakController : Controller
         _indexHolder = indexHolder;
     }
 
-
-    [HttpGet]
-    [Route("speak/{wordName}/refresh")]
-    public async Task<IActionResult> RefreshCorpusDataForWord(string wordName)
-    { }
-
     [Route("speak/{wordName}")]
     public async Task<IActionResult> SpeakWord(string wordName)
     {
         var docId = ResourceNames.ToDocId(wordName);
-
         DocRef docRef;
         try
         {
@@ -57,27 +51,102 @@ public sealed class SpeakController : Controller
         if (!string.IsNullOrEmpty(docRef.ZingzeuId))
         {
             var wordId = int.Parse(docRef.ZingzeuId, NumberStyles.HexNumber);
-            var word = await _dbContext.Words.Where(w => w.WordId == wordId).SingleOrDefaultAsync();
-            // TODO: if not found, default to tts
-            if (word.PreferredCorpusUtteranceId == null)
+            var maybeUtterancePreviewUrl = await GetUtteranceFromCorpus(wordId);
+            if (!string.IsNullOrEmpty(maybeUtterancePreviewUrl))
             {
-                var res = await _corpusService.GetBestUtteranceForWordAsync(new GetBestUtteranceForWordRequest
-                {
-                    wordId = docRef.ZingzeuId
-                });
-
+                return RedirectPermanent(maybeUtterancePreviewUrl!);
             }
-            word.PreferredCorpusUtteranceId
         }
 
+        var preferredTtsUrl =
+            (await Words.GetWord(_indexHolder, _dbContext, new NoOpZhConverter(), docRef, Words.Mode.Snippet))
+                 .Pronunciations
+                 .FirstOrDefault()
+                 ?.Audio
+                 .RemoteUrls
+                 .RemoteUrls_
+                 .FirstOrDefault();
+        if (preferredTtsUrl == null)
+        {
+            return NotFound();
+        }
+        return RedirectPermanent(preferredTtsUrl!);
+    }
 
-        // var preferredSandhiYngping = 
-        //     (await Words.GetWord(_indexHolder, _dbContext, new NoOpZhConverter(), docRef))
-        //         .Pronunciations.First;
-        // if (word == null)
-        // {
-        //     return NotFound();
-        // }
-        // word.
+    [HttpGet]
+    [Route("speak/{wordName}/refresh")]
+    public async Task<IActionResult> RefreshCorpusDataForWord(string wordName)
+    {
+        var docId = ResourceNames.ToDocId(wordName);
+        DocRef docRef;
+        try
+        {
+            docRef = DocRefs.Decode(docId);
+        }
+        catch (Exception e)
+        {
+            return BadRequest($"{docId} is invalid");
+        }
+
+        if (string.IsNullOrEmpty(docRef.ZingzeuId))
+        {
+            return NotFound();
+        }
+
+        var wordId = int.Parse(docRef.ZingzeuId, NumberStyles.HexNumber);
+        var word = await _dbContext.Words.Where(w => w.WordId == wordId).SingleOrDefaultAsync();
+        if (word == null)
+        {
+            return NotFound();
+        }
+        await FetchAndStorePreferredCorpusUtterance(word);
+        return Ok();
+    }
+
+    private async Task<string?> GetUtteranceFromCorpus(int dbWordId)
+    {
+        var word = await _dbContext.Words.Where(w => w.WordId == dbWordId).SingleOrDefaultAsync();
+        if (word == null)
+        {
+            return null;
+        }
+        if (word.PreferredCorpusUtteranceId == null)
+        {
+            try
+            {
+                await FetchAndStorePreferredCorpusUtterance(word);
+            }
+            catch (Exception e)
+            {
+                _logger.LogError(e, "Error trying to fetch utterance from corpus for {0}, falling back to TTS", docRef.ZingzeuId);
+            }
+        }
+        if (string.IsNullOrEmpty(word.PreferredCorpusUtterancePreviewUrl))
+        {
+            return null;
+        }
+        return word.PreferredCorpusUtterancePreviewUrl;
+    }
+
+    private async Task FetchAndStorePreferredCorpusUtterance(Word word)
+    {
+        var zingzeuIdHex = ResourceNames.ToZingzeuIdHex(word.WordId);
+        var res = await _corpusService.GetBestUtteranceForWordAsync(
+            new GetBestUtteranceForWordRequest
+            {
+                ZingzeuId = zingzeuIdHex
+            });
+        _logger.LogInformation("Fetched utterance for {0}: {1}", zingzeuIdHex, res.Utterance?.Name ?? "N/A");
+        if (!string.IsNullOrEmpty(res.Utterance?.PreviewUrl))
+        {
+            word.PreferredCorpusUtteranceId = res.Utterance.Name;
+            word.PreferredCorpusUtterancePreviewUrl = res.Utterance.PreviewUrl;
+        }
+        else
+        {
+            word.PreferredCorpusUtteranceId = string.Empty;
+            word.PreferredCorpusUtterancePreviewUrl = string.Empty;
+        }
+        await _dbContext.SaveChangesAsync();
     }
 }
