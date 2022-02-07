@@ -52,7 +52,7 @@ namespace ZingzeuOrg.Yngdieng.Web.Services
                 results = searcher.SearchAfter(lastScoreDoc, query, userPreference.ShowSourcelessSearchResults ? null : FilterSourcelessDocs, desiredPageSize + 1);
             }
 
-            var zhConverter = new ZhConverter(_openCc, userPreference.ZhConversionPreference);
+            var zhConverter = new OpenCcZhConverter(_openCc, userPreference.ZhConversionPreference);
             var response = new YngdiengProtos.SearchV2Response();
             var isEndOfResults = results.ScoreDocs.Length < desiredPageSize + 1;
             if (isEndOfResults)

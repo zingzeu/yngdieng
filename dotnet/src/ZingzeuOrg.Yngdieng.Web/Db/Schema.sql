@@ -248,3 +248,14 @@ VALUES ('20211009022239_FengCategories', '6.0.1');
 
 COMMIT;
 
+START TRANSACTION;
+
+ALTER TABLE words ADD preferred_corpus_utterance_id text NULL;
+
+ALTER TABLE words ADD preferred_corpus_utterance_preview_url text NULL;
+
+INSERT INTO "__EFMigrationsHistory" (migration_id, product_version)
+VALUES ('20220207085227_CorpusUtterance', '6.0.1');
+
+COMMIT;
+

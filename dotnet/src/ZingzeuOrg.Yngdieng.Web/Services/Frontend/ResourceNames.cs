@@ -22,12 +22,16 @@ namespace ZingzeuOrg.Yngdieng.Web.Services.Frontend
             return (string)outs["word"];
         }
 
-        public static DocRef ToDocRef(int wordId)
+        public static DocRef ToDocRef(int dbWordId)
         {
             return new DocRef
             {
-                ZingzeuId = string.Format("{0:X}", wordId)
+                ZingzeuId = ToZingzeuIdHex(dbWordId)
             };
+        }
+
+        public static string ToZingzeuIdHex(int dbWordId) {
+            return string.Format("{0:X}", dbWordId);
         }
 
         public static string ToWordName(DocRef docRef)
