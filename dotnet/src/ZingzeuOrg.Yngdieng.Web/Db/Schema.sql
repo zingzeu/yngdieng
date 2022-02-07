@@ -248,3 +248,20 @@ VALUES ('20211009022239_FengCategories', '6.0.1');
 
 COMMIT;
 
+START TRANSACTION;
+
+ALTER TABLE words ADD preferred_corpus_utterance_id text NULL;
+
+ALTER TABLE words ADD preferred_corpus_utterance_preview_url text NULL;
+
+ALTER TABLE word_lists ALTER COLUMN update_time TYPE timestamp with time zone;
+
+ALTER TABLE word_lists ALTER COLUMN creation_time TYPE timestamp with time zone;
+
+ALTER TABLE audio_clips ALTER COLUMN creation_time TYPE timestamp with time zone;
+
+INSERT INTO "__EFMigrationsHistory" (migration_id, product_version)
+VALUES ('20220207083850_CorpusUtterance', '6.0.1');
+
+COMMIT;
+
