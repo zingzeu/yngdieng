@@ -30,6 +30,7 @@ public static readonly List<String> ErrorLogs = new List<string>();
 
     public Startup(IConfiguration configuration)
     {
+        AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
         _configuration = configuration;
     }
     public void ConfigureServices(IServiceCollection services)
