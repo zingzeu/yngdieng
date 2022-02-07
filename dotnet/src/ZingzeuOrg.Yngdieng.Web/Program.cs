@@ -32,6 +32,7 @@ class Startup
 
     public Startup(IConfiguration configuration)
     {
+        AppContext.SetSwitch("Npgsql.EnableLegacyTimestampBehavior", true);
         _configuration = configuration;
     }
     public void ConfigureServices(IServiceCollection services)
