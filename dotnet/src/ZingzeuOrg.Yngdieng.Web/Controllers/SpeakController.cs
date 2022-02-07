@@ -37,7 +37,7 @@ public sealed class SpeakController : Controller
     [Route("speak/{wordName}")]
     public async Task<IActionResult> SpeakWord(string wordName)
     {
-        var docId = ResourceNames.ToDocId(wordName);
+        var docId = ResourceNames.ToDocId("words/"+wordName);
         DocRef docRef;
         try
         {
@@ -77,7 +77,7 @@ public sealed class SpeakController : Controller
     [Route("speak/{wordName}/refresh")]
     public async Task<IActionResult> RefreshCorpusDataForWord(string wordName)
     {
-        var docId = ResourceNames.ToDocId(wordName);
+        var docId = ResourceNames.ToDocId("words/"+wordName);
         DocRef docRef;
         try
         {
