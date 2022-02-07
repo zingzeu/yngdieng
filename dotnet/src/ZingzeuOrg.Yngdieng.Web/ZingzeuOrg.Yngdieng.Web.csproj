@@ -5,6 +5,13 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>04772c89-8966-4056-9765-4e17fe69a050</UserSecretsId>
+    <!-- Lucene.NET creates custom culture.
+         .NET 6 default behavior prevents that. 
+          https://docs.microsoft.com/en-us/dotnet/core/compatibility/globalization/6.0/culture-creation-invariant-mode 
+         
+         More context: https://github.com/MindongLab/yngdieng/pull/1504/#issuecomment-1030848225
+    -->
+    <PredefinedCulturesOnly>false</PredefinedCulturesOnly>
   </PropertyGroup>
 
   <ItemGroup>
