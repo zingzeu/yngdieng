@@ -24,7 +24,7 @@ namespace ZingzeuOrg.Yngdieng.Web.Db
                         from word_audio_clips
                         join audio_clips on audio_clips.audio_clip_id = word_audio_clips.audio_clip_id
                         join speakers on speakers.speaker_id = audio_clips.speaker_id
-                        where word_id ={0};
+                        where word_id ={0}
                         ", wordId);
         }
 
@@ -36,7 +36,7 @@ namespace ZingzeuOrg.Yngdieng.Web.Db
                         from word_lists
                         join word_list_words on word_list_words.word_list_id = word_lists.word_list_id
                         where word_list_words.word_id ={0}
-                        order by word_lists.word_list_id;
+                        order by word_lists.word_list_id
                         ", wordId);
         }
     }
