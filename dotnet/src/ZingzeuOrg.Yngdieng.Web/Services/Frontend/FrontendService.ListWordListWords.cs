@@ -37,7 +37,7 @@ namespace ZingzeuOrg.Yngdieng.Web.Services.Frontend
                 .ToListAsync();
             var words = new List<FrontendProtos.Word>();
             var userPreference = UserPreferences.FromContext(context);
-            var zhConverter = new ZhConverter(_openCc, userPreference.ZhConversionPreference);
+            var zhConverter = new OpenCcZhConverter(_openCc, userPreference.ZhConversionPreference);
             foreach (var wordId in wordIds)
             {
                 words.Add(await Words.GetWord(_indexHolder, _dbContext, zhConverter, ResourceNames.ToDocRef(wordId), Words.Mode.Snippet));

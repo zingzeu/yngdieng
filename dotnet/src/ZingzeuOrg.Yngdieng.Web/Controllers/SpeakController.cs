@@ -118,7 +118,10 @@ public sealed class SpeakController : Controller
             }
             catch (Exception e)
             {
-                _logger.LogError(e, "Error trying to fetch utterance from corpus for {0}, falling back to TTS", docRef.ZingzeuId);
+                _logger.LogError(e,
+                     "Error trying to fetch utterance from corpus for {0}, falling back to TTS",
+                     ResourceNames.ToZingzeuIdHex(dbWordId));
+                return null;
             }
         }
         if (string.IsNullOrEmpty(word.PreferredCorpusUtterancePreviewUrl))
