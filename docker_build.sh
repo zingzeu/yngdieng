@@ -11,7 +11,12 @@ cp -rf ./dotnet serverbuild/
 cp -rf ./thirdparty serverbuild/
 
 # Server image (just one for now)
-docker build -f docker/yngdieng-backend/Dockerfile -t ztl8702/yngdieng-backend:$TAG ./serverbuild
+docker build \
+    -f docker/yngdieng-backend/Dockerfile \
+    -t ztl8702/yngdieng-backend:$TAG \
+    --build-arg NUGET_REGISTRY_USERNAME="$NUGET_REGISTRY_USERNAME" \
+    --build-arg NUGET_REGISTRY_PASSWORD="$NUGET_REGISTRY_PASSWORD" \
+    ./serverbuild
 docker tag ztl8702/yngdieng-backend:$TAG $ALIYUN_REPO/yngdieng-backend:$TAG
 
 rm -rf serverbuild
