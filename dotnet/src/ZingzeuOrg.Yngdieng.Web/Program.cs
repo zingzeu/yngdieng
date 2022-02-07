@@ -1,6 +1,7 @@
 ﻿using System.Diagnostics;
 using System.Reflection;
 using Aliyun.OSS;
+using Grpc.Net.Client;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.EntityFrameworkCore;
 using NodaTime;
@@ -12,6 +13,7 @@ using ZingzeuOrg.Yngdieng.Web.Services;
 using ZingzeuOrg.Yngdieng.Web.Services.Admin;
 using ZingzeuOrg.Yngdieng.Web.Services.Frontend;
 using ZingzeuOrg.Yngdieng.Web.TextToSpeech;
+using static ZingzeuOrg.Corpus.Protos.Internal.V1.CorpusService;
 
 CreateHostBuilder(args).Build().Run();
 
@@ -24,7 +26,7 @@ static IHostBuilder CreateHostBuilder(string[] args) =>
            });
 class Startup
 {
-public static readonly List<String> ErrorLogs = new List<string>();
+    public static readonly List<String> ErrorLogs = new List<string>();
 
     private readonly IConfiguration _configuration;
 
@@ -65,13 +67,19 @@ public static readonly List<String> ErrorLogs = new List<string>();
                     _configuration.GetConnectionString("Postgres"), o => o.UseNodaTime())
                 .EnableSensitiveDataLogging()
         );
-        services.AddSingleton<OssClient>(service => {
+        services.AddSingleton<OssClient>(service =>
+        {
             var ossConfig = _configuration.GetSection("OssConfig");
             // TODO: get access key from HTTP context.
             return new OssClient(
                 accessKeyId: ossConfig["AccessKeyId"],
                 accessKeySecret: ossConfig["AccessKeySecret"],
                 endpoint: ossConfig["Endpoint"]);
+        });
+        services.AddSingleton<CorpusServiceClient>(services =>
+        {
+            var channel = GrpcChannel.ForAddress(_configuration.GetValue<string>("CorpusInternalGrpcAddress"));
+            return new CorpusServiceClient(channel);
         });
     }
 
@@ -151,7 +159,7 @@ public static readonly List<String> ErrorLogs = new List<string>();
                         $"Path: {context.Request.Path}\n" +
                         $"IsHttps: {context.Request.IsHttps}\n" +
                         $"Url: {context.Request.GetDisplayUrl()}\n\n" +
-                        $"Headers\n{headersStr}"+
+                        $"Headers\n{headersStr}" +
                         $"Errors:\n{errors}");
                 });
         });

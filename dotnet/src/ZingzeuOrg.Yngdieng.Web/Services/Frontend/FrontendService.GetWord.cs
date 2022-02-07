@@ -41,7 +41,7 @@ namespace ZingzeuOrg.Yngdieng.Web.Services.Frontend
                 throw new RpcException(new Status(StatusCode.InvalidArgument, $"{request.Name} is not a valid name.", e));
             }
             var userPreference = UserPreferences.FromContext(context);
-            var zhConverter = new ZhConverter(_openCc, userPreference.ZhConversionPreference);
+            var zhConverter = new OpenCcZhConverter(_openCc, userPreference.ZhConversionPreference);
             return await Words.GetWord(_indexHolder, _dbContext, zhConverter, docRef);
         }
 

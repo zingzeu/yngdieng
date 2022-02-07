@@ -101,10 +101,11 @@ namespace ZingzeuOrg.Yngdieng.Web.Db
         // Preferred Sandhi Audio (real-human audio). This is preferred over TTS audio.
         public AudioClip? PreferredSandhiAudio { get; set; }
 
-        public string? PreferredCorpusUtteranceId {get;set;}
-        public string? PreferredCorpusUtterancePreviewUrl {get;set;}
-
-
+        /// <summary>
+        /// null: 未获取过; empty: 获取过，但为空.
+        /// </summary>
+        public string? PreferredCorpusUtteranceId { get; set; }
+        public string? PreferredCorpusUtterancePreviewUrl { get; set; }
         public FengCategory? FengCategory { get; set; }
 
         public string? FengCategoryId { get; set; }

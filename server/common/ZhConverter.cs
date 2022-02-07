@@ -5,12 +5,18 @@ using Yngdieng.Protos;
 
 namespace Yngdieng.Common
 {
-    public sealed class ZhConverter
+    public interface ZhConverter
+    {
+        public string tH(string hukziuText);
+        public string tM(string mandarinText);
+    }
+
+    public sealed class OpenCcZhConverter : ZhConverter
     {
         private readonly YngdiengOpenCcClient _openCc;
         private readonly ZhConversionPreference _zhConversionPreference;
 
-        public ZhConverter(YngdiengOpenCcClient openCc, ZhConversionPreference zhConversionPreference)
+        public OpenCcZhConverter(YngdiengOpenCcClient openCc, ZhConversionPreference zhConversionPreference)
         {
             _openCc = openCc;
             _zhConversionPreference = zhConversionPreference;
@@ -36,6 +42,19 @@ namespace Yngdieng.Common
                 default:
                     return mandarinText;
             }
+        }
+    }
+
+    public sealed class NoOpZhConverter : ZhConverter
+    {
+        public string tH(string hukziuText)
+        {
+            return hukziuText;
+        }
+
+        public string tM(string mandarinText)
+        {
+            return mandarinText;
         }
     }
 
