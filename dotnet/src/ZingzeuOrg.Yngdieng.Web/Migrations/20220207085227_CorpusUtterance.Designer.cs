@@ -14,7 +14,7 @@ using ZingzeuOrg.Yngdieng.Web.Db;
 namespace ZingzeuOrg.Yngdieng.Web.Migrations
 {
     [DbContext(typeof(AdminContext))]
-    [Migration("20220207083850_CorpusUtterance")]
+    [Migration("20220207085227_CorpusUtterance")]
     partial class CorpusUtterance
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -45,7 +45,7 @@ namespace ZingzeuOrg.Yngdieng.Web.Migrations
                         .HasColumnName("blob_location");
 
                     b.Property<Instant>("CreationTime")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("creation_time");
 
                     b.Property<string>("MimeType")
@@ -421,7 +421,7 @@ namespace ZingzeuOrg.Yngdieng.Web.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("WordListId"));
 
                     b.Property<Instant>("CreationTime")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("creation_time");
 
                     b.Property<string>("Description")
@@ -435,7 +435,7 @@ namespace ZingzeuOrg.Yngdieng.Web.Migrations
                         .HasColumnName("title");
 
                     b.Property<Instant>("UpdateTime")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("update_time");
 
                     b.HasKey("WordListId")

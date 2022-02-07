@@ -43,7 +43,7 @@ namespace ZingzeuOrg.Yngdieng.Web.Migrations
                         .HasColumnName("blob_location");
 
                     b.Property<Instant>("CreationTime")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("creation_time");
 
                     b.Property<string>("MimeType")
@@ -419,7 +419,7 @@ namespace ZingzeuOrg.Yngdieng.Web.Migrations
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("WordListId"));
 
                     b.Property<Instant>("CreationTime")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("creation_time");
 
                     b.Property<string>("Description")
@@ -433,7 +433,7 @@ namespace ZingzeuOrg.Yngdieng.Web.Migrations
                         .HasColumnName("title");
 
                     b.Property<Instant>("UpdateTime")
-                        .HasColumnType("timestamp with time zone")
+                        .HasColumnType("timestamp without time zone")
                         .HasColumnName("update_time");
 
                     b.HasKey("WordListId")
