@@ -8,23 +8,23 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="EFCore.NamingConventions" Version="6.0.0" />
     <PackageReference Include="Microsoft.AspNetCore.Components.WebAssembly.Server" Version="6.0.0" />
-      <PackageReference Include="Aliyun.OSS.SDK.NetCore" Version="2.13.0" />
-    <PackageReference Include="EFCore.NamingConventions" Version="1.1.1" />
+    <PackageReference Include="Aliyun.OSS.SDK.NetCore" Version="2.13.0" />
     <PackageReference Include="Grpc.AspNetCore" Version="2.40.0" />
     <PackageReference Include="Grpc.AspNetCore.Server.Reflection" Version="2.40.0" />
     <PackageReference Include="Grpc.AspNetCore.Web" Version="2.39.0" />
     <PackageReference Include="LibHokchew.Shared" Version="0.3.4" />
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.20" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.20">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.1">
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
       <PrivateAssets>all</PrivateAssets>
     </PackageReference>
     <PackageReference Include="FSharp.Core" Version="5.0.2" />
     <PackageReference Include="NAudio" Version="1.10.0" />
-    <PackageReference Include="NodaTime" Version="3.0.7" />
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="3.1.18" />
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.NodaTime" Version="3.1.18" />
+    <PackageReference Include="NodaTime" Version="3.0.9" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.2" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL.NodaTime" Version="6.0.2" />
     <PackageReference Include="Xabe.FFmpeg" Version="4.4.1" />
     <PackageReference Include="ZingzeuData.Shared" Version="1.9.0" />
   </ItemGroup>
