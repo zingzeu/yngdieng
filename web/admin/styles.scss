@@ -2,6 +2,7 @@
 
 @import 'custom-theme';
 
+// Ext-0 covers CJK Extension A
 @font-face {
   font-family: 'Ext-0';
   src: url('assets/fonts/yngdieng-extended-0.woff') format('woff'),
@@ -9,6 +10,7 @@
       format('truetype'); /* Safari, Android, iOS */
 }
 
+// Ext-1 covers CJK Extension B-G
 @font-face {
   font-family: 'Ext-1';
   src: url('assets/fonts/yngdieng-extended-1.woff') format('woff'),
