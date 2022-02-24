@@ -36,10 +36,16 @@ namespace Yngdieng.Search.Common
             // 普通话直译
             public static string Mandarin { get => "mandarin"; }
             public static string HanziAlternative { get => "hanzi_alt"; }
+
             /// <summary>
-            /// Exact sandhi yngping
+            /// 榕拼连读(含各种变化组合)
             /// </summary>
             public static string Yngping { get => "yngping"; }
+
+            /// <summary>
+            /// 榕拼本字(含各种变化组合)
+            /// </summary>
+            public static string YngpingUnderlying { get => "yngping_underlying"}
 
             /// <summary>
             /// 连读后的声调.
