@@ -1,10 +1,11 @@
 const path = require('path');
+const PnpWebpackPlugin = require(`pnp-webpack-plugin`);
 
 const config = {
   projectName: 'miniapp',
   date: '2020-8-2',
   designWidth: 750,
-  deviceRatio: {640: 2.34 / 2, 750: 1, 828: 1.81 / 2},
+  deviceRatio: { 640: 2.34 / 2, 750: 1, 828: 1.81 / 2 },
   sourceRoot: 'src',
   outputRoot: 'dist',
   plugins: [],
@@ -26,6 +27,12 @@ const config = {
     projectDirectory: path.resolve(__dirname, '..'),
   },
   mini: {
+    // https://docs.taro.zone/en/docs/config-detail#miniwebpackchain
+    webpackChain(chain, webpack) {
+      chain.resolve.plugin("Pnp").use(PnpWebpackPlugin, {});
+      //console.log(chain.resolveLoader)
+     // chain.resolveLoader.plugin("Pnp").use(PnpWebpackPlugin.moduleLoader(module), {});
+    },
     postcss: {
       pxtransform: {
         enable: true,
@@ -50,7 +57,7 @@ const config = {
     publicPath: '/',
     staticDirectory: 'static',
     postcss: {
-      autoprefixer: {enable: true, config: {}},
+      autoprefixer: { enable: true, config: {} },
       cssModules: {
         enable: false, // 默认为 false，如需使用 css modules 功能，则设为 true
         config: {
