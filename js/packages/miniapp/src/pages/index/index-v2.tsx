@@ -65,7 +65,8 @@ const IndexV2 = () => {
   }, []);
   return (
     <View className={styles.index}>
-      <Header />
+      {/* <Header /> */}
+      
       <View className={styles.banner}>
         <View />
         <View className={styles.imageContainer}>
@@ -80,9 +81,7 @@ const IndexV2 = () => {
               onInput={e => setInputString(e.detail.value)}
               onConfirm={handleConfirm}
             />
-          </View>
-          <View className={styles.confirmBtn} onClick={handleConfirm}>
-            <AtIcon value='search'></AtIcon>
+            <AtIcon  value='search' onClick={handleConfirm}></AtIcon>
           </View>
           <View className={styles.actions}></View>
         </View>
