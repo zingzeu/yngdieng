@@ -4774,9 +4774,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"audio-colector-plugin@workspace:packages/audio-collector-plugin":
+"audio-colector-plugin@workspace:packages/audio-collector":
   version: 0.0.0-use.local
-  resolution: "audio-colector-plugin@workspace:packages/audio-collector-plugin"
+  resolution: "audio-colector-plugin@workspace:packages/audio-collector"
   dependencies:
     "@babel/core": ^7.8.0
     "@babel/runtime": ^7.7.7
@@ -8410,9 +8410,9 @@ __metadata:
   linkType: hard
 
 "decode-uri-component@npm:^0.2.0":
-  version: 0.2.0
-  resolution: "decode-uri-component@npm:0.2.0"
-  checksum: f3749344ab9305ffcfe4bfe300e2dbb61fc6359e2b736812100a3b1b6db0a5668cba31a05e4b45d4d63dbf1a18dfa354cd3ca5bb3ededddabb8cd293f4404f94
+  version: 0.2.2
+  resolution: "decode-uri-component@npm:0.2.2"
+  checksum: 95476a7d28f267292ce745eac3524a9079058bbb35767b76e3ee87d42e34cd0275d2eb19d9d08c3e167f97556e8a2872747f5e65cbebcac8b0c98d83e285f139
   languageName: node
   linkType: hard
 
@@ -12031,10 +12031,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"immer@npm:8.0.4":
-  version: 8.0.4
-  resolution: "immer@npm:8.0.4"
-  checksum: 9d3b28df1ac5bf6918c611e71c15bdb136588c21a3431100448f21325fef9b055cc9a44fe8b023f0c5ecbc66a2ba38f403c9a67d581f613b49d0e4ff15564f79
+"immer@npm:9.0.6":
+  version: 9.0.6
+  resolution: "immer@npm:9.0.6"
+  checksum: 75da22f3b32f3f14604eb389b4f50e84a14f2e42f306f0cbe4d2969aed54ec7fda9a7e9ca42ebae2ba73ec9bb6ec1001fafbac535accaf03860054ab0f7e8388
   languageName: node
   linkType: hard
 
@@ -22615,7 +22615,7 @@ miniprogram-compiler@latest:
     eslint-plugin-import: 2.24.2
     eslint-plugin-react: 7.26.1
     eslint-plugin-react-hooks: 4.2.0
-    immer: 8.0.4
+    immer: 9.0.6
     lodash: 4.17.21
     miniprogram-ci: 1.6.1
     react: 17.0.2
