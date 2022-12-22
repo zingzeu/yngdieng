@@ -4124,7 +4124,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"acorn-walk@npm:^8.0.0":
+"acorn-walk@npm:^8.0.0, acorn-walk@npm:^8.2.0":
   version: 8.2.0
   resolution: "acorn-walk@npm:8.2.0"
   checksum: 1715e76c01dd7b2d4ca472f9c58968516a4899378a63ad5b6c2d668bba8da21a71976c14ec5f5b75f887b6317c4ae0b897ab141c831d741dc76024d8745f1ad1
@@ -4155,6 +4155,15 @@ __metadata:
   bin:
     acorn: bin/acorn
   checksum: 9d0de73b73cb6ea8ccd8263a8144d9e2c4b6af90ea0c429997538af0ebbe83c5addecee814b2a7f91f7f615d0bd1547cc7137b3fa236ce058adc64feccee850b
+  languageName: node
+  linkType: hard
+
+"acorn@npm:^8.7.0":
+  version: 8.8.1
+  resolution: "acorn@npm:8.8.1"
+  bin:
+    acorn: bin/acorn
+  checksum: 4079b67283b94935157698831967642f24a075c52ce3feaaaafe095776dfbe15d86a1b33b1e53860fc0d062ed6c83f4284a5c87c85b9ad51853a01173da6097f
   languageName: node
   linkType: hard
 
@@ -4774,9 +4783,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"audio-colector-plugin@workspace:packages/audio-collector-plugin":
+"audio-colector-plugin@workspace:packages/audio-collector":
   version: 0.0.0-use.local
-  resolution: "audio-colector-plugin@workspace:packages/audio-collector-plugin"
+  resolution: "audio-colector-plugin@workspace:packages/audio-collector"
   dependencies:
     "@babel/core": ^7.8.0
     "@babel/runtime": ^7.7.7
@@ -12031,10 +12040,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"immer@npm:8.0.4":
-  version: 8.0.4
-  resolution: "immer@npm:8.0.4"
-  checksum: 9d3b28df1ac5bf6918c611e71c15bdb136588c21a3431100448f21325fef9b055cc9a44fe8b023f0c5ecbc66a2ba38f403c9a67d581f613b49d0e4ff15564f79
+"immer@npm:9.0.6":
+  version: 9.0.6
+  resolution: "immer@npm:9.0.6"
+  checksum: 75da22f3b32f3f14604eb389b4f50e84a14f2e42f306f0cbe4d2969aed54ec7fda9a7e9ca42ebae2ba73ec9bb6ec1001fafbac535accaf03860054ab0f7e8388
   languageName: node
   linkType: hard
 
@@ -21850,11 +21859,14 @@ miniprogram-compiler@latest:
   linkType: hard
 
 "vm2@npm:^3.8.4":
-  version: 3.9.5
-  resolution: "vm2@npm:3.9.5"
+  version: 3.9.13
+  resolution: "vm2@npm:3.9.13"
+  dependencies:
+    acorn: ^8.7.0
+    acorn-walk: ^8.2.0
   bin:
     vm2: bin/vm2
-  checksum: d83dbe929ca4d1c9fca71cda34a5aee9a6b4bdc1de1ddb11777c4f6e1e48a471764195258dbf608f962df1a1c3d6ae917c9755f11a8f37b9e0bbf691313a725c
+  checksum: ee82c130a9d1b45558fac4e95133ae022e69fafd4bec8aada44bb2f0aebe6ff8ae9b1176e7cbafceffec35267e009b518c121ad81a5565da06aa7a50ed3a09bc
   languageName: node
   linkType: hard
 
@@ -22615,7 +22627,7 @@ miniprogram-compiler@latest:
     eslint-plugin-import: 2.24.2
     eslint-plugin-react: 7.26.1
     eslint-plugin-react-hooks: 4.2.0
-    immer: 8.0.4
+    immer: 9.0.6
     lodash: 4.17.21
     miniprogram-ci: 1.6.1
     react: 17.0.2
