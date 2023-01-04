@@ -81,6 +81,13 @@ const Header = ({injectedComponents = <Block />}) => {
           routePath === routes.INDEX && styles.index
         )}
       >
+         <View>
+            <AtIcon
+              value='menu'
+              color={isHomePage ? '#664445' : '#ffffff'}
+              onClick={() => toggleSidebar(true)}
+            ></AtIcon>
+          </View>
         {isDetailsPage && (
           <View>
             <Image className={styles.logo} mode='heightFix' src={logoURL} />
@@ -97,17 +104,10 @@ const Header = ({injectedComponents = <Block />}) => {
               ></AtIcon>
             </View>
           )}
-          <View>
-            <AtIcon
-              value='menu'
-              color={isHomePage ? '#664445' : '#ffffff'}
-              onClick={() => toggleSidebar(true)}
-            ></AtIcon>
-          </View>
         </View>
       </View>
       <AtDrawer
-        right={true}
+        right={false}
         show={showSidebar}
         onClose={() => toggleSidebar(false)}
         mask
